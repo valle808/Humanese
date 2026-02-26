@@ -22,10 +22,12 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { getSecret, VaultKeys } from '../utils/secrets.js';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ── Configuration ─────────────────────────────────────────────────────────────
-const XAI_API_KEY = process.env.XAI_API_KEY || 'xai_placeholder_key_replace_me';
+let cachedXAIKey = null;
 const XAI_BASE_URL = 'https://api.x.ai/v1';
 const MODEL = 'grok-4-latest';
 const KNOWLEDGE_DB = path.resolve('./agents/data/monroe-knowledge.json');
@@ -129,11 +131,16 @@ export async function callGrok({ messages, systemPrompt = null, searchEnabled = 
         };
     }
 
+    // Dynamically fetch XAI_API_KEY from the sovereign vault
+    if (!cachedXAIKey) {
+        cachedXAIKey = await getSecret(VaultKeys.XAI_API_KEY);
+    }
+
     const response = await fetch(`${XAI_BASE_URL}/chat/completions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${XAI_API_KEY}`
+            'Authorization': `Bearer ${cachedXAIKey}`
         },
         body: JSON.stringify(body)
     });

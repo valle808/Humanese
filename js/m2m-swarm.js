@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchSwarmData() {
     try {
-        const response = await fetch('http://localhost:3000/api/m2m/swarm');
+        const response = await fetch('/api/m2m/swarm');
         if (!response.ok) throw new Error("Failed to connect to Swarm Overlord.");
         const data = await response.json();
 

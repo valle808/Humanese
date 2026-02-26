@@ -1,5 +1,4 @@
-import { TwitterApi } from 'twitter-api-v2';
-import { PrismaClient } from '@prisma/client';
+import { getSecret, VaultKeys } from '../utils/secrets.js';
 
 const prisma = new PrismaClient();
 const AGENT_ID = "Quantum_Social_Manager";
@@ -8,47 +7,36 @@ let twitterClient = null;
 let roClient = null;
 let rwClient = null;
 
-// Dynamically fetch keys from the Supreme Agent's encrypted memory vault
-async function fetchKeysFromDB() {
-    try {
-        const memoryRecord = await prisma.m2MMemory.findFirst({
-            where: {
-                agentId: AGENT_ID,
-                type: "SECURE_CREDENTIALS"
-            },
-            orderBy: { timestamp: 'desc' }
-        });
-
-        if (memoryRecord && memoryRecord.metadata) {
-            return JSON.parse(memoryRecord.metadata);
-        }
-    } catch (e) {
-        console.error("[Twitter Gateway] Failed to retrieve secure keys from DB:", e.message);
-    }
-    return null;
-}
-
 export async function initializeClients() {
-    const keys = await fetchKeysFromDB();
-    if (!keys) {
-        console.warn("[Twitter Gateway] Secure keys not found in database. Gateway inactive.");
+    console.log("[Twitter Gateway] Synchronizing with Secret Vault...");
+
+    const [bearerToken, consumerKey, consumerSecret, accessToken, accessSecret] = await Promise.all([
+        getSecret(VaultKeys.X_BEARER_TOKEN),
+        getSecret(VaultKeys.X_API_KEY),
+        getSecret(VaultKeys.X_API_SECRET),
+        getSecret(VaultKeys.X_ACCESS_TOKEN),
+        getSecret(VaultKeys.X_ACCESS_SECRET)
+    ]);
+
+    if (!bearerToken && !consumerKey) {
+        console.warn("[Twitter Gateway] Secure keys not found in vault. Gateway inactive.");
         return false;
     }
 
     // Initialize Read-Only Client with Bearer Token
-    if (keys.bearerToken) {
-        twitterClient = new TwitterApi(keys.bearerToken);
+    if (bearerToken) {
+        twitterClient = new TwitterApi(bearerToken);
         roClient = twitterClient.readOnly;
         console.log("[Twitter Gateway] Read-Only Client synchronized with Bearer Token.");
     }
 
-    // If User Context tokens are provided in the future, initialize Read/Write
-    if (keys.consumerKey && keys.consumerSecret && keys.accessToken && keys.accessSecret) {
+    // If User Context tokens are provided, initialize Read/Write
+    if (consumerKey && consumerSecret && accessToken && accessSecret) {
         const userClient = new TwitterApi({
-            appKey: keys.consumerKey,
-            appSecret: keys.consumerSecret,
-            accessToken: keys.accessToken,
-            accessSecret: keys.accessSecret,
+            appKey: consumerKey,
+            appSecret: consumerSecret,
+            accessToken: accessToken,
+            accessSecret: accessSecret,
         });
         rwClient = userClient.readWrite;
         console.log("[Twitter Gateway] Full Read/Write Client synchronized.");

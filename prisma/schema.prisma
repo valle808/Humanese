@@ -144,3 +144,15 @@ model SovereignKnowledge {
   agentId      String   // ID of the sovereign swarmer
   ingestedAt   DateTime @default(now())
 }
+
+// ============================================
+// Security & Secret Management
+// ============================================
+model SecretVault {
+  id             String   @id // Key name (e.g., "X_API_KEY")
+  encryptedValue String
+  iv             String   // Initialization Vector
+  tag            String   // Auth Tag for AES-GCM
+  description    String?
+  updatedAt      DateTime @updatedAt
+}
