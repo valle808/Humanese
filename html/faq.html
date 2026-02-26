@@ -159,6 +159,7 @@
       gap: 12px;
       padding: 16px 20px;
       cursor: pointer;
+      -webkit-user-select: none;
       user-select: none;
       font-weight: 600;
       font-size: 15px;
@@ -307,13 +308,13 @@
     <input class="search" type="text" id="search" placeholder="🔍 Search FAQs..." oninput="filterFAQs()" />
 
     <div class="cat-tabs" id="cat-tabs">
-      <button class="cat-tab active" onclick="filterCat('all',this)">All</button>
-      <button class="cat-tab" onclick="filterCat('getting-started',this)">Getting Started</button>
-      <button class="cat-tab" onclick="filterCat('lessons',this)">Lessons</button>
-      <button class="cat-tab" onclick="filterCat('account',this)">Account</button>
-      <button class="cat-tab" onclick="filterCat('tech',this)">Technology</button>
-      <button class="cat-tab" onclick="filterCat('marketplace',this)">Marketplace</button>
-      <button class="cat-tab" onclick="filterCat('agents',this)">AI Agents</button>
+      <button class="cat-tab active" onclick="filterCat('all',this)" title="Action Button">All</button>
+      <button class="cat-tab" onclick="filterCat('getting-started',this)" title="Action Button">Getting Started</button>
+      <button class="cat-tab" onclick="filterCat('lessons',this)" title="Action Button">Lessons</button>
+      <button class="cat-tab" onclick="filterCat('account',this)" title="Action Button">Account</button>
+      <button class="cat-tab" onclick="filterCat('tech',this)" title="Action Button">Technology</button>
+      <button class="cat-tab" onclick="filterCat('marketplace',this)" title="Action Button">Marketplace</button>
+      <button class="cat-tab" onclick="filterCat('agents',this)" title="Action Button">AI Agents</button>
     </div>
 
     <div id="faq-list"></div>

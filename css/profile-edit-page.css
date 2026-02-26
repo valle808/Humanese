@@ -195,3 +195,52 @@
     margin-left: 0;
   }
 }
+:root {
+        --bg: #050505;
+        --surface: rgba(15, 15, 15, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --gold: #e2b714;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+    }
+    footer { background: #000; border-top: 1px solid var(--border); padding: 80px 40px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+
+    .green-footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 18px; font-weight: bold; margin-bottom: 24px; margin-top: 0; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .footer-col a { color: rgba(255,255,255,0.85) !important; text-decoration: none !important; font-size: 15px !important; font-weight: bold !important; transition: opacity 0.2s; background: none !important;}
+    .footer-col a:hover { opacity: 1 !important; text-decoration: underline !important; color: #fff !important; }
+
+    .info-section { padding: 40px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .info-card { background: #151515; border: 2px solid #333; border-radius: 30px; padding: 50px; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    .info-card h2 { font-size: 3rem; color: #FF6E00; margin-top: 0; }
+    .big-icon { font-size: 5rem; margin-bottom: 20px; display: block; animation: wiggle 3s infinite; }
+    @keyframes wiggle { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+    .mascot-side { position: absolute; bottom: -20px; right: -20px; width: 150px; animation: floatMascot 4s infinite; filter: drop-shadow(0 0 10px #FF6E00); }
+    @keyframes floatMascot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    .btn-action { background: #FF6E00; color: #000; padding: 15px 40px; border-radius: 30px; font-weight: bold; font-size: 1.2rem; border: none; cursor: pointer; margin-top: 30px; transition: 0.2s; box-shadow: 0 5px 0 #CC5500; }
+    .btn-action:hover { transform: scale(1.05); }
+    
+    .page-filter-container { background: #111; padding: 15px; border-radius: 15px; margin-bottom: 30px; display: flex; gap: 10px; justify-content: center; }
+    .page-filter-input { background: #222; border: 1px solid #444; color: #FFF; padding: 8px 15px; border-radius: 10px; width: 250px; }
+    .page-filter-btn { background: #333; color: #FFF; border: none; padding: 8px 15px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+    .page-filter-btn:hover { background: #FF6E00; color: #000; }
+\n
+    .info-section { padding: 40px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .info-card { background: #FFF; border: 2px solid #EEE; border-radius: 30px; padding: 50px; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+    .info-card h2 { font-size: 3rem; color: #FF6E00; margin-top: 0; }
+    .big-icon { font-size: 5rem; margin-bottom: 20px; display: block; animation: wiggle 3s infinite; }
+    @keyframes wiggle { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+    .btn-action { background: #FF6E00; color: #FFF; padding: 15px 40px; border-radius: 30px; font-weight: bold; font-size: 1.2rem; border: none; cursor: pointer; margin-top: 30px; transition: 0.2s; box-shadow: 0 5px 0 #CC5500; }
+    .btn-action:hover { transform: scale(1.05); background: #CC5500; }
+    
+    .page-filter-container { background: #F9F9F9; padding: 15px; border-radius: 15px; margin-bottom: 30px; display: flex; gap: 10px; justify-content: center; border: 1px solid #EEE; }
+    .page-filter-input { background: #FFF; border: 1px solid #DDD; color: #111; padding: 8px 15px; border-radius: 10px; width: 250px; }
+    .page-filter-btn { background: #EEE; color: #111; border: none; padding: 8px 15px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+    .page-filter-btn:hover { background: #FF6E00; color: #FFF; }
+\n

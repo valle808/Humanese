@@ -127,7 +127,7 @@
                     <div class="tier-amount">$3</div>
                     <div class="tier-name">Coffee</div>
                     <p class="tier-desc">Keeps a learner's streak alive for a week.</p>
-                    <button class="donate-btn" onclick="selectTier(3)">Donate $3</button>
+                    <button class="donate-btn" onclick="selectTier(3)" title="Action Button">Donate $3</button>
                 </div>
 
                 <div class="tier-card featured" data-amount="10" id="tier-supporter">
@@ -136,7 +136,7 @@
                     <div class="tier-amount">$10</div>
                     <div class="tier-name">Supporter</div>
                     <p class="tier-desc">Sponsors a free month of learning for one student in need.</p>
-                    <button class="donate-btn featured-btn" onclick="selectTier(10)">Donate $10</button>
+                    <button class="donate-btn featured-btn" onclick="selectTier(10)" title="Action Button">Donate $10</button>
                 </div>
 
                 <div class="tier-card" data-amount="25" id="tier-champion">
@@ -144,7 +144,7 @@
                     <div class="tier-amount">$25</div>
                     <div class="tier-name">Champion</div>
                     <p class="tier-desc">Funds new lesson content creation for an entire language unit.</p>
-                    <button class="donate-btn" onclick="selectTier(25)">Donate $25</button>
+                    <button class="donate-btn" onclick="selectTier(25)" title="Action Button">Donate $25</button>
                 </div>
 
                 <div class="tier-card" data-amount="50" id="tier-legend">
@@ -152,7 +152,7 @@
                     <div class="tier-amount">$50</div>
                     <div class="tier-name">Legend</div>
                     <p class="tier-desc">Keeps our servers running for a full day — for every user.</p>
-                    <button class="donate-btn" onclick="selectTier(50)">Donate $50</button>
+                    <button class="donate-btn" onclick="selectTier(50)" title="Action Button">Donate $50</button>
                 </div>
 
             </div>
@@ -163,7 +163,7 @@
                 <div class="custom-input-row">
                     <span class="currency-symbol">$</span>
                     <input type="number" id="custom-amount" min="1" placeholder="Your amount" />
-                    <button class="donate-btn custom-donate-btn" onclick="donateCustom()">Donate</button>
+                    <button class="donate-btn custom-donate-btn" onclick="donateCustom()" title="Action Button">Donate</button>
                 </div>
             </div>
             <!-- PayPal Button -->
@@ -232,7 +232,7 @@
             <div class="cta-content">
                 <h2>Every dollar counts. Seriously.</h2>
                 <p>Even $1 makes a real difference. Thank you for believing in free education.</p>
-                <button class="donate-btn cta-btn" onclick="selectTier(10)">
+                <button class="donate-btn cta-btn" onclick="selectTier(10)" title="Action Button">
                     💛 Donate Now
                 </button>
             </div>
@@ -247,7 +247,7 @@
             <h2 class="modal-title">Thank you so much!</h2>
             <p class="modal-body">Your generosity keeps Humanese free for learners everywhere. You're officially a
                 legend.</p>
-            <button class="donate-btn" onclick="closeModal()">Back to Learning</button>
+            <button class="donate-btn" onclick="closeModal()" title="Action Button">Back to Learning</button>
         </div>
     </div>
 

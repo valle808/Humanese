@@ -32,6 +32,7 @@
 
     .signup-page-container {
       background: var(--bg-surface) !important;
+      -webkit-backdrop-filter: blur(15px);
       backdrop-filter: blur(15px);
       border: 1px solid var(--border-subtle) !important;
       color: var(--text-primary);
@@ -159,7 +160,7 @@
           <img src="../assets/svg/close-button.svg" alt="close button" /></a>
       </div>
       <div class="login-button-container">
-        <button class="login-button button-div" id="login-button" onclick="loginButtonAnimation()">
+        <button class="login-button button-div" id="login-button" onclick="loginButtonAnimation()" title="Action Button">
           LOGIN
         </button>
       </div>
@@ -194,7 +195,7 @@
 
           <div class="create-account-button-container">
             <button type="submit" class="create-account-button button-div" id="create-account-button"
-              onclick="createAccountButtonAnimation()">
+              onclick="createAccountButtonAnimation()" title="Action Button">
               <span id="create-account-span">CREATE ACCOUNT</span>
               <div class="loading-balls-container hidden" style="transition-duration: 250ms"
                 id="loading-balls-container">

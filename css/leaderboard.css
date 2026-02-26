@@ -13,6 +13,7 @@ body{
     padding: 0 16px;
     scrollbar-width: none;
     top: var(--web-ui_topbar-top, 0);
+    -webkit-user-select: none;
     user-select: none;
     left: 0;
     position: fixed !important;

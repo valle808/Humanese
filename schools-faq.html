@@ -5,44 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Humanese – Schools FAQs</title>
     <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
-    <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #050505; color: #fff; }
-        .nav-header { position: fixed; top: 0; left: 0; right: 0; height: 70px; background: rgba(5,5,5,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid #333; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 1000; }
-        .logo img { height: 40px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: #fff; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 2px solid #FF6E00; border-radius: 20px; transition: all 0.2s; }
-        .nav-links a:hover { background: #FF6E00; color: #000; }
-        
-        .hero { min-height: 80vh; padding-top: 100px; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero-content { max-width: 800px; padding: 40px; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; color: #FF6E00; }
-        .hero p { font-size: 1.2rem; color: #ccc; line-height: 1.6; }
-        
-        .mascot-image { width: 300px; animation: float 4s ease-in-out infinite; margin-top: 40px; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    <link rel="stylesheet" href="./css/schools-faq.css">
 
-        
-    :root {
-        --bg: #050505;
-        --surface: rgba(15, 15, 15, 0.7);
-        --border: rgba(255, 255, 255, 0.08);
-        --gold: #e2b714;
-        --text: #e2e8f0;
-        --muted: #94a3b8;
-    }
-    footer { background: #000; border-top: 1px solid var(--border); padding: 80px 40px; }
-    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
-    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-    .footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-    .footer-col a:hover { color: #fff; }
-
-        .green-footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
-        .footer-col h4 { color: #fff; font-size: 18px; font-weight: bold; margin-bottom: 24px; margin-top: 0; }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
-        .footer-col a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 15px; font-weight: bold; transition: opacity 0.2s; }
-        .footer-col a:hover { opacity: 1; text-decoration: underline; }
-    </style>
 </head>
 <body>
     <header class="nav-header">
@@ -59,7 +23,7 @@
         <div class="info-section">
             <div class="page-filter-container">
                 <input type="text" class="page-filter-input" id="pageSearch" placeholder="Search for Schools FAQs topics...">
-                <button class="page-filter-btn">Filter</button>
+                <button class="page-filter-btn" title="Action Button">Filter</button>
             </div>
             <div class="info-card">
                 <span class="big-icon">✨</span>
@@ -71,7 +35,7 @@
                     content soon.
                 </div>
                 
-                <button class="btn-action" onclick="alert('Synthesis Initialized. Get ready!')">Start Explore!</button>
+                <button class="btn-action" onclick="alert('Synthesis Initialized. Get ready!')" title="Action Button">Start Explore!</button>
             </div>
         </div>
     </main>

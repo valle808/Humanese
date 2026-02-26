@@ -1,0 +1,137 @@
+:root {
+      --bg: #050505;
+      --surface: rgba(15, 15, 15, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #e2b714;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .pulse-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #050505 100%);
+    }
+
+    .pulse-circle {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 15s infinite linear;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.1;
+      }
+
+      100% {
+        width: 150vmax;
+        height: 150vmax;
+        opacity: 0;
+      }
+    }
+
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(5, 5, 5, 0.8);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 32px;
+      filter: grayscale(1) brightness(1.5);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 120px 20px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #fff;
+      letter-spacing: -3px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .job-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 24px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .job-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.02);
+    }
+
+    .job-card h3 {
+      font-size: 1.5rem;
+      margin: 0 0 12px 0;
+      color: #fff;
+    }
+
+    .job-card p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px;
+      border: 1px dashed var(--border);
+      border-radius: 24px;
+    }
+
+    .empty-state p {
+      color: var(--muted);
+    }

@@ -95,3 +95,77 @@
       opacity: 1;
     }
   }
+/* Dark Theme Overrides for Login */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-surface: rgba(245, 245, 245, 0.8);
+      --border-subtle: #EEEEEE;
+      --text-primary: #111111;
+      --text-secondary: #444444;
+      --accent-primary: #FF6E00;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    .main-container {
+      background: transparent !important;
+    }
+
+    .signup-page-container {
+      background: var(--bg-surface) !important;
+      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-primary);
+      box-shadow: 0 0 40px rgba(255, 110, 0, 0.1);
+    }
+
+    .create-profile-heading {
+      color: var(--text-primary) !important;
+    }
+
+    .input-field {
+      background: #F9F9F9 !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .input-field::placeholder {
+      color: var(--text-secondary) !important;
+    }
+
+    .login-button {
+      color: var(--accent-primary) !important;
+      border-color: var(--border-subtle) !important;
+      background: transparent !important;
+    }
+
+    .login-button:hover {
+      background: rgba(255, 110, 0, 0.05) !important;
+      border-color: var(--accent-primary) !important;
+    }
+
+    .split-line {
+      background-color: var(--border-subtle) !important;
+    }
+
+    .terms-privacy span {
+      color: var(--text-secondary) !important;
+    }
+
+    .terms-privacy a {
+      color: var(--accent-primary) !important;
+    }
+
+    .create-account-button {
+      background-color: var(--accent-primary) !important;
+      color: #FFF !important;
+      box-shadow: 0 4px 0px #CC5500 !important;
+    }
+
+    .create-account-button:hover {
+      filter: brightness(1.2);
+    }

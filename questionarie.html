@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="top-row-life">
-            <img class="heart-life" src="./assets/svg/heart.svg" />
+            <img class="heart-life" src="./assets/svg/heart.svg" / alt="image">
             <span id="heart-count"></span>
             <script>
               currentHearts();
@@ -40,14 +40,14 @@
         <div class="bottom-row">
           <div class="bottom-buttons">
             <div class="skip-button" style="display: block">
-              <button class="button-div skip-button-inner" id="skip-button" onclick="skipButton(this.id)">
+              <button class="button-div skip-button-inner" id="skip-button" onclick="skipButton(this.id)" title="Action Button">
                 <span id="skip-span">Skip</span>
               </button>
             </div>
             <div class="correct-left" id="correct-left" style="display: none">
               <div class="correct-content">
                 <div class="correct-tick">
-                  <img class="green-tick" src="./assets/svg/correct-tick-green.svg" />
+                  <img class="green-tick" src="./assets/svg/correct-tick-green.svg" / alt="image">
                 </div>
                 <div class="correct-text">
                   <h2>Good job!</h2>
@@ -57,7 +57,7 @@
             <div class="correct-left" id="wrong-left" style="display: none">
               <div class="correct-content">
                 <div class="correct-tick">
-                  <img class="green-tick" src="./assets/svg/wrong-x-red.svg" />
+                  <img class="green-tick" src="./assets/svg/wrong-x-red.svg" / alt="image">
                 </div>
                 <div class="wrong-text">
                   <h2>Correct Solution:</h2>
@@ -66,7 +66,7 @@
               </div>
             </div>
             <div class="check-button" id="check-button-div">
-              <button class="button-div check-button-inner-inactive" id="check-button" onclick="checkButton(this.id)">
+              <button class="button-div check-button-inner-inactive" id="check-button" onclick="checkButton(this.id)" title="Action Button">
                 <span id="continue-button">Check</span>
               </button>
             </div>
@@ -80,17 +80,17 @@
       <div class="exit-box">
         <div class="exit-box-contents">
           <div class="exit-image">
-            <img src="./assets/svg/exit-image.svg" />
+            <img src="./assets/svg/exit-image.svg" / alt="image">
           </div>
           <span class="exit-text-head">Wait, don’t go!</span>
           <span class="exit-text-description">You’re right on track! If you quit now, you’ll lose your
             progress.</span>
           <div class="keep-learning-button-outer-active" id="check-button-div">
-            <button class="button-div keep-learning-button" id="keep-learning-button" onclick="revertQuestionScreen()">
+            <button class="button-div keep-learning-button" id="keep-learning-button" onclick="revertQuestionScreen()" title="Action Button">
               <span id="keep-learning">KEEP LEARNING</span>
             </button>
           </div>
-          <button class="end-question-session" onclick="exitToLearn()">
+          <button class="end-question-session" onclick="exitToLearn()" title="Action Button">
             <span>END SESSION</span>
           </button>
         </div>
@@ -103,18 +103,18 @@
         <div class="exit-box-contents">
           <div class="gem-head-popup">
             <div class="gem-count-div">
-              <img class="gem-img" src="./assets/svg/gems-icon.svg" />
+              <img class="gem-img" src="./assets/svg/gems-icon.svg" / alt="image">
               <span id="gem-count-text"></span>
             </div>
           </div>
           <span class="exit-text-head">You ran out of hearts!!</span>
           <span class="exit-text-description">Get Super for Unlimited Hearts, or use gems to buy hearts.</span>
           <div class="keep-learning-button-outer-active" id="check-button-div">
-            <button class="button-div keep-learning-button" id="keep-learning-button" onclick="goToShop()">
+            <button class="button-div keep-learning-button" id="keep-learning-button" onclick="goToShop()" title="Action Button">
               <span id="keep-learning">GO TO SHOP</span>
             </button>
           </div>
-          <button class="end-question-session" onclick="exitToLearn()">
+          <button class="end-question-session" onclick="exitToLearn()" title="Action Button">
             <span>END SESSION</span>
           </button>
         </div>
