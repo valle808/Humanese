@@ -243,7 +243,7 @@ let xpCount = -1;
 let questionLoad = () => {
 
     // let learnLang = localStorage.getItem("selectedLang");
-    fetch(`http://localhost:3000/api/question?lang=${learnLang}`)
+    fetch(`/api/question?lang=${learnLang}`)
         .then(response => {
             if (!response.ok) throw new Error('API server down');
             return response.json();
