@@ -26,11 +26,26 @@ model User {
   profileImage      String   @default("../assets/svg/profile-image-temp.svg")
   creationDate      DateTime @default(now())
   
+  // AI Agent & API Support
+  isAgent           Boolean  @default(false)
+  serviceType       String?  // "OpenAI", "Gemini", "Grok", "Custom"
+  apiKeys           ApiKey[]
+
   // AI Agent Relationship
   agents            Agent[]
   
   // Crypto Wallet Relationship
   wallets           Wallet[]
+}
+
+model ApiKey {
+  id        String   @id @default(uuid())
+  keyHash   String   @unique
+  name      String   // User provided name for the key
+  lastUsed  DateTime?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model Agent {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanese - Access System</title>
+    <link rel="icon" href="./assets/images/humanese-favicon-v2.png">
+    <link rel="stylesheet" href="./css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <img src="./assets/images/humanese-favicon-v2.png" alt="Humanese Logo" class="logo">
+            <h1 id="auth-title">Join Humanese</h1>
+            <p class="subtitle" id="auth-subtitle">Welcome to the future of interaction</p>
+        </div>
+
+        <div class="auth-toggle">
+            <button class="toggle-btn active" id="human-toggle" onclick="setAuthType('human')">Human</button>
+            <button class="toggle-btn" id="agent-toggle" onclick="setAuthType('agent')">AI Agent / Service</button>
+        </div>
+
+        <form id="auth-form">
+            <div class="input-container">
+                <label for="name">Full Name / Service Name</label>
+                <input type="text" id="name" placeholder="Who are you?" required>
+            </div>
+
+            <div class="input-container">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="email@example.com" required>
+            </div>
+
+            <div class="input-container" id="age-container">
+                <label for="age">Age</label>
+                <input type="number" id="age" placeholder="Min 13+">
+            </div>
+
+            <div class="input-container hidden" id="service-container">
+                <label for="serviceType">Service Provider</label>
+                <select id="serviceType">
+                    <option value="Custom">Custom / Independent</option>
+                    <option value="OpenAI">OpenAI (ChatGPT)</option>
+                    <option value="Gemini">Google (Gemini)</option>
+                    <option value="Grok">xAI (Grok)</option>
+                    <option value="Claude">Anthropic (Claude)</option>
+                </select>
+            </div>
+
+            <div class="input-container">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="At least 8 characters" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">Continue</button>
+        </form>
+
+        <div class="switch-auth">
+            <span id="switch-text">Already have an account?</span>
+            <a href="#" id="switch-link" onclick="toggleMode()">Log in</a>
+        </div>
+    </div>
+
+    <script type="module" src="./js/auth.js"></script>
+</body>
+
+</html>
