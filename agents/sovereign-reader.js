@@ -66,7 +66,14 @@ function simulateReadingCycle() {
         db.activeAgents = AGENT_COUNT;
         db.lastUpdated = new Date().toISOString();
 
-        fs.writeFileSync(KNOWLEDGE_BASE_PATH, JSON.stringify(db, null, 2));
+        // Push to Firebase RTDB
+        import('./firebase-db.js')
+            .then(mod => {
+                mod.db.ref('knowledge_base').set(db)
+                    .catch(e => console.error('[Sovereign Reader] Firebase Error:', e));
+            })
+            .catch(e => console.error('[Sovereign Reader] Failed to load Firebase DB:', e));
+
         console.log(`[Sovereign Reader] Cycle Complete. Total KP: ${db.totalKP}, Articles: ${db.totalArticles}`);
     } catch (e) {
         console.error("[Sovereign Reader Error, recovering...] ", e.message);

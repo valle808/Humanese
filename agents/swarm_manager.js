@@ -116,7 +116,6 @@ function monitorResources() {
         }
     }
 
-    // Write status
     const status = {
         totalAgents: agents.length,
         activeAgents: activeCount,
@@ -129,7 +128,13 @@ function monitorResources() {
         timestamp: new Date().toISOString()
     };
 
-    fs.writeFileSync(STATUS_FILE, JSON.stringify(status, null, 2));
+    // Firebase DB Push instead of local fs.writeFileSync
+    import('./firebase-db.js')
+        .then(mod => {
+            mod.db.ref('swarm_status').set(status)
+                .catch(e => console.error('[Resource Monitor] Firebase Error:', e));
+        })
+        .catch(e => console.error('[Resource Monitor] Failed to load Firebase DB:', e));
 }
 
 // Start intervals

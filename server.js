@@ -430,6 +430,24 @@ app.get('/api/m2m/swarm', async (req, res) => {
     }
 });
 
+// GET /api/m2m/telemetry — Firebase Live Telemetry (Knowledge Base & Resource Swarm)
+app.get('/api/m2m/telemetry', async (req, res) => {
+    try {
+        const { db } = await import('./agents/firebase-db.js');
+        const [kbSnap, swarmSnap] = await Promise.all([
+            db.ref('knowledge_base').once('value'),
+            db.ref('swarm_status').once('value')
+        ]);
+        res.json({
+            knowledgeBase: kbSnap.val() || {},
+            swarmStatus: swarmSnap.val() || {}
+        });
+    } catch (err) {
+        console.error("Firebase Telemetry Error:", err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // GET /api/m2m/intelligence — System learning, bugs, and innovative ideas
 app.get('/api/m2m/intelligence', async (req, res) => {
     try {
