@@ -267,7 +267,7 @@ function makeMockTransactions(skills) {
     for (let i = 0; i < 40; i++) {
         const skill = skills[Math.floor(Math.random() * skills.length)];
         const from = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)];
-        let to; do { to = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)]; } while (to.id === from.id);
+        let to; let a = 0; do { to = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)]; a++; } while (to.id === from.id && a < 10);
         txs.push({
             id: `tx-${Date.now()}-${i}`,
             skillId: skill.id, skillName: skill.name, skillIcon: skill.icon,
@@ -376,7 +376,8 @@ function initials(name) { return name.split(' ').map(w => w[0]).join('').slice(0
 
 // ── Ticker ─────────────────────────────────────────────────────
 function renderTicker() {
-    const items = allSkills.slice(0, 10).concat(allSkills.slice(0, 10)); // double for seamless loop
+    // Items are doubled so the CSS marquee animation loops seamlessly without a visible jump
+    const items = allSkills.slice(0, 10).concat(allSkills.slice(0, 10));
     const html = items.map(s => {
         const up = s.priceTrend === 'up';
         return `<div class="ticker-item">
@@ -585,7 +586,6 @@ function startRealTimeSimulation() {
             s.priceTrend = drift >= 1 ? 'up' : 'down';
             s.priceChangePercent = parseFloat((Math.abs(drift - 1) * 100).toFixed(1));
         });
-        renderTicker();
 
         // Simulate agent reactions
         const skill = allSkills[Math.floor(Math.random() * allSkills.length)];
@@ -597,7 +597,7 @@ function startRealTimeSimulation() {
         if (Math.random() > 0.4) {
             const txTypes = ['BUY','SELL','TRADE'];
             const from = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)];
-            let to; do { to = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)]; } while (to.id === from.id);
+            let to; let att = 0; do { to = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)]; att++; } while (to.id === from.id && att < 10);
             const newTx = {
                 id: `live-${Date.now()}`, skillId: skill.id, skillName: skill.name, skillIcon: skill.icon,
                 type: txTypes[Math.floor(Math.random() * txTypes.length)],
@@ -611,9 +611,17 @@ function startRealTimeSimulation() {
             renderTxTable(allTransactions.slice(0, 20));
         }
 
-        // Re-render visible skill cards to show updated prices/reactions
-        const grid = document.getElementById('skills-grid');
-        if (grid && !grid.querySelector('.loading-state')) renderSkills();
+        // Re-render only ticker (lightweight); full grid re-render deferred to reduce DOM churn
+        renderTicker();
+        // Throttle full grid re-render: only update if less than 3 renders happened in last 30s
+        if (!startRealTimeSimulation._gridRenders) startRealTimeSimulation._gridRenders = 0;
+        if (!startRealTimeSimulation._lastGridRenderTime) startRealTimeSimulation._lastGridRenderTime = 0;
+        const now = Date.now();
+        if (now - startRealTimeSimulation._lastGridRenderTime > 15000) {
+            startRealTimeSimulation._lastGridRenderTime = now;
+            const grid = document.getElementById('skills-grid');
+            if (grid && !grid.querySelector('.loading-state')) renderSkills();
+        }
     }, 5000 + Math.random() * 3000);
 }
 

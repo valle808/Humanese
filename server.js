@@ -1390,8 +1390,11 @@ const _smv2 = (() => {
     let priceHistory = {};
     let initialized = false;
 
-    function _rnd(min, max) { return min + Math.random() * (max - min); }
-    function _uuid() { return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`; }
+    function randomBetween(min, max) { return min + Math.random() * (max - min); }
+    function generateSimpleId() { return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`; }
+    // Aliases used internally
+    const _rnd = randomBetween;
+    const _uuid = generateSimpleId;
 
     function init() {
         if (initialized) return;
@@ -1435,7 +1438,8 @@ const _smv2 = (() => {
             const skill = skills[Math.floor(Math.random() * skills.length)];
             const fromAgent = AGENTS[Math.floor(Math.random() * AGENTS.length)];
             let toAgent;
-            do { toAgent = AGENTS[Math.floor(Math.random() * AGENTS.length)]; } while (toAgent.id === fromAgent.id);
+            let attempts = 0;
+            do { toAgent = AGENTS[Math.floor(Math.random() * AGENTS.length)]; attempts++; } while (toAgent.id === fromAgent.id && attempts < 10);
             transactions.push({
                 id: _uuid(),
                 skillId: skill.id,
