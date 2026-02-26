@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humanese — Linguistic Synthesis</title>
+  <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: rgba(15, 15, 15, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #e2b714;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .pulse-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #050505 100%);
+    }
+
+    .pulse-circle {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 15s infinite linear;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.1;
+      }
+
+      100% {
+        width: 150vmax;
+        height: 150vmax;
+        opacity: 0;
+      }
+    }
+
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 32px;
+      filter: grayscale(1) brightness(1.5);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 150px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #fff;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    .lead {
+      font-size: 1.5rem;
+      color: var(--gold);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 60px;
+    }
+
+    .glass-card {
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 60px;
+      text-align: left;
+    }
+
+    .glass-card h2 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .glass-card p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 80px 40px;
+      margin-top: 100px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pulse-bg">
+    <div class="pulse-circle" style="animation-delay: 0s;"></div>
+    <div class="pulse-circle" style="animation-delay: 5s;"></div>
+    <div class="pulse-circle" style="animation-delay: 10s;"></div>
+  </div>
+
+  <header class="nav-header">
+    <a href="index.html" class="logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese"></a>
+  </header>
+
+  <div class="container">
+    <h1>Linguistic Synthesis</h1>
+    <p class="lead">Protocol: Intelligence Over Gamification</p>
+
+    <div class="glass-card">
+      <h2>The Approach</h2>
+      <p>Traditional methods fail because they treat intelligence as a game. We treat it as a synthesis. We do not use
+        mini-games or stickers; we use **Direct Neural Resonance**.</p>
+      <p>By synchronizing human cognitive patterns with agentic processing, we bypass the need for rote memorization.
+        The result is total linguistic fluency achieved through systemic harmony, not gamified distraction.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>System</h4>
+        <ul>
+          <li><a href="agents.html">Command</a></li>
+          <li><a href="m2m.html">Social</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

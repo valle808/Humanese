@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humanese-shopping</title>
+  <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <link rel="stylesheet" href="../css/leaderboard.css" />
+  <link rel="stylesheet" href="../css/learn.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/shoppingpage.css" />
+  <link rel="stylesheet" href="../scss/shoppingpage.css" />
+</head>
+
+<body>
+  <div class="main-container">
+    <!------------------------------------- Left Sidebar ------------------------------------------------>
+    <div class="sidebar">
+      <div class="logo-container">
+        <img src="./assets/images/humanese-logo-v3.png" alt="humanese-text" />
+      </div>
+      <div class="sidebar-buttons">
+        <a href="./learn.html" class="button-in-sidebar">
+          <span class="icon-and-text-wrap">
+            <div class="icon-in-button">
+              <img src="../assets/svg/home-in-sidebar.svg" alt="home-icon" />
+            </div>
+            <span class="text-in-button"> Learn </span>
+          </span>
+        </a>
+        <a href="leaderboard.html" class="button-in-sidebar">
+          <span class="icon-and-text-wrap">
+            <div class="icon-in-button">
+              <img src="../assets/svg/badge-in-sidebar.svg" alt="home-icon" />
+            </div>
+            <span class="text-in-button"> Leaderboard </span>
+          </span>
+        </a>
+        <a href="profile-page.html" class="button-in-sidebar">
+          <span class="icon-and-text-wrap">
+            <div class="icon-in-button">
+              <img id="profile-image" src="../assets/svg/profile-image-temp.svg" alt="home-icon" class="profile" />
+            </div>
+            <span class="text-in-button"> Profile </span>
+          </span>
+        </a>
+        <a href="agents.html" class="button-in-sidebar">
+          <span class="icon-and-text-wrap">
+            <div class="icon-in-button">
+              <div style="font-size: 24px;">🤖</div>
+            </div>
+            <span class="text-in-button"> AI Agents </span>
+          </span>
+        </a>
+        <a href="wallet.html" class="button-in-sidebar">
+          <span class="icon-and-text-wrap">
+            <div class="icon-in-button">
+              <div style="font-size: 24px;">💎</div>
+            </div>
+            <span class="text-in-button"> Wallet </span>
+          </span>
+        </a>
+        <a href="./shoppingpage.html" class="button-in-sidebar">
+          <span class="icon-and-text-wrap selected">
+            <div class="icon-in-button">
+              <img src="../assets/svg/shop-in-sidebar.svg" alt="home-icon" />
+            </div>
+            <span class="text-in-button"> Shop </span>
+          </span>
+        </a>
+        <a href="./faq.html" class="button-in-sidebar">
+          <span class="icon-and-text-wrap">
+            <div class="icon-in-button">
+              <img src="../assets/images/sidebar-icon-faq.png" alt="home-icon" />
+            </div>
+            <span class="text-in-button"> FAQ </span>
+          </span>
+        </a>
+      </div>
+    </div>
+    <!------------------------------------- Content-Container ------------------------------------------------>
+    <div class="content-container">
+      <!----------------------------------- Right sidebar ------------------------------------------------>
+      <div class="right-sidebar">
+        <div class="right-sidebar-header">
+          <a href="" class="button-in-sidebar">
+            <span class="icon-and-text-wrap">
+              <div class="icon-in-button">
+                <img src="../assets/svg/country-flags/transparent.svg" class="country-flag" />
+              </div>
+            </span>
+          </a>
+          <a href="" class="button-in-sidebar">
+            <span class="icon-and-text-wrap">
+              <div class="icon-in-button">
+                <img src="../assets/svg/lesson-xp.svg" alt="home-icon" class="profile" />
+              </div>
+              <span class="text-in-button fire-text"> 400 </span>
+            </span>
+          </a>
+          <a href="" class="button-in-sidebar">
+            <span class="icon-and-text-wrap">
+              <div class="icon-in-button">
+                <img src="../assets/svg/gems-icon.svg" alt="home-icon" class="profile" />
+              </div>
+              <span class="text-in-button gem-text"> 7393 </span>
+            </span>
+          </a>
+          <a href="" class="button-in-sidebar">
+            <span class="icon-and-text-wrap">
+              <div class="icon-in-button">
+                <img src="../assets/svg/heart-filled-red.svg" alt="home-icon" class="profile" />
+              </div>
+              <span class="text-in-button heart-text"> 5 </span>
+            </span>
+          </a>
+        </div>
+        <div class="try-super-box">
+          <div class="league-header-with-link">
+            <h2>Nexus League</h2>
+            <h2><a href="./leaderboard.html">View League</a></h2>
+          </div>
+          <div class="league-header-with-link">
+            <img src="../assets/svg/amethyst-league-icon.svg" alt="amethyst-league-icon" />
+            <div class="league-text-container">
+              <div class="description">
+                Compete with others to move up the league.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scrollable-lesson-div">
+        <div class="center-container">
+          <div class="flyingowl">
+            <div class="divowlhead">
+              <div class="flying-parrot" style="font-size: 5rem;">🦜</div>
+              <div class="heading">
+                <div class="divheadin">
+                  <span class="firstHeading">
+                    Start a 2 week free trial to enjoy exclusive Super
+                    benefits
+                  </span>
+                </div>
+              </div>
+            </div>
+            <button class="logInButton" id="superLink" onclick="loginButtonAnimation()">
+              <span>Buy Super for ₹199</span>
+            </button>
+            <div class="super-badge" style="font-size: 4rem;">✨</div>
+          </div>
+          <div class="hearthead">Hearts</div>
+          <ul class="shoplist">
+            <li class="divinShopping">
+              <img class="heart" <span>❤️</span>
+              <button class="heartButton" id="heartButton" onclick="checkSpanValue()">
+                <span>Full</span>
+              </button>
+              <div class="divinlist">Refill Hearts</div>
+              <p class="parainlist">
+                Get full hearts so you can worry less about making mistakes in
+                a lesson
+              </p>
+            </li>
+            <li class="divinShopping">
+              <img class="heart" <span>💖</span>
+              <button class="freetrialButton" onclick="window.location.href = './superhumanense.html';">
+                <span>Buy Super</span>
+              </button>
+              <div class="divinlist">Unlimited Hearts</div>
+              <p class="parainlist">Never run out of hearts with Super!</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!----------------------------------- Scrollable area showing units ------------------------------------------------>
+    </div>
+  </div>
+  <div class="sidebar-buttons bottom-nav">
+    <a href="learn.html" class="button-in-sidebar">
+      <span class="icon-and-text-wrap">
+        <div class="icon-in-button">
+          <img src="../assets/svg/home-in-sidebar.svg" alt="home-icon" />
+        </div>
+
+      </span>
+    </a>
+    <a href="leaderboard.html" class="button-in-sidebar">
+      <span class="icon-and-text-wrap">
+        <div class="icon-in-button">
+          <img src="../assets/svg/badge-in-sidebar.svg" alt="home-icon" />
+        </div>
+
+      </span>
+    </a>
+    <a href="profile-page.html" class="button-in-sidebar">
+      <span class="icon-and-text-wrap">
+        <div class="icon-in-button">
+          <img id="profile-image" src="../assets/svg/profile-image-temp.svg" alt="home-icon" class="profile" />
+        </div>
+
+      </span>
+    </a>
+    <a href="./shoppingpage.html" class="button-in-sidebar">
+      <span class="icon-and-text-wrap selected">
+        <div class="icon-in-button">
+          <img src="../assets/svg/shop-in-sidebar.svg" alt="home-icon" />
+        </div>
+      </span>
+    </a>
+    <a href="./faq.html" class="button-in-sidebar">
+      <span class="icon-and-text-wrap">
+        <div class="icon-in-button">
+          <img src="../assets/images/sidebar-icon-faq.png" alt="home-icon" />
+        </div>
+
+      </span>
+    </a>
+  </div>
+  <script src="../js/shoppingpage.js"></script>
+  <script src="../js/learn.js"></script>
+  <script type="module" src="../js/updateShopData.js"></script>
+
+</body>
+
+</html>

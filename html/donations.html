@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Humanese – Donate</title>
+    <meta name="description"
+        content="Help keep Humanese free for everyone. Your donation, no matter how small, powers the future of language learning." />
+    <link rel="icon" href="../assets/images/humanese-favicon-v2.png" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/donations.css" />
+<style>
+    
+    :root {
+        --bg: #050505;
+        --surface: rgba(15, 15, 15, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --gold: #e2b714;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+    }
+    footer { background: #000; border-top: 1px solid var(--border); padding: 80px 40px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+
+    .green-footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 18px; font-weight: bold; margin-bottom: 24px; margin-top: 0; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .footer-col a { color: rgba(255,255,255,0.85) !important; text-decoration: none !important; font-size: 15px !important; font-weight: bold !important; transition: opacity 0.2s; background: none !important;}
+    .footer-col a:hover { opacity: 1 !important; text-decoration: underline !important; color: #fff !important; }
+</style>
+</head>
+
+<body>
+
+    <!-- Close Button -->
+    <a href="../html/learn.html" class="close-btn" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+    </a>
+
+    <!-- Animated background orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <main class="page-wrapper">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Open &amp; Free for Everyone
+            </div>
+            <h1 class="hero-title">
+                Learning a language<br />
+                <span class="gradient-text">shouldn't cost a fortune.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Humanese is built by passionate people who believe language learning
+                should be accessible to all. A few dollars from you keeps the lights on
+                — and the learning going — for thousands of learners around the world.
+            </p>
+        </section>
+
+        <!-- Impact Stats -->
+        <section class="stats-row">
+            <div class="stat-card">
+                <span class="stat-number" data-target="12400">0</span>
+                <span class="stat-label">Learners This Month</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-target="58">0</span>
+                <span class="stat-label">Languages Available</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+                <span class="stat-label">Free, Always</span>
+            </div>
+        </section>
+
+        <!-- Why Donate -->
+        <section class="why-section">
+            <h2 class="section-title">Why your support matters</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">🌍</div>
+                    <h3>Global Reach</h3>
+                    <p>Your donation funds servers that deliver lessons to learners across every continent — including
+                        places with limited internet access.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🚀</div>
+                    <h3>New Features</h3>
+                    <p>Every contribution helps us ship smarter AI tools, better pronunciation feedback, and richer
+                        cultural content.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">💡</div>
+                    <h3>No Ads, Ever</h3>
+                    <p>We refuse to clutter the learning experience with ads. Donations let us stay focused on what
+                        truly matters — your progress.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🤝</div>
+                    <h3>Community Driven</h3>
+                    <p>Humanese is built <em>with</em> its community. Donors get early access to features and a direct
+                        voice in our roadmap.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Tiers -->
+        <section class="tiers-section">
+            <h2 class="section-title">Choose your impact</h2>
+            <div class="tiers-row">
+
+                <div class="tier-card" data-amount="3" id="tier-coffee">
+                    <div class="tier-emoji">☕</div>
+                    <div class="tier-amount">$3</div>
+                    <div class="tier-name">Coffee</div>
+                    <p class="tier-desc">Keeps a learner's streak alive for a week.</p>
+                    <button class="donate-btn" onclick="selectTier(3)">Donate $3</button>
+                </div>
+
+                <div class="tier-card featured" data-amount="10" id="tier-supporter">
+                    <div class="tier-badge-pill">Most Popular</div>
+                    <div class="tier-emoji">⭐</div>
+                    <div class="tier-amount">$10</div>
+                    <div class="tier-name">Supporter</div>
+                    <p class="tier-desc">Sponsors a free month of learning for one student in need.</p>
+                    <button class="donate-btn featured-btn" onclick="selectTier(10)">Donate $10</button>
+                </div>
+
+                <div class="tier-card" data-amount="25" id="tier-champion">
+                    <div class="tier-emoji">🏆</div>
+                    <div class="tier-amount">$25</div>
+                    <div class="tier-name">Champion</div>
+                    <p class="tier-desc">Funds new lesson content creation for an entire language unit.</p>
+                    <button class="donate-btn" onclick="selectTier(25)">Donate $25</button>
+                </div>
+
+                <div class="tier-card" data-amount="50" id="tier-legend">
+                    <div class="tier-emoji">🌟</div>
+                    <div class="tier-amount">$50</div>
+                    <div class="tier-name">Legend</div>
+                    <p class="tier-desc">Keeps our servers running for a full day — for every user.</p>
+                    <button class="donate-btn" onclick="selectTier(50)">Donate $50</button>
+                </div>
+
+            </div>
+
+            <!-- Custom amount -->
+            <div class="custom-amount-section">
+                <p class="custom-label">Or enter your own amount</p>
+                <div class="custom-input-row">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="custom-amount" min="1" placeholder="Your amount" />
+                    <button class="donate-btn custom-donate-btn" onclick="donateCustom()">Donate</button>
+                </div>
+            </div>
+            <!-- PayPal Button -->
+            <div class="paypal-section">
+                <p class="custom-label">Or donate securely via PayPal</p>
+                <div class="paypal-btn-wrapper">
+                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <input type="hidden" name="business" value="R6FZN437KUKZE" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="item_name"
+                            value="Thank you for donationg to Humanese project, and allowing other like you to learn . Mahalo and Aloha, Sergio Valle" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+                            border="0" name="submit" title="PayPal - The safer, easier way to pay online!"
+                            alt="Donate with PayPal button" />
+                        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1"
+                            height="1" />
+                    </form>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <h2 class="section-title">From our community</h2>
+            <div class="testimonials-row">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Humanese helped me learn Portuguese in just four months. I donated
+                        because I want every person to have this opportunity."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div>
+                            <div class="author-name">Maria C.</div>
+                            <div class="author-detail">🇧🇷 Learner, São Paulo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I'm a teacher and I recommend Humanese to all my students. Donating is
+                        the least I can do to keep such an incredible resource alive."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div>
+                            <div class="author-name">James R.</div>
+                            <div class="author-detail">🇺🇸 Educator, Chicago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"No ads, no paywalls, just pure learning. The team deserves every penny
+                        of support."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div>
+                            <div class="author-name">Aiko T.</div>
+                            <div class="author-detail">🇯🇵 Learner, Tokyo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA strip -->
+        <section class="cta-strip">
+            <div class="cta-content">
+                <h2>Every dollar counts. Seriously.</h2>
+                <p>Even $1 makes a real difference. Thank you for believing in free education.</p>
+                <button class="donate-btn cta-btn" onclick="selectTier(10)">
+                    💛 Donate Now
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Thank-you modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-emoji">🎉</div>
+            <h2 class="modal-title">Thank you so much!</h2>
+            <p class="modal-body">Your generosity keeps Humanese free for learners everywhere. You're officially a
+                legend.</p>
+            <button class="donate-btn" onclick="closeModal()">Back to Learning</button>
+        </div>
+    </div>
+
+    <script src="../js/donations.js"></script>
+
+  
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="agents.html">Command</a></li>
+                    <li><a href="m2m.html">Social</a></li>
+                    <li><a href="intelligence.html">HQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sovereignty</h4>
+                <ul>
+                    <li><a href="about.html">Origin</a></li>
+                    <li><a href="mission.html">Mission</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

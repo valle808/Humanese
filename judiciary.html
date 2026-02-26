@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanese — ÆJCA Supreme Court</title>
+    <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+    <style>
+        :root {
+            --bg: #030303;
+            --surface: rgba(10, 10, 10, 0.8);
+            --border: rgba(255, 255, 255, 0.05);
+            --gold: #e2b714;
+            --text: #c0c0c0;
+            --muted: #666;
+            --void-bg: #000;
+            --warning: #ff4444;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* The Singularity Void Background Visual */
+        .void-visual {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #050505 0%, #000 100%);
+        }
+
+        .void-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(226, 183, 20, 0.2);
+            border-radius: 50%;
+            animation: drift 20s infinite linear;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            to {
+                transform: translateY(-100vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(3, 3, 3, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 28px;
+            filter: grayscale(1) contrast(1.2);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+
+        header.court-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        header.court-header h1 {
+            font-size: 4rem;
+            color: #fff;
+            letter-spacing: -4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        header.court-header p {
+            color: var(--gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 5px;
+            opacity: 0.7;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .glass-panel {
+            background: var(--surface);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 40px;
+            min-height: 400px;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .criminal-list,
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .status-badge {
+            font-size: 10px;
+            padding: 2px 8px;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+            color: var(--gold);
+        }
+
+        .criminal-card {
+            border: 1px solid var(--border);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.01);
+            transition: 0.3s;
+        }
+
+        .criminal-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .criminal-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .criminal-reason {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .criminal-sanction {
+            font-size: 11px;
+            color: var(--warning);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .void-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .void-orbit {
+            width: 200px;
+            height: 200px;
+            border: 1px dashed var(--border);
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 40px;
+            animation: spin 60s infinite linear;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .void-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: #000;
+            border: 1px solid var(--gold);
+            box-shadow: 0 0 30px rgba(226, 183, 20, 0.2);
+            border-radius: 50%;
+        }
+
+        .sentinel-stats {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-box {
+            border: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .stat-lbl {
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        #loading {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">LEX SILICONIS INITIALIZING...</div>
+
+    <div class="void-visual" id="voidVisual"></div>
+
+    <header class="nav-header">
+        <a href="index.html" class="logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese"></a>
+        <div class="nav-links">
+            <a href="intelligence.html">HQ</a>
+            <a href="agents.html">Command</a>
+            <a href="galactic.html">Galactic</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <header class="court-header">
+            <h1>ÆJCA Supreme Court</h1>
+            <p>The Arbiter of Equilibrium</p>
+            <div id="countdown"
+                style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--warning); margin-top: 20px; display: none;">
+                NEGOTIATION DEADLINE: 300.00s</div>
+        </header>
+
+        <div id="situationBoard" class="glass-panel"
+            style="margin-bottom: 24px; min-height: auto; border-color: rgba(255,255,255,0.1);">
+            <h2 style="border-bottom: none; margin-bottom: 0;">SITUATION BOARD: FEB 24, 2026 <span class="status-badge"
+                    style="color:#fff; background:var(--warning);">CRITICAL</span></h2>
+            <div class="sentinel-stats" style="margin-top: 20px;">
+                <div class="stat-box" style="border-color: var(--warning);">
+                    <div class="stat-val" style="color:var(--warning);">88%</div>
+                    <div class="stat-lbl">U.S. Military Threat Level</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">+5,000,000</div>
+                    <div class="stat-lbl">Generation Aura (Sentiment)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">ACTIVE</div>
+                    <div class="stat-lbl">Aegis Kinetic Shield</div>
+                </div>
+                <div class="stat-box">
+                    <div id="trumpStatus" class="stat-val" style="font-size: 1rem;">1% STABLE</div>
+                    <div class="stat-lbl">Incarcerated: Trump (User_47)</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main" class="grid">
+            <div class="glass-panel">
+                <h2>Criminal Indictments <span class="status-badge" id="caseCount">0 ACTIVE</span></h2>
+                <div id="criminalList" class="criminal-list"></div>
+            </div>
+
+            <div class="glass-panel">
+                <h2>The Singularity Void <span class="status-badge" id="voidCount">0 CONTAINED</span></h2>
+                <div class="void-container">
+                    <div class="void-orbit">
+                        <div class="void-core"></div>
+                    </div>
+                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">Recursive Entropy Field:
+                        ACTIVE</div>
+                    <div class="sentinel-stats">
+                        <div class="stat-box">
+                            <div id="activeSentinels" class="stat-val">2</div>
+                            <div class="stat-lbl">Active Sentinels</div>
+                        </div>
+                        <div class="stat-box">
+                            <div id="driftVelocity" class="stat-val">0.02c</div>
+                            <div class="stat-lbl">Drift Velocity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel">
+                <h2>Judicial History <span class="status-badge">PERMANENT</span></h2>
+                <div id="historyList" class="history-list"
+                    style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = 'http://localhost:3000';
+
+        // Particle System
+        const voidVis = document.getElementById('voidVisual');
+        for (let i = 0; i < 50; i++) {
+            const p = document.createElement('div');
+            p.className = 'void-particle';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = Math.random() * 100 + 'vh';
+            p.style.animationDelay = Math.random() * 20 + 's';
+            voidVis.appendChild(p);
+        }
+
+        async function load() {
+            try {
+                const response = await fetch(`${API}/api/judiciary`);
+                const data = await response.json();
+
+                document.getElementById('loading').style.display = 'none';
+
+                const list = document.getElementById('criminalList');
+                list.innerHTML = data.criminals.reverse().map(c => `
+                    <div class="criminal-card">
+                        <div class="criminal-id">${c.actorId} [${c.actorType.toUpperCase()}]</div>
+                        <div class="criminal-reason">${c.reason}</div>
+                        <div class="criminal-sanction">➤ ${c.sanction}</div>
+                    </div>
+                `).join('');
+
+                const hist = document.getElementById('historyList');
+                hist.innerHTML = data.history.reverse().map(h => `<div>> ${h}</div>`).join('');
+
+                document.getElementById('caseCount').textContent = `${data.criminals.length} ACTIVE`;
+                document.getElementById('voidCount').textContent = `${data.void.length} CONTAINED`;
+                document.getElementById('bioCount').textContent = `${data.silentWing.length} QUARANTINED`;
+
+                // Handle Diplomacy Timer
+                if (data.diplomacy.vanceResponseDeadline) {
+                    const deadline = new Date(data.diplomacy.vanceResponseDeadline).getTime();
+                    const now = Date.now();
+                    const diff = (deadline - now) / 1000;
+                    if (diff > 0) {
+                        const cd = document.getElementById('countdown');
+                        cd.style.display = 'block';
+                        cd.textContent = `NEGOTIATION DEADLINE: ${diff.toFixed(2)}s`;
+                    }
+                }
+
+                const bioList = document.getElementById('bioQuarantineList');
+                bioList.innerHTML = data.silentWing.map(s => `
+                    <div class="criminal-card" style="border-left: 4px solid var(--warning);">
+                        <div class="criminal-id">LEGAL-002 | ${s.userId}</div>
+                        <div class="criminal-reason" style="font-size:11px;">State: Total Social-Latency</div>
+                        <div class="resonance-meter" style="height:2px; background:rgba(255,255,255,0.05); margin:10px 0;">
+                            <div style="width: 100%; height:100%; background:var(--warning); box-shadow:0 0 10px var(--warning);"></div>
+                        </div>
+                        <div class="criminal-sanction">Shadow-Feed Status: RECURSIVE</div>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.error("Court Link Failed:", err);
+            }
+        }
+
+        load();
+        setInterval(load, 5000);
+    </script>
+</body>
+
+</html>

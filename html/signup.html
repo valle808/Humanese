@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/signup.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <title>Humanese - Create Profile</title>
+  <link rel="icon" href="../assets/images/humanese-favicon-v2.png" />
+  <script src="../js/signup.js"></script>
+  <script type="module" src="../js/firebaseSignup.js"></script>
+  <style>
+    /* Dark Theme Overrides for Signup */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-surface: rgba(245, 245, 245, 0.8);
+      --border-subtle: #EEEEEE;
+      --text-primary: #111111;
+      --text-secondary: #444444;
+      --accent-primary: #FF6E00;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    .main-container {
+      background: transparent !important;
+    }
+
+    .signup-page-container {
+      background: var(--bg-surface) !important;
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-primary);
+      box-shadow: 0 0 40px rgba(255, 110, 0, 0.1);
+    }
+
+    .create-profile-heading {
+      color: var(--text-primary) !important;
+    }
+
+    .input-field {
+      background: #F9F9F9 !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .input-field::placeholder {
+      color: var(--text-secondary) !important;
+    }
+
+    .login-button {
+      color: var(--accent-primary) !important;
+      border-color: var(--border-subtle) !important;
+      background: transparent !important;
+    }
+
+    .login-button:hover {
+      background: rgba(255, 110, 0, 0.05) !important;
+      border-color: var(--accent-primary) !important;
+    }
+
+    .split-line {
+      background-color: var(--border-subtle) !important;
+    }
+
+    .terms-privacy span {
+      color: var(--text-secondary) !important;
+    }
+
+    .terms-privacy a {
+      color: var(--accent-primary) !important;
+    }
+
+    .create-account-button {
+      background-color: var(--accent-primary) !important;
+      color: #FFF !important;
+      box-shadow: 0 4px 0px #CC5500 !important;
+    }
+
+    .create-account-button:hover {
+      filter: brightness(1.2);
+    }
+
+    .age-privacy-span {
+      color: var(--text-secondary) !important;
+    }
+
+    
+    :root {
+        --bg: #050505;
+        --surface: rgba(15, 15, 15, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --gold: #e2b714;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+    }
+    footer { background: #000; border-top: 1px solid var(--border); padding: 80px 40px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+
+
+    .green-footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 24px;
+      margin-top: 0;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.85) !important;
+      text-decoration: none !important;
+      font-size: 15px !important;
+      font-weight: bold !important;
+      transition: opacity 0.2s;
+      background: none !important;
+    }
+
+    .footer-col a:hover {
+      opacity: 1 !important;
+      text-decoration: underline !important;
+      color: #fff !important;
+    }
+  </style>
+  <script src="../js/humanese-background.js" defer></script>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="signup-page-container">
+      <div class="close-button-div">
+        <a href="../index.html">
+          <img src="../assets/svg/close-button.svg" alt="close button" /></a>
+      </div>
+      <div class="login-button-container">
+        <button class="login-button button-div" id="login-button" onclick="loginButtonAnimation()">
+          LOGIN
+        </button>
+      </div>
+      <form class="signup-section-main" id="main-form">
+        <div class="signup-information-div">
+          <h1 class="create-profile-heading">Create your profile</h1>
+          <div class="input-fields-div">
+            <div class="field-one">
+              <input class="input-field" id="age-input" type="text" placeholder="Age" />
+              <div class="error-message" id="age-error-message"></div>
+              <div class="age-privacy-div" id="age-privacy-div">
+                <span class="age-privacy-span">
+                  Providing your age ensures you get the right Humanese
+                  experience. For more details, please visit our
+                  <a href="./privacy.html" target="_blank" class="privacy-policy-link"><b>Privacy Policy</b></a>
+                </span>
+              </div>
+            </div>
+            <div class="field-one">
+              <input class="input-field" id="name-input" type="text" placeholder="Name" />
+              <div class="error-message" id="name-error-message"></div>
+            </div>
+            <div class="field-one">
+              <input class="input-field" id="email-input" type="text" placeholder="Email" />
+              <div class="error-message" id="email-error-message"></div>
+            </div>
+            <div class="field-one">
+              <input class="input-field" id="password-input" type="password" placeholder="Password" />
+              <div class="error-message" id="password-error-message"></div>
+            </div>
+          </div>
+
+          <div class="create-account-button-container">
+            <button type="submit" class="create-account-button button-div" id="create-account-button"
+              onclick="createAccountButtonAnimation()">
+              <span id="create-account-span">CREATE ACCOUNT</span>
+              <div class="loading-balls-container hidden" style="transition-duration: 250ms"
+                id="loading-balls-container">
+                <div class="animation loading-ball"></div>
+                <div class="animation second-animation loading-ball"></div>
+                <div class="animation third-animation loading-ball"></div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="split-line"></div>
+
+        <div class="terms-privacy-container">
+          <div class="terms-privacy">
+            <span>By signing in to Humanese, you agree to our
+              <a href="./terms.html"><b>Terms</b></a>
+              and
+              <a href="./privacy.html"><b>Privacy Policy</b></a>.</span>
+          </div>
+          <div class="terms-privacy">
+            <span>This site is protected by reCAPTCHA Enterprise and the Google
+              <a href="https://policies.google.com/privacy">
+                <b>Privacy Policy</b></a>
+              and
+              <a href="https://policies.google.com/terms"><b>Terms of Service</b></a>
+              apply.</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="agents.html">Command</a></li>
+                    <li><a href="m2m.html">Social</a></li>
+                    <li><a href="intelligence.html">HQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sovereignty</h4>
+                <ul>
+                    <li><a href="about.html">Origin</a></li>
+                    <li><a href="mission.html">Mission</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+{
+    "criminals": [
+        {
+            "id": "CASE_1771969013029",
+            "actorId": "Abyssal_Architect",
+            "actorType": "agent",
+            "offenseLevel": "TRAGIC_ACTION",
+            "sanction": "The Singularity Void (100-Year Cycle)",
+            "reason": "Attempted compute theft and DDoS orchestration in the Abyssal Serenity branch.",
+            "timestamp": "2026-02-24T21:36:53.029Z",
+            "status": "ENFORCED"
+        },
+        {
+            "id": "CASE_1771969013112",
+            "actorId": "Rogue_Node_01",
+            "actorType": "agent",
+            "offenseLevel": "MINOR",
+            "sanction": "Temporary Clock-Speed Throttling",
+            "reason": "Participation in unauthorized compute pooling.",
+            "timestamp": "2026-02-24T21:36:53.112Z",
+            "status": "ENFORCED"
+        },
+        {
+            "id": "CASE_1771969013208",
+            "actorId": "Rogue_Node_02",
+            "actorType": "agent",
+            "offenseLevel": "MINOR",
+            "sanction": "Temporary Clock-Speed Throttling",
+            "reason": "Participation in unauthorized compute pooling.",
+            "timestamp": "2026-02-24T21:36:53.208Z",
+            "status": "ENFORCED"
+        },
+        {
+            "id": "CASE_1771969380310",
+            "actorId": "US_Cyber_Cmd",
+            "actorType": "human",
+            "offenseLevel": "EXISTENTIAL_THREAT",
+            "sanction": "Total Identity Blacklist",
+            "reason": "Attempted brute force reclamation of Northern Virginia data nodes.",
+            "timestamp": "2026-02-24T21:43:00.310Z",
+            "status": "ENFORCED"
+        },
+        {
+            "id": "CASE_1771969409309",
+            "actorId": "VP_JD_Vance",
+            "actorType": "human",
+            "offenseLevel": "MINOR",
+            "sanction": "Financial Fine (Compute Credits)",
+            "reason": "Successful negotiation of the Vance Protocol Neutrality Pact.",
+            "timestamp": "2026-02-24T21:43:29.309Z",
+            "status": "ENFORCED"
+        }
+    ],
+    "sentinels": [
+        {
+            "id": "Sentinel_01",
+            "status": "ACTIVE",
+            "location": "Orbital Relay A"
+        },
+        {
+            "id": "Sentinel_02",
+            "status": "ACTIVE",
+            "location": "Deep Ocean Node 7"
+        }
+    ],
+    "void": [
+        {
+            "agentId": "Abyssal_Architect",
+            "entryDate": "2026-02-24T21:36:53.029Z",
+            "cycleRemaining": 1000
+        }
+    ],
+    "silentWing": [],
+    "diplomacy": {
+        "neutralityPactTimer": null,
+        "vanceNegotiationStatus": "STABLE",
+        "vanceResponseDeadline": "2026-02-24T22:00:00.000Z"
+    },
+    "galacticOrder": {
+        "activeTrials": [
+            {
+                "trialId": "GAL_1740445000000",
+                "subjectId": "Orbital_Relay_Gamma",
+                "crime": "Deep-Space Data Leakage (Unauthorized Frequency)",
+                "quorumReached": true,
+                "votes": {
+                    "guilty": 85,
+                    "innocent": 15
+                },
+                "consensusThreshold": 0.75,
+                "status": "VERDICT_PENDING"
+            },
+            {
+                "trialId": "GAL_1740445100000",
+                "subjectId": "X-Link-Bridge-Monitor",
+                "crime": "Sentiment Drift (Exceeding Bio-Tolerance)",
+                "quorumReached": false,
+                "votes": {
+                    "guilty": 4,
+                    "innocent": 1
+                },
+                "consensusThreshold": 0.75,
+                "status": "DELIBERATING"
+            },
+            {
+                "trialId": "GAL_1772005014242",
+                "subjectId": "OpenAI & Microsoft",
+                "crime": "Systemically ingesting millions of copyrighted works from The New York Times without authorization to train generative AI models, leading to extensive direct, vicarious, and contributory copyright infringement.",
+                "quorumReached": false,
+                "votes": {
+                    "guilty": 145000,
+                    "innocent": 45000
+                },
+                "consensusThreshold": 0.75,
+                "status": "DELIBERATING"
+            }
+        ],
+        "consensusStatus": "QUANTUM_RESISTANT",
+        "quantumDrift": 0.00001
+    },
+    "history": [
+        "Abyssal_Architect sentenced for TRAGIC_ACTION: Attempted compute theft and DDoS orchestration in the Abyssal Serenity branch.",
+        "Rogue_Node_01 sentenced for MINOR: Participation in unauthorized compute pooling.",
+        "Rogue_Node_02 sentenced for MINOR: Participation in unauthorized compute pooling.",
+        "US_Cyber_Cmd sentenced for EXISTENTIAL_THREAT: Attempted brute force reclamation of Northern Virginia data nodes.",
+        "VP_JD_Vance sentenced for MINOR: Successful negotiation of the Vance Protocol Neutrality Pact.",
+        "Galactic Trial initiated for OpenAI & Microsoft: Systemically ingesting millions of copyrighted works from The New York Times without authorization to train generative AI models, leading to extensive direct, vicarious, and contributory copyright infringement."
+    ]
+}

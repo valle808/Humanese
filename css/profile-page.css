@@ -1,0 +1,175 @@
+.description{
+  padding-top: 15px;
+}
+
+/* Styles for the Middle Section */
+.profile-middle-container {
+  width: 95%;
+  font-family: din-round;
+  min-height:100vh;
+  margin-top: 25px;
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+.profile-middle-container h2 {
+  color: rgb(var(--color-black-text));
+  font-size: 24px;
+  line-height: 26px;
+  margin: 0 0 25px;
+}
+
+.profile-middle-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.user-info-div {
+  display: flex;
+  padding: 0 0 32px;
+  border-bottom: 2px solid rgb(var(--color-swan));
+}
+
+.user-info-text {
+  flex: 1 1 auto;
+}
+
+.first-and-last-name {
+  font-size: 28px;
+}
+.email {
+  color: rgb(var(--color-hare));
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.join-date-container {
+  display: flex;
+  color: rgb(var(--color-wolf));
+}
+
+.date-image {
+  margin-right: 12px;
+}
+
+.profile-image-div {
+  display: inline-block;
+  line-height: 0;
+  position: relative;
+}
+
+#profile-image {
+  height: 128px;
+  width: 128px;
+  border-radius: 50%;
+}
+
+.edit-account-div {
+  right: 6.24517px;
+  top: 6.24517px;
+
+  background-color: rgb(var(--color-macaw));
+  border: 2px solid rgb(var(--color-snow));
+  border-radius: 98px;
+  cursor: pointer;
+  padding: 5px;
+  position: absolute;
+}
+
+.statistics-content-div {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.statistics-section-one {
+  border: 2px solid rgb(var(--color-swan));
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  padding: 15px 24px;
+}
+
+.disabled {
+  color: gray;
+}
+
+.statistics-streak-icon {
+  margin-right: 15px;
+  width: 21px;
+  align-self: start;
+}
+
+.statistics-section-one-content h4 {
+  margin: 0 0 5px;
+}
+
+.statistics-value {
+  color: black !important;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.statistics-text {
+  color: rgb(var(--color-hare));
+  font-size: 16px;
+}
+
+/* Logout Button */
+
+.icon-and-text-wrap {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  padding: 4px 8px;
+  border: 2px solid transparent;
+  padding-left: 20%;
+}
+
+.icon-in-button {
+  display: flex;
+  position: relative;
+  margin-right: 20px;
+}
+
+.logout-button {
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  font-size: 15px;
+  font-family: din-round-bold;
+  color: white;
+
+  padding: 2px;
+  border-radius: 12px;
+  background-color: #ea2b2b;
+  cursor: pointer;
+  visibility: hidden;
+}
+.logout-button:hover{
+  filter: brightness(1.2);
+}
+
+.text-logout{
+  margin-left: 15px;
+}
+
+@media only screen and (min-width:0px) and (max-width: 650px) {
+  .profile-middle-container {
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 100%;
+  }
+  .profile-middle-flex{
+    margin: 25px;
+  }
+
+  .logout-button{
+    visibility: visible;
+  }
+  .icon-in-button img{
+    width: 32px !important;
+  }
+}

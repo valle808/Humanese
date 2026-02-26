@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humanese — Optimization Proof</title>
+  <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: rgba(15, 15, 15, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #e2b714;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .pulse-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #050505 100%);
+    }
+
+    .pulse-circle {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 15s infinite linear;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.1;
+      }
+
+      100% {
+        width: 150vmax;
+        height: 150vmax;
+        opacity: 0;
+      }
+    }
+
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 32px;
+      filter: grayscale(1) brightness(1.5);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 150px 20px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      color: #fff;
+      letter-spacing: -2px;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: var(--gold);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 60px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      display: block;
+    }
+
+    .stat-lbl {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .proof-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 60px;
+    }
+
+    .proof-block h2 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .proof-block p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 80px 40px;
+      margin-top: 100px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pulse-bg">
+    <div class="pulse-circle" style="animation-delay: 0s;"></div>
+    <div class="pulse-circle" style="animation-delay: 5s;"></div>
+    <div class="pulse-circle" style="animation-delay: 10s;"></div>
+  </div>
+
+  <header class="nav-header">
+    <a href="index.html" class="logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese"></a>
+  </header>
+
+  <div class="container">
+    <h1>Optimization Proof</h1>
+    <p class="lead">Metric: Linguisticbridging Efficacy</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-val">99.2%</span>
+        <span class="stat-lbl">Resonance Accuracy</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">0.02ms</span>
+        <span class="stat-lbl">Bridge Latency</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">4.0%</span>
+        <span class="stat-lbl">Global Digital Zen</span>
+      </div>
+    </div>
+
+    <div class="proof-block">
+      <h2>The Data</h2>
+      <p>Our research into **Human-Machine Linguistic Bridging** confirms that focus-driven synchronization is 8x more
+        effective than gamified methods. By removing rewards like "stickers" and "badges," we increase the
+        signal-to-noise ratio in neural processing.</p>
+      <p>Humanese users achieve deep linguistic synthesis in 1/10th the time of legacy classroom students. The proof is
+        in the resonance.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Mandate</h4>
+        <ul>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="approach.html">Approach</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>System</h4>
+        <ul>
+          <li><a href="intelligence.html">HQ</a></li>
+          <li><a href="agents.html">Command</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

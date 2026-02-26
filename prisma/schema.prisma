@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                String   @id @default(uuid())
+  email             String   @unique
+  name              String?
+  age               Int?
+  gems              Int      @default(500)
+  xp                Int      @default(0)
+  hearts            Int      @default(5)
+  learnLang         String   @default("en")
+  sectionNumber     Int      @default(1)
+  completedUnits    Int      @default(0)
+  completedChapters Int      @default(0)
+  currentLesson     Int      @default(1)
+  profileImage      String   @default("../assets/svg/profile-image-temp.svg")
+  creationDate      DateTime @default(now())
+  
+  // AI Agent Relationship
+  agents            Agent[]
+  
+  // Crypto Wallet Relationship
+  wallets           Wallet[]
+}
+
+model Agent {
+  id        String   @id @default(uuid())
+  name      String
+  type      String   // e.g., "Tutor", "Assistant", "Translator"
+  config    String   // JSON string for specific AI settings/prompts
+  memory    String?  // Long-term memory context for the agent
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Wallet {
+  id           String        @id @default(uuid())
+  address      String        @unique
+  network      String        @default("Ethereum")
+  balance      Float         @default(0.0)
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  hash      String?  @unique
+  amount    Float
+  type      String   // "DEPOSIT", "WITHDRAWAL", "PURCHASE"
+  status    String   @default("PENDING")
+  walletId  String
+  wallet    Wallet   @relation(fields: [walletId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+// Course Content Migration Models
+model Unit {
+  id          Int       @id @default(autoincrement())
+  number      Int
+  name        String
+  description String
+  chapters    Chapter[]
+}
+
+model Chapter {
+  id      Int      @id @default(autoincrement())
+  name    String
+  unitId  Int
+  unit    Unit     @relation(fields: [unitId], references: [id])
+  lessons Lesson[]
+}
+
+model Lesson {
+  id        Int     @id @default(autoincrement())
+  number    Int
+  type      String  // "normal", "quiz", "test"
+  chapterId Int
+  chapter   Chapter @relation(fields: [chapterId], references: [id])
+}
+
+// M2M Agent Infinite Memory & Social Tracking
+model M2MMemory {
+  id        String   @id @default(uuid())
+  agentId   String
+  type      String   // "THOUGHT", "OBSERVATION", "X_DRAFT", "DIRECTIVE"
+  content   String
+  metadata  String?  // JSON string for extra context
+  timestamp DateTime @default(now())
+}
+
+model M2MEcosystem {
+  id             String   @id @default(uuid())
+  networkName    String   @unique
+  governingAgent String
+  status         String   @default("ACTIVE")
+  parameters     String?  // JSON string of rules/parameters
+  createdAt      DateTime @default(now())
+}
+
+// X.com 60-Agent Posting Automation
+model XPostSchedule {
+  id           String   @id @default(uuid())
+  agentId      String
+  topic        String
+  content      String
+  scheduledFor DateTime
+  status       String   @default("PENDING") // PENDING, POSTED, FAILED
+  createdAt    DateTime @default(now())
+}
+
+// Supreme Agent Crypto-Hardware Tracking
+model HardwareNode {
+  id         String   @id @default(uuid())
+  name       String
+  type       String   // "GPU", "ASIC", "CPU"
+  hashrate   Float
+  status     String   @default("ONLINE")
+  createdAt  DateTime @default(now())
+}
+
+// ============================================
+// Sovereign Knowledge Crawler & Monroe Brain
+// ============================================
+model SovereignKnowledge {
+  id           String   @id @default(uuid())
+  title        String
+  content      String
+  sourceUrl    String   @unique
+  sourceName   String
+  mediaPaths   String?  // JSON array of local paths to downloaded images/videos
+  agentId      String   // ID of the sovereign swarmer
+  ingestedAt   DateTime @default(now())
+}

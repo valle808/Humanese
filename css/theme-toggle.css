@@ -1,0 +1,253 @@
+/**
+ * css/theme-toggle.css
+ */
+#theme-toggle-container {
+    position: fixed;
+    top: 14px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+
+.day-night-switch {
+    display: none;
+}
+
+.day-night-switch-label {
+    --width: 70px;
+    --height: 32px;
+    --padding: 4px;
+    --switch-size: calc(var(--height) - (var(--padding) * 2));
+
+    display: block;
+    width: var(--width);
+    height: var(--height);
+    background-color: #223349;
+    border: 2px solid #2a4569;
+    border-radius: var(--height);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.celestial {
+    width: var(--switch-size);
+    height: var(--switch-size);
+    border-radius: 50%;
+    position: absolute;
+    top: var(--padding);
+    transition: all 0.5s cubic-bezier(0.1, 0.7, 0.1, 1);
+}
+
+.sun {
+    background-color: #f5c842;
+    border: 2px solid #e2b714;
+    left: var(--padding);
+    transform: translateY(120%);
+    opacity: 0;
+}
+
+.moon {
+    background-color: #d2cec4;
+    border: 2px solid #a9a18f;
+    left: calc(var(--width) - var(--switch-size) - var(--padding) - 6px);
+    transform: translateY(0);
+}
+
+.day-night-switch:checked+.day-night-switch-label {
+    background-color: #87ceeb;
+    border-color: #4682b4;
+}
+
+.day-night-switch:checked+.day-night-switch-label .sun {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.day-night-switch:checked+.day-night-switch-label .moon {
+    transform: translateY(-120%);
+    opacity: 0;
+}
+
+/* Light Mode Variables */
+:root.light-mode {
+    --bg: #f8fafc;
+    --surface: rgba(255, 255, 255, 0.8);
+    --surface2: rgba(240, 240, 240, 0.8);
+    --border: rgba(0, 0, 0, 0.08);
+    --text: #1e293b;
+    --muted: #64748b;
+    --bg-primary: #f1f5f9;
+}
+
+:root.light-mode .m2m-nav,
+:root.light-mode .nav-header {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--border);
+}
+
+:root.light-mode .glass-panel,
+:root.light-mode .card,
+:root.light-mode .agent-card,
+:root.light-mode .m2m-post {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+:root.light-mode .pulse-bg {
+    background: radial-gradient(circle at 50% 50%, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+:root.light-mode .pulse-circle {
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-mode .stat-val,
+:root.light-mode .value,
+:root.light-mode .agent-name,
+:root.light-mode .post-author a,
+:root.light-mode h1,
+:root.light-mode h2,
+:root.light-mode h3 {
+    color: #0f172a !important;
+}
+
+:root.light-mode .post-content {
+    color: #334155;
+}
+
+/* Craters */
+.crater {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+}
+
+.crater:nth-child(1) {
+    width: 6px;
+    height: 6px;
+    top: 8px;
+    left: 8px;
+}
+
+.crater:nth-child(2) {
+    width: 4px;
+    height: 4px;
+    top: 20px;
+    left: 15px;
+}
+
+.crater:nth-child(3) {
+    width: 8px;
+    height: 8px;
+    top: 15px;
+    left: 24px;
+}
+
+/* Stars/Decorations */
+.decorations .decoration {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+    animation: sparkle 2s infinite alternate;
+}
+
+@keyframes sparkle {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.day-night-switch:checked+.day-night-switch-label .decorations {
+    display: none;
+}
+
+/* Light Mode — M2M Specific */
+:root.light-mode .trending-tag {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+:root.light-mode .trending-tag:hover {
+    background: rgba(0, 100, 200, 0.06);
+    border-color: rgba(0, 100, 200, 0.2);
+}
+
+:root.light-mode .trending-tag.active {
+    background: rgba(0, 100, 200, 0.1);
+    border-color: rgba(0, 100, 200, 0.3);
+}
+
+:root.light-mode .tag-name {
+    color: #1e293b;
+}
+
+:root.light-mode .action-btn {
+    color: #64748b;
+}
+
+:root.light-mode .action-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1e293b;
+}
+
+:root.light-mode .filter-banner {
+    background: rgba(0, 100, 200, 0.06);
+    border-color: rgba(0, 100, 200, 0.2);
+}
+
+:root.light-mode .filter-label strong {
+    color: #0064c8;
+}
+
+:root.light-mode .post-tag {
+    color: #0064c8;
+    background: rgba(0, 100, 200, 0.06);
+    border-color: rgba(0, 100, 200, 0.15);
+}
+
+:root.light-mode .sys-bar-bg {
+    background: #e2e8f0;
+}
+
+:root.light-mode .pinned-badge {
+    background: rgba(226, 183, 20, 0.12);
+    color: #b8860b;
+    border-color: rgba(226, 183, 20, 0.3);
+}
+
+:root.light-mode .m2m-post.pinned {
+    border-color: rgba(226, 183, 20, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+:root.light-mode .type-badge {
+    opacity: 0.9;
+}
+
+:root.light-mode .m2m-nav-links a {
+    color: #475569;
+}
+
+:root.light-mode .m2m-nav-links a:hover {
+    color: #0f172a;
+}
+
+:root.light-mode .m2m-nav-links a::after {
+    background: #0f172a;
+}
+
+:root.light-mode body {
+    background-color: var(--bg);
+    color: var(--text);
+}

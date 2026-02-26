@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humanese – Courses</title>
+  <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #FFFFFF;
+      color: #111;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #EEE;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 2px solid #FF6E00;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: #FF6E00;
+      color: #FFF;
+    }
+
+    /* Courses Page Specific CSS */
+    .courses-main {
+      padding-top: 70px;
+      overflow: hidden;
+      background: #FFFFFF;
+      perspective: 1000px;
+    }
+
+    /* Hero */
+    .hero-kids {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: radial-gradient(circle at top, #FFF9F0 0%, #FFFFFF 70%);
+      position: relative;
+    }
+
+    .hero-kids-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .bounce-title {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(255, 110, 0, 0.2);
+      font-weight: 900;
+      color: #111;
+    }
+
+    .bounce-title span {
+      display: inline-block;
+      animation: bounceLetter 2s infinite ease-in-out;
+    }
+
+    .bounce-title span:nth-child(even) {
+      animation-delay: 0.1s;
+      color: #FF6E00;
+    }
+
+    .bounce-title span:nth-child(3n) {
+      animation-delay: 0.2s;
+      color: #FF9913;
+    }
+
+    .bounce-title span:nth-child(4n) {
+      animation-delay: 0.3s;
+      color: #FFAD00;
+    }
+
+    .bounce-title span:nth-child(odd) {
+      color: #CC5500;
+    }
+
+    @keyframes bounceLetter {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.1);
+      }
+    }
+
+    .hero-kids p {
+      font-size: 1.6rem;
+      color: #444;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+
+    .mascot-hero-container {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .mascot-hero {
+      width: 350px;
+      animation: floatMascot 4s ease-in-out infinite, glowMascot 3s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 20px #FFAD00);
+      transition: 0.3s;
+    }
+
+    .mascot-hero:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes floatMascot {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-30px) rotate(2deg);
+      }
+    }
+
+    @keyframes glowMascot {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 15px #FFAD00);
+      }
+
+      100% {
+        filter: drop-shadow(0 0 40px #FF6E00);
+      }
+    }
+
+    /* SCENIC ANIMATION CSS */
+    .scenic-container {
+      width: 500px;
+      height: 400px;
+      position: relative;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, #FFAD00 0%, #FF9913 50%, #FF6E00 100%);
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(255, 110, 0, 0.2), inset 0 0 100px rgba(0, 0, 0, 0.2);
+      border: 8px solid #FFF;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    .scenic-container:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 80px rgba(255, 110, 0, 0.4);
+    }
+
+    /* Mountain */
+    .scenic-mountain {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 200px solid transparent;
+      border-right: 200px solid transparent;
+      border-bottom: 250px solid #2d4a1b;
+      z-index: 1;
+    }
+
+    .scenic-mountain::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -160px;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-bottom: 200px solid #3d6325;
+      z-index: 2;
+    }
+
+    /* Clouds */
+    .scenic-cloud {
+      position: absolute;
+      background: #FFF;
+      width: 100px;
+      height: 40px;
+      border-radius: 50px;
+      z-index: 10;
+      animation: drift 10s linear infinite;
+    }
+
+    .scenic-cloud::before,
+    .scenic-cloud::after {
+      content: '';
+      position: absolute;
+      background: #FFF;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      top: -25px;
+    }
+
+    .scenic-cloud::before {
+      left: 15px;
+    }
+
+    .scenic-cloud::after {
+      right: 15px;
+    }
+
+    .c1 {
+      top: 40px;
+      left: -150px;
+      animation-duration: 20s;
+      opacity: 0.8;
+    }
+
+    .c2 {
+      top: 80px;
+      left: -150px;
+      animation-duration: 15s;
+      animation-delay: 5s;
+      transform: scale(0.7);
+      opacity: 0.6;
+    }
+
+    @keyframes drift {
+      to {
+        left: 600px;
+      }
+    }
+
+    /* Tree */
+    .scenic-tree {
+      position: absolute;
+      bottom: 80px;
+      right: 80px;
+      z-index: 15;
+      transform-origin: bottom center;
+      animation: sway 3s ease-in-out infinite alternate;
+    }
+
+    .tree-trunk {
+      width: 15px;
+      height: 60px;
+      background: #5d3a1a;
+      margin: 0 auto;
+      border-radius: 5px;
+    }
+
+    .tree-leaves {
+      width: 80px;
+      height: 80px;
+      background: #2d5a27;
+      border-radius: 50% 50% 20% 20%;
+      margin-top: -90px;
+    }
+
+    @keyframes sway {
+      from {
+        transform: rotate(-3deg);
+      }
+
+      to {
+        transform: rotate(3deg);
+      }
+    }
+
+    /* River */
+    .scenic-river {
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: #1CB0F6;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    .river-highlights {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background-image: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 255, 255, 0.2) 110px, rgba(255, 255, 255, 0.2) 120px);
+      animation: flow 4s linear infinite;
+    }
+
+    @keyframes flow {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-210px);
+      }
+    }
+
+    /* Animals */
+    .scenic-parrot {
+      position: absolute;
+      top: 150px;
+      left: 100px;
+      width: 80px;
+      z-index: 20;
+      animation: floatParrot 3s ease-in-out infinite;
+    }
+
+    .parrot-body {
+      width: 60px;
+      height: 80px;
+      background: #FF8C00;
+      border-radius: 50% 50% 20% 20%;
+      position: relative;
+      border: 3px solid #FFF;
+    }
+
+    .parrot-beak {
+      position: absolute;
+      top: 20px;
+      right: -15px;
+      width: 25px;
+      height: 20px;
+      background: #333;
+      clip-path: polygon(0 0, 0 100%, 100% 50%);
+    }
+
+    .parrot-eye {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      width: 10px;
+      height: 10px;
+      background: #000;
+      border-radius: 50%;
+      border: 2px solid #FFF;
+      animation: blink 4s infinite;
+    }
+
+    .parrot-wing {
+      position: absolute;
+      top: 30px;
+      left: -10px;
+      width: 30px;
+      height: 40px;
+      background: #FF6E00;
+      border-radius: 50%;
+      border: 2px solid #FFF;
+      animation: flap 0.5s infinite alternate;
+      transform-origin: top right;
+    }
+
+    @keyframes floatParrot {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(10px, -20px);
+      }
+    }
+
+    @keyframes blink {
+
+      0%,
+      95%,
+      100% {
+        transform: scaleY(1);
+      }
+
+      97%,
+      98% {
+        transform: scaleY(0);
+      }
+    }
+
+    @keyframes flap {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(20deg);
+      }
+    }
+
+    .butterfly {
+      position: absolute;
+      font-size: 1.5rem;
+      z-index: 25;
+      animation: flyBy 8s linear infinite;
+    }
+
+    .b1 {
+      top: 200px;
+      left: -50px;
+      animation-duration: 9s;
+    }
+
+    .b2 {
+      top: 250px;
+      left: -50px;
+      animation-duration: 12s;
+      animation-delay: 3s;
+    }
+
+    @keyframes flyBy {
+      0% {
+        transform: translate(0, 0) scaleX(1);
+        left: -50px;
+      }
+
+      50% {
+        transform: translate(100px, -50px) scaleX(1);
+      }
+
+      100% {
+        transform: translate(600px, 0) scaleX(1);
+        left: 600px;
+      }
+    }
+
+    .speech-bubble {
+      position: absolute;
+      background: #FFF;
+      color: #000;
+      padding: 20px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      bottom: 85%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      opacity: 0;
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      z-index: 30;
+      font-size: 1.1rem;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 15px;
+      border-style: solid;
+      border-color: #FFF transparent transparent transparent;
+    }
+
+    .scenic-container:hover .speech-bubble {
+      opacity: 1;
+      bottom: 95%;
+    }
+
+    /* Filter & Progress */
+    .kids-controls {
+      max-width: 1000px;
+      margin: -20px auto 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+      z-index: 10;
+      padding: 0 20px;
+    }
+
+    .reward-bar-container {
+      width: 100%;
+      max-width: 700px;
+      background: #1a1a1a;
+      height: 40px;
+      border-radius: 20px;
+      border: 4px solid #333;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .reward-bar-fill {
+      height: 100%;
+      width: 45%;
+      background: linear-gradient(90deg, #FFD700, #FF8C00, #FF6E00);
+      border-radius: 15px;
+      transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .reward-bar-fill::after {
+      content: 'Level 14 - Adventure Progress: 45%';
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #000;
+      font-weight: 900;
+      font-size: 16px;
+      top: 8px;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 12px 30px;
+      border-radius: 25px;
+      border: none;
+      background: #151515;
+      color: #FFF;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 3px solid #333;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 0 #000;
+    }
+
+    .filter-btn.active {
+      background: #FF6E00;
+      color: #000;
+      border-color: #FF6E00;
+      box-shadow: 0 5px 0 #CC5500;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn:hover:not(.active) {
+      background: #333;
+      transform: translateY(-3px);
+      border-color: #444;
+    }
+
+    .filter-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #000;
+    }
+
+    /* Courses Grid */
+    .language-tracks {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .track-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .track-card {
+      background: #151515;
+      border: 4px solid #333;
+      border-radius: 30px;
+      padding: 40px;
+      width: 280px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      overflow: hidden;
+      animation: popIn 0.5s ease-out backwards;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .track-card:hover {
+      transform: translateY(-15px) rotate(2deg) scale(1.05);
+      border-color: #FF6E00;
+      box-shadow: 0 25px 50px rgba(88, 204, 2, 0.3);
+    }
+
+    .card-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: wiggle 3s infinite;
+      display: inline-block;
+    }
+
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        transform: rotate(-8deg);
+      }
+
+      50% {
+        transform: rotate(8deg);
+      }
+    }
+
+    .track-card h3 {
+      font-size: 2.2rem;
+      margin: 0 0 15px;
+      color: #FFF;
+    }
+
+    .track-card p {
+      color: #BBB;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .track-card button {
+      background: #FF6E00;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 20px;
+      font-weight: 900;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      box-shadow: 0 6px 0 #CC5500;
+    }
+
+    .track-card:hover button {
+      transform: scale(1.05);
+    }
+
+    .track-card:active button {
+      transform: translateY(6px);
+      box-shadow: 0 0px 0 #000;
+    }
+
+    .card-mascot {
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 150px;
+      opacity: 0;
+      transition: 0.4s;
+      transform: rotate(20deg);
+      pointer-events: none;
+    }
+
+    .track-card:hover .card-mascot {
+      opacity: 0.9;
+      right: -10px;
+      bottom: -10px;
+      transform: rotate(0deg);
+    }
+
+    /* Study Squads */
+    .study-pals {
+      padding: 100px 20px;
+      background: linear-gradient(180deg, #050505, #111, #050505);
+      text-align: center;
+      border-block: 4px dashed #222;
+      margin-top: 60px;
+    }
+
+    .study-pals h2 {
+      font-size: 3rem;
+      color: #FFF;
+      margin-bottom: 60px;
+    }
+
+    .squad-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .squad-card {
+      background: #1a1a1a;
+      border-radius: 40px;
+      padding: 50px;
+      width: 400px;
+      border: 3px solid #333;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .squad-card::before {
+      content: 'NEW';
+      position: absolute;
+      top: 20px;
+      right: -30px;
+      background: #FF4B4B;
+      color: #FFF;
+      padding: 10px 40px;
+      transform: rotate(45deg);
+      font-weight: bold;
+    }
+
+    .squad-card:hover {
+      border-color: #FF6E00;
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .squad-card h3 {
+      font-size: 2.5rem;
+      color: #FF6E00;
+      margin-top: 0;
+    }
+
+    .squad-btn {
+      background: #FFF;
+      color: #000;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 30px;
+      box-shadow: 0 5px 0 #DDD;
+      transition: 0.2s;
+    }
+
+    .squad-btn:hover {
+      background: #FF6E00;
+      color: #000;
+      box-shadow: 0 5px 0 #CC5500;
+    }
+
+    /* Network Section */
+    .network-hero {
+      padding: 120px 20px;
+      text-align: center;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      min-height: 500px;
+    }
+
+    .network-hero h2 {
+      font-size: 3.5rem;
+      color: #1CB0F6;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .network-hero p {
+      font-size: 1.4rem;
+      color: #EEE;
+      max-width: 700px;
+      margin-inline: auto;
+      position: relative;
+      z-index: 5;
+    }
+
+    .network-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .node {
+      position: absolute;
+      font-size: 3rem;
+      animation: floatNode 8s infinite alternate ease-in-out;
+      transition: 0.1s;
+    }
+
+    @keyframes floatNode {
+      from {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      to {
+        transform: translate(40px, 40px) rotate(20deg);
+      }
+    }
+
+    
+    :root {
+        --bg: #050505;
+        --surface: rgba(15, 15, 15, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --gold: #e2b714;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+    }
+    footer { background: #000; border-top: 1px solid var(--border); padding: 80px 40px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+
+
+    .green-footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.9) !important;
+      text-decoration: none !important;
+      font-size: 16px !important;
+      font-weight: bold !important;
+      transition: 0.2s;
+      display: inline-block;
+    }
+
+    .footer-col a:hover {
+      transform: translateX(5px);
+      color: #fff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav-header">
+    <a href="../index.html" class="logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" style="; width: 179px; height: 42px; object-fit: contain;"></a>
+    <div class="nav-links">
+      <a href="./humanese.html">Products</a>
+      <a href="./about.html">About</a>
+      <a href="./android.html">Apps</a>
+      <a href="./loginpage.html" style="background: #FFF; color: #FF6E00; border-color: #FFF;">Login</a>
+    </div>
+  </header>
+
+  
+    
+  <main class="courses-main">
+    <section class="hero-kids">
+      <div class="hero-kids-content">
+        <h1 class="bounce-title">
+          <span>L</span><span>E</span><span>A</span><span>R</span><span>N</span>
+          &nbsp;
+          <span>I</span><span>S</span>
+          &nbsp;
+          <span>A</span><span>N</span>
+          &nbsp;
+          <span>A</span><span>D</span><span>V</span><span>E</span><span>N</span><span>T</span><span>U</span><span>R</span><span>E</span>
+        </h1>
+        <p>Explore magical worlds and master new languages with your Humanese parrot friend!</p>
+
+        <div class="scenic-container" id="scenicHero">
+          <div class="scenic-cloud" style="top: 40px; left: 60px; animation-delay: 0s;"></div>
+          <div class="scenic-cloud" style="top: 80px; left: 240px; animation-delay: -3s;"></div>
+          <div class="scenic-mountain"></div>
+          <div class="scenic-river">
+            <div class="river-highlight"></div>
+          </div>
+          <div class="scenic-tree">
+            <div class="tree-trunk"></div>
+            <div class="tree-leaves"></div>
+          </div>
+          <!-- Animated Mascot (CSS Only) -->
+          <div class="scenic-parrot">
+            <div class="parrot-body">
+              <div class="parrot-wing"></div>
+              <div class="parrot-eye">
+                <div class="parrot-pupil"></div>
+              </div>
+              <div class="parrot-beak"></div>
+            </div>
+          </div>
+          <div class="scenic-butterfly" style="top: 100px; left: 100px; animation-delay: 0s;">🦋</div>
+          <div class="scenic-butterfly" style="top: 150px; left: 300px; animation-delay: -2s;">🦋</div>
+          <div class="mascot-speech-bubble" id="mascotBubble">Click us for a tip!</div>
+        </div>
+
+        <div class="xp-bar-container">
+          <div class="xp-bar" id="xpBar" style="width: 30%;">Level 14 - Adventure Progress: 30%</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="network-hero">
+      <div class="network-bg">
+        <div class="node" style="top: 20%; left: 15%; animation-delay: 0s;">🇪🇸</div>
+        <div class="node" style="top: 60%; left: 10%; animation-delay: -2s;">🇫🇷</div>
+        <div class="node" style="top: 30%; left: 80%; animation-delay: -4s;">🇯🇵</div>
+        <div class="node" style="top: 70%; left: 75%; animation-delay: -1s;">🇩🇪</div>
+        <div class="node" style="top: 15%; left: 50%; animation-delay: -3s;">🇮🇹</div>
+        <div class="node" style="top: 80%; left: 45%; animation-delay: -5s;">🇧🇷</div>
+      </div>
+      <div class="hero-kids-content">
+        <h2 style="font-size: 3rem; margin-bottom: 20px;">Your Language Network</h2>
+        <p>Connect with millions of learners in the Humanese neural dimension.</p>
+      </div>
+    </section>
+  </main>
+
+
+
+  
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="agents.html">Command</a></li>
+                    <li><a href="m2m.html">Social</a></li>
+                    <li><a href="intelligence.html">HQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sovereignty</h4>
+                <ul>
+                    <li><a href="about.html">Origin</a></li>
+                    <li><a href="mission.html">Mission</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+  <script>
+    function filterCourses(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cards = document.querySelectorAll('.track-card');
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat.includes(category)) {
+          card.style.display = 'block';
+          card.style.animation = 'popIn 0.5s ease-out';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    const scenicHero = document.getElementById('scenicHero');
+    const bubble = document.getElementById('mascotBubble');
+    const tips = [
+      "Learning Spanish lets you talk to 500 million people!",
+      "French is known as the 'Language of Love'!",
+      "Japanese has three different alphabets. Wow!",
+      "Did you know? Parrots can live for 50 years!",
+      "You earned 100 XP for exploring the mountains!",
+      "Look at the butterflies! They speak every language!"
+    ];
+
+    scenicHero.addEventListener('click', () => {
+      const randomTip = tips[Math.floor(Math.random() * tips.length)];
+      bubble.textContent = randomTip;
+      bubble.style.opacity = '1';
+
+      // Boost progress bar
+      const bar = document.getElementById('xpBar');
+      let current = parseFloat(bar.style.width);
+      if (current < 95) {
+        current += 10;
+        bar.style.width = current + '%';
+        bar.innerText = `Level 14 - Adventure Progress: ${Math.round(current)}%`;
+      }
+    });
+
+    // Network node interactivity
+    document.addEventListener('mousemove', (e) => {
+      const nodes = document.querySelectorAll('.node');
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      nodes.forEach(node => {
+        const rect = node.getBoundingClientRect();
+        const nodeX = rect.left + rect.width / 2;
+        const nodeY = rect.top + rect.height / 2;
+
+        const distX = mouseX - nodeX;
+        const distY = mouseY - nodeY;
+        const dist = Math.sqrt(distX * distX + distY * distY);
+
+        if (dist < 400) {
+          const power = (400 - dist) / 400;
+          node.style.transform = `translate(${distX * 0.1 * power}px, ${distY * 0.1 * power}px) scale(${1 + 0.5 * power})`;
+          node.style.opacity = 0.5 + 0.5 * power;
+        } else {
+          node.style.transform = '';
+          node.style.opacity = '0.5';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

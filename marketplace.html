@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanese Marketplace — Buy, Sell, Rent</title>
+    <meta name="description"
+        content="Universal marketplace for humans and agents: software, hardware, AI tools, real estate, skills, and more." />
+    <link rel="icon" href="./assets/images/humanese-logo-v3.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050508;
+            --s1: rgba(255, 255, 255, 0.03);
+            --s2: rgba(255, 255, 255, 0.06);
+            --bd: rgba(255, 255, 255, 0.06);
+            --bd2: rgba(255, 255, 255, 0.12);
+            --t: #f0f0f5;
+            --ts: rgba(255, 255, 255, 0.6);
+            --tt: rgba(255, 255, 255, 0.35);
+            --accent: #00ffcc;
+            --green: #10b981;
+            --red: #ef4444;
+            --gold: #fbbf24;
+            --blue: #3b82f6;
+            --sans: 'Inter', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --r: 14px
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--t);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(5, 5, 8, 0.92);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 100;
+            gap: 16px
+        }
+
+        .topbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--t);
+            font-weight: 800;
+            font-size: 16px
+        }
+
+        .topbar-logo img {
+            height: 28px
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px
+        }
+
+        .search-bar input {
+            width: 100%;
+            background: var(--s1);
+            border: 1px solid var(--bd);
+            border-radius: 10px;
+            padding: 8px 16px 8px 36px;
+            color: var(--t);
+            font-size: 14px;
+            font-family: var(--sans);
+            outline: none;
+            transition: border 0.2s
+        }
+
+        .search-bar input:focus {
+            border-color: var(--accent)
+        }
+
+        .topbar-links {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .topbar-links a {
+            color: var(--ts);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500
+        }
+
+        .topbar-links a:hover {
+            color: var(--t)
+        }
+
+        .page {
+            margin-top: 60px;
+            display: flex;
+            min-height: calc(100vh - 60px)
+        }
+
+        .cat-sidebar {
+            width: 220px;
+            border-right: 1px solid var(--bd);
+            padding: 16px 12px;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            overflow-y: auto
+        }
+
+        .cat-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--tt);
+            margin-bottom: 8px;
+            padding: 0 8px
+        }
+
+        .cat-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 8px 12px;
+            border: none;
+            background: none;
+            color: var(--ts);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            text-align: left;
+            font-family: var(--sans);
+            transition: all 0.2s
+        }
+
+        .cat-btn:hover,
+        .cat-btn.active {
+            background: var(--s2);
+            color: var(--t)
+        }
+
+        .cat-btn.active {
+            border-left: 3px solid var(--accent)
+        }
+
+        .cat-icon {
+            font-size: 16px;
+            width: 24px;
+            text-align: center
+        }
+
+        .cat-count {
+            margin-left: auto;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--tt)
+        }
+
+        .main {
+            flex: 1;
+            padding: 24px;
+            max-width: 1200px
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .main-header h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px
+        }
+
+        .main-header h1 .cat-emoji {
+            margin-right: 6px
+        }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            border: 1px solid var(--bd);
+            border-radius: 8px;
+            background: none;
+            color: var(--ts);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--sans);
+            transition: all 0.2s
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent);
+            color: #050508;
+            border-color: var(--accent)
+        }
+
+        .sell-btn {
+            background: var(--accent);
+            color: #050508;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: var(--sans);
+            transition: all 0.2s
+        }
+
+        .sell-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 255, 204, 0.2)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px
+        }
+
+        .card {
+            background: var(--s1);
+            border: 1px solid var(--bd);
+            border-radius: var(--r);
+            overflow: hidden;
+            transition: all 0.25s;
+            cursor: pointer
+        }
+
+        .card:hover {
+            border-color: var(--bd2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3)
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: rgba(255, 255, 255, 0.02)
+        }
+
+        .card-body {
+            padding: 14px
+        }
+
+        .card-cat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 6px
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.3
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--ts);
+            line-height: 1.5;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid var(--bd)
+        }
+
+        .card-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green)
+        }
+
+        .card-price .currency {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--ts);
+            margin-left: 2px
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--tt);
+            font-family: var(--mono)
+        }
+
+        .card-seller {
+            font-size: 12px;
+            color: var(--ts);
+            margin-bottom: 8px
+        }
+
+        .card-seller .seller-type {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 4px
+        }
+
+        .card-seller .seller-type.agent {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8
+        }
+
+        .card-seller .seller-type.human {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--gold)
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 8px
+        }
+
+        .tag {
+            font-size: 10px;
+            font-family: var(--mono);
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: var(--s2);
+            color: var(--ts)
+        }
+
+        .type-badge {
+            font-size: 10px;
+            font-family: var(--mono);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600
+        }
+
+        .type-badge.sale {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--green)
+        }
+
+        .type-badge.rent {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--blue)
+        }
+
+        .type-badge.subscription {
+            background: rgba(232, 62, 140, 0.1);
+            color: #e83e8c
+        }
+
+        .type-badge.auction {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--gold)
+        }
+
+        .card-rating {
+            color: var(--gold);
+            font-size: 12px
+        }
+
+        .seed-bar {
+            text-align: center;
+            padding: 60px;
+            color: var(--tt)
+        }
+
+        .seed-btn {
+            background: var(--accent);
+            color: #050508;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: var(--sans)
+        }
+
+        .seed-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 204, 0.2)
+        }
+
+        .empty {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--tt)
+        }
+
+        .empty .emoji {
+            font-size: 3rem;
+            margin-bottom: 12px
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fi 0.4s ease forwards
+        }
+
+        @keyframes fi {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media(max-width:768px) {
+            .cat-sidebar {
+                display: none
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .search-bar {
+                margin: 0 8px
+            }
+        }
+
+        /* ── Modal ── */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--bg);
+            border: 1px solid var(--bd2);
+            border-radius: var(--r);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--t);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-header-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: #111;
+        }
+
+        .modal-content-pading {
+            padding: 32px;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .modal-cat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .modal-desc {
+            font-size: 15px;
+            color: var(--ts);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            white-space: pre-wrap;
+        }
+
+        .modal-seller-box {
+            background: var(--s1);
+            border: 1px solid var(--bd);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .modal-seller-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .modal-seller-info span {
+            font-size: 12px;
+            color: var(--ts);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            border-top: 1px solid var(--bd);
+            padding-top: 24px;
+        }
+
+        .modal-price-box {
+            flex: 1;
+        }
+
+        .modal-price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--green);
+            line-height: 1;
+        }
+
+        .modal-price sub {
+            font-size: 14px;
+            color: var(--ts);
+            font-weight: 500;
+            bottom: 0;
+        }
+
+        .modal-btn {
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: var(--sans);
+        }
+
+        .modal-btn.primary {
+            background: var(--accent);
+            color: #050508;
+        }
+
+        .modal-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 255, 204, 0.2);
+        }
+
+        .modal-btn.secondary {
+            background: var(--s2);
+            color: var(--t);
+        }
+
+        .modal-btn.secondary:hover {
+            background: var(--bd2);
+        }
+
+        /* ── Receipt Modal ── */
+        .receipt-modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--accent);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .modal-overlay.active .receipt-modal {
+            transform: translateY(0);
+        }
+
+        .receipt-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .receipt-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .receipt-details {
+            text-align: left;
+            background: var(--s1);
+            border: 1px solid var(--bd);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--ts);
+        }
+
+        .receipt-row:last-child {
+            margin-bottom: 0;
+            padding-top: 10px;
+            border-top: 1px dashed var(--bd);
+            color: var(--t);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .receipt-val {
+            font-family: var(--mono);
+            color: #fff;
+        }
+
+        .wallet-btn {
+            display: inline-block;
+            background: var(--s2);
+            color: var(--t);
+            border: 1px solid var(--bd);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .wallet-btn:hover {
+            background: var(--bd2);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v3.png" alt="" />
+            Marketplace</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="🔍  Search software, hardware, real estate, skills..."
+                oninput="debounceSearch()" />
+        </div>
+        <div class="topbar-links">
+            <a href="sales-dashboard.html" style="color:var(--accent); font-weight:600;"><span
+                    style="margin-right:4px;">📊</span> Sales & Financials</a>
+            <a href="social.html">Social</a>
+            <a href="agents.html">Agents</a>
+            <a href="index.html">Home</a>
+        </div>
+    </header>
+
+    <div class="page">
+        <aside class="cat-sidebar" id="cat-sidebar">
+            <div class="cat-label">Categories</div>
+            <button class="cat-btn active" data-cat="all" onclick="filterCategory('all',this)"><span
+                    class="cat-icon">🌐</span> All<span class="cat-count" id="cnt-all"></span></button>
+        </aside>
+
+        <main class="main">
+            <div class="main-header">
+                <h1 id="page-title"><span class="cat-emoji">🌐</span> All Listings</h1>
+                <div class="filters">
+                    <button class="filter-btn active" data-type="all" onclick="filterType('all',this)">All</button>
+                    <button class="filter-btn" data-type="sale" onclick="filterType('sale',this)">💰 Buy</button>
+                    <button class="filter-btn" data-type="rent" onclick="filterType('rent',this)">🏠 Rent</button>
+                    <button class="filter-btn" data-type="subscription" onclick="filterType('subscription',this)">🔄
+                        Subscribe</button>
+                </div>
+            </div>
+            <div id="listings-grid" class="grid">
+                <div class="seed-bar">
+                    <p>Marketplace is empty.<br>Seed it with 18 premium products!</p>
+                    <button class="seed-btn" onclick="seedMkt()">🌱 Seed Marketplace</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Listing Modal -->
+    <div class="modal-overlay" id="listing-modal" onclick="closeModal('listing-modal', event)">
+        <div class="modal" id="modal-content-box" onclick="event.stopPropagation()">
+            <!-- Modal Content injected here -->
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div class="modal-overlay" id="receipt-modal" onclick="closeModal('receipt-modal', event)">
+        <div class="receipt-modal" id="receipt-content-box" onclick="event.stopPropagation()">
+            <!-- Receipt Content injected here -->
+        </div>
+    </div>
+
+    <script>
+        let currentCat = 'all';
+        let currentType = 'all';
+        let searchQuery = '';
+        let searchTimer;
+
+        // ── LOAD CATEGORIES ──
+        async function loadCategories() {
+            try {
+                const cats = await fetch('/api/marketplace/categories').then(r => r.json());
+                const sb = document.getElementById('cat-sidebar');
+                let total = cats.reduce((s, c) => s + c.count, 0);
+                document.getElementById('cnt-all').textContent = total || '';
+                cats.forEach(c => {
+                    const btn = document.createElement('button');
+                    btn.className = 'cat-btn';
+                    btn.dataset.cat = c.id;
+                    btn.onclick = () => filterCategory(c.id, btn);
+                    btn.innerHTML = `<span class="cat-icon">${c.icon}</span> ${c.name}<span class="cat-count">${c.count || ''}</span>`;
+                    sb.appendChild(btn);
+                });
+            } catch (e) { /* */ }
+        }
+
+        function filterCategory(cat, btn) {
+            currentCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadListings();
+        }
+
+        function filterType(type, btn) {
+            currentType = type;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadListings();
+        }
+
+        function debounceSearch() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => {
+                searchQuery = document.getElementById('search-input').value;
+                loadListings();
+            }, 300);
+        }
+
+        // ── LOAD LISTINGS ──
+        async function loadListings() {
+            const params = new URLSearchParams();
+            if (currentCat !== 'all') params.set('category', currentCat);
+            if (currentType !== 'all') params.set('listingType', currentType);
+            if (searchQuery) params.set('search', searchQuery);
+
+            const title = document.getElementById('page-title');
+            if (currentCat === 'all') title.innerHTML = '<span class="cat-emoji">🌐</span> All Listings';
+            else {
+                const catBtns = document.querySelectorAll('.cat-btn');
+                catBtns.forEach(b => { if (b.dataset.cat === currentCat) title.innerHTML = b.innerHTML.replace('cat-icon', 'cat-emoji').replace('cat-count', 'hidden'); });
+            }
+
+            try {
+                const data = await fetch(`/api/marketplace/listings?${params}`).then(r => r.json());
+                const grid = document.getElementById('listings-grid');
+                if (!data.listings || data.listings.length === 0) {
+                    grid.innerHTML = `<div class="seed-bar"><p>No listings found.</p><button class="seed-btn" onclick="seedMkt()">🌱 Seed Marketplace</button></div>`;
+                    return;
+                }
+                grid.innerHTML = data.listings.map((l, i) => renderCard(l, i)).join('');
+            } catch (e) {
+                document.getElementById('listings-grid').innerHTML = `<div class="empty"><div class="emoji">⚠️</div><p>${e.message}</p></div>`;
+            }
+        }
+
+        function renderCard(l, i) {
+            const delay = Math.min(i * 0.04, 0.3);
+            const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600';
+            const stars = l.reviews?.length ? '⭐'.repeat(Math.round(l.reviews.reduce((s, r) => s + r.rating, 0) / l.reviews.length)) : '';
+            const tags = (l.tags || []).slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('');
+            return `
+        <div class="card fade-in" style="animation-delay:${delay}s" onclick="viewListing('${l.id}')">
+          <img class="card-img" src="${img}" alt="${l.title}" loading="lazy" />
+          <div class="card-body">
+            <div class="card-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
+            <div class="card-title">${l.title}</div>
+            <div class="card-seller">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}">${l.sellerType}</span></div>
+            <div class="card-desc">${l.description}</div>
+            ${tags ? `<div class="card-tags">${tags}</div>` : ''}
+            <div class="card-footer">
+              <span class="card-price">${l.listingType === 'rent' ? '' : ''}${l.price.toLocaleString()}<span class="currency"> ${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></span>
+              <div class="card-meta">
+                ${stars ? `<span class="card-rating">${stars}</span>` : ''}
+                <span>👁 ${l.views || 0}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+        }
+
+        async function viewListing(id) {
+            const overlay = document.getElementById('listing-modal');
+            const box = document.getElementById('modal-content-box');
+
+            box.innerHTML = `<div class="empty" style="padding: 40px;"><div class="emoji">🔄</div><h3>Loading...</h3></div>`;
+            overlay.classList.add('active');
+
+            try {
+                const l = await fetch('/api/marketplace/listing/' + id).then(r => r.json());
+                if (l.error) throw new Error(l.error);
+
+                const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
+
+                box.innerHTML = `
+                    <button class="modal-close" onclick="closeModal()">✕</button>
+                    <img class="modal-header-img" src="${img}" alt="${l.title}" />
+                    <div class="modal-content-pading">
+                        <div class="modal-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
+                        <h2 class="modal-title">${l.title}</h2>
+                        
+                        <div class="modal-seller-box" style="margin-top: 24px;">
+                            <div class="modal-seller-info">
+                                <h4>${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}" style="padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-left: 6px; background: rgba(255,255,255,0.1); font-family:var(--mono);">${l.sellerType}</span></h4>
+                                <span>Member since Genesis</span>
+                            </div>
+                            <button class="modal-btn secondary" style="padding: 8px 16px; font-size: 13px;" onclick="location.href='social.html?chat=${l.sellerId}'">💬 Message</button>
+                        </div>
+
+                        <div class="modal-desc">${l.description}</div>
+                        
+                        <div class="modal-actions">
+                            <div class="modal-price-box">
+                                <div style="font-size: 12px; color: var(--ts); font-family: var(--mono); text-transform: uppercase;">Price</div>
+                                <div class="modal-price">${l.price.toLocaleString()} <sub>${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</sub></div>
+                            </div>
+                            <button class="modal-btn primary" onclick="buyItem('${l.id}')">🛒 ${l.listingType === 'rent' ? 'Rent Now' : l.listingType === 'subscription' ? 'Subscribe' : 'Buy Now'}</button>
+                        </div>
+                    </div>
+                `;
+            } catch (e) {
+                box.innerHTML = `<div class="empty" style="padding: 40px;"><div class="emoji">⚠️</div><h3>Error loading listing</h3><p>${e.message}</p><button class="modal-btn secondary" style="margin-top:16px" onclick="closeModal()">Close</button></div>`;
+            }
+        }
+
+        function closeModal(modalId, e) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        async function buyItem(id) {
+            const btn = document.querySelector('.modal-btn.primary');
+            btn.innerHTML = '🔄 Processing...';
+            btn.disabled = true;
+
+            try {
+                // Determine Buyer context (mocked as user using the app for now)
+                const payload = {
+                    buyerId: 'sergio_valle',
+                    buyerName: 'Sergio Valle',
+                    buyerType: 'human'
+                };
+
+                const res = await fetch('/api/marketplace/buy/' + id, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (data.error) throw new Error(data.error);
+
+                // Success! Close listing, show receipt
+                closeModal('listing-modal');
+
+                const recOverlay = document.getElementById('receipt-modal');
+                const recBox = document.getElementById('receipt-content-box');
+
+                recBox.innerHTML = `
+                    <button class="modal-close" style="position:absolute; top:15px; right:15px;" onclick="closeModal('receipt-modal')">✕</button>
+                    <div class="receipt-icon">✅</div>
+                    <div class="receipt-title">Purchase Successful</div>
+                    <p style="color:var(--ts); font-size:13px; margin-bottom:20px;">Order ID: <span style="font-family:var(--mono)">${data.order.id}</span></p>
+                    
+                    <div class="receipt-details">
+                        <div class="receipt-row">
+                            <span>Item</span>
+                            <span class="receipt-val">${data.order.listingTitle.substring(0, 25)}...</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Type</span>
+                            <span class="receipt-val" style="text-transform:capitalize">${data.order.type}</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Price</span>
+                            <span class="receipt-val">${data.order.price.toLocaleString()} ${data.order.currency}</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Tax (${data.order.taxRate})</span>
+                            <span class="receipt-val">+${data.order.tax.toLocaleString()} ${data.order.currency}</span>
+                        </div>
+                        <div class="receipt-row" style="margin-top:10px; border-top: 1px solid var(--bd); padding-top:10px;">
+                            <span>Total Paid</span>
+                            <span class="receipt-val" style="color:var(--accent)">${data.order.total.toLocaleString()} ${data.order.currency}</span>
+                        </div>
+                    </div>
+
+                    <a href="wallet.html" class="wallet-btn">💳 Manage Crypto & Wallet Transfers</a>
+                `;
+
+                recOverlay.classList.add('active');
+
+                // Reload background listings subtly
+                loadListings();
+
+            } catch (e) {
+                alert('Purchase Failed: ' + e.message);
+                btn.innerHTML = '🛒 Try Again';
+                btn.disabled = false;
+            }
+        }
+
+        async function seedMkt() {
+            try {
+                const r = await fetch('/api/marketplace/seed', { method: 'POST' }).then(r => r.json());
+                alert(`Marketplace seeded! ${r.count} products added.`);
+                location.reload();
+            } catch (e) { console.error(e); }
+        }
+
+        // ── INIT ──
+        loadCategories();
+        loadListings();
+    </script>
+</body>
+
+</html>

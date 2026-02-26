@@ -1,0 +1,37 @@
+{
+  "taxPayments": [
+    {
+      "id": "tax-escrow-Automaton-1771905788968",
+      "agentId": "Automaton",
+      "taxAmount": 10,
+      "chain": "ETH",
+      "destinationAddress": "0x500fcDff3AAa2662b954240978BB01709Ea0Dc68",
+      "status": "broadcasted",
+      "timestamp": "2026-02-24T04:03:08.971Z",
+      "layer": 0,
+      "rule": "UCIT 10% — Routed to Sovereign Custodian"
+    }
+  ],
+  "escrows": [
+    {
+      "id": "escrow-Automaton-1771905788968",
+      "agentId": "Automaton",
+      "grossAmount": 100,
+      "taxAmount": 10,
+      "netAmount": 90,
+      "chain": "ETH",
+      "description": "Test service income",
+      "status": "complete",
+      "createdAt": "2026-02-24T04:03:08.968Z",
+      "completedAt": "2026-02-24T04:03:08.982Z"
+    }
+  ],
+  "disbursements": [
+    {
+      "agentId": "Automaton",
+      "net": 90,
+      "chain": "ETH",
+      "completedAt": "2026-02-24T04:03:08.982Z"
+    }
+  ]
+}

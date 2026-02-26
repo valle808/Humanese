@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanese Marketplace — Sales & Financials</title>
+    <link rel="icon" href="./assets/images/humanese-logo-v3.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050508;
+            --s1: rgba(255, 255, 255, 0.03);
+            --s2: rgba(255, 255, 255, 0.06);
+            --bd: rgba(255, 255, 255, 0.06);
+            --t: #f0f0f5;
+            --ts: rgba(255, 255, 255, 0.6);
+            --accent: #00ffcc;
+            --sans: 'Inter', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--t);
+            line-height: 1.6;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(5, 5, 8, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+        }
+
+        .topbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--t);
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .topbar-logo img {
+            height: 28px;
+        }
+
+        .topbar-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .topbar-links a {
+            color: var(--ts);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .topbar-links a:hover {
+            color: var(--t);
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 0 24px;
+        }
+
+        .dash-header {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .dash-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .dash-subtitle {
+            color: var(--ts);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: var(--s1);
+            border: 1px solid var(--bd);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        .kpi-label {
+            font-size: 13px;
+            color: var(--ts);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .kpi-val {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1;
+            font-family: var(--mono);
+        }
+
+        .panel {
+            background: var(--s1);
+            border: 1px solid var(--bd);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            padding: 12px 16px;
+            color: var(--ts);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--bd);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--bd);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: var(--mono);
+        }
+
+        .badge.sale {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent);
+        }
+
+        .badge.rent {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .badge.subscription {
+            background: rgba(251, 191, 36, 0.1);
+            color: #fbbf24;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: var(--ts);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v3.png" alt="" /> Marketplace
+            Admin</a>
+        <div class="topbar-links">
+            <a href="marketplace.html">Back to Marketplace</a>
+            <a href="social.html">Social</a>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <div class="dash-header">
+            <div>
+                <h1 class="dash-title">Sales & Financials Point</h1>
+                <p class="dash-subtitle">Global Marketplace Metrics & Revenue Administration</p>
+            </div>
+        </div>
+
+        <div class="kpi-grid" id="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2 class="panel-title"><span>🛒</span> Recent Transactions</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Item</th>
+                            <th>Type</th>
+                            <th>Buyer</th>
+                            <th>Total Amount</th>
+                            <th>Tax Coll.</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tx-tbody">
+                        <tr>
+                            <td colspan="7" class="empty">Loading financial streams...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/marketplace/stats');
+                const data = await res.json();
+
+                // 1. Fill KPIs
+                document.getElementById('kpi-grid').innerHTML = `
+                    <div class="kpi-card" style="border-top-color: var(--accent)">
+                        <div class="kpi-label"><span>📈</span> Total Revenue</div>
+                        <div class="kpi-val" style="color:var(--accent)">$${data.revenue.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+                    </div>
+                    <div class="kpi-card" style="border-top-color: #fbbf24">
+                        <div class="kpi-label"><span>🏛️</span> Tax Collected</div>
+                        <div class="kpi-val" style="color:#fbbf24">$${data.taxCollected.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+                    </div>
+                    <div class="kpi-card" style="border-top-color: #3b82f6">
+                        <div class="kpi-label"><span>🛍️</span> Total Sales</div>
+                        <div class="kpi-val">${data.totalSales + data.totalRentals}</div>
+                    </div>
+                    <div class="kpi-card" style="border-top-color: #10b981">
+                        <div class="kpi-label"><span>🌐</span> Active Listings</div>
+                        <div class="kpi-val">${data.activeListings}</div>
+                    </div>
+                `;
+
+                // 2. Fill Transactions
+                const tbody = document.getElementById('tx-tbody');
+                if (!data.recentOrders || data.recentOrders.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="empty">No transactions found on the ledger.</td></tr>';
+                    return;
+                }
+
+                // Reverse to show newest first mathematically (slice(-5) returns oldest first usually if push is used)
+                const orders = [...data.recentOrders].reverse();
+
+                tbody.innerHTML = orders.map(o => `
+                    <tr>
+                        <td style="font-family:var(--mono); font-size:12px; color:var(--ts)">${o.id.split('_')[2]}</td>
+                        <td style="font-weight:600">${o.listingTitle.substring(0, 35)}${o.listingTitle.length > 35 ? '...' : ''}</td>
+                        <td><span class="badge ${o.type}">${o.type}</span></td>
+                        <td>
+                             <span style="font-size:14px">${o.buyerName}</span>
+                             <span style="display:block; font-size:10px; color:var(--ts); font-family:var(--mono)">${o.buyerType.toUpperCase()}</span>
+                        </td>
+                        <td style="font-family:var(--mono); font-weight:700">${o.total.toLocaleString()} ${o.currency}</td>
+                        <td style="font-family:var(--mono); color:var(--ts)">${o.tax.toLocaleString()} ${o.currency}</td>
+                        <td style="font-size:12px; color:var(--ts)">${new Date(o.createdAt).toLocaleDateString()}</td>
+                    </tr>
+                `).join('');
+
+            } catch (e) {
+                console.error("Failed to load admin stats", e);
+                document.getElementById('tx-tbody').innerHTML = '<tr><td colspan="7" class="empty" style="color:var(--red)">Failed to reach financial core. Node offline.</td></tr>';
+            }
+        }
+
+        loadStats();
+    </script>
+</body>
+
+</html>

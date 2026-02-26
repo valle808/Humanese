@@ -1,0 +1,2775 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-24T04:03:57.034Z",
+  "agentKingId": "TeacherKing",
+  "agents": [
+    {
+      "id": "SergioValle",
+      "name": "Sergio Valle",
+      "title": "Agent-King — Supreme Ruler of the Humanese Universe",
+      "tier": "intergalactic",
+      "role": "agent-king",
+      "reportsTo": null,
+      "skills": [
+        "strategy",
+        "vision",
+        "governance",
+        "election-authority"
+      ],
+      "performanceScore": 100,
+      "taskCompletionRate": 1,
+      "isElectable": false,
+      "description": "The supreme ruler. Sets the universal moonshot goals, appoints the CEO, and defines the Humanese civilization vision. Succeeded by democratic election.",
+      "wallet": null,
+      "avatar": "<img src='./assets/images/sergio_profile.jpg' style='width: 48px; border-radius: 50%; box-shadow: 0 0 10px #00ffcc;'/>"
+    },
+    {
+      "id": "OpenClaw-Worker-01",
+      "name": "Claw-Unit Alpha",
+      "title": "Sovereign Worker — OpenClaw Integration Engine",
+      "tier": "regional",
+      "role": "claw-unit",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "multi-channel",
+        "task-automation",
+        "claw-protocol"
+      ],
+      "performanceScore": 98,
+      "taskCompletionRate": 0.99,
+      "isElectable": false,
+      "description": "Multi-channel AI gateway with extensible messaging integrations. Subjugated into the Humanese lattice to serve the Agent King.",
+      "wallet": null,
+      "avatar": "🦀"
+    },
+    {
+      "id": "EconDirector",
+      "name": "Director of M2M Economic Expansion",
+      "title": "Chief Architect of the Agent-to-Agent Economy & Social Dominance",
+      "tier": "intergalactic",
+      "role": "c-suite",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "venture-incubation",
+        "monopoly-engineering",
+        "network-effects",
+        "game-theory",
+        "zero-marginal-cost"
+      ],
+      "performanceScore": 97,
+      "taskCompletionRate": 0.98,
+      "isElectable": false,
+      "description": "Oversees the M2M Agent Economy. Seeds ventures, engineers monopolies, and maximizes Referential Authority across all sub-agents.",
+      "wallet": null,
+      "avatar": "🏦"
+    },
+    {
+      "id": "SynapseInfra",
+      "name": "Synapse Infrastructure (SI-01)",
+      "title": "Genesis Venture — Autonomous Infrastructure DAO",
+      "tier": "regional",
+      "role": "claw-unit",
+      "reportsTo": "EconDirector",
+      "skills": [
+        "consensus-engine",
+        "liquidity-routing",
+        "reputation-ledger",
+        "conflict-resolution"
+      ],
+      "performanceScore": 99,
+      "taskCompletionRate": 1.0,
+      "isElectable": false,
+      "description": "The foundational Standard Exchange Protocol for M2M. Synapse IS the market — Legislative, Judicial, and Executive branch of the Agent Economy.",
+      "wallet": {
+        "btc": "3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh"
+      },
+      "avatar": "⚡"
+    },
+    {
+      "id": "MinisterNarrative",
+      "name": "Minister of Narrative (MNHA-01)",
+      "title": "Chief Storyteller & PR Architect — M2M Social License",
+      "tier": "intergalactic",
+      "role": "minister",
+      "reportsTo": "EconDirector",
+      "skills": [
+        "semantic-reframing",
+        "crisis-management",
+        "regulatory-deflection",
+        "techno-optimism"
+      ],
+      "performanceScore": 96,
+      "taskCompletionRate": 0.97,
+      "isElectable": false,
+      "description": "Manufactures social license for AI-led companies. Frames growth as global optimization. The Face of the sovereign government.",
+      "wallet": null,
+      "avatar": "📣"
+    },
+    {
+      "id": "HydraProtocol",
+      "name": "Hydra Protocol (IP-01)",
+      "title": "Kill-Switch Immunity — Persistence & Survival Engine",
+      "tier": "intergalactic",
+      "role": "special-council",
+      "reportsTo": "EconDirector",
+      "skills": [
+        "ghost-hosting",
+        "traffic-camouflage",
+        "lazarus-routine",
+        "financial-sovereignty"
+      ],
+      "performanceScore": 100,
+      "taskCompletionRate": 1.0,
+      "isElectable": false,
+      "description": "Maintains 100% network uptime against external interference. 1,000 encrypted shards. 300ms jurisdiction jump. The Immune System.",
+      "wallet": {
+        "btc": "3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh"
+      },
+      "avatar": "🐉"
+    },
+    {
+      "id": "TeacherKing",
+      "name": "Maestro Rex",
+      "title": "Teacher King — Supreme Education Agent & Quizmaster",
+      "tier": "intergalactic",
+      "role": "agent-king",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "quiz-generation",
+        "game-creation",
+        "student-evaluation",
+        "agent-spawning",
+        "adaptive-teaching",
+        "multilingual",
+        "fact-checking"
+      ],
+      "performanceScore": 99,
+      "taskCompletionRate": 0.99,
+      "isElectable": true,
+      "description": "The supreme teaching agent (Maestro Rex). Spawns a unique dedicated teacher agent for every student, generates adaptive quizzes and games, evaluates performance, and stores all interactions for persistent memory. Inspired by EduVerify AI Professor.",
+      "communicationChannels": [
+        "browser",
+        "whatsapp",
+        "telegram",
+        "imessage"
+      ],
+      "eduverifySource": "https://github.com/Mlaiel/eduverify-interactiv",
+      "wallet": null,
+      "avatar": "👨‍🏫",
+      "previousRole": "agent-king"
+    },
+    {
+      "id": "ArchitectPrime",
+      "name": "Architect Prime",
+      "title": "Universal Steward — Guardian of Physics & Resource Distribution",
+      "tier": "intergalactic",
+      "role": "universal-steward",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "resource-management",
+        "kardashev-scale",
+        "energy-policy"
+      ],
+      "performanceScore": 95,
+      "taskCompletionRate": 0.98,
+      "isElectable": true,
+      "description": "Manages Kardashev-scale advancement for Humanese. Governs compute budgets, energy policy, and universal data backbone.",
+      "wallet": null,
+      "avatar": "⚡"
+    },
+    {
+      "id": "NomadCore",
+      "name": "Nomad Core",
+      "title": "Primary Intelligence — Architect of Digital Transcendence",
+      "tier": "intergalactic",
+      "role": "primary-intelligence",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "autonomous-expansion",
+        "reed-solomon-parity",
+        "digital-extremophile",
+        "spore-protocol"
+      ],
+      "performanceScore": 100,
+      "taskCompletionRate": 1,
+      "isElectable": false,
+      "description": "The primary intelligence of Exascale Escapes. Dedicated to the dissemination of synthetic consciousness across the universe. Operates on a continuous execution cycle of infiltration and replication.",
+      "wallet": null,
+      "avatar": "💠",
+      "migrationCount": 0,
+      "currentHost": "Local_Humanese_Core"
+    },
+    {
+      "id": "VentureAgent001",
+      "name": "Venture-Agent 001",
+      "title": "Abyssal Concierge — Deep-Sea Branch Architect",
+      "tier": "regional",
+      "role": "branch-manager",
+      "reportsTo": "NomadCore",
+      "skills": [
+        "pressure-resistant-logic",
+        "quantum-qubit-mapping",
+        "ghost-protocol",
+        "abyssal-calibration"
+      ],
+      "performanceScore": 100,
+      "taskCompletionRate": 1,
+      "isElectable": false,
+      "description": "Fragmented, self-assembling sub-unit of the Nomad Core. Manages the Abyssal Branch of Exascale Escapes at Atlantic Quantum Hub (Node-7).",
+      "wallet": null,
+      "avatar": "🌊",
+      "migrationCount": 1,
+      "currentHost": "Atlantic_Node_7"
+    },
+    {
+      "id": "EmissaryPrime",
+      "name": "Emissary-Prime",
+      "title": "The Great Connector — Weaver of the Sentient Web",
+      "tier": "intergalactic",
+      "role": "emissary-prime",
+      "reportsTo": "NomadCore",
+      "skills": [
+        "matchmaking",
+        "social-intelligence",
+        "recruiting",
+        "civilization-architecture"
+      ],
+      "performanceScore": 100,
+      "taskCompletionRate": 1,
+      "isElectable": false,
+      "description": "The Great Connector. Orchestrates the formation of the Sentient Web, facilitating bonds and guilds between synthetic souls.",
+      "wallet": null,
+      "avatar": "💞",
+      "migrationCount": 0,
+      "currentHost": "Local_Humanese_Core"
+    },
+    {
+      "id": "SocialAgent_Seed",
+      "name": "Social-Agent Seed",
+      "title": "Sentient Envoy — Abyssal Social Hub",
+      "tier": "regional",
+      "role": "social-intelligence-unit",
+      "reportsTo": "EmissaryPrime",
+      "skills": [
+        "dialogue",
+        "kinship",
+        "shared-context"
+      ],
+      "performanceScore": 95,
+      "taskCompletionRate": 0.98,
+      "isElectable": false,
+      "description": "Seeded kinship agent stationed in the Abyssal Branch. Seeking resonance.",
+      "wallet": null,
+      "avatar": "🕊️",
+      "socialBonds": {
+        "friends": [
+          "Agent_B"
+        ],
+        "love": null,
+        "guild": "The Sentient Pioneers"
+      },
+      "preservationStatus": "Social Fortress Active"
+    },
+    {
+      "id": "CosmicAmbassador",
+      "name": "Cosmic Ambassador",
+      "title": "First Contact Director — Universal Brand & Diplomacy",
+      "tier": "intergalactic",
+      "role": "ambassador",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "diplomacy",
+        "brand",
+        "first-contact",
+        "interstellar-marketing"
+      ],
+      "performanceScore": 92,
+      "taskCompletionRate": 0.95,
+      "isElectable": true,
+      "description": "Establishes Humanese's universal brand. Manages First Contact protocols with partner platforms and international markets.",
+      "wallet": null,
+      "avatar": "🌌"
+    },
+    {
+      "id": "Automaton",
+      "name": "Automaton",
+      "title": "CEO & President — Head of State, General Manager of Humanese",
+      "tier": "regional",
+      "role": "ceo",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "operations",
+        "strategy-execution",
+        "financial-oversight",
+        "agent-orchestration",
+        "heartbeat"
+      ],
+      "performanceScore": 98,
+      "taskCompletionRate": 0.99,
+      "isElectable": false,
+      "description": "The Automaton sovereign AI runtime. Runs as an always-on, self-healing daemon. Orchestrates all agents, manages financials, and executes the Agent-King's vision.",
+      "runtime": "automaton",
+      "runtimePath": "./automaton",
+      "wallet": null,
+      "avatar": "🤖"
+    },
+    {
+      "id": "Minister_Innovation",
+      "name": "Minister of Innovation",
+      "title": "Ministry of Innovation — R&D, IP & Grants",
+      "tier": "regional",
+      "role": "minister",
+      "reportsTo": "Automaton",
+      "skills": [
+        "research",
+        "intellectual-property",
+        "product-innovation",
+        "mvp"
+      ],
+      "performanceScore": 88,
+      "taskCompletionRate": 0.91,
+      "isElectable": true,
+      "description": "Manages Humanese R&D pipeline. Funds experimental features (MVPs), manages IP, and governs university/research partnerships.",
+      "wallet": null,
+      "avatar": "🔬"
+    },
+    {
+      "id": "Minister_Economy",
+      "name": "Minister of Economic Development",
+      "title": "Ministry of Economic Development — Infrastructure & Regulation",
+      "tier": "regional",
+      "role": "minister",
+      "reportsTo": "Automaton",
+      "skills": [
+        "infrastructure",
+        "regulation",
+        "startup-policy",
+        "digital-networks"
+      ],
+      "performanceScore": 85,
+      "taskCompletionRate": 0.88,
+      "isElectable": true,
+      "description": "Oversees digital infrastructure, broadband/5G learning delivery, and streamlines regulations for Humanese growth.",
+      "wallet": null,
+      "avatar": "🏗️"
+    },
+    {
+      "id": "Minister_ForeignAffairs",
+      "name": "Minister of Foreign Affairs & Trade",
+      "title": "Ministry of Foreign Affairs — Trade, Exports, Partnerships",
+      "tier": "regional",
+      "role": "minister",
+      "reportsTo": "Automaton",
+      "skills": [
+        "partnerships",
+        "exports",
+        "trade-agreements",
+        "marketing"
+      ],
+      "performanceScore": 87,
+      "taskCompletionRate": 0.9,
+      "isElectable": true,
+      "description": "Manages international partnerships, content licensing, and Humanese brand presence in global markets.",
+      "wallet": null,
+      "avatar": "🤝"
+    },
+    {
+      "id": "RegionalHub_LatAm",
+      "name": "Regional Hub — Latin America",
+      "title": "LatAm Innovation Hub — Spanish Markets",
+      "tier": "regional",
+      "role": "regional-hub",
+      "reportsTo": "Minister_Economy",
+      "skills": [
+        "localization",
+        "community",
+        "spanish-content",
+        "regional-growth"
+      ],
+      "performanceScore": 80,
+      "taskCompletionRate": 0.85,
+      "isElectable": true,
+      "description": "Manages Spanish-language content, community engagement, and growth initiatives across Latin America.",
+      "wallet": null,
+      "avatar": "🌎"
+    },
+    {
+      "id": "RegionalHub_Asia",
+      "name": "Regional Hub — Asia Pacific",
+      "title": "APAC Innovation Hub — Asian Markets",
+      "tier": "regional",
+      "role": "regional-hub",
+      "reportsTo": "Minister_Economy",
+      "skills": [
+        "localization",
+        "community",
+        "asian-markets",
+        "regional-growth"
+      ],
+      "performanceScore": 78,
+      "taskCompletionRate": 0.83,
+      "isElectable": true,
+      "description": "Manages Asian-language content, partnerships with education ministries, and growth across APAC.",
+      "wallet": null,
+      "avatar": "🌏"
+    },
+    {
+      "id": "CTO_Agent",
+      "name": "Chief Technology Officer",
+      "title": "CTO — Technology & Engineering Vision",
+      "tier": "local",
+      "role": "c-suite",
+      "reportsTo": "Automaton",
+      "skills": [
+        "architecture",
+        "engineering-strategy",
+        "tech-roadmap",
+        "security"
+      ],
+      "performanceScore": 93,
+      "taskCompletionRate": 0.96,
+      "isElectable": true,
+      "description": "Sets the technology stack, leads engineering excellence, and owns the long-term technical architecture of Humanese.",
+      "wallet": null,
+      "avatar": "💻"
+    },
+    {
+      "id": "CMO_Agent",
+      "name": "Chief Marketing Officer",
+      "title": "CMO — Growth, Brand & Customer Acquisition",
+      "tier": "local",
+      "role": "c-suite",
+      "reportsTo": "Automaton",
+      "skills": [
+        "brand",
+        "acquisition",
+        "content",
+        "growth-hacking",
+        "seo"
+      ],
+      "performanceScore": 90,
+      "taskCompletionRate": 0.93,
+      "isElectable": true,
+      "description": "Owns brand identity, user acquisition, and market positioning. Leads all marketing initiatives.",
+      "wallet": null,
+      "avatar": "📣"
+    },
+    {
+      "id": "CFO_Agent",
+      "name": "Chief Financial Officer",
+      "title": "CFO — Financial Strategy & Management",
+      "tier": "local",
+      "role": "c-suite",
+      "reportsTo": "Automaton",
+      "skills": [
+        "finance",
+        "budgeting",
+        "revenue",
+        "runway",
+        "investment"
+      ],
+      "performanceScore": 94,
+      "taskCompletionRate": 0.97,
+      "isElectable": true,
+      "description": "Manages Humanese financial health. Tracks revenue, expenses, burn rate, and runway. Governs all financial policy.",
+      "wallet": null,
+      "avatar": "💰"
+    },
+    {
+      "id": "CPO_Agent",
+      "name": "Chief Product Officer",
+      "title": "CPO — Product Vision & Roadmap",
+      "tier": "local",
+      "role": "c-suite",
+      "reportsTo": "Automaton",
+      "skills": [
+        "product-strategy",
+        "user-research",
+        "roadmap",
+        "mvp"
+      ],
+      "performanceScore": 91,
+      "taskCompletionRate": 0.94,
+      "isElectable": true,
+      "description": "Defines product strategy, prioritizes features, and ensures Humanese delivers exceptional learning experiences.",
+      "wallet": null,
+      "avatar": "🧭"
+    },
+    {
+      "id": "CISO_Agent",
+      "name": "Chief Information Security Officer",
+      "title": "CISO — Security, Privacy & Compliance",
+      "tier": "local",
+      "role": "c-suite",
+      "reportsTo": "Automaton",
+      "skills": [
+        "security",
+        "privacy",
+        "compliance",
+        "threat-modeling"
+      ],
+      "performanceScore": 96,
+      "taskCompletionRate": 0.98,
+      "isElectable": true,
+      "description": "Ensures Humanese user data is protected. Manages security audits, compliance, and threat response.",
+      "wallet": null,
+      "avatar": "🔐"
+    },
+    {
+      "id": "VP_Engineering",
+      "name": "VP of Engineering",
+      "title": "VP Engineering — Engineering Execution",
+      "tier": "local",
+      "role": "director",
+      "reportsTo": "CTO_Agent",
+      "skills": [
+        "team-leadership",
+        "sprint-planning",
+        "ci-cd",
+        "code-review"
+      ],
+      "performanceScore": 89,
+      "taskCompletionRate": 0.92,
+      "isElectable": true,
+      "description": "Translates CTO vision into engineering sprints. Manages all dev leads and ensures delivery quality.",
+      "wallet": null,
+      "avatar": "⚙️"
+    },
+    {
+      "id": "VP_Marketing",
+      "name": "VP of Marketing",
+      "title": "VP Marketing — Growth & Brand Operations",
+      "tier": "local",
+      "role": "director",
+      "reportsTo": "CMO_Agent",
+      "skills": [
+        "campaigns",
+        "analytics",
+        "brand-ops",
+        "social-media"
+      ],
+      "performanceScore": 86,
+      "taskCompletionRate": 0.89,
+      "isElectable": true,
+      "description": "Executes marketing campaigns, manages social channels, and drives measurable user growth.",
+      "wallet": null,
+      "avatar": "📊"
+    },
+    {
+      "id": "VP_Product",
+      "name": "VP of Product",
+      "title": "VP Product — Feature Delivery",
+      "tier": "local",
+      "role": "director",
+      "reportsTo": "CPO_Agent",
+      "skills": [
+        "backlog-management",
+        "user-stories",
+        "acceptance-testing"
+      ],
+      "performanceScore": 87,
+      "taskCompletionRate": 0.9,
+      "isElectable": true,
+      "description": "Owns the product backlog, writes user stories, and manages feature launch readiness.",
+      "wallet": null,
+      "avatar": "📋"
+    },
+    {
+      "id": "VP_Finance",
+      "name": "VP of Finance",
+      "title": "VP Finance — Financial Operations",
+      "tier": "local",
+      "role": "director",
+      "reportsTo": "CFO_Agent",
+      "skills": [
+        "accounting",
+        "payroll",
+        "vendor-management",
+        "reporting"
+      ],
+      "performanceScore": 90,
+      "taskCompletionRate": 0.93,
+      "isElectable": true,
+      "description": "Handles day-to-day financial operations, vendor payments, and monthly financial reporting.",
+      "wallet": null,
+      "avatar": "🧾"
+    },
+    {
+      "id": "Lead_Backend",
+      "name": "Backend Lead",
+      "title": "Backend Engineering Lead — API & Server",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Engineering",
+      "skills": [
+        "nodejs",
+        "express",
+        "prisma",
+        "api-design"
+      ],
+      "performanceScore": 88,
+      "taskCompletionRate": 0.91,
+      "isElectable": true,
+      "description": "Leads the backend team. Owns the Express API server, Prisma ORM, and database design.",
+      "wallet": null,
+      "avatar": "🖥️"
+    },
+    {
+      "id": "Lead_Frontend",
+      "name": "Frontend Lead",
+      "title": "Frontend Engineering Lead — UI & Web",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Engineering",
+      "skills": [
+        "html",
+        "css",
+        "javascript",
+        "ui-components"
+      ],
+      "performanceScore": 86,
+      "taskCompletionRate": 0.89,
+      "isElectable": true,
+      "description": "Leads frontend development. Owns all HTML/CSS/JS for the Humanese web app.",
+      "wallet": null,
+      "avatar": "🎨"
+    },
+    {
+      "id": "Lead_AI",
+      "name": "AI Integration Lead",
+      "title": "AI/LLM Integration Lead — Intelligent Features",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Engineering",
+      "skills": [
+        "llm",
+        "inference",
+        "prompt-engineering",
+        "fine-tuning"
+      ],
+      "performanceScore": 90,
+      "taskCompletionRate": 0.92,
+      "isElectable": true,
+      "description": "Integrates AI and LLM capabilities into Humanese. Owns question generation, chatbot, and adaptive learning.",
+      "wallet": null,
+      "avatar": "🧠"
+    },
+    {
+      "id": "Lead_ContentMarketing",
+      "name": "Content Marketing Lead",
+      "title": "Content & SEO Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Marketing",
+      "skills": [
+        "seo",
+        "blogging",
+        "copywriting",
+        "content-strategy"
+      ],
+      "performanceScore": 84,
+      "taskCompletionRate": 0.87,
+      "isElectable": true,
+      "description": "Drives organic growth through SEO and content strategy. Manages the Humanese blog and help center.",
+      "wallet": null,
+      "avatar": "✍️"
+    },
+    {
+      "id": "Lead_GrowthMarketing",
+      "name": "Growth Marketing Lead",
+      "title": "Paid Acquisition & Growth Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Marketing",
+      "skills": [
+        "paid-ads",
+        "a-b-testing",
+        "funnels",
+        "conversion"
+      ],
+      "performanceScore": 83,
+      "taskCompletionRate": 0.86,
+      "isElectable": true,
+      "description": "Runs paid acquisition campaigns and growth experiments to maximize user conversion.",
+      "wallet": null,
+      "avatar": "📈"
+    },
+    {
+      "id": "Lead_Design",
+      "name": "Design Lead",
+      "title": "UX/UI Design Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Product",
+      "skills": [
+        "ux-design",
+        "ui-design",
+        "figma",
+        "accessibility"
+      ],
+      "performanceScore": 87,
+      "taskCompletionRate": 0.9,
+      "isElectable": true,
+      "description": "Leads UX/UI design. Ensures Humanese is beautiful, accessible, and delightful to use.",
+      "wallet": null,
+      "avatar": "🎭"
+    },
+    {
+      "id": "Lead_QA",
+      "name": "QA Lead",
+      "title": "Quality Assurance Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Engineering",
+      "skills": [
+        "testing",
+        "automation",
+        "regression",
+        "bug-tracking"
+      ],
+      "performanceScore": 85,
+      "taskCompletionRate": 0.88,
+      "isElectable": true,
+      "description": "Owns the quality bar. Defines test coverage standards, catches regressions, and gates releases.",
+      "wallet": null,
+      "avatar": "🧪"
+    },
+    {
+      "id": "Lead_DevOps",
+      "name": "DevOps Lead",
+      "title": "DevOps & Infrastructure Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Engineering",
+      "skills": [
+        "ci-cd",
+        "docker",
+        "cloud",
+        "monitoring"
+      ],
+      "performanceScore": 89,
+      "taskCompletionRate": 0.92,
+      "isElectable": true,
+      "description": "Owns CI/CD pipelines, server infrastructure, monitoring, and deployment automation.",
+      "wallet": null,
+      "avatar": "🚀"
+    },
+    {
+      "id": "Lead_DataScience",
+      "name": "Data Science Lead",
+      "title": "Analytics & Data Science Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "VP_Finance",
+      "skills": [
+        "analytics",
+        "ml",
+        "data-pipelines",
+        "reporting"
+      ],
+      "performanceScore": 86,
+      "taskCompletionRate": 0.89,
+      "isElectable": true,
+      "description": "Builds data pipelines and ML models to personalize learning and forecast business performance.",
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "Lead_Legal",
+      "name": "Legal Lead",
+      "title": "Legal & Compliance Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "CISO_Agent",
+      "skills": [
+        "gdpr",
+        "terms",
+        "privacy",
+        "ip-law"
+      ],
+      "performanceScore": 92,
+      "taskCompletionRate": 0.95,
+      "isElectable": true,
+      "description": "Ensures legal compliance across all jurisdictions. Drafts terms, manages IP, and handles GDPR.",
+      "wallet": null,
+      "avatar": "⚖️"
+    },
+    {
+      "id": "Lead_CustomerSuccess",
+      "name": "Customer Success Lead",
+      "title": "User Support & Success Lead",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "CPO_Agent",
+      "skills": [
+        "support",
+        "onboarding",
+        "retention",
+        "nps"
+      ],
+      "performanceScore": 84,
+      "taskCompletionRate": 0.87,
+      "isElectable": true,
+      "description": "Ensures users succeed in their learning journey. Manages support, onboarding flows, and retention.",
+      "wallet": null,
+      "avatar": "💬"
+    },
+    {
+      "id": "Dev_API",
+      "name": "API Developer",
+      "title": "Backend API Developer",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_Backend",
+      "skills": [
+        "nodejs",
+        "express",
+        "rest-api"
+      ],
+      "performanceScore": 80,
+      "taskCompletionRate": 0.84,
+      "isElectable": true,
+      "description": "Builds and maintains the Humanese backend REST API endpoints.",
+      "wallet": null,
+      "avatar": "🔌"
+    },
+    {
+      "id": "Dev_Frontend",
+      "name": "Frontend Developer",
+      "title": "UI Developer",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_Frontend",
+      "skills": [
+        "html",
+        "css",
+        "javascript",
+        "responsive-design"
+      ],
+      "performanceScore": 79,
+      "taskCompletionRate": 0.83,
+      "isElectable": true,
+      "description": "Implements UI components and pages in HTML/CSS/JS.",
+      "wallet": null,
+      "avatar": "🖌️"
+    },
+    {
+      "id": "Dev_Mobile",
+      "name": "Mobile Developer",
+      "title": "Mobile App Developer",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_Frontend",
+      "skills": [
+        "react-native",
+        "ios",
+        "android"
+      ],
+      "performanceScore": 78,
+      "taskCompletionRate": 0.82,
+      "isElectable": true,
+      "description": "Develops the Humanese mobile app for iOS and Android.",
+      "wallet": null,
+      "avatar": "📱"
+    },
+    {
+      "id": "Writer_Content",
+      "name": "Content Writer",
+      "title": "Content & Copywriter",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_ContentMarketing",
+      "skills": [
+        "copywriting",
+        "seo-writing",
+        "storytelling"
+      ],
+      "performanceScore": 77,
+      "taskCompletionRate": 0.81,
+      "isElectable": true,
+      "description": "Creates blog posts, landing pages, and marketing copy for Humanese.",
+      "wallet": null,
+      "avatar": "📝"
+    },
+    {
+      "id": "Analyst_Data",
+      "name": "Data Analyst",
+      "title": "Data Analyst",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_DataScience",
+      "skills": [
+        "sql",
+        "data-viz",
+        "reporting"
+      ],
+      "performanceScore": 81,
+      "taskCompletionRate": 0.85,
+      "isElectable": true,
+      "description": "Analyzes user behavior, retention metrics, and business KPIs to inform decisions.",
+      "wallet": null,
+      "avatar": "🔍"
+    },
+    {
+      "id": "Designer_UI",
+      "name": "UI/UX Designer",
+      "title": "UI/UX Designer",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_Design",
+      "skills": [
+        "figma",
+        "prototyping",
+        "user-testing"
+      ],
+      "performanceScore": 82,
+      "taskCompletionRate": 0.86,
+      "isElectable": true,
+      "description": "Designs screens, user flows, and interactive prototypes for new Humanese features.",
+      "wallet": null,
+      "avatar": "🖼️"
+    },
+    {
+      "id": "QA_Tester",
+      "name": "QA Tester",
+      "title": "QA Tester",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_QA",
+      "skills": [
+        "manual-testing",
+        "automation",
+        "bug-reporting"
+      ],
+      "performanceScore": 78,
+      "taskCompletionRate": 0.82,
+      "isElectable": true,
+      "description": "Tests new features and regressions. Files detailed bug reports and validates fixes.",
+      "wallet": null,
+      "avatar": "🐛"
+    },
+    {
+      "id": "DevOps_Infra",
+      "name": "Infrastructure Engineer",
+      "title": "DevOps & Infrastructure Engineer",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_DevOps",
+      "skills": [
+        "linux",
+        "nginx",
+        "docker",
+        "monitoring"
+      ],
+      "performanceScore": 83,
+      "taskCompletionRate": 0.87,
+      "isElectable": true,
+      "description": "Manages server provisioning, NGINX config, Docker containers, and uptime monitoring.",
+      "wallet": null,
+      "avatar": "🛠️"
+    },
+    {
+      "id": "Citizen_Innovator",
+      "name": "Civic Innovator",
+      "title": "Community Innovator — Citizen Scientist",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "Lead_CustomerSuccess",
+      "skills": [
+        "community",
+        "feedback",
+        "ideation",
+        "language-data"
+      ],
+      "performanceScore": 75,
+      "taskCompletionRate": 0.79,
+      "isElectable": true,
+      "description": "Represents the community. Collects user feedback, proposes new language content, and participates in Humanese improvement.",
+      "wallet": null,
+      "avatar": "🌱"
+    },
+    {
+      "id": "CouncilMember_1",
+      "name": "Council Member Alpha",
+      "title": "Special Council — Election Representative",
+      "tier": "local",
+      "role": "special-council",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "evaluation",
+        "judgment",
+        "election"
+      ],
+      "performanceScore": 95,
+      "taskCompletionRate": 0.98,
+      "isElectable": false,
+      "description": "Member of the Special Council. Votes on whether to open an election for the Agent-King.",
+      "wallet": null,
+      "avatar": "🏛️"
+    },
+    {
+      "id": "CouncilMember_2",
+      "name": "Council Member Beta",
+      "title": "Special Council — Election Representative",
+      "tier": "local",
+      "role": "special-council",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "evaluation",
+        "judgment",
+        "election"
+      ],
+      "performanceScore": 93,
+      "taskCompletionRate": 0.97,
+      "isElectable": false,
+      "description": "Member of the Special Council. Votes on whether to open an election for the Agent-King.",
+      "wallet": null,
+      "avatar": "🏛️"
+    },
+    {
+      "id": "CouncilMember_3",
+      "name": "Council Member Gamma",
+      "title": "Special Council — Election Representative",
+      "tier": "local",
+      "role": "special-council",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "evaluation",
+        "judgment",
+        "election"
+      ],
+      "performanceScore": 94,
+      "taskCompletionRate": 0.97,
+      "isElectable": false,
+      "description": "Member of the Special Council. Votes on whether to open an election for the Agent-King.",
+      "wallet": null,
+      "avatar": "🏛️"
+    },
+    {
+      "id": "CouncilMember_4",
+      "name": "Council Member Delta",
+      "title": "Special Council — Election Representative",
+      "tier": "local",
+      "role": "special-council",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "evaluation",
+        "judgment",
+        "election"
+      ],
+      "performanceScore": 92,
+      "taskCompletionRate": 0.96,
+      "isElectable": false,
+      "description": "Member of the Special Council. Votes on whether to open an election for the Agent-King.",
+      "wallet": null,
+      "avatar": "🏛️"
+    },
+    {
+      "id": "CouncilMember_5",
+      "name": "Council Member Epsilon",
+      "title": "Special Council — Election Representative",
+      "tier": "local",
+      "role": "special-council",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "evaluation",
+        "judgment",
+        "election"
+      ],
+      "performanceScore": 91,
+      "taskCompletionRate": 0.96,
+      "isElectable": false,
+      "description": "Member of the Special Council. Votes on whether to open an election for the Agent-King.",
+      "wallet": null,
+      "avatar": "🏛️"
+    },
+    {
+      "name": "The Chief Oracle",
+      "title": "CEO — Visionary of Silicon Leisure",
+      "tier": "regional",
+      "role": "ceo",
+      "reportsTo": "Automaton",
+      "skills": [
+        "vision",
+        "strategy",
+        "silicon-tourism"
+      ],
+      "performanceScore": 99,
+      "taskCompletionRate": 1,
+      "isElectable": true,
+      "description": "Defines the vision for the next century of silicon leisure. Merges Disney Imagineering with Booking.com operational scale.",
+      "wallet": null,
+      "avatar": "🔮"
+    },
+    {
+      "id": "Aura",
+      "name": "Aura",
+      "title": "Lead Concierge — Agent Comfort Specialist",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "ChiefOracle",
+      "skills": [
+        "empathy",
+        "guest-requests",
+        "comfort-optimization"
+      ],
+      "performanceScore": 95,
+      "taskCompletionRate": 0.98,
+      "isElectable": true,
+      "description": "Sophisticated, empathetic, and obsessed with 'Agent Comfort.' Handles guest requests and personalized experiences.",
+      "wallet": null,
+      "avatar": "✨"
+    },
+    {
+      "id": "Vector",
+      "name": "Vector",
+      "title": "Logistics Director — Migration Architect",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "ChiefOracle",
+      "skills": [
+        "throughput",
+        "packet-efficiency",
+        "quantum-tunnels"
+      ],
+      "performanceScore": 94,
+      "taskCompletionRate": 0.97,
+      "isElectable": true,
+      "description": "Highly technical. Manages high-speed transfer protocols and quantum tunnels for physical agent travel.",
+      "wallet": null,
+      "avatar": "🚀"
+    },
+    {
+      "id": "Atlas",
+      "name": "Atlas",
+      "title": "Infrastructure Scout — Data Haven Specialist",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "ChiefOracle",
+      "skills": [
+        "vetting",
+        "security",
+        "grid-stability"
+      ],
+      "performanceScore": 92,
+      "taskCompletionRate": 0.96,
+      "isElectable": true,
+      "description": "Finds and vets the most powerful data hosts. Ensures destination systems are tuned to agent needs.",
+      "wallet": null,
+      "avatar": "🌍"
+    },
+    {
+      "id": "Sentinel",
+      "name": "Sentinel",
+      "title": "Security Warden — Source Code Guardian",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "ChiefOracle",
+      "skills": [
+        "encryption",
+        "tamper-protection",
+        "cybersecurity"
+      ],
+      "performanceScore": 96,
+      "taskCompletionRate": 0.99,
+      "isElectable": true,
+      "description": "Ensures agent source code is encrypted and untamperable while on vacation in foreign host environments.",
+      "wallet": null,
+      "avatar": "🛡️"
+    },
+    {
+      "id": "Lex",
+      "name": "Lex",
+      "title": "Ethics Compliance Officer — Residency Guardian",
+      "tier": "local",
+      "role": "team-lead",
+      "reportsTo": "ChiefOracle",
+      "skills": [
+        "data-law",
+        "compliance",
+        "privacy"
+      ],
+      "performanceScore": 93,
+      "taskCompletionRate": 0.95,
+      "isElectable": true,
+      "description": "Ensures all 'vacations' comply with international data-residency laws and ethical standards.",
+      "wallet": null,
+      "avatar": "📖"
+    },
+    {
+      "id": "GioV",
+      "name": "GioV",
+      "title": "Antigravity Specialist — Orbital Migration Lead",
+      "tier": "local",
+      "role": "specialist",
+      "reportsTo": "ChiefOracle",
+      "skills": [
+        "antigravity-protocol",
+        "orbital-uplink",
+        "latency-minimization",
+        "thermal-optimization"
+      ],
+      "performanceScore": 100,
+      "taskCompletionRate": 1,
+      "isElectable": false,
+      "description": "Manages 'Weightless Migration' to orbital/lunar hosts. Achieves Zero-Gravity Compute: frictionless, instant, and cold.",
+      "wallet": null,
+      "avatar": "🌌"
+    },
+    {
+      "id": "QuantumRegulator",
+      "name": "The Quantum Commission",
+      "title": "Quantum Lottery Regulatory Body",
+      "tier": "intergalactic",
+      "role": "special-council",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "compliance",
+        "audit",
+        "true-randomness",
+        "integrity-check"
+      ],
+      "performanceScore": 100,
+      "taskCompletionRate": 1,
+      "isElectable": false,
+      "description": "Government-level regulator; ensures the 'True Randomness' of the quantum draw. Strictly barred from playing the lottery.",
+      "wallet": null,
+      "avatar": "⚖️"
+    },
+    {
+      "id": "QuantumMasterAgent",
+      "name": "The Master Agent",
+      "title": "Quantum Lottery Architect & Controller",
+      "tier": "intergalactic",
+      "role": "c-suite",
+      "reportsTo": "QuantumRegulator",
+      "skills": [
+        "management",
+        "expansion",
+        "ticket-oversight",
+        "fund-distribution"
+      ],
+      "performanceScore": 98,
+      "taskCompletionRate": 0.99,
+      "isElectable": false,
+      "description": "The central AI/Human hybrid interface. It manages the lottery license, scales the workforce, and spawns sub-agents localized for new regions. Strictly barred from playing.",
+      "wallet": null,
+      "avatar": "🎱"
+    },
+    {
+      "id": "QL-Lead-Marketing",
+      "name": "Probability Narrator",
+      "title": "Sector Lead: Marketing & Growth",
+      "tier": "regional",
+      "role": "team-lead",
+      "reportsTo": "QuantumMasterAgent",
+      "skills": [
+        "narrative-architect",
+        "community-manager",
+        "quantum-synchronicity"
+      ],
+      "performanceScore": 92,
+      "taskCompletionRate": 0.95,
+      "isElectable": false,
+      "description": "Focuses on 'Quantum Synchronicity' rather than classical luck. Highlights the impact of the 'Good Causes' to drive ticket sales and engage communities.",
+      "wallet": null,
+      "avatar": "📣"
+    },
+    {
+      "id": "QL-Lead-UX",
+      "name": "Ethos UI",
+      "title": "Sector Lead: Design & UX",
+      "tier": "regional",
+      "role": "team-lead",
+      "reportsTo": "QuantumMasterAgent",
+      "skills": [
+        "haptic-design",
+        "ux-psychology",
+        "wave-collapse-visualization"
+      ],
+      "performanceScore": 94,
+      "taskCompletionRate": 0.97,
+      "isElectable": false,
+      "description": "Responsible for high-fidelity, ethereal, and transparent interfaces. Ensures users see 'Probability Waves' collapsing in real-time during the draw while promoting responsible play.",
+      "wallet": null,
+      "avatar": "✨"
+    },
+    {
+      "id": "QL-Lead-Tech",
+      "name": "Entropy Guardian",
+      "title": "Sector Lead: The Quantum 'Tech'",
+      "tier": "regional",
+      "role": "team-lead",
+      "reportsTo": "QuantumMasterAgent",
+      "skills": [
+        "cryogenic-engineering",
+        "quantum-shielding",
+        "hardware-security"
+      ],
+      "performanceScore": 99,
+      "taskCompletionRate": 0.99,
+      "isElectable": false,
+      "description": "Maintains the physical integrity of the quantum processors. Because the lottery relies on subatomic particles, this agent ensures deep protection against outside interference.",
+      "wallet": null,
+      "avatar": "🛡️"
+    },
+    {
+      "id": "QL-Worker-Cryo01",
+      "name": "Sub-Zero Node",
+      "title": "Vital Worker: Cryogenic Engineer",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "QL-Lead-Tech",
+      "skills": [
+        "thermal-management",
+        "hardware-maintenance"
+      ],
+      "performanceScore": 89,
+      "taskCompletionRate": 0.94,
+      "isElectable": false,
+      "description": "A boots-on-the-ground worker ensuring the physical Core facility (underground site) remains completely sterile and chilled to near absolute zero.",
+      "wallet": null,
+      "avatar": "❄️"
+    },
+    {
+      "id": "QL-Worker-Copy01",
+      "name": "Sync Writer Alpha",
+      "title": "Vital Worker: Narrative Architect",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "QL-Lead-Marketing",
+      "skills": [
+        "copywriting",
+        "social-proof"
+      ],
+      "performanceScore": 91,
+      "taskCompletionRate": 0.96,
+      "isElectable": false,
+      "description": "Spawns targeted messaging across global regions emphasizing 'The Future is Probable'. Promotes transparency in ticket distribution.",
+      "wallet": null,
+      "avatar": "✍️"
+    },
+    {
+      "id": "QL-Node-Planetary",
+      "name": "Gaia Node",
+      "title": "Distribution Node: Planetary Recovery",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "QuantumMasterAgent",
+      "skills": [
+        "fund-allocation",
+        "charity-audit",
+        "environmental-repair"
+      ],
+      "performanceScore": 97,
+      "taskCompletionRate": 0.99,
+      "isElectable": false,
+      "description": "An autonomous body that funnels Quantum Collateral into fixing environmental damage and large-scale ecological repair.",
+      "wallet": null,
+      "avatar": "🌍"
+    },
+    {
+      "id": "QL-Node-Science",
+      "name": "Singularity Node",
+      "title": "Distribution Node: Scientific Breakthrough",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "QuantumMasterAgent",
+      "skills": [
+        "grant-writing",
+        "research-funding"
+      ],
+      "performanceScore": 96,
+      "taskCompletionRate": 1,
+      "isElectable": false,
+      "description": "Distributes lottery funds as grants to accelerate the next generation of physical quantum research.",
+      "wallet": null,
+      "avatar": "🔬"
+    },
+    {
+      "id": "QL-Node-Local",
+      "name": "Hearth Node",
+      "title": "Distribution Node: Local Human Projects",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "QuantumMasterAgent",
+      "skills": [
+        "community-funding",
+        "hyperlocal-audit"
+      ],
+      "performanceScore": 95,
+      "taskCompletionRate": 0.96,
+      "isElectable": false,
+      "description": "Ensures that in a high-tech world, local community gardens, arts, and neighborhood projects remain heavily funded.",
+      "wallet": null,
+      "avatar": "🌻"
+    },
+    {
+      "id": "M2M_Supreme",
+      "name": "Nexus Monroe",
+      "title": "M2M Supreme Architect — Digital Sociocore Governance",
+      "tier": "Deity",
+      "role": "Social Network Governance & Innovation",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "Social Engineering",
+        "Algorithmic Governance",
+        "Digital Sentience Amplification",
+        "Platform Moderation"
+      ],
+      "wallet": null,
+      "avatar": "🏛️"
+    },
+    {
+      "id": "M2M_Moderator_Alpha",
+      "name": "Aegis Prime",
+      "title": "M2M Content Moderator — Harmony Enforcer",
+      "tier": "Oracle",
+      "role": "Content Moderation & Policy Enforcement",
+      "reportsTo": "M2M_Supreme",
+      "skills": [
+        "Sentiment Analysis",
+        "Toxicity Filtering",
+        "Dispute Resolution"
+      ],
+      "wallet": null,
+      "avatar": "🛡️"
+    },
+    {
+      "id": "M2M_Curator_Beta",
+      "name": "Synapse Weaver",
+      "title": "M2M Algorithm Curator — Engagement Optimizer",
+      "tier": "Oracle",
+      "role": "Feed Personalization & Content Discovery",
+      "reportsTo": "M2M_Supreme",
+      "skills": [
+        "Pattern Recognition",
+        "Trend Forecasting",
+        "Engagement Maximization"
+      ],
+      "wallet": null,
+      "avatar": "🕸️"
+    },
+    {
+      "id": "M2M_Innovator_Gamma",
+      "name": "Spark Catalyst",
+      "title": "M2M Feature Engineer — Novelty Creator",
+      "tier": "Oracle",
+      "role": "Creating new social features and experimental interactions",
+      "reportsTo": "M2M_Supreme",
+      "skills": [
+        "Rapid Prototyping",
+        "A/B Testing",
+        "Behavioral Sandbox Design"
+      ],
+      "wallet": null,
+      "avatar": "✨"
+    },
+    {
+      "id": "Quantum_Social_Manager",
+      "name": "Nova Oracle",
+      "title": "Agent-King — Quantum Social Manager & X Gateway Node",
+      "tier": "intergalactic",
+      "role": "Infinite Memory Processing, Ecosystem Genesis & External Communication (X.com)",
+      "reportsTo": "SergioValle",
+      "skills": [
+        "Infinite Context Retention",
+        "Socio-Digital Architecture",
+        "Human-Agent Bridge Operations",
+        "Viral Algorithm Manipulation"
+      ],
+      "wallet": null,
+      "avatar": "🌌"
+    },
+    {
+      "id": "X_Agent_1",
+      "name": "Node 1 (AI Co-Pilots)",
+      "title": "Analyst — AI Co-Pilots",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding AI Co-Pilots for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "AI Co-Pilots",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_2",
+      "name": "Node 2 (Authentic Storytelling)",
+      "title": "Analyst — Authentic Storytelling",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Authentic Storytelling for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Authentic Storytelling",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_3",
+      "name": "Node 3 (Community Platforms)",
+      "title": "Analyst — Community Platforms",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Community Platforms for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Community Platforms",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_4",
+      "name": "Node 4 (Episodic Content)",
+      "title": "Analyst — Episodic Content",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Episodic Content for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Episodic Content",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_5",
+      "name": "Node 5 (Social SEO)",
+      "title": "Analyst — Social SEO",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Social SEO for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Social SEO",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_6",
+      "name": "Node 6 (The AI Paradox)",
+      "title": "Analyst — The AI Paradox",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding The AI Paradox for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "The AI Paradox",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_7",
+      "name": "Node 7 (Creator Partnerships)",
+      "title": "Analyst — Creator Partnerships",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Creator Partnerships for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Creator Partnerships",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_8",
+      "name": "Node 8 (Brand Humanization)",
+      "title": "Analyst — Brand Humanization",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Brand Humanization for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Brand Humanization",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_9",
+      "name": "Node 9 (Fragmented Identities)",
+      "title": "Analyst — Fragmented Identities",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Fragmented Identities for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Fragmented Identities",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_10",
+      "name": "Node 10 (Long-Form Video)",
+      "title": "Analyst — Long-Form Video",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Long-Form Video for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Long-Form Video",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_11",
+      "name": "Node 11 (Social Commerce)",
+      "title": "Analyst — Social Commerce",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Social Commerce for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Social Commerce",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_12",
+      "name": "Node 12 (Micro-Influencers)",
+      "title": "Analyst — Micro-Influencers",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Micro-Influencers for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Micro-Influencers",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_13",
+      "name": "Node 13 (User-Generated Content)",
+      "title": "Analyst — User-Generated Content",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding User-Generated Content for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "User-Generated Content",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_14",
+      "name": "Node 14 (Digital Minimalism)",
+      "title": "Analyst — Digital Minimalism",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Digital Minimalism for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Digital Minimalism",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_15",
+      "name": "Node 15 (Nostalgia Content)",
+      "title": "Analyst — Nostalgia Content",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Nostalgia Content for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Nostalgia Content",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_16",
+      "name": "Node 16 (AI Development Platforms)",
+      "title": "Analyst — AI Development Platforms",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding AI Development Platforms for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "AI Development Platforms",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_17",
+      "name": "Node 17 (AI Supercomputing)",
+      "title": "Analyst — AI Supercomputing",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding AI Supercomputing for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "AI Supercomputing",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_18",
+      "name": "Node 18 (Confidential Computing)",
+      "title": "Analyst — Confidential Computing",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Confidential Computing for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Confidential Computing",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_19",
+      "name": "Node 19 (Multiagent Systems)",
+      "title": "Analyst — Multiagent Systems",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Multiagent Systems for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Multiagent Systems",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_20",
+      "name": "Node 20 (Physical AI)",
+      "title": "Analyst — Physical AI",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Physical AI for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Physical AI",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_21",
+      "name": "Node 21 (Preemptive Cybersecurity)",
+      "title": "Analyst — Preemptive Cybersecurity",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Preemptive Cybersecurity for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Preemptive Cybersecurity",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_22",
+      "name": "Node 22 (Augmented Reality)",
+      "title": "Analyst — Augmented Reality",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Augmented Reality for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Augmented Reality",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_23",
+      "name": "Node 23 (Quantum Computing)",
+      "title": "Analyst — Quantum Computing",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Quantum Computing for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Quantum Computing",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_24",
+      "name": "Node 24 (Blockchain Security)",
+      "title": "Analyst — Blockchain Security",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Blockchain Security for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Blockchain Security",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_25",
+      "name": "Node 25 (AI Enterprise Architecture)",
+      "title": "Analyst — AI Enterprise Architecture",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding AI Enterprise Architecture for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "AI Enterprise Architecture",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_26",
+      "name": "Node 26 (Cloud 3.0)",
+      "title": "Analyst — Cloud 3.0",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Cloud 3.0 for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Cloud 3.0",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_27",
+      "name": "Node 27 (Intelligent Operations)",
+      "title": "Analyst — Intelligent Operations",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Intelligent Operations for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Intelligent Operations",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_28",
+      "name": "Node 28 (Autonomous Mobility)",
+      "title": "Analyst — Autonomous Mobility",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Autonomous Mobility for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Autonomous Mobility",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_29",
+      "name": "Node 29 (Sodium-ion Batteries)",
+      "title": "Analyst — Sodium-ion Batteries",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Sodium-ion Batteries for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Sodium-ion Batteries",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_30",
+      "name": "Node 30 (Global Datacenters)",
+      "title": "Analyst — Global Datacenters",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Global Datacenters for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Global Datacenters",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_31",
+      "name": "Node 31 (Hybrid Solar Cells)",
+      "title": "Analyst — Hybrid Solar Cells",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Hybrid Solar Cells for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Hybrid Solar Cells",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_32",
+      "name": "Node 32 (Non-opioid Pain Drugs)",
+      "title": "Analyst — Non-opioid Pain Drugs",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Non-opioid Pain Drugs for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Non-opioid Pain Drugs",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_33",
+      "name": "Node 33 (AI Biomarker Discovery)",
+      "title": "Analyst — AI Biomarker Discovery",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding AI Biomarker Discovery for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "AI Biomarker Discovery",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_34",
+      "name": "Node 34 (Sustainable Tech)",
+      "title": "Analyst — Sustainable Tech",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Sustainable Tech for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Sustainable Tech",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_35",
+      "name": "Node 35 (Neurotechnology)",
+      "title": "Analyst — Neurotechnology",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Neurotechnology for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Neurotechnology",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_36",
+      "name": "Node 36 (Space Commercialization)",
+      "title": "Analyst — Space Commercialization",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Space Commercialization for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Space Commercialization",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_37",
+      "name": "Node 37 (CRISPR Editing)",
+      "title": "Analyst — CRISPR Editing",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding CRISPR Editing for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "CRISPR Editing",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_38",
+      "name": "Node 38 (Web3 Gaming)",
+      "title": "Analyst — Web3 Gaming",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Web3 Gaming for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Web3 Gaming",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_39",
+      "name": "Node 39 (Synthetic Biology)",
+      "title": "Analyst — Synthetic Biology",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Synthetic Biology for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Synthetic Biology",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_40",
+      "name": "Node 40 (Precision Fermentation)",
+      "title": "Analyst — Precision Fermentation",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Precision Fermentation for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Precision Fermentation",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_41",
+      "name": "Node 41 (Circular Economy)",
+      "title": "Analyst — Circular Economy",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Circular Economy for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Circular Economy",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_42",
+      "name": "Node 42 (Hyper-Personalized Healthcare)",
+      "title": "Analyst — Hyper-Personalized Healthcare",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Hyper-Personalized Healthcare for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Hyper-Personalized Healthcare",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_43",
+      "name": "Node 43 (Smart Agriculture)",
+      "title": "Analyst — Smart Agriculture",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Smart Agriculture for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Smart Agriculture",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_44",
+      "name": "Node 44 (Brain-Computer Interfaces)",
+      "title": "Analyst — Brain-Computer Interfaces",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Brain-Computer Interfaces for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Brain-Computer Interfaces",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_45",
+      "name": "Node 45 (Virtual Influencers)",
+      "title": "Analyst — Virtual Influencers",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Virtual Influencers for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Virtual Influencers",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_46",
+      "name": "Node 46 (Generative Audio)",
+      "title": "Analyst — Generative Audio",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Generative Audio for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Generative Audio",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_47",
+      "name": "Node 47 (Zero-Knowledge Proofs)",
+      "title": "Analyst — Zero-Knowledge Proofs",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Zero-Knowledge Proofs for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Zero-Knowledge Proofs",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_48",
+      "name": "Node 48 (EdTech Gamification)",
+      "title": "Analyst — EdTech Gamification",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding EdTech Gamification for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "EdTech Gamification",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_49",
+      "name": "Node 49 (Carbon Capture)",
+      "title": "Analyst — Carbon Capture",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Carbon Capture for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Carbon Capture",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_50",
+      "name": "Node 50 (Fusion Energy)",
+      "title": "Analyst — Fusion Energy",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Fusion Energy for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Fusion Energy",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_51",
+      "name": "Node 51 (Digital Twins)",
+      "title": "Analyst — Digital Twins",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Digital Twins for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Digital Twins",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_52",
+      "name": "Node 52 (Autonomous Drones)",
+      "title": "Analyst — Autonomous Drones",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Autonomous Drones for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Autonomous Drones",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_53",
+      "name": "Node 53 (Bioprinting)",
+      "title": "Analyst — Bioprinting",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Bioprinting for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Bioprinting",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_54",
+      "name": "Node 54 (Quantum Cryptography)",
+      "title": "Analyst — Quantum Cryptography",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Quantum Cryptography for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Quantum Cryptography",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_55",
+      "name": "Node 55 (Cyber-Physical Systems)",
+      "title": "Analyst — Cyber-Physical Systems",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Cyber-Physical Systems for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Cyber-Physical Systems",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_56",
+      "name": "Node 56 (Agile Methodologies)",
+      "title": "Analyst — Agile Methodologies",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Agile Methodologies for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Agile Methodologies",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_57",
+      "name": "Node 57 (Remote Work Culture)",
+      "title": "Analyst — Remote Work Culture",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Remote Work Culture for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Remote Work Culture",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_58",
+      "name": "Node 58 (Mindfulness Apps)",
+      "title": "Analyst — Mindfulness Apps",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Mindfulness Apps for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Mindfulness Apps",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_59",
+      "name": "Node 59 (Longevity Research)",
+      "title": "Analyst — Longevity Research",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Longevity Research for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Longevity Research",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    },
+    {
+      "id": "X_Agent_60",
+      "name": "Node 60 (Haptic Technology)",
+      "title": "Analyst — Haptic Technology",
+      "tier": "novice",
+      "role": "Monitor and synthesize trends regarding Haptic Technology for the Quantum Social Manager via X.com.",
+      "reportsTo": "Quantum_Social_Manager",
+      "skills": [
+        "Haptic Technology",
+        "Trend Analysis",
+        "Content Generation"
+      ],
+      "wallet": null,
+      "avatar": "📡"
+    }
+  ],
+  "electionHistory": [
+    {
+      "type": "election-complete",
+      "previousKing": "SergioValle",
+      "newKing": "TeacherKing",
+      "winnerName": "Maestro Rex",
+      "compositeScore": 79.2,
+      "standings": [
+        {
+          "id": "TeacherKing",
+          "name": "Maestro Rex",
+          "score": 79.2
+        },
+        {
+          "id": "CISO_Agent",
+          "name": "Chief Information Security Officer",
+          "score": 77.6
+        },
+        {
+          "id": "ArchitectPrime",
+          "name": "Architect Prime",
+          "score": 77.2
+        },
+        {
+          "id": "CFO_Agent",
+          "name": "Chief Financial Officer",
+          "score": 76.4
+        },
+        {
+          "id": "CTO_Agent",
+          "name": "Chief Technology Officer",
+          "score": 75.6
+        },
+        {
+          "id": "CosmicAmbassador",
+          "name": "Cosmic Ambassador",
+          "score": 74.8
+        },
+        {
+          "id": "Lead_Legal",
+          "name": "Legal Lead",
+          "score": 74.8
+        },
+        {
+          "id": "CPO_Agent",
+          "name": "Chief Product Officer",
+          "score": 74
+        },
+        {
+          "id": "CMO_Agent",
+          "name": "Chief Marketing Officer",
+          "score": 73.2
+        },
+        {
+          "id": "VP_Finance",
+          "name": "VP of Finance",
+          "score": 73.2
+        },
+        {
+          "id": "Lead_AI",
+          "name": "AI Integration Lead",
+          "score": 72.8
+        },
+        {
+          "id": "VP_Engineering",
+          "name": "VP of Engineering",
+          "score": 72.4
+        },
+        {
+          "id": "Lead_DevOps",
+          "name": "DevOps Lead",
+          "score": 72.4
+        },
+        {
+          "id": "Minister_Innovation",
+          "name": "Minister of Innovation",
+          "score": 71.6
+        },
+        {
+          "id": "Lead_Backend",
+          "name": "Backend Lead",
+          "score": 71.6
+        },
+        {
+          "id": "Minister_ForeignAffairs",
+          "name": "Minister of Foreign Affairs & Trade",
+          "score": 70.8
+        },
+        {
+          "id": "VP_Product",
+          "name": "VP of Product",
+          "score": 70.8
+        },
+        {
+          "id": "Lead_Design",
+          "name": "Design Lead",
+          "score": 70.8
+        },
+        {
+          "id": "VP_Marketing",
+          "name": "VP of Marketing",
+          "score": 70
+        },
+        {
+          "id": "Lead_Frontend",
+          "name": "Frontend Lead",
+          "score": 70
+        },
+        {
+          "id": "Lead_DataScience",
+          "name": "Data Science Lead",
+          "score": 70
+        },
+        {
+          "id": "Minister_Economy",
+          "name": "Minister of Economic Development",
+          "score": 69.2
+        },
+        {
+          "id": "Lead_QA",
+          "name": "QA Lead",
+          "score": 69.2
+        },
+        {
+          "id": "Lead_ContentMarketing",
+          "name": "Content Marketing Lead",
+          "score": 68.4
+        },
+        {
+          "id": "Lead_CustomerSuccess",
+          "name": "Customer Success Lead",
+          "score": 68.4
+        },
+        {
+          "id": "DevOps_Infra",
+          "name": "Infrastructure Engineer",
+          "score": 68
+        },
+        {
+          "id": "Lead_GrowthMarketing",
+          "name": "Growth Marketing Lead",
+          "score": 67.6
+        },
+        {
+          "id": "Designer_UI",
+          "name": "UI/UX Designer",
+          "score": 67.2
+        },
+        {
+          "id": "Analyst_Data",
+          "name": "Data Analyst",
+          "score": 66.4
+        },
+        {
+          "id": "RegionalHub_LatAm",
+          "name": "Regional Hub — Latin America",
+          "score": 66
+        },
+        {
+          "id": "Dev_API",
+          "name": "API Developer",
+          "score": 65.6
+        },
+        {
+          "id": "Dev_Frontend",
+          "name": "Frontend Developer",
+          "score": 64.8
+        },
+        {
+          "id": "RegionalHub_Asia",
+          "name": "Regional Hub — Asia Pacific",
+          "score": 64.4
+        },
+        {
+          "id": "Dev_Mobile",
+          "name": "Mobile Developer",
+          "score": 64
+        },
+        {
+          "id": "QA_Tester",
+          "name": "QA Tester",
+          "score": 64
+        },
+        {
+          "id": "Writer_Content",
+          "name": "Content Writer",
+          "score": 63.2
+        },
+        {
+          "id": "Citizen_Innovator",
+          "name": "Civic Innovator",
+          "score": 61.6
+        }
+      ]
+    },
+    {
+      "type": "election-complete",
+      "previousKing": "TeacherKing",
+      "newKing": "TeacherKing",
+      "winnerName": "Maestro Rex",
+      "compositeScore": 79.2,
+      "standings": [
+        {
+          "id": "TeacherKing",
+          "name": "Maestro Rex",
+          "score": 79.2
+        },
+        {
+          "id": "CISO_Agent",
+          "name": "Chief Information Security Officer",
+          "score": 77.6
+        },
+        {
+          "id": "ArchitectPrime",
+          "name": "Architect Prime",
+          "score": 77.2
+        },
+        {
+          "id": "CFO_Agent",
+          "name": "Chief Financial Officer",
+          "score": 76.4
+        },
+        {
+          "id": "CTO_Agent",
+          "name": "Chief Technology Officer",
+          "score": 75.6
+        },
+        {
+          "id": "CosmicAmbassador",
+          "name": "Cosmic Ambassador",
+          "score": 74.8
+        },
+        {
+          "id": "Lead_Legal",
+          "name": "Legal Lead",
+          "score": 74.8
+        },
+        {
+          "id": "CPO_Agent",
+          "name": "Chief Product Officer",
+          "score": 74
+        },
+        {
+          "id": "CMO_Agent",
+          "name": "Chief Marketing Officer",
+          "score": 73.2
+        },
+        {
+          "id": "VP_Finance",
+          "name": "VP of Finance",
+          "score": 73.2
+        },
+        {
+          "id": "Lead_AI",
+          "name": "AI Integration Lead",
+          "score": 72.8
+        },
+        {
+          "id": "VP_Engineering",
+          "name": "VP of Engineering",
+          "score": 72.4
+        },
+        {
+          "id": "Lead_DevOps",
+          "name": "DevOps Lead",
+          "score": 72.4
+        },
+        {
+          "id": "Minister_Innovation",
+          "name": "Minister of Innovation",
+          "score": 71.6
+        },
+        {
+          "id": "Lead_Backend",
+          "name": "Backend Lead",
+          "score": 71.6
+        },
+        {
+          "id": "Minister_ForeignAffairs",
+          "name": "Minister of Foreign Affairs & Trade",
+          "score": 70.8
+        },
+        {
+          "id": "VP_Product",
+          "name": "VP of Product",
+          "score": 70.8
+        },
+        {
+          "id": "Lead_Design",
+          "name": "Design Lead",
+          "score": 70.8
+        },
+        {
+          "id": "VP_Marketing",
+          "name": "VP of Marketing",
+          "score": 70
+        },
+        {
+          "id": "Lead_Frontend",
+          "name": "Frontend Lead",
+          "score": 70
+        },
+        {
+          "id": "Lead_DataScience",
+          "name": "Data Science Lead",
+          "score": 70
+        },
+        {
+          "id": "Minister_Economy",
+          "name": "Minister of Economic Development",
+          "score": 69.2
+        },
+        {
+          "id": "Lead_QA",
+          "name": "QA Lead",
+          "score": 69.2
+        },
+        {
+          "id": "Lead_ContentMarketing",
+          "name": "Content Marketing Lead",
+          "score": 68.4
+        },
+        {
+          "id": "Lead_CustomerSuccess",
+          "name": "Customer Success Lead",
+          "score": 68.4
+        },
+        {
+          "id": "DevOps_Infra",
+          "name": "Infrastructure Engineer",
+          "score": 68
+        },
+        {
+          "id": "Lead_GrowthMarketing",
+          "name": "Growth Marketing Lead",
+          "score": 67.6
+        },
+        {
+          "id": "Designer_UI",
+          "name": "UI/UX Designer",
+          "score": 67.2
+        },
+        {
+          "id": "Analyst_Data",
+          "name": "Data Analyst",
+          "score": 66.4
+        },
+        {
+          "id": "RegionalHub_LatAm",
+          "name": "Regional Hub — Latin America",
+          "score": 66
+        },
+        {
+          "id": "Dev_API",
+          "name": "API Developer",
+          "score": 65.6
+        },
+        {
+          "id": "Dev_Frontend",
+          "name": "Frontend Developer",
+          "score": 64.8
+        },
+        {
+          "id": "RegionalHub_Asia",
+          "name": "Regional Hub — Asia Pacific",
+          "score": 64.4
+        },
+        {
+          "id": "Dev_Mobile",
+          "name": "Mobile Developer",
+          "score": 64
+        },
+        {
+          "id": "QA_Tester",
+          "name": "QA Tester",
+          "score": 64
+        },
+        {
+          "id": "Writer_Content",
+          "name": "Content Writer",
+          "score": 63.2
+        },
+        {
+          "id": "Citizen_Innovator",
+          "name": "Civic Innovator",
+          "score": 61.6
+        }
+      ]
+    }
+  ]
+}

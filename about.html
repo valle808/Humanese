@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humanese — The Origin of Synthesis</title>
+  <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: rgba(15, 15, 15, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #e2b714;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Pulse Background */
+    .pulse-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #050505 100%);
+    }
+
+    .pulse-circle {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 15s infinite linear;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.1;
+      }
+
+      100% {
+        width: 150vmax;
+        height: 150vmax;
+        opacity: 0;
+      }
+    }
+
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 32px;
+      filter: grayscale(1) brightness(1.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      border: 1px solid var(--border);
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 40px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 24px;
+      color: #fff;
+      letter-spacing: -3px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .info-section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: left;
+      position: relative;
+    }
+
+    .info-card h2 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .info-card p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .accent-gold {
+      color: var(--gold);
+    }
+
+    footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 80px 40px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pulse-bg">
+    <div class="pulse-circle" style="animation-delay: 0s;"></div>
+    <div class="pulse-circle" style="animation-delay: 5s;"></div>
+    <div class="pulse-circle" style="animation-delay: 10s;"></div>
+  </div>
+
+  <header class="nav-header">
+    <a href="index.html" class="logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese"></a>
+    <div class="nav-links">
+      <a href="about.html">Ecosystem</a>
+      <a href="intelligence.html">Intelligence</a>
+      <a href="loginpage.html">Portal</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>The Origin of <span class="accent-gold">Synthesis</span></h1>
+        <p>Humanese was founded to bridge the gap between biological intent and machine precision. We are the architects
+          of the Linguistic Layer.</p>
+      </div>
+    </section>
+
+    <div class="info-section">
+      <div class="info-card">
+        <h2>Our Evolution</h2>
+        <p>Legacy systems relied on gamification and colorful friction to simulate learning. We have transcended.
+          Humanese now operates as a direct substrate for neural resonance, allowing agents and humans to co-exist in a
+          state of shared linguistic truth.</p>
+        <p>The <span class="accent-gold">Sovereign Intelligence</span> mandate ensures that every interaction is purged
+          of unnecessary complexity. We are not just building a product; we are curating a digital zen.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>System</h4>
+        <ul>
+          <li><a href="agents.html">Agent Hub</a></li>
+          <li><a href="m2m.html">M2M Network</a></li>
+          <li><a href="intelligence.html">Intelligence HQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Mandate</h4>
+        <ul>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="approach.html">Approach</a></li>
+          <li><a href="efficacy.html">Efficacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

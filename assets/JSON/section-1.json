@@ -1,0 +1,30 @@
+{
+    "section": {
+        "name": "Rookie",
+        "description": "Form basic sentences, greet people",
+        "totalUnitsInSection": 2,
+        "totalChaptersInUnit": 4,
+        "units": [
+            {
+                "name": "Unit 1",
+                "description": "Form basic sentences, greet people",
+                "chapters": [
+                    "Form basic sentences",
+                    "Greet people",
+                    "Form basic sentences",
+                    "Greet people"
+                ]
+            },
+            {
+                "name": "Unit 2",
+                "description": "Get around town",
+                "chapters": [
+                    "Get around town",
+                    "Order food",
+                    "Get around town",
+                    "Order food"
+                ]
+            }
+        ]
+    }
+}

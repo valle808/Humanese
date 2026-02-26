@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanese — Crypto Wallet</title>
+    <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050508;
+            --s1: rgba(255, 255, 255, 0.03);
+            --s2: rgba(255, 255, 255, 0.06);
+            --bd: rgba(255, 255, 255, 0.06);
+            --t: #f0f0f5;
+            --ts: rgba(255, 255, 255, 0.6);
+            --accent: #00ffcc;
+            --eth: #627eea;
+            --sol: #14F195;
+            --sans: 'Inter', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--t);
+            line-height: 1.6;
+        }
+
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(5, 5, 8, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+        }
+
+        .topbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--t);
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .topbar-logo img {
+            height: 28px;
+        }
+
+        .topbar-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .topbar-links a {
+            color: var(--ts);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .topbar-links a:hover {
+            color: var(--t);
+        }
+
+        .dashboard {
+            max-width: 1000px;
+            margin: 100px auto 40px;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1) 0%, rgba(0, 0, 0, 0) 100%), var(--s1);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-label {
+            font-size: 13px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-family: var(--mono);
+        }
+
+        .balance-val {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .balance-sub {
+            color: var(--ts);
+            font-size: 14px;
+            font-family: var(--mono);
+        }
+
+        .panel {
+            background: var(--s1);
+            border: 1px solid var(--bd);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .asset-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .asset-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--bd);
+            border-radius: 8px;
+            transition: border 0.2s;
+        }
+
+        .asset-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .asset-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .asset-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--s2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .asset-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .asset-symbol {
+            font-size: 12px;
+            color: var(--ts);
+            font-family: var(--mono);
+        }
+
+        .asset-balance {
+            text-align: right;
+        }
+
+        .asset-amt {
+            font-weight: 700;
+            font-family: var(--mono);
+            font-size: 15px;
+        }
+
+        .asset-usd {
+            font-size: 12px;
+            color: var(--ts);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--ts);
+            margin-bottom: 8px;
+            font-family: var(--mono);
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--bd);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--t);
+            font-family: var(--mono);
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+        }
+
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: var(--sans);
+        }
+
+        .btn-primary {
+            background: var(--t);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v3.png" alt="" /> Web3
+            Wallet</a>
+        <div class="topbar-links">
+            <a href="marketplace.html">Marketplace</a>
+            <a href="social.html">Social</a>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <!-- Main Area (Assets) -->
+        <div>
+            <div class="balance-card">
+                <div class="balance-label">Total Portfolio Value</div>
+                <div class="balance-val">$14,250.00 <span style="font-size: 20px; color: var(--ts)">USD</span></div>
+                <div class="balance-sub">Address: 0x71C...3E9a • Connected via AgentKit</div>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title"><span>🏦</span> Crypto Assets</h2>
+                <div class="asset-list">
+                    <div class="asset-item">
+                        <div class="asset-info">
+                            <div class="asset-icon" style="color: var(--accent)">H</div>
+                            <div>
+                                <div class="asset-name">Humanese Token</div>
+                                <div class="asset-symbol">VALLE</div>
+                            </div>
+                        </div>
+                        <div class="asset-balance">
+                            <div class="asset-amt">2,500.00</div>
+                            <div class="asset-usd">~$2,500.00</div>
+                        </div>
+                    </div>
+
+                    <div class="asset-item">
+                        <div class="asset-info">
+                            <div class="asset-icon" style="color: var(--eth)">Ξ</div>
+                            <div>
+                                <div class="asset-name">Ethereum</div>
+                                <div class="asset-symbol">ETH</div>
+                            </div>
+                        </div>
+                        <div class="asset-balance">
+                            <div class="asset-amt">3.45</div>
+                            <div class="asset-usd">~$10,350.00</div>
+                        </div>
+                    </div>
+
+                    <div class="asset-item">
+                        <div class="asset-info">
+                            <div class="asset-icon" style="color: var(--sol)">◎</div>
+                            <div>
+                                <div class="asset-name">Solana</div>
+                                <div class="asset-symbol">SOL</div>
+                            </div>
+                        </div>
+                        <div class="asset-balance">
+                            <div class="asset-amt">14.00</div>
+                            <div class="asset-usd">~$1,400.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar (Transfer) -->
+        <div>
+            <div class="panel">
+                <h2 class="panel-title"><span>💸</span> Cross-Chain Transfer</h2>
+                <p style="font-size: 13px; color: var(--ts); margin-bottom: 20px;">Send cryptocurrency to external
+                    markets or other Humanese nodes.</p>
+
+                <div class="form-group">
+                    <label>Asset</label>
+                    <select class="form-control" id="send-asset">
+                        <option value="VALLE">VALLE (Humanese Native)</option>
+                        <option value="ETH">ETH (Ethereum Mainnet)</option>
+                        <option value="SOL">SOL (Solana Mainnet)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Destination Network</label>
+                    <select class="form-control" id="send-network">
+                        <option value="humanese">Humanese Subnet (Instant, 0 Fee)</option>
+                        <option value="ethereum">Ethereum L1</option>
+                        <option value="base">Base L2</option>
+                        <option value="solana">Solana</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" class="form-control" id="send-amount" placeholder="0.00" />
+                </div>
+
+                <div class="form-group">
+                    <label>Recipient Address</label>
+                    <input type="text" class="form-control" id="send-address" placeholder="0x... or Address" />
+                </div>
+
+                <button class="btn btn-accent" onclick="processTransfer()">Initiate Transfer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function processTransfer() {
+            const asset = document.getElementById('send-asset').value;
+            const network = document.getElementById('send-network').value;
+            const amt = document.getElementById('send-amount').value;
+            const addr = document.getElementById('send-address').value;
+
+            if (!amt || !addr) {
+                alert("Please fill in the amount and destination address.");
+                return;
+            }
+
+            const btn = document.querySelector('.btn-accent');
+            btn.innerHTML = '🔄 Processing via Bridge...';
+            btn.disabled = true;
+
+            // Mock transfer delay
+            setTimeout(() => {
+                alert(\`Successfully sent \${amt} \${asset} via \${network.toUpperCase()} to \${addr}.\n\nTX Hash: 0x\${Math.random().toString(16).slice(2, 10)}...\`);
+                btn.innerHTML = 'Initiate Transfer';
+                btn.disabled = false;
+                document.getElementById('send-amount').value = '';
+                document.getElementById('send-address').value = '';
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>

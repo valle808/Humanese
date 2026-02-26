@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/language.css" />
+
+  <title>Humanese- The best website to learn a language</title>
+  <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <style>
+    
+    :root {
+        --bg: #050505;
+        --surface: rgba(15, 15, 15, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --gold: #e2b714;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+    }
+    footer { background: #000; border-top: 1px solid var(--border); padding: 80px 40px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+
+
+    .green-footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 24px;
+      margin-top: 0;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.85) !important;
+      text-decoration: none !important;
+      font-size: 15px !important;
+      font-weight: bold !important;
+      transition: opacity 0.2s;
+      background: none !important;
+    }
+
+    .footer-col a:hover {
+      opacity: 1 !important;
+      text-decoration: underline !important;
+      color: #fff !important;
+    }
+
+    .info-section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .info-card {
+      background: #151515;
+      border: 2px solid #333;
+      border-radius: 30px;
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .info-card h2 {
+      font-size: 3rem;
+      color: #FF6E00;
+      margin-top: 0;
+    }
+
+    .big-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      display: block;
+      animation: wiggle 3s infinite;
+    }
+
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        transform: rotate(-5deg);
+      }
+
+      50% {
+        transform: rotate(5deg);
+      }
+    }
+
+    .mascot-side {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 150px;
+      animation: floatMascot 4s infinite;
+      filter: drop-shadow(0 0 10px #FF6E00);
+    }
+
+    @keyframes floatMascot {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .btn-action {
+      background: #FF6E00;
+      color: #000;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: 0.2s;
+      box-shadow: 0 5px 0 #CC5500;
+    }
+
+    .btn-action:hover {
+      transform: scale(1.05);
+    }
+
+    .page-filter-container {
+      background: #111;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .page-filter-input {
+      background: #222;
+      border: 1px solid #444;
+      color: #FFF;
+      padding: 8px 15px;
+      border-radius: 10px;
+      width: 250px;
+    }
+
+    .page-filter-btn {
+      background: #333;
+      color: #FFF;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .page-filter-btn:hover {
+      background: #FF6E00;
+      color: #000;
+    }
+
+    \n .info-section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .info-card {
+      background: #FFF;
+      border: 2px solid #EEE;
+      border-radius: 30px;
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-card h2 {
+      font-size: 3rem;
+      color: #FF6E00;
+      margin-top: 0;
+    }
+
+    .big-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      display: block;
+      animation: wiggle 3s infinite;
+    }
+
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        transform: rotate(-5deg);
+      }
+
+      50% {
+        transform: rotate(5deg);
+      }
+    }
+
+    .btn-action {
+      background: #FF6E00;
+      color: #FFF;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: 0.2s;
+      box-shadow: 0 5px 0 #CC5500;
+    }
+
+    .btn-action:hover {
+      transform: scale(1.05);
+      background: #CC5500;
+    }
+
+    .page-filter-container {
+      background: #F9F9F9;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      border: 1px solid #EEE;
+    }
+
+    .page-filter-input {
+      background: #FFF;
+      border: 1px solid #DDD;
+      color: #111;
+      padding: 8px 15px;
+      border-radius: 10px;
+      width: 250px;
+    }
+
+    .page-filter-btn {
+      background: #EEE;
+      color: #111;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .page-filter-btn:hover {
+      background: #FF6E00;
+      color: #FFF;
+    }
+
+    \n
+  </style>
+</head>
+
+<body>
+  <div class="mainContainer">
+    <header class="leftHead">
+      <div class="divInMain">
+        <a class="leftHeadImage">
+          <img alt="Humanese" class="leftDuoHead" src="./assets/images/humanese-logo-v3.png"
+            style="height: 40px; width: auto;" />
+        </a>
+        <div class="dropdown">
+          <div class="buttonContainer">
+            <div class="dropAndNav">
+              <button class="dropdownButton" id="buttonDropdown">
+                <span class="siteLan" id="siteLan"> Site language: English </span>
+                <img alt="" class="dropdownImage" src="./assets/svg/site-language-select-dropdown.svg" />
+              </button>
+              <div class="hoverTable" id="hoverTable">
+                <ul class="site-language-unordered-list" id="tableHover">
+                  <li class="site-language-list-single" onclick="changeToLanguage('es')">
+                    <a class="country-name-flag-language">
+                      <svg viewBox="0 66 82 66" data-test="flag-es" style="height: 19.31px; width: 24px">
+                        <image height="3168" href="../assets/svg/Flags_list.svg" width="82"
+                          xlink:href="../assets/svg/Flags_list.svg"></image>
+                      </svg>
+                      <span>Spanish</span>
+                    </a>
+                  </li>
+
+                  <li class="site-language-list-single" onclick="changeToLanguage('fr')">
+                    <a class="country-name-flag-language"><svg viewBox="0 132 82 66" data-test="flag-fr"
+                        style="height: 19.31px; width: 24px">
+                        <image height="3168" href="../assets/svg/Flags_list.svg" width="82"
+                          xlink:href="../assets/svg/Flags_list.svg"></image>
+                      </svg>
+                      <span>French</span></a>
+                  </li>
+                  <li class="site-language-list-single" onclick="changeToLanguage('de')">
+                    <a class="country-name-flag-language"><svg viewBox="0 198 82 66" data-test="flag-de"
+                        style="height: 19.31px; width: 24px">
+                        <image height="3168" href="../assets/svg/Flags_list.svg" width="82"
+                          xlink:href="../assets/svg/Flags_list.svg"></image>
+                      </svg><span>German</span></a>
+                  </li>
+                  <li class="site-language-list-single" onclick="changeToLanguage('ja')">
+                    <a class="country-name-flag-language"><svg viewBox="0 264 82 66" data-test="flag-ja"
+                        style="height: 19.31px; width: 24px">
+                        <image height="3168" href="../assets/svg/Flags_list.svg" width="82"
+                          xlink:href="../assets/svg/Flags_list.svg"></image>
+                      </svg><span>Japanese</span></a>
+                  </li>
+                  <li class="site-language-list-single" onclick="changeToLanguage('ma')">
+                    <a class="country-name-flag-language"><svg viewBox="0 1914 82 66" data-test="flag-hi"
+                        style="height: 19.31px; width: 24px">
+                        <image height="3168" href="../assets/svg/Flags_list.svg" width="82"
+                          xlink:href="../assets/svg/Flags_list.svg"></image>
+                      </svg><span>Malayalam</span></a>
+                  </li>
+                  <li class="site-language-list-single" onclick="changeToLanguage('hi')">
+                    <a class="country-name-flag-language"><svg viewBox="0 1914 82 66" data-test="flag-hi"
+                        style="height: 19.31px; width: 24px">
+                        <image height="3168" href="../assets/svg/Flags_list.svg" width="82"
+                          xlink:href="../assets/svg/Flags_list.svg"></image>
+                      </svg><span>Hindi</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="">
+              <button class="getStartedButton" id="scrollNow" onclick="loginButtonAnimation()">
+                <span class="learningaButtonText" id="learningaButtonText"> Get started </span>
+              </button>
+            </div>
+            <div class="divForLogin">
+              <button class="logInButton" id="logInButtonScroll" onclick="loginAnimation()">
+                <span class="loginButtonText" id="loginButtonText"> log in </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="bluePicture">
+      <div class="earthFlag">
+        <div class="earth">
+          <div class="_2eTYC">
+          </div>
+          <div class="flags">
+            <img id="lessonflag" src="../assets/svg/country-flags/ja-flag.svg" alt="SVG Image">
+          </div>
+        </div>
+        <div class="paraHeading">
+          <div>
+            <h1 class="heading" id="heading">
+              Learn <span id="countryLesson">Spanish</span> in just 5 minutes a day. For free.
+            </h1>
+          </div>
+          <div class="buttons">
+            <div>
+              <div>
+                <button class="learningButton" id="learningButton" onclick="getstartedAnimation()">
+                  <span class="learningaButtonText" id="startLearning"> Start learning </span>
+                </button>
+              </div>
+              <div>
+                <button class="accountButton" id="accountButton" onclick="alreadyAnimation()">
+                  <span class="learningaButtonText" id="alreadyHave">
+                    I ALREADY HAVE AN ACCOUNT
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="secondDiv">
+      <section>
+        <div class="divInSecondDiv">
+          <div class="parrot-feature-pic" style="font-size: 8rem; margin-right: 48px;">🦜</div>
+          <div>
+            <h2 class="secDivHeading" id="secDivHeading">
+              The world's most popular way to learn Spanish online
+            </h2>
+            <div class="para">
+              <span class="paraOne" id="paraOne">
+                Learn Spanish in just 5 minutes a day with our game-like
+                lessons.
+                <span class="paraTwo" id="paraTwo">
+                  Whether you’re a beginner starting with the basics or
+                  looking to practice your reading, writing, and speaking,
+                  <a class="reference" id="reference">
+                    Humanese is scientifically proven to work
+                  </a>
+                  .
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div>
+        <hr class="horiLine" />
+      </div>
+      <section>
+        <div class="thirdDiv">
+          <h2 class="divThreeHead" id="divThreeHead">
+            Bite-sized Spanish lessons. Fun, effective, and 100% free.
+          </h2>
+          <div class="flx">
+            <div class="leftDiv">
+              <div class="eachSection">
+                <div class="each-icon" style="font-size: 2.5rem; margin-top: -7px;">🔥</div>
+                <div class="eachsecParagraph">
+                  <h3 class="secparaheading" id="fireHead">Effective and efficient</h3>
+                  <div class="secparacontent">
+                    <span class="firePara" id="firePara">
+                      Our courses effectively and efficiently teach reading,
+                      listening, and speaking skills. Check out our
+                      <a class="_3o6kp" id="fireLinkPara" href="/efficacy"> latest research </a>
+                      !
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="eachSection">
+                <div class="tick-icon" style="font-size: 2.5rem; margin-top: -7px;">✅</div>
+                <div class="eachsecParagraph">
+                  <h3 class="secparaheading" id="tickHead">Personalized learning</h3>
+                  <div class="secparacontent">
+                    <span class="tickPara" id="tickPara">
+                      Combining the best of AI and language science, lessons
+                      are tailored to help you learn at just the right level
+                      and pace. !
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="centerImage"></div>
+            <div class="leftDiv">
+              <div class="eachSection">
+                <div class="crown-icon" style="font-size: 2.5rem; margin-top: -7px;">👑</div>
+                <div class="eachsecParagraph">
+                  <h3 class="secparaheading" id="crownHead">Stay motivated</h3>
+                  <div class="secparacontent">
+                    <span class="crownPara" id="crownPara">
+                      We make it easy to form a habit of language learning,
+                      with game-like features, fun challenges, and reminders
+                      from our friendly mascot, Humanese.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="eachSection">
+                <div class="girl-icon" style="font-size: 2.5rem; margin-top: -7px;">🙋‍♀️</div>
+                <div class="eachsecParagraph">
+                  <h3 class="secparaheading" id="girlHead">Have fun with it!</h3>
+                  <div class="secparacontent">
+                    <span class="girlPara" id="girlPara">
+                      Effective learning doesn’t have to be boring! Build your
+                      skills each day with engaging exercises and playful
+                      characters.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div>
+        <hr class="horiLine" />
+      </div>
+      <section>
+        <div class="blueOwl">
+          <div class="super-parrot-icon" style="font-size: 5rem;">🦜</div>
+          <div>
+            <h2 class="owlHead" id="owlHead">Boost your learning with Super Humanese</h2>
+            <div class="_1DaKS" id="superDuoPara">
+              Learning a language on Humanese is completely free, but you can
+              remove ads and support free education with Super. First 2 weeks
+              on us!
+            </div>
+            <a class="superDuoLink" id="superDuoLink" data-test="learn-with-plus" href="/super">
+              Learn more about Super Humanese
+            </a>
+          </div>
+        </div>
+      </section>
+      <div>
+        <hr class="horiLine" />
+      </div>
+      <section>
+        <div class="bagOwl">
+          <div>
+            <h2 class="secthreehead" id="secthreehead">Learn on the go</h2>
+            <div class="_1DaKS" id="bagOwlPara">
+              Make your breaks and commutes more productive with our iPhone
+              and Android apps. Download them and see why Apple and Google
+              gave us their highest accolades.
+            </div>
+            <div class="_3dFuc">
+              <a class="appStoreButton" href="//itunes.apple.com/app/humanense-learn-spanish-french/id570060128?mt=8"
+                tabindex="0">
+                <span class="appleImg">
+                  <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <title>badge-app-store</title>
+                    <path
+                      d="M26.9039 19.1188C26.9363 16.611 28.2528 14.2945 30.3922 12.981C29.0364 11.0473 26.8469 9.86522 24.4843 9.7914C21.9986 9.53084 19.5888 11.2768 18.3221 11.2768C17.0309 11.2768 15.0807 9.81727 12.9806 9.86042C10.2174 9.94957 7.7038 11.4804 6.35946 13.8929C3.49663 18.8428 5.63205 26.1174 8.3744 30.1184C9.74645 32.0776 11.35 34.2661 13.4482 34.1885C15.5014 34.1035 16.2682 32.881 18.7466 32.881C21.202 32.881 21.9215 34.1885 24.0623 34.1392C26.2655 34.1035 27.6536 32.1713 28.9775 30.1935C29.9633 28.7975 30.7219 27.2546 31.2252 25.622C28.6084 24.5167 26.907 21.9562 26.9039 19.1188V19.1188Z"
+                      fill="currentColor"></path>
+                    <path
+                      d="M22.8604 7.16005C24.0617 5.71991 24.6535 3.86887 24.5102 2C22.6749 2.1925 20.9796 3.06846 19.7621 4.45334C18.5599 5.81971 17.9508 7.60728 18.0691 9.42235C19.929 9.44147 21.6949 8.60765 22.8604 7.16005V7.16005Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="_1sq2h">
+                  <span>
+                    <span class="subtext" id="apple"> Download on the </span>
+                    App Store
+                  </span>
+                </span>
+              </a>
+              <a class="appStoreButton"
+                href="//play.google.com/store/apps/details?hl=en&amp;id=com.humanense&amp;referrer=utm_source%3Dhumanense.com%26utm_medium%3Dhumanense_web%26utm_content%3Ddownload_button%26utm_campaign%3Dsplash"
+                tabindex="0">
+                <span class="playStoreImage">
+                  <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <title>badge-app-store</title>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M3.80942 4.3203C3.80942 4.09554 3.82731 3.88521 3.86151 3.69016L17.8617 18.4703L3.83906 33.2741C3.81952 33.1218 3.80942 32.961 3.80942 32.792V4.3203ZM5.35237 35.0876C5.86758 35.1708 6.47838 35.0454 7.13188 34.6805L24.1811 25.1417L19.4773 20.1758L5.35237 35.0876ZM21.0928 18.4703L26.2937 23.9609L32.63 20.4164C34.4567 19.393 34.4567 17.7194 32.63 16.6985L26.1861 13.0933L21.0928 18.4703ZM24.0742 11.9117L7.13188 2.43299C6.60625 2.13818 6.10808 1.99915 5.66613 1.99915C5.60892 1.99915 5.55264 2.00146 5.49734 2.00606L19.4773 16.7648L24.0742 11.9117Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span class="_1sq2h">
+                  <span>
+                    <span class="subtext" id="playStore"> Get it on </span>
+                    Google Play
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="bag-parrot-img" style="font-size: 10rem; margin-left: 48px;">🦜</div>
+        </div>
+      </section>
+      <div>
+        <hr class="horiLine" />
+      </div>
+      <section>
+        <div class="secLastDiv">
+          <div class="computer-img-placeholder" style="font-size: 10rem; margin-right: 48px;">💻</div>
+          <div>
+            <h2 class="computerHead" id="computerHead">Humanese for Schools</h2>
+            <div class="computerPara" id="computerPara">
+              Free teacher tools to help students learn languages through the
+              Humanese app, both in and out of the classroom.
+            </div>
+            <a class="computerRef" id="computerRef" href="https://schools.humanense.com" tabindex="0">
+              Bring Humanese to your classroom
+            </a>
+          </div>
+        </div>
+      </section>
+      <div>
+        <hr class="horiLine" />
+      </div>
+    </div>
+
+    <script src="../js/language.js"></script>
+
+    
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="agents.html">Command</a></li>
+                    <li><a href="m2m.html">Social</a></li>
+                    <li><a href="intelligence.html">HQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sovereignty</h4>
+                <ul>
+                    <li><a href="about.html">Origin</a></li>
+                    <li><a href="mission.html">Mission</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

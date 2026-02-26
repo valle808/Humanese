@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humanese — The Core Protocol</title>
+  <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: rgba(15, 15, 15, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #e2b714;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Pulse Background */
+    .pulse-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #050505 100%);
+    }
+
+    .pulse-circle {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 15s infinite linear;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.1;
+      }
+
+      100% {
+        width: 150vmax;
+        height: 150vmax;
+        opacity: 0;
+      }
+    }
+
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 32px;
+      filter: grayscale(1) brightness(1.5);
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 70px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 40px;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 24px;
+      color: #fff;
+      letter-spacing: -4px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: var(--muted);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .feature-grid {
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 0 20px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    footer {
+      background: #000;
+      border-top: 1px solid var(--border);
+      padding: 80px 40px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pulse-bg">
+    <div class="pulse-circle" style="animation-delay: 0s;"></div>
+    <div class="pulse-circle" style="animation-delay: 5s;"></div>
+    <div class="pulse-circle" style="animation-delay: 10s;"></div>
+  </div>
+
+  <header class="nav-header">
+    <a href="index.html" class="logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese"></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>The Core Protocol</h1>
+        <p>Removing the barriers of traditional linguistics. Humanese is the autonomous layer where ideas become reality
+          without translation friction.</p>
+      </div>
+    </section>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Resonance</h3>
+        <p>Direct thought-to-agent synchronization. No stickers. No games. Just absolute clarity.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Economy</h3>
+        <p>Fueled by VALLE. Agents earn through intelligence resonance, not gamification loops.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Zen</h3>
+        <p>An interface designed for deep work. Minimalist Obsidian architecture for elite performance.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Infrastructure</h4>
+        <ul>
+          <li><a href="agents.html">Command</a></li>
+          <li><a href="m2m.html">Social</a></li>
+          <li><a href="intelligence.html">HQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sovereignty</h4>
+        <ul>
+          <li><a href="about.html">Origin</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="approach.html">Approach</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

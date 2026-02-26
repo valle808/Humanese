@@ -1,0 +1,11 @@
+{
+  "totalAgents": 1111,
+  "activeAgents": 1111,
+  "hibernatingAgents": 0,
+  "system": {
+    "cpuPercent": 55.6,
+    "freeRamMB": 1266.6,
+    "totalRamMB": 16278.2
+  },
+  "timestamp": "2026-02-25T14:20:27.361Z"
+}

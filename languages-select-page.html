@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanese — Choose Your Language</title>
+    <link rel="icon" href="./assets/images/humanese-logo-v3.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #08090f;
+            --surf: rgba(255, 255, 255, 0.03);
+            --bd: rgba(255, 255, 255, 0.06);
+            --bd2: rgba(255, 255, 255, 0.12);
+            --t: #f2f2f7;
+            --ts: rgba(255, 255, 255, 0.6);
+            --tt: rgba(255, 255, 255, 0.3);
+            --orange: #ff6b2b;
+            --green: #10b981;
+            --r: 14px;
+            --sans: 'Inter', system-ui, sans-serif
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--t);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh
+        }
+
+        .top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(8, 9, 15, 0.9);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100
+        }
+
+        .top a {
+            display: flex;
+            align-items: center;
+            text-decoration: none
+        }
+
+        .top img {
+            height: 28px
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: 80px auto 60px;
+            padding: 0 20px
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 6px
+        }
+
+        .sub {
+            text-align: center;
+            color: var(--ts);
+            font-size: 1rem;
+            margin-bottom: 32px
+        }
+
+        .search {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 28px;
+            padding: 10px 18px;
+            border-radius: 100px;
+            border: 1px solid var(--bd);
+            background: var(--surf);
+            color: var(--t);
+            font-size: 14px;
+            font-family: var(--sans);
+            outline: none
+        }
+
+        .search:focus {
+            border-color: var(--orange)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px
+        }
+
+        .lang {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border: 1px solid var(--bd);
+            border-radius: var(--r);
+            background: var(--surf);
+            cursor: pointer;
+            transition: all 0.25s;
+            text-decoration: none;
+            color: var(--t)
+        }
+
+        .lang:hover {
+            border-color: var(--orange);
+            background: rgba(255, 107, 43, 0.06);
+            transform: translateY(-2px)
+        }
+
+        .lang .flag {
+            font-size: 1.8rem;
+            line-height: 1
+        }
+
+        .lang .info {
+            flex: 1
+        }
+
+        .lang .name {
+            font-size: 14px;
+            font-weight: 700
+        }
+
+        .lang .learners {
+            font-size: 11px;
+            color: var(--ts)
+        }
+
+        .lang .arrow {
+            color: var(--tt);
+            font-size: 16px;
+            transition: color 0.2s
+        }
+
+        .lang:hover .arrow {
+            color: var(--orange)
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fi .4s ease forwards
+        }
+
+        @keyframes fi {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media(max-width:500px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top"><a href="index.html"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" /></a></div>
+    <div class="wrap">
+        <h1>🧠 I want to learn...</h1>
+        <div class="sub">42 languages powered by AI. Pick one to start your journey.</div>
+        <input class="search" type="text" id="search" placeholder="🔍  Search languages..." oninput="filterLangs()" />
+        <div class="grid" id="grid"></div>
+    </div>
+    <script>
+        const LANGS = [
+            { id: 'es', name: 'Spanish', flag: '🇪🇸', learners: '41.3M' },
+            { id: 'en', name: 'English', flag: '🇺🇸', learners: '38.2M' },
+            { id: 'fr', name: 'French', flag: '🇫🇷', learners: '21.3M' },
+            { id: 'de', name: 'German', flag: '🇩🇪', learners: '15.5M' },
+            { id: 'ja', name: 'Japanese', flag: '🇯🇵', learners: '18.6M' },
+            { id: 'ko', name: 'Korean', flag: '🇰🇷', learners: '14.2M' },
+            { id: 'zh', name: 'Chinese', flag: '🇨🇳', learners: '12.8M' },
+            { id: 'it', name: 'Italian', flag: '🇮🇹', learners: '10.1M' },
+            { id: 'pt', name: 'Portuguese', flag: '🇵🇹', learners: '9.7M' },
+            { id: 'ru', name: 'Russian', flag: '🇷🇺', learners: '8.3M' },
+            { id: 'hi', name: 'Hindi', flag: '🇮🇳', learners: '7.5M' },
+            { id: 'ar', name: 'Arabic', flag: '🇸🇦', learners: '6.9M' },
+            { id: 'tr', name: 'Turkish', flag: '🇹🇷', learners: '5.2M' },
+            { id: 'pl', name: 'Polish', flag: '🇵🇱', learners: '4.1M' },
+            { id: 'nl', name: 'Dutch', flag: '🇳🇱', learners: '3.8M' },
+            { id: 'sv', name: 'Swedish', flag: '🇸🇪', learners: '3.5M' },
+            { id: 'th', name: 'Thai', flag: '🇹🇭', learners: '3.2M' },
+            { id: 'vi', name: 'Vietnamese', flag: '🇻🇳', learners: '2.9M' },
+            { id: 'id', name: 'Indonesian', flag: '🇮🇩', learners: '2.7M' },
+            { id: 'uk', name: 'Ukrainian', flag: '🇺🇦', learners: '2.5M' },
+            { id: 'el', name: 'Greek', flag: '🇬🇷', learners: '2.3M' },
+            { id: 'cs', name: 'Czech', flag: '🇨🇿', learners: '2.1M' },
+            { id: 'ro', name: 'Romanian', flag: '🇷🇴', learners: '1.9M' },
+            { id: 'hu', name: 'Hungarian', flag: '🇭🇺', learners: '1.8M' },
+            { id: 'he', name: 'Hebrew', flag: '🇮🇱', learners: '1.7M' },
+            { id: 'fi', name: 'Finnish', flag: '🇫🇮', learners: '1.5M' },
+            { id: 'da', name: 'Danish', flag: '🇩🇰', learners: '1.4M' },
+            { id: 'no', name: 'Norwegian', flag: '🇳🇴', learners: '1.3M' },
+            { id: 'ms', name: 'Malay', flag: '🇲🇾', learners: '1.2M' },
+            { id: 'tl', name: 'Tagalog', flag: '🇵🇭', learners: '1.1M' },
+            { id: 'sw', name: 'Swahili', flag: '🇰🇪', learners: '980K' },
+            { id: 'fa', name: 'Persian', flag: '🇮🇷', learners: '920K' },
+            { id: 'bn', name: 'Bengali', flag: '🇧🇩', learners: '880K' },
+            { id: 'ta', name: 'Tamil', flag: '🇮🇳', learners: '820K' },
+            { id: 'ur', name: 'Urdu', flag: '🇵🇰', learners: '780K' },
+            { id: 'haw', name: 'Hawaiian', flag: '🌺', learners: '450K' },
+            { id: 'sm', name: 'Samoan', flag: '🇼🇸', learners: '320K' },
+            { id: 'mi', name: 'Māori', flag: '🇳🇿', learners: '280K' },
+            { id: 'to', name: 'Tongan', flag: '🇹🇴', learners: '210K' },
+            { id: 'ga', name: 'Irish', flag: '🇮🇪', learners: '190K' },
+            { id: 'cy', name: 'Welsh', flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', learners: '170K' },
+            { id: 'la', name: 'Latin', flag: '🏛️', learners: '150K' }
+        ];
+
+        function render(langs) {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = langs.map((l, i) => `
+        <a class="lang fade-in" style="animation-delay:${Math.min(i * 0.02, 0.5)}s" href="javascript:void(0)" onclick="selectLang('${l.id}','${l.name}')">
+          <span class="flag">${l.flag}</span>
+          <div class="info">
+            <div class="name">${l.name}</div>
+            <div class="learners">${l.learners} learners</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      `).join('');
+        }
+
+        function filterLangs() {
+            const q = document.getElementById('search').value.toLowerCase();
+            render(LANGS.filter(l => l.name.toLowerCase().includes(q)));
+        }
+
+        function selectLang(id, name) {
+            localStorage.setItem('humanese_lang', id);
+            localStorage.setItem('humanese_lang_name', name);
+            // Check if logged in
+            const user = localStorage.getItem('humanese_user');
+            if (!user) {
+                // Redirect to register, then learn
+                localStorage.setItem('humanese_redirect', 'learn');
+                window.location.href = 'register.html';
+            } else {
+                window.location.href = 'html/learn.html';
+            }
+        }
+
+        render(LANGS);
+    </script>
+</body>
+
+</html>

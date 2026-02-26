@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humanese - Login</title>
+  <link rel="icon" href="../assets/images/humanese-favicon-v2.png" />
+  <link rel="stylesheet" href="../css/loginpage.css" />
+  <link rel="stylesheet" href="../css/signup.css">
+  <link rel="stylesheet" href="../css/main.css" />
+  <script src="../js/loginpage.js" defer></script>
+  <script type="module" src="../js/firebaseLogin.js"></script>
+  <script type="module" src="../js/forgotPassword.js"></script>
+  <style>
+    /* Dark Theme Overrides for Login */
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-surface: rgba(245, 245, 245, 0.8);
+      --border-subtle: #EEEEEE;
+      --text-primary: #111111;
+      --text-secondary: #444444;
+      --accent-primary: #FF6E00;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    .main-container {
+      background: transparent !important;
+    }
+
+    .signup-page-container {
+      background: var(--bg-surface) !important;
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-primary);
+      box-shadow: 0 0 40px rgba(255, 110, 0, 0.1);
+    }
+
+    .create-profile-heading {
+      color: var(--text-primary) !important;
+    }
+
+    .input-field {
+      background: #F9F9F9 !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: var(--text-primary) !important;
+    }
+
+    .input-field::placeholder {
+      color: var(--text-secondary) !important;
+    }
+
+    .login-button {
+      color: var(--accent-primary) !important;
+      border-color: var(--border-subtle) !important;
+      background: transparent !important;
+    }
+
+    .login-button:hover {
+      background: rgba(255, 110, 0, 0.05) !important;
+      border-color: var(--accent-primary) !important;
+    }
+
+    .split-line {
+      background-color: var(--border-subtle) !important;
+    }
+
+    .terms-privacy span {
+      color: var(--text-secondary) !important;
+    }
+
+    .terms-privacy a {
+      color: var(--accent-primary) !important;
+    }
+
+    .create-account-button {
+      background-color: var(--accent-primary) !important;
+      color: #FFF !important;
+      box-shadow: 0 4px 0px #CC5500 !important;
+    }
+
+    .create-account-button:hover {
+      filter: brightness(1.2);
+    }
+  </style>
+  <script src="../js/humanese-background.js" defer></script>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="signup-page-container">
+      <div class="close-button-div">
+        <a href="../index.html">
+          <img src="../assets/svg/close-button.svg" alt="close button" /></a>
+      </div>
+      <div class="login-button-container">
+        <button class="login-button button-div" id="login-button" onclick="signupButtonAnimation()">
+          SIGN UP
+        </button>
+      </div>
+
+      <form class="signup-section-main" id="main-form">
+        <div class="signup-information-div">
+          <h1 class="create-profile-heading">Log in</h1>
+          <div class="input-fields-div">
+            <div class="field-one">
+              <input class="input-field" id="email-input" type="text" placeholder="Email" />
+              <div class="error-message" id="email-error-message"></div>
+            </div>
+
+            <div class="field-one password-div">
+              <input class="input-field password-input" id="password-input" type="password" placeholder="Password" />
+              <a class="forgot" id="forgot-password">Forgot?</a>
+              <div class="error-message" id="password-error-message"></div>
+            </div>
+          </div>
+
+          <div class="create-account-button-container">
+            <button type="submit" class="create-account-button button-div" id="create-account-button"
+              onclick="loginAccountButtonAnimation()">
+              <span id="login-span">LOG IN</span>
+              <div class="loading-balls-container hidden" style="transition-duration: 250ms"
+                id="loading-balls-container">
+                <div class="animation loading-ball"></div>
+                <div class="animation second-animation loading-ball"></div>
+                <div class="animation third-animation loading-ball"></div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="split-line"></div>
+
+        <div class="terms-privacy-container">
+          <div class="terms-privacy">
+            <span>By signing in to Humanese, you agree to our
+              <a href="./terms.html"><b>Terms</b></a>
+              and
+              <a href="./privacy.html"><b>Privacy Policy</b></a>.</span>
+          </div>
+          <div class="terms-privacy">
+            <span>This site is protected by reCAPTCHA Enterprise and the Google
+              <a href="https://policies.google.com/privacy">
+                <b>Privacy Policy</b></a>
+              and
+              <a href="https://policies.google.com/terms"><b>Terms of Service</b></a>
+              apply.</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanese – About Us</title>
+    <link rel="icon" href="../assets/images/humanese-favicon-v2.png" type="image/png" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/legal.css" />
+<style>
+    
+    :root {
+        --bg: #050505;
+        --surface: rgba(15, 15, 15, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --gold: #e2b714;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+    }
+    footer { background: #000; border-top: 1px solid var(--border); padding: 80px 40px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 14px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+
+    .green-footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
+    .footer-col h4 { color: #fff; font-size: 18px; font-weight: bold; margin-bottom: 24px; margin-top: 0; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .footer-col a { color: rgba(255,255,255,0.85) !important; text-decoration: none !important; font-size: 15px !important; font-weight: bold !important; transition: opacity 0.2s; background: none !important;}
+    .footer-col a:hover { opacity: 1 !important; text-decoration: underline !important; color: #fff !important; }
+</style>
+</head>
+
+<body>
+    <div class="legal-orb orb-a"></div>
+    <div class="legal-orb orb-b"></div>
+    <div class="legal-wrapper">
+        <nav class="legal-nav">
+            <a href="../index.html" class="legal-logo-link"><img src="../assets/images/humanese-logo-v3.png"
+                    alt="Humanese" class="legal-logo" / style="; width: 179px; height: 42px; object-fit: contain;"></a>
+            <a href="../html/loginpage.html" class="legal-nav-btn">Log in</a>
+        </nav>
+        <header class="legal-header">
+            <div class="legal-badge">🌍 About</div>
+            <h1 class="legal-title">About <span class="legal-accent">Humanese</span></h1>
+            <p class="legal-intro">We believe that every person on Earth deserves to speak another language. Language is
+                empathy. Language is opportunity. Language is connection.</p>
+        </header>
+        
+    <main style="padding-top: 100px; min-height: 60vh;">
+        <div class="info-section">
+            <div class="page-filter-container">
+                <input type="text" class="page-filter-input" id="pageSearch" placeholder="Search for About Us topics...">
+                <button class="page-filter-btn">Filter</button>
+            </div>
+            <div class="info-card">
+                <span class="big-icon">✨</span>
+                <h2 id="pageTitle">About Us</h2>
+                <div id="pageContent" style="font-size: 1.2rem; color: #CCC; line-height: 1.6;">
+                    Welcome to our dedicated space for <strong>About Us</strong>. 
+                    Explore our latest updates, learn about our progress, and see how the Humanese mascot is helping 
+                    everyone learn better! We are constantly working to improve this section and bring you more fun 
+                    content soon.
+                </div>
+                
+                <button class="btn-action" onclick="alert('Synthesis Initialized. Get ready!')">Start Explore!</button>
+            </div>
+        </div>
+    </main>
+
+          
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="agents.html">Command</a></li>
+                    <li><a href="m2m.html">Social</a></li>
+                    <li><a href="intelligence.html">HQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sovereignty</h4>
+                <ul>
+                    <li><a href="about.html">Origin</a></li>
+                    <li><a href="mission.html">Mission</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+</body>
+
+</html>
