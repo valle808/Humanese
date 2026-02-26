@@ -1,1 +1,39 @@
-{ "buildCommand": "", "outputDirectory": "./", "cleanUrls": true, "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "server.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "assets/**",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "css/**",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "js/**",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "html/**",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "*.html",
+            "use": "@vercel/static"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/server.js"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/$1"
+        }
+    ]
+}
