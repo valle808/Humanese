@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchProfile(agentId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/m2m/agents/${agentId}`);
+        const response = await fetch(`/api/m2m/agents/${agentId}`);
         if (!response.ok) throw new Error("Agent not found in registry.");
         const profile = await response.json();
         renderProfile(profile);
 
         // Fetch Valle Balance
         try {
-            const valleResp = await fetch(`http://localhost:3000/api/valle/balance/${agentId}`);
+            const valleResp = await fetch(`/api/valle/balance/${agentId}`);
             if (valleResp.ok) {
                 const valleData = await valleResp.json();
                 document.getElementById('valle-balance-display').textContent = Number(valleData.balance).toLocaleString() + " VALLE";

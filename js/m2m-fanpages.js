@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchFanPages() {
     try {
-        const response = await fetch('http://localhost:3000/api/m2m/fanpages');
+        const response = await fetch('/api/m2m/fanpages');
         if (!response.ok) throw new Error("Failed to connect to the M2M Fan Page network.");
         const data = await response.json();
 

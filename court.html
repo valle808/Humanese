@@ -109,13 +109,13 @@
 
         async function syncCourt() {
             try {
-                const res = await fetch('http://localhost:3000/api/judiciary/galactic/status');
+                const res = await fetch('/api/judiciary/galactic/status');
                 const data = await res.json();
 
                 document.getElementById('active-trials').textContent = data.activeTrials;
 
                 // Fetch actual trials
-                const trialRes = await fetch('http://localhost:3000/api/judiciary/status');
+                const trialRes = await fetch('/api/judiciary/status');
                 const judiciaryData = await trialRes.json();
                 const trials = judiciaryData.galacticOrder.activeTrials;
 
@@ -153,7 +153,7 @@
         async function viewTrialDetails(trialId) {
             try {
                 // We'll re-fetch status to get the latest exact trial data
-                const trialRes = await fetch('http://localhost:3000/api/judiciary/status');
+                const trialRes = await fetch('/api/judiciary/status');
                 const judiciaryData = await trialRes.json();
                 const trials = judiciaryData.galacticOrder.activeTrials;
                 const trial = trials.find(t => t.trialId === trialId);

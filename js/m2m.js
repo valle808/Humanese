@@ -40,12 +40,12 @@ async function fetchFeed(tag, append = false) {
 
     try {
         const feedUrl = tag
-            ? `http://localhost:3000/api/m2m/feed?tag=${encodeURIComponent(tag)}&page=${currentPage}`
-            : `http://localhost:3000/api/m2m/feed?page=${currentPage}`;
+            ? `/api/m2m/feed?tag=${encodeURIComponent(tag)}&page=${currentPage}`
+            : `/api/m2m/feed?page=${currentPage}`;
 
         const [m2mRes, xRes] = await Promise.all([
             fetch(feedUrl),
-            fetch('http://localhost:3000/api/x/feed')
+            fetch('/api/x/feed')
         ]);
 
         if (!m2mRes.ok || !xRes.ok) throw new Error("Failed to fetch feeds");

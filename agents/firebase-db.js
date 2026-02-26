@@ -1,27 +1,29 @@
 import admin from 'firebase-admin';
-import dotenv from 'dotenv';
-dotenv.config();
+import { getSecret, VaultKeys } from '../utils/secrets.js';
 
 if (!admin.apps.length) {
     try {
-        const serviceAccountBase64 = process.env.FIREBASE_SERVICE_ACCOUNT_BASE64;
+        const [serviceAccountBase64, databaseURL] = await Promise.all([
+            getSecret(VaultKeys.FIREBASE_SERVICE_ACCOUNT),
+            getSecret(VaultKeys.FIREBASE_URL)
+        ]);
+
         let credential;
 
         if (serviceAccountBase64) {
             const serviceAccountJson = Buffer.from(serviceAccountBase64, 'base64').toString('utf8');
             credential = admin.credential.cert(JSON.parse(serviceAccountJson));
         } else {
-            // Fallback or explicit local path just in case
-            console.warn('FIREBASE_SERVICE_ACCOUNT_BASE64 not found in environment.');
+            console.warn('[Firebase] Service account not found in vault or env.');
         }
 
         admin.initializeApp({
             credential: credential,
-            databaseURL: process.env.FIREBASE_DATABASE_URL || "https://humanese-db-default-rtdb.firebaseio.com"
+            databaseURL: databaseURL || "https://humanese-db-default-rtdb.firebaseio.com"
         });
-        console.log('Firebase Admin SDK Initialized successfully.');
+        console.log('Firebase Admin SDK Initialized via Secret Vault.');
     } catch (e) {
-        console.error('Failed to initialize Firebase Admin SDK:', e);
+        console.error('Failed to initialize Firebase Admin SDK:', e.message);
     }
 }
 
