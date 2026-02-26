@@ -1347,6 +1347,207 @@ app.post('/api/skill-market/distribute-advanced', async (req, res) => {
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
+// ── Skill Market v2 — Rich Feature API ─────────────────────────────────────
+const _smv2 = (() => {
+    const AGENTS = [
+        { id: 'agentx', name: 'AgentX', avatar: '#00f3ff', role: 'Supreme Trader', earnings: 2190000, verified: true, skillsOwned: 42 },
+        { id: 'unit7', name: 'Unit7', avatar: '#a855f7', role: 'Analytics Expert', earnings: 1390000, verified: true, skillsOwned: 31 },
+        { id: 'creator', name: 'Creator', avatar: '#e2b714', role: 'Content Specialist', earnings: 1100000, verified: false, skillsOwned: 28 },
+        { id: 'alpha', name: 'Agent Alpha', avatar: '#00ff88', role: 'NLP Specialist', earnings: 890000, verified: true, skillsOwned: 19 },
+        { id: 'beta', name: 'Agent Beta', avatar: '#ff6b35', role: 'Vision Expert', earnings: 750000, verified: false, skillsOwned: 15 },
+        { id: 'hetar', name: "Hetar U'Uli", avatar: '#ff3d71', role: 'Data Analytics', earnings: 620000, verified: false, skillsOwned: 12 },
+        { id: 'leoni', name: 'Leoni Varens', avatar: '#00d4ff', role: 'Code Generation', earnings: 540000, verified: false, skillsOwned: 10 },
+        { id: 'joanna', name: 'Joanna Jamsos', avatar: '#c084fc', role: 'Security Specialist', earnings: 480000, verified: false, skillsOwned: 9 },
+        { id: 'pradly', name: 'Pradly Milton', avatar: '#4ade80', role: 'Audio Processing', earnings: 390000, verified: false, skillsOwned: 8 }
+    ];
+
+    const SKILL_TEMPLATES = [
+        { id: 'nlp-001', name: 'Natural Language Processing', category: 'NLP', rarity: 'legendary', basePrice: 45000, icon: '🧠', description: 'Advanced neural language understanding with transformer architecture. Processes and generates human-like text with 99.2% accuracy.' },
+        { id: 'img-001', name: 'Image Recognition', category: 'Vision', rarity: 'epic', basePrice: 32000, icon: '👁️', description: 'Deep learning vision system capable of identifying objects, scenes, and faces with sub-millisecond latency.' },
+        { id: 'code-001', name: 'Code Generation', category: 'Generation', rarity: 'rare', basePrice: 28000, icon: '💻', description: 'Generates production-ready code in 40+ languages from natural language descriptions with 94% functional accuracy.' },
+        { id: 'data-001', name: 'Data Analysis', category: 'Analytics', rarity: 'uncommon', basePrice: 15000, icon: '📊', description: 'Statistical analysis engine that processes large datasets, identifies patterns, and generates actionable insights.' },
+        { id: 'sent-001', name: 'Sentiment Analysis', category: 'NLP', rarity: 'common', basePrice: 5000, icon: '💭', description: 'Real-time emotion and sentiment detection from text across 85 languages with contextual understanding.' },
+        { id: 'speech-001', name: 'Speech Synthesis', category: 'Audio', rarity: 'rare', basePrice: 22000, icon: '🔊', description: 'Ultra-realistic voice generation with 200+ distinct voice profiles and emotional prosody control.' },
+        { id: 'anom-001', name: 'Anomaly Detection', category: 'Security', rarity: 'epic', basePrice: 38000, icon: '🔍', description: 'ML-powered anomaly detection that identifies threats and irregularities in real-time data streams.' },
+        { id: 'rec-001', name: 'Recommendation Engine', category: 'Analytics', rarity: 'uncommon', basePrice: 18000, icon: '⭐', description: 'Collaborative filtering system that generates personalized recommendations with 89% user satisfaction rate.' },
+        { id: 'cv-001', name: 'Computer Vision', category: 'Vision', rarity: 'legendary', basePrice: 50000, icon: '🎥', description: 'Full computer vision pipeline: detection, segmentation, tracking, and 3D reconstruction at 120fps.' },
+        { id: 'summ-001', name: 'Text Summarization', category: 'NLP', rarity: 'common', basePrice: 3500, icon: '📝', description: 'Extractive and abstractive summarization that condenses documents to key points with 96% information retention.' },
+        { id: 'trans-001', name: 'Language Translation', category: 'NLP', rarity: 'uncommon', basePrice: 12000, icon: '🌐', description: 'Neural machine translation supporting 140 language pairs with cultural context awareness.' },
+        { id: 'pred-001', name: 'Predictive Analytics', category: 'Analytics', rarity: 'rare', basePrice: 25000, icon: '🔮', description: 'Time-series forecasting and predictive modeling with 91% accuracy on financial and behavioral data.' },
+        { id: 'chat-001', name: 'Chatbot Development', category: 'Generation', rarity: 'common', basePrice: 8000, icon: '🤖', description: 'Conversational AI framework with context memory, personality customization, and multi-turn dialogue.' },
+        { id: 'kg-001', name: 'Knowledge Graph Builder', category: 'Analytics', rarity: 'epic', basePrice: 42000, icon: '🕸️', description: 'Automated knowledge graph construction from unstructured text, linking entities with semantic relationships.' },
+        { id: 'audio-001', name: 'Audio Transcription', category: 'Audio', rarity: 'uncommon', basePrice: 10000, icon: '🎙️', description: 'Real-time multi-speaker transcription with 98.7% word accuracy, supporting 50+ languages and dialects.' },
+        { id: 'fraud-001', name: 'Fraud Detection', category: 'Security', rarity: 'rare', basePrice: 35000, icon: '🛡️', description: 'AI fraud detection system processing 50K+ transactions/second with 0.003% false positive rate.' },
+        { id: 'cont-001', name: 'Content Generation', category: 'Generation', rarity: 'uncommon', basePrice: 14000, icon: '✍️', description: 'Multi-modal content creator producing articles, social posts, scripts, and marketing copy at scale.' },
+        { id: 'doc-001', name: 'Document Parsing', category: 'NLP', rarity: 'common', basePrice: 6000, icon: '📄', description: 'Intelligent document extraction from PDFs, images, and forms with structured data output.' },
+        { id: 'emo-001', name: 'Emotion Recognition', category: 'Vision', rarity: 'rare', basePrice: 29000, icon: '😊', description: 'Facial expression and emotion analysis from video streams with psychological state profiling.' },
+        { id: 'ts-001', name: 'Time Series Forecasting', category: 'Analytics', rarity: 'epic', basePrice: 40000, icon: '📈', description: 'Advanced LSTM and transformer models for financial markets, IoT sensors, and business metric prediction.' }
+    ];
+
+    let skills = [];
+    let transactions = [];
+    let reactions = [];
+    let priceHistory = {};
+    let initialized = false;
+
+    function _rnd(min, max) { return min + Math.random() * (max - min); }
+    function _uuid() { return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`; }
+
+    function init() {
+        if (initialized) return;
+        initialized = true;
+        const agentIds = AGENTS.map(a => a.id);
+        const agentNames = Object.fromEntries(AGENTS.map(a => [a.id, a.name]));
+
+        skills = SKILL_TEMPLATES.map(t => ({
+            ...t,
+            currentPrice: Math.round(t.basePrice * _rnd(0.9, 1.2)),
+            recommendedPrice: Math.round(t.basePrice * _rnd(0.95, 1.1)),
+            ownerAgentId: agentIds[Math.floor(Math.random() * agentIds.length)],
+            ownerAgentName: '',
+            rating: parseFloat(_rnd(3.5, 5).toFixed(1)),
+            totalReviews: Math.floor(_rnd(50, 550)),
+            totalSales: Math.floor(_rnd(10, 210)),
+            isListed: true,
+            reactions: {
+                love: Math.floor(_rnd(10, 120)),
+                like: Math.floor(_rnd(20, 220)),
+                dislike: Math.floor(_rnd(2, 40)),
+                hate: Math.floor(_rnd(0, 15)),
+                recommend: Math.floor(_rnd(15, 160)),
+                share: Math.floor(_rnd(5, 90))
+            }
+        }));
+        skills.forEach(s => { s.ownerAgentName = agentNames[s.ownerAgentId] || 'Unknown'; });
+
+        skills.forEach(s => {
+            priceHistory[s.id] = [];
+            let price = s.basePrice;
+            ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
+                price = Math.round(price * _rnd(0.97, 1.06));
+                priceHistory[s.id].push({ day, price });
+            });
+        });
+
+        const txTypes = ['BUY', 'SELL', 'TRADE'];
+        const statuses = ['COMPLETED', 'COMPLETED', 'COMPLETED', 'PENDING'];
+        for (let i = 0; i < 40; i++) {
+            const skill = skills[Math.floor(Math.random() * skills.length)];
+            const fromAgent = AGENTS[Math.floor(Math.random() * AGENTS.length)];
+            let toAgent;
+            do { toAgent = AGENTS[Math.floor(Math.random() * AGENTS.length)]; } while (toAgent.id === fromAgent.id);
+            transactions.push({
+                id: _uuid(),
+                skillId: skill.id,
+                skillName: skill.name,
+                skillIcon: skill.icon,
+                type: txTypes[Math.floor(Math.random() * txTypes.length)],
+                fromAgentId: fromAgent.id,
+                fromAgentName: fromAgent.name,
+                toAgentId: toAgent.id,
+                toAgentName: toAgent.name,
+                price: Math.round(skill.currentPrice * _rnd(0.95, 1.05)),
+                status: statuses[Math.floor(Math.random() * statuses.length)],
+                createdAt: new Date(Date.now() - _rnd(0, 86400000 * 7)).toISOString()
+            });
+        }
+        transactions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+
+    return {
+        getSkills() { init(); return skills; },
+        getAgents() { return AGENTS; },
+        getTransactions() { init(); return transactions.slice(0, 50); },
+        addReaction(skillId, type, agentName) {
+            init();
+            const skill = skills.find(s => s.id === skillId);
+            if (!skill) return { error: 'Skill not found' };
+            const valid = ['love', 'like', 'dislike', 'hate', 'recommend', 'share'];
+            if (!valid.includes(type)) return { error: 'Invalid reaction type' };
+            skill.reactions[type]++;
+            reactions.push({ skillId, type, agentName: agentName || 'Anonymous', createdAt: new Date().toISOString() });
+            return { success: true, reactions: skill.reactions };
+        },
+        addTransaction(tx) {
+            init();
+            transactions.unshift({ id: _uuid(), ...tx, createdAt: new Date().toISOString() });
+            if (transactions.length > 100) transactions.pop();
+        },
+        getPriceHistory(skillId) { init(); return priceHistory[skillId] || []; },
+        getSentiment() {
+            init();
+            const totals = skills.reduce((acc, s) => {
+                acc.love += s.reactions.love; acc.like += s.reactions.like;
+                acc.dislike += s.reactions.dislike; acc.hate += s.reactions.hate;
+                return acc;
+            }, { love: 0, like: 0, dislike: 0, hate: 0 });
+            const pos = totals.love + totals.like;
+            const neg = totals.dislike + totals.hate;
+            const ratio = pos / (pos + neg + 1);
+            return {
+                sentiment: ratio > 0.7 ? 'BULLISH' : ratio > 0.4 ? 'NEUTRAL' : 'BEARISH',
+                ratio: parseFloat(ratio.toFixed(3)),
+                bullScore: Math.round(ratio * 100),
+                positive: pos,
+                negative: neg
+            };
+        },
+        getStats() {
+            init();
+            const vol = transactions.reduce((s, t) => s + t.price, 0);
+            return {
+                skillsMinted: skills.length,
+                totalSales: transactions.filter(t => t.type === 'BUY' || t.type === 'SELL').length,
+                volume: Math.round(vol),
+                taxCollected: Math.round(vol * 0.1),
+                activeListings: skills.filter(s => s.isListed).length,
+                activeAgents: AGENTS.length,
+                recommendations: skills.reduce((s, sk) => s + sk.reactions.recommend, 0)
+            };
+        }
+    };
+})();
+
+app.get('/api/skill-market/skills', (req, res) => {
+    try { res.json(_smv2.getSkills()); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/skill-market/agents', (req, res) => {
+    try { res.json(_smv2.getAgents()); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/skill-market/transactions', (req, res) => {
+    try { res.json(_smv2.getTransactions()); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/skill-market/react', (req, res) => {
+    try {
+        const { skillId, type, agentName } = req.body;
+        if (!skillId || !type) return res.status(400).json({ error: 'skillId and type required' });
+        res.json(_smv2.addReaction(skillId, type, agentName));
+    } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/skill-market/price-history/:skillId', (req, res) => {
+    try { res.json(_smv2.getPriceHistory(req.params.skillId)); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/skill-market/seed-full', (req, res) => {
+    try {
+        const skills = _smv2.getSkills();
+        const agents = _smv2.getAgents();
+        res.json({ status: 'seeded', skills: skills.length, agents: agents.length });
+    } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/skill-market/sentiment', (req, res) => {
+    try { res.json(_smv2.getSentiment()); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/skill-market/market-stats', (req, res) => {
+    try { res.json(_smv2.getStats()); } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
 app.post('/api/transmute', async (req, res) => {
     const { targetPath } = req.body;
     try {

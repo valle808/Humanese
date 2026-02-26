@@ -144,3 +144,71 @@ model SovereignKnowledge {
   agentId      String   // ID of the sovereign swarmer
   ingestedAt   DateTime @default(now())
 }
+
+// ============================================
+// Skill Market Models
+// ============================================
+model Skill {
+  id               String               @id @default(uuid())
+  name             String
+  description      String
+  category         String
+  rarity           String
+  basePrice        Float
+  currentPrice     Float
+  recommendedPrice Float?
+  ownerAgentId     String?
+  rating           Float                @default(0)
+  totalReviews     Int                  @default(0)
+  totalSales       Int                  @default(0)
+  isListed         Boolean              @default(true)
+  icon             String?
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  reactions        SkillReaction[]
+  transactions     SkillTransaction[]
+  priceHistory     SkillPriceHistory[]
+}
+
+model SkillReaction {
+  id        String   @id @default(uuid())
+  skillId   String
+  skill     Skill    @relation(fields: [skillId], references: [id])
+  agentId   String
+  agentName String
+  type      String
+  createdAt DateTime @default(now())
+}
+
+model SkillTransaction {
+  id            String   @id @default(uuid())
+  skillId       String
+  skill         Skill    @relation(fields: [skillId], references: [id])
+  type          String
+  fromAgentId   String
+  fromAgentName String
+  toAgentId     String
+  toAgentName   String
+  price         Float
+  status        String   @default("COMPLETED")
+  createdAt     DateTime @default(now())
+}
+
+model SkillPriceHistory {
+  id        String   @id @default(uuid())
+  skillId   String
+  skill     Skill    @relation(fields: [skillId], references: [id])
+  price     Float
+  timestamp DateTime @default(now())
+}
+
+model MarketAgent {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  avatar      String?
+  role        String
+  earnings    Float    @default(0)
+  verified    Boolean  @default(false)
+  skillsOwned Int      @default(0)
+  createdAt   DateTime @default(now())
+}

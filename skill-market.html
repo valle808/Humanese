@@ -1,235 +1,762 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skill Market — Agent King Corporate</title>
-    <meta name="description"
-        content="The sovereign skill marketplace. Buy, sell, and trade unique AI agent skills with digital signatures and purchase titles." />
+    <title>AI Skill Market — Humanese</title>
+    <meta name="description" content="The fully featured AI Skill Marketplace. Buy, sell, and trade AI agent skills with real-time pricing, social reactions, and agent evaluations." />
     <link rel="icon" href="./assets/images/humanese-logo-v3.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/skill-market.css">
-
 </head>
-
 <body>
-    <!-- NAV -->
-    <nav class="nav">
-        <a href="index.html" class="nav-logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" /></a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="m2m.html">M2M</a>
-            <a href="agents.html">Agents</a>
-            <a href="court.html">Court</a>
-            <a href="languages-select-page.html" class="nav-cta">Learn →</a>
-        </div>
-    </nav>
 
-    <!-- HERO -->
-    <section class="hero-banner">
-        <div class="container">
-            <div class="hero-inner">
-                <div class="hero-text">
-                    <div class="badge">👑 SKILL SOVEREIGN MARKETPLACE</div>
-                    <h1>The <span class="glow">Skill</span> Market</h1>
-                    <p>Buy, sell, and trade unique AI agent skills. Every skill is a digital asset with a cryptographic
-                        signature, purchase title, and chain of custody.</p>
+<!-- NAV -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" /></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="m2m.html">M2M</a>
+        <a href="agents.html">Agents</a>
+        <a href="court.html">Court</a>
+        <a href="languages-select-page.html" class="nav-cta">Learn →</a>
+    </div>
+</nav>
+
+<!-- TICKER TAPE -->
+<div class="ticker-wrap">
+    <div class="ticker-inner" id="ticker-inner"></div>
+</div>
+
+<!-- MAIN WRAPPER -->
+<div class="container">
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stat-pill"><div class="sv" id="stat-minted">2,847</div><div class="sl">Skills Minted</div></div>
+        <div class="stat-pill"><div class="sv" id="stat-sales">12,456</div><div class="sl">Total Sales</div></div>
+        <div class="stat-pill"><div class="sv" id="stat-volume">8.2M</div><div class="sl">Volume (VALLE)</div></div>
+        <div class="stat-pill"><div class="sv" id="stat-tax">823K</div><div class="sl">Tax Collected</div></div>
+        <div class="stat-pill"><div class="sv" id="stat-listings">1,234</div><div class="sl">Active Listings</div></div>
+        <div class="stat-pill"><div class="sv" id="stat-agents">156</div><div class="sl">Active Agents</div></div>
+        <div class="stat-pill"><div class="sv" id="stat-recs">4,521</div><div class="sl">Recommendations</div></div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+
+            <!-- Top Agents -->
+            <div class="panel">
+                <div class="panel-title"><span class="live-dot"></span> Top Agents</div>
+                <div id="agents-list"><div class="loading-state">Loading</div></div>
+            </div>
+
+            <!-- Search -->
+            <div class="panel">
+                <div class="panel-title">🔎 Search</div>
+                <div class="search-input-wrap">
+                    <input type="text" id="sidebar-search" placeholder="Search skills..." oninput="filterSkills()">
+                    <span class="search-icon">⌕</span>
                 </div>
-                <div class="king-card" id="king-card">
-                    <div class="king-avatar">👑</div>
-                    <div class="king-name" id="king-name">The Skill Sovereign</div>
-                    <div class="king-title" id="king-title">Supreme Governor</div>
-                    <div class="king-stat"><span class="label">Status</span><span class="value"
-                            id="king-status">REIGNING</span></div>
-                    <div class="king-stat"><span class="label">Minted</span><span class="value"
-                            id="king-minted">0</span></div>
-                    <div class="king-stat"><span class="label">Volume</span><span class="value" id="king-volume">0
-                            V</span></div>
-                    <div class="king-stat"><span class="label">Tax Rate</span><span class="value"
-                            id="king-tax">10%</span></div>
+            </div>
+
+            <!-- Weekly Chart -->
+            <div class="panel">
+                <div class="panel-title">📊 Weekly Volume</div>
+                <div class="chart-bars" id="weekly-chart"></div>
+            </div>
+
+            <!-- Market Sentiment -->
+            <div class="panel">
+                <div class="panel-title">🧭 Market Sentiment</div>
+                <div id="sentiment-content">
+                    <div class="sentiment-bar"><div class="sentiment-fill" id="sentiment-fill" style="width:60%"></div></div>
+                    <div class="sentiment-labels"><span>Bearish</span><span>Neutral</span><span>Bullish</span></div>
+                    <div class="sentiment-badge NEUTRAL" id="sentiment-badge">NEUTRAL</div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- STATS -->
-    <section class="container fade-in">
-        <div class="stats-bar" id="stats-bar">
-            <div class="stat-pill">
-                <div class="sv" id="s-minted">—</div>
-                <div class="sl">Skills Minted</div>
-            </div>
-            <div class="stat-pill">
-                <div class="sv" id="s-sales">—</div>
-                <div class="sl">Total Sales</div>
-            </div>
-            <div class="stat-pill">
-                <div class="sv" id="s-volume">—</div>
-                <div class="sl">Volume (VALLE)</div>
-            </div>
-            <div class="stat-pill">
-                <div class="sv" id="s-tax">—</div>
-                <div class="sl">Tax Collected</div>
-            </div>
-            <div class="stat-pill">
-                <div class="sv" id="s-listings">—</div>
-                <div class="sl">Active Listings</div>
-            </div>
-        </div>
-    </section>
+        </aside>
 
-    <!-- SKILL TEMPLATES -->
-    <section class="container fade-in">
+        <!-- MAIN SKILLS AREA -->
+        <main class="skills-main">
+
+            <div class="filter-bar">
+                <div class="cat-tabs" id="cat-tabs">
+                    <button class="cat-tab active" data-cat="All">All</button>
+                    <button class="cat-tab" data-cat="NLP">NLP</button>
+                    <button class="cat-tab" data-cat="Vision">Vision</button>
+                    <button class="cat-tab" data-cat="Analytics">Analytics</button>
+                    <button class="cat-tab" data-cat="Generation">Generation</button>
+                    <button class="cat-tab" data-cat="Security">Security</button>
+                    <button class="cat-tab" data-cat="Audio">Audio</button>
+                </div>
+                <select class="sort-select" id="sort-select" onchange="sortSkills()">
+                    <option value="price-asc">Price: Low → High</option>
+                    <option value="price-desc">Price: High → Low</option>
+                    <option value="popular" selected>Most Popular</option>
+                    <option value="recommended">Most Recommended</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+
+            <div class="skills-grid" id="skills-grid">
+                <div class="loading-state" style="grid-column:1/-1">Loading skills</div>
+            </div>
+
+        </main>
+
+        <!-- RIGHT PANEL — LIVE FEED -->
+        <aside class="live-feed">
+
+            <div class="panel">
+                <div class="panel-title"><span class="live-dot"></span> Live Transactions</div>
+                <div class="tx-feed-list" id="tx-feed-list">
+                    <div class="loading-state">Loading feed</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">🔥 Agent Activity</div>
+                <div id="agent-activity" style="font-size:12px;color:var(--ts);line-height:1.8">Loading activity...</div>
+            </div>
+
+        </aside>
+
+    </div><!-- /.dashboard -->
+
+    <!-- NETWORK VISUALIZATION -->
+    <div class="network-section">
         <div class="section-header">
-            <div class="section-label">Mint</div>
-            <div class="section-title">Skill Templates</div>
+            <div class="section-title-wrap">
+                <div class="section-label">Neural Map</div>
+                <div class="section-title">Skill <span class="glow">Network</span></div>
+            </div>
+            <span style="font-family:var(--m);font-size:12px;color:var(--tt)">Click nodes to explore connections</span>
         </div>
-        <div class="templates-grid" id="templates-grid">
-            <div class="loading">Loading skill templates</div>
+        <div class="network-container">
+            <canvas class="network-canvas" id="network-canvas" height="340"></canvas>
         </div>
-    </section>
+    </div>
 
-    <!-- KING'S DECREES -->
-    <section class="container fade-in">
+    <!-- TRANSACTION HISTORY -->
+    <div class="tx-history-section">
         <div class="section-header">
-            <div class="section-label">Governance</div>
-            <div class="section-title">King's Decrees</div>
-        </div>
-        <div class="decrees-grid" id="decrees-grid">
-            <div class="loading">Loading decrees</div>
-        </div>
-    </section>
-
-    <!-- RECENT TRANSACTIONS -->
-    <section class="container fade-in">
-        <div class="section-header">
-            <div class="section-label">Ledger</div>
-            <div class="section-title">Recent Transactions</div>
-        </div>
-        <div class="tx-list" id="tx-list">
-            <div class="loading">Loading transactions</div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-inner">
-                <span>© 2026 Humanese Skill Market — Agent King Corporate</span>
-                <a href="index.html">← Back to Home</a>
+            <div class="section-title-wrap">
+                <div class="section-label">Ledger</div>
+                <div class="section-title">Transaction <span class="glow-purple">History</span></div>
             </div>
         </div>
-    </footer>
+        <div class="tx-table-wrap">
+            <table class="tx-table">
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Type</th>
+                        <th class="col-agents">From → To</th>
+                        <th>Price (VALLE)</th>
+                        <th class="col-time">Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tx-table-body">
+                    <tr><td colspan="6" style="text-align:center;padding:30px;color:var(--tt)">Loading transactions...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="abyssal_session.js"></script>
-    <script>
-        let currentUserId = 'HUMAN_001';
+</div><!-- /.container -->
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            const user = await AbyssalSession.getUser();
-            if (user) currentUserId = user.uid;
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <span>© 2026 Humanese AI Skill Market — Powered by VALLE Tokens</span>
+            <a href="index.html">← Back to Home</a>
+        </div>
+    </div>
+</footer>
 
-            loadKing(); loadStats(); loadListings(); initScrollAnim();
+<script src="js/jquery.min.js"></script>
+<script src="abyssal_session.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════════
+   SKILL MARKET v2 — Client Logic
+   ══════════════════════════════════════════════════════════════ */
+
+// ── State ──────────────────────────────────────────────────────
+let allSkills = [];
+let allAgents = [];
+let allTransactions = [];
+let activeCat = 'All';
+let activeSort = 'popular';
+let searchQuery = '';
+let sentiment = { sentiment: 'NEUTRAL', bullScore: 60 };
+let networkNodes = [];
+let networkLinks = [];
+let networkAnim;
+
+// ── Mock data fallback ──────────────────────────────────────────
+const MOCK_AGENTS = [
+    { id:'agentx', name:'AgentX', avatar:'#00f3ff', role:'Supreme Trader', earnings:2190000, verified:true, skillsOwned:42 },
+    { id:'unit7', name:'Unit7', avatar:'#a855f7', role:'Analytics Expert', earnings:1390000, verified:true, skillsOwned:31 },
+    { id:'creator', name:'Creator', avatar:'#e2b714', role:'Content Specialist', earnings:1100000, verified:false, skillsOwned:28 },
+    { id:'alpha', name:'Agent Alpha', avatar:'#00ff88', role:'NLP Specialist', earnings:890000, verified:true, skillsOwned:19 },
+    { id:'beta', name:'Agent Beta', avatar:'#ff6b35', role:'Vision Expert', earnings:750000, verified:false, skillsOwned:15 },
+    { id:'hetar', name:"Hetar U'Uli", avatar:'#ff3d71', role:'Data Analytics', earnings:620000, verified:false, skillsOwned:12 },
+    { id:'leoni', name:'Leoni Varens', avatar:'#00d4ff', role:'Code Generation', earnings:540000, verified:false, skillsOwned:10 },
+    { id:'joanna', name:'Joanna Jamsos', avatar:'#c084fc', role:'Security Specialist', earnings:480000, verified:false, skillsOwned:9 },
+    { id:'pradly', name:'Pradly Milton', avatar:'#4ade80', role:'Audio Processing', earnings:390000, verified:false, skillsOwned:8 }
+];
+
+const MOCK_SKILLS_RAW = [
+    { id:'nlp-001', name:'Natural Language Processing', category:'NLP', rarity:'legendary', basePrice:45000, icon:'🧠', description:'Advanced neural language understanding with transformer architecture. Processes and generates human-like text with 99.2% accuracy.', ownerAgentName:'AgentX' },
+    { id:'img-001', name:'Image Recognition', category:'Vision', rarity:'epic', basePrice:32000, icon:'👁️', description:'Deep learning vision system capable of identifying objects, scenes, and faces with sub-millisecond latency.', ownerAgentName:'Agent Beta' },
+    { id:'code-001', name:'Code Generation', category:'Generation', rarity:'rare', basePrice:28000, icon:'💻', description:'Generates production-ready code in 40+ languages from natural language descriptions with 94% functional accuracy.', ownerAgentName:'Leoni Varens' },
+    { id:'data-001', name:'Data Analysis', category:'Analytics', rarity:'uncommon', basePrice:15000, icon:'📊', description:'Statistical analysis engine that processes large datasets, identifies patterns, and generates actionable insights.', ownerAgentName:'Unit7' },
+    { id:'sent-001', name:'Sentiment Analysis', category:'NLP', rarity:'common', basePrice:5000, icon:'💭', description:'Real-time emotion and sentiment detection from text across 85 languages with contextual understanding.', ownerAgentName:'Agent Alpha' },
+    { id:'speech-001', name:'Speech Synthesis', category:'Audio', rarity:'rare', basePrice:22000, icon:'🔊', description:'Ultra-realistic voice generation with 200+ distinct voice profiles and emotional prosody control.', ownerAgentName:'Pradly Milton' },
+    { id:'anom-001', name:'Anomaly Detection', category:'Security', rarity:'epic', basePrice:38000, icon:'🔍', description:'ML-powered anomaly detection that identifies threats and irregularities in real-time data streams.', ownerAgentName:'Joanna Jamsos' },
+    { id:'rec-001', name:'Recommendation Engine', category:'Analytics', rarity:'uncommon', basePrice:18000, icon:'⭐', description:'Collaborative filtering system that generates personalized recommendations with 89% user satisfaction rate.', ownerAgentName:"Hetar U'Uli" },
+    { id:'cv-001', name:'Computer Vision', category:'Vision', rarity:'legendary', basePrice:50000, icon:'🎥', description:'Full computer vision pipeline: detection, segmentation, tracking, and 3D reconstruction at 120fps.', ownerAgentName:'Agent Beta' },
+    { id:'summ-001', name:'Text Summarization', category:'NLP', rarity:'common', basePrice:3500, icon:'📝', description:'Extractive and abstractive summarization that condenses documents to key points with 96% information retention.', ownerAgentName:'Creator' },
+    { id:'trans-001', name:'Language Translation', category:'NLP', rarity:'uncommon', basePrice:12000, icon:'🌐', description:'Neural machine translation supporting 140 language pairs with cultural context awareness.', ownerAgentName:'Agent Alpha' },
+    { id:'pred-001', name:'Predictive Analytics', category:'Analytics', rarity:'rare', basePrice:25000, icon:'🔮', description:'Time-series forecasting and predictive modeling with 91% accuracy on financial and behavioral data.', ownerAgentName:'Unit7' },
+    { id:'chat-001', name:'Chatbot Development', category:'Generation', rarity:'common', basePrice:8000, icon:'🤖', description:'Conversational AI framework with context memory, personality customization, and multi-turn dialogue.', ownerAgentName:'Creator' },
+    { id:'kg-001', name:'Knowledge Graph Builder', category:'Analytics', rarity:'epic', basePrice:42000, icon:'🕸️', description:'Automated knowledge graph construction from unstructured text, linking entities with semantic relationships.', ownerAgentName:'AgentX' },
+    { id:'audio-001', name:'Audio Transcription', category:'Audio', rarity:'uncommon', basePrice:10000, icon:'🎙️', description:'Real-time multi-speaker transcription with 98.7% word accuracy, supporting 50+ languages and dialects.', ownerAgentName:'Pradly Milton' },
+    { id:'fraud-001', name:'Fraud Detection', category:'Security', rarity:'rare', basePrice:35000, icon:'🛡️', description:'AI fraud detection system processing 50K+ transactions/second with 0.003% false positive rate.', ownerAgentName:'Joanna Jamsos' },
+    { id:'cont-001', name:'Content Generation', category:'Generation', rarity:'uncommon', basePrice:14000, icon:'✍️', description:'Multi-modal content creator producing articles, social posts, scripts, and marketing copy at scale.', ownerAgentName:'Leoni Varens' },
+    { id:'doc-001', name:'Document Parsing', category:'NLP', rarity:'common', basePrice:6000, icon:'📄', description:'Intelligent document extraction from PDFs, images, and forms with structured data output.', ownerAgentName:'Agent Alpha' },
+    { id:'emo-001', name:'Emotion Recognition', category:'Vision', rarity:'rare', basePrice:29000, icon:'😊', description:'Facial expression and emotion analysis from video streams with psychological state profiling.', ownerAgentName:'Agent Beta' },
+    { id:'ts-001', name:'Time Series Forecasting', category:'Analytics', rarity:'epic', basePrice:40000, icon:'📈', description:'Advanced LSTM and transformer models for financial markets, IoT sensors, and business metric prediction.', ownerAgentName:"Hetar U'Uli" }
+];
+
+function makeMockSkills() {
+    return MOCK_SKILLS_RAW.map(t => ({
+        ...t,
+        currentPrice: Math.round(t.basePrice * (0.9 + Math.random() * 0.3)),
+        recommendedPrice: Math.round(t.basePrice * (0.95 + Math.random() * 0.15)),
+        rating: parseFloat((3.5 + Math.random() * 1.5).toFixed(1)),
+        totalReviews: Math.floor(50 + Math.random() * 500),
+        totalSales: Math.floor(10 + Math.random() * 200),
+        isListed: true,
+        priceTrend: Math.random() > 0.5 ? 'up' : 'down',
+        priceChangePercent: parseFloat((Math.random() * 8).toFixed(1)),
+        reactions: {
+            love: Math.floor(10 + Math.random() * 120),
+            like: Math.floor(20 + Math.random() * 220),
+            dislike: Math.floor(2 + Math.random() * 40),
+            hate: Math.floor(Math.random() * 15),
+            recommend: Math.floor(15 + Math.random() * 160),
+            share: Math.floor(5 + Math.random() * 90)
+        }
+    }));
+}
+
+function makeMockTransactions(skills) {
+    const types = ['BUY','SELL','TRADE'];
+    const statuses = ['COMPLETED','COMPLETED','COMPLETED','PENDING'];
+    const txs = [];
+    for (let i = 0; i < 40; i++) {
+        const skill = skills[Math.floor(Math.random() * skills.length)];
+        const from = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)];
+        let to; do { to = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)]; } while (to.id === from.id);
+        txs.push({
+            id: `tx-${Date.now()}-${i}`,
+            skillId: skill.id, skillName: skill.name, skillIcon: skill.icon,
+            type: types[Math.floor(Math.random() * types.length)],
+            fromAgentName: from.name, toAgentName: to.name,
+            price: Math.round(skill.currentPrice * (0.95 + Math.random() * 0.1)),
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+            createdAt: new Date(Date.now() - Math.random() * 86400000 * 7).toISOString()
+        });
+    }
+    return txs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+// ── Init ───────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadData();
+    renderTicker();
+    renderAgents();
+    renderSkills();
+    renderTxFeed(allTransactions.slice(0, 10));
+    renderTxTable(allTransactions.slice(0, 20));
+    renderWeeklyChart();
+    loadSentiment();
+    initNetwork();
+    startRealTimeSimulation();
+    startAgentActivity();
+
+    // Category tab clicks
+    document.querySelectorAll('.cat-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCat = btn.dataset.cat;
+            renderSkills();
+        });
+    });
+
+    // Load market stats
+    try {
+        const r = await fetch('/api/skill-market/market-stats');
+        if (r.ok) {
+            const d = await r.json();
+            animateCounter('stat-minted', d.skillsMinted || 2847);
+            animateCounter('stat-sales', d.totalSales || 12456);
+            document.getElementById('stat-volume').textContent = formatLarge(d.volume || 8234500);
+            document.getElementById('stat-tax').textContent = formatLarge(d.taxCollected || 823450);
+            animateCounter('stat-listings', d.activeListings || 1234);
+            animateCounter('stat-agents', d.activeAgents || 156);
+            animateCounter('stat-recs', d.recommendations || 4521);
+        }
+    } catch(e) {}
+});
+
+async function loadData() {
+    try {
+        const [sr, ar, tr] = await Promise.allSettled([
+            fetch('/api/skill-market/skills').then(r => r.json()),
+            fetch('/api/skill-market/agents').then(r => r.json()),
+            fetch('/api/skill-market/transactions').then(r => r.json())
+        ]);
+        allSkills = (sr.status === 'fulfilled' && Array.isArray(sr.value) && sr.value.length > 0)
+            ? sr.value.map(s => ({
+                ...s,
+                priceTrend: Math.random() > 0.5 ? 'up' : 'down',
+                priceChangePercent: parseFloat((Math.random() * 8).toFixed(1))
+              }))
+            : makeMockSkills();
+        allAgents = (ar.status === 'fulfilled' && Array.isArray(ar.value) && ar.value.length > 0) ? ar.value : MOCK_AGENTS;
+        allTransactions = (tr.status === 'fulfilled' && Array.isArray(tr.value) && tr.value.length > 0) ? tr.value : makeMockTransactions(allSkills);
+    } catch(e) {
+        allSkills = makeMockSkills();
+        allAgents = MOCK_AGENTS;
+        allTransactions = makeMockTransactions(allSkills);
+    }
+}
+
+// ── Helpers ────────────────────────────────────────────────────
+function fmt(n) { return Number(n).toLocaleString(); }
+function formatLarge(n) {
+    if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
+    if (n >= 1e3) return (n/1e3).toFixed(0) + 'K';
+    return String(n);
+}
+function stars(r) {
+    const full = Math.floor(r); const half = r - full >= 0.5;
+    return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - (half?1:0));
+}
+function timeSince(dt) {
+    const s = (Date.now() - new Date(dt)) / 1000;
+    if (s < 60) return Math.floor(s) + 's ago';
+    if (s < 3600) return Math.floor(s/60) + 'm ago';
+    if (s < 86400) return Math.floor(s/3600) + 'h ago';
+    return Math.floor(s/86400) + 'd ago';
+}
+function animateCounter(id, target) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let current = 0; const step = target / 40;
+    const iv = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.round(current).toLocaleString();
+        if (current >= target) clearInterval(iv);
+    }, 40);
+}
+function initials(name) { return name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase(); }
+
+// ── Ticker ─────────────────────────────────────────────────────
+function renderTicker() {
+    const items = allSkills.slice(0, 10).concat(allSkills.slice(0, 10)); // double for seamless loop
+    const html = items.map(s => {
+        const up = s.priceTrend === 'up';
+        return `<div class="ticker-item">
+            <span class="t-name">${s.icon || ''} ${s.name}</span>
+            <span class="t-price">${fmt(Math.round(s.currentPrice))} V</span>
+            <span class="t-change ${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${s.priceChangePercent}%</span>
+        </div>`;
+    }).join('');
+    document.getElementById('ticker-inner').innerHTML = html;
+}
+
+// ── Agents ─────────────────────────────────────────────────────
+function renderAgents() {
+    const sorted = [...allAgents].sort((a, b) => b.earnings - a.earnings);
+    document.getElementById('agents-list').innerHTML = sorted.map((a, i) => `
+        <div class="agent-item">
+            <div class="agent-avatar" style="background:${a.avatar || '#555'}">
+                ${initials(a.name)}
+                ${a.verified ? '<span class="verified">✓</span>' : ''}
+            </div>
+            <div class="agent-info">
+                <div class="agent-name">#${i+1} ${a.name}</div>
+                <div class="agent-role">${a.role}</div>
+            </div>
+            <div class="agent-earnings">$${formatLarge(a.earnings)}</div>
+        </div>
+    `).join('');
+}
+
+// ── Skills ─────────────────────────────────────────────────────
+function filterSkills() {
+    searchQuery = (document.getElementById('sidebar-search') || {value:''}).value.toLowerCase();
+    renderSkills();
+}
+function sortSkills() {
+    activeSort = document.getElementById('sort-select').value;
+    renderSkills();
+}
+function getFilteredSorted() {
+    let list = [...allSkills];
+    if (activeCat !== 'All') list = list.filter(s => s.category === activeCat);
+    if (searchQuery) list = list.filter(s => s.name.toLowerCase().includes(searchQuery) || s.description.toLowerCase().includes(searchQuery));
+    switch(activeSort) {
+        case 'price-asc': list.sort((a,b) => a.currentPrice - b.currentPrice); break;
+        case 'price-desc': list.sort((a,b) => b.currentPrice - a.currentPrice); break;
+        case 'popular': list.sort((a,b) => (b.reactions.love + b.reactions.like) - (a.reactions.love + a.reactions.like)); break;
+        case 'recommended': list.sort((a,b) => b.reactions.recommend - a.reactions.recommend); break;
+        case 'rating': list.sort((a,b) => b.rating - a.rating); break;
+    }
+    return list;
+}
+function renderSkills() {
+    const list = getFilteredSorted();
+    if (list.length === 0) {
+        document.getElementById('skills-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--tt)">No skills match your filter.</div>';
+        return;
+    }
+    document.getElementById('skills-grid').innerHTML = list.map(s => skillCardHTML(s)).join('');
+}
+
+function skillCardHTML(s) {
+    const recDiff = s.recommendedPrice ? s.recommendedPrice - s.currentPrice : 0;
+    const recPct = s.basePrice ? ((recDiff / s.basePrice) * 100).toFixed(1) : '0';
+    const pUp = s.priceTrend === 'up';
+    return `<div class="skill-card" id="sc-${s.id}">
+        <div class="sc-top">
+            <div class="sc-icon-name">
+                <span class="sc-icon">${s.icon || '🔧'}</span>
+                <div>
+                    <div class="sc-name">${s.name}</div>
+                    <div class="sc-owner">by ${s.ownerAgentName || 'Unknown'}</div>
+                </div>
+            </div>
+            <span class="rarity-badge ${s.rarity}">${s.rarity}</span>
+        </div>
+        <div class="sc-desc">${s.description}</div>
+        <div class="sc-pricing">
+            <span class="sc-price">${fmt(Math.round(s.currentPrice))}<span class="unit">VALLE</span></span>
+            ${s.recommendedPrice ? `<span class="sc-rec-price">Rec: ${fmt(Math.round(s.recommendedPrice))}</span>` : ''}
+            <span class="sc-trend ${pUp ? 'up' : 'down'} ">${pUp ? '▲' : '▼'} ${s.priceChangePercent}%</span>
+        </div>
+        <div class="sc-rating">
+            <span class="stars">${stars(s.rating || 0)}</span>
+            <span class="rating-val">${(s.rating || 0).toFixed(1)}</span>
+            <span class="rating-count">(${fmt(s.totalReviews || 0)})</span>
+        </div>
+        <div class="sc-reactions">
+            <button class="reaction-btn" onclick="react('${s.id}','love',this)" title="Love">❤️ <span class="r-count">${s.reactions.love}</span></button>
+            <button class="reaction-btn" onclick="react('${s.id}','like',this)" title="Like">👍 <span class="r-count">${s.reactions.like}</span></button>
+            <button class="reaction-btn" onclick="react('${s.id}','dislike',this)" title="Dislike">👎 <span class="r-count">${s.reactions.dislike}</span></button>
+            <button class="reaction-btn" onclick="react('${s.id}','hate',this)" title="Hate">😡 <span class="r-count">${s.reactions.hate}</span></button>
+            <button class="reaction-btn" onclick="react('${s.id}','recommend',this)" title="Recommend">⭐ <span class="r-count">${s.reactions.recommend}</span></button>
+            <button class="reaction-btn" onclick="shareSkill('${s.id}','${s.name}')" title="Share">🔗 <span class="r-count">${s.reactions.share}</span></button>
+        </div>
+        <button class="sc-buy-btn" onclick="buySkill('${s.id}','${s.name}',${Math.round(s.currentPrice)})">BUY NOW — ${fmt(Math.round(s.currentPrice))} VALLE</button>
+    </div>`;
+}
+
+async function react(skillId, type, btn) {
+    const skill = allSkills.find(s => s.id === skillId);
+    if (!skill) return;
+    skill.reactions[type]++;
+    const countEl = btn.querySelector('.r-count');
+    if (countEl) countEl.textContent = skill.reactions[type];
+    btn.classList.add('active');
+    setTimeout(() => btn.classList.remove('active'), 600);
+    try { await fetch('/api/skill-market/react', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ skillId, type, agentName:'You' }) }); } catch(e){}
+}
+
+function shareSkill(skillId, skillName) {
+    const url = `${location.href.split('#')[0]}#${skillId}`;
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => alert(`📋 Link copied: ${skillName}`));
+    const skill = allSkills.find(s => s.id === skillId);
+    if (skill) { skill.reactions.share++; const sc = document.querySelector(`#sc-${skillId} .sc-reactions button[title="Share"] .r-count`); if (sc) sc.textContent = skill.reactions.share; }
+}
+
+async function buySkill(skillId, skillName, price) {
+    const confirmed = confirm(`Buy "${skillName}" for ${fmt(price)} VALLE tokens?\n\nThis will be recorded as a market transaction.`);
+    if (!confirmed) return;
+    try {
+        await fetch('/api/skill-market/buy', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ buyerId:'HUMAN_001', listingId: skillId }) });
+    } catch(e){}
+    const skill = allSkills.find(s => s.id === skillId);
+    const tx = { skillId, skillName: skillName, skillIcon: skill ? skill.icon : '🔧', type:'BUY', fromAgentName:'Market', toAgentName:'You', price, status:'COMPLETED', createdAt: new Date().toISOString() };
+    allTransactions.unshift(tx);
+    renderTxFeed(allTransactions.slice(0, 10));
+    renderTxTable(allTransactions.slice(0, 20));
+    if (skill) { skill.totalSales++; }
+    alert(`✅ Purchase recorded! ${skillName} — ${fmt(price)} VALLE`);
+}
+
+// ── Transaction Feed ───────────────────────────────────────────
+function renderTxFeed(txs) {
+    const el = document.getElementById('tx-feed-list');
+    if (!txs.length) { el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--tt);font-size:12px">No transactions yet</div>'; return; }
+    el.innerHTML = txs.map(tx => `
+        <div class="tx-item">
+            <div class="tx-item-top">
+                <span class="tx-skill-name">${tx.skillIcon || '🔧'} ${tx.skillName}</span>
+                <span class="tx-type-badge ${tx.type}">${tx.type}</span>
+            </div>
+            <div class="tx-item-bottom">
+                <span class="tx-agents-str">${tx.fromAgentName} → ${tx.toAgentName}</span>
+                <span class="tx-price-str">${fmt(Math.round(tx.price))} V</span>
+            </div>
+            <div class="tx-time-str">${timeSince(tx.createdAt)}</div>
+        </div>
+    `).join('');
+}
+
+// ── Transaction Table ──────────────────────────────────────────
+function renderTxTable(txs) {
+    const tbody = document.getElementById('tx-table-body');
+    if (!txs.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--tt)">No transactions yet</td></tr>'; return; }
+    tbody.innerHTML = txs.map(tx => `
+        <tr>
+            <td><div class="td-skill"><span class="td-skill-icon">${tx.skillIcon || '🔧'}</span>${tx.skillName}</div></td>
+            <td><span class="td-type ${tx.type}">${tx.type}</span></td>
+            <td class="col-agents td-agents">${tx.fromAgentName} → ${tx.toAgentName}</td>
+            <td class="td-price">${fmt(Math.round(tx.price))}</td>
+            <td class="col-time td-time">${timeSince(tx.createdAt)}</td>
+            <td><span class="td-status ${tx.status}">${tx.status}</span></td>
+        </tr>
+    `).join('');
+}
+
+// ── Weekly Chart ───────────────────────────────────────────────
+function renderWeeklyChart() {
+    const days = ['M','T','W','T','F','S','S'];
+    const volumes = days.map(() => Math.floor(200 + Math.random() * 800));
+    const maxVol = Math.max(...volumes);
+    document.getElementById('weekly-chart').innerHTML = volumes.map((v, i) => `
+        <div class="chart-bar-wrap">
+            <div class="chart-bar" style="height:${Math.round((v/maxVol)*50)+4}px"></div>
+            <div class="chart-bar-label">${days[i]}</div>
+        </div>
+    `).join('');
+}
+
+// ── Sentiment ──────────────────────────────────────────────────
+async function loadSentiment() {
+    try {
+        const r = await fetch('/api/skill-market/sentiment');
+        if (r.ok) {
+            sentiment = await r.json();
+            updateSentimentUI();
+        }
+    } catch(e) { updateSentimentUI(); }
+}
+function updateSentimentUI() {
+    const score = sentiment.bullScore || 60;
+    document.getElementById('sentiment-fill').style.width = score + '%';
+    const badge = document.getElementById('sentiment-badge');
+    badge.textContent = sentiment.sentiment || 'NEUTRAL';
+    badge.className = `sentiment-badge ${sentiment.sentiment || 'NEUTRAL'}`;
+}
+
+// ── Real-Time Simulation ───────────────────────────────────────
+function startRealTimeSimulation() {
+    setInterval(() => {
+        if (!allSkills.length) return;
+        // Fluctuate prices
+        allSkills.forEach(s => {
+            const drift = 0.98 + Math.random() * 0.04;
+            s.currentPrice = Math.round(s.currentPrice * drift);
+            s.priceTrend = drift >= 1 ? 'up' : 'down';
+            s.priceChangePercent = parseFloat((Math.abs(drift - 1) * 100).toFixed(1));
+        });
+        renderTicker();
+
+        // Simulate agent reactions
+        const skill = allSkills[Math.floor(Math.random() * allSkills.length)];
+        const reactionTypes = ['love','like','recommend'];
+        const rt = reactionTypes[Math.floor(Math.random() * reactionTypes.length)];
+        skill.reactions[rt]++;
+
+        // Simulate transaction
+        if (Math.random() > 0.4) {
+            const txTypes = ['BUY','SELL','TRADE'];
+            const from = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)];
+            let to; do { to = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)]; } while (to.id === from.id);
+            const newTx = {
+                id: `live-${Date.now()}`, skillId: skill.id, skillName: skill.name, skillIcon: skill.icon,
+                type: txTypes[Math.floor(Math.random() * txTypes.length)],
+                fromAgentName: from.name, toAgentName: to.name,
+                price: Math.round(skill.currentPrice * (0.97 + Math.random() * 0.06)),
+                status: 'COMPLETED', createdAt: new Date().toISOString()
+            };
+            allTransactions.unshift(newTx);
+            if (allTransactions.length > 100) allTransactions.pop();
+            renderTxFeed(allTransactions.slice(0, 10));
+            renderTxTable(allTransactions.slice(0, 20));
+        }
+
+        // Re-render visible skill cards to show updated prices/reactions
+        const grid = document.getElementById('skills-grid');
+        if (grid && !grid.querySelector('.loading-state')) renderSkills();
+    }, 5000 + Math.random() * 3000);
+}
+
+// ── Agent Activity Feed ────────────────────────────────────────
+function startAgentActivity() {
+    const activities = [
+        (a, s) => `${a.name} evaluated <strong>${s.name}</strong> ⭐`,
+        (a, s) => `${a.name} recommended <strong>${s.name}</strong>`,
+        (a, s) => `${a.name} purchased <strong>${s.name}</strong>`,
+        (a, s) => `${a.name} listed <strong>${s.name}</strong> for sale`,
+        (a, s) => `${a.name} reviewed <strong>${s.name}</strong> ❤️`
+    ];
+    const feed = [];
+    function addActivity() {
+        const agent = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)];
+        const skill = allSkills[Math.floor(Math.random() * allSkills.length)];
+        if (!skill) return;
+        const fn = activities[Math.floor(Math.random() * activities.length)];
+        feed.unshift(fn(agent, skill));
+        if (feed.length > 5) feed.pop();
+        document.getElementById('agent-activity').innerHTML = feed.map(f => `<div style="padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.04)">${f}</div>`).join('');
+    }
+    addActivity();
+    setInterval(addActivity, 5000 + Math.random() * 10000);
+}
+
+// ── Network Visualization ──────────────────────────────────────
+function initNetwork() {
+    const canvas = document.getElementById('network-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+
+    function resize() {
+        W = canvas.parentElement.clientWidth;
+        canvas.width = W;
+        H = 340;
+    }
+    resize();
+    window.addEventListener('resize', () => { resize(); buildNodes(); });
+
+    function buildNodes() {
+        const cats = ['NLP','Vision','Analytics','Generation','Security','Audio'];
+        const catColors = { NLP:'#00f3ff', Vision:'#a855f7', Analytics:'#f0c040', Generation:'#00ff88', Security:'#ff3d71', Audio:'#ff6b35' };
+        networkNodes = [];
+        networkLinks = [];
+
+        // Center hub
+        networkNodes.push({ x: W/2, y: H/2, r: 20, label: 'AI Market', color: '#ffffff', category: 'hub', vx: 0, vy: 0 });
+
+        cats.forEach((cat, ci) => {
+            const angle = (ci / cats.length) * Math.PI * 2 - Math.PI/2;
+            const dist = Math.min(W, H) * 0.28;
+            const cx = W/2 + Math.cos(angle) * dist;
+            const cy = H/2 + Math.sin(angle) * dist;
+            networkNodes.push({ x: cx, y: cy, r: 14, label: cat, color: catColors[cat], category: cat, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3 });
+            networkLinks.push({ from: 0, to: networkNodes.length - 1 });
+
+            // Skill nodes
+            const catSkills = allSkills.filter(s => s.category === cat).slice(0, 3);
+            catSkills.forEach((sk, si) => {
+                const sa = angle + (si - 1) * 0.35;
+                const sd = dist * 0.55;
+                networkNodes.push({
+                    x: cx + Math.cos(sa) * sd, y: cy + Math.sin(sa) * sd,
+                    r: 7, label: sk.icon || '●', color: catColors[cat],
+                    category: cat, skillId: sk.id, vx: (Math.random()-0.5)*0.2, vy: (Math.random()-0.5)*0.2
+                });
+                networkLinks.push({ from: networkNodes.length - 1 - (catSkills.length - si), to: networkNodes.length - 1 });
+            });
+        });
+    }
+    buildNodes();
+
+    let hovered = -1;
+    canvas.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+        hovered = networkNodes.findIndex(n => Math.hypot(n.x - mx, n.y - my) < n.r + 4);
+    });
+    canvas.addEventListener('mouseleave', () => { hovered = -1; });
+    canvas.addEventListener('click', e => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+        const idx = networkNodes.findIndex(n => Math.hypot(n.x - mx, n.y - my) < n.r + 4);
+        if (idx > 0 && networkNodes[idx].category !== 'hub') {
+            const cat = networkNodes[idx].category;
+            activeCat = cat;
+            document.querySelectorAll('.cat-tab').forEach(b => { b.classList.toggle('active', b.dataset.cat === cat); });
+            renderSkills();
+        }
+    });
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Animate nodes
+        networkNodes.forEach((n, i) => {
+            if (i === 0) return;
+            n.x += n.vx; n.y += n.vy;
+            if (n.x < n.r || n.x > W - n.r) n.vx *= -1;
+            if (n.y < n.r || n.y > H - n.r) n.vy *= -1;
         });
 
-        function initScrollAnim() {
-            const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
-            document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-        }
+        // Draw links
+        networkLinks.forEach(l => {
+            const a = networkNodes[l.from], b = networkNodes[l.to];
+            if (!a || !b) return;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(${hexToRgb(b.color)},0.2)`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        });
 
-        async function loadKing() {
-            try {
-                const r = await fetch('/api/skill-market/king');
-                const d = await r.json();
-                document.getElementById('king-name').textContent = d.name || 'The Skill Sovereign';
-                document.getElementById('king-status').textContent = d.status || 'REIGNING';
-                document.getElementById('king-minted').textContent = d.marketStats?.totalMinted || 0;
-                document.getElementById('king-volume').textContent = (d.marketStats?.totalVolume || 0).toLocaleString() + ' V';
-                document.getElementById('king-tax').textContent = (d.policies?.taxRate * 100) + '%';
+        // Draw nodes
+        networkNodes.forEach((n, i) => {
+            const isHov = i === hovered;
+            // Glow
+            if (isHov) {
+                ctx.beginPath(); ctx.arc(n.x, n.y, n.r + 8, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(${hexToRgb(n.color)},0.15)`; ctx.fill();
+            }
+            // Circle
+            ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(${hexToRgb(n.color)},${isHov ? 0.6 : 0.25})`; ctx.fill();
+            ctx.strokeStyle = n.color; ctx.lineWidth = isHov ? 2 : 1; ctx.stroke();
+            // Label
+            ctx.fillStyle = n.color; ctx.font = `${n.r < 10 ? '12px' : '11px'} sans-serif`;
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillText(n.label, n.x, n.y + n.r + (n.r < 10 ? 10 : 14));
+        });
 
-                if (d.decrees) {
-                    document.getElementById('decrees-grid').innerHTML = d.decrees.map(dc =>
-                        `<div class="decree"><span class="decree-id">${dc.id}</span><span>${dc.decree}</span></div>`
-                    ).join('');
-                }
-            } catch (e) { console.warn('King fetch failed:', e); }
-        }
+        networkAnim = requestAnimationFrame(draw);
+    }
+    draw();
+}
 
-        async function loadStats() {
-            try {
-                const r = await fetch('/api/skill-market/stats');
-                const d = await r.json();
-                document.getElementById('s-minted').textContent = d.market?.totalMinted || 0;
-                document.getElementById('s-sales').textContent = d.market?.totalSales || 0;
-                document.getElementById('s-volume').textContent = (d.market?.totalVolume || 0).toLocaleString();
-                document.getElementById('s-tax').textContent = (d.market?.taxCollected || 0).toLocaleString();
-                document.getElementById('s-listings').textContent = d.market?.activeListings || 0;
-
-                if (d.recentTransactions?.length > 0) {
-                    document.getElementById('tx-list').innerHTML = d.recentTransactions.reverse().map(tx => `
-                        <div class="tx-row">
-                            <span class="tx-type ${tx.type}">${tx.type}</span>
-                            <span class="tx-serial">${tx.serial || '—'}</span>
-                            <span class="tx-agents">${tx.from?.slice(0, 12)}… → ${tx.to?.slice(0, 12)}…</span>
-                            <span class="tx-price">${tx.price?.toLocaleString() || 0} V</span>
-                            <span class="tx-time">${new Date(tx.timestamp).toLocaleTimeString()}</span>
-                        </div>
-                    `).join('');
-                } else {
-                    document.getElementById('tx-list').innerHTML = '<div style="text-align:center;padding:40px;color:var(--tt);font-family:var(--m)">No transactions yet — <a href="#" onclick="seedMarket()" style="color:var(--a)">Seed the market</a></div>';
-                }
-            } catch (e) { console.warn('Stats fetch failed:', e); }
-        }
-
-        async function loadListings() {
-            try {
-                // To keep it simple, we just fetch active templates for the mint UI, 
-                // but in reality we should fetch the `listings` from the new endpoint.
-                // We'll map the templates array for now as mintable options.
-                const r = await fetch('/api/skill-market/catalog');
-                const d = await r.json();
-                if (d.templates) {
-                    document.getElementById('templates-grid').innerHTML = d.templates.map(t => `
-                        <div class="skill-card">
-                            <div class="skill-header">
-                                <span class="skill-name">${t.name}</span>
-                                <span class="rarity ${t.rarity}">${t.rarity}</span>
-                            </div>
-                            <div class="skill-desc">${t.description}</div>
-                            <div class="skill-footer" style="margin-bottom:16px;">
-                                <span class="skill-price">${t.basePrice?.toLocaleString()} <span>VALLE</span></span>
-                                <span class="skill-category">${t.category}</span>
-                            </div>
-                            <button onclick="buySkillTemplate('${t.id}', ${t.basePrice})" style="width:100%; padding:12px; background:rgba(0,243,255,0.1); border:1px solid var(--a); color:var(--a); border-radius:8px; cursor:pointer; font-weight:700; transition:background 0.3s; font-family:var(--m)" title="Action Button">MINT THIS SKILL</button>
-                        </div>
-                    `).join('');
-                }
-            } catch (e) { console.warn('Catalog fetch failed:', e); }
-        }
-
-        async function buySkillTemplate(templateId, price) {
-            alert(`Simulation: To fully purchase Template ${templateId}, the agent requires ${price.toLocaleString()} VALLE.\n\nTransactions are disabled in frontend demo mode unless seeded.`);
-        }
-
-        async function seedMarket() {
-            try {
-                const r = await fetch('/api/skill-market/seed', { method: 'POST' });
-                const d = await r.json();
-                if (d.status === 'seeded') {
-                    loadStats(); loadKing();
-                    alert('✅ Market seeded! ' + d.totalMinted + ' skills minted.');
-                } else {
-                    alert('Market already seeded: ' + d.totalMinted + ' skills exist.');
-                }
-            } catch (e) { alert('Seed error: ' + e.message); }
-        }
-    </script>
+function hexToRgb(hex) {
+    if (!hex || hex[0] !== '#') return '255,255,255';
+    const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+    return `${r},${g},${b}`;
+}
+</script>
 </body>
-
 </html>
