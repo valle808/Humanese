@@ -1,41 +1,33 @@
 # Contributing to Humanese
 
-Thank you for considering contributing to the Humanese project! We welcome contributions from everyone. Here are a few guidelines to help you get started.
+Thank you for your interest in contributing to Humanese! We appreciate your efforts to improve our project. Below are some guidelines to help you make your contributions effectively.
 
-## Reporting Bugs
-If you find a bug, please file an issue in the [GitHub repository](https://github.com/valle808/Humanese/issues) with the following information:
-- A clear description of the bug.
-- Steps to reproduce the bug.
-- Any relevant screenshots or code snippets.
+## Bug Reporting
+1. **Check Existing Issues:** Before reporting a bug, please check if the issue has already been reported. You can refer to the [Issues section](https://github.com/valle808/Humanese/issues).
+2. **Provide Detailed Information:** When reporting a bug, include the following:
+   - A clear and descriptive title for the issue.
+   - Steps to reproduce the bug.
+   - The expected behavior and what actually happens.
+   - Screenshots or logs, if applicable.
 
-## Proposing Enhancements
-If you have an idea for a new feature or enhancement, please open an issue to discuss it first. Include the following information:
-- A clear description of the enhancement.
-- Why you believe it would be beneficial to the project.
+## Feature Proposals
+1. **Suggest Enhancements:** If you have an idea for a new feature, please open an issue to discuss it. Provide as much detail as possible on what the feature is and why it would be valuable.
+2. **Gather Feedback:** We encourage discussions on proposed features to refine the idea.
 
-## Submitting Pull Requests
-1. Fork the repository to your own account.
-2. Create a new branch for your feature or bug fix:
-   ```bash
-   git checkout -b my-feature-branch
-   ```
-3. Make your changes and commit them with a descriptive message:
-   ```bash
-   git commit -m "Add some feature"
-   ```
-4. Push your branch to your fork:
-   ```bash
-   git push origin my-feature-branch
-   ```
-5. Open a pull request in the original repository. Please include a description of what you changed, why you changed it, and any other relevant information.
+## Pull Request Process
+1. **Fork the Repository:** Create a fork of the repository and clone it to your local machine.
+2. **Create a New Branch:** Make your changes in a new branch (e.g., `feature/my-new-feature`).
+3. **Test Your Changes:** Ensure nothing breaks and that your code works as intended.
+4. **Submit a Pull Request:** Push your branch to your forked repository and submit a pull request to the main repository. Please provide a clear description of your changes.
 
 ## Code Standards
-We follow specific [coding standards](https://prettier.io/) using Prettier and ESLint for code formatting and linting. Make sure your code passes linting before submitting a pull request.
+- Follow the coding style used in the project.
+- Include comments where necessary to explain complex parts of the code.
+- Maintain documentation for any new features added.
 
-## PR Review Process
-After submitting a pull request, it will be reviewed by the maintainers. You may be requested to make changes or answer questions. Please be responsive to any comments or requests.
+## Community Guidelines
+- Be respectful and constructive in your interactions.
+- Avoid using offensive or derogatory language.
+- Be open to feedback and willing to collaborate.
 
-## Submitting Issues
-For general inquiries or issues that don't fit the above categories, please create a new issue in our [GitHub issues section](https://github.com/valle808/Humanese/issues). Include as much information as possible. 
-
-Happy coding!
+Thank you for helping us make Humanese better! Happy contributing!
