@@ -108,7 +108,7 @@ const generateTemplate = (page) => `<!DOCTYPE html>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Humanese – ${page.title}</title>
-    <link rel="icon" href="../assets/images/mascot-icon-new.png" type="image/png" />
+    <link rel="icon" href="../assets/images/humanese-favicon-v2.png" type="image/png" />
     <style>
         body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #050505; color: #fff; }
         .nav-header { position: fixed; top: 0; left: 0; right: 0; height: 70px; background: rgba(5,5,5,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid #333; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 1000; }
