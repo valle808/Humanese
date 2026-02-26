@@ -1,3 +1,12 @@
 config.js
 /ts/generated/prisma
 node_modules
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Warden logs (avoid repo bloat; reports/ is intentionally kept)
+logs/

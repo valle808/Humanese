@@ -1,0 +1,75 @@
+name: Humanese Warden Cycle
+
+on:
+  schedule:
+    - cron: "0 */10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  warden:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install playwright
+          # openai is an optional placeholder; uncomment when AI reporting is enabled
+          # pip install openai
+
+      - name: Install Playwright browser
+        run: playwright install --with-deps chromium
+
+      - name: Run Warden script
+        env:
+          TARGET_URL: ${{ secrets.TARGET_URL }}
+        run: python3 scripts/warden_logic.py
+
+      - name: Commit and push reports (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(warden): automated scan report [skip ci]"
+            git push
+          fi
+
+  deploy:
+    needs: warden
+    runs-on: ubuntu-latest
+    if: >
+      vars.DEPLOY_ENABLED == 'true' &&
+      secrets.SERVER_HOST != '' &&
+      secrets.SERVER_USER != '' &&
+      secrets.SERVER_SSH_KEY != ''
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          ssh "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}" \
+            "cd /opt/humanese && git pull && echo 'Deploy complete.'"
