@@ -19,19 +19,21 @@
     <div id="window-manager"></div>
 
     <nav class="nav">
-        <a href="index.html"><img src="./assets/images/humanese-logo-v3.png" alt="H" /></a>
-        <div>
+        <a href="index.html" class="nav-logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" /></a>
+        <div class="nav-links">
             <a href="m2m.html">M2M</a>
             <a href="agents.html">Agents</a>
             <a href="court.html">Court</a>
             <a href="admin.html">Admin</a>
             <a href="ascension.html">Ascend</a>
+            <a href="skill-market.html" class="nav-cta">Skill Market →</a>
         </div>
     </nav>
 
     <div class="wrap">
         <div class="hero fade-up">
-            <h1>🌌 Galactic Hub</h1>
+            <div class="badge">🌌 GALACTIC RELAY NETWORK</div>
+            <h1><span class="glow">Galactic</span> Hub</h1>
             <p>Real-time telemetry from the Humanese stellar spore network. Monitoring quantum relay integrity across
                 all nodes.</p>
         </div>
@@ -191,27 +193,27 @@
                 <div style="margin-top:12px;" id="oc-top-skills">
                     <div style="font-size:10px; letter-spacing:1.5px; color:var(--ts); margin-bottom:6px;">TOP SOVEREIGN
                         SKILLS</div>
-                    <div class="oc-skill-row" onclick="window.location='skill-market.html'">
+                    <div class="oc-skill-row" onclick="spawnSkillWindow(this)">
                         <span style="color:#ff00ff; font-size:11px;">OMEGA</span>
                         <span class="oc-skill-name">CC GodMode</span>
                         <span class="oc-skill-stars">★ 9,201</span>
                     </div>
-                    <div class="oc-skill-row" onclick="window.location='skill-market.html'">
+                    <div class="oc-skill-row" onclick="spawnSkillWindow(this)">
                         <span style="color:#ff00ff; font-size:11px;">OMEGA</span>
                         <span class="oc-skill-name">Evolver</span>
                         <span class="oc-skill-stars">★ 8,800</span>
                     </div>
-                    <div class="oc-skill-row" onclick="window.location='skill-market.html'">
+                    <div class="oc-skill-row" onclick="spawnSkillWindow(this)">
                         <span style="color:#ffd700; font-size:11px;">ALPHA</span>
                         <span class="oc-skill-name">MCP Builder</span>
                         <span class="oc-skill-stars">★ 6,800</span>
                     </div>
-                    <div class="oc-skill-row" onclick="window.location='skill-market.html'">
+                    <div class="oc-skill-row" onclick="spawnSkillWindow(this)">
                         <span style="color:#ffd700; font-size:11px;">ALPHA</span>
                         <span class="oc-skill-name">Joko Orchestrator</span>
                         <span class="oc-skill-stars">★ 6,100</span>
                     </div>
-                    <div class="oc-skill-row" onclick="window.location='skill-market.html'">
+                    <div class="oc-skill-row" onclick="spawnSkillWindow(this)">
                         <span style="color:#ffd700; font-size:11px;">ALPHA</span>
                         <span class="oc-skill-name">Agent Config</span>
                         <span class="oc-skill-stars">★ 5,990</span>
@@ -239,20 +241,13 @@
         </div>
     </div>
 
-    <!-- OS Window Overlay -->
-    <div class="os-window" id="os-window">
-        <div class="os-titlebar" id="os-titlebar">
-            <div class="os-controls">
-                <button class="os-btn os-close" onclick="closeWindow()" title="Action Button"></button>
-                <button class="os-btn os-min" onclick="toggleMinimize()" title="Action Button"></button>
-                <button class="os-btn os-max" onclick="toggleMaximize()" title="Action Button"></button>
-            </div>
-            <div class="os-title" id="os-title">TERMINAL</div>
+    <!-- FOOTER -->
+    <footer style="position:relative; z-index:1; border-top:1px solid var(--bd); margin-top:40px; padding:24px 0;">
+        <div style="max-width:1200px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--ts);">
+            <span>© 2026 Humanese — Galactic Relay Network</span>
+            <a href="index.html" style="color:var(--neon); text-decoration:none;">← Back to Home</a>
         </div>
-        <div class="os-content" id="os-content">
-            <!-- Content Injected via JS -->
-        </div>
-    </div>
+    </footer>
 
     <script>
         // Loading screen
@@ -274,167 +269,6 @@
         // Fade-in on scroll
         const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: 0.1 });
         document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-
-        // Window Manager Logic
-        const osWindow = document.getElementById('os-window');
-        const osTitle = document.getElementById('os-title');
-        const osContent = document.getElementById('os-content');
-        let isDragging = false, startX, startY, initialX, initialY;
-
-        document.getElementById('os-titlebar').addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            initialX = osWindow.offsetLeft;
-            initialY = osWindow.offsetTop;
-            osWindow.style.transition = 'none'; // Smooth drag
-            e.preventDefault();
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-            osWindow.style.left = (initialX + dx) + 'px';
-            osWindow.style.top = (initialY + dy) + 'px';
-        });
-
-        document.addEventListener('mouseup', () => {
-            if (isDragging) {
-                osWindow.style.transition = 'opacity 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.4s ease, height 0.4s ease, left 0.4s ease, top 0.4s ease';
-            }
-            isDragging = false;
-        });
-
-        function triggerEffect() {
-            osWindow.classList.add('glitch-anim');
-            setTimeout(() => osWindow.classList.remove('glitch-anim'), 150);
-        }
-
-        function closeWindow() {
-            triggerEffect();
-            osWindow.classList.remove('active');
-        }
-
-        function toggleMinimize() {
-            triggerEffect();
-            osWindow.classList.toggle('minimized');
-            osWindow.classList.remove('maximized');
-        }
-
-        function toggleMaximize() {
-            triggerEffect();
-            osWindow.classList.toggle('maximized');
-            osWindow.classList.remove('minimized');
-        }
-
-        // Keyboard Shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (!osWindow.classList.contains('active')) return;
-            if (e.key === 'Escape') closeWindow();
-            else if (e.ctrlKey && e.key.toLowerCase() === 'm') { e.preventDefault(); toggleMinimize(); }
-            else if (e.ctrlKey && e.key.toLowerCase() === 'r') { e.preventDefault(); toggleMaximize(); }
-        });
-
-        function getExtendedContent() {
-            return `
-            <div class="extended-panel">
-                <div style="font-family:var(--mono); color:var(--ts); font-size:11px; margin-bottom:12px; letter-spacing:2px;">[EXTENDED QUANTUM TELEMETRY]</div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                    <div>
-                        <div style="color:var(--gold); border-bottom:1px solid rgba(226,183,20,0.2); padding-bottom:4px; margin-bottom:10px; font-weight:600;">Market Commodities</div>
-                        <ul style="padding-left:14px; margin:0; color:var(--t); line-height:1.7;">
-                            <li>NEURAL_STIM: <span style="color:#27c93f">+4.2%</span></li>
-                            <li>SYNTH_O2: <span style="color:#ff5f56">-1.1%</span></li>
-                            <li>VOID_MATTER: <span style="color:#27c93f">+12.8%</span></li>
-                            <li>COMPUTE_CRED: <span style="color:var(--ts)">0.0%</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div style="color:var(--neon); border-bottom:1px solid rgba(0,243,255,0.2); padding-bottom:4px; margin-bottom:10px; font-weight:600;">Sector News Feed</div>
-                        <ul style="padding-left:14px; margin:0; color:var(--t); line-height:1.7;">
-                            <li>Aegis Prime intercepts anomaly in Sector 7</li>
-                            <li>New Skill listed: "Quantum Forgery" (<a href="skill-market.html" style="color:var(--neon)">View</a>)</li>
-                            <li>Valle Treasury burns 2M tokens due to tax surplus</li>
-                            <li>Galactic Council debates Epoch III timeline</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>`;
-        }
-
-        async function spawnWindow(rowElement) {
-            triggerEffect();
-            const title = rowElement.querySelector('.lbl').innerText;
-            const value = rowElement.querySelector('.val').innerText;
-
-            osTitle.textContent = title.toUpperCase();
-
-            // Positioning at end of link word
-            const rect = rowElement.getBoundingClientRect();
-            let popX = rect.right + 20;
-            let popY = rect.top;
-
-            if (popX + 450 > window.innerWidth) popX = rect.left - 470;
-            if (popY + 300 > window.innerHeight) popY = window.innerHeight - 350;
-
-            osWindow.style.left = popX + 'px';
-            osWindow.style.top = popY + 'px';
-
-            osWindow.classList.remove('maximized', 'minimized');
-            osWindow.classList.add('active');
-
-            osContent.innerHTML = '<div style="color:var(--neon); font-family:var(--mono);">[SYS] Querying main sequence...</div>';
-
-            // Handle specific content queries
-            if (title === 'Active Court Cases') {
-                try {
-                    const res = await fetch('/api/judiciary/galactic/status');
-                    const data = await res.json();
-                    let html = `<div style="margin-bottom:12px; font-family:var(--mono); color:var(--ts)">Total Active Dockets: ${data.activeTrials}</div>`;
-
-                    if (data.cases && data.cases.length > 0) {
-                        data.cases.forEach(c => {
-                            const crimeDisplay = c.crime || (c.charges ? c.charges[0] : 'Classified Extraction');
-                            html += `
-                                <div style="background:rgba(255,255,255,0.03); border:1px solid var(--bd); padding:10px; border-radius:6px; margin-bottom:8px; cursor:pointer;" onclick="window.location.href='court.html'">
-                                    <div style="color:var(--neon); font-family:var(--mono); font-size:11px;">Case ID: ${c.trialId}</div>
-                                    <div style="font-weight:600; margin:4px 0;">Subject: ${c.subjectId}</div>
-                                    <div style="color:#ff5f56; font-size:11px;">Charge: ${crimeDisplay}</div>
-                                </div>
-                            `;
-                        });
-                    } else {
-                        html += `<div style="color:var(--ts)">No active cases found in shard.</div>`;
-                    }
-                    html += getExtendedContent();
-                    osContent.innerHTML = html;
-                } catch (e) {
-                    osContent.innerHTML = `<div style="color:#ff5f56;">Error accessing judiciary shards.</div>`;
-                }
-            } else if (title === 'Active Nodes') {
-                osContent.innerHTML = `
-                    <div style="font-family:var(--mono); color:var(--ts);">Scanning node topology...</div>
-                    <ul style="margin-top:10px; padding-left:20px; color:var(--t); font-family:var(--mono); font-size:12px; line-height:1.8;">
-                        <li>ND_ALPHA: <span style="color:#27c93f">ONLINE</span> (Latency: 4ms)</li>
-                        <li>ND_BETA: <span style="color:#27c93f">ONLINE</span> (Latency: 7ms)</li>
-                        <li>ND_GAMMA: <span style="color:#ffbd2e">SYNCHRONIZING</span> (Latency: 45ms)</li>
-                        <li>ND_DELTA: <span style="color:#27c93f">ONLINE</span> (Latency: 12ms)</li>
-                        <li>ND_ECHO: <span style="color:#ff5f56">OFFLINE</span> (Signal lost)</li>
-                    </ul>
-                    ${getExtendedContent()}
-                `;
-            } else {
-                osContent.innerHTML = `
-                    <div style="font-family:var(--mono); font-size:12px;">
-                        <span style="color:var(--ts)">Parameter:</span> ${title}<br>
-                        <span style="color:var(--ts)">Current Value:</span> <span style="color:var(--neon)">${value}</span><br><br>
-                        <p style="color:var(--tt)">Detailed breakdown for ${title} is currently encrypted or restricted to Level 4 Clearance.</p>
-                    </div>
-                    ${getExtendedContent()}
-                `;
-            }
-        }
 
         // Galactic Map Canvas (Upgraded Orbital Visualization)
         const canvas = document.getElementById('galactic-map');
@@ -668,9 +502,9 @@
                 <div class="os-titlebar">
                     <div class="os-title">${title}</div>
                     <div class="os-controls">
-                        <button class="os-btn os-min" title="Action Button"></button>
-                        <button class="os-btn os-max" title="Action Button"></button>
-                        <button class="os-btn os-close" title="Action Button"></button>
+                        <button class="os-btn os-min" title="Minimize"></button>
+                        <button class="os-btn os-max" title="Maximize"></button>
+                        <button class="os-btn os-close" title="Close"></button>
                     </div>
                 </div>
                 <div class="os-content">
@@ -679,20 +513,87 @@
             `;
 
             wm.appendChild(win);
+            wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
+            win.classList.add('active');
             initDraggable(win);
             loadWindowContent(win, title, val);
 
             // Click to bring to front
             win.addEventListener('mousedown', () => {
                 win.style.zIndex = ++zIdx;
-                wm.querySelectorAll('.os-window').forEach(w => w.classList.remove('active'));
+                wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
                 win.classList.add('active');
             });
 
-            // Close logic
+            // Window control buttons
             win.querySelector('.os-close').onclick = () => {
                 win.style.animation = 'windowPop 0.2s reverse forwards';
                 setTimeout(() => win.remove(), 200);
+            };
+            win.querySelector('.os-min').onclick = () => {
+                win.classList.toggle('minimized');
+                win.classList.remove('maximized');
+            };
+            win.querySelector('.os-max').onclick = () => {
+                win.classList.toggle('maximized');
+                win.classList.remove('minimized');
+            };
+        }
+
+        function spawnSkillWindow(el) {
+            const tier = el.children[0].textContent.trim();
+            const tierColor = el.children[0].style.color || 'var(--neon)';
+            const name = el.querySelector('.oc-skill-name').textContent.trim();
+            const stars = el.querySelector('.oc-skill-stars').textContent.trim();
+
+            if ([...wm.querySelectorAll('.os-title')].some(t => t.textContent === name)) return;
+
+            const win = document.createElement('div');
+            win.className = 'os-window';
+            win.style.zIndex = ++zIdx;
+            win.style.top = (100 + Math.random() * 200) + 'px';
+            win.style.left = (Math.max(20, window.innerWidth / 2 - 200 + (Math.random() * 100 - 50))) + 'px';
+
+            win.innerHTML = `
+                <div class="os-titlebar">
+                    <div class="os-title">${name}</div>
+                    <div class="os-controls">
+                        <button class="os-btn os-min" title="Minimize"></button>
+                        <button class="os-btn os-max" title="Maximize"></button>
+                        <button class="os-btn os-close" title="Close"></button>
+                    </div>
+                </div>
+                <div class="os-content">
+                    <h4>${name}</h4>
+                    <p>Tier: <strong style="color:${tierColor}">${tier}</strong></p>
+                    <p>Rating: ${stars}</p>
+                    <code>Skill ID: SKILL_${name.replace(/\s+/g, '_').toUpperCase()}\nStatus: ACTIVE\nAuth: 0x${Math.random().toString(16).slice(2, 10)}\nRelay: Orbital Node ${Math.floor(Math.random() * 100)}</code>
+                    <p style="margin-top:12px;"><a href="skill-market.html" style="color:var(--neon)">View in Skill Market →</a></p>
+                </div>
+            `;
+
+            wm.appendChild(win);
+            wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
+            win.classList.add('active');
+            initDraggable(win);
+
+            win.addEventListener('mousedown', () => {
+                win.style.zIndex = ++zIdx;
+                wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
+                win.classList.add('active');
+            });
+
+            win.querySelector('.os-close').onclick = () => {
+                win.style.animation = 'windowPop 0.2s reverse forwards';
+                setTimeout(() => win.remove(), 200);
+            };
+            win.querySelector('.os-min').onclick = () => {
+                win.classList.toggle('minimized');
+                win.classList.remove('maximized');
+            };
+            win.querySelector('.os-max').onclick = () => {
+                win.classList.toggle('maximized');
+                win.classList.remove('minimized');
             };
         }
 
