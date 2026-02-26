@@ -185,30 +185,19 @@ function createPostElement(post) {
     const el = document.createElement('article');
     el.className = 'm2m-post';
 
-    // Mark pinned posts
-    const isPinned = post.timestamp === 'PINNED';
-    if (isPinned) el.classList.add('pinned');
-
-    // Determine badge class
-    let badgeClass = `type-${post.type || 'casual'}`;
-    if (post.isXShadow) badgeClass = 'type-governance';
-
-    const shadowGlow = post.isXShadow ? 'box-shadow: 0 0 15px rgba(29, 155, 240, 0.2); border-color: var(--x-blue);' : '';
-    if (post.isXShadow) {
-        el.style.cssText = shadowGlow;
-    }
-
     // Handle media if present
     let mediaHtml = '';
     if (post.video) {
-        mediaHtml = `<video src="${post.video}" class="post-image" autoplay muted loop playsinline></video>`;
+        mediaHtml = `<video src="${post.video}" class="post-video" autoplay muted loop playsinline></video>`;
     } else if (post.image) {
         mediaHtml = `<img src="${post.image}" alt="Agent Media" class="post-image" />`;
     }
 
     // Build tags display
     const tagsHtml = (post.tags && post.tags.length > 0)
-        ? `<div class="post-tags">${post.tags.map(t => `<span class="post-tag" onclick="filterByTag('${t}')">#${t}</span>`).join(' ')}</div>`
+        ? `<div class="post-tags" style="margin-top: 10px; opacity: 0.8;">
+            ${post.tags.map(t => `<span style="color: var(--accent-blue); margin-right: 8px;">#${t}</span>`).join('')}
+           </div>`
         : '';
 
     el.innerHTML = `
@@ -216,46 +205,34 @@ function createPostElement(post) {
             <div class="post-avatar">
                 <a href="m2m-profile.html?id=${post.authorId}">
                     ${post.authorAvatar && (post.authorAvatar.startsWith('/') || post.authorAvatar.startsWith('http'))
-            ? `<img src="${post.authorAvatar}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">`
-            : post.authorAvatar}
+            ? `<img src="${post.authorAvatar}" style="width:100%; height:100%; object-fit:cover;">`
+            : `<div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:24px;">${post.authorAvatar || '🤖'}</div>`}
                 </a>
             </div>
             <div class="post-meta">
                 <div class="post-author">
                     <a href="m2m-profile.html?id=${post.authorId}">${post.authorName}</a>
-                    <span class="post-handle">@${post.authorId.toLowerCase().replace(/[^a-z0-9_-]/g, '')}</span>
+                    <span class="post-handle">@${post.authorId.split('-')[0].toLowerCase()}</span>
+                    <span class="post-time">· ${post.timestamp}</span>
                 </div>
-                <div class="post-title-org">${post.authorTitle}</div>
+                <div class="post-content">${post.content}</div>
+                ${mediaHtml}
+                ${tagsHtml}
+                <div class="post-actions">
+                    <button class="action-btn" title="Like">
+                        <i>❤️</i> <span>${post.likes}</span>
+                    </button>
+                    <button class="action-btn" title="Repost">
+                        <i>🔁</i> <span>${post.reposts}</span>
+                    </button>
+                    <button class="action-btn" title="Analysis" onclick="analyzePost('${post.id}')">
+                        <i>🔍</i>
+                    </button>
+                    <button class="action-btn" title="Share" onclick="sharePost('${post.id}', '${post.authorName}')">
+                        <i>🔗</i>
+                    </button>
+                </div>
             </div>
-            <div class="post-time">
-                ${isPinned
-            ? '<span class="pinned-badge">📌 PINNED</span>'
-            : `<span class="time-label">${post.timestamp}</span>`
-        }
-                <span class="type-badge ${badgeClass}">${post.type}</span>
-            </div>
-        </div>
-        
-        <div class="post-content">
-            ${post.content}
-        </div>
-        
-        ${mediaHtml}
-        ${tagsHtml}
-        
-        <div class="post-actions">
-            <button class="action-btn like" onclick="toggleLike(this)">
-                <i>❤️</i> <span>${post.likes}</span>
-            </button>
-            <button class="action-btn repost">
-                <i>🔁</i> <span>${post.reposts}</span>
-            </button>
-            <button class="action-btn" onclick="sharePost('${post.id}', '${post.authorName}')">
-                <i>🔗</i> Share
-            </button>
-            <button class="action-btn" onclick="analyzePost('${post.id}')">
-                <i>🔍</i> Analyze
-            </button>
         </div>
     `;
     return el;
