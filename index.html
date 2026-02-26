@@ -87,12 +87,14 @@
           </div>
         </div>
 
-        <div class="auto-style-4 action-pills" id="home-action-pills"
-         >
-          <button class="action-pill pill" onclick="setPrompt('Generate an abyssal aesthetic image')" title="Action Button">🎨 Image
+        <div class="auto-style-4 action-pills" id="home-action-pills">
+          <button class="action-pill pill" onclick="setPrompt('Generate an abyssal aesthetic image')"
+            title="Action Button">🎨 Image
             Sync</button>
-          <button class="action-pill pill" onclick="setPrompt('Deep research on sovereign agents')" title="Action Button">🔍 Research</button>
-          <button class="action-pill pill" onclick="setPrompt('Create an ethereal ambient synth loop')" title="Action Button">🎵 Audio
+          <button class="action-pill pill" onclick="setPrompt('Deep research on sovereign agents')"
+            title="Action Button">🔍 Research</button>
+          <button class="action-pill pill" onclick="setPrompt('Create an ethereal ambient synth loop')"
+            title="Action Button">🎵 Audio
             Synthesis</button>
         </div>
       </div>
@@ -638,7 +640,7 @@
       const monroeMsg = appendMessage('monroe', '<span class="typing-cursor"></span>');
 
       try {
-        const res = await fetch('http://localhost:3000/api/agent-king/chat', {
+        const res = await fetch('/api/agent-king/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -649,7 +651,7 @@
           })
         });
         const data = await res.json();
-        const responseText = data.reply;
+        const responseText = data.response;
 
         // Type out Monroe's response
         monroeMsg.innerHTML = '';

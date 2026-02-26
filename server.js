@@ -347,7 +347,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
         const { askMonroeViaGrok } = await import('./agents/agent-king-grok.js');
         const result = await askMonroeViaGrok(message, history);
         res.json({
-            reply: result.reply,
+            response: result.reply,
             citations: result.citations,
             swarmStats: result.swarmStats,
             model: process.env.GROK_MODEL || 'grok-4-latest',
@@ -2019,3 +2019,15 @@ initAdmin().then(async () => {
         console.log('⚡ Agent King GROK: ONLINE (xAI Grok-4-latest connected)');
     });
 });
+// ═══ PROCESS ERROR HANDLERS ════════════════════════════════════════════
+process.on('uncaughtException', (err) => {
+    console.error('[CRITICAL] Uncaught Exception:', err);
+    // In a production environment with something like PM2 or nodemon, 
+    // it's best to exit and let the manager restart.
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('[CRITICAL] Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+console.log('Abyssal Protocol Initialized. System Monitoring active.');

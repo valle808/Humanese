@@ -6,8 +6,11 @@ const serviceAccountJson = fs.readFileSync(serviceAccountPath, 'utf8');
 const base64ServiceAccount = Buffer.from(serviceAccountJson).toString('base64');
 
 let envContent = fs.readFileSync('.env', 'utf8');
+// Clean up the bad entry if it exists
+envContent = envContent.replace(/FIREBASE_SERVICE_ACCOUNT_BASE64=".+"/, '');
+
 envContent += `\n# --- Firebase Admin ---
-FIREBASE_SERVICE_ACCOUNT_BASE64="\${base64ServiceAccount}"
+FIREBASE_SERVICE_ACCOUNT_BASE64="${base64ServiceAccount}"
 FIREBASE_DATABASE_URL="https://humanese-db-default-rtdb.firebaseio.com"
 `;
 

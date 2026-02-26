@@ -25,7 +25,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ── Configuration ─────────────────────────────────────────────────────────────
-const XAI_API_KEY = process.env.XAI_API_KEY || 'your-xai-api-key-here';
+const XAI_API_KEY = process.env.XAI_API_KEY || 'xai_placeholder_key_replace_me';
 const XAI_BASE_URL = 'https://api.x.ai/v1';
 const MODEL = 'grok-4-latest';
 const KNOWLEDGE_DB = path.resolve('./agents/data/monroe-knowledge.json');
