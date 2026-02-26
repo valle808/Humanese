@@ -1,3 +1,13 @@
 config.js
 /ts/generated/prisma
 node_modules
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Warden runtime artifacts (logs & screenshots are committed via the workflow;
+# exclude only transient/local noise)
+logs/
+*.log
