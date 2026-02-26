@@ -483,6 +483,11 @@
         const wm = document.getElementById('window-manager');
         let zIdx = 1100;
 
+        function setActiveWindow(win) {
+            wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
+            win.classList.add('active');
+        }
+
         function spawnWindow(el) {
             const title = el.querySelector('.lbl').textContent;
             const val = el.querySelector('.val').textContent;
@@ -513,16 +518,14 @@
             `;
 
             wm.appendChild(win);
-            wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
-            win.classList.add('active');
+            setActiveWindow(win);
             initDraggable(win);
             loadWindowContent(win, title, val);
 
             // Click to bring to front
             win.addEventListener('mousedown', () => {
                 win.style.zIndex = ++zIdx;
-                wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
-                win.classList.add('active');
+                setActiveWindow(win);
             });
 
             // Window control buttons
@@ -573,14 +576,12 @@
             `;
 
             wm.appendChild(win);
-            wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
-            win.classList.add('active');
+            setActiveWindow(win);
             initDraggable(win);
 
             win.addEventListener('mousedown', () => {
                 win.style.zIndex = ++zIdx;
-                wm.querySelectorAll('.os-window.active').forEach(w => w.classList.remove('active'));
-                win.classList.add('active');
+                setActiveWindow(win);
             });
 
             win.querySelector('.os-close').onclick = () => {
