@@ -123,13 +123,8 @@ export async function callGrok({ messages, systemPrompt = null, searchEnabled = 
     };
 
     // Enable Grok's real-time search for Grokipedia ingestion
-    if (searchEnabled) {
-        body.search_parameters = {
-            max_search_results: 5,
-            include_citations: true,
-            return_citations: true
-        };
-    }
+    // Note: search_parameters is deprecated and causing 410 errors. 
+    // We'll rely on Grok's internal search for now.
 
     // Dynamically fetch XAI_API_KEY from the sovereign vault
     if (!cachedXAIKey) {
