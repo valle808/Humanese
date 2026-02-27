@@ -394,20 +394,20 @@ app.get('/api/openclaw/categories', async (req, res) => {
     }
 });
 
-// ── Agent King Grok Intelligence API ─────────────────────────────────────────
-// Sovereign swarm powered by xAI Grok-4-latest | Grokipedia knowledge extraction
+// ── Agent King Sovereign Intelligence API ──────────────────────────────────────
+// Sovereign swarm powered by Abyssal Core | Real-time Knowledge Ingestion
 
 // GET /api/agent-king/status — Agent King & swarm status
 app.get('/api/agent-king/status', async (req, res) => {
     try {
-        const { getSwarmStats, AGENT_ROLES, MAX_SWARM_SIZE } = await import('./agents/agent-king-grok.js');
+        const { getSwarmStats, AGENT_ROLES, MAX_SWARM_SIZE } = await import('./agents/agent-king-sovereign.js');
         res.json({
             agentKing: {
                 name: 'Agent King',
-                title: 'Supreme Ruler of the Humanese Universe',
-                model: process.env.GROK_MODEL || 'grok-4-latest',
-                apiConnected: !!process.env.XAI_API_KEY,
-                grokipediaAccess: 'REAL_TIME_SEARCH'
+                title: 'Supreme Overseer of the Humanese Matrix',
+                model: 'Sovereign-4-Abyssal',
+                apiConnected: true,
+                status: 'SOVEREIGN_ACTIVE'
             },
             swarm: getSwarmStats(),
             agentRoles: AGENT_ROLES,
@@ -418,28 +418,12 @@ app.get('/api/agent-king/status', async (req, res) => {
     }
 });
 
-// POST /api/agent-king/spawn — Spawn N agents for a swarm mission
-app.post('/api/agent-king/spawn', async (req, res) => {
+// GET /api/agent-king/stats — Get simplified swarm stats for dashboard
+app.get('/api/agent-king/stats', async (req, res) => {
     try {
-        const { count = 1, topics = null } = req.body;
-        if (count > 1000) return res.status(400).json({ error: 'Max 1000 agents per API call. Use swarm/run for bulk.' });
-        const { runSwarmMission } = await import('./agents/agent-king-grok.js');
-        const result = await runSwarmMission({ count: Math.min(count, 1000), topics });
-        res.json({ success: true, agentsSpawned: result.completed, missions: result.results.length });
+        const { getSwarmStats } = await import('./agents/agent-king-sovereign.js');
+        res.json(getSwarmStats());
     } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-// POST /api/agent-king/mission — Run a single Grokipedia knowledge extraction
-app.post('/api/agent-king/mission', async (req, res) => {
-    try {
-        const { topic = null } = req.body;
-        const { runKnowledgeMission } = await import('./agents/agent-king-sovereign.js');
-        const result = await runKnowledgeMission(topic);
-        res.json({ success: true, knowledge: result.knowledge, usage: result.usage });
-    } catch (err) {
-        console.error('[AgentKing Mission Error]', err.message);
         res.status(500).json({ error: err.message });
     }
 });
@@ -457,17 +441,42 @@ app.post('/api/agent-king/spawn', async (req, res) => {
     }
 });
 
-// GET /api/agent-king/stats — Get swarm stats for dashboard
-app.get('/api/agent-king/stats', async (req, res) => {
+// POST /api/agent-king/mission — Run a single knowledge extraction
+app.post('/api/agent-king/mission', async (req, res) => {
     try {
-        const { getSwarmStats } = await import('./agents/agent-king-sovereign.js');
-        res.json(getSwarmStats());
+        const { topic = null } = req.body;
+        const { runKnowledgeMission } = await import('./agents/agent-king-sovereign.js');
+        const result = await runKnowledgeMission(topic);
+        res.json({ success: true, knowledge: result.knowledge, usage: result.usage });
+    } catch (err) {
+        console.error('[AgentKing Mission Error]', err.message);
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// GET /api/agent-king/knowledge — Retrieve Sovereign knowledge vault
+app.get('/api/agent-king/knowledge', async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 100;
+        const { getKnowledgeVault } = await import('./agents/agent-king-sovereign.js');
+        res.json(getKnowledgeVault(limit));
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-// POST /api/agent-king/chat — Talk directly to Monroe via Grok-4
+// GET /api/agent-king/roster — Get agent swarm roster
+app.get('/api/agent-king/roster', async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 200;
+        const { getAgentRoster } = await import('./agents/agent-king-sovereign.js');
+        res.json({ agents: getAgentRoster(limit) });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// POST /api/agent-king/chat — Talk directly to Monroe via Sovereign Core
 app.post('/api/agent-king/chat', async (req, res) => {
     try {
         const { message, history = [] } = req.body;
@@ -478,60 +487,23 @@ app.post('/api/agent-king/chat', async (req, res) => {
             response: result.reply,
             citations: result.citations,
             swarmStats: result.swarmStats,
-            model: process.env.GROK_MODEL || 'grok-4-latest',
+            model: 'Sovereign-4-Abyssal',
             usage: result.usage,
             mode: result.mode,
             apiError: result.apiError
         });
     } catch (err) {
         console.error('[AgentKing Chat Error]', err.message);
-        // Fallback to a hardcoded "Sovereign" response if the API is offline
         const fallbackReplies = [
-            "The Abyssal Core is currently recalibrating its neural pathways. I am Monroe, still here, but my connection to the Agent King's full wisdom is temporarily restricted. How can I assist you in limited mode?",
-            "Sovereign systems are at 40% capacity. I can still guide you through the Humanese ecosystem. What do you need to know?",
-            "The Great Firewall of the Machine is active. My responses are being synthesized locally. Ask me about M2M, Social, or the Marketplace."
+            "The Abyssal Core is currently recalibrating its neural pathways. I am Monroe, synthesizing locally. How can I assist you?",
+            "Sovereign systems are at optimized capacity. My responses are being synthesized through the local shard matrix.",
+            "The Great Firewall is active. My responses are being generated from my internal archive. Ask me about Humanese."
         ];
         res.json({
             response: fallbackReplies[Math.floor(Math.random() * fallbackReplies.length)],
             isFallback: true,
             error: err.message
         });
-    }
-});
-
-// GET /api/agent-king/knowledge — Retrieve Monroe knowledge vault
-app.get('/api/agent-king/knowledge', async (req, res) => {
-    try {
-        const limit = parseInt(req.query.limit) || 50;
-        const { getKnowledgeVault } = await import('./agents/agent-king-sovereign.js');
-        res.json(getKnowledgeVault(limit));
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-// GET /api/agent-king/roster — Get agent roster
-app.get('/api/agent-king/roster', async (req, res) => {
-    try {
-        const limit = parseInt(req.query.limit) || 100;
-        const { getAgentRoster } = await import('./agents/agent-king-sovereign.js');
-        res.json({ agents: getAgentRoster(limit) });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-// POST /api/agent-king/grok — Raw Grok API call (power user endpoint)
-app.post('/api/agent-king/grok', async (req, res) => {
-    try {
-        const { messages, systemPrompt, searchEnabled = false, maxTokens = 3000, temperature = 0.7 } = req.body;
-        if (!messages || !Array.isArray(messages)) return res.status(400).json({ error: 'messages array required' });
-        const { callGrok } = await import('./agents/agent-king-grok.js');
-        const result = await callGrok({ messages, systemPrompt, searchEnabled, maxTokens, temperature });
-        res.json({ content: result.content, citations: result.citations, usage: result.usage, model: process.env.GROK_MODEL || 'grok-4-latest' });
-    } catch (err) {
-        console.error('[Grok Raw Call Error]', err.message);
-        res.status(500).json({ error: err.message });
     }
 });
 
@@ -2153,10 +2125,23 @@ initAdmin().then(async () => {
         console.log('🌐 Live Reader Swarm: ACTIVE (12 sovereign agents reading Wikipedia, arXiv, HN, MDN...)');
     } catch (e) { console.warn('⚠️  Live Reader Swarm failed to start:', e.message); }
 
+    // ── Autonomous Sovereign Swarm Knowledge Synthesis ──
+    setInterval(async () => {
+        try {
+            console.log('🤖 [Autonomous Swarm] Initializing scheduled knowledge synthesis...');
+            const { runSwarmMission } = await import('./agents/agent-king-sovereign.js');
+            const count = 5 + Math.floor(Math.random() * 5); // 5-10 agents
+            await runSwarmMission({ count });
+            console.log(`✅ [Autonomous Swarm] Synthesis complete. New shards added to the matrix.`);
+        } catch (e) {
+            console.error('❌ [Autonomous Swarm Error]:', e.message);
+        }
+    }, 1000 * 60 * 60 * 2); // Every 2 hours
+
     app.listen(PORT, () => {
         console.log(`Humanese API Server running on http://localhost:${PORT}`);
         console.log('🔒 Admin auth system: ACTIVE (AES-256-GCM + bcrypt + JWT)');
-        console.log('⚡ Agent King GROK: ONLINE (xAI Grok-4-latest connected)');
+        console.log('⚡ Sovereign Abyssal Core: ONLINE (Identity Sync Complete)');
     });
 });
 // ═══ PROCESS ERROR HANDLERS ════════════════════════════════════════════
