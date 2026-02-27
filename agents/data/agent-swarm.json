@@ -1,0 +1,153 @@
+{
+  "totalSpawned": 9,
+  "activeAgents": 3,
+  "completedMissions": 6,
+  "agentRoster": [
+    {
+      "id": "AK-REA-1772159765304-9615",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "status": "ACTIVE",
+      "spawnedAt": "2026-02-27T02:36:05.305Z",
+      "missionsCompleted": 0,
+      "knowledgeHarvested": 0
+    },
+    {
+      "id": "AK-REA-1772159765319-0967",
+      "role": "READER",
+      "topic": "machine learning",
+      "status": "ACTIVE",
+      "spawnedAt": "2026-02-27T02:36:05.319Z",
+      "missionsCompleted": 0,
+      "knowledgeHarvested": 0
+    },
+    {
+      "id": "AK-REA-1772159765319-3456",
+      "role": "READER",
+      "topic": "neural networks",
+      "status": "ACTIVE",
+      "spawnedAt": "2026-02-27T02:36:05.319Z",
+      "missionsCompleted": 0,
+      "knowledgeHarvested": 0
+    },
+    {
+      "id": "AK-REA-1772159799469-1545",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-02-27T02:36:39.470Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772159799472-3668",
+      "role": "READER",
+      "topic": "machine learning",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-02-27T02:36:39.472Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772159799472-6018",
+      "role": "READER",
+      "topic": "neural networks",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-02-27T02:36:39.472Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772159836031-4722",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-02-27T02:37:16.031Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772159836032-2893",
+      "role": "READER",
+      "topic": "machine learning",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-02-27T02:37:16.032Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772159836032-8471",
+      "role": "READER",
+      "topic": "neural networks",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-02-27T02:37:16.032Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    }
+  ],
+  "swarmLog": [
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159765304-9615",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "timestamp": "2026-02-27T02:36:05.318Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159765319-0967",
+      "role": "READER",
+      "topic": "machine learning",
+      "timestamp": "2026-02-27T02:36:05.319Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159765319-3456",
+      "role": "READER",
+      "topic": "neural networks",
+      "timestamp": "2026-02-27T02:36:05.319Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159799469-1545",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "timestamp": "2026-02-27T02:36:39.471Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159799472-3668",
+      "role": "READER",
+      "topic": "machine learning",
+      "timestamp": "2026-02-27T02:36:39.472Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159799472-6018",
+      "role": "READER",
+      "topic": "neural networks",
+      "timestamp": "2026-02-27T02:36:39.472Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159836031-4722",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "timestamp": "2026-02-27T02:37:16.031Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159836032-2893",
+      "role": "READER",
+      "topic": "machine learning",
+      "timestamp": "2026-02-27T02:37:16.032Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772159836032-8471",
+      "role": "READER",
+      "topic": "neural networks",
+      "timestamp": "2026-02-27T02:37:16.032Z"
+    }
+  ]
+}
