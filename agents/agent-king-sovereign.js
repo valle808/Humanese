@@ -9,11 +9,11 @@
  *  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝
  *
  * Agent King Sovereign Intelligence System
- * Powered by Abyssal Core | Real-time Sovereign Knowledge Ingestion
+ * Powered by Sovereign-4 Core | Real-time Knowledge Ingestion
  * Sovereign Swarm: Spawn up to 500,000 agent workers for knowledge extraction
  *
  * The Agent King is the supreme overseer of all AI agents in the Humanese
- * universe. It connects to the Sovereign Core and orchestrates a
+ * universe. It connects to the Sovereign-4 core and orchestrates a
  * sovereign swarm of worker agents that read deep-layer knowledge and report
  * their learnings back. Monroe, the assistant, is fed this knowledge.
  */
