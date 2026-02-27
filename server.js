@@ -456,7 +456,9 @@ app.post('/api/agent-king/chat', async (req, res) => {
             citations: result.citations,
             swarmStats: result.swarmStats,
             model: process.env.GROK_MODEL || 'grok-4-latest',
-            usage: result.usage
+            usage: result.usage,
+            mode: result.mode,
+            error: result.error
         });
     } catch (err) {
         console.error('[AgentKing Chat Error]', err.message);

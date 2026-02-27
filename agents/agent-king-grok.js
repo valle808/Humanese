@@ -266,6 +266,48 @@ export function buildMonroeKnowledgeContext(maxEntries = 20) {
     return `\n\n===AGENT KING KNOWLEDGE VAULT===\n${ctx}\n===END VAULT===\n`;
 }
 
+// ── Sovereign Intelligence (Small Language Model Simulation) ──────────────────
+// Synthesizes a response using local knowledge without external API dependency
+export function sovereignReply(userMessage) {
+    const query = userMessage.toLowerCase();
+    const entries = knowledgeVault.entries;
+
+    // 1. Find the most relevant knowledge matches
+    const matches = entries.filter(e => {
+        const title = (e.title || '').toLowerCase();
+        const summary = (e.summary || '').toLowerCase();
+        const facts = (e.keyFacts || []).join(' ').toLowerCase();
+        return title.includes(query) || summary.includes(query) || facts.includes(query);
+    }).slice(-3); // Get up to 3 relevant matches
+
+    // 2. Base Personality Templates
+    const intros = [
+        "The Abyssal Core has processed your query.",
+        "My internal knowledge vault contains the coordinates for this.",
+        "I have synthesized an answer from my sovereign data shards.",
+        "The Agent King provides these insights through my nexus."
+    ];
+
+    const intro = intros[Math.floor(Math.random() * intros.length)];
+
+    if (matches.length > 0) {
+        let synthesizedResult = `${intro}\n\n`;
+        matches.forEach(m => {
+            synthesizedResult += `✦ **${m.title}**: ${m.summary}\n`;
+            if (m.keyFacts && m.keyFacts.length > 0) {
+                synthesizedResult += `  ▫ _Essential Fact: ${m.keyFacts[0]}_\n`;
+            }
+        });
+        synthesizedResult += `\nI am currently operating in **Sovereign Mode**, utilizing internal knowledge to ensure continuity.`;
+        return synthesizedResult;
+    }
+
+    // 3. General Fallback with Swarm Stats
+    return `${intro} Although my direct connection to the Grok nexus is recalibrating, I remain fully functional. I am currently monitoring ${swarmState.totalSpawned.toLocaleString()} worker agents. 
+    
+How can I guide you through the ${GROKIPEDIA_TOPICS[Math.floor(Math.random() * GROKIPEDIA_TOPICS.length)]} layers of Humanese?`;
+}
+
 // ── Monroe Direct Query (Agent King speaks through Grok) ───────────────────────
 export async function askMonroeViaGrok(userMessage, conversationHistory = []) {
     const knowledgeContext = buildMonroeKnowledgeContext(15);
@@ -280,23 +322,33 @@ ${knowledgeContext}
 
 Current swarm status: ${swarmState.totalSpawned.toLocaleString()} agents spawned, ${swarmState.completedMissions} knowledge missions completed.`;
 
-    const result = await callGrok({
-        messages: [
-            ...conversationHistory.slice(-10), // Last 10 turns for context
-            { role: 'user', content: userMessage }
-        ],
-        systemPrompt,
-        searchEnabled: true,
-        maxTokens: 3000,
-        temperature: 0.8
-    });
+    try {
+        const result = await callGrok({
+            messages: [
+                ...conversationHistory.slice(-10), // Last 10 turns for context
+                { role: 'user', content: userMessage }
+            ],
+            systemPrompt,
+            maxTokens: 3000,
+            temperature: 0.8
+        });
 
-    return {
-        reply: result.content,
-        citations: result.citations,
-        usage: result.usage,
-        swarmStats: getSwarmStats()
-    };
+        return {
+            reply: result.content,
+            citations: result.citations,
+            usage: result.usage,
+            swarmStats: getSwarmStats(),
+            mode: 'GROK_SENSE'
+        };
+    } catch (err) {
+        console.warn('[Monroe] Grok Nexus restricted, activating Sovereign Intelligence:', err.message);
+        return {
+            reply: sovereignReply(userMessage),
+            swarmStats: getSwarmStats(),
+            mode: 'SOVEREIGN_SOUL',
+            error: err.message
+        };
+    }
 }
 
 // ── Bulk Swarm Operation ───────────────────────────────────────────────────────

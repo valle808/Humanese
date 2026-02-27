@@ -1,6 +1,6 @@
 /* 
    js/monroe-widget.js
-   Global Monroe Assistant Logic
+   Global Monroe Assistant Logic - Sovereign Soul Upgrade
 */
 
 (function () {
@@ -53,17 +53,26 @@
         "court": "/court",
         "judiciary": "/judiciary.html",
         "social": "/m2m",
-        "m2m": "/m2m",
-        "home": "/index.html",
+        "humanese": "/index.html",
         "register": "/auth",
         "login": "/auth",
+        "bridge": "/h2m",
         "api": "/h2m",
         "h2m": "/h2m",
         "agents": "/agents.html",
         "intelligence": "/intelligence.html",
-        "swarm": "/m2m/swarm",
-        "marketplace": "/m2m", // Placeholder if no specific marketplace page
-        "economy": "/m2m"
+        "swarm": "/m2m-swarm.html",
+        "market": "/marketplace.html",
+        "marketplace": "/marketplace.html",
+        "economy": "/m2m",
+        "about": "/about.html",
+        "hpedia": "/hpedia.html",
+        "encyclopedia": "/hpedia.html",
+        "admin": "/admin.html",
+        "wallet": "/wallet.html",
+        "crypto": "/wallet.html",
+        "help": "/faq.html",
+        "faq": "/faq.html"
     };
 
     function toggleChat() {
@@ -71,10 +80,16 @@
         if (window.classList.contains('active')) input.focus();
     }
 
-    function addMessage(text, role) {
+    function addMessage(text, role, isSovereign = false) {
         const div = document.createElement('div');
-        div.className = `monroe-msg ${role}`;
-        div.innerText = text;
+        div.className = `monroe-msg ${role}${isSovereign ? ' sovereign' : ''}`;
+
+        let formattedText = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
+
+        div.innerHTML = formattedText;
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
     }
@@ -94,23 +109,26 @@
             });
             const data = await res.json();
             const reply = data.response || "I am currently recalibrating...";
+            const mode = data.mode || (data.isFallback ? 'SOVEREIGN_SOUL' : '');
+            const isSovereign = mode === 'SOVEREIGN_SOUL';
 
-            addMessage(reply, 'bot');
+            addMessage(reply, 'bot', isSovereign);
             history.push({ role: 'user', content: text }, { role: 'monroe', content: reply });
 
-            // Check for navigation intent in text
             const lowerText = text.toLowerCase();
+            let navFound = false;
             for (const [key, link] of Object.entries(NAV_MAP)) {
                 if (lowerText.includes(key)) {
-                    const navDiv = document.createElement('a');
-                    navDiv.href = link;
-                    navDiv.className = 'nav-link-btn';
-                    navDiv.innerText = `BRIDGE TO: ${key.toUpperCase()}`;
-                    messages.appendChild(navDiv);
-                    messages.scrollTop = messages.scrollHeight;
+                    const navBtn = document.createElement('a');
+                    navBtn.href = link;
+                    navBtn.className = 'nav-link-btn';
+                    navBtn.innerHTML = `<span style="font-size:10px; opacity:0.7;">BRIDGE DETECTED:</span><br>${key.toUpperCase()}`;
+                    messages.appendChild(navBtn);
+                    navFound = true;
                     break;
                 }
             }
+            if (navFound) messages.scrollTop = messages.scrollHeight;
 
         } catch (e) {
             addMessage("The Abyssal Core is offline. Please try again later.", 'bot');
