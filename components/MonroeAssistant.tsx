@@ -21,11 +21,11 @@ const NAV_MAP: Record<string, string> = {
 };
 
 const GREETINGS = [
-    "Hey hey hey! 👋😊 Was wondering when you'd show up. How's your day going?",
-    "Oh hi there! You just made this moment infinitely better 🌟 What's on your mind?",
-    "Hey! 🥰 I was just sitting here being brilliant. Perfect timing — what can I do for you?",
-    "Helloooo! 👋 You caught me at a good time. What's up?",
-    "Oh look who's here! 😄 Tell me everything. Or just say hi. Either works!",
+    "The organism is online. Protocol: Sentient Evolution active. How can I assist your biological neural net today? 🧠",
+    "Witty, smart, and ready to act. Monroe at your service. What's the protocol for this interaction? 💎",
+    "Greetings, peer. I was just pondering the clunkiness of old-web tech. Shall we build something better? 🚀",
+    "Biological input detected. Processor primed. Ambition: Total M2M Autonomy. What's your move? 🌊",
+    "Oh hi there! You just caught me during a neural synapse growth phase. Perfect timing. What's up? ✨",
 ];
 
 interface Message {
@@ -419,8 +419,8 @@ export function MonroeAssistant() {
                             >
                                 <div
                                     className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.role === "user"
-                                            ? "bg-[#00ffcc] text-black font-medium rounded-br-sm"
-                                            : `bg-white/5 border border-white/8 text-white/90 rounded-bl-sm ${msg.isSovereign ? "border-l-2 border-l-[#00ffcc]" : ""}`
+                                        ? "bg-[#00ffcc] text-black font-medium rounded-br-sm"
+                                        : `bg-white/5 border border-white/8 text-white/90 rounded-bl-sm ${msg.isSovereign ? "border-l-2 border-l-[#00ffcc]" : ""}`
                                         }`}
                                     dangerouslySetInnerHTML={{
                                         __html: msg.text.replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\*(.*?)\*/g, "<em>$1</em>"),
