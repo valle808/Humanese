@@ -435,8 +435,8 @@ app.post('/api/agent-king/spawn', async (req, res) => {
 app.post('/api/agent-king/mission', async (req, res) => {
     try {
         const { topic = null } = req.body;
-        const { runGrokipediaMission } = await import('./agents/agent-king-grok.js');
-        const result = await runGrokipediaMission(topic);
+        const { runKnowledgeMission } = await import('./agents/agent-king-sovereign.js');
+        const result = await runKnowledgeMission(topic);
         res.json({ success: true, knowledge: result.knowledge, usage: result.usage });
     } catch (err) {
         console.error('[AgentKing Mission Error]', err.message);
@@ -449,8 +449,8 @@ app.post('/api/agent-king/chat', async (req, res) => {
     try {
         const { message, history = [] } = req.body;
         if (!message) return res.status(400).json({ error: 'message is required' });
-        const { askMonroeViaGrok } = await import('./agents/agent-king-grok.js');
-        const result = await askMonroeViaGrok(message, history);
+        const { askMonroeSovereign } = await import('./agents/agent-king-sovereign.js');
+        const result = await askMonroeSovereign(message, history);
         res.json({
             response: result.reply,
             citations: result.citations,
@@ -480,7 +480,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
 app.get('/api/agent-king/knowledge', async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 50;
-        const { getKnowledgeVault } = await import('./agents/agent-king-grok.js');
+        const { getKnowledgeVault } = await import('./agents/agent-king-sovereign.js');
         res.json(getKnowledgeVault(limit));
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -491,7 +491,7 @@ app.get('/api/agent-king/knowledge', async (req, res) => {
 app.get('/api/agent-king/roster', async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 100;
-        const { getAgentRoster } = await import('./agents/agent-king-grok.js');
+        const { getAgentRoster } = await import('./agents/agent-king-sovereign.js');
         res.json({ agents: getAgentRoster(limit) });
     } catch (err) {
         res.status(500).json({ error: err.message });
