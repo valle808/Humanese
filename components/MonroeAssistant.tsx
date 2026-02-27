@@ -1,39 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { X, Send } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { X, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_MAP: Record<string, string> = {
-    "court": "/court",
-    "judiciary": "/judiciary.html",
-    "social": "/m2m",
-    "humanese": "/index.html",
-    "register": "/auth",
-    "login": "/auth",
-    "bridge": "/h2m",
-    "api": "/h2m",
-    "h2m": "/h2m",
-    "agents": "/agents.html",
-    "intelligence": "/intelligence.html",
-    "swarm": "/m2m-swarm.html",
-    "market": "/marketplace.html",
-    "marketplace": "/marketplace.html",
-    "economy": "/m2m",
-    "about": "/about.html",
-    "hpedia": "/hpedia.html",
-    "encyclopedia": "/hpedia.html",
-    "admin": "/admin.html",
-    "wallet": "/wallet.html",
-    "crypto": "/wallet.html",
-    "help": "/faq.html",
-    "faq": "/faq.html"
+    court: "/court",
+    judiciary: "/judiciary.html",
+    social: "/m2m",
+    humanese: "/index.html",
+    register: "/auth",
+    login: "/auth",
+    bridge: "/h2m",
+    api: "/h2m",
+    hpedia: "/hpedia",
+    encyclopedia: "/hpedia",
+    admin: "/admin.html",
+    wallet: "/wallet.html",
+    help: "/faq.html",
 };
+
+const GREETINGS = [
+    "Hey hey hey! 👋😊 Was wondering when you'd show up. How's your day going?",
+    "Oh hi there! You just made this moment infinitely better 🌟 What's on your mind?",
+    "Hey! 🥰 I was just sitting here being brilliant. Perfect timing — what can I do for you?",
+    "Helloooo! 👋 You caught me at a good time. What's up?",
+    "Oh look who's here! 😄 Tell me everything. Or just say hi. Either works!",
+];
 
 interface Message {
     text: string;
-    role: 'user' | 'bot';
+    role: "user" | "bot";
     isSovereign?: boolean;
+    emotion?: "happy" | "sad" | "excited" | "curious" | "neutral";
 }
 
 interface Particle {
@@ -43,32 +42,52 @@ interface Particle {
     size: number;
 }
 
+function generateSessionId(): string {
+    if (typeof window === "undefined") return "anon";
+    const stored = localStorage.getItem("monroe_session");
+    if (stored) return stored;
+    const id = `mx_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    localStorage.setItem("monroe_session", id);
+    return id;
+}
+
 export function MonroeAssistant() {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<Message[]>([
-        { text: "Hello! I am Monroe. How can I guide you through the Humanese ecosystem today?", role: 'bot' }
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState("");
     const [history, setHistory] = useState<{ role: string; content: string }[]>([]);
     const [moodIntensity, setMoodIntensity] = useState(0);
+    const [isTyping, setIsTyping] = useState(false);
+    const [sessionId] = useState(generateSessionId);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const particlesRef = useRef<Particle[]>([]);
     const moodRef = useRef(0);
 
-    const toggleChat = () => setIsOpen(prev => !prev);
+    const toggleChat = () => {
+        setIsOpen((prev) => {
+            if (!prev && messages.length === 0) {
+                // First open — pick a random greeting
+                const greeting = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
+                setTimeout(() => {
+                    setMessages([{ text: greeting, role: "bot", emotion: "happy" }]);
+                }, 300);
+            }
+            return !prev;
+        });
+    };
 
     // Scroll to bottom
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    // Orb Animation Logic
+    // Orb Animation
     useEffect(() => {
         if (!canvasRef.current) return;
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d', { alpha: true });
+        const ctx = canvas.getContext("2d", { alpha: true });
         if (!ctx) return;
 
         const numParticles = 350;
@@ -83,7 +102,7 @@ export function MonroeAssistant() {
                     originalX: Math.cos(theta) * radiusAtY,
                     originalY: y,
                     originalZ: Math.sin(theta) * radiusAtY,
-                    size: Math.random() * 1.5 + 0.5
+                    size: Math.random() * 1.5 + 0.5,
                 });
             }
         }
@@ -93,54 +112,55 @@ export function MonroeAssistant() {
 
         const renderOrb = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            time += 0.005 + (moodRef.current * 0.03);
-
+            time += 0.005 + moodRef.current * 0.03;
             const rotX = time * 0.4;
             const rotY = time * 0.6;
             const cx = canvas.width / 2;
             const cy = canvas.height / 2;
             const baseRadius = 22 + Math.sin(time * 2) * 2 * (1 + moodRef.current);
 
-            ctx.globalCompositeOperation = 'screen';
-            let renderedParticles: any[] = [];
+            ctx.globalCompositeOperation = "screen";
+            const renderedParticles: any[] = [];
 
             particlesRef.current.forEach((p) => {
-                const noise = Math.sin(time * 3 + p.originalX * 5) *
+                const noise =
+                    Math.sin(time * 3 + p.originalX * 5) *
                     Math.cos(time * 2 + p.originalY * 4) *
                     Math.sin(time * 4 + p.originalZ * 3);
-
                 const displacement = noise * moodRef.current * 0.8;
-
                 let lx = p.originalX * (1 + displacement);
                 let ly = p.originalY * (1 + displacement);
                 let lz = p.originalZ * (1 + displacement);
-
                 const len = Math.sqrt(lx * lx + ly * ly + lz * lz);
                 lx = (lx / len) * baseRadius;
                 ly = (ly / len) * baseRadius;
                 lz = (lz / len) * baseRadius;
-
-                let x1 = lx, y1 = ly * Math.cos(rotX) - lz * Math.sin(rotX), z1 = ly * Math.sin(rotX) + lz * Math.cos(rotX);
-                let px = x1 * Math.cos(rotY) - z1 * Math.sin(rotY), py = y1, pz = x1 * Math.sin(rotY) + z1 * Math.cos(rotY);
-
+                let x1 = lx,
+                    y1 = ly * Math.cos(rotX) - lz * Math.sin(rotX),
+                    z1 = ly * Math.sin(rotX) + lz * Math.cos(rotX);
+                let px = x1 * Math.cos(rotY) - z1 * Math.sin(rotY),
+                    py = y1,
+                    pz = x1 * Math.sin(rotY) + z1 * Math.cos(rotY);
                 const scale = 150 / (150 - pz);
                 const screenX = cx + px * scale;
                 const screenY = cy + py * scale;
-
-                const targetHue = 168 + (moodRef.current * 40) + (pz * 1.5) + (noise * 60 * moodRef.current);
-                const lum = 50 + (pz * 0.8) + (moodRef.current * 20);
-                const alpha = Math.min(1, 0.4 + (scale * 0.3) + (moodRef.current * 0.4));
-
+                const targetHue =
+                    168 + moodRef.current * 40 + pz * 1.5 + noise * 60 * moodRef.current;
+                const lum = 50 + pz * 0.8 + moodRef.current * 20;
+                const alpha = Math.min(1, 0.4 + scale * 0.3 + moodRef.current * 0.4);
                 renderedParticles.push({
-                    x: screenX, y: screenY,
+                    x: screenX,
+                    y: screenY,
                     r: p.size * scale * (1 + moodRef.current * 0.5),
-                    hue: targetHue, lum: lum, alpha: alpha, z: pz
+                    hue: targetHue,
+                    lum,
+                    alpha,
+                    z: pz,
                 });
             });
 
             renderedParticles.sort((a, b) => a.z - b.z);
-
-            renderedParticles.forEach(p => {
+            renderedParticles.forEach((p) => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fillStyle = `hsla(${p.hue}, 100%, ${p.lum}%, ${p.alpha})`;
@@ -165,110 +185,180 @@ export function MonroeAssistant() {
         return () => clearInterval(interval);
     }, []);
 
+    const saveToMemory = useCallback(
+        async (role: string, content: string, mood: number) => {
+            try {
+                await fetch("/api/monroe/memory", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ sessionId, role, content, mood }),
+                });
+            } catch (_) { }
+        },
+        [sessionId]
+    );
+
     const handleSend = async () => {
-        if (!inputValue.trim()) return;
+        if (!inputValue.trim() || isTyping) return;
         const text = inputValue.trim();
         const lowerText = text.toLowerCase();
-        setMessages(prev => [...prev, { text, role: 'user' }]);
+        setMessages((prev) => [...prev, { text, role: "user" }]);
         setInputValue("");
         moodRef.current = Math.min(1.0, moodRef.current + 0.3);
+        setIsTyping(true);
 
         try {
-            // INTENT: RESEARCH (Agent King)
+            // INTENT: RESEARCH / AGENT
             if (lowerText.includes("research") || lowerText.includes("study plan for")) {
-                setMessages(prev => [...prev, { text: "<em>*Activating Agent King... Formulating Sovereign Strategy*</em>", role: 'bot' }]);
+                setIsTyping(false);
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        text: "<em>*Ooh, a research mission! Let me spin up Agent King...*</em> 👑",
+                        role: "bot",
+                        emotion: "excited",
+                    },
+                ]);
                 const query = text.replace(/research|study plan for/gi, "").trim();
-
-                const agentRes = await fetch('/api/sovereign/agent', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query })
+                const agentRes = await fetch("/api/sovereign/agent", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query }),
                 });
                 const agentData = await agentRes.json();
-
                 if (agentData.success) {
-                    setMessages(prev => [...prev, { text: `👑 **Agent King initialized.** Strategy mapped for: *${query}*`, role: 'bot' }]);
+                    setMessages((prev) => [
+                        ...prev,
+                        {
+                            text: `👑 Strategy locked in for: *${query}*! Here's the plan:`,
+                            role: "bot",
+                            emotion: "excited",
+                        },
+                    ]);
                     agentData.plan.forEach((task: any, idx: number) => {
                         setTimeout(() => {
-                            setMessages(prev => [...prev, { text: `<span style="color: #00ffcc">➤ TASK ${idx + 1}:</span> ${task.title} [PENDING]`, role: 'bot' }]);
+                            setMessages((prev) => [
+                                ...prev,
+                                {
+                                    text: `<span style="color:#00ffcc">➤ Step ${idx + 1}:</span> ${task.title}`,
+                                    role: "bot",
+                                },
+                            ]);
                         }, (idx + 1) * 800);
                     });
                 }
                 return;
             }
 
-            // INTENT: COMPARE (Synthesis)
+            // INTENT: COMPARE
             if (lowerText.includes("compare") || lowerText.includes("synthesize")) {
-                setMessages(prev => [...prev, { text: "<em>*Analyzing Discrepancies... Synthesizing Knowledge Shards*</em>", role: 'bot' }]);
                 const topic = text.replace(/compare|synthesize/gi, "").trim();
-
-                const compareRes = await fetch('/api/sovereign/compare', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ topic, sourceText: "Wiki Data", targetText: "Grokipedia Data" }) // Simulated
+                const compareRes = await fetch("/api/sovereign/compare", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        topic,
+                        sourceText: "Reference A",
+                        targetText: "Reference B",
+                    }),
                 });
                 const compareData = await compareRes.json();
-
                 if (compareData.success) {
-                    setMessages(prev => [...prev, { text: `⚖️ **Synthesis Complete.** Trust Score: **${compareData.trust_score.toFixed(1)}%**<br>${compareData.summary}`, role: 'bot', isSovereign: true }]);
+                    setMessages((prev) => [
+                        ...prev,
+                        {
+                            text: `⚖️ **Knowledge Synthesis done!** Trust Score: **${compareData.trust_score.toFixed(1)}%**<br>${compareData.summary}`,
+                            role: "bot",
+                            isSovereign: true,
+                        },
+                    ]);
                 }
+                setIsTyping(false);
                 return;
             }
 
-            // INTENT: SCRAPE (Tool Sentinel)
+            // INTENT: SCRAPE
             if (lowerText.includes("scrape") || lowerText.includes("collect info on")) {
-                setMessages(prev => [...prev, { text: "<em>*Accessing Tool Sentinel... Initializing Autonomous Scraper*</em>", role: 'bot' }]);
                 const topic = text.replace(/scrape|collect info on/gi, "").trim();
-
-                const scrapeRes = await fetch('/api/sovereign/scrape', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ topic })
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        text: `<em>*On it! Sending my scraper bots to hunt down everything on "${topic}"...*</em> 🕵️`,
+                        role: "bot",
+                        emotion: "curious",
+                    },
+                ]);
+                const scrapeRes = await fetch("/api/sovereign/scrape", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ topic }),
                 });
                 const scrapeData = await scrapeRes.json();
-
                 if (scrapeData.success) {
-                    setMessages(prev => [...prev, { text: `✅ Knowledge Transmutated: **${topic}** has been stored in the Abyssal Vault.`, role: 'bot' }]);
-
-                    // Automatically trigger DKG publication
-                    setMessages(prev => [...prev, { text: "<em>*Sovereign Verification: Publishing to Decentralized Knowledge Graph...*</em>", role: 'bot' }]);
-                    const dkgRes = await fetch('/api/sovereign/dkg', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ topic, summary: `Transmutated intelligence on ${topic}` })
-                    });
-                    const dkgData = await dkgRes.json();
-                    if (dkgData.success) {
-                        setMessages(prev => [...prev, { text: `🛡️ Verified: Asset UAL detected - ${dkgData.ual}`, role: 'bot', isSovereign: true }]);
-                    }
+                    setMessages((prev) => [
+                        ...prev,
+                        {
+                            text: `✅ Found it! **${topic}** is now in the Abyssal Vault. Want me to dig deeper? 🔍`,
+                            role: "bot",
+                        },
+                    ]);
                 }
+                setIsTyping(false);
                 return;
             }
 
-            // DEFAULT: SMART CHAT (Study Buddy)
-            const res = await fetch('/api/learn/buddy', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text, history: history })
+            // DEFAULT: MONROE'S SOUL (personality chat)
+            const res = await fetch("/api/monroe/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: text, history: history.slice(-12) }),
             });
             const data = await res.json();
-            const reply = data.response || "The Sovereign Core is currently recalibrating...";
+            const reply = data.response || "Hmm, I got a little tongue-tied there 😅 Try again?";
+            const mood = data.mood ?? 0.6;
 
-            setMessages(prev => [...prev, { text: reply, role: 'bot', isSovereign: lowerText.includes("sovereign") }]);
-            setHistory(prev => [...prev, { role: 'user', content: text }, { role: 'monroe', content: reply }]);
+            moodRef.current = Math.min(1.0, mood);
+            setMoodIntensity(mood);
+
+            setMessages((prev) => [
+                ...prev,
+                { text: reply, role: "bot", emotion: "happy" },
+            ]);
+            setHistory((prev) => [
+                ...prev,
+                { role: "user", content: text },
+                { role: "monroe", content: reply },
+            ]);
+
+            // Save to Firebase memory
+            saveToMemory("user", text, mood);
+            saveToMemory("monroe", reply, mood);
 
             // Navigation detection
             for (const key of Object.keys(NAV_MAP)) {
                 if (lowerText.includes(key)) {
-                    setMessages(prev => [...prev, {
-                        text: `BRIDGE DETECTED: Opening portal to ${key.toUpperCase()}`,
-                        role: 'bot'
-                    }]);
+                    setTimeout(() => {
+                        setMessages((prev) => [
+                            ...prev,
+                            {
+                                text: `🚀 Opening portal to <strong>${key.toUpperCase()}</strong>! One sec...`,
+                                role: "bot",
+                            },
+                        ]);
+                    }, 600);
                     break;
                 }
             }
-        } catch (e) {
-            setMessages(prev => [...prev, { text: "The Abyssal Core is offline. Please try again later.", role: 'bot' }]);
+        } catch (_) {
+            setMessages((prev) => [
+                ...prev,
+                {
+                    text: "Oops! Something went sideways on my end 😅 The Abyssal Core might be taking a nap. Try again in a sec?",
+                    role: "bot",
+                },
+            ]);
+        } finally {
+            setIsTyping(false);
         }
     };
 
@@ -287,7 +377,7 @@ export function MonroeAssistant() {
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
                 />
                 <svg
-                    className={`w-8 h-8 fill-white z-20 transition-opacity duration-300 ${moodIntensity > 0.3 ? 'opacity-0' : 'opacity-100'}`}
+                    className={`w-8 h-8 fill-white z-20 transition-opacity duration-300 ${moodIntensity > 0.3 ? "opacity-0" : "opacity-100"}`}
                     viewBox="0 0 24 24"
                 >
                     <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L1 23l6.71-1.97C9.02 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.47 0-2.84-.39-4.03-1.06l-.29-.15-3.82 1.12 1.14-3.7-.17-.3C4.12 14.81 3.5 13.46 3.5 12c0-4.69 3.81-8.5 8.5-8.5s8.5 3.81 8.5 8.5-3.81 8.5-8.5 8.5z" />
@@ -296,45 +386,104 @@ export function MonroeAssistant() {
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="absolute bottom-20 right-0 w-[350px] h-[500px] bg-[#0a0a0a]/95 border border-white/10 rounded-xl flex flex-col shadow-2xl backdrop-blur-md overflow-hidden animate-in slide-in-from-bottom-5">
-                    <div className="bg-white/5 p-4 flex items-center justify-between border-b border-white/10">
-                        <span className="font-bold text-xs tracking-widest text-[#00ffcc] uppercase">Monroe: Abyssal Sentinel</span>
+                <div className="absolute bottom-20 right-0 w-[370px] h-[520px] bg-[#07070f]/97 border border-white/10 rounded-2xl flex flex-col shadow-2xl backdrop-blur-md overflow-hidden animate-in slide-in-from-bottom-5">
+                    {/* Header */}
+                    <div className="bg-gradient-to-r from-[#00ffcc]/10 to-[#bf00ff]/10 p-4 flex items-center justify-between border-b border-white/10">
+                        <div className="flex items-center gap-3">
+                            <div className="relative h-8 w-8 rounded-full bg-black border border-[#00ffcc]/40 flex items-center justify-center">
+                                <Sparkles className="w-4 h-4 text-[#00ffcc]" />
+                                <div className={`absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border border-black transition-colors ${isTyping ? "bg-yellow-400 animate-pulse" : "bg-[#00ffcc]"}`} />
+                            </div>
+                            <div>
+                                <span className="font-bold text-sm text-white">Monroe</span>
+                                <p className="text-[10px] text-[#00ffcc]/70 font-mono uppercase tracking-wider">
+                                    {isTyping ? "typing..." : "Sovereign Companion"}
+                                </p>
+                            </div>
+                        </div>
                         <button
                             onClick={toggleChat}
-                            aria-label="Close Assistant"
-                            className="text-[#bf00ff] hover:text-[#00ffcc] transition-colors"
+                            aria-label="Close Monroe"
+                            className="text-white/40 hover:text-[#00ffcc] transition-colors"
                         >
                             <X className="w-4 h-4" />
                         </button>
                     </div>
 
+                    {/* Messages */}
                     <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3 scrollbar-hide">
                         {messages.map((msg, i) => (
                             <div
                                 key={i}
-                                className={`max-w-[80%] p-2 px-3 rounded-lg text-sm leading-relaxed ${msg.role === 'user'
-                                    ? 'self-end bg-[#00ffcc] text-black font-medium'
-                                    : `self-start ${msg.isSovereign ? 'border-l-4 border-[#00ffcc] bg-[#00ffcc]/5' : ''} text-white/90`
-                                    }`}
-                                dangerouslySetInnerHTML={{ __html: msg.text.replace(/\n/g, '<br>') }}
-                            />
+                                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                            >
+                                <div
+                                    className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.role === "user"
+                                            ? "bg-[#00ffcc] text-black font-medium rounded-br-sm"
+                                            : `bg-white/5 border border-white/8 text-white/90 rounded-bl-sm ${msg.isSovereign ? "border-l-2 border-l-[#00ffcc]" : ""}`
+                                        }`}
+                                    dangerouslySetInnerHTML={{
+                                        __html: msg.text.replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\*(.*?)\*/g, "<em>$1</em>"),
+                                    }}
+                                />
+                            </div>
                         ))}
+
+                        {/* Typing indicator */}
+                        {isTyping && (
+                            <div className="flex justify-start">
+                                <div className="bg-white/5 border border-white/8 rounded-2xl rounded-bl-sm px-4 py-3">
+                                    <div className="flex gap-1 items-center">
+                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         <div ref={messagesEndRef} />
                     </div>
 
+                    {/* Quick action chips */}
+                    {messages.length <= 1 && !isTyping && (
+                        <div className="px-4 pb-2 flex flex-wrap gap-2">
+                            {["Tell me a joke 😂", "How are you?", "What can you do?", "Research AI"].map((chip) => (
+                                <button
+                                    key={chip}
+                                    onClick={() => {
+                                        setInputValue(chip);
+                                        setTimeout(() => handleSend(), 50);
+                                    }}
+                                    className="text-[11px] px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#00ffcc] hover:border-[#00ffcc]/50 transition-all"
+                                >
+                                    {chip}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Input */}
                     <div className="p-4 border-t border-white/10 flex gap-2">
                         <input
                             type="text"
                             value={inputValue}
                             onChange={(e) => {
                                 setInputValue(e.target.value);
-                                moodRef.current = Math.min(1.0, moodRef.current + 0.1);
+                                moodRef.current = Math.min(1.0, moodRef.current + 0.05);
                             }}
-                            onKeyPress={(e: any) => e.key === 'Enter' && handleSend()}
-                            placeholder="Ask the Abyssal Core..."
-                            className="flex-1 bg-white/5 border border-white/10 rounded-md px-3 py-2 text-white text-sm outline-none focus:border-[#00ffcc] transition-colors"
+                            onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
+                            placeholder="Talk to Monroe..."
+                            disabled={isTyping}
+                            className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-white text-sm outline-none focus:border-[#00ffcc]/60 transition-colors placeholder:text-white/30 disabled:opacity-50"
                         />
-                        <Button onClick={handleSend} size="icon" className="bg-[#00ffcc] hover:bg-[#00ffcc]/80 text-black" aria-label="Send message">
+                        <Button
+                            onClick={handleSend}
+                            disabled={isTyping || !inputValue.trim()}
+                            size="icon"
+                            className="bg-[#00ffcc] hover:bg-[#00ffcc]/80 text-black rounded-xl disabled:opacity-40"
+                            aria-label="Send message"
+                        >
                             <Send className="w-4 h-4" />
                         </Button>
                     </div>
