@@ -108,7 +108,7 @@
                 body: JSON.stringify({ message: text, history: history })
             });
             const data = await res.json();
-            const reply = data.response || "I am currently recalibrating...";
+            const reply = data.response || "The Sovereign Core is currently recalibrating...";
             const mode = data.mode || (data.isFallback ? 'SOVEREIGN_SOUL' : '');
             const isSovereign = mode === 'SOVEREIGN_SOUL';
 
