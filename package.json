@@ -12,6 +12,7 @@
         "prisma:studio": "prisma studio",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "format": "prettier --write .",
+        "test:testfox": "node testfox/index.js",
         "check-repos": "node scripts/repo_check.js"
     },
     "dependencies": {

@@ -1,0 +1,80 @@
+[
+  {
+    "suite": "chat-agent",
+    "name": "Monroe greeting - help intent",
+    "path": "/api/assistant/chat",
+    "method": "POST",
+    "body": { "message": "help", "mode": "Rapid Response" },
+    "requiredFields": ["response"],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 20
+  },
+  {
+    "suite": "chat-agent",
+    "name": "Monroe identity - who are you",
+    "path": "/api/assistant/chat",
+    "method": "POST",
+    "body": { "message": "Who are you?", "mode": "Rapid Response" },
+    "requiredFields": ["response"],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 10
+  },
+  {
+    "suite": "chat-agent",
+    "name": "Monroe research intent",
+    "path": "/api/assistant/chat",
+    "method": "POST",
+    "body": { "message": "research the latest AI developments", "mode": "Deep Scan" },
+    "requiredFields": ["response"],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 10
+  },
+  {
+    "suite": "chat-agent",
+    "name": "Monroe code request",
+    "path": "/api/assistant/chat",
+    "method": "POST",
+    "body": { "message": "show me a code example", "mode": "Rapid Response" },
+    "requiredFields": ["response"],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 10
+  },
+  {
+    "suite": "chat-agent",
+    "name": "Monroe general message with history",
+    "path": "/api/assistant/chat",
+    "method": "POST",
+    "body": {
+      "message": "Tell me about Humanese",
+      "history": [
+        { "role": "user", "content": "Hello" },
+        { "role": "model", "content": "Hello! I am Monroe." }
+      ],
+      "mode": "Rapid Response"
+    },
+    "requiredFields": ["response"],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 10
+  },
+  {
+    "suite": "chat-agent",
+    "name": "Monroe - missing message returns 400",
+    "path": "/api/assistant/chat",
+    "method": "POST",
+    "body": {},
+    "expectedStatus": 400,
+    "requiredFields": ["error"],
+    "latencyThresholdMs": 2000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "chat-agent",
+    "name": "Agent King chat endpoint",
+    "path": "/api/agent-king/chat",
+    "method": "POST",
+    "body": { "message": "Hello Monroe", "history": [] },
+    "requiredFields": [],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 0
+  }
+]
