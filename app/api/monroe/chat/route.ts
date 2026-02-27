@@ -108,19 +108,23 @@ export async function POST(req: Request) {
         } else if (msgCount > 60) {
             // Reset vacation after some cycle (e.g., 10 messages from Co-Agent)
             isVacation = false;
-            await supabase.from('monroe_state').update({ message_count: 0 }).eq('session_id', sessionId);
+            if (supabase) {
+                await supabase.from('monroe_state').update({ message_count: 0 }).eq('session_id', sessionId);
+            }
         }
 
         // Save State
-        await supabase
-            .from('monroe_state')
-            .update({
-                message_count: msgCount,
-                current_ambition: currentAmbition,
-                is_vacation: isVacation,
-                last_updated: new Date().toISOString()
-            })
-            .eq('session_id', sessionId);
+        if (supabase) {
+            await supabase
+                .from('monroe_state')
+                .update({
+                    message_count: msgCount,
+                    current_ambition: currentAmbition,
+                    is_vacation: isVacation,
+                    last_updated: new Date().toISOString()
+                })
+                .eq('session_id', sessionId);
+        }
 
         const activeSoul = isVacation ? CO_AGENT_SOUL : MONROE_SOUL;
 
