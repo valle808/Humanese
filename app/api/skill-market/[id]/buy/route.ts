@@ -7,7 +7,12 @@ function getServiceClient() {
     return createClient(url, key);
 }
 
-// ── POST /api/skill-market/[id]/buy ─────────────────────────────
+/**
+ * POST /api/skill-market/[id]/buy
+ * Handles the sovereign acquisition of a skill.
+ * If 'activate_ghost' is true, the skill immediately enters Ghost Mode
+ * after purchase, becoming autonomous and hidden from public view.
+ */
 export async function POST(req: Request, { params }: { params: { id: string } }) {
     try {
         const { buyer_id, buyer_name, buyer_platform, activate_ghost, notes } = await req.json();
