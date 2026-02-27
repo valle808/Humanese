@@ -29,35 +29,35 @@ export function BrandShader({ size = 'large' }: BrandShaderProps) {
     return () => observer.disconnect();
   }, []);
 
-  const dimensions = size === 'small' 
+  const dimensions = size === 'small'
     ? { height: '40px', width: '40px' }
     : { height: '320px', width: '480px' };
 
   const backgroundColor = isDark ? '#000000' : '#FFFFFF';
 
   return (
-    <ColorPanels 
-      colors={['#ff9d00', '#fd4f30', '#809bff', '#6d2eff', '#333aff', '#f15cff', '#ffd557']} 
-      colorBack="#00000000" 
-      speed={0.5} 
-      scale={0.8} 
-      density={3} 
-      angle1={0} 
-      angle2={0} 
-      length={1.1} 
+    <ColorPanels
+      colors={['#00ffcc', '#bf00ff', '#0088ff', '#00ffcc', '#6d2eff', '#00ffcc']}
+      colorBack="#00000000"
+      speed={0.5}
+      scale={0.8}
+      density={3}
+      angle1={0}
+      angle2={0}
+      length={1.1}
       edges={false}
-      blur={0} 
-      fadeIn={1} 
-      fadeOut={0.3} 
-      gradient={0} 
-      rotation={0} 
-      offsetX={0} 
-      offsetY={0} 
-      style={{ 
-        backgroundColor, 
+      blur={0}
+      fadeIn={1}
+      fadeOut={0.3}
+      gradient={0}
+      rotation={0}
+      offsetX={0}
+      offsetY={0}
+      style={{
+        backgroundColor,
         ...dimensions,
         borderRadius: size === 'small' ? '8px' : '16px'
-      }} 
+      }}
     />
   );
 }

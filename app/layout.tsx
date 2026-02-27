@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DeepGrok",
-  description: "Explore Grokipedia pages with enhanced navigation, search, and structure powered by Firecrawl",
+  title: "Hpedia - Sovereign Knowledge Matrix",
+  description: "Explore the Sovereign Knowledge Matrix with AI-powered personalized learning, mindmaps, and advanced synthesis.",
   icons: {
-    icon: '/icon.svg',
+    icon: '/logo-sovereign.png',
   },
 };
+
+import { MonroeAssistant } from "@/components/MonroeAssistant";
 
 export default function RootLayout({
   children,
@@ -39,8 +41,8 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
+        <MonroeAssistant />
       </body>
     </html>
   );
 }
-

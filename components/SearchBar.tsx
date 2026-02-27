@@ -28,7 +28,7 @@ export function SearchBar({ onSearch, isLoading = false, variant = 'default' }: 
           <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/70" />
           <Input
             type="text"
-            placeholder="Search DeepGrok..."
+            placeholder="Search Sovereign Knowledge..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="h-16 bg-transparent pl-12 pr-16 text-base text-white placeholder:text-white/60 border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -82,7 +82,7 @@ export function SearchBar({ onSearch, isLoading = false, variant = 'default' }: 
             <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Search DeepGrok topic or paste URL..."
+              placeholder="Search Sovereign Knowledge Matrix..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className={inputClasses}
@@ -90,8 +90,8 @@ export function SearchBar({ onSearch, isLoading = false, variant = 'default' }: 
               maxLength={500}
             />
           </div>
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={isLoading || !query.trim()}
             className="h-12 px-8 text-base font-semibold shadow-lg hover:shadow-xl transition-all"
             size="lg"

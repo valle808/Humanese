@@ -27,25 +27,25 @@
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 67%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 100%;
+    --background: 225 45% 2%;
+    --foreground: 210 40% 98%;
+    --card: 225 45% 4%;
+    --card-foreground: 210 40% 98%;
+    --popover: 225 45% 3%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 168 100% 50%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+    --secondary: 285 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 225 45% 8%;
+    --muted-foreground: 215.4 16.3% 66.9%;
+    --accent: 168 100% 50%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 83.9%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 168 100% 50% / 0.15;
+    --input: 225 45% 6%;
+    --ring: 168 100% 50%;
   }
 }
 
@@ -53,6 +53,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Aeonik', sans-serif;
@@ -88,7 +89,8 @@ html {
   @apply mb-5 leading-relaxed text-base text-white;
 }
 
-.wiki-content ul, .wiki-content ol {
+.wiki-content ul,
+.wiki-content ol {
   @apply mb-5 ml-6 space-y-2;
 }
 
@@ -135,7 +137,8 @@ html {
   @apply w-full border-collapse mb-6 rounded-lg overflow-hidden shadow-sm;
 }
 
-.wiki-content th, .wiki-content td {
+.wiki-content th,
+.wiki-content td {
   @apply border border-border px-4 py-3 text-white;
 }
 
@@ -253,4 +256,3 @@ html {
 .wiki-content .attribution-line a {
   @apply text-blue-500 hover:text-blue-400 hover:underline;
 }
-
