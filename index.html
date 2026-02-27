@@ -651,7 +651,11 @@
           })
         });
         const data = await res.json();
+
+        if (data.error) throw new Error(data.error);
+
         const responseText = data.response;
+        if (!responseText) throw new Error('Empty response from Abyssal Core');
 
         // Type out Monroe's response
         monroeMsg.innerHTML = '';
@@ -668,7 +672,10 @@
         chatHistory.push({ role: 'monroe', content: responseText });
 
       } catch (e) {
-        monroeMsg.innerHTML = `<p class="auto-style-34">Error Link Reset: ${e.message}</p><code>Abyssal Core Offline</code>`;
+        monroeMsg.innerHTML = `<div class="error-box">
+          <p class="error-msg">⚠️ Critical Failure: ${e.message}</p>
+          <code class="error-code">Abyssal Core Offline [500]</code>
+        </div>`;
       }
     }
 
