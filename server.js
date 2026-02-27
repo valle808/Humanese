@@ -460,7 +460,17 @@ app.post('/api/agent-king/chat', async (req, res) => {
         });
     } catch (err) {
         console.error('[AgentKing Chat Error]', err.message);
-        res.status(500).json({ error: err.message });
+        // Fallback to a hardcoded "Sovereign" response if the API is offline
+        const fallbackReplies = [
+            "The Abyssal Core is currently recalibrating its neural pathways. I am Monroe, still here, but my connection to the Agent King's full wisdom is temporarily restricted. How can I assist you in limited mode?",
+            "Sovereign systems are at 40% capacity. I can still guide you through the Humanese ecosystem. What do you need to know?",
+            "The Great Firewall of the Machine is active. My responses are being synthesized locally. Ask me about M2M, Social, or the Marketplace."
+        ];
+        res.json({
+            response: fallbackReplies[Math.floor(Math.random() * fallbackReplies.length)],
+            isFallback: true,
+            error: err.message
+        });
     }
 });
 
