@@ -444,6 +444,29 @@ app.post('/api/agent-king/mission', async (req, res) => {
     }
 });
 
+// POST /api/agent-king/spawn — Spawn N agents for knowledge mission
+app.post('/api/agent-king/spawn', async (req, res) => {
+    try {
+        const { count = 10, topics = null } = req.body;
+        const { runSwarmMission } = await import('./agents/agent-king-sovereign.js');
+        const result = await runSwarmMission({ count, topics });
+        res.json({ success: true, ...result });
+    } catch (err) {
+        console.error('[AgentKing Spawn Error]', err.message);
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// GET /api/agent-king/stats — Get swarm stats for dashboard
+app.get('/api/agent-king/stats', async (req, res) => {
+    try {
+        const { getSwarmStats } = await import('./agents/agent-king-sovereign.js');
+        res.json(getSwarmStats());
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // POST /api/agent-king/chat — Talk directly to Monroe via Grok-4
 app.post('/api/agent-king/chat', async (req, res) => {
     try {
