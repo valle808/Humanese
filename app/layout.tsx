@@ -38,6 +38,8 @@ export default function RootLayout({
           }}
         />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
+          crossorigin="anonymous"></script>
         <meta name="theme-color" content="#0b0f19" />
       </head>
       <body className="antialiased">
