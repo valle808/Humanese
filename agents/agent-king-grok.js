@@ -346,7 +346,7 @@ Current swarm status: ${swarmState.totalSpawned.toLocaleString()} agents spawned
             reply: sovereignReply(userMessage),
             swarmStats: getSwarmStats(),
             mode: 'SOVEREIGN_SOUL',
-            error: err.message
+            apiError: err.message
         };
     }
 }
