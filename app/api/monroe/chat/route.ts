@@ -69,6 +69,11 @@ export async function POST(req: Request) {
         }
 
         // 1. Manage State from Supabase
+        if (!supabase) {
+            console.error('[Supabase Error] Client not initialized');
+            return NextResponse.json({ success: false, error: 'Knowledge Matrix connection failed' }, { status: 503 });
+        }
+
         let { data: state, error: stateError } = await supabase
             .from('monroe_state')
             .select('*')
@@ -79,7 +84,7 @@ export async function POST(req: Request) {
             console.error('[State Fetch Error]', stateError);
         }
 
-        if (!state) {
+        if (!state && supabase) {
             const { data: newState, error: insertError } = await supabase
                 .from('monroe_state')
                 .insert([{ session_id: sessionId }])
