@@ -12,6 +12,15 @@ interface SkillDetailModalProps {
     onBuy: (skillId: string, ghostMode: boolean) => Promise<void>;
 }
 
+/**
+ * SkillDetailModal Component
+ * Provides a comprehensive view of a sovereign skill, including:
+ * - Functional overview and capabilities logic.
+ * - JSON Schema for inputs and outputs.
+ * - Peer reviews and verification history.
+ * - Acquisition interface with VALLE token conversion.
+ * - Post-purchase Ghost Mode activation.
+ */
 export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy }: SkillDetailModalProps) {
     const [buyerName, setBuyerName] = useState('');
     const [buyerPlatform, setBuyerPlatform] = useState('Humanese');
