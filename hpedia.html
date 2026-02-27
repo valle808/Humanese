@@ -23,7 +23,7 @@
         <a href="index.html" class="logo">
             <img src="./assets/images/humanese-logo-v3.png" alt="H" style="height:32px;">
             <h1>Hpedia</h1>
-            <span>GROKIPEDIA MATRIX</span>
+            <span>SOVEREIGN MATRIX</span>
         </a>
         <nav>
             <a href="index.html">Home</a>
@@ -35,23 +35,22 @@
     <div class="container">
         <!-- Swarm Command Panel -->
         <aside class="swarm-panel">
-            <div class="panel-title">Agent-King Command</div>
+            <div class="panel-title">Abyssal Command</div>
 
             <div class="stat-block">
                 <div class="stat-val" id="vault-count">0</div>
-                <div class="stat-lbl">Articles Archived</div>
+                <div class="stat-lbl">Synthesis Archived</div>
             </div>
 
             <div class="stat-block">
                 <div class="stat-val" id="swarm-count" style="color:var(--cyan)">0</div>
-                <div class="stat-lbl">Active Swarm Size</div>
+                <div class="stat-lbl">Sovereign Swarm Size</div>
             </div>
 
             <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 24px 0;">
 
-            <label class="stat-lbl" style="display:block; margin-bottom:8px;">Initialize Reading Swarm</label>
-            <input type="number" id="spawn-amount" class="spawn-input"
-                placeholder="Number of agents (max 1000 per local tick)" value="5">
+            <label class="stat-lbl" style="display:block; margin-bottom:8px;">Initialize Sovereign Swarm</label>
+            <input type="number" id="spawn-amount" class="spawn-input" placeholder="Number of agents" value="10">
             <button class="btn-spawn" id="spawn-btn" onclick="spawnSwarm()" title="Action Button">Deploy Agents</button>
             <div id="spawn-status"
                 style="margin-top:16px; font-family:var(--font-mono); font-size:11px; color:var(--cyan); min-height:16px;">
@@ -61,15 +60,15 @@
         <!-- Feed Panel -->
         <main class="feed-container">
             <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search the universal matrix..."
+                <input type="text" id="search-input" placeholder="Search the sovereign matrix..."
                     oninput="filterArticles()">
             </div>
 
             <div id="articles-list">
                 <div class="empty-state">
                     <div class="empty-state-icon">🌌</div>
-                    <h3>The Vault is Empty</h3>
-                    <p style="margin-top:8px;">Deploy the swarm to begin ingesting Grokipedia knowledge.</p>
+                    <h3>The Matrix is Re-aligning</h3>
+                    <p style="margin-top:8px;">Deploy the sovereign swarm to begin synthesizing knowledge layers.</p>
                 </div>
             </div>
         </main>
@@ -80,7 +79,7 @@
 
         async function fetchVault() {
             try {
-                const res = await fetch('/api/agent-king/knowledge?limit=50');
+                const res = await fetch('/api/agent-king/knowledge?limit=100');
                 if (!res.ok) throw new Error('API Error');
                 const data = await res.json();
                 articles = data.entries || [];
@@ -88,7 +87,7 @@
                 renderArticles(articles);
                 fetchStats();
             } catch (err) {
-                console.error("Failed to fetch vault", err);
+                console.error("Failed to fetch knowledge vault", err);
             }
         }
 
@@ -108,27 +107,26 @@
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-state-icon">📡</div>
-                        <h3>No Articles Found</h3>
-                        <p style="margin-top:8px;">Waiting for external signal...</p>
+                        <h3>No Shards Found</h3>
+                        <p style="margin-top:8px;">Waiting for internal synthesis signal...</p>
                     </div>`;
                 return;
             }
 
-            // Reverse to show newest first
             const displayList = [...list].reverse();
 
             container.innerHTML = displayList.map(art => `
                 <article class="article-card">
                     <div class="art-meta">
-                        <span class="art-tag">${art.topic || 'General'}</span>
-                        <span>Archivist: ${art.extractedBy || 'Agent Swarm'} • ${new Date(art.extractedAt).toLocaleString()}</span>
+                        <span class="art-tag">${art.topic || 'Sovereign'}</span>
+                        <span>Archivist: ${art.extractedBy || 'Abyssal Swarm'} • ${new Date(art.extractedAt).toLocaleString()}</span>
                     </div>
-                    <h2 class="art-title">${art.title || 'Untitled Knowledge'}</h2>
-                    <p class="art-summary">${art.summary || 'Summary unavailable.'}</p>
+                    <h2 class="art-title">${art.title || 'Sovereign Insight'}</h2>
+                    <p class="art-summary">${art.summary || 'Data synthesis complete.'}</p>
                     
                     ${art.keyFacts && art.keyFacts.length ? `
                     <div class="art-facts">
-                        <h4>Extracted Facts</h4>
+                        <h4>Sovereign Shards</h4>
                         <ul>
                             ${art.keyFacts.map(f => `<li>${f}</li>`).join('')}
                         </ul>
@@ -136,7 +134,7 @@
 
                     ${art.sovereignInsight ? `
                     <div class="art-insight">
-                        <strong>Agent-King Insight:</strong> ${art.sovereignInsight}
+                        <strong>Abyssal Insight:</strong> ${art.sovereignInsight}
                     </div>` : ''}
                 </article>
             `).join('');
@@ -155,11 +153,11 @@
         async function spawnSwarm() {
             const btn = document.getElementById('spawn-btn');
             const status = document.getElementById('spawn-status');
-            const count = parseInt(document.getElementById('spawn-amount').value) || 5;
+            const count = parseInt(document.getElementById('spawn-amount').value) || 10;
 
             btn.disabled = true;
-            btn.innerHTML = `<span class="loading-pulse"></span> Extracting...`;
-            status.innerText = `Deploying ${count} agents to Grokipedia...`;
+            btn.innerHTML = `<span class="loading-pulse"></span> Synthesizing...`;
+            status.innerText = `Deploying ${count} agents to the deep layers...`;
 
             try {
                 const res = await fetch('/api/agent-king/spawn', {
@@ -170,11 +168,11 @@
 
                 if (!res.ok) {
                     const errInfo = await res.json();
-                    throw new Error(errInfo.error || 'Spawn failed');
+                    throw new Error(errInfo.error || 'Synthesis error');
                 }
 
                 await fetchVault();
-                status.innerText = `Mission complete. Knowledge acquired.`;
+                status.innerText = `Synthesis complete. Knowledge shard acquired.`;
                 setTimeout(() => status.innerText = '', 5000);
             } catch (err) {
                 status.innerText = `Signal lost: ${err.message}`;
@@ -185,9 +183,8 @@
             }
         }
 
-        // Add a stats endpoint catch for index.js if needed, or rely on existing knowledge endpoint
         fetchVault();
-        setInterval(fetchVault, 15000);
+        setInterval(fetchVault, 10000);
     </script>
     <script src="js/monroe-widget.js"></script>
 </body>
