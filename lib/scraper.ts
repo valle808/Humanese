@@ -4,10 +4,12 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+import { db } from "./firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 export async function scrapeAndStore(topic: string, url?: string) {
     console.log(`[Autonomous Scraper] Initializing for: ${topic}`);
 
-    // Intelligence from Parallelpedia: Use Firecrawl or direct fetch
     const fetchUrl = url || `https://grokipedia.org/wiki/${topic.replace(/ /g, "_")}`;
 
     try {
@@ -24,7 +26,7 @@ export async function scrapeAndStore(topic: string, url?: string) {
         const markdown = data.data?.markdown || "";
         const title = data.data?.metadata?.title || topic;
 
-        // Store in Sovereign Knowledge Matrix (Supabase)
+        // 1. Store in Sovereign Knowledge Matrix (Supabase)
         const { data: stored, error } = await supabase
             .from("cached_pages")
             .upsert({
@@ -37,6 +39,20 @@ export async function scrapeAndStore(topic: string, url?: string) {
             .select();
 
         if (error) throw error;
+
+        // 2. Synchronize with Sovereign Knowledge Vault (Firebase Firestore)
+        try {
+            await addDoc(collection(db, "knowledge_vault"), {
+                url: fetchUrl,
+                title,
+                markdown,
+                metadata: data.data?.metadata || {},
+                synced_at: serverTimestamp()
+            });
+            console.log("✅ [Firebase] Intelligence shard synchronized.");
+        } catch (firebaseError) {
+            console.error("[Firebase Sync Error]", firebaseError);
+        }
 
         return { success: true, data: stored[0] };
     } catch (error) {

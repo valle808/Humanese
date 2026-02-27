@@ -20,6 +20,7 @@ import { SearchBar } from '@/components/SearchBar';
 import { checkClientRateLimit } from '@/lib/client-rate-limiter';
 import { exportToPDF } from '@/lib/pdf-exporter';
 import { copyAsMarkdown } from '@/lib/markdown-exporter';
+import { KnowledgeVault } from '@/components/KnowledgeVault';
 
 export default function Home() {
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
@@ -45,17 +46,17 @@ export default function Home() {
   const handleSearch = async (query: string) => {
     // Client-side rate limit check
     const rateCheck = checkClientRateLimit();
-    
+
     if (!rateCheck.allowed) {
       const seconds = Math.ceil(rateCheck.resetIn / 1000);
       setError(`Rate limit exceeded. Please wait ${seconds} seconds before searching again.`);
       return;
     }
-    
+
     setIsLoading(true);
     setError(null);
     setIs404(false);
-    
+
     try {
       const isUrl = query.startsWith('http://') || query.startsWith('https://');
       const response = await fetch('/api/scrape', {
@@ -68,21 +69,21 @@ export default function Home() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        
+
         // Handle rate limit error specifically
         if (response.status === 429) {
           throw new Error(errorData.message || 'Rate limit exceeded. Please try again later.');
         }
-        
+
         throw new Error(errorData.error || 'Failed to fetch wiki data');
       }
 
       const data: WikiData = await response.json();
-      
+
       // Check if the page doesn't exist
       const rawMarkdown = data.rawMarkdown || '';
-      if (rawMarkdown.includes("This page doesn't exist... yet") || 
-          rawMarkdown.includes("This page doesn&#39;t exist... yet")) {
+      if (rawMarkdown.includes("This page doesn't exist... yet") ||
+        rawMarkdown.includes("This page doesn&#39;t exist... yet")) {
         setIs404(true);
         setWikiData(null);
       } else {
@@ -97,7 +98,7 @@ export default function Home() {
       setIsLoading(false);
     }
   };
-  
+
   const handleReturnHome = () => {
     setWikiData(null);
     setError(null);
@@ -106,7 +107,7 @@ export default function Home() {
 
   const handleExport = async () => {
     if (!wikiData) return;
-    
+
     try {
       await exportToPDF({
         title: wikiData.title,
@@ -119,7 +120,7 @@ export default function Home() {
 
   const handleCopyMarkdown = async () => {
     if (!wikiData) return;
-    
+
     try {
       await copyAsMarkdown(wikiData.title, wikiData.rawMarkdown || '');
     } catch (error) {
@@ -168,14 +169,14 @@ export default function Home() {
               />
             </div>
           </div>
-          
+
           {/* Mindmap Button */}
-          <MindmapButton 
+          <MindmapButton
             pageUrl={wikiData.metadata?.source || ''}
             pageMarkdown={wikiData.rawMarkdown || ''}
             pageTitle={wikiData.title}
           />
-          
+
           {/* Chat with Page */}
           <ChatBox pageContext={wikiData.rawMarkdown || ''} pageTitle={wikiData.title} />
         </>
@@ -200,7 +201,7 @@ export default function Home() {
             <div className="mt-10 w-full max-w-3xl mb-4">
               <SearchBar onSearch={handleSearch} isLoading={isLoading} variant="hero" />
             </div>
-            
+
             {/* Example Search */}
             <div className="text-sm text-white/60 mb-20">
               Try:{' '}
@@ -211,10 +212,12 @@ export default function Home() {
                 Elon Musk
               </button>
             </div>
+
+            {/* Knowledge Vault */}
+            <KnowledgeVault />
           </div>
         </div>
       )}
     </div>
   );
 }
-

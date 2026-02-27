@@ -168,17 +168,58 @@ export function MonroeAssistant() {
     const handleSend = async () => {
         if (!inputValue.trim()) return;
         const text = inputValue.trim();
+        const lowerText = text.toLowerCase();
         setMessages(prev => [...prev, { text, role: 'user' }]);
         setInputValue("");
         moodRef.current = Math.min(1.0, moodRef.current + 0.3);
 
         try {
-            // Tool Sentinel Phase: Decide if we need to scrape or publish
-            if (text.toLowerCase().includes("scrape") || text.toLowerCase().includes("collect info on")) {
+            // INTENT: RESEARCH (Agent King)
+            if (lowerText.includes("research") || lowerText.includes("study plan for")) {
+                setMessages(prev => [...prev, { text: "<em>*Activating Agent King... Formulating Sovereign Strategy*</em>", role: 'bot' }]);
+                const query = text.replace(/research|study plan for/gi, "").trim();
+
+                const agentRes = await fetch('/api/sovereign/agent', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query })
+                });
+                const agentData = await agentRes.json();
+
+                if (agentData.success) {
+                    setMessages(prev => [...prev, { text: `👑 **Agent King initialized.** Strategy mapped for: *${query}*`, role: 'bot' }]);
+                    agentData.plan.forEach((task: any, idx: number) => {
+                        setTimeout(() => {
+                            setMessages(prev => [...prev, { text: `<span style="color: #00ffcc">➤ TASK ${idx + 1}:</span> ${task.title} [PENDING]`, role: 'bot' }]);
+                        }, (idx + 1) * 800);
+                    });
+                }
+                return;
+            }
+
+            // INTENT: COMPARE (Synthesis)
+            if (lowerText.includes("compare") || lowerText.includes("synthesize")) {
+                setMessages(prev => [...prev, { text: "<em>*Analyzing Discrepancies... Synthesizing Knowledge Shards*</em>", role: 'bot' }]);
+                const topic = text.replace(/compare|synthesize/gi, "").trim();
+
+                const compareRes = await fetch('/api/sovereign/compare', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic, sourceText: "Wiki Data", targetText: "Grokipedia Data" }) // Simulated
+                });
+                const compareData = await compareRes.json();
+
+                if (compareData.success) {
+                    setMessages(prev => [...prev, { text: `⚖️ **Synthesis Complete.** Trust Score: **${compareData.trust_score.toFixed(1)}%**<br>${compareData.summary}`, role: 'bot', isSovereign: true }]);
+                }
+                return;
+            }
+
+            // INTENT: SCRAPE (Tool Sentinel)
+            if (lowerText.includes("scrape") || lowerText.includes("collect info on")) {
                 setMessages(prev => [...prev, { text: "<em>*Accessing Tool Sentinel... Initializing Autonomous Scraper*</em>", role: 'bot' }]);
                 const topic = text.replace(/scrape|collect info on/gi, "").trim();
 
-                // Simulate tool call to scraper API
                 const scrapeRes = await fetch('/api/sovereign/scrape', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -204,24 +245,23 @@ export function MonroeAssistant() {
                 return;
             }
 
-            const res = await fetch('/api/agent-king/chat', {
+            // DEFAULT: SMART CHAT (Study Buddy)
+            const res = await fetch('/api/learn/buddy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text, history: history })
             });
             const data = await res.json();
             const reply = data.response || "The Sovereign Core is currently recalibrating...";
-            const mode = data.mode || (data.isFallback ? 'SOVEREIGN_SOUL' : '');
 
-            setMessages(prev => [...prev, { text: reply, role: 'bot', isSovereign: mode === 'SOVEREIGN_SOUL' }]);
+            setMessages(prev => [...prev, { text: reply, role: 'bot', isSovereign: lowerText.includes("sovereign") }]);
             setHistory(prev => [...prev, { role: 'user', content: text }, { role: 'monroe', content: reply }]);
 
             // Navigation detection
-            const lowerText = text.toLowerCase();
             for (const key of Object.keys(NAV_MAP)) {
                 if (lowerText.includes(key)) {
                     setMessages(prev => [...prev, {
-                        text: `BRIDGE DETECTED: ${key.toUpperCase()}`,
+                        text: `BRIDGE DETECTED: Opening portal to ${key.toUpperCase()}`,
                         role: 'bot'
                     }]);
                     break;

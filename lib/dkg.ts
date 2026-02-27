@@ -1,43 +1,76 @@
-import axios from "axios";
+import axios from 'axios';
 
-const DKG_BASE_URL = process.env.DKG_BASE_URL || "http://localhost:9200";
+/**
+ * DKG Client for Sovereign Knowledge Verification
+ * Enhanced from Parallelpedia's dkg_client.py.
+ */
 
 export class DKGClient {
-    async publishKnowledge(topic: string, summary: string, ual?: string) {
-        console.log(`[DKG Client] Publishing asset for: ${topic}`);
+    private baseUrl: string;
 
+    constructor(baseUrl?: string) {
+        this.baseUrl = baseUrl || process.env.DKG_BASE_URL || 'http://localhost:9200';
+    }
+
+    /**
+     * Publish knowledge to the DKG with JSON-LD context
+     */
+    async publishKnowledge(topic: string, summary: string, metadata: any = {}) {
         try {
-            const response = await axios.post(`${DKG_BASE_URL}/parallelpedia/community-notes`, {
-                topicId: topic.toLowerCase().replace(/ /g, "_"),
-                trustScore: 1.0,
-                summary: summary,
-                grokTitle: topic,
-                wikiTitle: topic,
-                provenance: {
-                    source: "Sovereign Knowledge Matrix",
-                    timestamp: new Date().toISOString()
-                }
+            console.log(`[DKG] Publishing asset for: ${topic}`);
+
+            const jsonld = {
+                '@context': {
+                    '@vocab': 'https://schema.org/',
+                    'sovereign': 'https://humanese.ai/schema/'
+                },
+                '@type': 'KnowledgeShard',
+                'name': topic,
+                'description': summary,
+                'datePublished': new Date().toISOString(),
+                ...metadata
+            };
+
+            const response = await axios.post(`${this.baseUrl}/api/dkg/publish`, {
+                content: jsonld,
+                topic
             });
 
-            if (response.data.success) {
-                console.log(`✅ [DKG] Success! UAL: ${response.data.ual}`);
-                return { success: true, ual: response.data.ual };
-            }
-            return { success: false, error: "DKG Node rejection" };
+            return response.data;
         } catch (error) {
-            console.error("[DKG Error]", error);
-            return { success: false, error };
+            console.error('[DKG Error]', error);
+            return { success: false, error: 'Connection to DKG node failed' };
         }
     }
 
+    /**
+     * Query the DKG using SPARQL
+     */
+    async querySPARQL(query: string) {
+        try {
+            const response = await axios.post(`${this.baseUrl}/api/dkg/query`, {
+                query,
+                queryType: 'SELECT'
+            });
+            return response.data;
+        } catch (error) {
+            console.error('[DKG SPARQL Error]', error);
+            return null;
+        }
+    }
+
+    /**
+     * Verify an asset by its Unique Asset Locator (UAL)
+     */
     async verifyAsset(ual: string) {
         try {
-            const response = await axios.get(`${DKG_BASE_URL}/api/dkg/assets`, {
+            const response = await axios.get(`${this.baseUrl}/api/dkg/assets`, {
                 params: { ual }
             });
-            return response.data.success;
+            return response.data;
         } catch (error) {
-            return false;
+            console.error('[DKG Verify Error]', error);
+            return { success: false, error: 'Asset not found or verification failed' };
         }
     }
 }
