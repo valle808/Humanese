@@ -21,16 +21,25 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
     <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-sm">
       <div className="px-4 py-3">
         <div className="flex items-center justify-between gap-4">
-          {/* Left: Logo with ColorPanels */}
-          <a
-            href="/"
-            className="flex items-center gap-3 min-w-[220px] hover:opacity-80 transition-opacity cursor-pointer"
-          >
-            <div className="flex-shrink-0">
-              <BrandShader size="small" />
-            </div>
-            <span className="font-bold tracking-tighter" style={{ fontSize: '180%', lineHeight: '100%', color: 'var(--primary)' }}>Hpedia</span>
-          </a>
+          {/* Left: Logo + Nav */}
+          <div className="flex items-center gap-6 min-w-[220px]">
+            <a
+              href="/"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer"
+            >
+              <div className="flex-shrink-0">
+                <BrandShader size="small" />
+              </div>
+              <span className="font-bold tracking-tighter" style={{ fontSize: '180%', lineHeight: '100%', color: 'var(--primary)' }}>Hpedia</span>
+            </a>
+            {/* Skill Market Nav Link */}
+            <a
+              href="/skill-market"
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap border border-border hover:border-primary/50 px-3 py-1.5 rounded-full"
+            >
+              <span>⚡</span> Skill Market
+            </a>
+          </div>
 
           {/* Center: Search */}
           {showSearch && (
