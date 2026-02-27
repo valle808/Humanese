@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 import { MonroeAssistant } from "@/components/MonroeAssistant";
+import { BackToTop } from "@/components/BackToTop";
 
 export default function RootLayout({
   children,
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         <MonroeAssistant />
+        <BackToTop />
       </body>
     </html>
   );

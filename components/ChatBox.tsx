@@ -86,7 +86,7 @@ export function ChatBox({ pageContext, pageTitle }: ChatBoxProps) {
 
       while (true) {
         const { done, value } = await reader.read();
-        
+
         if (done) break;
 
         const chunk = decoder.decode(value, { stream: true });
@@ -95,12 +95,12 @@ export function ChatBox({ pageContext, pageTitle }: ChatBoxProps) {
         for (const line of lines) {
           if (line.startsWith('data: ')) {
             const data = line.slice(6);
-            
+
             try {
               const parsed = JSON.parse(data);
               if (parsed.content) {
                 accumulatedContent += parsed.content;
-                
+
                 // Update the assistant message in real-time
                 setMessages((prev) => {
                   const updated = [...prev];
@@ -141,7 +141,7 @@ export function ChatBox({ pageContext, pageTitle }: ChatBoxProps) {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-8 right-8 z-50">
+      <div className="fixed bottom-8 right-40 z-50">
         <Button
           onClick={() => setIsMinimized(false)}
           className="rounded-full h-14 w-14 shadow-2xl bg-white/20 backdrop-blur-xl border border-white/30 hover:bg-white/30 text-white"
@@ -154,7 +154,7 @@ export function ChatBox({ pageContext, pageTitle }: ChatBoxProps) {
   }
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 w-96">
+    <div className="fixed bottom-8 right-40 z-50 w-96">
       <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-2xl shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="border-b border-white/10 px-4 py-3 flex items-center justify-between">
@@ -187,11 +187,10 @@ export function ChatBox({ pageContext, pageTitle }: ChatBoxProps) {
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-2 ${
-                      msg.role === 'user'
+                    className={`max-w-[80%] rounded-2xl px-4 py-2 ${msg.role === 'user'
                         ? 'bg-white/20 text-white'
                         : 'bg-white/10 text-white/90'
-                    }`}
+                      }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                   </div>
