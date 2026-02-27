@@ -30,9 +30,22 @@ const NAV_MAP: Record<string, string> = {
     "faq": "/faq.html"
 };
 
+interface Message {
+    text: string;
+    role: 'user' | 'bot';
+    isSovereign?: boolean;
+}
+
+interface Particle {
+    originalX: number;
+    originalY: number;
+    originalZ: number;
+    size: number;
+}
+
 export function MonroeAssistant() {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<{ text: string; role: 'user' | 'bot'; isSovereign?: boolean }[]>([
+    const [messages, setMessages] = useState<Message[]>([
         { text: "Hello! I am Monroe. How can I guide you through the Humanese ecosystem today?", role: 'bot' }
     ]);
     const [inputValue, setInputValue] = useState("");
@@ -41,8 +54,15 @@ export function MonroeAssistant() {
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const particlesRef = useRef<any[]>([]);
+    const particlesRef = useRef<Particle[]>([]);
     const moodRef = useRef(0);
+
+    const toggleChat = () => setIsOpen(prev => !prev);
+
+    // Scroll to bottom
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
     // Orb Animation Logic
     useEffect(() => {
@@ -198,7 +218,7 @@ export function MonroeAssistant() {
 
             // Navigation detection
             const lowerText = text.toLowerCase();
-            for (const [key, link] of Object.entries(NAV_MAP)) {
+            for (const key of Object.keys(NAV_MAP)) {
                 if (lowerText.includes(key)) {
                     setMessages(prev => [...prev, {
                         text: `BRIDGE DETECTED: ${key.toUpperCase()}`,
@@ -270,7 +290,7 @@ export function MonroeAssistant() {
                                 setInputValue(e.target.value);
                                 moodRef.current = Math.min(1.0, moodRef.current + 0.1);
                             }}
-                            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                            onKeyPress={(e: any) => e.key === 'Enter' && handleSend()}
                             placeholder="Ask the Abyssal Core..."
                             className="flex-1 bg-white/5 border border-white/10 rounded-md px-3 py-2 text-white text-sm outline-none focus:border-[#00ffcc] transition-colors"
                         />
