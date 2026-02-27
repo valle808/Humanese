@@ -1,0 +1,159 @@
+/* 
+   css/monroe-widget.css
+   Floating Chat Widget styling for Humanese
+*/
+
+:root {
+    --monroe-primary: #007bff;
+    --monroe-bg: rgba(10, 10, 10, 0.95);
+    --monroe-border: rgba(255, 255, 255, 0.1);
+    --monroe-text: #ffffff;
+}
+
+#monroe-widget-root {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: 'Inter', sans-serif;
+}
+
+#monroe-trigger {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--monroe-primary);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 123, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#monroe-trigger:hover {
+    transform: scale(1.1);
+}
+
+#monroe-trigger svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+#monroe-chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: var(--monroe-bg);
+    border: 1px solid var(--monroe-border);
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+#monroe-chat-window.active {
+    display: flex;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.monroe-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--monroe-border);
+}
+
+.monroe-header span {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--monroe-primary);
+}
+
+.monroe-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.monroe-msg {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.monroe-msg.user {
+    align-self: flex-end;
+    background: var(--monroe-primary);
+    color: white;
+}
+
+.monroe-msg.bot {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.1);
+    color: #eee;
+}
+
+.monroe-input-area {
+    padding: 15px;
+    border-top: 1px solid var(--monroe-border);
+    display: flex;
+    gap: 8px;
+}
+
+.monroe-input-area input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--monroe-border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: white;
+    outline: none;
+}
+
+.monroe-input-area button {
+    background: var(--monroe-primary);
+    border: none;
+    border-radius: 6px;
+    padding: 0 12px;
+    color: white;
+    cursor: pointer;
+}
+
+.nav-link-btn {
+    display: inline-block;
+    margin-top: 5px;
+    background: rgba(0, 123, 255, 0.2);
+    border: 1px solid var(--monroe-primary);
+    color: var(--monroe-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 11px;
+    cursor: pointer;
+}
