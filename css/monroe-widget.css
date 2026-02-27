@@ -113,10 +113,9 @@
     color: white;
 }
 
-.monroe-msg.bot {
-    align-self: flex-start;
-    background: rgba(255, 255, 255, 0.1);
-    color: #eee;
+.monroe-msg.bot.sovereign {
+    border-left: 3px solid var(--monroe-primary);
+    background: rgba(0, 123, 255, 0.05);
 }
 
 .monroe-input-area {
