@@ -10,8 +10,9 @@ function getServiceClient() {
 // ── PATCH /api/skill-market/[id]/ghost ──────────────────────────
 // Toggles Ghost Mode for a purchased skill.
 // Ghost Mode = skill is hidden from public market, runs autonomously.
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await params;
         const { buyer_id, ghost_enabled } = await req.json();
 
         if (!buyer_id) return NextResponse.json({ error: 'buyer_id is required' }, { status: 400 });
@@ -22,7 +23,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         const { data: skill, error: skillErr } = await supabase
             .from('skills')
             .select('id, skill_key, buyer_id, is_sold, is_ghost, title')
-            .eq('id', params.id)
+            .eq('id', id)
             .single();
 
         if (skillErr || !skill) return NextResponse.json({ error: 'Skill not found' }, { status: 404 });
@@ -34,7 +35,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         const { error: updateErr } = await supabase
             .from('skills')
             .update({ is_ghost: newGhostState })
-            .eq('id', params.id);
+            .eq('id', id);
 
         if (updateErr) throw updateErr;
 
@@ -42,7 +43,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         await supabase
             .from('skill_transactions')
             .update({ ghost_mode_activated: newGhostState })
-            .eq('skill_id', params.id)
+            .eq('skill_id', id)
             .eq('buyer_id', buyer_id);
 
         return NextResponse.json({

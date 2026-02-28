@@ -118,6 +118,7 @@ export function SearchModal({ isOpen, onClose, onSearch, isLoading = false }: Se
               <button
                 type="button"
                 onClick={onClose}
+                aria-label="Close search"
                 className="rounded-md p-1 hover:bg-accent"
               >
                 <X className="h-5 w-5 text-muted-foreground" />
