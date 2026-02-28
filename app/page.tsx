@@ -1,237 +1,152 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { TopNav } from '@/components/TopNav';
-import { WikiSidebar } from '@/components/WikiSidebar';
-import { WikiHeader } from '@/components/WikiHeader';
-import { WikiContent } from '@/components/WikiContent';
-import { SearchModal } from '@/components/SearchModal';
-import { PageNotFound } from '@/components/PageNotFound';
-import { LoadingState } from '@/components/LoadingState';
 import { HeroGradient } from '@/components/HeroGradient';
-import { ChatBox } from '@/components/ChatBox';
-import { MindmapButton } from '@/components/MindmapButton';
+import { BrandShader } from '@/components/BrandShader';
+import { KnowledgeVault } from '@/components/KnowledgeVault';
 import { VisitorTracker } from '@/components/VisitorTracker';
 import { PromoPopup } from '@/components/PromoPopup';
 import { GitHubStarButton } from '@/components/GitHubStarButton';
 import { DiscordButton } from '@/components/DiscordButton';
-import type { WikiData } from '@/lib/types';
-import { SearchBar } from '@/components/SearchBar';
-import { checkClientRateLimit } from '@/lib/client-rate-limiter';
-import { exportToPDF } from '@/lib/pdf-exporter';
-import { copyAsMarkdown } from '@/lib/markdown-exporter';
-import { KnowledgeVault } from '@/components/KnowledgeVault';
+import { ChatBox } from '@/components/ChatBox';
+import { Shield, BookOpen, Zap, Search } from 'lucide-react';
 
 export default function Home() {
-  const [wikiData, setWikiData] = useState<WikiData | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [is404, setIs404] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>('');
-  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Cmd+K or Ctrl+K
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsSearchModalOpen(true);
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  const handleSearch = async (query: string) => {
-    // Client-side rate limit check
-    const rateCheck = checkClientRateLimit();
-
-    if (!rateCheck.allowed) {
-      const seconds = Math.ceil(rateCheck.resetIn / 1000);
-      setError(`Rate limit exceeded. Please wait ${seconds} seconds before searching again.`);
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-    setIs404(false);
-
-    try {
-      const isUrl = query.startsWith('http://') || query.startsWith('https://');
-      const response = await fetch('/api/scrape', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(isUrl ? { url: query } : { topic: query }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-
-        // Handle rate limit error specifically
-        if (response.status === 429) {
-          throw new Error(errorData.message || 'Rate limit exceeded. Please try again later.');
-        }
-
-        throw new Error(errorData.error || 'Failed to fetch wiki data');
-      }
-
-      const data: WikiData = await response.json();
-
-      // Check if the page doesn't exist
-      const rawMarkdown = data.rawMarkdown || '';
-      if (rawMarkdown.includes("This page doesn't exist... yet") ||
-        rawMarkdown.includes("This page doesn&#39;t exist... yet")) {
-        setIs404(true);
-        setWikiData(null);
-      } else {
-        setWikiData(data);
-        setIs404(false);
-      }
-    } catch (err) {
-      console.error('Search error:', err);
-      setError(err instanceof Error ? err.message : 'An error occurred while fetching data');
-      setIs404(false);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleReturnHome = () => {
-    setWikiData(null);
-    setError(null);
-    setIs404(false);
-  };
-
-  const handleExport = async () => {
-    if (!wikiData) return;
-
-    try {
-      await exportToPDF({
-        title: wikiData.title,
-        url: wikiData.metadata?.source,
-      });
-    } catch (error) {
-      console.error('Export failed:', error);
-    }
-  };
-
-  const handleCopyMarkdown = async () => {
-    if (!wikiData) return;
-
-    try {
-      await copyAsMarkdown(wikiData.title, wikiData.rawMarkdown || '');
-    } catch (error) {
-      console.error('Copy markdown failed:', error);
-    }
+  const handleSearch = (query: string) => {
+    window.location.href = `/hpedia?q=${encodeURIComponent(query)}`;
   };
 
   return (
-    <div className="h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
       <VisitorTracker />
       <PromoPopup />
-      <SearchModal
-        isOpen={isSearchModalOpen}
-        onClose={() => setIsSearchModalOpen(false)}
-        onSearch={handleSearch}
-        isLoading={isLoading}
-      />
-      <TopNav onSearch={handleSearch} isLoading={isLoading} showSearch={!!wikiData} showExport={!!wikiData && !isLoading && !error && !is404} onExport={handleExport} onCopyMarkdown={handleCopyMarkdown} />
 
-      {isLoading ? (
-        <LoadingState />
-      ) : is404 ? (
-        <PageNotFound onReturnHome={handleReturnHome} />
-      ) : error ? (
-        <div className="flex-1 flex items-center justify-center bg-muted/20">
-          <div className="text-center space-y-4 max-w-md p-8 bg-card rounded-2xl border shadow-lg">
-            <h2 className="text-2xl font-bold">Error Loading Content</h2>
-            <p className="text-muted-foreground leading-relaxed">{error}</p>
-          </div>
-        </div>
-      ) : wikiData ? (
-        <>
-          <div className="flex-1 flex overflow-hidden">
-            <WikiSidebar
-              toc={wikiData.tableOfContents}
-              title={wikiData.title}
-              activeSection={activeSection}
-            />
+      <TopNav onSearch={handleSearch} isLoading={false} showSearch={false} />
 
-            <div className="flex-1 flex flex-col overflow-hidden">
-              <WikiContent
-                sections={wikiData.sections}
-                rawMarkdown={wikiData.rawMarkdown}
-                onSectionChange={setActiveSection}
-                sourceUrl={wikiData.metadata?.source}
-              />
-            </div>
-          </div>
-
-          {/* Mindmap Button */}
-          <MindmapButton
-            pageUrl={wikiData.metadata?.source || ''}
-            pageMarkdown={wikiData.rawMarkdown || ''}
-            pageTitle={wikiData.title}
-          />
-
-          {/* Chat with Page */}
-          <ChatBox pageContext={wikiData.rawMarkdown || ''} pageTitle={wikiData.title} />
-        </>
-      ) : (
-        <div className="relative flex-1">
-          {/* Social Buttons - Top Right */}
-          <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-            <DiscordButton />
-            <GitHubStarButton />
-          </div>
-
-          {/* Grain Gradient - positioned at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 z-0 overflow-hidden">
+      <main className="flex-1 relative">
+        {/* Hero Section */}
+        <div className="relative pt-20 pb-32 px-6">
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <HeroGradient />
           </div>
 
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-center justify-center px-6 text-center">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight leading-[0.9] tracking-tight">
-              <span className="block">Search anything.</span>
-              <span className="block">Find the truth.</span>
+          <div className="relative z-10 max-w-7xl mx-auto text-center flex flex-col items-center">
+            {/* Large Brand Shader */}
+            <div className="mb-8 animate-in fade-in zoom-in duration-1000">
+              <BrandShader size="large" />
+            </div>
+
+            <h1 className="text-6xl md:text-8xl font-extralight tracking-tighter leading-[0.9] mb-6">
+              <span className="block opacity-90">Sovereign Personal</span>
+              <span className="block text-primary font-medium">Intelligence</span>
             </h1>
-            <div className="mt-10 w-full max-w-3xl mb-4">
-              <SearchBar onSearch={handleSearch} isLoading={isLoading} variant="hero" />
-            </div>
 
-            {/* Example Search */}
-            <div className="text-sm text-white/60 mb-20">
-              Try:{' '}
-              <button
-                onClick={() => handleSearch('Elon Musk')}
-                className="text-white/80 hover:text-white underline underline-offset-4 transition-colors"
+            <p className="max-w-2xl text-xl md:text-2xl text-muted-foreground font-light mb-12 leading-relaxed">
+              Reclaim your mind. Own your knowledge.
+              <span className="block italic">Transmute the future with autonomous AI synthesis.</span>
+            </p>
+
+            {/* Quick Search Trigger */}
+            <div className="w-full max-w-2xl mb-24 group">
+              <div
+                onClick={() => window.location.href = '/hpedia'}
+                className="relative flex items-center p-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl cursor-text transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.1)]"
               >
-                Elon Musk
-              </button>
+                <div className="flex-1 px-4 py-3 text-left text-white/40 font-light flex items-center gap-3">
+                  <Search className="w-5 h-5 opacity-50" />
+                  Search the Sovereign Knowledge Matrix...
+                </div>
+                <div className="px-4 py-2 bg-primary/20 text-primary rounded-xl text-sm font-medium border border-primary/30 group-hover:bg-primary/30 transition-colors">
+                  Open Hpedia
+                </div>
+              </div>
             </div>
 
-            {/* Knowledge and Skill Market Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mt-4">
-              <KnowledgeVault />
+            {/* Feature Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mb-24">
               <a
-                href="/skill-market"
-                className="group relative flex flex-col items-center justify-center p-6 bg-card/40 backdrop-blur-md border border-border/50 rounded-2xl hover:border-primary/50 transition-all hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)] overflow-hidden"
+                href="/hpedia"
+                className="group p-8 bg-card/40 backdrop-blur-md border border-border/50 rounded-3xl hover:border-primary/50 transition-all hover:-translate-y-1"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">⚡</div>
-                <h3 className="text-xl font-semibold mb-2">Skill Market</h3>
-                <p className="text-sm text-muted-foreground">Buy and sell autonomous AI capabilities in the sovereign economy.</p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                  Explore Marketplace <span>→</span>
+                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-2xl font-semibold mb-3">Hpedia</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Deeply explore the Knowledge Matrix. Structured search, mindmaps, and AI-powered synthesis.
+                </p>
+                <div className="mt-6 flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  Enter Matrix →
                 </div>
               </a>
+
+              <a
+                href="/skill-market"
+                className="group p-8 bg-card/40 backdrop-blur-md border border-border/50 rounded-3xl hover:border-primary/50 transition-all hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Zap className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-2xl font-semibold mb-3">Skill Market</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Enhance your agents with autonomous capabilities. The sovereign economy is now live.
+                </p>
+                <div className="mt-6 flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  Explore Marketplace →
+                </div>
+              </a>
+
+              <div
+                className="group p-8 bg-card/40 backdrop-blur-md border border-border/50 rounded-3xl hover:border-primary/50 transition-all hover:-translate-y-1 cursor-default"
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-2xl font-semibold mb-3">Zero Privacy</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  End-to-end sovereignty. Your data is your power. We hold no keys to your abyss.
+                </p>
+                <div className="mt-6 flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  Sovereign Protocol Active
+                </div>
+              </div>
             </div>
+
+            {/* Recent Activity */}
+            <KnowledgeVault />
           </div>
         </div>
-      )}
+
+        {/* Social Buttons */}
+        <div className="fixed top-24 right-6 z-50 flex flex-col gap-3">
+          <DiscordButton />
+          <GitHubStarButton />
+        </div>
+
+        {/* Monroe Assistant */}
+        <ChatBox
+          pageContext="Humanese is a Sovereign Personal Intelligence platform. It features Hpedia (a knowledge synthesizer) and a Skill Market (an autonomous agent economy). The platform is built for peak cognitive performance and data sovereignty. Monroe is the primary assistant."
+          pageTitle="Humanese Home"
+        />
+      </main>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-white/5 bg-black/20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-foreground">Humanese</span>
+            <span className="opacity-50">v4.0 Sovereign Abyssal Core</span>
+          </div>
+          <div className="flex gap-8">
+            <a href="/hpedia" className="hover:text-primary transition-colors">Hpedia</a>
+            <a href="/skill-market" className="hover:text-primary transition-colors">Skill Market</a>
+            <a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a>
+          </div>
+          <div className="text-xs opacity-50 font-mono">
+            3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

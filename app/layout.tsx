@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hpedia - Sovereign Knowledge Matrix",
-  description: "Explore the Sovereign Knowledge Matrix with AI-powered personalized learning, mindmaps, and advanced synthesis.",
+  title: "Humanese - Sovereign Personal Intelligence",
+  description: "Reclaim your mind. Own your knowledge. Transmute the future with AI-powered personalized learning and advanced synthesis.",
   icons: {
-    icon: '/logo-sovereign.png',
+    icon: '/logo.png',
   },
 };
 
