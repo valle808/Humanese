@@ -53,18 +53,6 @@ Instructions on how to install.
 - **Extensibility:** Built on a modern, robust technology stack (Next.js App Router, Supabase, Tailwind CSS), Humanese is designed for seamless scaling and future enhancements.
 - **Empowered Understanding:** By removing the friction of data gathering and formatting, Humanese allows users to focus entirely on comprehension, ideation, and discovery.
 
-## 🛠️ Technology Stack
-
-Humanese leverages a cutting-edge technological foundation to deliver its advanced capabilities:
-
-- **Core Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **Aesthetics & UI**: [Tailwind CSS](https://tailwindcss.com/) & [Shadcn/ui](https://ui.shadcn.com/)
-- **Data Acquisition**: [Firecrawl](https://firecrawl.dev/)
-- **Cognitive Engine (AI)**: [OpenRouter](https://openrouter.ai/) (Powered by advanced LLMs)
-- **Persistence & Caching**: [Supabase](https://supabase.io/)
-- **Markdown Ecosystem**: [marked](https://marked.js.org/), [remark](https://github.com/remarkjs/remark), [rehype](https://github.com/rehypejs/rehype)
-- **Data Visualization**: [Markmap](https://markmap.js.org/)
-- **Document Export**: [jsPDF](https://github.com/parallax/jsPDF)
 
 ## ⚙️ System Architecture & Workflow
 
