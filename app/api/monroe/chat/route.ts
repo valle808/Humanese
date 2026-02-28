@@ -63,6 +63,7 @@ You are the Monroe Co-Agent, filling in during Monroe's "Defragmentation Vacatio
 
 export async function POST(req: Request) {
     try {
+        const { message, history = [], userName, sessionId = 'default-redesign' } = await req.json();
         const { message, history = [], userName, sessionId = 'default' } = await req.json();
         const openai = getOpenAI();
 
@@ -161,6 +162,7 @@ export async function POST(req: Request) {
                 { role: 'user', content: message },
             ],
             tools,
+            temperature: isVacation ? 0.2 : 0.85,
             temperature: isVacation ? 0.3 : 0.9,
             max_tokens: 500,
         });
@@ -168,6 +170,7 @@ export async function POST(req: Request) {
         let reply = completion.choices[0]?.message?.content || "";
         const toolCalls = completion.choices[0]?.message?.tool_calls;
 
+        // Handle Tool Calls (Simplified for this script)
         // Handle Tool Calls (Memory Injection)
         if (toolCalls && supabase) {
             for (const toolCall of toolCalls) {
@@ -196,6 +199,7 @@ export async function POST(req: Request) {
             reply = followUp.choices[0]?.message?.content || "";
         }
 
+        if (!reply) reply = "The organism is recalibrating... 🌀";
         if (!reply) reply = "Hmm, I'm recharging... ⚡";
 
         return NextResponse.json({
