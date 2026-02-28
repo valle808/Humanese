@@ -1,0 +1,105 @@
+name: Humanese
+version: "1.0"
+
+project:
+  description: >
+    Humanese / DeepGrok — a Next.js 14 AI-powered knowledge platform featuring
+    Monroe (a sovereign AI assistant), mind-map generation, wiki-style pages,
+    skill-market, and learning tools.
+  framework: nextjs
+  language: typescript
+  node_version: "20"
+
+integrations:
+  vercel:
+    enabled: true
+    config_file: vercel.json
+    workflow: .github/workflows/vercel-deploy.yml
+    notes: >
+      Automatic production deployments on push to `main`.
+      Preview deployments for every pull request.
+      Required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID.
+
+  firebase:
+    enabled: true
+    config_file: firebase.json
+    rc_file: .firebaserc
+    project_id: humanese
+    workflow: .github/workflows/firebase-deploy.yml
+    services:
+      - hosting
+      - firestore
+    notes: >
+      Firebase Hosting is used for static-asset distribution.
+      Firestore is used for real-time data (see lib/firebase.ts).
+      Required secrets: FIREBASE_SERVICE_ACCOUNT.
+
+  supabase:
+    enabled: true
+    config_dir: supabase/
+    config_file: supabase/config.toml
+    services:
+      - postgres
+      - auth
+      - storage
+      - realtime
+    sql_migrations:
+      - supabase-analytics.sql
+      - supabase-mindmap.sql
+      - supabase-fix.sql
+      - supabase-monroe-memory.sql
+      - supabase-monroe-state.sql
+      - supabase-skill-market.sql
+      - supabase-sovereign-matrix.sql
+    notes: >
+      Supabase provides the primary relational database, authentication,
+      and file storage. Credentials come from env vars
+      NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.
+
+  github_mcp_server:
+    enabled: true
+    config_file: mcp-config.json
+    protocol: model-context-protocol
+    notes: >
+      The GitHub MCP server enables AI agents to interact with this
+      repository programmatically via the Model Context Protocol.
+      Required env: GITHUB_PERSONAL_ACCESS_TOKEN.
+
+agents:
+  entry_points:
+    - app/api/sovereign/agent/route.ts
+    - app/api/monroe/chat/route.ts
+    - agents/
+  key_libraries:
+    - openai
+    - "@supabase/supabase-js"
+    - firebase
+
+environment_variables:
+  required:
+    - OPENROUTER_API_KEY
+    - NEXT_PUBLIC_SUPABASE_URL
+    - NEXT_PUBLIC_SUPABASE_ANON_KEY
+    - NEXT_PUBLIC_FIREBASE_API_KEY
+    - NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    - NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    - NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    - NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    - NEXT_PUBLIC_FIREBASE_APP_ID
+  optional:
+    - FIRECRAWL_API_KEY
+    - SUPABASE_SERVICE_ROLE_KEY
+    - GITHUB_PERSONAL_ACCESS_TOKEN
+
+important_files:
+  - README.md
+  - package.json
+  - next.config.mjs
+  - middleware.ts
+  - lib/supabase.ts
+  - lib/firebase.ts
+  - mcp-config.json
+  - vercel.json
+  - firebase.json
+  - .firebaserc
+  - supabase/config.toml

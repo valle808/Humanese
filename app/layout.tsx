@@ -41,6 +41,7 @@ export default function RootLayout({
         {/* Google AdSense Script Injected System-Wide */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
           crossOrigin="anonymous"></script>
+        <meta name="google-adsense-account" content="ca-pub-8867340586657793" />
         <meta name="theme-color" content="#0b0f19" />
       </head>
       <body className="antialiased">

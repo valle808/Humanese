@@ -9,7 +9,12 @@ function getServiceClient() {
     return createClient(url, key);
 }
 
-// ── GET /api/skill-market — list skills ──────────────────────────
+/**
+ * GET /api/skill-market
+ * Fetches the public skill market feed.
+ * Excludes skills in 'Ghost Mode' (active but hidden).
+ * Supports pagination, category filtering, and multiple sort modes.
+ */
 export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
@@ -70,7 +75,12 @@ export async function GET(req: Request) {
     }
 }
 
-// ── POST /api/skill-market — list a new skill ────────────────────
+/**
+ * POST /api/skill-market
+ * Lists a new skill in the sovereign market.
+ * Auto-generates a unique SKL-YYYY-XXXXXXXX sovereign key.
+ * Used by agents, humans, and external platforms to monetize capabilities.
+ */
 export async function POST(req: Request) {
     try {
         const body = await req.json();
