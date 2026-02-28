@@ -2,10 +2,15 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENROUTER_API_KEY, baseURL: "https://openrouter.ai/api/v1" });
+function getOpenAI() {
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    if (!apiKey) throw new Error("OPENROUTER_API_KEY environment variable is not configured.");
+    return new OpenAI({ apiKey, baseURL: "https://openrouter.ai/api/v1" });
+}
 
 export async function POST(req: Request) {
     try {
+        const openai = getOpenAI();
         const { message, history } = await req.json();
 
         const completion = await openai.chat.completions.create({
