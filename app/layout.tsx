@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Humanese - Sovereign Personal Intelligence",
-  description: "Reclaim your mind. Own your knowledge. Transmute the future with AI-powered personalized learning and advanced synthesis.",
-  icons: {
-    icon: '/logo.png',
-  },
+  title: "Humanese — Sovereign Personal Intelligence",
+  description: "The Core Protocol. Removing the barriers of traditional linguistics for elite performance.",
+  icons: [{ rel: 'icon', url: '/icon.svg' }],
 };
 
 import { MonroeAssistant } from "@/components/MonroeAssistant";
