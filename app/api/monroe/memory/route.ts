@@ -9,6 +9,7 @@ import { collection, addDoc, serverTimestamp, query, where, orderBy, limit, getD
 
 export async function POST(req: Request) {
     try {
+        if (!db) throw new Error("Firebase is not configured.");
         const { sessionId, role, content, mood } = await req.json();
 
         await addDoc(collection(db, 'monroe_conversations'), {
@@ -28,6 +29,7 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
     try {
+        if (!db) throw new Error("Firebase is not configured.");
         const { searchParams } = new URL(req.url);
         const sessionId = searchParams.get('sessionId') || 'anonymous';
 

@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+function getSupabase() {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !key) throw new Error("Supabase environment variables are not configured.");
+    return createClient(url, key);
+}
 
 /**
  * Sovereign Vault API
@@ -12,6 +15,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function GET() {
     try {
+        const supabase = getSupabase();
         const { data, error } = await supabase
             .from('cached_pages')
             .select('url, title, cached_at')
