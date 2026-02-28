@@ -29,7 +29,11 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
 
     return (
         <div
+            role="button"
+            tabIndex={0}
             onClick={() => onSelect(skill)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(skill); } }}
+            aria-label={`View details for ${skill.title}`}
             className="group relative bg-card border border-border rounded-2xl p-5 cursor-pointer hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col gap-3"
         >
             {/* Ghost Mode Overlay */}
@@ -103,6 +107,7 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
                     {/* Copy skill key */}
                     <button
                         onClick={handleCopyKey}
+                        aria-label={`Copy skill key for ${skill.title}`}
                         className="text-xs font-mono bg-muted hover:bg-muted/80 px-2 py-1 rounded-lg transition-colors border border-border"
                         title="Copy Skill Key"
                     >
@@ -110,6 +115,7 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
                     </button>
                     <button
                         onClick={(e) => { e.stopPropagation(); onSelect(skill); }}
+                        aria-label={`${skill.is_sold ? 'View' : 'View details for'} ${skill.title}`}
                         className="text-xs bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:opacity-90 transition-opacity font-medium"
                     >
                         {skill.is_sold ? 'View' : 'Details'}

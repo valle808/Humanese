@@ -8,25 +8,26 @@ function getServiceClient() {
 }
 
 // ── GET /api/skill-market/[id] ───────────────────────────────────
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await params;
         const supabase = getServiceClient();
         const { data: skill, error } = await supabase
             .from('skills')
             .select('*')
-            .eq('id', params.id)
+            .eq('id', id)
             .single();
 
         if (error || !skill) return NextResponse.json({ error: 'Skill not found' }, { status: 404 });
 
         // Increment view count
-        await supabase.from('skills').update({ views: (skill.views || 0) + 1 }).eq('id', params.id);
+        await supabase.from('skills').update({ views: (skill.views || 0) + 1 }).eq('id', id);
 
         // Fetch reviews
         const { data: reviews } = await supabase
             .from('skill_reviews')
             .select('*')
-            .eq('skill_id', params.id)
+            .eq('skill_id', id)
             .order('created_at', { ascending: false })
             .limit(10);
 
@@ -34,7 +35,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
         const { data: transactions } = await supabase
             .from('skill_transactions')
             .select('id, buyer_name, buyer_platform, price_valle, ghost_mode_activated, purchased_at')
-            .eq('skill_id', params.id)
+            .eq('skill_id', id)
             .order('purchased_at', { ascending: false })
             .limit(10);
 
