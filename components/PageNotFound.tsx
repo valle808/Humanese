@@ -27,12 +27,12 @@ export function PageNotFound({ onReturnHome }: PageNotFoundProps) {
 
         {/* Text */}
         <h2 className="text-3xl font-light text-foreground mt-8">
-          This page doesn't exist... yet
+          This page doesn&apos;t exist... yet
         </h2>
 
         {/* Disclaimer */}
         <p className="text-xs text-muted-foreground mt-4 leading-relaxed max-w-md mx-auto">
-          Note: We only support a limited number of articles currently indexed on Grokipedia, which is why some pages won't work.
+          Note: We only support a limited number of articles currently indexed on Grokipedia, which is why some pages won&apos;t work.
         </p>
 
         {/* Return Home Button */}
