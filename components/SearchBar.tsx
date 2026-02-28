@@ -38,6 +38,7 @@ export function SearchBar({ onSearch, isLoading = false, variant = 'default' }: 
           <button
             type="submit"
             disabled={isLoading || !query.trim()}
+            aria-label={isLoading ? 'Searching…' : 'Search'}
             className="absolute right-2 top-1/2 -translate-y-1/2 grid h-12 w-12 place-items-center rounded-full border border-white/20 bg-white/15 text-white hover:bg-white/25 transition disabled:opacity-50"
           >
             {isLoading ? (
