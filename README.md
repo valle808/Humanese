@@ -1,9 +1,6 @@
-<div align="center">
-  <a href="https://humanese.vercel.app/">
-    <img src="https://humanese.vercel.app/logo.png" alt="Humanese Logo" width="400" />
-  </a>
+# Humanese
 
-  <h1 align="center">Humanese</h1>
+Welcome to Humanese! This is the README file for the Humanese project.
 
   <p align="center">
     <strong>An Advanced AI-Driven Ecosystem for Intelligent Research, Autonomous Agents, and Comprehensive Data Synthesis</strong>
@@ -22,16 +19,19 @@
     </a>
   </p>
 </div>
+<img src="public/logo-sovereign.png" alt="Humanese Logo" width="400" />
 
----
+## Features
 
-## 🌌 Introduction
+- Feature 1
+- Feature 2
+- Feature 3
 
-Welcome to **Humanese**, a sophisticated, next-generation platform engineered to elevate the way we interact with information. Moving beyond traditional search and reading paradigms, Humanese introduces a fully integrated suite of AI-powered agents, generative models, and structured data synthesis tools. Our mission is to bridge the gap between vast data repositories and human understanding through elegant, autonomous, and highly capable systems.
+## Installation
 
-## ✨ Core Products & Capabilities
+Instructions on how to install.
 
-Humanese is not just a tool; it is a comprehensive ecosystem designed to empower researchers, developers, and knowledge seekers.
+## Usage
 
 ### 🤖 Autonomous AI Agents
 - **Context-Aware Assistants:** Engage in deep, multi-turn conversations with intelligent agents that possess full contextual awareness of your documents and research materials.
@@ -166,3 +166,4 @@ Unit tests live in the `__tests__/` directory and cover core utility functions:
   Built with precision and a vision for the future of information processing. <br/>
   <strong>Humanese</strong> — Elevating human understanding through artificial intelligence.
 </p>
+Instructions on how to use.
