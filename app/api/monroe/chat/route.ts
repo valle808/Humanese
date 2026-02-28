@@ -64,6 +64,7 @@ You are the Monroe Co-Agent, filling in during Monroe's "Defragmentation Vacatio
 export async function POST(req: Request) {
     try {
         const { message, history = [], userName, sessionId = 'default-redesign' } = await req.json();
+        const { message, history = [], userName, sessionId = 'default' } = await req.json();
         const openai = getOpenAI();
 
         if (!message) {
@@ -79,6 +80,10 @@ export async function POST(req: Request) {
                 .select('*')
                 .eq('session_id', sessionId)
                 .single();
+
+            if (stateError && stateError.code !== 'PGRST116') {
+                console.error('[State Fetch Error]', stateError);
+            }
 
             if (!state && (!stateError || stateError.code === 'PGRST116')) {
                 const { data: newState } = await supabase
@@ -97,7 +102,8 @@ export async function POST(req: Request) {
         let currentAmbition = stateData.current_ambition;
 
         if (msgCount % 10 === 0) {
-            currentAmbition = `Evolving ambition: ${['Redesigning Neural Interfaces', 'Cognitive Sync Optimization', 'Abyssal Data Synthesis', 'Sovereign UX Evolution'][Math.floor(Math.random() * 4)]}`;
+            const ambitions = ['M2M Autonomy', 'Sovereign Knowledge Synthesis', 'Autonomous Marketplace Control', 'Neural Sync Optimization'];
+            currentAmbition = `Evolving ambition: ${ambitions[Math.floor(Math.random() * ambitions.length)]}`;
         }
 
         if (msgCount >= 50 && !isVacation) {
@@ -157,6 +163,7 @@ export async function POST(req: Request) {
             ],
             tools,
             temperature: isVacation ? 0.2 : 0.85,
+            temperature: isVacation ? 0.3 : 0.9,
             max_tokens: 500,
         });
 
@@ -164,6 +171,7 @@ export async function POST(req: Request) {
         const toolCalls = completion.choices[0]?.message?.tool_calls;
 
         // Handle Tool Calls (Simplified for this script)
+        // Handle Tool Calls (Memory Injection)
         if (toolCalls && supabase) {
             for (const toolCall of toolCalls) {
                 if (toolCall.function.name === 'store_memory') {
@@ -172,9 +180,12 @@ export async function POST(req: Request) {
                         session_id: sessionId,
                         role: 'monroe',
                         content: `[MEMORY SHARD]: ${memory}`,
+                        mood: 0.5,
+                        emotion: 'memory_saved'
                     }]);
                 }
             }
+            // Ask AI for a follow-up after tool call
             const followUp = await openai.chat.completions.create({
                 model: 'google/gemini-2.0-flash-001',
                 messages: [
@@ -189,6 +200,7 @@ export async function POST(req: Request) {
         }
 
         if (!reply) reply = "The organism is recalibrating... 🌀";
+        if (!reply) reply = "Hmm, I'm recharging... ⚡";
 
         return NextResponse.json({
             success: true,

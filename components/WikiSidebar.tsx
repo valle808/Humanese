@@ -40,7 +40,7 @@ export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
   return (
     <div className="h-screen w-72 bg-card/50 backdrop-blur-sm">
       <ScrollArea className="h-screen">
-        <nav className="p-3 pt-4 pb-64">
+        <nav className="p-3 pt-4 pb-64" aria-label="Table of contents">
           {toc.length === 0 && !title ? (
             <p className="text-sm text-muted-foreground px-2">No sections available</p>
           ) : (

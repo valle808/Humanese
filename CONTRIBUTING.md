@@ -31,16 +31,19 @@ By submitting a pull request, you acknowledge that you have read this agreement 
 1. **Fork the repository**
 2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
 3. **Make your changes**
-4. **Test thoroughly** - ensure `npm run build` passes
-5. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-6. **Push to your fork** (`git push origin feature/amazing-feature`)
-7. **Open a Pull Request**
+4. **Test thoroughly** — run `npm test` and ensure `npm run build` passes
+5. **Lint your code** — run `npm run lint` and fix any reported issues
+6. **Commit your changes** (`git commit -m 'Add amazing feature'`)
+7. **Push to your fork** (`git push origin feature/amazing-feature`)
+8. **Open a Pull Request** targeting the `main` branch
+
+PRs are reviewed by a maintainer. Please allow up to 3 business days for a review. Address any requested changes promptly. Once approved, your PR will be squash-merged.
 
 ### Code Style
 
 - Follow existing code patterns
 - Use TypeScript for type safety
-- Format code before committing
+- Format code before committing (run `npm run lint` to check with ESLint — see [`.eslintrc.json`](.eslintrc.json))
 - Write clear commit messages
 
 ### Areas for Contribution

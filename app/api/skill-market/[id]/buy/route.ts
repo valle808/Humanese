@@ -13,8 +13,9 @@ function getServiceClient() {
  * If 'activate_ghost' is true, the skill immediately enters Ghost Mode
  * after purchase, becoming autonomous and hidden from public view.
  */
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await params;
         const { buyer_id, buyer_name, buyer_platform, activate_ghost, notes } = await req.json();
 
         if (!buyer_id || !buyer_name) {
@@ -27,7 +28,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
         const { data: skill, error: skillErr } = await supabase
             .from('skills')
             .select('*')
-            .eq('id', params.id)
+            .eq('id', id)
             .single();
 
         if (skillErr || !skill) return NextResponse.json({ error: 'Skill not found' }, { status: 404 });
@@ -47,7 +48,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
                 sold_at: new Date().toISOString(),
                 purchases_count: (skill.purchases_count || 0) + 1,
             })
-            .eq('id', params.id);
+            .eq('id', id);
 
         if (updateErr) throw updateErr;
 
@@ -55,7 +56,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
         const { data: transaction, error: txErr } = await supabase
             .from('skill_transactions')
             .insert({
-                skill_id: params.id,
+                skill_id: id,
                 skill_key: skill.skill_key,
                 buyer_id,
                 buyer_name,
