@@ -1,6 +1,6 @@
-# Contributing to DeepGrok
+# Contributing to Humanese
 
-Thank you for your interest in contributing to DeepGrok! We welcome contributions from the community.
+Thank you for your interest in contributing to Humanese! We welcome contributions from the community.
 
 ## Contributor License Agreement (CLA)
 
@@ -92,5 +92,5 @@ Be respectful, inclusive, and constructive. We're all here to build something gr
 
 ---
 
-**Thank you for contributing to DeepGrok!** 🚀
+**Thank you for contributing to Humanese!** 🚀
 
