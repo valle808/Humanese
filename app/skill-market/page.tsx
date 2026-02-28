@@ -21,6 +21,11 @@ interface DetailData {
     transactions: any[];
 }
 
+/**
+ * SkillMarketPage
+ * The main gateway to the Humanese Sovereign Economy.
+ * Integrates search, real-time filters, and global market statistics.
+ */
 export default function SkillMarketPage() {
     const [skills, setSkills] = useState<Skill[]>([]);
     const [stats, setStats] = useState<MarketStats>({ total_skills: 0, ghost_skills: 0, total_volume: 0 });

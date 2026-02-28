@@ -1,0 +1,16 @@
+name: "Copilot Superpowers"
+on:
+    issues:
+        types: [opened, edited]
+    pull_request:
+        types: [opened, synchronize]
+
+jobs:
+    automate:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Copilot Automation
+              uses: vypdev/copilot@v2.0.3
+              with:
+                  token: ${{ secrets.COPILOT_TOKEN }}
