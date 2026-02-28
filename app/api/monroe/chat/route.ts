@@ -271,8 +271,7 @@ export async function POST(req: Request) {
                     ...formattedHistory,
                     { role: 'user', content: message },
                     completion.choices[0].message,
-                    { role: 'tool', tool_call_id: toolCalls[0].id, content: 'Stored successfully.' }
-                    { role: 'tool', tool_call_id: toolCalls[0].id, content: 'Stored.' }
+                    { role: 'tool', tool_call_id: toolCalls[0].id, content: 'Stored successfully.' },
                 ],
             });
             reply = followUp.choices[0]?.message?.content || "";

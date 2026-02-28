@@ -32,7 +32,7 @@ export function LoadingState() {
 
         {/* Disclaimer */}
         <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
-          Note: We only support a limited number of articles currently indexed on Grokipedia, which is why some pages won't work.
+          Note: We only support a limited number of articles currently indexed on Grokipedia, which is why some pages won&apos;t work.
         </p>
       </div>
     </div>

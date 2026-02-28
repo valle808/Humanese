@@ -74,7 +74,7 @@ export function PromoPopup() {
             {/* Text Content */}
             <div className="text-center space-y-3 mb-6">
               <div className="inline-block px-4 py-1.5 bg-gray-200 rounded-full">
-                <p className="text-sm font-medium text-gray-700">What's New - October, 2025</p>
+                <p className="text-sm font-medium text-gray-700">What&apos;s New - October, 2025</p>
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
