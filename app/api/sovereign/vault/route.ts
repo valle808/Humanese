@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 function getSupabase() {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (!url || !key) throw new Error("Supabase environment variables are not configured.");
+    if (!url || !key) return null;
     return createClient(url, key);
 }
 
@@ -16,6 +16,13 @@ function getSupabase() {
 export async function GET() {
     try {
         const supabase = getSupabase();
+        if (!supabase) {
+            return NextResponse.json(
+                { success: false, error: 'Supabase environment variables are not configured.' },
+                { status: 503 }
+            );
+        }
+
         const { data, error } = await supabase
             .from('cached_pages')
             .select('url, title, cached_at')
