@@ -23,9 +23,14 @@ Welcome to Humanese! This is the README file for the Humanese project.
 
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- **AI-Powered Research** — Search any topic or URL to get structured, wiki-style summaries powered by LLMs
+- **Interactive Mind Maps** — Automatically generate hierarchical visual mind maps from any article
+- **Monroe AI Assistant** — A sovereign AI persona for contextual, multi-turn conversations about your research
+- **Skill Market** — Buy and sell autonomous AI capabilities in the sovereign knowledge economy
+- **Knowledge Vault** — Persist and revisit previously researched pages
+- **PDF & Markdown Export** — Export synthesized research to clean PDF or raw Markdown
+- **Intelligent Caching** — Supabase-backed caching for near-instant load times on repeated queries
+- **Analytics Dashboard** — Telemetry for tracking usage and visitor insights
 
 ## Installation
 
