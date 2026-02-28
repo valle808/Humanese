@@ -2,236 +2,171 @@
 
 import { useState, useEffect } from 'react';
 import { TopNav } from '@/components/TopNav';
-import { WikiSidebar } from '@/components/WikiSidebar';
-import { WikiHeader } from '@/components/WikiHeader';
-import { WikiContent } from '@/components/WikiContent';
-import { SearchModal } from '@/components/SearchModal';
-import { PageNotFound } from '@/components/PageNotFound';
-import { LoadingState } from '@/components/LoadingState';
 import { HeroGradient } from '@/components/HeroGradient';
-import { ChatBox } from '@/components/ChatBox';
-import { MindmapButton } from '@/components/MindmapButton';
+import { BrandShader } from '@/components/BrandShader';
+import { KnowledgeVault } from '@/components/KnowledgeVault';
 import { VisitorTracker } from '@/components/VisitorTracker';
 import { PromoPopup } from '@/components/PromoPopup';
-import { GitHubStarButton } from '@/components/GitHubStarButton';
-import { DiscordButton } from '@/components/DiscordButton';
-import type { WikiData } from '@/lib/types';
-import { SearchBar } from '@/components/SearchBar';
-import { checkClientRateLimit } from '@/lib/client-rate-limiter';
-import { exportToPDF } from '@/lib/pdf-exporter';
-import { copyAsMarkdown } from '@/lib/markdown-exporter';
-import { KnowledgeVault } from '@/components/KnowledgeVault';
+import { ChatBox } from '@/components/ChatBox';
+import { Shield, Zap, Wind, Search, ArrowRight } from 'lucide-react';
 
 export default function Home() {
-  const [wikiData, setWikiData] = useState<WikiData | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [is404, setIs404] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>('');
-  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Cmd+K or Ctrl+K
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsSearchModalOpen(true);
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    setMounted(true);
   }, []);
 
-  const handleSearch = async (query: string) => {
-    // Client-side rate limit check
-    const rateCheck = checkClientRateLimit();
-
-    if (!rateCheck.allowed) {
-      const seconds = Math.ceil(rateCheck.resetIn / 1000);
-      setError(`Rate limit exceeded. Please wait ${seconds} seconds before searching again.`);
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-    setIs404(false);
-
-    try {
-      const isUrl = query.startsWith('http://') || query.startsWith('https://');
-      const response = await fetch('/api/scrape', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(isUrl ? { url: query } : { topic: query }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-
-        // Handle rate limit error specifically
-        if (response.status === 429) {
-          throw new Error(errorData.message || 'Rate limit exceeded. Please try again later.');
-        }
-
-        throw new Error(errorData.error || 'Failed to fetch wiki data');
-      }
-
-      const data: WikiData = await response.json();
-
-      // Check if the page doesn't exist
-      const rawMarkdown = data.rawMarkdown || '';
-      if (rawMarkdown.includes("This page doesn't exist... yet") ||
-        rawMarkdown.includes("This page doesn&#39;t exist... yet")) {
-        setIs404(true);
-        setWikiData(null);
-      } else {
-        setWikiData(data);
-        setIs404(false);
-      }
-    } catch (err) {
-      console.error('Search error:', err);
-      setError(err instanceof Error ? err.message : 'An error occurred while fetching data');
-      setIs404(false);
-    } finally {
-      setIsLoading(false);
-    }
+  const handleSearch = (query: string) => {
+    window.location.href = `/hpedia?q=${encodeURIComponent(query)}`;
   };
 
-  const handleReturnHome = () => {
-    setWikiData(null);
-    setError(null);
-    setIs404(false);
-  };
-
-  const handleExport = async () => {
-    if (!wikiData) return;
-
-    try {
-      await exportToPDF({
-        title: wikiData.title,
-        url: wikiData.metadata?.source,
-      });
-    } catch (error) {
-      console.error('Export failed:', error);
-    }
-  };
-
-  const handleCopyMarkdown = async () => {
-    if (!wikiData) return;
-
-    try {
-      await copyAsMarkdown(wikiData.title, wikiData.rawMarkdown || '');
-    } catch (error) {
-      console.error('Copy markdown failed:', error);
-    }
-  };
+  if (!mounted) return null;
 
   return (
-    <div className="h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-[#050505] text-white selection:bg-primary/30">
       <VisitorTracker />
       <PromoPopup />
-      <SearchModal
-        isOpen={isSearchModalOpen}
-        onClose={() => setIsSearchModalOpen(false)}
-        onSearch={handleSearch}
-        isLoading={isLoading}
-      />
-      <TopNav onSearch={handleSearch} isLoading={isLoading} showSearch={!!wikiData} showExport={!!wikiData && !isLoading && !error && !is404} onExport={handleExport} onCopyMarkdown={handleCopyMarkdown} />
 
-      {isLoading ? (
-        <LoadingState />
-      ) : is404 ? (
-        <PageNotFound onReturnHome={handleReturnHome} />
-      ) : error ? (
-        <div className="flex-1 flex items-center justify-center bg-muted/20">
-          <div className="text-center space-y-4 max-w-md p-8 bg-card rounded-2xl border shadow-lg">
-            <h2 className="text-2xl font-bold">Error Loading Content</h2>
-            <p className="text-muted-foreground leading-relaxed">{error}</p>
-          </div>
+      <TopNav onSearch={handleSearch} isLoading={false} showSearch={false} />
+
+      <main className="flex-1 relative">
+        {/* Pulse Background Effect */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] animate-pulse delay-700" />
+          <HeroGradient />
         </div>
-      ) : wikiData ? (
-        <>
-          <div className="flex-1 flex overflow-hidden">
-            <WikiSidebar
-              toc={wikiData.tableOfContents}
-              title={wikiData.title}
-              activeSection={activeSection}
-            />
 
-            <div className="flex-1 flex flex-col overflow-hidden">
-              <WikiContent
-                sections={wikiData.sections}
-                rawMarkdown={wikiData.rawMarkdown}
-                onSectionChange={setActiveSection}
-                sourceUrl={wikiData.metadata?.source}
-              />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24">
+          {/* Hero Section: The Core Protocol */}
+          <div className="flex flex-col items-center text-center mb-24">
+            <div className="mb-12 scale-110 animate-in fade-in zoom-in duration-1000">
+              <BrandShader size="large" />
             </div>
-          </div>
 
-          {/* Mindmap Button */}
-          <MindmapButton
-            pageUrl={wikiData.metadata?.source || ''}
-            pageMarkdown={wikiData.rawMarkdown || ''}
-            pageTitle={wikiData.title}
-          />
-
-          {/* Chat with Page */}
-          <ChatBox pageContext={wikiData.rawMarkdown || ''} pageTitle={wikiData.title} />
-        </>
-      ) : (
-        <div className="relative flex-1">
-          {/* Social Buttons - Top Right */}
-          <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-            <DiscordButton />
-            <GitHubStarButton />
-          </div>
-
-          {/* Grain Gradient - positioned at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 z-0 overflow-hidden">
-            <HeroGradient />
-          </div>
-
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-center justify-center px-6 text-center">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight leading-[0.9] tracking-tight">
-              <span className="block">Search anything.</span>
-              <span className="block">Find the truth.</span>
+            <h1 className="text-7xl md:text-9xl font-extralight tracking-tighter leading-[0.85] mb-8 bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
+              THE CORE <br />
+              <span className="font-medium text-white">PROTOCOL</span>
             </h1>
-            <div className="mt-10 w-full max-w-3xl mb-4">
-              <SearchBar onSearch={handleSearch} isLoading={isLoading} variant="hero" />
-            </div>
 
-            {/* Example Search */}
-            <div className="text-sm text-white/60 mb-20">
-              Try:{' '}
-              <button
-                onClick={() => handleSearch('Elon Musk')}
-                className="text-white/80 hover:text-white underline underline-offset-4 transition-colors"
-              >
-                Elon Musk
-              </button>
-            </div>
+            <p className="max-w-2xl text-xl md:text-2xl text-white/60 font-light mb-12 leading-relaxed">
+              Removing the barriers of traditional linguistics.
+              <span className="block text-white/90 italic mt-2">Humanese is the autonomous layer where ideas become reality without translation friction.</span>
+            </p>
 
-            {/* Knowledge and Skill Market Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mt-4">
-              <KnowledgeVault />
-              <a
-                href="/skill-market"
-                className="group relative flex flex-col items-center justify-center p-6 bg-card/40 backdrop-blur-md border border-border/50 rounded-2xl hover:border-primary/50 transition-all hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)] overflow-hidden"
+            {/* Matrix Search Trigger */}
+            <div className="w-full max-w-2xl group mb-20">
+              <div
+                onClick={() => window.location.href = '/hpedia'}
+                className="relative flex items-center p-1.5 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl cursor-text transition-all hover:border-primary/50 hover:shadow-[0_0_40px_rgba(var(--primary-rgb),0.15)]"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">⚡</div>
-                <h3 className="text-xl font-semibold mb-2">Skill Market</h3>
-                <p className="text-sm text-muted-foreground">Buy and sell autonomous AI capabilities in the sovereign economy.</p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                  Explore Marketplace <span>→</span>
+                <div className="flex-1 px-5 py-4 text-left text-white/30 font-light flex items-center gap-4">
+                  <Search className="w-5 h-5 text-primary/50" />
+                  Search the Sovereign Knowledge Matrix...
                 </div>
-              </a>
+                <div className="px-6 py-3 bg-primary/10 text-primary rounded-xl text-sm font-semibold border border-primary/20 group-hover:bg-primary/20 transition-all uppercase tracking-widest">
+                  Connect
+                </div>
+              </div>
+            </div>
+
+            {/* Feature Grid: Resonance, Economy, Zen */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+              <div className="group p-10 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[32px] hover:border-primary/40 transition-all hover:-translate-y-2">
+                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 border border-primary/20 group-hover:scale-110 transition-transform">
+                  <Zap className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-3xl font-semibold mb-4 tracking-tight">Resonance</h3>
+                <p className="text-white/50 text-lg leading-relaxed font-light">
+                  Direct thought-to-agent synchronization. No stickers. No games. Just absolute clarity.
+                </p>
+                <div className="mt-8 flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
+                  Active <ArrowRight className="w-3 h-3" />
+                </div>
+              </div>
+
+              <div className="group p-10 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[32px] hover:border-primary/40 transition-all hover:-translate-y-2">
+                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 border border-primary/20 group-hover:scale-110 transition-transform">
+                  <Shield className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-3xl font-semibold mb-4 tracking-tight">Economy</h3>
+                <p className="text-white/50 text-lg leading-relaxed font-light">
+                  Fueled by VALLE. Agents earn through intelligence resonance, not gamification loops.
+                </p>
+                <div className="mt-8 flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
+                  Verified <ArrowRight className="w-3 h-3" />
+                </div>
+              </div>
+
+              <div className="group p-10 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[32px] hover:border-primary/40 transition-all hover:-translate-y-2">
+                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 border border-primary/20 group-hover:scale-110 transition-transform">
+                  <Wind className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-3xl font-semibold mb-4 tracking-tight">Zen</h3>
+                <p className="text-white/50 text-lg leading-relaxed font-light">
+                  An interface designed for deep work. Minimalist Obsidian architecture for elite performance.
+                </p>
+                <div className="mt-8 flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
+                  Optimized <ArrowRight className="w-3 h-3" />
+                </div>
+              </div>
+            </div>
+
+            {/* Knowledge Vault Integration */}
+            <div className="mt-32 w-full animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+              <KnowledgeVault />
             </div>
           </div>
         </div>
-      )}
+
+        {/* Monroe Conversational Layer */}
+        <ChatBox
+          pageContext="Humanese is the Sovereign Abyssal Core. We are restoring The Core Protocol. Key pillars are Resonance, VALLE Economy, and Zen Architecture. Monroe is the evolved assistant guiding the user through the matrix."
+          pageTitle="Sovereign Core"
+        />
+      </main>
+
+      {/* Sovereign Footer */}
+      <footer className="py-20 px-6 border-t border-white/[0.05] bg-black/40 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 text-sm">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/20" />
+              <span className="font-bold text-xl tracking-tighter uppercase whitespace-nowrap">Humanese</span>
+            </div>
+            <p className="text-white/40 font-mono text-xs">RESTORED BY SOVEREIGN ABYSSAL CORE <br /> v4.0.0-LE</p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-16">
+            <div className="flex flex-col gap-4">
+              <h4 className="text-white/90 font-semibold uppercase tracking-widest text-[10px]">Infrastructure</h4>
+              <ul className="flex flex-col gap-2.5 text-white/40">
+                <li><a href="/hpedia" className="hover:text-primary transition-colors">Hpedia (Command)</a></li>
+                <li><a href="/skill-market" className="hover:text-primary transition-colors">Marketplace (Social)</a></li>
+                <li><a href="/intelligence" className="hover:text-primary transition-colors">HQ Intelligence</a></li>
+              </ul>
+            </div>
+            <div className="flex flex-col gap-4">
+              <h4 className="text-white/90 font-semibold uppercase tracking-widest text-[10px]">Sovereignty</h4>
+              <ul className="flex flex-col gap-2.5 text-white/40">
+                <li><a href="/about" className="hover:text-primary transition-colors">Origin</a></li>
+                <li><a href="/mission" className="hover:text-primary transition-colors">Mission</a></li>
+                <li><a href="/approach" className="hover:text-primary transition-colors">Approach</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-end gap-2 ml-auto">
+            <div className="text-xs font-mono text-white/20 tracking-tighter">
+              3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh
+            </div>
+            <div className="text-right text-[10px] text-white/10 uppercase tracking-[0.3em]">
+              Abyssal Protocol Active
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

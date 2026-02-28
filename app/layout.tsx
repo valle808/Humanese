@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hpedia - Sovereign Knowledge Matrix",
-  description: "Explore the Sovereign Knowledge Matrix with AI-powered personalized learning, mindmaps, and advanced synthesis.",
-  icons: {
-    icon: '/logo-sovereign.png',
-  },
+  title: "Humanese ΓÇö Sovereign Personal Intelligence",
+  description: "The Core Protocol. Removing the barriers of traditional linguistics for elite performance.",
+  icons: [{ rel: 'icon', url: '/icon.svg' }],
 };
 
 import { MonroeAssistant } from "@/components/MonroeAssistant";
@@ -37,10 +35,11 @@ export default function RootLayout({
             __html: `tailwind = { config: { darkMode: 'class', theme: { extend: { colors: { border: 'hsl(var(--border))', input: 'hsl(var(--input))', ring: 'hsl(var(--ring))', background: 'hsl(var(--background))', foreground: 'hsl(var(--foreground))', primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' }, secondary: { DEFAULT: 'hsl(var(--secondary))', foreground: 'hsl(var(--secondary-foreground))' }, destructive: { DEFAULT: 'hsl(var(--destructive))', foreground: 'hsl(var(--destructive-foreground))' }, muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' }, accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' }, popover: { DEFAULT: 'hsl(var(--popover))', foreground: 'hsl(var(--popover-foreground))' }, card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' } }, fontFamily: { sans: ['Aeonik', 'sans-serif'] } } } }`,
           }}
         />
-        <script src="https://cdn.tailwindcss.com"></script>
+        <script async src="https://cdn.tailwindcss.com"></script>
         {/* Google AdSense Script Injected System-Wide */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
           crossOrigin="anonymous"></script>
+        <meta name="google-adsense-account" content="ca-pub-8867340586657793" />
         <meta name="theme-color" content="#0b0f19" />
       </head>
       <body className="antialiased">
