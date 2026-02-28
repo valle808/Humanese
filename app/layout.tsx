@@ -3,6 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Humanese — Sovereign Personal Intelligence",
+  title: "Humanese ΓÇö Sovereign Personal Intelligence",
   description: "The Core Protocol. Removing the barriers of traditional linguistics for elite performance.",
   icons: [{ rel: 'icon', url: '/icon.svg' }],
 };

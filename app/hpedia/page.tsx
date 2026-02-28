@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { TopNav } from '@/components/TopNav';
 import { WikiSidebar } from '@/components/WikiSidebar';
 import { WikiHeader } from '@/components/WikiHeader';
@@ -25,6 +26,7 @@ import { KnowledgeVault } from '@/components/KnowledgeVault';
 
 function HpediaContent() {
   const searchParams = useSearchParams();
+export default function Home() {
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -236,6 +238,11 @@ function HpediaContent() {
                 <p className="text-sm text-muted-foreground">Buy and sell autonomous AI capabilities in the sovereign economy.</p>
                 <div className="mt-4 flex items-center gap-2 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
                   Explore Marketplace <span>→</span>
+                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">âš¡</div>
+                <h3 className="text-xl font-semibold mb-2">Skill Market</h3>
+                <p className="text-sm text-muted-foreground">Buy and sell autonomous AI capabilities in the sovereign economy.</p>
+                <div className="mt-4 flex items-center gap-2 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                  Explore Marketplace <span>â†’</span>
                 </div>
               </a>
             </div>
