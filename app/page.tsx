@@ -213,8 +213,22 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Knowledge Vault */}
-            <KnowledgeVault />
+            {/* Knowledge and Skill Market Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mt-4">
+              <KnowledgeVault />
+              <a
+                href="/skill-market"
+                className="group relative flex flex-col items-center justify-center p-6 bg-card/40 backdrop-blur-md border border-border/50 rounded-2xl hover:border-primary/50 transition-all hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)] overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">⚡</div>
+                <h3 className="text-xl font-semibold mb-2">Skill Market</h3>
+                <p className="text-sm text-muted-foreground">Buy and sell autonomous AI capabilities in the sovereign economy.</p>
+                <div className="mt-4 flex items-center gap-2 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                  Explore Marketplace <span>→</span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       )}
