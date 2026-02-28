@@ -12,6 +12,15 @@
   <p align="center">
     <a href="https://humanese.vercel.app/">Explore Humanese</a>
   </p>
+
+  <p align="center">
+    <a href="https://github.com/valle808/Humanese/actions/workflows/ci.yml">
+      <img src="https://github.com/valle808/Humanese/actions/workflows/ci.yml/badge.svg" alt="CI" />
+    </a>
+    <a href="https://github.com/valle808/Humanese/actions/workflows/vercel-deploy.yml">
+      <img src="https://github.com/valle808/Humanese/actions/workflows/vercel-deploy.yml/badge.svg" alt="Deploy to Vercel" />
+    </a>
+  </p>
 </div>
 
 ---
@@ -122,6 +131,34 @@ The Humanese backend exposes a suite of powerful endpoints to interact programma
 - **`POST /api/chat`**: A high-performance streaming interface connecting directly to our AI models, facilitating real-time, context-aware dialogue regarding the synthesized content.
 - **`POST /api/mindmap`**: The visualization generator. Transforms dense markdown structures into clear, hierarchical mindmaps with intelligent caching.
 - **`GET /api/analytics`**: Telemetry endpoint for retrieving comprehensive system usage metrics from the database.
+
+## 🧪 CI & Quality Assurance
+
+Humanese uses GitHub Actions to enforce code quality on every push and pull request to `main`.
+
+### Workflows
+
+| Workflow | Trigger | Description |
+|---|---|---|
+| **CI** | push / pull_request | Runs ESLint and Jest tests |
+| **Deploy to Vercel** | push / pull_request | Builds and deploys the application |
+
+### Running Checks Locally
+
+```bash
+# Lint the codebase
+npm run lint
+
+# Run the test suite
+npm test
+```
+
+### Test Structure
+
+Unit tests live in the `__tests__/` directory and cover core utility functions:
+
+- `__tests__/utils.test.ts` — Tests for `cn`, `slugify`, and `generateId` helpers
+- `__tests__/markdown-cleaner.test.ts` — Tests for the `cleanMarkdown` content parser
 
 ---
 
