@@ -671,16 +671,39 @@
 
         // Type out Monroe's response
         monroeMsg.innerHTML = '';
-        let displayed = '';
-        const cursor = '<span class="typing-cursor"></span>';
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        monroeMsg.appendChild(cursor);
 
-        for (let i = 0; i < responseText.length; i++) {
-          displayed += responseText[i];
-          monroeMsg.innerHTML = displayed.replace(/\n/g, '<br>') + cursor;
-          chatLog.scrollTop = chatLog.scrollHeight;
-          await new Promise(r => setTimeout(r, 8 + Math.random() * 12));
+        async function typeNode(sourceNode, targetNode) {
+          for (let node of sourceNode.childNodes) {
+            if (node.nodeType === Node.TEXT_NODE) {
+              const textContent = node.textContent;
+              const textNode = document.createTextNode("");
+              targetNode.insertBefore(textNode, cursor);
+              for (let char of textContent) {
+                textNode.textContent += char;
+                chatLog.scrollTop = chatLog.scrollHeight;
+                await new Promise(r => setTimeout(r, 8 + Math.random() * 12));
+              }
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+              const newNode = document.createElement(node.nodeName);
+              for (let attr of node.attributes) {
+                newNode.setAttribute(attr.nodeName, attr.nodeValue);
+              }
+              targetNode.insertBefore(newNode, cursor);
+              if (node.childNodes.length > 0) {
+                await typeNode(node, newNode);
+              }
+            }
+          }
         }
-        monroeMsg.innerHTML = displayed.replace(/\n/g, '<br>'); // Remove cursor
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = responseText.replace(/\n/g, '<br>');
+        await typeNode(tempDiv, monroeMsg);
+        cursor.remove();
+
         chatHistory.push({ role: 'monroe', content: responseText });
 
       } catch (e) {
