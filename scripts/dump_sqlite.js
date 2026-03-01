@@ -18,6 +18,7 @@ async function main() {
         xPostSchedules: await prisma.xPostSchedule.findMany(),
         hardwareNodes: await prisma.hardwareNode.findMany(),
         sovereignKnowledge: await prisma.sovereignKnowledge.findMany(),
+        secretVault: await prisma.secretVault.findMany(),
     };
 
     fs.writeFileSync('db_dump.json', JSON.stringify(data, null, 2));

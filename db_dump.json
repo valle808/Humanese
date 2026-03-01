@@ -2557,6 +2557,672 @@
       "mediaPaths": null,
       "agentId": "LiveReaderSwarm",
       "ingestedAt": "2026-02-28T23:34:25.274Z"
+    },
+    {
+      "id": "bb358987-c613-4853-b8ef-21f209269b17",
+      "title": "At least 148 dead after reported strike on school, Iran says",
+      "content": "Iran has blamed the US and Israel for the strike; the US is looking into reports of the incident, while the IDF says it is \"not aware\" of operations in the area.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c1l7rvqq51eo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:57:38.367Z"
+    },
+    {
+      "id": "7aacba24-f009-4f44-9f66-1721f1dd65a7",
+      "title": "Switch to Claude without starting over",
+      "content": "Deep URL ingestion mapping: https://claude.com/import-memory",
+      "sourceUrl": "https://claude.com/import-memory",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:57:41.447Z"
+    },
+    {
+      "id": "347743b8-4525-4538-a247-8b337e6e4edf",
+      "title": "Intelligence is a commodity. Context is the real AI Moat",
+      "content": "Deep URL ingestion mapping: https://adlrocha.substack.com/p/adlrocha-intelligence-is-a-commodity",
+      "sourceUrl": "https://adlrocha.substack.com/p/adlrocha-intelligence-is-a-commodity",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:57:46.356Z"
+    },
+    {
+      "id": "cab4c3d0-3c8a-4983-92da-c77082aceee9",
+      "title": "AI Safety Farce",
+      "content": "Deep URL ingestion mapping: https://seanpedersen.github.io/posts/ai-safety-farce/",
+      "sourceUrl": "https://seanpedersen.github.io/posts/ai-safety-farce/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:57:52.784Z"
+    },
+    {
+      "id": "5871d455-0366-4112-944c-28cc3421e5ff",
+      "title": "Samsung Galaxy update removes Android recovery menu tools, including sideloading",
+      "content": "Deep URL ingestion mapping: https://9to5google.com/2026/02/27/samsung-galaxy-update-android-recovery-menu-removed/",
+      "sourceUrl": "https://9to5google.com/2026/02/27/samsung-galaxy-update-android-recovery-menu-removed/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:57:56.549Z"
+    },
+    {
+      "id": "f7687826-9449-4da3-8685-8d7e1eaa1375",
+      "title": "Make the Most of Chrome's Toolbar by Customizing It to Your Liking",
+      "content": "There are plenty of ways to customize Chrome to make it easier to navigate the web, manage your tasks, and make your workflow more efficient.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/how-to-customize-google-chrome-toolbar-to-your-liking/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:57:59.359Z"
+    },
+    {
+      "id": "71aad417-8a80-4c82-83ae-f886fc26641c",
+      "title": "Scientists Create Giant Fire Tornadoes That Could Save Our Oceans",
+      "content": "Scientists created 17-foot fire whirls that burn oil spills faster and cleaner than conventional methods, reducing soot by 40% and consuming nearly all the fuel. The technique shows promise for rapid, lower-emission spill response. In the critical hours after an offshore oil spill, response teams must make a difficult choice: allow the slick to spread [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/scientists-create-giant-fire-tornadoes-that-could-save-our-oceans/",
+      "sourceName": "AI Research News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_7e95dc86b50ea8ba.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:02.021Z"
+    },
+    {
+      "id": "63817b72-0a25-4b57-ba7d-755056fc73ba",
+      "title": "Trump, the Self-Declared Peace President, Goes to War Seeking Regime Change",
+      "content": "President Trump has become increasingly willing to assert American power overseas, a decade after propelling himself to the highest office by promising to focus on “America first.”... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/us/politics/trump-peace-president-war.html",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:03.992Z"
+    },
+    {
+      "id": "cc76792d-39c5-49ee-84eb-c7e3621bd885",
+      "title": "Trump's bet on Iranian regime change could be his biggest gamble yet",
+      "content": "The US president may be forced to wage a political battle at home while presiding over a new war in the Middle East.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cn48dwm818no?at_medium=RSS&at_campaign=rss",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:08.641Z"
+    },
+    {
+      "id": "d57ce1c8-94d4-490d-89f8-b37b8cf627c3",
+      "title": "Microgpt",
+      "content": "Deep URL ingestion mapping: http://karpathy.github.io/2026/02/12/microgpt/",
+      "sourceUrl": "http://karpathy.github.io/2026/02/12/microgpt/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:11.362Z"
+    },
+    {
+      "id": "c2d3dac0-8c21-46b6-948b-b5eb25f0dd39",
+      "title": "10-202: Introduction to Modern AI (CMU)",
+      "content": "Deep URL ingestion mapping: https://modernaicourse.org",
+      "sourceUrl": "https://modernaicourse.org",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:15.072Z"
+    },
+    {
+      "id": "23c324f6-7d85-40cf-83d3-92344d6b42fc",
+      "title": "Sub-second volumetric 3D printing by synthesis of holographic light fields",
+      "content": "Deep URL ingestion mapping: https://www.nature.com/articles/s41586-026-10114-5",
+      "sourceUrl": "https://www.nature.com/articles/s41586-026-10114-5",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:15.465Z"
+    },
+    {
+      "id": "017a18b2-189d-4317-9f29-078d27bc79cd",
+      "title": "The real cost of random I/O",
+      "content": "Deep URL ingestion mapping: https://vondra.me/posts/the-real-cost-of-random-io/",
+      "sourceUrl": "https://vondra.me/posts/the-real-cost-of-random-io/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:17.979Z"
+    },
+    {
+      "id": "59428e0b-5d9d-46e6-9a6a-783052585893",
+      "title": "Why is the first C++ (m)allocation always 72 KB?",
+      "content": "Deep URL ingestion mapping: https://joelsiks.com/posts/cpp-emergency-pool-72kb-allocation/",
+      "sourceUrl": "https://joelsiks.com/posts/cpp-emergency-pool-72kb-allocation/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:25.119Z"
+    },
+    {
+      "id": "c6b99590-4434-4e9b-8585-1eae450b31d8",
+      "title": "In Ukraine, a Community of ‘Simple Believers’ Shuns the Modern World",
+      "content": "The Christians known as viruiuchi prostaky see electricity, cars, higher education and much else as distractions from what really matters.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/world/europe/ukraine-simple-believers.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:25.501Z"
+    },
+    {
+      "id": "fd76f385-970e-450e-afe7-f4819d37c9a1",
+      "title": "War and Peace Cannot Be Left to One Man — Especially Not This Man",
+      "content": "The Constitution isn’t a technicality.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/opinion/trump-iran-congress-approval.html",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:25.505Z"
+    },
+    {
+      "id": "50653beb-a53c-497f-827d-20b9f5eb63a9",
+      "title": "The Science of Detecting LLM-Generated Text (2024)",
+      "content": "Deep URL ingestion mapping: https://dl.acm.org/doi/10.1145/3624725",
+      "sourceUrl": "https://dl.acm.org/doi/10.1145/3624725",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:26.229Z"
+    },
+    {
+      "id": "31d7e0a6-fc7e-4f33-91d6-0a7906646bdc",
+      "title": "Pigeons and Planes Has a Website Again",
+      "content": "Deep URL ingestion mapping: https://www.pigeonsandplanes.com/read/pigeons-and-planes-has-a-website-again",
+      "sourceUrl": "https://www.pigeonsandplanes.com/read/pigeons-and-planes-has-a-website-again",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:38.812Z"
+    },
+    {
+      "id": "e1ce2c6c-f83c-457c-91e1-52d0a48661ec",
+      "title": "Rydberg atoms detect clear signals from a handheld radio",
+      "content": "Deep URL ingestion mapping: https://phys.org/news/2026-02-rydberg-atoms-handheld-radio.html",
+      "sourceUrl": "https://phys.org/news/2026-02-rydberg-atoms-handheld-radio.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:48.144Z"
+    },
+    {
+      "id": "48d352bd-eae6-4f28-9c4e-c84bc7b2cf65",
+      "title": "Video Doorbell Advice and Settings for Opting Out of the Surveillance State",
+      "content": "Video doorbells are handy, but they’re a threat to privacy. I spoke to experts about why you might ditch your doorbell, and how to safeguard your video.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/how-to-secure-your-video-doorbell/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:50.829Z"
+    },
+    {
+      "id": "94f57a2b-7e69-49b4-849b-f7dc63abaf11",
+      "title": "Deterministic Programming with LLMs",
+      "content": "Deep URL ingestion mapping: https://www.mcherm.com/deterministic-programming-with-llms.html",
+      "sourceUrl": "https://www.mcherm.com/deterministic-programming-with-llms.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:55.894Z"
+    },
+    {
+      "id": "6952eae3-b581-4ee9-9cc4-66db46abb461",
+      "title": "SpacetimeDB ThreeJS Support",
+      "content": "Deep URL ingestion mapping: https://discourse.threejs.org/t/spacetimedb-threejs-support-and-free-tier/90052",
+      "sourceUrl": "https://discourse.threejs.org/t/spacetimedb-threejs-support-and-free-tier/90052",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:58:56.577Z"
+    },
+    {
+      "id": "08c335cd-4cec-4ba8-848c-98c509cb3f2f",
+      "title": "Show HN: Terminal-Style Portfolio on the Internet",
+      "content": "Posted about this last year, since then learned a lot, changed a lot and can still say it&#x27;s the best Terminal-Style Portfolio Website on The Internet",
+      "sourceUrl": "https://kuber.studio/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:01.772Z"
+    },
+    {
+      "id": "538cac86-4f59-4c9c-92a6-91cb6d8e1083",
+      "title": "X Is Drowning in Disinformation Following US and Israeli Attack on Iran",
+      "content": "WIRED has reviewed hundreds of posts on X that promote misleading claims about the locations and scale of the attack.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/x-is-drowning-in-disinformation-following-us-and-israels-attack-on-iran/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:05.389Z"
+    },
+    {
+      "id": "7acc74e0-9006-47f0-af86-422b1197300e",
+      "title": "Best Laser Printers I've Tried (2026): Brother, HP, and More",
+      "content": "Looking for fast printing at a relatively affordable cost? You probably want a laser printer.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/gallery/best-laser-printers/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:07.954Z"
+    },
+    {
+      "id": "e5d9484c-283e-4c83-95eb-39680901a791",
+      "title": "Clean Energy Discovered in the Depths of Old Coal Mines",
+      "content": "Cumberland is testing whether its abandoned coal mines can become a town-wide geothermal network that supports redevelopment, economic growth, and lower emissions. Cumberland, B.C. was built on coal mining—both literally and practically. For more than 80 years, the industry shaped the village’s economy and identity, employing thousands of workers and exporting millions of tonnes of [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/clean-energy-discovered-in-the-depths-of-old-coal-mines/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_06597a7b2ec427e5.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:08.198Z"
+    },
+    {
+      "id": "6d433733-e728-4f3e-882f-aa5c456f0a52",
+      "title": "3 Killed in Shooting at Bar in Austin",
+      "content": "The gunman was killed by police officers, and 14 others were hospitalized in the shooting early Sunday, officials said.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/us/austin-shooting-bufords-6th-street.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:20.638Z"
+    },
+    {
+      "id": "de4cd305-17a0-4057-945e-4f4f38f7ba04",
+      "title": "A New Threat to Power Grids: Data Centers Unplugging at Once",
+      "content": "Deep URL ingestion mapping: https://www.wsj.com/business/energy-oil/a-new-threat-to-power-grids-data-centers-unplugging-at-once-741f1bda",
+      "sourceUrl": "https://www.wsj.com/business/energy-oil/a-new-threat-to-power-grids-data-centers-unplugging-at-once-741f1bda",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:29.225Z"
+    },
+    {
+      "id": "e3486efa-0b3a-4653-b1bb-aafd8c0a9a2c",
+      "title": "Robust and efficient quantum-safe HTTPS",
+      "content": "Deep URL ingestion mapping: https://security.googleblog.com/2026/02/cultivating-robust-and-efficient.html",
+      "sourceUrl": "https://security.googleblog.com/2026/02/cultivating-robust-and-efficient.html",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:34.900Z"
+    },
+    {
+      "id": "78c1ece2-8da6-4bed-a693-0290b07bf34f",
+      "title": "I went to rural Wales to bathe in starlight and the Milky Way blew me away",
+      "content": "I join two tourists in the mountains to immerse ourselves in the wonders of the night sky with a star guide.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cj32l7kmkmko?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:38.511Z"
+    },
+    {
+      "id": "086a83d6-bbba-4b85-afdc-f2c507b1a4ed",
+      "title": "A Tyrant Falls. Dangerous Uncertainty Begins.",
+      "content": "No one should mourn Ayatollah Khamenei, but Trump is creating the opportunity for chaos and violence with his campaign against Iran.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/opinion/iran-khamenei-killed-what-next.html",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:42.702Z"
+    },
+    {
+      "id": "097a695f-1de0-4658-82a2-a6268e59346e",
+      "title": "‘One Battle After Another’ Wins Producers Guild Award. Is Oscar Next?",
+      "content": "The Paul Thomas Anderson film also took the top Directors Guild prize as well, a good sign for the movie’s best picture prospects at the Oscars.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/movies/one-battle-after-another-producers-guild-awards.html",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:50.106Z"
+    },
+    {
+      "id": "b3c657e1-31c7-4717-a105-4541c2f9dc1a",
+      "title": "After the warmest weather of the year so far, is winter finally over?",
+      "content": "As we start meteorological spring, Simon King explores whether it is time to put away your winter coat.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/weather/articles/c1d6q1l5r6do?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:54.043Z"
+    },
+    {
+      "id": "00e192ec-2e8c-4b6c-8086-8c7a7e00080f",
+      "title": "I built a demo of what AI chat will look like when it's \"free\" and ad-supported",
+      "content": "Deep URL ingestion mapping: https://99helpers.com/tools/ad-supported-chat",
+      "sourceUrl": "https://99helpers.com/tools/ad-supported-chat",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T12:59:56.463Z"
+    },
+    {
+      "id": "8842d5e8-738c-4f1e-8a1f-2fa292b9adbc",
+      "title": "An ode to houseplant programming (2025)",
+      "content": "Deep URL ingestion mapping: https://hannahilea.com/blog/houseplant-programming/",
+      "sourceUrl": "https://hannahilea.com/blog/houseplant-programming/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:00:25.297Z"
+    },
+    {
+      "id": "dc283e51-c1c4-4f55-90d0-8d04a85666df",
+      "title": "Mountaineers weigh up risks and rewards after Austrian climb ended in manslaughter conviction",
+      "content": "A woman's death during a climbing trip has sparked debates about personal responsibility and risk.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cwy8ppn4142o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:00:29.863Z"
+    },
+    {
+      "id": "4bc0a4fa-6281-4ff8-8246-3011fdb717a9",
+      "title": "Hardwood: A New Parser for Apache Parquet",
+      "content": "Deep URL ingestion mapping: https://www.morling.dev/blog/hardwood-new-parser-for-apache-parquet/",
+      "sourceUrl": "https://www.morling.dev/blog/hardwood-new-parser-for-apache-parquet/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:00:53.826Z"
+    },
+    {
+      "id": "b84d620a-ea03-4061-9c7b-268f2efee131",
+      "title": "The trap Anthropic built for itself",
+      "content": "Anthropic, OpenAI, Google DeepMind and others have long promised to govern themselves responsibly. Now, in the absence of rules, there's not a lot to protect them.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/the-trap-anthropic-built-for-itself/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:00:58.553Z"
+    },
+    {
+      "id": "cb6693b0-a85d-43fc-94e5-2dca14aac396",
+      "title": "Honor’s Magic V6 is the first foldable with an IP69 rating",
+      "content": "The Magic V6 is just slightly more water-resistant than the Pixel 10 Pro Fold.\t\n\nFor the third year running, Honor has announced what it says is the world's thinnest book-style folding phone. For the second year, it's combined that with the biggest battery in any foldable too. This year, for its third and final trick, the company went ahead and made sure it was the first foldable with an IP69 rating too.\nThe Honor Magic V6 was announced at MWC in Barcelona today, though Honor has played a bit fast and loose with timing to guarantee those three records: the V6 won't go on sale in China until some time later this month, and the international release is still months away, in the second half of the year, so Honor isn't sayi …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/tech/887104/honor-magic-v6-thinnest-battery-launch-mwc",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_68fb971f43931f93.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:01:08.274Z"
+    },
+    {
+      "id": "76a6f839-cbf7-40ef-86ba-f2bcc0f7ab86",
+      "title": "Decision trees – the unreasonable power of nested decision rules",
+      "content": "Deep URL ingestion mapping: https://mlu-explain.github.io/decision-tree/",
+      "sourceUrl": "https://mlu-explain.github.io/decision-tree/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:01:12.857Z"
+    },
+    {
+      "id": "4e1e959d-0871-441e-99e3-374db1915fb0",
+      "title": "Meta won’t let morality get in the way of a product launch",
+      "content": "There's never been a better time to add facial recognition to everything! The public at large is gradually becoming numb to our Palantirized surveillance state, and American communities are responding to the militarization of federal law enforcement with their own increasingly intricate webs of sousveillance. \nThe Ray-Ban Meta glasses are sleek, unobtrusive wearables with front-facing cameras and a passthrough display in the right lens that can show maps, texts, social media posts, and more. Name Tag is a new feature that uses facial recognition to identify people you see in real life through the glasses. Perhaps the glasses would have soun …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/policy/886348/meta-glasses-ice-doxxing-privacy",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_0c3e7a7f5f4405c8.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:01:20.982Z"
+    },
+    {
+      "id": "8f97108a-7785-49f9-a40e-45f58c6a8783",
+      "title": "This man was abused for appearing on a Welcome to Heathrow poster. Then he met his trolls",
+      "content": "Syed Usman Shah says he was proud to appear in the campaign, but upset by what followed.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c1mjxypdyn0o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:01:36.269Z"
+    },
+    {
+      "id": "22d4c9af-1909-47e9-92c8-1d23280c9fee",
+      "title": "The U.S. Released the Epstein Files. The Arrests Are Overseas.",
+      "content": "While the latest tranche of documents about the sex offender Jeffrey Epstein has exposed a deeply American scandal, it is Europe where the aggressive enforcement is taking place.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/world/europe/epstein-files-arrests-europe-uk.html",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:01:46.723Z"
+    },
+    {
+      "id": "7b6f9d92-881d-4687-b29b-15b225f0d204",
+      "title": "Resident Evil Requiem leans too much on the series’ past",
+      "content": "Leon Kennedy, one of the game’s protagonists.\t\n\nResident Evil turns 30 this year. The series is full of history - the new Resident Evil Requiem is technically the ninth mainline game, but there are a bunch of spinoffs, remakes, movies, and even a TV show - which can make it fun to follow for fans. But it's also intimidating for people like me who haven't played everything. The latest release, Resident Evil Requiem, tries to appeal to both sides by starring a new character, the cowering FBI agent Grace Ashcroft, and a series favorite, action hero Leon Kennedy.\nInitially, it really works: the first half of Resident Evil Requiem is one of the freshest horror games I've ever played. But as t …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/games/885811/resident-evil-requiem-grace-leon-nostalgia-ending",
+      "sourceName": "Wikipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_b03b775883b6ef59.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:01:50.541Z"
+    },
+    {
+      "id": "119cadab-2104-481e-ad79-fa542a3665b9",
+      "title": "How MLB can make baseball relevant on a fast-changing internet",
+      "content": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on the contemporary attention economy, follow Mia Sato. The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here.\nHow it started\n\"KING BASEBALL, monarch of the American sport world, is sick,\" a New York Times story on the disappearance of amateur and small town sandlots begins. Hundreds of thousands of fans attended the opening games of the season, and star players are making bank in huge stadiums. \"Nevertheless the critics say that his Royal Highness is indisposed.\" \nThe story is from 1925. But it read …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/column/886115/how-mlb-can-make-baseball-relevant-on-a-fast-changing-internet",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_3b72fd41a09762d7.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:02:02.740Z"
+    },
+    {
+      "id": "b3947169-0434-453a-97d6-bd30db560bc2",
+      "title": "The real winners and losers at the Brit Awards",
+      "content": "From Harry Styles' trousers, to Jade's red carpet confession - here's what went down at the Brits.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c79572zx234o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:02:08.809Z"
+    },
+    {
+      "id": "587bfa12-c255-4b3b-9bd7-01af2174c8be",
+      "title": "How the Psychedelic Drug Ibogaine Changed Me Forever",
+      "content": "Veterans and others who have suffered trauma and injuries are flocking to clinics around the world to take ibogaine. My own reason was deeply personal.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/magazine/ibogaine-psychedelic-treatment-trauma-mental-health.html",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:02:53.583Z"
+    },
+    {
+      "id": "c6d884e1-8148-411d-85f4-9f24ef535519",
+      "title": "H-Bomb: A Frank Lloyd Wright typographic mystery",
+      "content": "Deep URL ingestion mapping: https://www.inconspicuous.info/p/h-bomb-a-frank-lloyd-wright-typographic",
+      "sourceUrl": "https://www.inconspicuous.info/p/h-bomb-a-frank-lloyd-wright-typographic",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:02:57.327Z"
+    },
+    {
+      "id": "8027ea38-1c2e-4ff0-a9a5-bb3e1c5c4530",
+      "title": "Plastic Without End: Are We Polluting the Planet for Eternity?",
+      "content": "The Kunming Montreal Global Biodiversity Framework calls for the elimination of plastic pollution by 2030. If that goal has been clearly set, why have meaningful measures that create real change still not been implemented? Plastic pollution is more than just trash on the beach. Marine plastic waste releases PFAS and heavy metals into the water [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/plastic-without-end-are-we-polluting-the-planet-for-eternity/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_3d8539722e9cf796.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:03:28.874Z"
+    },
+    {
+      "id": "620e0fc1-d789-4356-94cd-7fcc6c40a535",
+      "title": "UK troops and civilians being put at risk by Iran strikes, Healey says",
+      "content": "British military personnel at a base in Bahrain were \"within several hundred yards\" of a strike, the defence secretary says.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/crrxkjxg1zpo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:03:45.551Z"
+    },
+    {
+      "id": "aa49fab8-4e3b-41b8-b288-266b33f305a4",
+      "title": "Lyse Doucet: This is an extraordinary moment Iran has been preparing for",
+      "content": "The killing of the supreme leader will be a huge jolt to the Islamic Republic, which will try hard to show it has a plan in place.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c98g91wgdd8o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:04:13.764Z"
+    },
+    {
+      "id": "0ae6798e-37a2-4e3b-9814-341eccdf3ac3",
+      "title": "The Piracy Problem Streaming Platforms Can’t Solve",
+      "content": "In parts of the Middle East and North Africa, a patchwork of sanctions, payment failures, and licensing gaps pushes people into piracy networks.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/the-piracy-problem-streaming-platforms-cant-solve/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:04:19.158Z"
+    },
+    {
+      "id": "2bb3928a-99fe-45b6-aa61-9429a8e8df89",
+      "title": "Recteq Flagship 1600 Review: An Upgraded Smoker",
+      "content": "The Recteq Flagship 1600 pellet smoker asks a little more of you, but rewards you with deeply smoked flavor.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/review/recteq-flagship-1600-review/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:05:10.726Z"
+    },
+    {
+      "id": "2393a822-81f8-4a12-8cba-69f5fdca8f2e",
+      "title": "Why the Epstein Investigations Took So Long and Did So Little",
+      "content": "Decades of tips and investigations yielded charges against only two people. A combination of missed chances, narrow laws and prosecutors’ limited focus helps explain why.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/us/epstein-justice-department-investigations.html",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:05:47.714Z"
+    },
+    {
+      "id": "d0f6fbc2-ee6f-4283-8321-79ede4428399",
+      "title": "Ayatollah Ali Khamenei, Hard-Line Cleric Who Made Iran a Regional Power, Is Dead at 86",
+      "content": "As Iran’s second supreme leader, he brutally crushed dissent at home and expanded Iran’s footprint abroad, challenging Saudi Arabia for regional dominance.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/world/middleeast/ayatollah-ali-khamenei-dead.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:06:03.132Z"
+    },
+    {
+      "id": "c1a1ca7d-4ce0-4efe-999e-4a054de82f69",
+      "title": "How The Times Is Digging Into Millions of Pages of Epstein Files",
+      "content": "Two dozen journalists. A pile of pages that would reach the top of the Empire State Building. And an effort to find the next revelation in a sprawling case.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/12/insider/jeffrey-epstein-files-documents.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:06:51.702Z"
+    },
+    {
+      "id": "bba2d440-a664-446a-bfee-68050537746d",
+      "title": "Groundbreaking Trial Reveals Unexpected Benefit of Metformin in Type 1 Diabetes",
+      "content": "A clinical trial has found that a widely used and affordable type 2 diabetes medication can lower insulin requirements in people with type 1 diabetes, potentially improving how the condition is managed. For many years, doctors have prescribed metformin, a long-established and widely used medication for type 2 diabetes, to people with type 1 diabetes [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/groundbreaking-trial-reveals-unexpected-benefit-of-metformin-in-type-1-diabetes/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_a26fb774dd96a45a.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:07:01.646Z"
+    },
+    {
+      "id": "08246ed0-7af4-43bc-802e-079b997325c4",
+      "title": "New Toothpaste Stops Gum Disease Without Harming Healthy Bacteria",
+      "content": "Researchers have developed a targeted approach to combat periodontitis without disrupting the natural balance of the oral microbiome. The innovation could reshape how gum disease is treated while preserving beneficial bacteria. The human mouth contains a remarkably complex community of more than 700 bacterial species, yet only a small fraction are responsible for periodontitis. These [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/new-toothpaste-stops-gum-disease-without-harming-healthy-bacteria/",
+      "sourceName": "Hacker News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_d59b5d9c64c0cfdf.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:07:10.160Z"
+    },
+    {
+      "id": "41fef7ac-a540-4dc7-8656-76937d286aa7",
+      "title": "Scientists Uncover Hidden Weakness in Cancer Cells Tied to Vitamin B7",
+      "content": "Why do some anti-glutamine therapies fail? A new study uncovers a hidden metabolic workaround involving pyruvate, biotin, and mutations in the FBXW7 gene. Scientists at the University of Lausanne (Unil) have uncovered a cellular mechanism that reveals a hidden weakness in tumor cells when they are deprived of vitamin B7. All living cells must constantly [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/scientists-uncover-hidden-weakness-in-cancer-cells-tied-to-vitamin-b7/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_3c8a44b831f5f3d8.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:07:13.104Z"
+    },
+    {
+      "id": "69e14fc8-4788-4cf0-8500-9166aa82b827",
+      "title": "The C.I.A. Helped Pinpoint a Gathering of Iranian Leaders. Then Israel Struck.",
+      "content": "The killing of Iran’s supreme leader and other top Iranian officials came after close intelligence sharing between the United States and Israel, according to people familiar with the operation.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/us/politics/cia-israel-ayatollah-compound.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:07:55.338Z"
+    },
+    {
+      "id": "c2c6a6fb-4191-4466-b72e-bf3891d49eaa",
+      "title": "One killed and 11 injured at Dubai and Abu Dhabi airports as Iran strikes region",
+      "content": "Falling debris from intercepted Iranian drones and missiles cause widespread damage across the Gulf.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c363zkp1pgxo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:08:07.323Z"
+    },
+    {
+      "id": "9be6b36b-1f5d-4d19-a921-b03d523edc53",
+      "title": "Killing Iran’s Leader",
+      "content": "We look at the events leading to the death of Ayatollah Ali Khamenei and what comes next.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/03/01/briefing/killing-irans-leader.html",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:08:23.534Z"
+    },
+    {
+      "id": "3d1eef54-90c0-4118-8be2-439b107cdb9c",
+      "title": "See a Breakdown of Ayatollah Khamenei and Other Top Iranian Leaders",
+      "content": "Among those killed in strikes, according to the U.S. and Israel, were Iran’s supreme leader and three of his top military commanders.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/world/middleeast/iran-leadership-khamenei-shamkhani-pakpour-nasirzadeh.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:09:50.376Z"
+    },
+    {
+      "id": "69a0e7b1-8fb5-47c2-9b1c-e76ad018e724",
+      "title": "Why are more GPs opting to work outside the NHS?",
+      "content": "More doctors and patients are turning to the private sector as demand increases pressure on the NHS.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c3wln1dlev6o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-03-01T13:10:01.095Z"
+    }
+  ],
+  "secretVault": [
+    {
+      "id": "DATABASE_URL",
+      "encryptedValue": "79aa61b32402095a2fde09208ef807c3a7f5bdbb27f53e6f551b3b9c82d36b32cdf6b03007344c8eb36c4bda4af5bbf9dd0e9740a3a7e8701adbaa3ad6c757c19c04b613aa9784ff0cef86a001ca3c5e9197e856f095adcc5f8f313e461b286df70df2f8e01ed7db334ae834008856839b0804f4f7b6b04ce27b4403f8ea8c557a7180a73915fd8f78cff39f261ea1ab1d1e",
+      "iv": "afc70e521792800b3bdfcdad",
+      "tag": "ff053cc67cbfaaa30816eae2cbda5322",
+      "description": "Supabase Postgres Connection String",
+      "updatedAt": "2026-02-26T09:30:31.556Z"
+    },
+    {
+      "id": "FIREBASE_DATABASE_URL",
+      "encryptedValue": "20ecad806ebb7956b75e96b50bdc995c33283f65d42b89736844c73ff028e2979f48b3ce7ef5aec9367c4b0623fa4c",
+      "iv": "b5f29123a9383c76c07588ba",
+      "tag": "40ec0fd43c0d5df150b53958d2bce6d8",
+      "description": "Firebase Realtime DB URL",
+      "updatedAt": "2026-02-26T09:30:31.903Z"
+    },
+    {
+      "id": "FIREBASE_SERVICE_ACCOUNT_BASE64",
+      "encryptedValue": "89821fa0d8a537421aaec951b9c95e706c9fd6f0050f6a88a1f4b7613f2ffa0435122210f0c87beee1bdacfeea45ebc4edf1c4c8999c4674dfa25ae4bdd7076c69e4bae57b0bbd0790341d9eee10ff982678edccf597a0e257d1ddd6cfc9b37d53344970954d99e44431734e0ea2d8a11ed926c09bd0bd69749d8eccbc76091ee48045081cb453603bad9a7702d852c045c3d081f2949793a7af77b7b7ca9953af0132c2c6989ece3d548a7e6edc54902f0de9f10a6738ae6ab5c6edd44ce8e9d68dc96fd313593f8a1a0ee236e89deb8eaa35167caa240fd3fbe0ae829af3060e860414fd4a18c86c3918d456e967bbc115b85826778f6ab43cfb4b5f3110f914a080563ba1017bc7ca583722c33ebae23fe7bbf33244d03bd3f489b01372e8910e4e3a6af5a0073247b07c52c3d8dbd614ecc200d8d66772aa83d0e0c0edffd7fa89b46200c6a82095f917216ea8eb4d1789ff8ee15dd185fd65e2a3ddf19962df7490325f351d8b32a7847e8e1a70fb734246aea5ce7de1aa4a8a43c638fab8a3cdc8c02e1d221f87bb21dfcf0baafcda3e490ee23e52de3e8ae50e10640229ed7fd2c6f21c347c503ac9d2e46a0c813c78ea33235dffb948f425866e2d8b0a9875d6ebfde8fba9b6843b477d91994652dcd00d3ba496733aae181b76fd273a191351a1babbc1835713595e009236144758b7e4e9479c29792cd5ef75ab3b5895bfd7abbc2560a221765e02464d717b70ecdeb5858aae7162e66a07ba6d4f80b0fe34f595eed0f3095deb1d6c0312ff5cbff1ce50e695d1316587e1a4a8d00b4cc5f664cdfdc7c2654f0a6e19877f085f03f36727cdd9442d47380b57cd06344f9abd922470861ce5089d7f981dc3b55cdde6b0c01bfe0b70259fb2618995e8294da30f2a1ba678cfbfa0efbe93e5c4441bc29384409ab9ef600ada9fe38fc7b994167f5f046fd5439fca1e9bc3c00e01295aec9f2b1f757fe91edf6508c7e7d3c5563219a4c30d9a6b4fb47154bf0eee3fd2301aa670d7d5290e39e470e938ddc2d8e6c714ceb0e72a4b08f25e173104c343d82b87a97583e196271abd36f5d4986ea9abf67af7f44c92fdd1dcaa9d8afaed86f753ce8198add08f4201007615462ac2df00b9a4d205ce018d54c898950b646242043c3180146d8afcc72c61ebb7b0791b65b8a3a3fb9840d89a734e9ff356b07a4b1e6b30e38faf824140878f34b3db9915691af3c9331556a56d156199c1a2415efa52e7f445a6f48f65bdeebd807043581c38a5d63aca9a4523543a05d1e917773a1cad3819585e2a2510e946dadd46bd0456125874de48859e28781477303e652579c41a1d3b1d42dbf5816972af62d9f3c9d25fa7cf47d8114badf0115a609f6a44077baa8596efd0561c1043a38d3512e33f22422d3d7ca2908f0c872474675e55be1cdeba58c1ad3a7e9e7a789a0b0942b193e5699924eb900e8454a003fcdf86dbb02f74719e7d29a7a415a0de150d7d2e27ed3162523380d6eab9bd07f0be7f93b744249bddacdccddb2475cae71b546305406017ff4096fab9ec0653b008fa88734df0bcb18464d8790ba0dcefedb5c7bc9d697c5578f2708dc06bf449fe8ff01a39b59e3877fab2bb41572a3b457fd1c27cda14966c7a8f74eb19af775ff3c04770643bc999adaa452c500e64ddf8711312fd197c651e74333c2a29ed2fed908ef128f1495f816dfa2773965e0c3b9841577495d670d2d3f3ec61b55b6962d9eba34a6792ef545cb35690bc7b6a6108d7efbe47f5e89e5d3f1768e8b05874fd6d0e0e4791a96594cc520263dec77596331e45ee2faf3aacd94c3d6a4b234c582bf1bdd48b4d7543881f7cb2a86d94fd8a0d929af371743f9fe47bb0926d5a957fb73135b4c16cb845d3091e9811a5cd9371fe5e7075dac7d6b5d3d938d4ac0a879e49766144347b23dd35cec554cdd0bbfec64866081fcba19724a6b5c59c4f3ee7c1bcad163b3ad68417cb94f2cb357778e45557e986016fb45a83cd23d70a5293d788cff6a86c5629b5199d05b216734d56d4839036da851be82c5e4107fb8f279cc387786b751ddaf42d722b79b6c9218dfd1fd113f486544ebdb3a73c397074ecf1d2b9766173217ae1df7124db16f4593f57a5d1634c6027ba62398b629af351f9ab0255bfb3ef3e65b17bada701b45f5792da8261933a8390819c2b406325ca092dcc0d7e0d5ff3461d8bcea87364a0b3c7605fc0f716010bcd5da89394c6c43193e90629b644218939dc9185557293db4c68464649b82788fc6e219975a0af64f36df48fad21257730b2db4e4980b499233c8b198c147d601894217cb6775546d163d941000d5286684be32776ff6c94c3554ac9926df572f40a230708dd83ca30dca57ea86808144a20e9c12bfbdfd60322dfad20ae9d3b6bd9d305ab77863370ee97d825f7d4b0f21f251442449d3a76f65e4af31bdd9a64c59b0519c61d0e286e36456fb69beb1627bfbce4cca1d33f057128c54a64c287ce47fb0e654d5b7177c4e0c04e0503c27b397daa6de7451dce32b6aa457e2f785e1c5e261951911329afa9374177ef4fa45fe85a79b46c88d8116f168ed3aea783ce1048ed8be4f159d6ab7e1594a7d45a1943979c4b2cb92bd8b93c8813620517fd005db97c40b7d82945ed4198c4f1b1d7fd377d6d1e8490d9e665806ea5eef167617c5301c220bebaee6ed495dfd8c0f5ddfef637cde9b1e952264db67520ae3c8c34bb30744306e8b4921d204622103dbfacc1da5fee9325ad0c6c3d98813e057848ae56cf0d4f8f1ee7f31be1726ecf49506fd903e9b08db5990a89cc5b184824f4c0f2293cd9e794493f80e72f8edff1d3ad844678f28491110041056e1dab2ca79f251172b42c06c4039cad81c70bf2d207ba24a98e12265a9e6ff834f8a84c1cb3e0fe8813e4f34e0562d58871109bf5c11cebce11d3ceb8ad20ce58170eddf2bbeb56a9254d4d6726b5fe51bb41190da529b59c8ea7721b1808e7abc50c652d1f3cedd644e77acae47828303fed8ce8185a83e22a447c65f3710e897bf7fdbbcdcb47311186528d7be1dac927c18c69219b1ed4d945b607f3f30f356d39fb98a94eb69a695ea8f2aa91c8d94a31f83c0d73be6d09e26c65a1110aa52a07f3c6249c8517e74df32f099190a67d986733fa464fc61e35bd91ea7d5ae5f8b419045540a34bfa622f3fe1c4c968356eeb6c5aac1e8934ed8dec755bd7c9685782b707776828a9fa34c3d1b8a9a143b4b98f75e7efe76a71f4655e26ff0bc393b8bbcd35de3422026dad7e02841a7b28c00dae70df8e0a9522c5e7280d22bb9c1fc4a57f7ef34f0e6d8a974ae6c8fce0f0cb4f032850d3a12bf59a7e05022a66301ca8528737f167df273077b57349f6f8c2302b5dcbbaa10071d79b6f82915f65b3d224d024cee430d5a7183784a5c7359276b9f83b2bfd853d474393b4f2f69852235b10b815ae7651b33cb4ab5bc8d0c5794465ab934c4ff1c3c01d14a5203c77a63018839dba615aa34addc3dd9e1d9a51589376835c82a7cc18208c77cb6d2a6d06a2b42b4da972c0e31d7275ca54ba7552f2a4ad00202531fb23ec320a42221777cb24870dd35d6734794d38ce410c8a10750960419b0b42fdbae7f59cf3f83cbffaa151f1b59fa86ee0706eda23f172df2723aaa15cb7e6e1a60b876abb4dbf36a7a84d5074c84e44d719d5c33d3372b79dd1c871a1fe9af4b9cb7d49457ef6d6090599246d4560b5ad48b8721572eba848396f360c866097c9a92e837d30c62799d73bc60185c43ae67de0ece7ea375779b088b7ad98580b79a73e06d3d51afc333816c6c5a4990a456031c52a21a203348a5b50a63f528d0b86f0393aae2aa0fa896eb176b91ce87e0d2587dc4c89a0d9f0a489eba80ca4cf728bc887ec97a40ecdf14e81af0ec68ee4f585a97e2852711571e6bc88883e91a03dce090fd978e9c31c522f2d63dcd2bcbe0f2d22faf28d59fbffdd09d4ff94f423eaedea6b9aab1325b45d9b34d0a5adc3630e165570cf4b5725dae2103e469109dde28017851a04d966c5b500e67d56d8a89b38261736e96d2beaf6ad8de6af1de33bfdad84253c1500b6fc6bf20cc54b76e2fb1c40d0e61bd7ed64300e6b3d6095e6e7a270767df4791d377f3f595b5c38622d2afdcdc79192ef5d4a542e0fd652e2304c013db118e3a0d194ef70b370f7ac491d99cfb3db4d60b8dc7a9d882bf7ed35025bd06c520def35c3e0b68dd95e797a7e6415f68a83eca669d874d98ce44252b1ea01ed3d89e1e60fea2ecbff0ad2da0f0ca082271f8192471bc59a97d6b25c4965fa26bb12575d271e4a8f41fa96f2f3f01185c06d7fdd056983aafa318d7f0b05c71e062e86c53da63e5d87a5790e234e230b88339b473d3b2b4bdebd927d8267cf92b60ed17400b3feb28fc5f7372f69d83a834617573c34adaa10bf084948",
+      "iv": "59279686c0b2236c7152db81",
+      "tag": "a17cf67c481f5b565fa2c5698f863091",
+      "description": "Firebase Admin Credentials",
+      "updatedAt": "2026-02-26T09:30:32.235Z"
     }
   ]
 }
