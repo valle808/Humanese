@@ -77,30 +77,8 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
-// --- Resilient Static Asset Routing for Vercel ---
-const rootDir = process.cwd();
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(rootDir, 'index.html'));
-});
-
-// Generic static file server fallback for root HTML files (e.g., chat.html)
-app.get('/:page', (req, res) => {
-    const page = req.params.page;
-    if (page.includes('..') || page.includes('api')) return res.status(404).send('Not Found');
-
-    // Check if it's already an HTML or points to one
-    let target = page.endsWith('.html') ? page : page + '.html';
-    const filePath = path.join(rootDir, target);
-
-    if (fs.existsSync(filePath)) {
-        return res.sendFile(filePath);
-    }
-    // Continue to other routes or 404
-    res.status(404).send('Cannot GET /' + page);
-});
-
-app.use(express.static(rootDir));
+// Since we moved assets to /public, Vercel handles static.
+// The API is isolated to serverless functions.
 
 // --- Health Check ---
 app.get('/api/health', async (req, res) => {
