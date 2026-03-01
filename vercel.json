@@ -19,6 +19,10 @@
             "use": "@vercel/static"
         },
         {
+            "src": "agents/**",
+            "use": "@vercel/static"
+        },
+        {
             "src": "html/**",
             "use": "@vercel/static"
         },
