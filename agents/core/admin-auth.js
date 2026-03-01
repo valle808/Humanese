@@ -51,6 +51,7 @@ function loadVault() {
 }
 
 function saveVault(data) {
+    if (process.env.VERCEL) return; // Read-only FS
     if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
     const vault = encrypt(data);
     writeFileSync(CRED_FILE, JSON.stringify(vault, null, 2));
