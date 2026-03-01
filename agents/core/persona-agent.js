@@ -6,7 +6,7 @@
 
 // prisma will be passed from the main server to avoid top-level initialization crashes
 
-export const PersonaAgent = {
+const PersonaAgent = {
     /**
      * Analyzes recent messages to update a user's persona.
      * @param {string} userId 
@@ -76,3 +76,5 @@ export const PersonaAgent = {
         }
     }
 };
+
+export default PersonaAgent;
