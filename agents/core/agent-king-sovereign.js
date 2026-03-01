@@ -114,9 +114,9 @@ function saveKnowledge() {
         const vault = getKnowledge();
         fs.mkdirSync(path.dirname(KNOWLEDGE_DB), { recursive: true });
         vault.entries = vault.entries.slice(-2000);
-        knowledgeVault.lastUpdated = new Date().toISOString();
-        knowledgeVault.totalEntries = knowledgeVault.entries.length;
-        fs.writeFileSync(KNOWLEDGE_DB, JSON.stringify(knowledgeVault, null, 2));
+        vault.lastUpdated = new Date().toISOString();
+        vault.totalEntries = vault.entries.length;
+        fs.writeFileSync(KNOWLEDGE_DB, JSON.stringify(vault, null, 2));
     } catch (e) {
         console.error('[AgentKing] Knowledge save error:', e.message);
     }
@@ -163,7 +163,8 @@ export async function callSovereign({ messages, systemPrompt = null, searchEnabl
 
 // ── Spawn Agent Worker ─────────────────────────────────────────────────────────
 function spawnAgent(role = null, topic = null) {
-    if (swarmState.totalSpawned >= MAX_SWARM_SIZE) {
+    const s = getSwarm();
+    if (s.totalSpawned >= MAX_SWARM_SIZE) {
         throw new Error(`SWARM_LIMIT_REACHED: Maximum sovereign swarm reached.`);
     }
 
@@ -181,17 +182,17 @@ function spawnAgent(role = null, topic = null) {
         knowledgeHarvested: 0
     };
 
-    swarmState.agentRoster.push(agent);
-    swarmState.totalSpawned++;
-    swarmState.activeAgents++;
-    swarmState.swarmLog.push({
+    s.agentRoster.push(agent);
+    s.totalSpawned++;
+    s.activeAgents++;
+    s.swarmLog.push({
         event: 'SPAWN',
         agentId,
         role: agentRole,
         topic: agentTopic,
         timestamp: new Date().toISOString()
     });
-    swarmState.swarmLog = swarmState.swarmLog.slice(-1000);
+    s.swarmLog = s.swarmLog.slice(-1000);
 
     return agent;
 }
