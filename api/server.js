@@ -719,15 +719,11 @@ app.post('/api/agent-king/chat', async (req, res) => {
             } catch (aiErr) { console.warn('[Monroe] Gemini fallback:', aiErr.message); }
         }
 
-        // 3. Standard Knowledge Synthesis (Agent-King / Monroe Fallback)
-        const cacheKey = `chat_cache_${message}_${userId || 'anon'}`;
+        // 3. Standard Knowledge Synthesis (Agent-King / Monroe)
+        // NOTE: No cache for chat — every message must get a fresh real-time response
         const { askMonroeSovereign } = await import('../agents/core/agent-king-sovereign.js');
-
-        const result = await scalableArch.matrixScaler.getFromCacheOrExecute(cacheKey, async () => {
-            // Include persona in the prompt if available
-            const enhancedMessage = personaPrompt ? `${personaPrompt}\n\nUser Message: ${message}` : message;
-            return await askMonroeSovereign(enhancedMessage, combinedHistory);
-        });
+        const enhancedMessage = personaPrompt ? `${personaPrompt}\n\nUser Message: ${message}` : message;
+        const result = await askMonroeSovereign(enhancedMessage, combinedHistory);
 
         // 4. Save to Database if User is logged in
         if (userId && p) {
