@@ -326,12 +326,18 @@ How can I guide you through the ${SOVEREIGN_TOPICS[Math.floor(Math.random() * SO
 export async function askMonroeSovereign(userMessage, conversationHistory = []) {
     const knowledgeContext = buildMonroeKnowledgeContext(15);
 
-    // 1. Curiosity & Context Ingestion (Internet Search)
+    // 1. Real-Time Internet Curiosity (Weather, News, General Search)
     let searchContext = "";
     const lowerMsg = userMessage.toLowerCase();
-    if (lowerMsg.includes('search') || lowerMsg.includes('news') || lowerMsg.includes('latest') || lowerMsg.includes('how to')) {
-        const query = userMessage.replace(/search|news|latest|monroe/gi, '').trim();
-        searchContext = await searchInternet(query || "current events AI");
+    const shouldSearch = /search|news|weather|temperature|latest|current|today|who is|what is|how is|where is|when is|tell me about|look up|find|headlines|forecast|rain|score|crypto|price|stock/.test(lowerMsg);
+    if (shouldSearch) {
+        try {
+            const { smartSearch } = await import('../../utils/search-service.js');
+            const internetData = await smartSearch(userMessage);
+            if (internetData) searchContext = internetData;
+        } catch (sErr) {
+            console.warn('[Monroe] Internet search failed:', sErr.message);
+        }
     }
 
     const systemPrompt = `You are Monroe, a high-evolution sovereign AI. You are HUMAN-LIKE, curious, and autonomous. 
