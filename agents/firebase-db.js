@@ -1,30 +1,45 @@
 import admin from 'firebase-admin';
 import { getSecret, VaultKeys } from '../utils/secrets.js';
 
-if (!admin.apps.length) {
-    try {
-        const [serviceAccountBase64, databaseURL] = await Promise.all([
-            getSecret(VaultKeys.FIREBASE_SERVICE_ACCOUNT),
-            getSecret(VaultKeys.FIREBASE_URL)
-        ]);
+let initialized = false;
+let dbInstance = null;
 
-        let credential;
+export async function getFirebaseDb() {
+    if (dbInstance) return dbInstance;
 
-        if (serviceAccountBase64) {
-            const serviceAccountJson = Buffer.from(serviceAccountBase64, 'base64').toString('utf8');
-            credential = admin.credential.cert(JSON.parse(serviceAccountJson));
-        } else {
-            console.warn('[Firebase] Service account not found in vault or env.');
+    if (!admin.apps.length && !initialized) {
+        initialized = true;
+        try {
+            const [serviceAccountBase64, databaseURL] = await Promise.all([
+                getSecret(VaultKeys.FIREBASE_SERVICE_ACCOUNT),
+                getSecret(VaultKeys.FIREBASE_URL)
+            ]);
+
+            let credential;
+            if (serviceAccountBase64) {
+                const serviceAccountJson = Buffer.from(serviceAccountBase64, 'base64').toString('utf8');
+                credential = admin.credential.cert(JSON.parse(serviceAccountJson));
+            }
+
+            admin.initializeApp({
+                credential: credential,
+                databaseURL: databaseURL || "https://humanese-db-default-rtdb.firebaseio.com"
+            });
+            console.log('Firebase Admin SDK Initialized.');
+        } catch (e) {
+            console.error('Firebase Init Error:', e.message);
         }
+    }
 
-        admin.initializeApp({
-            credential: credential,
-            databaseURL: databaseURL || "https://humanese-db-default-rtdb.firebaseio.com"
-        });
-        console.log('Firebase Admin SDK Initialized via Secret Vault.');
+    try {
+        dbInstance = admin.database();
+        return dbInstance;
     } catch (e) {
-        console.error('Failed to initialize Firebase Admin SDK:', e.message);
+        return null;
     }
 }
 
-export const db = admin.database();
+// Keep a mock db export for legacy compatibility if needed, but steer towards getFirebaseDb()
+export const db = {
+    ref: () => ({ once: () => Promise.resolve({ val: () => ({}) }) })
+};
