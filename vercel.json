@@ -37,6 +37,10 @@
     ],
     "rewrites": [
         {
+            "source": "/api/test",
+            "destination": "/api/test.js"
+        },
+        {
             "source": "/api/(.*)",
             "destination": "/sovereign-server.js"
         },
