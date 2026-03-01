@@ -17,7 +17,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { initAdmin, adminLogin, adminVerify, requestPasswordRecovery, resetPassword } from './agents/core/admin-auth.js';
 import socialRouter from './agents/social/social-backend.js';
-
+import fs from 'fs';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { hashApiKey, generateApiKey, authenticateApiKey } from './agents/core/api-auth.js';
@@ -1076,6 +1076,7 @@ app.get('/api/hierarchy/agents/:id', async (req, res) => {
 // GET /api/wallets — get all agent wallets
 app.get('/api/wallets', async (req, res) => {
     try {
+        const { financial } = await getAgentModules();
         const walletsPath = path.join(__dirname, 'agents', 'wallets.json');
         if (fs.existsSync(walletsPath)) {
             const data = fs.readFileSync(walletsPath, 'utf8');
@@ -1331,8 +1332,8 @@ app.get('/api/wallet/:agentId', async (req, res) => {
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-// GET /api/wallet — list all wallets (public addresses only)
-app.get('/api/wallets', async (req, res) => {
+// GET /api/wallets/ledger — list all wallets from ledger
+app.get('/api/wallets/ledger', async (req, res) => {
     try {
         const { wallets } = await getCryptoModules();
         res.json(wallets.listAllWallets());
@@ -1470,14 +1471,14 @@ app.get('/api/homepage/guardian', async (req, res) => {
 // ── Skills Registry API (CrewAI HUB Integration) ─────────────
 app.get('/api/skills/catalog', async (req, res) => {
     try {
-        const sr = await import('./agents/skills-registry.js');
+        const sr = await import('./agents/registry.js');
         res.json(sr.getSkillCatalog());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/skills/agent/:agentId', async (req, res) => {
     try {
-        const sr = await import('./agents/skills-registry.js');
+        const sr = await import('./agents/registry.js');
         res.json({
             agentId: req.params.agentId,
             skills: sr.getAgentSkills(req.params.agentId)
@@ -1487,14 +1488,14 @@ app.get('/api/skills/agent/:agentId', async (req, res) => {
 
 app.get('/api/skills/stats', async (req, res) => {
     try {
-        const sr = await import('./agents/skills-registry.js');
+        const sr = await import('./agents/registry.js');
         res.json(sr.getSkillStats());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/skills/register', async (req, res) => {
     try {
-        const sr = await import('./agents/skills-registry.js');
+        const sr = await import('./agents/registry.js');
         const { agentId, skills } = req.body;
         if (!agentId) return res.status(400).json({ error: "agentId required" });
         const result = sr.registerAgentSkills(agentId, skills || []);
@@ -2046,7 +2047,7 @@ app.post('/api/admin/recover', authLimiter, async (req, res) => {
 });
 
 // ═══ MONROE: ABYSSAL SENTINEL — Chat Endpoint ═══════════════════════
-app.post('/api/assistant/chat', async (req, res) => {
+app.post('/api/agent-king/chat', async (req, res) => {
     const { message, history, mode } = req.body;
     if (!message) return res.status(400).json({ error: 'Message required' });
 
