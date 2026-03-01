@@ -50,14 +50,8 @@ const getCoreModules = async () => {
 // ... (Rest of the code should use getCoreModules or dynamic imports)
 // Note: I'm keeping app.use('/api/social', socialRouter) as is for now, but it might need dynamic inclusion.
 
-// --- System Telemetry ---
-process.on('uncaughtException', async (err) => {
-    console.error('[CRITICAL] Uncaught Exception:', err);
-    try {
-        const { agentHealer } = await getCoreModules();
-        agentHealer.autoHeal(err);
-    } catch { }
-});
+// System Telemetry & Side Effects removed for Vercel/Serverless stability
+// (Previously process.on listeners were here)
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

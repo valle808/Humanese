@@ -58,9 +58,21 @@ const AGENT_ROLES = [
     { role: 'ARCHIVIST', icon: '🗄️', desc: 'Persists learnings to the sovereign knowledge vault' }
 ];
 
-// ── State ─────────────────────────────────────────────────────────────────────
-let swarmState = loadSwarm();
-let knowledgeVault = loadKnowledge();
+// ── State (Lazy Loaded) ───────────────────────────────────────────────────────
+let swarmState = null;
+let knowledgeVault = null;
+
+function getSwarm() {
+    if (swarmState) return swarmState;
+    swarmState = loadSwarm();
+    return swarmState;
+}
+
+function getKnowledge() {
+    if (knowledgeVault) return knowledgeVault;
+    knowledgeVault = loadKnowledge();
+    return knowledgeVault;
+}
 
 function loadSwarm() {
     const initial = {
@@ -78,8 +90,10 @@ function loadSwarm() {
 
 function saveSwarm() {
     try {
+        if (process.env.VERCEL) return; // Read-only FS on Vercel
+        const state = getSwarm();
         fs.mkdirSync(path.dirname(SWARM_DB), { recursive: true });
-        const save = { ...swarmState, agentRoster: swarmState.agentRoster.slice(-10000) };
+        const save = { ...state, agentRoster: state.agentRoster.slice(-10000) };
         fs.writeFileSync(SWARM_DB, JSON.stringify(save, null, 2));
     } catch (e) {
         console.error('[AgentKing] Swarm save error:', e.message);
@@ -96,8 +110,10 @@ function loadKnowledge() {
 
 function saveKnowledge() {
     try {
+        if (process.env.VERCEL) return;
+        const vault = getKnowledge();
         fs.mkdirSync(path.dirname(KNOWLEDGE_DB), { recursive: true });
-        knowledgeVault.entries = knowledgeVault.entries.slice(-2000);
+        vault.entries = vault.entries.slice(-2000);
         knowledgeVault.lastUpdated = new Date().toISOString();
         knowledgeVault.totalEntries = knowledgeVault.entries.length;
         fs.writeFileSync(KNOWLEDGE_DB, JSON.stringify(knowledgeVault, null, 2));
