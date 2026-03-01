@@ -9,19 +9,30 @@
 
 import express from 'express';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
-import { initAdmin, adminLogin, adminVerify, requestPasswordRecovery, resetPassword } from './agents/core/admin-auth.js';
-import socialRouter from './agents/social/social-backend.js';
-import fs from 'fs';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { hashApiKey, generateApiKey, authenticateApiKey } from './agents/core/api-auth.js';
-import { agentHealer } from './agents/core/agent-healer.js';
+// Heavy dependencies moved to dynamic imports inside a resilient getter
+let prisma;
+const getPrisma = async () => {
+    if (prisma) return prisma;
+    try {
+        const { PrismaClient } = await import('@prisma/client');
+        prisma = new PrismaClient();
+        return prisma;
+    } catch (e) {
+        console.error('[Prisma] Dynamic initialization failed:', e.message);
+        return null;
+    }
+};
+
+// Core Module Getters (Lazy Loading)
+const getCoreModules = async () => {
+    return {
+        adminAuth: await import('./agents/core/admin-auth.js'),
+        apiAuth: await import('./agents/core/api-auth.js'),
+        personaAgent: await import('./agents/core/persona-agent.js'),
+        agentHealer: await import('./agents/core/agent-healer.js'),
+        scalableArch: await import('./agents/core/scalable-architecture.js')
+    };
+};
 
 // --- System Telemetry & Autonomous Healing ---
 process.on('uncaughtException', (err) => {
@@ -42,12 +53,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-let prisma;
-try {
-    prisma = new PrismaClient();
-} catch (e) {
-    console.error('[Prisma] Initialization failed:', e.message);
-}
+// Global Prisma will be accessed via getPrisma()
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
