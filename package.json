@@ -2,14 +2,14 @@
     "name": "humanese",
     "version": "1.0.0",
     "description": "Humanese - Universal Language Model with AI & Crypto",
-    "main": "sovereign-server.js",
+    "main": "api/server.js",
     "type": "module",
     "engines": {
         "node": "20.x"
     },
     "scripts": {
-        "start": "node sovereign-server.js",
-        "dev": "nodemon sovereign-server.js",
+        "start": "node api/server.js",
+        "dev": "nodemon api/server.js",
         "autoheal": "node watcher_agent.js",
         "prisma:generate": "prisma generate",
         "prisma:migrate": "prisma migrate dev --name init",

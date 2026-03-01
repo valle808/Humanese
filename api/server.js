@@ -2197,7 +2197,8 @@ const startup = async () => {
     }
 };
 
-startup();
+
+// startup(); 
 
 export default app;
 // Exception handlers are at the top of the file integrated with Agent-Healer.
