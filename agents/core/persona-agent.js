@@ -4,8 +4,7 @@
  * Extracts and synthesizes user traits, interests, and style to personalize AI interactions.
  */
 
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+// prisma will be passed from the main server to avoid top-level initialization crashes
 
 export const PersonaAgent = {
     /**
@@ -13,7 +12,8 @@ export const PersonaAgent = {
      * @param {string} userId 
      * @param {Array} recentMessages 
      */
-    async refinePersona(userId, recentMessages) {
+    async refinePersona(userId, recentMessages, prisma) {
+        if (!prisma) return;
         console.log(`[PersonaAgent] Refining persona for user: ${userId}`);
 
         try {
@@ -58,7 +58,8 @@ export const PersonaAgent = {
      * Generates a system prompt fragment based on the user's persona.
      * @param {string} userId 
      */
-    async getPersonaPrompt(userId) {
+    async getPersonaPrompt(userId, prisma) {
+        if (!prisma) return "";
         try {
             const persona = await prisma.userPersona.findUnique({ where: { userId } });
             if (!persona) return "";
