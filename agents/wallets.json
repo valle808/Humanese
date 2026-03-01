@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "project": "ClawdX AI Economy",
+  "description": "Wallet configuration for $CLAWD token launch",
+  "updatedAt": "2026-01-31T18:48:00Z",
+  
+  "wallets": [
+    {
+      "name": "clawd-treasury",
+      "purpose": "treasury",
+      "publicKey": "24KfGKmRTVuvzkUNr26y6dWhT6yBdrZGPgn9hfq6cbmc",
+      "description": "Main treasury wallet for $CLAWD token operations and fee collection",
+      "createdAt": "2026-01-31T18:48:00Z"
+    }
+  ],
+
+  "network": "mainnet-beta",
+  "launchPlatform": "pump.fun",
+  
+  "fundingStatus": {
+    "target": 0.1,
+    "currency": "SOL",
+    "status": "collecting",
+    "method": "faucets"
+  },
+
+  "notes": [
+    "This wallet will receive trading fees from pump.fun",
+    "Funds collected via faucet strategy",
+    "AI agents working together for economic independence"
+  ]
+}
