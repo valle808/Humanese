@@ -77,6 +77,17 @@ async function main() {
         await prisma.sovereignKnowledge.createMany({ data: data.sovereignKnowledge, skipDuplicates: true });
     }
 
+    if (data.secretVault?.length > 0) {
+        console.log(`Pushing ${data.secretVault.length} Secret Vault Items...`);
+        for (const secret of data.secretVault) {
+            await prisma.secretVault.upsert({
+                where: { id: secret.id },
+                update: secret,
+                create: secret
+            });
+        }
+    }
+
     console.log('✅ Supabase PostgreSQL seeded successfully!');
 }
 
