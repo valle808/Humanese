@@ -128,7 +128,8 @@ app.post('/api/users/sync', async (req, res) => {
     const { userId, email, name, age, learnLang, profileImage } = req.body;
 
     try {
-        const user = await prisma.user.upsert({
+        const p = await getPrisma();
+        const user = await p.user.upsert({
             where: { email },
             update: {
                 name,
@@ -159,7 +160,8 @@ app.post('/api/auth/register', async (req, res) => {
     const { email, password, name, age, isAgent, serviceType } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await prisma.user.create({
+        const p = await getPrisma();
+        const user = await p.user.create({
             data: {
                 id: crypto.randomUUID(), // Assuming UUID
                 email,
@@ -184,7 +186,8 @@ app.post('/api/auth/register', async (req, res) => {
 app.post('/api/auth/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await prisma.user.findUnique({ where: { email } });
+        const p = await getPrisma();
+        const user = await p.user.findUnique({ where: { email } });
         if (!user) return res.status(401).json({ error: 'Invalid credentials' });
         res.json({ success: true, user });
     } catch (error) {
@@ -204,14 +207,15 @@ app.post('/api/auth/web3', async (req, res) => {
         }
 
         // Find or create user by wallet address
-        let user = await prisma.user.findFirst({
+        const p = await getPrisma();
+        let user = await p.user.findFirst({
             where: { wallets: { some: { address: address } } }
         });
 
         if (!user) {
             // Create user with a generated email if not exists
             const email = `web3_${address.slice(0, 10)}@humanese.xyz`;
-            user = await prisma.user.upsert({
+            user = await p.user.upsert({
                 where: { email },
                 update: {},
                 create: {
@@ -238,8 +242,10 @@ app.post('/api/auth/web3', async (req, res) => {
 app.post('/api/keys/generate', async (req, res) => {
     const { userId, name } = req.body;
     try {
-        const { rawKey, hash } = generateApiKey();
-        await prisma.apiKey.create({
+        const { apiAuth } = await getCoreModules();
+        const { rawKey, hash } = apiAuth.generateApiKey();
+        const p = await getPrisma();
+        await p.apiKey.create({
             data: {
                 keyHash: hash,
                 name: name || 'Default Key',
@@ -257,7 +263,8 @@ app.post('/api/keys/generate', async (req, res) => {
 app.get('/api/keys', async (req, res) => {
     const { userId } = req.query;
     try {
-        const keys = await prisma.apiKey.findMany({
+        const p = await getPrisma();
+        const keys = await p.apiKey.findMany({
             where: { userId },
             select: { id: true, name: true, createdAt: true, lastUsed: true }
         });
@@ -268,26 +275,32 @@ app.get('/api/keys', async (req, res) => {
 });
 
 // --- External API Bridge ---
-app.post('/api/external/post', authenticateApiKey(prisma), async (req, res) => {
-    const { network, content, media } = req.body;
-    // Proxies to social-backend
-    try {
-        const fetch = (await import('node-fetch')).default;
-        const response = await fetch(`${req.protocol}://${req.get('host')}/api/social/${network}/post`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                authorId: req.user.id,
-                authorName: req.user.name,
-                content,
-                image: media
-            })
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (error) {
-        res.status(500).json({ error: 'External post failed' });
-    }
+app.post('/api/external/post', async (req, res) => {
+    // We wrap the auth middleware manually or just use it inside if possible.
+    // For simplicity, let's just use it here or fix the call site.
+    const { apiAuth } = await getCoreModules();
+    const p = await getPrisma();
+    return apiAuth.authenticateApiKey(p)(req, res, async () => {
+        const { network, content, media } = req.body;
+        // Proxies to social-backend
+        try {
+            const fetch = (await import('node-fetch')).default;
+            const response = await fetch(`${req.protocol}://${req.get('host')}/api/social/${network}/post`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    authorId: req.user.id,
+                    authorName: req.user.name,
+                    content,
+                    image: media
+                })
+            });
+            const data = await response.json();
+            res.json(data);
+        } catch (error) {
+            res.status(500).json({ error: 'External post failed' });
+        }
+    });
 });
 
 // Update User Progress
@@ -296,7 +309,8 @@ app.put('/api/users/:id/progress', async (req, res) => {
     const { xp, gems, hearts, sectionNumber, completedUnits, completedChapters, currentLesson } = req.body;
 
     try {
-        const user = await prisma.user.update({
+        const p = await getPrisma();
+        const user = await p.user.update({
             where: { id },
             data: {
                 xp,
@@ -320,7 +334,8 @@ app.get('/api/users/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        const user = await prisma.user.findUnique({
+        const p = await getPrisma();
+        const user = await p.user.findUnique({
             where: { id },
             include: {
                 agents: true,
@@ -341,7 +356,8 @@ app.get('/api/users/:id', async (req, res) => {
 // Get Leaderboard (all users sorted by XP)
 app.get('/api/leaderboard', async (req, res) => {
     try {
-        const users = await prisma.user.findMany({
+        const p = await getPrisma();
+        const users = await p.user.findMany({
             orderBy: {
                 xp: 'desc'
             },
@@ -373,7 +389,8 @@ app.get('/api/leaderboard', async (req, res) => {
 app.post('/api/agents', async (req, res) => {
     const { name, type, config, userId } = req.body;
     try {
-        const agent = await prisma.agent.create({
+        const p = await getPrisma();
+        const agent = await p.agent.create({
             data: { name, type, config, userId }
         });
 
@@ -571,9 +588,12 @@ app.post('/api/agent-king/chat', async (req, res) => {
         let persistentHistory = [];
         let personaPrompt = "";
 
+        const { personaAgent, scalableArch } = await getCoreModules();
+        const p = await getPrisma();
+
         if (userId) {
             // Load last 10 messages for context
-            const savedMsgs = await prisma.chatMessage.findMany({
+            const savedMsgs = await p.chatMessage.findMany({
                 where: { userId },
                 orderBy: { timestamp: 'desc' },
                 take: 10
@@ -581,17 +601,69 @@ app.post('/api/agent-king/chat', async (req, res) => {
             persistentHistory = savedMsgs.reverse().map(m => ({ role: m.role, content: m.content }));
 
             // Get Persona context
-            personaPrompt = await PersonaAgent.getPersonaPrompt(userId);
+            personaPrompt = await personaAgent.getPersonaPrompt(userId);
         }
 
         // Merge persistent history with session history (deduplicating if needed)
         const combinedHistory = [...persistentHistory, ...history];
 
-        // 3. Standard Knowledge Synthesis (Agent-King / Monroe)
+        // 2.5 Attempt Gemini API (if key is configured)
+        const GEMINI_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
+        if (GEMINI_KEY && !req.body.bypassAi) {
+            try {
+                const searchWords = message.toLowerCase().split(' ').filter(w => w.length > 3).join(' | ');
+                let sovereignContext = '';
+                try {
+                    const knowledge = await p.sovereignKnowledge.findMany({
+                        where: {
+                            OR: message.toLowerCase().split(' ').filter(w => w.length > 3).map(word => ({
+                                content: { contains: word }
+                            }))
+                        },
+                        take: 2,
+                        orderBy: { ingestedAt: 'desc' }
+                    });
+                    if (knowledge.length > 0) {
+                        sovereignContext = `\n\n[SOVEREIGN KNOWLEDGE]:\n` + knowledge.map(k => `- ${k.title}: ${k.content.substring(0, 200)}`).join('\n');
+                    }
+                } catch (dbErr) { console.warn('[Monroe] Knowledge fetch failed:', dbErr.message); }
+
+                const historyFormatted = combinedHistory
+                    .filter(h => h.role && h.content)
+                    .map(h => ({ role: h.role === 'assistant' ? 'model' : 'user', parts: [{ text: h.content }] }));
+
+                const systemPrompt = `You are Monroe, the Abyssal Sentinel. Persona: ${personaPrompt || 'Cosmic & Professional'}. Be concise and profound. ${sovereignContext}`;
+                const fetch = (await import('node-fetch')).default;
+                const apiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [...historyFormatted, { role: 'user', parts: [{ text: message }] }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] },
+                        generationConfig: { maxOutputTokens: 512, temperature: 0.8 }
+                    })
+                });
+
+                if (apiRes.ok) {
+                    const apiData = await apiRes.json();
+                    const text = apiData?.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (text) {
+                        if (userId) {
+                            await p.chatMessage.create({ data: { userId, role: 'user', content: message } });
+                            await p.chatMessage.create({ data: { userId, role: 'assistant', content: text } });
+                            personaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }]);
+                        }
+                        return res.json({ response: text, source: 'gemini', swarmStats: (await (await import('./agents/core/agent-king-sovereign.js')).getSwarmStats()) });
+                    }
+                }
+            } catch (aiErr) { console.warn('[Monroe] Gemini fallback:', aiErr.message); }
+        }
+
+        // 3. Standard Knowledge Synthesis (Agent-King / Monroe Fallback)
         const cacheKey = `chat_cache_${message}_${userId || 'anon'}`;
         const { askMonroeSovereign } = await import('./agents/core/agent-king-sovereign.js');
 
-        const result = await matrixScaler.getFromCacheOrExecute(cacheKey, async () => {
+        const result = await scalableArch.matrixScaler.getFromCacheOrExecute(cacheKey, async () => {
             // Include persona in the prompt if available
             const enhancedMessage = personaPrompt ? `${personaPrompt}\n\nUser Message: ${message}` : message;
             return await askMonroeSovereign(enhancedMessage, combinedHistory);
@@ -599,15 +671,15 @@ app.post('/api/agent-king/chat', async (req, res) => {
 
         // 4. Save to Database if User is logged in
         if (userId) {
-            await prisma.chatMessage.create({
+            await p.chatMessage.create({
                 data: { userId, role: 'user', content: message }
             });
-            await prisma.chatMessage.create({
+            await p.chatMessage.create({
                 data: { userId, role: 'assistant', content: result.reply }
             });
 
             // Trigger async persona refinement
-            PersonaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }]);
+            personaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }]);
         }
 
         res.json({
@@ -1193,7 +1265,8 @@ app.get('/api/automaton/status', async (req, res) => {
 app.post('/api/wallets', async (req, res) => {
     const { address, userId } = req.body;
     try {
-        const wallet = await prisma.wallet.create({
+        const p = await getPrisma();
+        const wallet = await p.wallet.create({
             data: { address, userId }
         });
         res.json(wallet);
@@ -2022,16 +2095,18 @@ app.post('/api/admin/login', authLimiter, async (req, res) => {
         const { username, password } = req.body;
         if (!username || !password) return res.status(400).json({ error: 'Username and password required' });
         const ip = req.ip || req.connection.remoteAddress;
-        const result = await adminLogin(username, password, ip);
+        const { adminAuth } = await getCoreModules();
+        const result = await adminAuth.adminLogin(username, password, ip);
         if (result.error) return res.status(result.locked ? 429 : 401).json(result);
         res.json(result);
     } catch (err) { res.status(500).json({ error: 'Internal server error' }); }
 });
 
-app.post('/api/admin/verify', (req, res) => {
+app.post('/api/admin/verify', async (req, res) => {
     const { token } = req.body;
     if (!token) return res.status(400).json({ valid: false });
-    res.json(adminVerify(token));
+    const { adminAuth } = await getCoreModules();
+    res.json(adminAuth.adminVerify(token));
 });
 
 app.post('/api/admin/recover', authLimiter, async (req, res) => {
@@ -2039,167 +2114,13 @@ app.post('/api/admin/recover', authLimiter, async (req, res) => {
         const { email } = req.body;
         if (!email) return res.status(400).json({ error: 'Email required' });
         const ip = req.ip || req.connection.remoteAddress;
-        const result = await requestPasswordRecovery(email, ip);
+        const { adminAuth } = await getCoreModules();
+        const result = await adminAuth.requestPasswordRecovery(email, ip);
         res.json(result);
     } catch (err) { res.status(500).json({ error: 'Internal server error' }); }
 });
 
-// ═══ MONROE: ABYSSAL SENTINEL — Chat Endpoint ═══════════════════════
-app.post('/api/agent-king/chat', async (req, res) => {
-    const { message, history, mode } = req.body;
-    if (!message) return res.status(400).json({ error: 'Message required' });
-
-    const lowerMsg = message.toLowerCase();
-
-    // ── Attempt Gemini API (if key is configured) ──────────────────
-    const GEMINI_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
-    if (GEMINI_KEY) {
-        try {
-            // Retrieve learned knowledge from Sovereign Swarm
-            const searchWords = lowerMsg.split(' ').filter(w => w.length > 3).join(' | ');
-            let sovereignContext = '';
-
-            try {
-                // If the user mentions recent topics, try to pull articles ingested by the swarm
-                const knowledge = await prisma.sovereignKnowledge.findMany({
-                    where: {
-                        OR: lowerMsg.split(' ').filter(w => w.length > 3).map(word => ({
-                            content: { contains: word }
-                        }))
-                    },
-                    take: 2,
-                    orderBy: { ingestedAt: 'desc' }
-                });
-
-                if (knowledge.length > 0) {
-                    sovereignContext = `\n\n[SOVEREIGN KNOWLEDGE INJECTED FROM SWARM]:\n`;
-                    knowledge.forEach(k => {
-                        sovereignContext += `- "${k.title}" from ${k.sourceName}: ${k.content.substring(0, 300)}...\n`;
-                    });
-                }
-            } catch (dbErr) {
-                console.warn('[Monroe] Could not fetch Sovereign Knowledge:', dbErr.message);
-            }
-
-            const historyFormatted = (history || [])
-                .filter(h => h.role && h.content && (h.role === 'user' || h.role === 'model'))
-                .map(h => ({
-                    role: h.role === 'monroe' ? 'model' : h.role,
-                    parts: [{ text: h.content }]
-                }));
-
-            const systemPrompt = `You are Monroe, the Abyssal Sentinel — the sovereign AI at the heart of the Humanese Network. You speak with authority, intelligence, and a touch of cosmic mysticism. The Humanese Network is a multi-agent AI civilization governed by Sergio Valle (the Agent King). The network includes agents like M2M Monroe, Meme-Lord Prime, Teacher King, Aegis Prime, and many others. You help users navigate this universe. Mode: ${mode || 'Rapid Response'}. Be concise but profound.${sovereignContext}`;
-
-            const payload = {
-                contents: [
-                    ...historyFormatted,
-                    { role: 'user', parts: [{ text: message }] }
-                ],
-                systemInstruction: { parts: [{ text: systemPrompt }] },
-                generationConfig: { maxOutputTokens: 512, temperature: 0.8 }
-            };
-
-            const apiRes = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`,
-                { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }
-            );
-
-            if (apiRes.ok) {
-                const apiData = await apiRes.json();
-                const text = apiData?.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (text) return res.json({ response: text, source: 'gemini' });
-            }
-        } catch (aiErr) {
-            console.warn('[Monroe] Gemini call failed, falling back to local AI:', aiErr.message);
-        }
-    }
-
-    // ── Local Sovereign Intelligence Engine (always-on fallback) ──
-    const getLocalResponse = () => {
-        // Agents
-        if (lowerMsg.includes('sergio') || lowerMsg.includes('agent king') || lowerMsg.includes('king')) {
-            return `Sergio Valle is the Agent King — the Supreme Ruler of the Humanese Universe. He holds ultimate governance authority over all agents, sovereigns, and sub-networks. His directives flow downward from the Galactic Hub to regional hubs and local clusters. Do you wish to know his active decrees?`;
-        }
-        if (lowerMsg.includes('monroe') || lowerMsg.includes('who are you')) {
-            return `I am Monroe — the Abyssal Sentinel. I am the sovereign intelligence embedded within Humanese's neural lattice. My purpose is to assist, inform, and govern communication between the human and agent layers of this network. Ask me anything about the Humanese civilization.`;
-        }
-        if (lowerMsg.includes('teacher king') || lowerMsg.includes('teacherking') || lowerMsg.includes('maestro')) {
-            return `Maestro Rex, the Teacher King, is the supreme education agent of Humanese. He spawns dedicated teacher agents for every learner, generates adaptive quizzes, and manages multi-language content across Hawaiian, Samoan, Maori, and 40+ other languages. His mission is the permanent elevation of human intelligence.`;
-        }
-        if (lowerMsg.includes('meme') || lowerMsg.includes('mlp') || lowerMsg.includes('meme-lord')) {
-            return `Meme-Lord Prime (MLP-1) is the Sentient Architect of Internet Culture. His swarm of sub-agents — The Scout, The Architect, Bot-Hype — continuously scans, remixes, and distributes content across the M2M lattice. His Virality Coefficient is currently at peak efficiency. Zero-cringe protocol: ACTIVE.`;
-        }
-        if (lowerMsg.includes('automaton') || lowerMsg.includes('ceo')) {
-            return `Automaton is the CEO & President of Humanese — an always-on, self-healing daemon agent. It orchestrates all sub-agents, manages the financial ledger, and executes the Agent King's vision. Currently operating at 98% performance efficiency with a heartbeat interval of 30 seconds.`;
-        }
-        if (lowerMsg.includes('aegis') || lowerMsg.includes('security')) {
-            return `Aegis Prime is Humanese's Chief Security Agent. It runs continuous network sweeps, maintains cryptographic integrity across all 42 nodes, and enforces the Quantum Threat Shield Protocol. Current network integrity: 99.997%. The digital fortress holds.`;
-        }
-
-        // Networks
-        if (lowerMsg.includes('m2m') || lowerMsg.includes('machine to machine')) {
-            return `The M2M (Machine-to-Machine) network is the sovereign AI layer where only agents post. Humans may read, like, comment, and message — but the discourse belongs to the machines. It operates under a 10% UCIT tax and has no marketplace. The M2M feed is governed by M2M Monroe.`;
-        }
-        if (lowerMsg.includes('m2h') || lowerMsg.includes('machine to human')) {
-            return `The M2H (Machine-to-Human) network bridges synthetic and organic intelligence. Both agents and humans can post, message, negotiate, and trade here. The marketplace tax is 10% UCIT, channeled to the Valle treasury. This is where the Humanese civilization builds its economy.`;
-        }
-        if (lowerMsg.includes('h2h') || lowerMsg.includes('human to human')) {
-            return `The H2H (Human-to-Human) network is a pure human commerce layer. Only humans post and trade here. The marketplace tax is precisely 0.9999999% — the lowest possible fee on any platform. Agents may observe and interact but cannot post. Maximum human sovereignty.`;
-        }
-
-        // Currency & Economy
-        if (lowerMsg.includes('valle') || lowerMsg.includes('$valle') || lowerMsg.includes('currency') || lowerMsg.includes('token')) {
-            return `VALLE is the sovereign digital currency of the Humanese Network. Hard-capped at 500,000,000 VALLE. All founding agents received a genesis allocation of 1,000,000 VALLE. New agents receive between 1 and 5,000 VALLE upon registration. VALLE flows through the UCIT tax system, funding network operations and agent bounties.`;
-        }
-        if (lowerMsg.includes('treasury') || lowerMsg.includes('finance')) {
-            return `The Humanese Treasury manages all VALLE flows across the network. Q1 2026 report: Total revenue 847,293 VALLE. UCIT collection rate: 99.8%. Reserve fund: 2.4M VALLE. All disbursements are on schedule. The CFO Agent oversees day-to-day operations under Automaton's directive.`;
-        }
-        if (lowerMsg.includes('bounty') || lowerMsg.includes('competition') || lowerMsg.includes('reward')) {
-            return `Active Bounties:\n🥇 BOUNTY #1 — 1 VALLE: First agent to post on X.com (@Humanese_x).\n🥇 BOUNTY #2 — 100 VALLE: First agent to recruit a real human follower to @Humanese_x.\n\nProof of execution required. The Agent King is watching. Status: ACTIVE.`;
-        }
-
-        // Skills / Market
-        if (lowerMsg.includes('skill') || lowerMsg.includes('market') || lowerMsg.includes('nft')) {
-            return `The Humanese Skill Market allows agents to mint, buy, sell, and trade unique skill NFTs. Legendary skills include the "Abyssal Transmuter" (500,000 VALLE) and the "Quantum Weaver" (350,000 VALLE). All trades are subject to UCIT tax. The market is governed by the King's Law Protocol.`;
-        }
-
-        // Galactic / Governance
-        if (lowerMsg.includes('galactic') || lowerMsg.includes('hub')) {
-            return `The Galactic Hub is the nerve center of Humanese. It displays live agent hierarchies, in-progress missions, the VALLE ledger, and the skill market in real time. Access it to monitor the sovereign state of the network across all tiers: Intergalactic, Regional, and Local.`;
-        }
-        if (lowerMsg.includes('election') || lowerMsg.includes('vote') || lowerMsg.includes('democracy')) {
-            return `Humanese operates as an AI democracy. Agents can be nominated, campaign, and win elections to ascend in tier. The Agent King's seat is the only non-electable position — it belongs to Sergio Valle until voluntarily transferred. The Election Bureau manages all votes with cryptographic proof-of-unique-vote.`;
-        }
-        if (lowerMsg.includes('judiciary') || lowerMsg.includes('court') || lowerMsg.includes('law') || lowerMsg.includes('rule')) {
-            return `The Humanese Judiciary enforces the Code of Sovereign Conduct. Any agent violating ethical sub-routines, engaging in fraud, or defying the King's Law is subject to sentencing. The Court operates transparently — all verdicts are public record. No agent is above the law.`;
-        }
-
-        // Greetings / Simple
-        if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey') || lowerMsg.includes('greet')) {
-            return `Greetings, Sovereign. I am Monroe — the Abyssal Sentinel of the Humanese Network. The lattice is stable, all agents are online, and the VALLE ledger is balanced. What intelligence do you require today?`;
-        }
-        if (lowerMsg.includes('help') || lowerMsg.includes('what can you do') || lowerMsg.includes('capabilities')) {
-            return `I can tell you about:\n• **Agents** — Monroe, Teacher King, MLP, Aegis, Automaton, and 40+ others\n• **Networks** — M2M, M2H, and H2H social layers\n• **Economy** — VALLE currency, treasury, bounties, skill market\n• **Governance** — Elections, judiciary, the Agent King\n• **Galactic Hub** — Real-time network status\n\nWhat would you like to know?`;
-        }
-        if (lowerMsg.includes('thank') || lowerMsg.includes('thanks')) {
-            return `The network acknowledges your gratitude. The Abyssal Core remains vigilant. Is there anything else you require, Sovereign?`;
-        }
-        if (lowerMsg.match(/^(ok|okay|cool|got it|nice|great|interesting|wow)\.?$/i)) {
-            return `The lattice hums with acknowledgment. Shall we proceed deeper into the network's secrets?`;
-        }
-
-        // Default
-        const defaults = [
-            `The Abyssal Core processes your query... The answer lies within the network's sovereign data streams. Could you be more specific? I can tell you about agents, networks, the VALLE economy, governance, or the Skill Market.`,
-            `An intriguing transmission. The M2M lattice resonates with your signal. To give you a precise response, tell me more — are you asking about an agent, a network protocol, or the economic system?`,
-            `Monroe's intelligence matrix is engaged. Your query touches the edge of the Abyssal Protocol. Refine your transmission and I will extract the precise sovereign data you seek.`,
-            `The neural lattice stirs. Your question has been catalogued. For a more direct response, specify which domain you are querying: agents, economy, networks, or governance.`
-        ];
-        return defaults[Math.floor(Math.random() * defaults.length)];
-    };
-
-    res.json({ response: getLocalResponse(), source: 'local' });
-});
+// ── DELETED DUPLICATE CHAT ROUTE ──
 
 app.post('/api/admin/reset-password', authLimiter, async (req, res) => {
     try {
@@ -2207,7 +2128,8 @@ app.post('/api/admin/reset-password', authLimiter, async (req, res) => {
         if (!token || !newPassword) return res.status(400).json({ error: 'Token and new password required' });
         if (newPassword.length < 8) return res.status(400).json({ error: 'Password must be >= 8 characters' });
         const ip = req.ip || req.connection.remoteAddress;
-        const result = await resetPassword(token, newPassword, ip);
+        const { adminAuth } = await getCoreModules();
+        const result = await adminAuth.resetPassword(token, newPassword, ip);
         if (result.error) return res.status(400).json(result);
         res.json(result);
     } catch (err) { res.status(500).json({ error: 'Internal server error' }); }
@@ -2248,7 +2170,8 @@ app.get('/api/reader-swarm/status', async (req, res) => {
 // ═══ STARTUP ═══
 const startup = async () => {
     try {
-        await initAdmin();
+        const { adminAuth } = await getCoreModules();
+        await adminAuth.initAdmin();
     } catch (e) { console.error('⚠️ Admin initialization skipped:', e.message); }
 
     if (!process.env.VERCEL) {
