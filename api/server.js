@@ -648,17 +648,20 @@ app.post('/api/agent-king/chat', async (req, res) => {
         const { personaAgent, scalableArch } = await getCoreModules();
         const p = await getPrisma();
 
-        if (userId) {
-            // Load last 10 messages for context
-            const savedMsgs = await p.chatMessage.findMany({
-                where: { userId },
-                orderBy: { timestamp: 'desc' },
-                take: 10
-            });
-            persistentHistory = savedMsgs.reverse().map(m => ({ role: m.role, content: m.content }));
-
-            // Get Persona context
-            personaPrompt = await personaAgent.default.getPersonaPrompt(userId, p);
+        if (userId && p) {
+            try {
+                // Load last 10 messages for context
+                const savedMsgs = await p.chatMessage.findMany({
+                    where: { userId },
+                    orderBy: { timestamp: 'desc' },
+                    take: 10
+                });
+                persistentHistory = savedMsgs.reverse().map(m => ({ role: m.role, content: m.content }));
+                // Get Persona context
+                personaPrompt = await personaAgent.default.getPersonaPrompt(userId, p);
+            } catch (dbErr) {
+                console.warn('[Monroe] Could not load history/persona (user may not exist in DB):', dbErr.message);
+            }
         }
 
         // Merge persistent history with session history (deduplicating if needed)
@@ -727,16 +730,15 @@ app.post('/api/agent-king/chat', async (req, res) => {
         });
 
         // 4. Save to Database if User is logged in
-        if (userId) {
-            await p.chatMessage.create({
-                data: { userId, role: 'user', content: message }
-            });
-            await p.chatMessage.create({
-                data: { userId, role: 'assistant', content: result.reply }
-            });
-
-            // Trigger async persona refinement
-            personaAgent.default.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
+        if (userId && p) {
+            try {
+                await p.chatMessage.create({ data: { userId, role: 'user', content: message } });
+                await p.chatMessage.create({ data: { userId, role: 'assistant', content: result.reply } });
+                // Trigger async persona refinement
+                personaAgent.default.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
+            } catch (dbSaveErr) {
+                console.warn('[Monroe] Could not save chat history (user may not exist in DB):', dbSaveErr.message);
+            }
         }
 
         res.json({
