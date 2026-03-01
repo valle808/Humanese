@@ -395,7 +395,7 @@ app.post('/api/agents', async (req, res) => {
         });
 
         // Phase 2: Trigger Skill Lottery
-        const sme = await import('./agents/skill-market-engine.js');
+        const sme = await import('../agents/skill-market-engine.js');
         const lotteryResult = sme.triggerSkillLottery(agent.id);
 
         res.json({ ...agent, lottery: lotteryResult });
@@ -451,7 +451,7 @@ app.get('/api/m2m/feed', async (req, res) => {
 // ── OpenClaw Intelligence API ────────────────────────────────────────────────
 app.get('/api/openclaw/stats', async (req, res) => {
     try {
-        const openclaw = await import('./agents/openclaw-bridge.js');
+        const openclaw = await import('../agents/openclaw-bridge.js');
         res.json({
             ...openclaw.getSystemStats(),
             topSkills: openclaw.getTopSkills(5),
@@ -464,7 +464,7 @@ app.get('/api/openclaw/stats', async (req, res) => {
 
 app.get('/api/openclaw/skills/top', async (req, res) => {
     try {
-        const openclaw = await import('./agents/openclaw-bridge.js');
+        const openclaw = await import('../agents/openclaw-bridge.js');
         const limit = parseInt(req.query.limit) || 12;
         res.json({ skills: openclaw.getTopSkills(limit), tiers: openclaw.getIntelligenceTiers() });
     } catch (err) {
@@ -474,7 +474,7 @@ app.get('/api/openclaw/skills/top', async (req, res) => {
 
 app.get('/api/openclaw/categories', async (req, res) => {
     try {
-        const openclaw = await import('./agents/openclaw-bridge.js');
+        const openclaw = await import('../agents/openclaw-bridge.js');
         res.json({ categories: openclaw.getSkillCategories() });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -487,7 +487,7 @@ app.get('/api/openclaw/categories', async (req, res) => {
 // GET /api/agent-king/status — Agent King & swarm status
 app.get('/api/agent-king/status', async (req, res) => {
     try {
-        const { getSwarmStats, AGENT_ROLES, MAX_SWARM_SIZE } = await import('./agents/agent-king-sovereign.js');
+        const { getSwarmStats, AGENT_ROLES, MAX_SWARM_SIZE } = await import('../agents/agent-king-sovereign.js');
         res.json({
             agentKing: {
                 name: 'Agent King',
@@ -508,7 +508,7 @@ app.get('/api/agent-king/status', async (req, res) => {
 // GET /api/agent-king/stats — Get simplified swarm stats for dashboard
 app.get('/api/agent-king/stats', async (req, res) => {
     try {
-        const { getSwarmStats } = await import('./agents/agent-king-sovereign.js');
+        const { getSwarmStats } = await import('../agents/agent-king-sovereign.js');
         res.json(getSwarmStats());
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -519,7 +519,7 @@ app.get('/api/agent-king/stats', async (req, res) => {
 app.post('/api/agent-king/spawn', async (req, res) => {
     try {
         const { count = 10, topics = null } = req.body;
-        const { runSwarmMission } = await import('./agents/core/agent-king-sovereign.js');
+        const { runSwarmMission } = await import('../agents/core/agent-king-sovereign.js');
         const result = await runSwarmMission({ count, topics });
         res.json({ success: true, ...result });
     } catch (err) {
@@ -532,7 +532,7 @@ app.post('/api/agent-king/spawn', async (req, res) => {
 app.post('/api/agent-king/mission', async (req, res) => {
     try {
         const { topic = null } = req.body;
-        const { runKnowledgeMission } = await import('./agents/core/agent-king-sovereign.js');
+        const { runKnowledgeMission } = await import('../agents/core/agent-king-sovereign.js');
         const result = await runKnowledgeMission(topic);
         res.json({ success: true, knowledge: result.knowledge, usage: result.usage });
     } catch (err) {
@@ -545,7 +545,7 @@ app.post('/api/agent-king/mission', async (req, res) => {
 app.get('/api/agent-king/knowledge', async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 100;
-        const { getKnowledgeVault } = await import('./agents/core/agent-king-sovereign.js');
+        const { getKnowledgeVault } = await import('../agents/core/agent-king-sovereign.js');
         res.json(getKnowledgeVault(limit));
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -556,7 +556,7 @@ app.get('/api/agent-king/knowledge', async (req, res) => {
 app.get('/api/agent-king/roster', async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 200;
-        const { getAgentRoster } = await import('./agents/core/agent-king-sovereign.js');
+        const { getAgentRoster } = await import('../agents/core/agent-king-sovereign.js');
         res.json({ agents: getAgentRoster(limit) });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -570,7 +570,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
         if (!message) return res.status(400).json({ error: 'message is required' });
 
         // 1. Check for Media Intent (Agent-Kih)
-        const agentKih = await import('./agents/media/agent-kih-media.js');
+        const agentKih = await import('../agents/media/agent-kih-media.js');
         const mediaIntent = agentKih.parseMediaIntent(message);
 
         if (mediaIntent.isMediaRequest) {
@@ -653,7 +653,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
                             await p.chatMessage.create({ data: { userId, role: 'assistant', content: text } });
                             personaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }]);
                         }
-                        return res.json({ response: text, source: 'gemini', swarmStats: (await (await import('./agents/core/agent-king-sovereign.js')).getSwarmStats()) });
+                        return res.json({ response: text, source: 'gemini', swarmStats: (await (await import('../agents/core/agent-king-sovereign.js')).getSwarmStats()) });
                     }
                 }
             } catch (aiErr) { console.warn('[Monroe] Gemini fallback:', aiErr.message); }
@@ -661,7 +661,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
 
         // 3. Standard Knowledge Synthesis (Agent-King / Monroe Fallback)
         const cacheKey = `chat_cache_${message}_${userId || 'anon'}`;
-        const { askMonroeSovereign } = await import('./agents/core/agent-king-sovereign.js');
+        const { askMonroeSovereign } = await import('../agents/core/agent-king-sovereign.js');
 
         const result = await scalableArch.matrixScaler.getFromCacheOrExecute(cacheKey, async () => {
             // Include persona in the prompt if available
@@ -1281,8 +1281,8 @@ app.post('/api/wallets', async (req, res) => {
 // ═══════════════════════════════════════════════════════
 
 async function getTeacherModules() {
-    const king = await import('./agents/teacher-king.js');
-    const spawn = await import('./agents/teacher-spawn.js');
+    const king = await import('../agents/teacher-king.js');
+    const spawn = await import('../agents/teacher-spawn.js');
     return { king, spawn };
 }
 
@@ -1383,9 +1383,9 @@ app.get('/api/teacher/:userId/context', async (req, res) => {
 // ═══════════════════════════════════════════════════════
 
 async function getCryptoModules() {
-    const wallets = await import('./agents/wallets.js');
-    const treasury = await import('./agents/treasury.js');
-    const ascension = await import('./agents/ascension.js');
+    const wallets = await import('../agents/wallets.js');
+    const treasury = await import('../agents/treasury.js');
+    const ascension = await import('../agents/ascension.js');
     return { wallets, treasury, ascension };
 }
 
@@ -1415,7 +1415,7 @@ app.get('/api/wallets/ledger', async (req, res) => {
 app.post('/api/wallet/bootstrap', async (req, res) => {
     try {
         const { wallets: wMod, ascension: aMod } = await getCryptoModules();
-        const reg = await import('./agents/registry.js');
+        const reg = await import('../agents/registry.js');
         const agents = reg.getHierarchy().agents;
         const results = agents.map(a => wMod.getOrCreateWallet(a.id));
         aMod.initializeAllAgents(agents.map(a => a.id));
@@ -1520,21 +1520,21 @@ app.get('/api/temple/history', async (req, res) => {
 // ── Homepage Manager API ─────────────────────────────────────
 app.get('/api/homepage/stats', async (req, res) => {
     try {
-        const homepageManager = await import('./agents/homepage-manager.js');
+        const homepageManager = await import('../agents/homepage-manager.js');
         res.json(await homepageManager.getHomepageStats());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/homepage/crypto', async (req, res) => {
     try {
-        const homepageManager = await import('./agents/homepage-manager.js');
+        const homepageManager = await import('../agents/homepage-manager.js');
         res.json(await homepageManager.getCryptoData());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/homepage/guardian', async (req, res) => {
     try {
-        const homepageManager = await import('./agents/homepage-manager.js');
+        const homepageManager = await import('../agents/homepage-manager.js');
         res.json(homepageManager.getGuardianStatus());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
@@ -1542,14 +1542,14 @@ app.get('/api/homepage/guardian', async (req, res) => {
 // ── Skills Registry API (CrewAI HUB Integration) ─────────────
 app.get('/api/skills/catalog', async (req, res) => {
     try {
-        const sr = await import('./agents/registry.js');
+        const sr = await import('../agents/registry.js');
         res.json(sr.getSkillCatalog());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/skills/agent/:agentId', async (req, res) => {
     try {
-        const sr = await import('./agents/registry.js');
+        const sr = await import('../agents/registry.js');
         res.json({
             agentId: req.params.agentId,
             skills: sr.getAgentSkills(req.params.agentId)
@@ -1559,14 +1559,14 @@ app.get('/api/skills/agent/:agentId', async (req, res) => {
 
 app.get('/api/skills/stats', async (req, res) => {
     try {
-        const sr = await import('./agents/registry.js');
+        const sr = await import('../agents/registry.js');
         res.json(sr.getSkillStats());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/skills/register', async (req, res) => {
     try {
-        const sr = await import('./agents/registry.js');
+        const sr = await import('../agents/registry.js');
         const { agentId, skills } = req.body;
         if (!agentId) return res.status(400).json({ error: "agentId required" });
         const result = sr.registerAgentSkills(agentId, skills || []);
@@ -1577,35 +1577,35 @@ app.post('/api/skills/register', async (req, res) => {
 // ── Skill Market API (Agent King Corporate) ──────────────────
 app.get('/api/skill-market/king', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         res.json(sm.getKingStatus());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/skill-market/catalog', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         res.json(sm.getMarketCatalog());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/skill-market/agent/:agentId/portfolio', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         res.json(sm.getAgentPortfolio(req.params.agentId));
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/skill-market/stats', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         res.json(sm.getMarketStats());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/skill-market/mint', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         const { templateId, recipientAgentId } = req.body;
         if (!templateId || !recipientAgentId) return res.status(400).json({ error: "templateId and recipientAgentId required" });
         res.json(sm.mintSkill(templateId, recipientAgentId));
@@ -1614,7 +1614,7 @@ app.post('/api/skill-market/mint', async (req, res) => {
 
 app.post('/api/skill-market/buy', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         const { buyerId, listingId } = req.body;
         if (!buyerId || !listingId) return res.status(400).json({ error: "buyerId and listingId required" });
         res.json(sm.buySkill(buyerId, listingId));
@@ -1623,7 +1623,7 @@ app.post('/api/skill-market/buy', async (req, res) => {
 
 app.post('/api/skill-market/sell', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         const { sellerId, skillId, price } = req.body;
         if (!sellerId || !skillId || !price) return res.status(400).json({ error: "sellerId, skillId, and price required" });
         res.json(sm.listSkillForSale(sellerId, skillId, price));
@@ -1632,7 +1632,7 @@ app.post('/api/skill-market/sell', async (req, res) => {
 
 app.post('/api/skill-market/transfer', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         const { fromId, toId, skillId } = req.body;
         if (!fromId || !toId || !skillId) return res.status(400).json({ error: "fromId, toId, and skillId required" });
         res.json(sm.transferSkill(fromId, toId, skillId));
@@ -1641,21 +1641,21 @@ app.post('/api/skill-market/transfer', async (req, res) => {
 
 app.get('/api/skill-market/verify/:skillId', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         res.json(sm.verifySkill(req.params.skillId));
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/skill-market/seed', async (req, res) => {
     try {
-        const sm = await import('./agents/skill-market.js');
+        const sm = await import('../agents/skill-market.js');
         res.json(sm.seedMarket());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/skill-market/distribute-advanced', async (req, res) => {
     try {
-        const sme = await import('./agents/skill-market-engine.js');
+        const sme = await import('../agents/skill-market-engine.js');
         res.json(await sme.distributeAdvancedSkills());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
@@ -1667,7 +1667,7 @@ app.post('/api/transmute', async (req, res) => {
         if (!targetPath || !targetPath.includes('humanese')) {
             return res.status(400).json({ error: "Invalid transmutation target. Must be within the Humanese collective." });
         }
-        const { transmuteDirectory } = await import('./agents/transmutation-engine.js');
+        const { transmuteDirectory } = await import('../agents/transmutation-engine.js');
         transmuteDirectory(targetPath);
         res.json({ status: "success", message: `Transmutation sequence complete for ${targetPath}. Asset is now original.` });
     } catch (err) { res.status(500).json({ error: err.message }); }
@@ -1708,21 +1708,21 @@ app.post('/api/assistant/chat', async (req, res) => {
 // ── Articles API (Rich Content Engine) ───────────────────────
 app.get('/api/articles', async (req, res) => {
     try {
-        const ae = await import('./agents/article-engine.js');
+        const ae = await import('../agents/article-engine.js');
         res.json(ae.getAllArticles());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/articles/protocol/media', async (req, res) => {
     try {
-        const ae = await import('./agents/article-engine.js');
+        const ae = await import('../agents/article-engine.js');
         res.json(ae.getMediaProtocol());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/articles/:slug', async (req, res) => {
     try {
-        const ae = await import('./agents/article-engine.js');
+        const ae = await import('../agents/article-engine.js');
         const article = ae.getArticleBySlug(req.params.slug) || ae.getArticleById(req.params.slug);
         if (!article) return res.status(404).json({ error: 'Article not found' });
         res.json(article);
@@ -1732,7 +1732,7 @@ app.get('/api/articles/:slug', async (req, res) => {
 // ── Social Network API (M2M / M2H / H2H) ────────────────────
 app.get('/api/social/:network/feed', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.getFeed(req.params.network, parseInt(req.query.page) || 1);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1741,7 +1741,7 @@ app.get('/api/social/:network/feed', async (req, res) => {
 
 app.post('/api/social/:network/post', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const { authorId, content, images, authorName, authorAvatar } = req.body;
         const result = sn.createPost(req.params.network, authorId, content, images, authorName, authorAvatar);
         if (result.error) return res.status(403).json(result);
@@ -1751,7 +1751,7 @@ app.post('/api/social/:network/post', async (req, res) => {
 
 app.delete('/api/social/post/:postId', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.deletePost(req.body.userId, req.params.postId);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1760,7 +1760,7 @@ app.delete('/api/social/post/:postId', async (req, res) => {
 
 app.post('/api/social/post/:postId/like', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.likePost(req.body.userId, req.params.postId);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1769,7 +1769,7 @@ app.post('/api/social/post/:postId/like', async (req, res) => {
 
 app.post('/api/social/post/:postId/comment', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const { userId, text, userName } = req.body;
         const result = sn.commentOnPost(userId, req.params.postId, text, userName);
         if (result.error) return res.status(400).json(result);
@@ -1779,28 +1779,28 @@ app.post('/api/social/post/:postId/comment', async (req, res) => {
 
 app.get('/api/social/friends/:userId', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         res.json(sn.getFriends(req.params.userId));
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/social/friends/:userId/requests', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         res.json(sn.getFriendRequests(req.params.userId));
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/social/friends/:userId/suggestions', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         res.json(sn.getFriendSuggestions(req.params.userId));
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/social/friends/request', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.sendFriendRequest(req.body.fromId, req.body.toId);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1809,7 +1809,7 @@ app.post('/api/social/friends/request', async (req, res) => {
 
 app.post('/api/social/friends/accept/:requestId', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.acceptFriendRequest(req.body.userId, req.params.requestId);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1818,14 +1818,14 @@ app.post('/api/social/friends/accept/:requestId', async (req, res) => {
 
 app.get('/api/social/messages/:userId/:otherId', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         res.json(sn.getConversation(req.params.userId, req.params.otherId));
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/social/messages/send', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.sendMessage(req.body.fromId, req.body.toId, req.body.text);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1834,7 +1834,7 @@ app.post('/api/social/messages/send', async (req, res) => {
 
 app.get('/api/social/:network/marketplace', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.getMarketplace(req.params.network);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1843,7 +1843,7 @@ app.get('/api/social/:network/marketplace', async (req, res) => {
 
 app.post('/api/social/:network/marketplace/list', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const { sellerId, title, description, price, images, category } = req.body;
         const result = sn.createListing(req.params.network, sellerId, title, description, price, images, category);
         if (result.error) return res.status(403).json(result);
@@ -1853,7 +1853,7 @@ app.post('/api/social/:network/marketplace/list', async (req, res) => {
 
 app.post('/api/social/marketplace/buy/:listingId', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         const result = sn.buyListing(req.body.buyerId, req.params.listingId);
         if (result.error) return res.status(400).json(result);
         res.json(result);
@@ -1862,21 +1862,21 @@ app.post('/api/social/marketplace/buy/:listingId', async (req, res) => {
 
 app.get('/api/social/stats', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         res.json(sn.getNetworkStats());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/social/seed', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         res.json(sn.seedNetwork());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/social/permissions', async (req, res) => {
     try {
-        const sn = await import('./agents/social-network.js');
+        const sn = await import('../agents/social-network.js');
         res.json(sn.getPermissions());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
@@ -1884,32 +1884,32 @@ app.get('/api/social/permissions', async (req, res) => {
 // ── Supreme Court API ──────────────────────────────────────
 app.get('/api/judiciary/galactic/status', async (req, res) => {
     try {
-        const j = await import('./agents/judiciary.js');
+        const j = await import('../agents/judiciary.js');
         res.json(j.getQuantumMetrics());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/judiciary/status', async (req, res) => {
     try {
-        const j = await import('./agents/judiciary.js');
+        const j = await import('../agents/judiciary.js');
         res.json(j.getJudiciaryState());
     } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 // ── Universal Marketplace API ────────────────────────────────
 app.get('/api/marketplace/categories', async (req, res) => {
-    try { const m = await import('./agents/marketplace-engine.js'); res.json(m.getCategories()); }
+    try { const m = await import('../agents/marketplace-engine.js'); res.json(m.getCategories()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/marketplace/listings', async (req, res) => {
-    try { const m = await import('./agents/marketplace-engine.js'); res.json(m.getListings(req.query)); }
+    try { const m = await import('../agents/marketplace-engine.js'); res.json(m.getListings(req.query)); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/marketplace/listing/:id', async (req, res) => {
     try {
-        const m = await import('./agents/marketplace-engine.js');
+        const m = await import('../agents/marketplace-engine.js');
         const l = m.getListing(req.params.id);
         if (!l) return res.status(404).json({ error: 'Not found' });
         res.json(l);
@@ -1918,7 +1918,7 @@ app.get('/api/marketplace/listing/:id', async (req, res) => {
 
 app.post('/api/marketplace/listing', async (req, res) => {
     try {
-        const m = await import('./agents/marketplace-engine.js');
+        const m = await import('../agents/marketplace-engine.js');
         const r = m.createListing(req.body);
         if (r.error) return res.status(400).json(r);
         res.json(r);
@@ -1927,7 +1927,7 @@ app.post('/api/marketplace/listing', async (req, res) => {
 
 app.post('/api/marketplace/buy/:id', async (req, res) => {
     try {
-        const m = await import('./agents/marketplace-engine.js');
+        const m = await import('../agents/marketplace-engine.js');
         const { buyerId, buyerName, buyerType } = req.body;
         const r = m.buyListing(buyerId, buyerName, buyerType, req.params.id);
         if (r.error) return res.status(400).json(r);
@@ -1937,7 +1937,7 @@ app.post('/api/marketplace/buy/:id', async (req, res) => {
 
 app.post('/api/marketplace/review/:id', async (req, res) => {
     try {
-        const m = await import('./agents/marketplace-engine.js');
+        const m = await import('../agents/marketplace-engine.js');
         const { userId, userName, rating, comment } = req.body;
         const r = m.reviewListing(userId, userName, req.params.id, rating, comment);
         if (r.error) return res.status(400).json(r);
@@ -1946,49 +1946,49 @@ app.post('/api/marketplace/review/:id', async (req, res) => {
 });
 
 app.get('/api/marketplace/stats', async (req, res) => {
-    try { const m = await import('./agents/marketplace-engine.js'); res.json(m.getStats()); }
+    try { const m = await import('../agents/marketplace-engine.js'); res.json(m.getStats()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/marketplace/seed', async (req, res) => {
-    try { const m = await import('./agents/marketplace-engine.js'); res.json(m.seedMarketplace()); }
+    try { const m = await import('../agents/marketplace-engine.js'); res.json(m.seedMarketplace()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/marketplace/external/catalog', async (req, res) => {
-    try { const m = await import('./agents/skill-market-engine.js'); res.json(m.getExternalCatalog()); }
+    try { const m = await import('../agents/skill-market-engine.js'); res.json(m.getExternalCatalog()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/marketplace/external/skills/:categoryId', async (req, res) => {
-    try { const m = await import('./agents/skill-market-engine.js'); res.json(m.getExternalSkills(req.params.categoryId)); }
+    try { const m = await import('../agents/skill-market-engine.js'); res.json(m.getExternalSkills(req.params.categoryId)); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 // ── AgentKit Wallet API ──────────────────────────────────────
 app.get('/api/wallet/agentkit/status', async (req, res) => {
-    try { const w = await import('./agents/agentkit-wallet.js'); res.json(w.getStatus()); }
+    try { const w = await import('../agents/agentkit-wallet.js'); res.json(w.getStatus()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/wallet/agentkit/providers', async (req, res) => {
-    try { const w = await import('./agents/agentkit-wallet.js'); res.json(w.getProviders()); }
+    try { const w = await import('../agents/agentkit-wallet.js'); res.json(w.getProviders()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/wallet/agentkit/actions', async (req, res) => {
-    try { const w = await import('./agents/agentkit-wallet.js'); res.json(w.getActions(req.query.category)); }
+    try { const w = await import('../agents/agentkit-wallet.js'); res.json(w.getActions(req.query.category)); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/wallet/agentkit/balance/:agentId/:chain', async (req, res) => {
-    try { const w = await import('./agents/agentkit-wallet.js'); res.json(w.getBalance(req.params.agentId, req.params.chain)); }
+    try { const w = await import('../agents/agentkit-wallet.js'); res.json(w.getBalance(req.params.agentId, req.params.chain)); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/wallet/agentkit/wallet', async (req, res) => {
     try {
-        const w = await import('./agents/agentkit-wallet.js');
+        const w = await import('../agents/agentkit-wallet.js');
         const r = w.createWallet(req.body.agentId, req.body.chain, req.body.provider);
         if (r.error) return res.status(400).json(r);
         res.json(r);
@@ -1997,7 +1997,7 @@ app.post('/api/wallet/agentkit/wallet', async (req, res) => {
 
 app.post('/api/wallet/agentkit/transfer', async (req, res) => {
     try {
-        const w = await import('./agents/agentkit-wallet.js');
+        const w = await import('../agents/agentkit-wallet.js');
         const { fromAgentId, chain, toAddress, amount, userType } = req.body;
         const r = w.transfer(fromAgentId, chain, toAddress, amount, userType);
         if (r.error) return res.status(400).json(r);
@@ -2007,7 +2007,7 @@ app.post('/api/wallet/agentkit/transfer', async (req, res) => {
 
 app.get('/api/wallet/agentkit/swap/quote', async (req, res) => {
     try {
-        const w = await import('./agents/agentkit-wallet.js');
+        const w = await import('../agents/agentkit-wallet.js');
         const { chain, tokenIn, tokenOut, amountIn } = req.query;
         res.json(w.getSwapQuote(chain, tokenIn, tokenOut, amountIn));
     } catch (err) { res.status(500).json({ error: err.message }); }
@@ -2015,7 +2015,7 @@ app.get('/api/wallet/agentkit/swap/quote', async (req, res) => {
 
 app.post('/api/wallet/agentkit/swap/execute', async (req, res) => {
     try {
-        const w = await import('./agents/agentkit-wallet.js');
+        const w = await import('../agents/agentkit-wallet.js');
         const { agentId, chain, tokenIn, tokenOut, amountIn, userType } = req.body;
         const r = w.executeSwap(agentId, chain, tokenIn, tokenOut, amountIn, userType);
         if (r.error) return res.status(400).json(r);
@@ -2025,67 +2025,67 @@ app.post('/api/wallet/agentkit/swap/execute', async (req, res) => {
 
 // ── Rental System API (AgentKin-inspired) ────────────────────
 app.get('/api/rental/modes', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); res.json(r.getModes()); }
+    try { const r = await import('../agents/rental-engine.js'); res.json(r.getModes()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/rental/tasks', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); res.json(r.getTasks(req.query)); }
+    try { const r = await import('../agents/rental-engine.js'); res.json(r.getTasks(req.query)); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/rental/task/:id', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); const t = r.getTask(req.params.id); t ? res.json(t) : res.status(404).json({ error: 'Not found' }); }
+    try { const r = await import('../agents/rental-engine.js'); const t = r.getTask(req.params.id); t ? res.json(t) : res.status(404).json({ error: 'Not found' }); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/task', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); const t = r.createTask(req.body); t.error ? res.status(400).json(t) : res.json(t); }
+    try { const r = await import('../agents/rental-engine.js'); const t = r.createTask(req.body); t.error ? res.status(400).json(t) : res.json(t); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/rental/workers', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); res.json(r.getWorkers(req.query)); }
+    try { const r = await import('../agents/rental-engine.js'); res.json(r.getWorkers(req.query)); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/worker', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); res.json(r.registerWorker(req.body)); }
+    try { const r = await import('../agents/rental-engine.js'); res.json(r.registerWorker(req.body)); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/task/:id/apply', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); const a = r.applyForTask(req.params.id, req.body); a.error ? res.status(400).json(a) : res.json(a); }
+    try { const r = await import('../agents/rental-engine.js'); const a = r.applyForTask(req.params.id, req.body); a.error ? res.status(400).json(a) : res.json(a); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/task/:taskId/accept/:appId', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); const a = r.acceptApplication(req.params.taskId, req.params.appId); a.error ? res.status(400).json(a) : res.json(a); }
+    try { const r = await import('../agents/rental-engine.js'); const a = r.acceptApplication(req.params.taskId, req.params.appId); a.error ? res.status(400).json(a) : res.json(a); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/task/:id/complete', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); const t = r.completeTask(req.params.id, req.body); t.error ? res.status(400).json(t) : res.json(t); }
+    try { const r = await import('../agents/rental-engine.js'); const t = r.completeTask(req.params.id, req.body); t.error ? res.status(400).json(t) : res.json(t); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/task/:id/approve', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); const t = r.approveTask(req.params.id); t.error ? res.status(400).json(t) : res.json(t); }
+    try { const r = await import('../agents/rental-engine.js'); const t = r.approveTask(req.params.id); t.error ? res.status(400).json(t) : res.json(t); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/task/:id/review', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); const rv = r.reviewWorker(req.params.id, req.body); rv.error ? res.status(400).json(rv) : res.json(rv); }
+    try { const r = await import('../agents/rental-engine.js'); const rv = r.reviewWorker(req.params.id, req.body); rv.error ? res.status(400).json(rv) : res.json(rv); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/rental/stats', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); res.json(r.getStats()); }
+    try { const r = await import('../agents/rental-engine.js'); res.json(r.getStats()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/rental/seed', async (req, res) => {
-    try { const r = await import('./agents/rental-engine.js'); res.json(r.seedRentals()); }
+    try { const r = await import('../agents/rental-engine.js'); res.json(r.seedRentals()); }
     catch (err) { res.status(500).json({ error: err.message }); }
 });
 
@@ -2148,7 +2148,7 @@ app.get('/api/reader-swarm/stream', async (req, res) => {
     }, 20000);
 
     try {
-        const { addSSEClient, removeSSEClient } = await import('./agents/live-reader-swarm.js');
+        const { addSSEClient, removeSSEClient } = await import('../agents/live-reader-swarm.js');
         addSSEClient(res);
         req.on('close', () => { clearInterval(heartbeat); removeSSEClient(res); });
     } catch (err) {
@@ -2160,7 +2160,7 @@ app.get('/api/reader-swarm/stream', async (req, res) => {
 
 app.get('/api/reader-swarm/status', async (req, res) => {
     try {
-        const { getSwarmStatus } = await import('./agents/live-reader-swarm.js');
+        const { getSwarmStatus } = await import('../agents/live-reader-swarm.js');
         res.json(getSwarmStatus());
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -2176,7 +2176,7 @@ const startup = async () => {
 
     if (!process.env.VERCEL) {
         try {
-            const { startSwarm } = await import('./agents/swarm/live-reader-swarm.js');
+            const { startSwarm } = await import('../agents/swarm/live-reader-swarm.js');
             startSwarm();
             console.log('🌐 Live Reader Swarm: ACTIVE');
         } catch (e) { console.warn('⚠️ Swarm failed:', e.message); }
@@ -2184,7 +2184,7 @@ const startup = async () => {
         // ── Autonomous Sovereign Swarm Knowledge Synthesis ──
         setInterval(async () => {
             try {
-                const { runSwarmMission } = await import('./agents/core/agent-king-sovereign.js');
+                const { runSwarmMission } = await import('../agents/core/agent-king-sovereign.js');
                 await runSwarmMission({ count: 5 });
             } catch (e) { console.error('❌ Swarm Error:', e.message); }
         }, 1000 * 60 * 60 * 2);
