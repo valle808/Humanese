@@ -65,21 +65,7 @@ const replaceCardsSet = `cards.set(agent.id, {
 content = content.replace(targetCardsSet, replaceCardsSet);
 
 // 4. Implement Streaming Simulation Logic
-const targetCardLogic = `                        // Fake visual reading on cards
-                        cards.forEach(c => {
-                            if (Math.random() > 0.5) {
-                                let lines = [
-                                    "Quantum state mapped...",
-                                    "Synthesizing Roman logistics...",
-                                    "Parsing 1,200 token strings...",
-                                    "Ingesting API documentation..."
-                                ];
-                                c.textEl.textContent = lines[Math.floor(Math.random() * lines.length)];
-                                c.progEl.style.width = Math.floor(Math.random() * 100) + '%';
-                            }
-                        });`;
-
-const replaceCardLogic = `                        // Dynamic Text Streaming Simulation
+const targetCardLogic = `                        // Dynamic Text Streaming Simulation
                         let totalReadThisTick = 0;
                         const subjects = [
                             { s: "Wikipedia", i: "🌐", a: ["Roman Logistics", "Quantum Mechanics", "Byzantine Empire", "History of AI", "Black Holes"] },
@@ -108,18 +94,18 @@ const replaceCardLogic = `                        // Dynamic Text Streaming Simu
                                 const dataRead = (Math.random() * 2.4) + 0.1;
                                 c.dataReadMb += dataRead;
                                 totalReadThisTick += dataRead;
-                                c.mbEl.textContent = c.dataReadMb.toFixed(2);
+                                if (c.mbEl) c.mbEl.textContent = c.dataReadMb.toFixed(2);
                                 
                                 // Generate a dynamic text line
                                 const sub = subjects[Math.floor(Math.random() * subjects.length)];
                                 const article = sub.a[Math.floor(Math.random() * sub.a.length)];
                                 const action = logActions[Math.floor(Math.random() * logActions.length)];
                                 
-                                c.textEl.innerHTML = \`<span style="color:var(--muted)">[\${new Date().toISOString().split('T')[1].slice(0, 8)}]</span> \${sub.i} \${action} "\${article}"...\`;
+                                c.textEl.innerHTML = \\\`<span style="color:var(--muted)">[\\\${new Date().toISOString().split('T')[1].slice(0, 8)}]</span> \\\${sub.i} \\\${action} "\\\${article}"...\\\`;
                                 c.progEl.style.width = Math.floor(Math.random() * 100) + '%';
                                 
                                 // Fake article count updates
-                                if(Math.random() > 0.7) {
+                                if(Math.random() > 0.7 && c.artCountEl) {
                                     c.artCountEl.textContent = parseInt(c.artCountEl.textContent) + 1;
                                 }
                             }
@@ -129,8 +115,54 @@ const replaceCardLogic = `                        // Dynamic Text Streaming Simu
                         window.globalDataReadMb = (window.globalDataReadMb || 0) + totalReadThisTick;
                         window.globalDbSizeMb = (window.globalDbSizeMb || 1245) + totalReadThisTick * 0.4; // DB compression
                         
-                        document.getElementById('tele-data-read').textContent = (window.globalDataReadMb >= 1024 ? (window.globalDataReadMb / 1024).toFixed(2) + ' GB' : window.globalDataReadMb.toFixed(2) + ' MB');
-                        document.getElementById('tele-db').textContent = (window.globalDbSizeMb >= 1024 ? (window.globalDbSizeMb / 1024).toFixed(2) + ' GB' : window.globalDbSizeMb.toFixed(2) + ' MB');
+                        let dataReadEl = document.getElementById('tele-data-read');
+                        let dbEl = document.getElementById('tele-db');
+                        if (dataReadEl) dataReadEl.textContent = (window.globalDataReadMb >= 1024 ? (window.globalDataReadMb / 1024).toFixed(2) + ' GB' : window.globalDataReadMb.toFixed(2) + ' MB');
+                        if (dbEl) dbEl.textContent = (window.globalDbSizeMb >= 1024 ? (window.globalDbSizeMb / 1024).toFixed(2) + ' GB' : window.globalDbSizeMb.toFixed(2) + ' MB');
+                        `;
+
+const replaceCardLogic = `                        // Real-time Database Polling via AJAX
+                        fetch('/api/agents/telemetry')
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data && data.knowledgeBase) {
+                                    const kb = data.knowledgeBase;
+                                    let dataReadEl = document.getElementById('tele-data-read');
+                                    let dbEl = document.getElementById('tele-db');
+                                    if (dataReadEl) dataReadEl.textContent = (kb.totalDataReadMb >= 1024 ? (kb.totalDataReadMb / 1024).toFixed(2) + ' GB' : (kb.totalDataReadMb || 0).toFixed(2) + ' MB');
+                                    // Simulated db compression logic or direct mapping
+                                    if (dbEl) dbEl.textContent = ((kb.totalDataReadMb * 0.4) >= 1024 ? ((kb.totalDataReadMb * 0.4) / 1024).toFixed(2) + ' GB' : (kb.totalDataReadMb * 0.4).toFixed(2) + ' MB');
+                                    
+                                    swArticles.textContent = (kb.totalArticles || 0).toLocaleString();
+                                    swKP.textContent = (kb.totalKP || 0).toLocaleString();
+                                    document.getElementById('sw-agents').textContent = kb.activeAgents || 12;
+                                }
+
+                                if (data && data.agents) {
+                                    data.agents.forEach(agentData => {
+                                        const c = cards.get(agentData.id);
+                                        if (c) {
+                                            if (agentData.mbRead !== undefined && c.mbEl) c.mbEl.textContent = agentData.mbRead;
+                                            if (agentData.text && c.textEl) c.textEl.innerHTML = agentData.text;
+                                            if (agentData.progress && c.progEl) c.progEl.style.width = agentData.progress + '%';
+                                            if (agentData.articlesRead !== undefined && c.artCountEl) c.artCountEl.textContent = agentData.articlesRead;
+                                            
+                                            // Make sure status displays correctly
+                                            if(c.statusEl) {
+                                                c.statusEl.textContent = 'READING';
+                                                c.statusEl.className = 'rc-status status-reading';
+                                            }
+                                            if(c.el) {
+                                                c.el.className = 'reader-card reading';
+                                            }
+                                        }
+                                    });
+                                }
+                                badge.innerHTML = '<div class="live-pulse-dot"></div> SYNCING DB';
+                            })
+                            .catch(e => {
+                                badge.innerHTML = '<div class="auto-style-41 live-pulse-dot"></div> DB OFFLINE';
+                            });
                         `;
 
 content = content.replace(targetCardLogic, replaceCardLogic);
