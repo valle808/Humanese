@@ -161,50 +161,51 @@
         const div = document.createElement('div');
         div.className = `monroe-msg ${role}${isSovereign ? ' sovereign' : ''}`;
         messages.appendChild(div);
-
-        let formattedText = formatText(text);
-        div.innerHTML = '';
         isTyping = true;
 
-        const minSpeed = 5;
-        const maxSpeed = 15;
+        // Add blinking cursor
+        const cursor = document.createElement('span');
+        cursor.className = 'monroe-cursor';
+        cursor.textContent = '▋';
+        div.appendChild(cursor);
 
-        // Use a more robust approach: Parse full HTML, then type text nodes
-        async function typeNode(sourceNode, targetNode) {
-            for (let node of sourceNode.childNodes) {
+        const formattedHTML = formatText(text);
+
+        // Walk all text nodes in the pre-rendered HTML and type them char by char
+        async function typeTextNodes(sourceEl, targetEl) {
+            for (const node of sourceEl.childNodes) {
                 if (node.nodeType === Node.TEXT_NODE) {
-                    const textContent = node.textContent;
-                    const textNode = document.createTextNode("");
-                    targetNode.appendChild(textNode);
-                    for (let char of textContent) {
+                    const textNode = document.createTextNode('');
+                    targetEl.insertBefore(textNode, cursor);
+                    for (const char of node.textContent) {
                         textNode.textContent += char;
                         messages.scrollTop = messages.scrollHeight;
-                        await new Promise(r => setTimeout(r, Math.random() * (maxSpeed - minSpeed) + minSpeed));
+                        // Natural rhythm: pause on punctuation
+                        const isPunct = '.!?,;:'.includes(char);
+                        const delay = isPunct
+                            ? Math.random() * 60 + 60   // 60–120ms pause after punctuation
+                            : Math.random() * 20 + 15;  // 15–35ms per character
+                        await new Promise(r => setTimeout(r, delay));
                     }
                 } else if (node.nodeType === Node.ELEMENT_NODE) {
-                    const newNode = document.createElement(node.nodeName);
-                    for (let attr of node.attributes) {
-                        newNode.setAttribute(attr.nodeName, attr.nodeValue);
-                    }
-                    targetNode.appendChild(newNode);
-                    // For non-text elements (like <strong>, <em>, <br>), we process them immediately
-                    // but continue typing their children if any.
-                    if (node.childNodes.length > 0) {
-                        await typeNode(node, newNode);
-                    }
+                    const newEl = document.createElement(node.nodeName);
+                    for (const attr of node.attributes) newEl.setAttribute(attr.name, attr.value);
+                    targetEl.insertBefore(newEl, cursor);
+                    if (node.childNodes.length > 0) await typeTextNodes(node, newEl);
                 }
             }
         }
 
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = formattedText;
-        await typeNode(tempDiv, div);
+        const temp = document.createElement('div');
+        temp.innerHTML = formattedHTML;
+        await typeTextNodes(temp, div);
 
-        if (mediaData) {
-            renderMedia(mediaData, div);
-        }
+        // Remove cursor when done
+        cursor.remove();
 
-        // Nav Links check
+        if (mediaData) renderMedia(mediaData, div);
+
+        // Nav link detection
         const lowerText = text.toLowerCase();
         for (const [key, link] of Object.entries(NAV_MAP)) {
             if (lowerText.includes(key)) {
