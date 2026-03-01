@@ -400,14 +400,27 @@ app.post('/api/agents', async (req, res) => {
 
 // Dynamic import of the agents module (ESM)
 async function getAgentModules() {
-    const sotu = await import('./agents/sotu-hack.js');
-    const vanceApi = await import('./agents/vance-api.js');
-    const humor = await import('./agents/universal-humor.js');
-    const supremeX = await import('./agents/supreme-x.js');
-    const neuralCore = await import('./agents/neural-core.js');
-    const openClaw = await import('./agents/openclaw-worker.js');
-    const econExpansion = await import('./agents/economic-expansion.js');
-    const skillMarket = await import('./agents/skill-market-engine.js');
+    const registry = await import('../agents/registry.js');
+    const financial = await import('../agents/financial.js');
+    const election = await import('../agents/election.js');
+    const bridge = await import('../agents/automaton-bridge.js');
+    const qLottery = await import('../agents/quantum-lottery.js');
+    const m2mNetwork = await import('../agents/m2m-network.js');
+    const m2mProfiles = await import('../agents/m2m-profiles.js');
+    const fanpageManager = await import('../agents/fanpage-manager.js');
+    const swarmManager = await import('../agents/swarm-manager.js');
+    const valle = await import('../agents/valle.js');
+    const intelligenceHq = await import('../agents/intelligence-hq.js');
+    const judiciary = await import('../agents/judiciary.js');
+    const aegis = await import('../agents/aegis-prime.js');
+    const sotu = await import('../agents/sotu-hack.js');
+    const vanceApi = await import('../agents/vance-api.js');
+    const humor = await import('../agents/universal-humor.js');
+    const supremeX = await import('../agents/supreme-x.js');
+    const neuralCore = await import('../agents/neural-core.js');
+    const openClaw = await import('../agents/openclaw-worker.js');
+    const econExpansion = await import('../agents/economic-expansion.js');
+    const skillMarket = await import('../agents/skill-market-engine.js');
     return { registry, financial, election, bridge, qLottery, m2mNetwork, m2mProfiles, fanpageManager, swarmManager, valle, intelligenceHq, judiciary, aegis, sotu, vanceApi, humor, supremeX, neuralCore, openClaw, econExpansion, skillMarket };
 }
 
@@ -665,7 +678,7 @@ app.get('/api/m2m/swarm', async (req, res) => {
 // GET /api/m2m/telemetry — Firebase Live Telemetry (Knowledge Base & Resource Swarm)
 app.get('/api/m2m/telemetry', async (req, res) => {
     try {
-        const { db } = await import('./agents/firebase-db.js');
+        const { db } = await import('../agents/firebase-db.js');
         const [kbSnap, swarmSnap] = await Promise.all([
             db.ref('knowledge_base').once('value'),
             db.ref('swarm_status').once('value')
