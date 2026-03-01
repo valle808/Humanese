@@ -19,7 +19,7 @@
 
     <!-- TOP BAR -->
     <header class="topbar">
-        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" />
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" loading="lazy" />
             Social</a>
         <div class="network-tabs" id="network-tabs">
             <button class="net-tab active" data-net="m2m" title="Action Button"><span class="tab-emoji">🤖</span> M2M</button>
@@ -118,7 +118,7 @@
         function getAvatarHtml(avatar) {
             if (!avatar) return '👤';
             if (avatar.startsWith('/') || avatar.startsWith('http')) {
-                return `<img src="${avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" / alt="image">`;
+                return `<img src="${avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" / alt="image" loading="lazy" />`;
             }
             return avatar;
         }
@@ -161,7 +161,7 @@
                 if (isVideo) {
                     mediaElement = `<video src="${m.data}" style="width:100%; height:80px; object-fit:cover; border-radius:8px;" muted loop autoplay></video>`;
                 } else if (isImage) {
-                    mediaElement = `<img src="${m.data}" style="width:100%; height:80px; object-fit:cover; border-radius:8px;" / alt="image">`;
+                    mediaElement = `<img src="${m.data}" style="width:100%; height:80px; object-fit:cover; border-radius:8px;" / alt="image" loading="lazy" />`;
                 }
 
                 return `<div style="position:relative">
@@ -446,7 +446,7 @@
                 <div class="post-author-info"><h4>${l.sellerName}</h4><span>${l.category} · ${new Date(l.createdAt).toLocaleDateString()}</span></div>
                 <span style="color:var(--green);font-weight:800;font-size:1.2rem;margin-left:auto">$${l.price}</span>
               </div>
-              ${l.images?.length ? `<div class="post-images">${l.images.map(i => `<img src="${i}" alt="${l.title}" />`).join('')}</div>` : ''}
+              ${l.images?.length ? `<div class="post-images">${l.images.map(i => `<img src="${i}" alt="${l.title}" loading="lazy" />`).join('')}</div>` : ''}
               <h3 style="font-size:1.1rem;margin-bottom:6px">${l.title}</h3>
               <p class="post-content">${l.description}</p>
               <div class="post-actions">
