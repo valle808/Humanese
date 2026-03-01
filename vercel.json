@@ -1,48 +1,18 @@
 {
     "version": 2,
     "cleanUrls": true,
-    "builds": [
-        {
-            "src": "sovereign-server.js",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "api/*.js",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "assets/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "css/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "js/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "agents/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "html/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "*.html",
-            "use": "@vercel/static"
-        }
-    ],
     "rewrites": [
         {
             "source": "/api/test",
             "destination": "/api/test.js"
         },
         {
+            "source": "/api/health",
+            "destination": "/api/server.js"
+        },
+        {
             "source": "/api/(.*)",
-            "destination": "/sovereign-server.js"
+            "destination": "/api/server.js"
         },
         {
             "source": "/(.*)",
