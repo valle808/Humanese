@@ -36,6 +36,33 @@ model User {
   
   // Crypto Wallet Relationship
   wallets           Wallet[]
+  
+  // Conversational Memory
+  chatMessages      ChatMessage[]
+  
+  // User Personalization Profile
+  persona           UserPersona?
+}
+
+model UserPersona {
+  id                String   @id @default(uuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id])
+  traits            String?  // JSON string of AI-detected traits
+  interests         String?  // JSON string
+  interactionStyle  String?  // e.g., "Formal", "Friendly", "Technical"
+  bio               String?  // Synthesized bio
+  updatedAt         DateTime @updatedAt
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  role      String   // "user" or "assistant"
+  content   String
+  metadata  String?  // JSON string for media or intent context
+  timestamp DateTime @default(now())
 }
 
 model ApiKey {

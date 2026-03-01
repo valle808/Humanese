@@ -1,158 +1,361 @@
 /* 
    css/monroe-widget.css
    Floating Chat Widget styling for Humanese
+   Enhanced aesthetic, glassmorphism, typing indicators, and media
 */
 
 :root {
-    --monroe-primary: #007bff;
-    --monroe-bg: rgba(10, 10, 10, 0.95);
+    --monroe-primary: #00e5ff;
+    /* Sleek cyan primary */
+    --monroe-primary-glow: rgba(0, 229, 255, 0.4);
+    --monroe-bg: rgba(10, 15, 25, 0.75);
+    /* Deep dark glass */
     --monroe-border: rgba(255, 255, 255, 0.1);
     --monroe-text: #ffffff;
+    --monroe-text-muted: rgba(255, 255, 255, 0.6);
+    --monroe-user-msg: rgba(0, 229, 255, 0.15);
 }
 
 #monroe-widget-root {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    font-family: 'Inter', sans-serif;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99999;
+    font-family: 'Inter', system-ui, sans-serif;
 }
 
 #monroe-trigger {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    background: var(--monroe-primary);
-    border: none;
+    background: transparent;
+    border: 2px solid var(--monroe-primary);
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 123, 0.5);
+    box-shadow: 0 0 20px var(--monroe-primary-glow), inset 0 0 15px var(--monroe-primary-glow);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.monroe-energy-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 1px solid var(--monroe-primary);
+    opacity: 0.5;
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.05);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+#monroe-trigger.pulsing {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px var(--monroe-primary-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--monroe-primary-glow);
+    }
+
+    100% {
+        box-shadow: 0 0 10px var(--monroe-primary-glow);
+    }
 }
 
 #monroe-trigger:hover {
     transform: scale(1.1);
+    background: rgba(0, 229, 255, 0.1);
 }
 
 #monroe-trigger svg {
-    width: 30px;
-    height: 30px;
-    fill: white;
+    width: 32px;
+    height: 32px;
+    fill: var(--monroe-primary);
+    z-index: 2;
 }
 
 #monroe-chat-window {
     position: absolute;
-    bottom: 80px;
+    bottom: 85px;
     right: 0;
-    width: 350px;
-    height: 500px;
+    width: 360px;
+    height: 550px;
     background: var(--monroe-bg);
     border: 1px solid var(--monroe-border);
-    border-radius: 12px;
+    border-radius: 16px;
     display: none;
     flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 229, 255, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     overflow: hidden;
+    transform-origin: bottom right;
 }
 
 #monroe-chat-window.active {
     display: flex;
-    animation: slideUp 0.3s ease-out;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes slideUp {
+@keyframes popIn {
     from {
-        transform: translateY(20px);
+        transform: scale(0.8);
         opacity: 0;
     }
 
     to {
-        transform: translateY(0);
+        transform: scale(1);
         opacity: 1;
     }
 }
 
 .monroe-header {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 18px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1px solid var(--monroe-border);
 }
 
+.monroe-status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--monroe-primary);
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 0 8px var(--monroe-primary);
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
 .monroe-header span {
-    font-weight: bold;
-    font-size: 14px;
-    color: var(--monroe-primary);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: var(--monroe-text);
+    flex: 1;
 }
 
 .monroe-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    scroll-behavior: smooth;
+}
+
+.monroe-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.monroe-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.monroe-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
 }
 
 .monroe-msg {
-    max-width: 80%;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    line-height: 1.4;
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--monroe-text);
+    word-wrap: break-word;
+    animation: fadeInMsg 0.3s ease-out;
+}
+
+@keyframes fadeInMsg {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .monroe-msg.user {
     align-self: flex-end;
-    background: var(--monroe-primary);
-    color: white;
+    background: var(--monroe-user-msg);
+    border-bottom-right-radius: 4px;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.monroe-msg.bot {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom-left-radius: 4px;
+    border: 1px solid var(--monroe-border);
 }
 
 .monroe-msg.bot.sovereign {
     border-left: 3px solid var(--monroe-primary);
-    background: rgba(0, 123, 255, 0.05);
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
 .monroe-input-area {
-    padding: 15px;
+    padding: 15px 20px;
     border-top: 1px solid var(--monroe-border);
     display: flex;
-    gap: 8px;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .monroe-input-area input {
     flex: 1;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--monroe-border);
-    border-radius: 6px;
-    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 10px 16px;
     color: white;
+    font-size: 14px;
     outline: none;
+    transition: all 0.2s;
+}
+
+.monroe-input-area input:focus {
+    border-color: rgba(0, 229, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .monroe-input-area button {
     background: var(--monroe-primary);
     border: none;
-    border-radius: 6px;
-    padding: 0 12px;
-    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.monroe-input-area button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--monroe-primary-glow);
 }
 
 .nav-link-btn {
     display: inline-block;
-    margin-top: 5px;
-    background: rgba(0, 123, 255, 0.2);
+    margin-top: 8px;
+    background: rgba(0, 229, 255, 0.1);
     border: 1px solid var(--monroe-primary);
     color: var(--monroe-primary);
-    padding: 4px 8px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: 6px;
     text-decoration: none;
-    font-size: 11px;
+    font-size: 12px;
     cursor: pointer;
+    transition: all 0.2s;
+    align-self: flex-start;
+}
+
+.nav-link-btn:hover {
+    background: rgba(0, 229, 255, 0.2);
+    box-shadow: 0 0 10px var(--monroe-primary-glow);
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 20px;
+}
+
+.typing-indicator span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--monroe-text-muted);
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out both;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes typing {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* Media Wrappers */
+.monroe-media-wrapper {
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--monroe-border);
+}
+
+.monroe-media-img,
+.monroe-media-vid {
+    width: 100%;
+    display: block;
+}
+
+.monroe-media-aud {
+    width: 100%;
+    height: 40px;
+}
+
+.fade-in {
+    animation: fadeInMsg 0.4s ease-out;
 }
