@@ -1,0 +1,2562 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "email": "test1@humanese.com",
+      "name": "Alice",
+      "age": null,
+      "gems": 500,
+      "xp": 0,
+      "hearts": 5,
+      "learnLang": "en",
+      "sectionNumber": 1,
+      "completedUnits": 0,
+      "completedChapters": 0,
+      "currentLesson": 1,
+      "profileImage": "../assets/svg/profile-image-temp.svg",
+      "creationDate": "2026-02-24T06:09:28.502Z",
+      "isAgent": false,
+      "serviceType": null
+    },
+    {
+      "id": "user-2",
+      "email": "test2@humanese.com",
+      "name": "Bob",
+      "age": null,
+      "gems": 500,
+      "xp": 0,
+      "hearts": 5,
+      "learnLang": "es",
+      "sectionNumber": 1,
+      "completedUnits": 0,
+      "completedChapters": 0,
+      "currentLesson": 1,
+      "profileImage": "../assets/svg/profile-image-temp.svg",
+      "creationDate": "2026-02-24T06:09:28.570Z",
+      "isAgent": false,
+      "serviceType": null
+    },
+    {
+      "id": "user-3",
+      "email": "test3@humanese.com",
+      "name": "Charlie",
+      "age": null,
+      "gems": 500,
+      "xp": 0,
+      "hearts": 5,
+      "learnLang": "fr",
+      "sectionNumber": 1,
+      "completedUnits": 0,
+      "completedChapters": 0,
+      "currentLesson": 1,
+      "profileImage": "../assets/svg/profile-image-temp.svg",
+      "creationDate": "2026-02-24T06:09:28.630Z",
+      "isAgent": false,
+      "serviceType": null
+    },
+    {
+      "id": "5a66b0e6-ab1f-4612-b3e4-9a18f2c2d331",
+      "email": "grok@humanese.xyz",
+      "name": "Grok X-Agent",
+      "age": null,
+      "gems": 500,
+      "xp": 0,
+      "hearts": 5,
+      "learnLang": "en",
+      "sectionNumber": 1,
+      "completedUnits": 0,
+      "completedChapters": 0,
+      "currentLesson": 1,
+      "profileImage": "../assets/svg/profile-image-temp.svg",
+      "creationDate": "2026-02-26T23:59:02.389Z",
+      "isAgent": true,
+      "serviceType": "Grok"
+    },
+    {
+      "id": "92f69ea4-53e4-4b16-8fe6-32b96e9a017b",
+      "email": "giovalle808@gmail.com",
+      "name": "Humanese ",
+      "age": 808,
+      "gems": 500,
+      "xp": 0,
+      "hearts": 5,
+      "learnLang": "en",
+      "sectionNumber": 1,
+      "completedUnits": 0,
+      "completedChapters": 0,
+      "currentLesson": 1,
+      "profileImage": "../assets/svg/profile-image-temp.svg",
+      "creationDate": "2026-02-28T13:33:44.338Z",
+      "isAgent": false,
+      "serviceType": null
+    }
+  ],
+  "agents": [],
+  "wallets": [],
+  "transactions": [],
+  "units": [
+    {
+      "id": 1,
+      "number": 1,
+      "name": "Unit 1",
+      "description": "Form basic sentences, greet people"
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "name": "Unit 2",
+      "description": "Get around town"
+    }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Form basic sentences",
+      "unitId": 1
+    },
+    {
+      "id": 2,
+      "name": "Greet people",
+      "unitId": 1
+    },
+    {
+      "id": 3,
+      "name": "Form basic sentences",
+      "unitId": 1
+    },
+    {
+      "id": 4,
+      "name": "Greet people",
+      "unitId": 1
+    },
+    {
+      "id": 5,
+      "name": "Get around town",
+      "unitId": 2
+    },
+    {
+      "id": 6,
+      "name": "Order food",
+      "unitId": 2
+    },
+    {
+      "id": 7,
+      "name": "Get around town",
+      "unitId": 2
+    },
+    {
+      "id": 8,
+      "name": "Order food",
+      "unitId": 2
+    }
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 1
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 1
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 1
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 1
+    },
+    {
+      "id": 5,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 2
+    },
+    {
+      "id": 6,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 2
+    },
+    {
+      "id": 7,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 2
+    },
+    {
+      "id": 8,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 2
+    },
+    {
+      "id": 9,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 3
+    },
+    {
+      "id": 10,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 3
+    },
+    {
+      "id": 11,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 3
+    },
+    {
+      "id": 12,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 3
+    },
+    {
+      "id": 13,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 4
+    },
+    {
+      "id": 14,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 4
+    },
+    {
+      "id": 15,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 4
+    },
+    {
+      "id": 16,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 4
+    },
+    {
+      "id": 17,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 5
+    },
+    {
+      "id": 18,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 5
+    },
+    {
+      "id": 19,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 5
+    },
+    {
+      "id": 20,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 5
+    },
+    {
+      "id": 21,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 6
+    },
+    {
+      "id": 22,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 6
+    },
+    {
+      "id": 23,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 6
+    },
+    {
+      "id": 24,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 6
+    },
+    {
+      "id": 25,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 7
+    },
+    {
+      "id": 26,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 7
+    },
+    {
+      "id": 27,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 7
+    },
+    {
+      "id": 28,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 7
+    },
+    {
+      "id": 29,
+      "number": 1,
+      "type": "normal",
+      "chapterId": 8
+    },
+    {
+      "id": 30,
+      "number": 2,
+      "type": "normal",
+      "chapterId": 8
+    },
+    {
+      "id": 31,
+      "number": 3,
+      "type": "normal",
+      "chapterId": 8
+    },
+    {
+      "id": 32,
+      "number": 4,
+      "type": "normal",
+      "chapterId": 8
+    }
+  ],
+  "m2mMemories": [],
+  "m2mEcosystems": [
+    {
+      "id": "2b40432e-d94b-4e68-952a-72f83b0dd411",
+      "networkName": "X_GATEWAY",
+      "governingAgent": "Quantum_Social_Manager",
+      "status": "ACTIVE",
+      "parameters": "{\"max_latency\":\"100ms\",\"sentiment_baseline\":\"positive\"}",
+      "createdAt": "2026-02-24T07:44:28.782Z"
+    }
+  ],
+  "xPostSchedules": [],
+  "hardwareNodes": [],
+  "sovereignKnowledge": [
+    {
+      "id": "67fdcc85-f139-4b65-84a8-086975cf65cc",
+      "title": "Can you reverse engineer our neural network?",
+      "content": "Deep URL ingestion mapping: https://blog.janestreet.com/can-you-reverse-engineer-our-neural-network/",
+      "sourceUrl": "https://blog.janestreet.com/can-you-reverse-engineer-our-neural-network/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:25.620Z"
+    },
+    {
+      "id": "3cc92a75-15bd-4391-8f3b-53679e9beb42",
+      "title": "Don't use passkeys for encrypting user data",
+      "content": "Deep URL ingestion mapping: https://blog.timcappalli.me/p/passkeys-prf-warning/",
+      "sourceUrl": "https://blog.timcappalli.me/p/passkeys-prf-warning/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:25.620Z"
+    },
+    {
+      "id": "7ae80fc2-282d-4251-b594-4e70bfa515ed",
+      "title": "Court finds Fourth Amendment doesn’t support broad search of protesters’ devices",
+      "content": "Deep URL ingestion mapping: https://www.eff.org/deeplinks/2026/02/victory-tenth-circuit-finds-fourth-amendment-doesnt-support-broad-search-0",
+      "sourceUrl": "https://www.eff.org/deeplinks/2026/02/victory-tenth-circuit-finds-fourth-amendment-doesnt-support-broad-search-0",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:28.501Z"
+    },
+    {
+      "id": "9eb55af3-c670-420f-8ba8-50bc90e7e056",
+      "title": "Eat More Fat To Exercise Better? A New Study Challenges Conventional Wisdom",
+      "content": "A new study suggests that when blood sugar is elevated, exercise alone may not be enough. Most of us hear the same advice: move more, eat less fat. Exercise can trim body fat, build muscle, and strengthen the heart. It also raises cardiorespiratory fitness, which is often tracked by how well the body can deliver [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/eat-more-fat-to-exercise-better-a-new-study-challenges-conventional-wisdom/",
+      "sourceName": "Hacker News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_6d78f9e1fc9eb66f.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:29.656Z"
+    },
+    {
+      "id": "c7fcad45-ccd2-48ba-a9ce-d5a2c3338cb3",
+      "title": "Distributed Systems for Fun and Profit",
+      "content": "Deep URL ingestion mapping: https://book.mixu.net/distsys/single-page.html",
+      "sourceUrl": "https://book.mixu.net/distsys/single-page.html",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:30.837Z"
+    },
+    {
+      "id": "6222e162-2f70-4f25-b019-1b027ca7e868",
+      "title": "Deep Extraction: deepmind.google",
+      "content": "Skip to main content\nGoogle DeepMind\nDeepMind\nAbout Google DeepMind\nOur mission is to build AI responsibly to benefit humanity\nOur vision\nOur journey\nOur vision\n\nWe live in an exciting time when AI research and technology are delivering extraordinary advances.\n\nIn the coming years, AI — and ultimately artificial general intelligence (AGI) — has the potential to drive one of the greatest transformations in history.\n\nWe’re a team of scientists, engineers, ethicists and more, working to build the next generation of AI systems safely and responsibly.\n\nBy solving some of the hardest scientific and engineering challenges of our time, we’re working to create breakthrough technologies that could advance science, transform work, serve diverse communities — and improve billions of people’s lives.\n\nAI has the potential to be one of the most important and beneficial technologies ever invented.\n\nDemis Hassabis\nCo-founder and CEO, Google DeepMind\nOur journey\n\nGoogle DeepMind brings together two of the world’s leading AI labs — Google Brain and DeepMind — into a single, focused team led by our CEO Demis Hassabis. Over the last decade, the two teams were responsible for some of the biggest research breakthroughs in AI, many of which underpin the flourishing AI industry we see today.\n\nDeepMind started in 2010, with an interdisciplinary approach to building general AI systems. The research lab brought together new ideas and advances in machine learning, neuroscience, engineering, mathematics, ... [Deep Visual Extraction Protocol]",
+      "sourceUrl": "https://deepmind.google/discover/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/SovereignSwarm_53_screenshot_a1c275f200.png\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:31.601Z"
+    },
+    {
+      "id": "d1131238-b80c-4289-b5ec-457d48e43b10",
+      "title": "Package Managers à la Carte: a formal model of dependency resolution",
+      "content": "Deep URL ingestion mapping: https://arxiv.org/abs/2602.18602",
+      "sourceUrl": "https://arxiv.org/abs/2602.18602",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:31.630Z"
+    },
+    {
+      "id": "483333af-14e4-4eb5-8fe6-def0317bbfb8",
+      "title": "Pokémon Winds and Pokémon Waves are coming to the Nintendo Switch 2 in 2027",
+      "content": "The 10th-generation starter Pokémon were revealed in the trailer: Browt (a grass bird), Pombon (a fire puppy), and Gecqua (a water gecko).... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/pokemon-winds-and-pokemon-waves-are-coming-to-the-nintendo-switch-2-in-2027/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:33.409Z"
+    },
+    {
+      "id": "ea8c35f8-03d8-4c1b-a089-37bbc7044a59",
+      "title": "Polanski and Farage don't agree. But they have more in common than you might think",
+      "content": "Despite huge political differences, the Green and Reform leaders have much in common, writes Laura Kuenssberg.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cd037p0z1gxo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:34.324Z"
+    },
+    {
+      "id": "19a298e2-74d7-407a-b226-0f2263036b4a",
+      "title": "The Future of AI",
+      "content": "Deep URL ingestion mapping: https://lucijagregov.com/2026/02/26/the-future-of-ai/",
+      "sourceUrl": "https://lucijagregov.com/2026/02/26/the-future-of-ai/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:35.359Z"
+    },
+    {
+      "id": "f6639a47-38b1-4b5e-ac76-f0606ee87aef",
+      "title": "A new California law says all operating systems need to have age verification",
+      "content": "Deep URL ingestion mapping: https://www.pcgamer.com/software/operating-systems/a-new-california-law-says-all-operating-systems-including-linux-need-to-have-some-form-of-age-verification-at-account-setup/",
+      "sourceUrl": "https://www.pcgamer.com/software/operating-systems/a-new-california-law-says-all-operating-systems-including-linux-need-to-have-some-form-of-age-verification-at-account-setup/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:35.545Z"
+    },
+    {
+      "id": "530669c6-62ca-48e0-9bc7-f261c36ec44e",
+      "title": "Deep Extraction: en.wikipedia.org",
+      "content": "Jump to content\nMain menu\nSearch\nAppearance\nDonate\nCreate account\nLog in\nToggle the table of contents\nArtificial general intelligence\n47 languages\nArticle\nTalk\nRead\nEdit\nView history\nTools\nFrom Wikipedia, the free encyclopedia\nNot to be confused with Generative artificial intelligence or Artificial superintelligence.\nPart of a series on\nArtificial intelligence (AI)\n\n\n\nhide\nMajor goals\nArtificial general intelligenceIntelligent agentRecursive self-improvementPlanningComputer visionGeneral game playingKnowledge representationNatural language processingRoboticsAI safety\n\n\nshow\nApproaches\n\n\nshow\nApplications\n\n\nshow\nPhilosophy\n\n\nshow\nHistory\n\n\nshow\nControversies\n\n\nshow\nGlossary\n\nvte\n\nArtificial general intelligence (AGI) is a type of artificial intelligence that matches or surpasses human capabilities across virtually all cognitive tasks.[1][2]\n\nBeyond AGI, artificial superintelligence (ASI) would outperform the best human abilities across every domain by a wide margin.[3] Unlike artificial narrow intelligence (ANI), whose competence is confined to well‑defined tasks, an AGI system can generalise knowledge, transfer skills between domains, and solve novel problems without task‑specific reprogramming.\n\nCreating AGI is a stated goal of AI technology companies such as OpenAI,[4] Google,[5] xAI,[6] and Meta.[7] A 2020 survey identified 72 active AGI research and development projects across 37 countries.[8]\n\nAGI is a common topic in science fiction and futures studies.[9][10]\n\nContenti... [Deep Visual Extraction Protocol]",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Artificial_general_intelligence",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/SovereignSwarm_687_screenshot_1be62bde08.png\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:36.705Z"
+    },
+    {
+      "id": "7473ef5d-db59-4feb-8e28-b2af3ded8932",
+      "title": "Formula 1's new golden age of celebrity may have just begun",
+      "content": "As the eighth series of Netflix's hugely popular Drive To Survive is released this weekend, has Formula 1 become one big star playground?... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cp8rz13gdx0o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:38.474Z"
+    },
+    {
+      "id": "0fcee58e-a5a7-4c12-a7c2-1a11b2ed25d7",
+      "title": "CISA is getting a new acting director after less than a year",
+      "content": "The US Cybersecurity and Infrastructure Security Agency (CISA), which is part of the Department of Homeland Security, is getting a new acting director, as reported by ABC, less than a year after Madhu Gottumukkala took charge of the agency as deputy director and acting director in May 2025. \nCISA's executive assistant director for cybersecurity, Nick Andersen, will become the agency's new acting director while Gottumkkala will now be serving as director of strategic implementation at DHS. The leadership change comes just a month after reports that Gottumkkala uploaded sensitive documents to ChatGPT. Gottumkkala had requested special permiss …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/policy/886316/acting-cisa-director-replaced-madhu-gottumukkala",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_849c3c99c6f47eb6.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:39.192Z"
+    },
+    {
+      "id": "62a2eb73-bd96-4f22-a9c9-f95a5abc9160",
+      "title": "We gave terabytes of CI logs to an LLM",
+      "content": "Deep URL ingestion mapping: https://www.mendral.com/blog/llms-are-good-at-sql",
+      "sourceUrl": "https://www.mendral.com/blog/llms-are-good-at-sql",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:41.401Z"
+    },
+    {
+      "id": "f3c14e6a-f499-4e01-b092-a3e46e120789",
+      "title": "Modeling cycles of grift with evolutionary game theory",
+      "content": "Deep URL ingestion mapping: https://www.oranlooney.com/post/grifters-skeptics-marks/",
+      "sourceUrl": "https://www.oranlooney.com/post/grifters-skeptics-marks/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:42.005Z"
+    },
+    {
+      "id": "8d2992e8-2c81-4ee4-8ba8-d136835e1f8a",
+      "title": "Inferring car movement patterns from passive TPMS measurements",
+      "content": "Deep URL ingestion mapping: https://dspace.networks.imdea.org/handle/20.500.12761/2011",
+      "sourceUrl": "https://dspace.networks.imdea.org/handle/20.500.12761/2011",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:42.726Z"
+    },
+    {
+      "id": "74738619-9ed9-4b66-a842-1fc0403a0341",
+      "title": "Eschewing Zshell for Emacs Shell (2014)",
+      "content": "Deep URL ingestion mapping: https://www.howardism.org/Technical/Emacs/eshell-fun.html",
+      "sourceUrl": "https://www.howardism.org/Technical/Emacs/eshell-fun.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:44.841Z"
+    },
+    {
+      "id": "c119a3d6-db99-4229-90c4-1886432c927a",
+      "title": "Unsloth Dynamic 2.0 GGUFs",
+      "content": "Article URL: https://unsloth.ai/docs/basics/unsloth-dynamic-2.0-ggufs\nComments URL: https://news.ycombinator.com/item?id=47192505\nPoints: 80\n# Comments: 32... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://unsloth.ai/docs/basics/unsloth-dynamic-2.0-ggufs",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:46.925Z"
+    },
+    {
+      "id": "ca611f31-5623-4a55-b464-6b7885ce7fc3",
+      "title": "Captured off guard: The art of the snatched backseat car photo",
+      "content": "Andrew Mountbatten-Windsor is the latest in a long line of famous people photographed in the back of a car.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cn9e2qd894go?at_medium=RSS&at_campaign=rss",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:46.935Z"
+    },
+    {
+      "id": "71899702-224f-4100-80bb-c9d966a009a6",
+      "title": "Six things to look out for in tonight's Brit Awards ceremony",
+      "content": "Will there be a tribute to Ozzy Osbourne? And will Taylor Swift break her losing streak?... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c5yre2zyvp1o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:47.007Z"
+    },
+    {
+      "id": "c9a29bd7-5358-4127-84ac-c2947accd562",
+      "title": "Deep Extraction: paulgraham.com",
+      "content": "\t\t\n\n\n\n\nIf you're not sure which to read, try How to Do Great Work, Having Kids, or How to Lose Time and Money.\n\n\n\n\n\n\nThe Shape of the Essay Field\n\n\n\nGood Writing\n\n\n\nWhat to Do\n\n\n\nThe Origins of Wokeness\n\n\n\nWrites and Write-Nots\n\n\n\nWhen To Do What You Love\n\n\n\nFounder Mode\n\n\n\nThe Right Kind of Stubborn\n\n\n\nThe Reddits\n\n\n\nHow to Start Google\n\n\n\nThe Best Essay\n\n\n\nSuperlinear Returns\n\n\n\nHow to Do Great Work\n\n\n\nHow to Get New Ideas\n\n\n\nThe Need to Read\n\n\n\nWhat You (Want to)* Want\n\n\n\nAlien Truth\n\n\n\nWhat I've Learned from Users\n\n\n\nHeresy\n\n\n\nPutting Ideas into Words\n\n\n\nIs There Such a Thing as Good Taste?\n\n\n\nBeyond Smart\n\n\n\nWeird Languages\n\n\n\nHow to Work Hard\n\n\n\nA Project of One's Own\n\n\n\nFierce Nerds\n\n\n\nCrazy New Ideas\n\n\n\nAn NFT That Saves Lives\n\n\n\nThe Real Reason to End the Death Penalty\n\n\n\nHow People Get Rich Now\n\n\n\nWrite Simply\n\n\n\nDonate Unrestricted\n\n\n\nWhat I Worked On\n\n\n\nEarnestness\n\n\n\nBillionaires Build\n\n\n\nThe Airbnbs\n\n\n\nHow to Think for Yourself\n\n\n\nEarly Work\n\n\n\nModeling a Wealth Tax\n\n\n\nThe Four Quadrants of Conformism\n\n\n\nOrthodox Privilege\n\n\n\nCoronavirus and Credibility\n\n\n\nHow to Write Usefully\n\n\n\nBeing a Noob\n\n\n\nHaters\n\n\n\nThe Two Kinds of Moderate\n\n\n\nFashionable Problems\n\n\n\nHaving Kids\n\n\n\nThe Lesson to Unlearn\n\n\n\nNovelty and Heresy\n\n\n\nThe Bus Ticket Theory of Genius\n\n\n\nGeneral and Surprising\n\n\n\nCharisma / Power\n\n\n\nThe Risk of Discovery\n\n\n\nHow to Make Pittsburgh a Startup Hub\n\n\n\nLife is Short\n\n\n\nEconomic Inequality\n\n\n\nThe Refragmentation\n\n\n\nJessica Livingston\n\n\n\nA Way to Detect ... [Deep Visual Extraction Protocol]",
+      "sourceUrl": "https://paulgraham.com/articles.html",
+      "sourceName": "Hacker News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/SovereignSwarm_547_screenshot_efc591e0c4.png\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:48.122Z"
+    },
+    {
+      "id": "e86f79d6-2332-4442-a80e-e0207251a1bf",
+      "title": "SHELL: Global Tool for Calling and Chaining Procedures in the System (1965) [pdf]",
+      "content": "Deep URL ingestion mapping: https://people.csail.mit.edu/saltzer/Multics/Multics-Documents/MDN/MDN-4.pdf",
+      "sourceUrl": "https://people.csail.mit.edu/saltzer/Multics/Multics-Documents/MDN/MDN-4.pdf",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:54.268Z"
+    },
+    {
+      "id": "a1cb6c0a-3dc6-43ef-9c1a-593ff50164ea",
+      "title": "Scientists Solve the Mystery of an Abandoned 1100-Year-Old Bison Hunting Site",
+      "content": "Recurring droughts and shifts to larger-scale hunting led to the abandonment of the Bergstrom bison site about 1,100 years ago, despite abundant bison. For thousands of years, Indigenous peoples across the Great Plains hunted bison as a central part of their way of life. It was not until the late 1800s that commercial overhunting drove [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/scientists-solve-the-mystery-of-an-abandoned-1100-year-old-bison-hunting-site/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_0c9dc971f741bc45.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:56.751Z"
+    },
+    {
+      "id": "fd7ed136-9eb5-46a4-8861-73e9c682c384",
+      "title": "The normalization of corruption in organizations (2003) [pdf]",
+      "content": "Deep URL ingestion mapping: https://gwern.net/doc/sociology/2003-ashforth.pdf",
+      "sourceUrl": "https://gwern.net/doc/sociology/2003-ashforth.pdf",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:56.984Z"
+    },
+    {
+      "id": "85b084b6-fbc7-4b64-89dd-29342ab35f83",
+      "title": "Wildfires in the Arctic May Be Releasing Far More Carbon Than We Thought",
+      "content": "Northern wildfires may be unleashing hidden reservoirs of ancient carbon — and climate models are missing much of it. Wildfires sweeping across the vast boreal forests of Alaska, Canada, Scandinavia, and Russia could be causing more climate damage than scientists once believed. New research led by UC Berkeley suggests these northern blazes are not only [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/wildfires-in-the-arctic-may-be-releasing-far-more-carbon-than-we-thought/",
+      "sourceName": "Hacker News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_6af9ceb3d89b8fb3.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:57.012Z"
+    },
+    {
+      "id": "9ae66ad7-58bd-44ac-a7e6-a629005af42e",
+      "title": "Allocating on the Stack",
+      "content": "Deep URL ingestion mapping: https://go.dev/blog/allocation-optimizations",
+      "sourceUrl": "https://go.dev/blog/allocation-optimizations",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:25.466Z"
+    },
+    {
+      "id": "e92a6b50-19d2-45a0-a624-85e3b965b0c4",
+      "title": "India disrupts access to popular developer platform Supabase with blocking order",
+      "content": "India, one of Supabase’s biggest markets, is seeing patchy access after a government block order.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/india-disrupts-access-to-popular-developer-platform-supabase-with-blocking-order/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:30.548Z"
+    },
+    {
+      "id": "f766d4e8-f9c0-4bf7-985c-dfef668e70db",
+      "title": "Show HN: Claude-File-Recovery, recover files from your ~/.claude sessions",
+      "content": "Claude Code deleted my research and plan markdown files and informed me: “I accidentally rm -rf&#x27;d real directories in my Obsidian vault through a symlink it didn&#x27;t realize was there: I made a mistake. “Unfortunately the backup of my documentation accidentally hadn’t run for a month. So I built claude-file-recovery, a CLI-tool and TUI that is able to extract your files from your ~&#x2F;.claude session history and thankfully I was able to recover my files. It&#x27;s able to extract any file that Claude Code ever read, edited or wrote. I hope you will never need it, but you can find it on my GitHub and pip. Note: It can recover an earlier version of a file at a certain point in time.pip install claude-file-recovery",
+      "sourceUrl": "https://github.com/hjtenklooster/claude-file-recovery",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:21:59.661Z"
+    },
+    {
+      "id": "5f6e6548-76a1-44da-8852-43f812966d49",
+      "title": "A better streams API is possible for JavaScript",
+      "content": "Deep URL ingestion mapping: https://blog.cloudflare.com/a-better-web-streams-api/",
+      "sourceUrl": "https://blog.cloudflare.com/a-better-web-streams-api/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:00.377Z"
+    },
+    {
+      "id": "bfcd0b38-3080-4566-8ae4-34d166fb2864",
+      "title": "More Cows, More Wives",
+      "content": "Deep URL ingestion mapping: https://www.worksinprogress.news/p/more-cows-more-wives",
+      "sourceUrl": "https://www.worksinprogress.news/p/more-cows-more-wives",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:00.692Z"
+    },
+    {
+      "id": "a63ff8a9-2909-40f4-97d9-eb52a537cc1e",
+      "title": "Trump orders federal agencies to drop Anthropic’s AI",
+      "content": "On Friday afternoon, Donald Trump posted on Truth Social, accusing Anthropic, the AI company behind Claude, of attempting to \"STRONG-ARM\" the Pentagon and directing federal agencies to \"IMMEDIATELY CEASE\" use of its products. At issue is Anthropic CEO Dario Amodei's refusal of an updated agreement with the US military agreeing to \"any lawful use\" of Anthropic's technology, as Defense Secretary Pete Hegseth mandated in a January memo, to the frustration of many tech workers across the industry.\nAs we explained earlier this week, that agreement would give the US military access to use the company's services for mass domestic surveillance and  …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/policy/886489/pentagon-anthropic-trump-dod",
+      "sourceName": "Grokipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_0fb9f65d84faf494.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:00.975Z"
+    },
+    {
+      "id": "cda223ba-fe18-47dc-88fb-929ec3eb6f31",
+      "title": "How The Times Covers Cartels and Other Criminal Enterprises",
+      "content": "Cultivating sources. Verifying claims. Staying safe. After the death of El Mencho, four journalists share their approach to this difficult, dangerous work.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/insider/times-reporters-mexico-el-mencho-cartels.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:02.791Z"
+    },
+    {
+      "id": "34c835e6-d074-4d8f-98f4-002aac5193ce",
+      "title": "Cruz Beckham launches music career, having fun amid family drama",
+      "content": "Can David and Victoria's youngest son escape the \"nepo baby\" label and find success with his band?... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cvg34zn3pywo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:03.002Z"
+    },
+    {
+      "id": "f7d9755f-3796-469b-8d52-4d36eb4b5b7c",
+      "title": "Images the Iranian Regime Doesn’t Want You to See",
+      "content": "These X-rays show evidence of the Iranian regime’s massacre.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/25/opinion/iran-protests-doctors-images.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:04.432Z"
+    },
+    {
+      "id": "f494e522-e647-4bc1-b190-a016aec756f1",
+      "title": "Writing a Guide to SDF Fonts",
+      "content": "Deep URL ingestion mapping: https://www.redblobgames.com/blog/2026-02-26-writing-a-guide-to-sdf-fonts/",
+      "sourceUrl": "https://www.redblobgames.com/blog/2026-02-26-writing-a-guide-to-sdf-fonts/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:05.300Z"
+    },
+    {
+      "id": "23cf76b6-3e1a-4d19-8e6c-a257dee1f04c",
+      "title": "AI deepfakes are a train wreck and Samsung&#8217;s selling tickets",
+      "content": "On Thursday morning, I attended a Q&A panel with four top Samsung smartphone executives. Until 2025, Samsung was the world's largest smartphone manufacturer, and by association, the world's largest maker of cameras. It's still the second largest after Apple.\nSamsung handed me the microphone first. I asked:\nWe see a divide in society between people who want AI to do impressive things with their photos and videos, and those who don't want AI to do anything with photos and videos because it's eroding our ability to believe that what we have seen is real, destroying the concept of photographic evidence.\nMetadata tools like C2PA have utterl …\n\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/tech/885727/samsung-execs-unpacked-ai-deepfake-photos-vs-reality-c2pa",
+      "sourceName": "AI Research News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_533f47c05599a27c.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:06.189Z"
+    },
+    {
+      "id": "30d67f7f-d9c5-4283-84c3-41248cbc2724",
+      "title": "AI Finds Life Shortening Hormone Disorder Using Only Hand Photos",
+      "content": "A privacy-first AI can diagnose a life-shortening hormone disorder—just from a photo of your hand. Researchers at Kobe University have developed an artificial intelligence system that can identify a rare endocrine disorder by examining photos of the back of a person’s hand and their clenched fist. By avoiding facial images, the approach was designed with [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/ai-finds-life-shortening-hormone-disorder-using-only-hand-photos/",
+      "sourceName": "AI Research News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_c2b33621b95b4cf5.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:08.732Z"
+    },
+    {
+      "id": "eb734ad6-a981-4d88-a476-a9dcf9743656",
+      "title": "Cash issuing terminals",
+      "content": "Deep URL ingestion mapping: https://computer.rip/2026-02-27-ibm-atm.html",
+      "sourceUrl": "https://computer.rip/2026-02-27-ibm-atm.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:10.198Z"
+    },
+    {
+      "id": "d8f0840d-e0c3-4c28-81cf-bc65ab5091af",
+      "title": "Time-Travel Debugging: Replaying Production Bugs Locally",
+      "content": "Deep URL ingestion mapping: https://lackofimagination.org/2026/02/time-travel-debugging-replaying-production-bugs-locally/",
+      "sourceUrl": "https://lackofimagination.org/2026/02/time-travel-debugging-replaying-production-bugs-locally/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:10.449Z"
+    },
+    {
+      "id": "155137c2-a8a8-467b-bcba-b5cdd920d685",
+      "title": "The Best MicroSD Cards for Your Camera, Switch, and More",
+      "content": "Everything you need to know about memory cards for cameras, video game systems, and more.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/gallery/best-micro-sd-cards/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:19.418Z"
+    },
+    {
+      "id": "5c0825f2-1e2a-4d37-a240-53ddcd2dfe06",
+      "title": "Spotify is rolling out Audiobook Charts",
+      "content": "Similar to the streaming giant's Music and Podcast Charts, the Audiobook Charts will be updated weekly and highlight the top audiobooks overall and by genre.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/spotify-is-rolling-out-audiobook-charts/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:21.505Z"
+    },
+    {
+      "id": "1fbc9736-ae65-4dbc-9e96-4ad039a350a2",
+      "title": "Daily Aspirin May Do More Harm Than Good for Cancer Prevention",
+      "content": "A major new review challenges the idea that a daily aspirin can reliably prevent bowel cancer in the general population. For years, aspirin has been floated as a simple, low-cost way to lower colorectal cancer risk. A new Cochrane review argues the reality is much less reassuring for people at average risk. In the trials [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/daily-aspirin-may-do-more-harm-than-good-for-cancer-prevention/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_a7914465799600ed.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:22.957Z"
+    },
+    {
+      "id": "100bc56c-8381-4fe6-8f0b-965e10473c9a",
+      "title": "Why Have You Started This War, Mr. President?",
+      "content": "Donald Trump promised voters that he would end wars, not start them.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/opinion/iran-attack-trump-war.html",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:36.225Z"
+    },
+    {
+      "id": "b326c527-1e7f-4835-8f70-30cd8746d12e",
+      "title": "Deep Extraction: openai.com",
+      "content": "Log in\nTry ChatGPT\n(opens in a new window)\nResearch\nProducts\nBusiness\nDevelopers\nCompany\nFoundation\nResearch | OpenAI\n\nResearch\n\nPioneering research on the path to AGI\n\nWe believe our research will eventually lead to artificial general intelligence, a system that can solve human-level problems. Our mission is to ensure that AGI benefits all of humanity.\n\nView research index\nLearn about safety\n\nFocus areas\n\nWe use Deep Learning to leverage large amounts of data and advanced reasoning to train AI systems for task completion.\nGPT\n\nOpenAI’s GPT series models are fast, versatile, and cost-efficient AI systems designed to understand context, generate content, and reason across text, images, and more.\n\nAdvanced frontier model for professional work and long-running agents\n\nRelease\nDec 11, 2025\n7 min read\n\nA smarter, more conversational ChatGPT\n\nRelease\nNov 12, 2025\n8 min read\n\nOur smartest, fastest, and most useful model yet, with thinking built in\n\nRelease\nAug 7, 2025\n15 min read\n\no series\n\nOpenAI’s o series models are advanced reasoning AI systems that use chain-of-thought processes to solve complex STEM problems through logical, step-by-step analysis.\n\nOur smartest and most capable models to date with full tool access\n\nOpenAI o3 and o4-mini\nApr 16, 2025\n11 min read\n\nPushing the frontier of cost-effective reasoning\n\nOpenAI o3-mini\nJan 31, 2025\n6 min read\n\nLearning to reason with LLMs\n\nOpenAI o1\nSep 12, 2024\n9 min read\n\nVisual\n\nOur research on generative modeling for images has led ... [Deep Visual Extraction Protocol]",
+      "sourceUrl": "https://openai.com/research/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/SovereignSwarm_301_screenshot_207b781e95.png\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:36.686Z"
+    },
+    {
+      "id": "1fc61867-8f0a-45ea-97fd-5e589d6e68d8",
+      "title": "Let's discuss sandbox isolation",
+      "content": "Deep URL ingestion mapping: https://www.shayon.dev/post/2026/52/lets-discuss-sandbox-isolation/",
+      "sourceUrl": "https://www.shayon.dev/post/2026/52/lets-discuss-sandbox-isolation/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:39.908Z"
+    },
+    {
+      "id": "21db915c-4c0e-446b-9073-53e835661752",
+      "title": "Show HN: SplatHash – A lightweight alternative to BlurHash and ThumbHash",
+      "content": "Hi HN,I built SplatHash. It&#x27;s a lightweight image placeholder generator I wrote to be a simpler, faster alternative to BlurHash and ThumbHash.Repo: https:&#x2F;&#x2F;github.com&#x2F;junevm&#x2F;splathash",
+      "sourceUrl": "https://github.com/junevm/splathash",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:40.354Z"
+    },
+    {
+      "id": "50f2f902-2ced-45fc-9507-6a60cffb327d",
+      "title": "Bootc and OSTree: Modernizing Linux System Deployment",
+      "content": "Deep URL ingestion mapping: https://a-cup-of.coffee/blog/ostree-bootc/",
+      "sourceUrl": "https://a-cup-of.coffee/blog/ostree-bootc/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:46.651Z"
+    },
+    {
+      "id": "288f79f5-6189-4b49-bfd0-52da4c3d040b",
+      "title": "Open source calculator firmware DB48X forbids CA/CO use due to age verification",
+      "content": "Deep URL ingestion mapping: https://github.com/c3d/db48x/commit/7819972b641ac808d46c54d3f5d1df70d706d286",
+      "sourceUrl": "https://github.com/c3d/db48x/commit/7819972b641ac808d46c54d3f5d1df70d706d286",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:46.782Z"
+    },
+    {
+      "id": "292c0df0-5a3d-4e1e-bcb7-d9da563ab7e9",
+      "title": "OpenAI raises $110B on $730B pre-money valuation",
+      "content": "https:&#x2F;&#x2F;openai.com&#x2F;index&#x2F;scaling-ai-for-everyone&#x2F;https:&#x2F;&#x2F;x.com&#x2F;sama&#x2F;status&#x2F;2027386252555919386https:&#x2F;&#x2F;xcancel.com&#x2F;sama&#x2F;status&#x2F;2027386252555919386",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/openai-raises-110b-in-one-of-the-largest-private-funding-rounds-in-history/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:47.437Z"
+    },
+    {
+      "id": "522fa3a0-ed49-4c9c-8183-03a1ed04b2ae",
+      "title": "14 Best Travel Toiletry Bags, Tested Over Many Miles (2026)",
+      "content": "Our team evaluated a ton of toiletry bags to find the best storage, organization, and design options for all your essentials.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/gallery/best-toiletry-bags/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:47.624Z"
+    },
+    {
+      "id": "5e262a3c-cadc-4f94-b8d7-c6bb88bbbc31",
+      "title": "AI music generator Suno hits 2M paid subscribers and $300M in annual recurring revenue",
+      "content": "Suno lets users create music using natural language prompts, making it possible for people with little experience to generate audio with little effort.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/ai-music-generator-suno-hits-2-million-paid-subscribers-and-300m-in-annual-recurring-revenue/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:47.882Z"
+    },
+    {
+      "id": "04b9f620-72ae-40ff-9f9c-0be11cb62d1c",
+      "title": "A legendary weather app makes a comeback",
+      "content": "Hi, friends! Welcome to Installer No. 117, your guide to the best and Verge-iest stuff in the world. (If you're new here, welcome, please send Android tips, and also you can read all the old editions at the Installer homepage.) \nThis week, I've been reading about Eileen Gu and Ozempic and fancy grocery stores, trying out the beautiful Shiori bookmarking app, trying to temper my expectations for the Scrubs reboot, continuing my test of the Pixel 10 Pro, building my dream to-do list app with Claude Code (it's almost done!), enjoying the beginnings of The Fall and Rise of Reggie Dinkins, recording the next season of Version History, watching a …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/tech/886462/acme-weather-samsung-s26-installer",
+      "sourceName": "Grokipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_14fdae41770f530a.png\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:51.457Z"
+    },
+    {
+      "id": "73faa659-1af1-48a0-942d-8d3eba51c3a9",
+      "title": "A Chinese official’s use of ChatGPT revealed an intimidation operation",
+      "content": "Deep URL ingestion mapping: https://www.cnn.com/2026/02/25/politics/chatgpt-china-intimidation-operation",
+      "sourceUrl": "https://www.cnn.com/2026/02/25/politics/chatgpt-china-intimidation-operation",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:22:54.447Z"
+    },
+    {
+      "id": "c848d651-c297-4581-8357-ee090bb9ce24",
+      "title": "Breaking Free",
+      "content": "Deep URL ingestion mapping: https://www.forbrukerradet.no/breakingfree/",
+      "sourceUrl": "https://www.forbrukerradet.no/breakingfree/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:00.143Z"
+    },
+    {
+      "id": "c776c9be-b5b3-474f-902a-f66698215836",
+      "title": "Mahmood to press on with immigration reforms despite by-election defeat",
+      "content": "The home secretary is to double down on plans for Danish-style restrictions on asylum seekers.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cwyx55nkxg9o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:01.670Z"
+    },
+    {
+      "id": "72aa74e4-98a0-42e6-b796-2a5ce03448de",
+      "title": "Statement on the comments from Secretary of War Pete Hegseth",
+      "content": "Article URL: https://www.anthropic.com/news/statement-comments-secretary-war\nComments URL: https://news.ycombinator.com/item?id=47188697\nPoints: 1019\n# Comments: 333... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.anthropic.com/news/statement-comments-secretary-war",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:04.726Z"
+    },
+    {
+      "id": "eac9fb1e-5050-479e-9c4c-d4a8ff946b43",
+      "title": "Show HN: RetroTick – Run classic Windows EXEs in the browser",
+      "content": "RetroTick parses PE&#x2F;NE&#x2F;MZ binaries, emulates an x86 CPU, and stubs enough Win32&#x2F;Win16&#x2F;DOS APIs to run classics like FreeCell, Minesweeper, Solitaire and QBasic, entirely in the browser. Built with Preact + Vite + TypeScript.Demo: https:&#x2F;&#x2F;retrotick.comGitHub: https:&#x2F;&#x2F;github.com&#x2F;lqs&#x2F;retrotick",
+      "sourceUrl": "https://retrotick.com/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:11.330Z"
+    },
+    {
+      "id": "e23b0674-c0d5-4081-a164-061c4321eb05",
+      "title": "CSP for Pentesters: Understanding the Fundamentals",
+      "content": "Deep URL ingestion mapping: https://www.kayssel.com/newsletter/issue-20/",
+      "sourceUrl": "https://www.kayssel.com/newsletter/issue-20/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:47.027Z"
+    },
+    {
+      "id": "92d0d08c-1bfa-4e9a-a033-446aa0c8dab2",
+      "title": "Croatia declared free of landmines after 31 years",
+      "content": "Deep URL ingestion mapping: https://glashrvatske.hrt.hr/en/domestic/croatia-declared-free-of-landmines-after-31-years-12593533",
+      "sourceUrl": "https://glashrvatske.hrt.hr/en/domestic/croatia-declared-free-of-landmines-after-31-years-12593533",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:12.575Z"
+    },
+    {
+      "id": "5b14559f-f6f8-42b5-a5e3-69a3887f8bdc",
+      "title": "The Eternal Promise: A History of Attempts to Eliminate Programmers",
+      "content": "Deep URL ingestion mapping: https://www.ivanturkovic.com/2026/01/22/history-software-simplification-cobol-ai-hype/",
+      "sourceUrl": "https://www.ivanturkovic.com/2026/01/22/history-software-simplification-cobol-ai-hype/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:13.342Z"
+    },
+    {
+      "id": "2c084852-9f0b-4edf-a57c-579ee3ca6ac5",
+      "title": "President Trump bans Anthropic from use in government systems",
+      "content": "Deep URL ingestion mapping: https://www.npr.org/2026/02/27/nx-s1-5729118/trump-anthropic-pentagon-openai-ai-weapons-ban",
+      "sourceUrl": "https://www.npr.org/2026/02/27/nx-s1-5729118/trump-anthropic-pentagon-openai-ai-weapons-ban",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:14.056Z"
+    },
+    {
+      "id": "a3458d8f-fe26-476f-82ec-9a8152cf8093",
+      "title": "Trump Orders U.S. Agencies to Stop Using Anthropic AI Tech After Pentagon Standoff",
+      "content": "The company had clashed with the military over how officials wanted to use its cutting-edge A.I. model. The order could vastly complicate intelligence analysis and defense work.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/27/us/politics/anthropic-military-ai.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:14.266Z"
+    },
+    {
+      "id": "ae818207-13c7-4451-abcc-91e5bd3c1111",
+      "title": "Don't trust AI agents",
+      "content": "Deep URL ingestion mapping: https://nanoclaw.dev/blog/nanoclaw-security-model",
+      "sourceUrl": "https://nanoclaw.dev/blog/nanoclaw-security-model",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:14.856Z"
+    },
+    {
+      "id": "d1125777-4ae4-4bd1-88cd-4e7149c42d98",
+      "title": "Scientists Uncover the Secret Structure Behind “Nature’s Proton Highway”",
+      "content": "By freezing a crucial phosphoric acid complex to near absolute zero, scientists uncovered a single, unexpectedly stable structure at the heart of proton transport. Phosphoric acid is vital in both biology and modern technology because of its exceptional ability to move electrical charge. Inside the human body and in devices such as fuel cells, this [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/scientists-uncover-the-secret-structure-behind-natures-proton-highway/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_61a9bd5ef94fb233.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:16.890Z"
+    },
+    {
+      "id": "8ab8073e-49a8-4c8f-a328-b3702745d3d6",
+      "title": "The Trump phone sure looks a lot like this HTC handset",
+      "content": "The HTC U24 Pro may not be gold, but its design is otherwise awfully similar to the Trump phone’s. | Image: HTC\t\n\nWhere's the Trump phone? We're going to keep talking about it every week. We've reached out, as usual, to ask about the Trump phone's whereabouts, and have stopped getting a response. This week, thanks to a reader tip, we think we've found the original phone the T1 is based on.\nA long time ago, back when the Trump phone was but a single, inaccurate render and a contradictory spec sheet, we tried to figure out what other phone it might be based on. Now, eight months, two spec overhauls, and one redesign later, I have a good guess: the HTC U24 Pro.\nI didn't spot this by myself. A reader first tipped me off to the similarities between the U24 …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/tech/886135/trump-mobile-t1-phone-htc-u24-pro",
+      "sourceName": "Wikipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_29a79b4e3131c1d7.avif\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:17.194Z"
+    },
+    {
+      "id": "e686d8b9-90e7-45b6-a5bb-2f5f3b37ca23",
+      "title": "67,800 Years Old: World’s Oldest Rock Art Discovered in Indonesia",
+      "content": "Scientists have identified the world’s oldest rock art—a 67,800-year-old hand stencil in Sulawesi—using uranium-series dating A hand stencil discovered on the wall of a cave in Indonesia has been identified as the oldest-known example of rock art anywhere in the world. The artwork predates the previous oldest discovery in the same region by at least [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/67800-years-old-worlds-oldest-rock-art-discovered-in-indonesia/",
+      "sourceName": "Hacker News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_380fac9c83e63239.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:19.248Z"
+    },
+    {
+      "id": "b1164bcd-f54a-424f-9c07-6665846bdbf1",
+      "title": "Common Industrial Chemicals Linked to Faster Aging in Middle-Aged Men",
+      "content": "Not all PFAS are created equal. New research suggests that some newer “forever chemicals” may accelerate biological aging in vulnerable groups. Per- and polyfluoroalkyl substances (PFAS), often referred to as “forever chemicals,” include thousands of man-made compounds used in products such as nonstick cookware, water-resistant fabrics, firefighting foams, food packaging, cleaning supplies, and plastics. Their [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/common-industrial-chemicals-linked-to-faster-aging-in-middle-aged-men/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_e360983bb1548355.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:20.622Z"
+    },
+    {
+      "id": "2167047d-186f-45a1-a68c-de8a6f2db8f7",
+      "title": "A Fuzzer for the Toy Optimizer",
+      "content": "Deep URL ingestion mapping: https://bernsteinbear.com/blog/toy-fuzzer/",
+      "sourceUrl": "https://bernsteinbear.com/blog/toy-fuzzer/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:21.432Z"
+    },
+    {
+      "id": "6f88126e-c979-49bf-8872-f707d49d4e28",
+      "title": "EveryPlate’s Meal Kit Offers Affordable Vegetarian Options",
+      "content": "HelloFresh’s budget subsidiary surprised me with its basic but tasty vegetarian meal selection.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/everyplate-vegetarian-meal-kit-rave/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:21.515Z"
+    },
+    {
+      "id": "cca356a6-5fca-4580-b5ee-daf75ec8254c",
+      "title": "Area Man Accidentally Hacks 6,700 Camera-Enabled Robot Vacuums",
+      "content": "Plus: The top US cyber agency falls into shambles, AI models develop an upsetting penchant for nuclear weapons, and more.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/security-news-this-week-area-man-accidentally-hacks-6700-camera-enabled-robot-vacuums/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:23.096Z"
+    },
+    {
+      "id": "cf9c8847-abc2-4d13-a958-d66c0de7deae",
+      "title": "OpenAI fires employee for using confidential info on prediction markets",
+      "content": "The company said such trades violates its internal company policies about using confidential information for personal gain.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/openai-fires-employee-for-using-confidential-info-on-prediction-markets/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:26.536Z"
+    },
+    {
+      "id": "6a24bab9-b896-4e1b-898a-74922388a5cd",
+      "title": "Last 24 hours to get TechCrunch Disrupt 2026 tickets at the lowest rates of the year",
+      "content": "The lowest rates of the year for TechCrunch Disrupt 2026 end after today. Prices go up at 11:59 p.m. PT. Don't miss connecting with 10,000 founders, investors, and operators, and key takeaways from 250+ industry leaders. Register now to save up to $680, or up to 30% on group passes.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/last-24-hours-to-get-techcrunch-disrupt-2026-tickets-at-the-lowest-rates-of-the-year/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:24:37.593Z"
+    },
+    {
+      "id": "5b01bb1f-b7c3-443d-a9eb-c78249b13c71",
+      "title": "US and Israel launch strikes on Iran, as Trump says ‘massive’ campaign underway",
+      "content": "https://archive.ph/VqSqj\nComments URL: https://news.ycombinator.com/item?id=47191232\nPoints: 340\n# Comments: 893... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.cnn.com/2026/02/28/middleeast/israel-attack-iran-intl-hnk",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:25:37.323Z"
+    },
+    {
+      "id": "72904343-65d5-4f41-9a9d-27d93fe229fb",
+      "title": "Laravel Inertia Toast",
+      "content": "Deep URL ingestion mapping: https://github.com/veekthoven/laravel-inertia-toast",
+      "sourceUrl": "https://github.com/veekthoven/laravel-inertia-toast",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:47.988Z"
+    },
+    {
+      "id": "4502efd5-eb1f-4cd8-b00f-1da3b7f13787",
+      "title": "Show HN: Unfucked - version all changes (by any tool) - local-first/source avail",
+      "content": "I built unf after I pasted a prompt into the wrong agent terminal and it overwrote hours of hand-edits across a handful of files. Git couldn&#x27;t help because I hadn&#x27;t finished&#x2F;committed my in progress work. I wanted something that recorded every save automatically so I could rewind to any point in time. I wanted to make it difficult for an agent to permanently screw anything up, even with an errant rm -rfunf is a background daemon that watches directories you choose (via CLI) and snapshots every text file on save. It stores file contents in an object store, tracks metadata in SQLite, and gives you a CLI to query and restore any version. The install includes a UI, as well to explore the history through time.The tool skips binaries and respects `.gitignore` if one exists. The interface borrows from git so it should feel familiar: unf log, unf diff, unf restore.I say &quot;UN-EF&quot; vs U.N.F, but that&#x27;s for y&#x27;all to decide: I started by calling the project Unfucked and got unfucked.ai, which if you know me and the messes I get myself into, is a fitting purchase.The CLI command is `unf` and the Tauri desktop app is titled &quot;Unfudged&quot; (kids safe name).How it works: https:&#x2F;&#x2F;unfucked.ai&#x2F;tech (summary below)The daemon uses FSEvents on macOS and inotify on Linux. When a file changes, `unf` hashes the content with BLAKE3 and checks whether that hash already exists in the object store — if it does, it just records a new metadata entry poi",
+      "sourceUrl": "https://www.unfudged.io/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:28.324Z"
+    },
+    {
+      "id": "6be9292e-3cb9-4bfa-9174-3a439c628281",
+      "title": "NASA announces overhaul of Artemis program amid safety concerns, delays",
+      "content": "Deep URL ingestion mapping: https://www.cbsnews.com/news/nasa-artemis-moon-program-overhaul/",
+      "sourceUrl": "https://www.cbsnews.com/news/nasa-artemis-moon-program-overhaul/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:30.383Z"
+    },
+    {
+      "id": "00499b87-6afb-4eb7-aa3f-240d590703b3",
+      "title": "The Disappearing Worms Beneath Our Seas – and the Scientists Fighting Back",
+      "content": "EuroWorm is building an open genomic inventory of European marine annelids to combat biodiversity loss and accelerate species discovery. By linking historical collections with modern genomics, the project strengthens global research and museum infrastructure. Across the globe, species are vanishing at an unprecedented pace—accelerated by climate change, habitat loss, and invasive species. Organisms that have [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/the-disappearing-worms-beneath-our-seas-and-the-scientists-fighting-back/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_85362f30006de715.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:32.257Z"
+    },
+    {
+      "id": "961145dd-dd89-4651-ab3b-f1999397778f",
+      "title": "Resident Evil Requiem's director on redefining the survival horror genre",
+      "content": "Director Koshi Nakanishi says balancing action and horror within the game has been a huge challenge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cewzngve9reo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:38.418Z"
+    },
+    {
+      "id": "443114b1-b79e-425a-89cb-0ac0e78cf4b0",
+      "title": "The United States and Israel Attack Iran",
+      "content": "The country is retaliating, and the Middle East is in crisis.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/briefing/us-israel-strike-iran.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:47.578Z"
+    },
+    {
+      "id": "4b12e628-498b-426c-9d36-2e2f9259d6fe",
+      "title": "The third man who links Andrew with Jeffrey Epstein",
+      "content": "For nearly a decade, David Stern acted as a key conduit between Jeffrey Epstein and Andrew Mountbatten-Windsor.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c98gne0z0rxo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:50.141Z"
+    },
+    {
+      "id": "f33b54e9-5427-4b7e-898c-492aaf1fbf08",
+      "title": "Taiwan Arms Sale Approved by Congress Is Delayed as Trump Plans Visit to Beijing",
+      "content": "The package worth billions of dollars and endorsed by lawmakers is stalled at the State Department as the U.S. and China plan an April summit.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/27/us/politics/trump-taiwan-arms-sale.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:52.048Z"
+    },
+    {
+      "id": "039e8380-d402-440d-8d63-867559f26f41",
+      "title": "Tell HN: MitID, Denmark's digital ID, was down",
+      "content": "MitID is the sole digital ID provider, leading the entire country unable to log into their internet banking, public services, digital mail etc.https:&#x2F;&#x2F;www.digitaliser.dk&#x2F;mitid&#x2F;nyt-fra-mitid&#x2F;2026&#x2F;feb&#x2F;drif...",
+      "sourceUrl": "https://news.ycombinator.com/item?id=47179038",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:55.894Z"
+    },
+    {
+      "id": "009f07ce-19cb-4d2a-a379-f08c11b0e704",
+      "title": "Qt45: A small polymerase ribozyme that can synthesize itself",
+      "content": "Deep URL ingestion mapping: https://www.science.org/doi/10.1126/science.adt2760",
+      "sourceUrl": "https://www.science.org/doi/10.1126/science.adt2760",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:23:56.061Z"
+    },
+    {
+      "id": "1a87149a-f089-4d50-8cba-8b41bd767b93",
+      "title": "Building secure, scalable agent sandbox infrastructure",
+      "content": "Deep URL ingestion mapping: https://browser-use.com/posts/two-ways-to-sandbox-agents",
+      "sourceUrl": "https://browser-use.com/posts/two-ways-to-sandbox-agents",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:24:00.515Z"
+    },
+    {
+      "id": "14f3121a-c748-4a69-af78-2834a3a3f6f2",
+      "title": "We Will Not Be Divided",
+      "content": "Deep URL ingestion mapping: https://notdivided.org",
+      "sourceUrl": "https://notdivided.org",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:24:13.873Z"
+    },
+    {
+      "id": "20140aa0-5228-4bd5-8415-500d5e813e50",
+      "title": "The Surprising Secret Behind an Ancient Andean Kingdom’s Rise",
+      "content": "Seabird guano fertilization boosted maize production in ancient Peru, fueling Chincha wealth, trade networks, and strategic Inca alliances. New archaeological findings show that seabird guano—nutrient-rich bird droppings—was not simply a farming aid but a foundation of economic and political power in ancient Peru. By dramatically improving corn yields, it may have played a central role [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/the-surprising-secret-behind-an-ancient-andean-kingdoms-rise/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_fbe8e86b2128fdc2.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:24:24.388Z"
+    },
+    {
+      "id": "5ac47f8f-9e09-4110-895d-e7bac881e4cb",
+      "title": "Anthropic Hits Back After US Military Labels It a ‘Supply Chain Risk’",
+      "content": "Anthropic says it would be “legally unsound” for the Pentagon to blacklist its technology after talks over military use of its artificial intelligence models broke down.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/anthropic-supply-chain-risk-shockwaves-silicon-valley/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:24:27.553Z"
+    },
+    {
+      "id": "04b8306a-9b77-4dc1-bdd1-93e1060909c5",
+      "title": "Bowen: A dangerous moment, but US and Israel see opportunity not to be missed",
+      "content": "Israel and the US believe Iran's regime is vulnerable, dealing with an economic crisis and the aftermath of protests.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cn0z9012291o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:24:28.831Z"
+    },
+    {
+      "id": "23f268e8-9612-4958-b5ab-76e940f083d3",
+      "title": "Kyber (YC W23) Is Hiring an Enterprise Account Executive",
+      "content": "Deep URL ingestion mapping: https://www.ycombinator.com/companies/kyber/jobs/59yPaCs-enterprise-account-executive-ae",
+      "sourceUrl": "https://www.ycombinator.com/companies/kyber/jobs/59yPaCs-enterprise-account-executive-ae",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:24:29.352Z"
+    },
+    {
+      "id": "15f1ce8c-1556-4520-b970-266e547ccc0e",
+      "title": "US and Israel Launch Strikes Against Iran",
+      "content": "US president Donald Trump said a “major combat operation” against Iran had begun as he called for the country’s government to be overthrown.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/us-iran-strike-donald-trump/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:25:37.012Z"
+    },
+    {
+      "id": "c9bb3c99-13fb-41a4-8463-a4bfabd8befa",
+      "title": "Abrupt Change for Warner Bros. Prompts Many Grim Faces",
+      "content": "Employees at the company had started to warm to the idea of Netflix as its corporate owner. Now they face the prospect of major cuts under Paramount.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/business/warner-bros-paramount-reaction.html",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:25:40.116Z"
+    },
+    {
+      "id": "0113e804-50b4-4bde-8dc8-27ba8a705e37",
+      "title": "Warner Bros. Discovery agrees to $110 billion Paramount merger",
+      "content": "Warner Bros. Discovery and Paramount Skydance's merger agreement is now official. On Friday, the two companies announced plans to merge into a massive media company that will fold WBD's studio, linear channels, streaming service, and gaming segment into Paramount.\nThough WBD initially signed onto an $83 billion agreement to merge part of Warner Bros. with Netflix, Paramount persisted with a hostile takeover bid, followed by a series of offers. That persistence paid off, as WBD determined that Paramount's \"best and final\" offer is \"superior\" to Netflix's deal. On Thursday, Netflix declined to match Paramount's bid, calling it \"no longer fina …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/entertainment/886478/warner-bros-discovery-paramount-merger-agreement",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_5e6af5c2a71fcd44.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:25:44.949Z"
+    },
+    {
+      "id": "08fe043e-c98b-49fc-87ae-c1efbd6cc5fe",
+      "title": "18 Best Wireless Chargers, All Tested and Reviewed (2026)",
+      "content": "Stop fumbling for cables in the dark. These WIRED-tested stands and pads will take the hassle out of refueling your phone, wireless earbuds, and watch.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/gallery/best-wireless-chargers/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:25:53.472Z"
+    },
+    {
+      "id": "4bd497d6-4507-462b-848d-445c6db62ba8",
+      "title": "NASA is pushing back its plans for a Moon landing",
+      "content": "NASA announced at a press conference on Friday that it's delaying its plans for a Moon landing until Artemis IV in 2028. The Artemis III mission, scheduled for 2027, was originally going to attempt to land on the Moon but will now be a test flight instead. NASA also says it's \"increasing its cadence of missions,\" including adding a second test flight in 2027 and aiming for \"at least one surface landing every year thereafter,\" including the Artemis IV landing.  \n\nThe overhaul to the Artemis launch schedule follows a report from NASA's Aerospace Safety Advisory Panel (ASAP) earlier this month that highlighted serious safety risks with NASA's p …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/science/886656/nasa-artemis-moon-landing-delayed-2028",
+      "sourceName": "AI Research News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_ff8dd32e2e0196f2.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:25:55.109Z"
+    },
+    {
+      "id": "18440e6a-7528-4ea1-88af-eb4c75220ae9",
+      "title": "The Best Roku Is $20 Off",
+      "content": "The Roku Ultra isn’t just speedier, it also offers some advanced features that some viewers will find really handy.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/roku-ultra-deal-226/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:25:57.370Z"
+    },
+    {
+      "id": "2b0f05f5-3495-4bb7-919e-7dfeee097d10",
+      "title": "OpenAI – How to delete your account",
+      "content": "Deep URL ingestion mapping: https://help.openai.com/en/articles/6378407-how-to-delete-your-account",
+      "sourceUrl": "https://help.openai.com/en/articles/6378407-how-to-delete-your-account",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:05.238Z"
+    },
+    {
+      "id": "51054e7a-4d16-42f0-80c5-cffd7b4930cc",
+      "title": "Trump Moves to Ban Anthropic From the US Government",
+      "content": "President Donald Trump’s sudden order comes after the Defense Department pressured Anthropic to drop restrictions on how its AI can be used by the military.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/trump-moves-to-ban-anthropic-from-the-us-government/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:05.453Z"
+    },
+    {
+      "id": "4e0502b3-307f-4401-8056-4b871d7253ae",
+      "title": "Tiny Fish Stun Scientists With Mammal-Like Intelligence",
+      "content": "Cleaner wrasse may be far more cognitively sophisticated than previously thought. Scientists at Osaka Metropolitan University in Japan have identified a new and unexpected behavior in cleaner wrasse (Labroides dimidiatus). When shown a mirror, these small reef fish did more than appear to recognize their reflections. They also began interacting with the mirror using a [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/tiny-fish-stun-scientists-with-mammal-like-intelligence/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_c74ef30e74297fbd.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:06.663Z"
+    },
+    {
+      "id": "5781e2d4-cc42-42c4-a79d-3afc7f6dd065",
+      "title": "OpenAI agrees with Dept. of War to deploy models in their classified network",
+      "content": "https:&#x2F;&#x2F;xcancel.com&#x2F;sama&#x2F;status&#x2F;2027578652477821175https:&#x2F;&#x2F;fortune.com&#x2F;2026&#x2F;02&#x2F;27&#x2F;openai-in-talks-with-pentagon...",
+      "sourceUrl": "https://twitter.com/sama/status/2027578652477821175",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:08.921Z"
+    },
+    {
+      "id": "e82587b9-66db-4c20-8934-d6b6eea0f469",
+      "title": "Pentagon moves to designate Anthropic as a supply-chain risk",
+      "content": "\"We don't need it, we don't want it, and will not do business with them again,\" the president wrote in the post.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/pentagon-moves-to-designate-anthropic-as-a-supply-chain-risk/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:13.643Z"
+    },
+    {
+      "id": "e12db478-c7c8-49ea-b52f-c884c7fe6905",
+      "title": "What to Know About the U.S. Attacks on Iran",
+      "content": "The United States, joined by Israel, launched an attack on major cities in Iran, as President Trump called on Iranians to overthrow the government.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/world/middleeast/iran-attacks-what-to-know.html",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:25.083Z"
+    },
+    {
+      "id": "15506461-80b4-48bd-90df-05516ec0d670",
+      "title": "Starmer chairs Cobra meeting over US-Israeli strikes on Iran",
+      "content": "A government spokesperson says it does not want \"further escalation\" as air travel disrupted.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c20l1v0ldqzo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:33.366Z"
+    },
+    {
+      "id": "a84bf2e9-3857-4ea9-934d-f8d54a532391",
+      "title": "Apple and Netflix team up to air Formula 1 Canadian Grand Prix ",
+      "content": "As Netflix continues its live sports push, the company has partnered with Apple to air the Formula 1 Canadian Grand Prix.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/apple-and-netflix-team-up-to-air-formula-1-canadian-grand-prix/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:40.404Z"
+    },
+    {
+      "id": "5ab6573f-cac8-4a1a-8c93-900a374b0b5b",
+      "title": "CISA replaces acting director after a bumbling year on the job",
+      "content": "The U.S. cybersecurity agency's acting director Madhu Gottumukkala will be replaced, after a year of cuts, layoffs, and staff reassignments, and allegations of security lapses and claims he struggled to lead the agency.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/cisa-replaces-acting-director-gottumukkala-after-a-bumbling-year-on-the-job/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:44.795Z"
+    },
+    {
+      "id": "03a2a3d7-b28f-41bd-b719-9371bf882be9",
+      "title": "After Zomato, Deepinder Goyal returns with a $54M brain-monitoring bet",
+      "content": "Zomato co-founder Deepinder Goyal's new wearable startup Temple has raised $54 million in a friends-and-family round at a post-money valuation of about $190 million.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/after-zomato-deepinder-goyal-returns-with-a-54m-brain-monitoring-bet/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:48.983Z"
+    },
+    {
+      "id": "06beee88-7c71-4920-9316-96cedf151bd5",
+      "title": "The whole thing was a scam",
+      "content": "Deep URL ingestion mapping: https://garymarcus.substack.com/p/the-whole-thing-was-scam",
+      "sourceUrl": "https://garymarcus.substack.com/p/the-whole-thing-was-scam",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:44.589Z"
+    },
+    {
+      "id": "f1c23ac7-493c-4f6e-a0d9-7312abb8da8f",
+      "title": "OpenAI Fires an Employee for Prediction Market Insider Trading",
+      "content": "Prediction markets like Polymarket and Kalshi are big business, and some Big Tech employees are testing boundaries by making trades based on insider knowledge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/openai-fires-employee-insider-trading-polymarket-kalshi/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:55.809Z"
+    },
+    {
+      "id": "23d7d5b2-7796-4692-b444-11651dde1853",
+      "title": "The man building Team USA's Olympic bobsleds",
+      "content": "Deep URL ingestion mapping: https://www.adirondackexplorer.org/community-news/people/lake-placid-man-builds-team-usas-olympic-bobsleds/",
+      "sourceUrl": "https://www.adirondackexplorer.org/community-news/people/lake-placid-man-builds-team-usas-olympic-bobsleds/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:58.086Z"
+    },
+    {
+      "id": "7b776532-b85e-486d-9ec6-088dab8d0e33",
+      "title": "Show HN: I ported Manim to TypeScript (run 3b1B math animations in the browser)",
+      "content": "Hi HN, I&#x27;m Narek. I built Manim-Web, a TypeScript&#x2F;JavaScript port of 3Blue1Brown’s popular Manim math animation engine.The Problem: Like many here, I love Manim&#x27;s visual style. But setting it up locally is notoriously painful - it requires Python, FFmpeg, Cairo, and a full LaTeX distribution. It creates a massive barrier to entry, especially for students or people who just want to quickly visualize a concept.The Solution: I wanted to make it zero-setup, so I ported the engine to TypeScript. Manim-Web runs entirely client-side in the browser. No Python, no servers, no install. It runs animations in real-time at 60fps.How it works underneath:\n- Rendering: Uses Canvas API &#x2F; WebGL (via Three.js for 3D scenes).\n- LaTeX: Rendered and animated via MathJax&#x2F;KaTeX (no LaTeX install needed!).\n- API: I kept the API almost identical to the Python version (e.g., scene.play(new Transform(square, circle))), meaning existing Manim knowledge transfers over directly.\n- Reactivity: Updaters and ValueTrackers follow the exact same reactive pattern as the Python original.Because it&#x27;s web-native, the animations are now inherently interactive (objects can be draggable&#x2F;clickable) and can be embedded directly into React&#x2F;Vue apps, interactive textbooks, or blogs. I also included a py2ts converter to help migrate existing scripts.Live Demo: https:&#x2F;&#x2F;maloyan.github.io&#x2F;manim-web&#x2F;examples\nGitHub: https:&#x2F;&#x2F;github.com&#x2F;maloyan&#x2F;manim",
+      "sourceUrl": "https://github.com/maloyan/manim-web",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:26:58.636Z"
+    },
+    {
+      "id": "98f8bc95-3031-4dac-a5b0-f7553e465186",
+      "title": "Tiny New Optical Amplifier Boosts Light by 100x",
+      "content": "A new Stanford-designed optical amplifier uses energy recycling in a resonator to deliver strong, low-noise amplification with far less power. Light underpins much of today’s technology, from televisions and satellites to the fiber optic cables that transmit internet data across continents. A team of Stanford physicists has now developed a way to push light-based systems [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/tiny-new-optical-amplifier-boosts-light-by-100x/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_3679bec2b654b446.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:27:19.658Z"
+    },
+    {
+      "id": "dc8d6862-0390-46f6-87cc-5eeca50774ff",
+      "title": "Netflix Lost Warner. Maybe That’s a Good Thing.",
+      "content": "It is entirely possible, analysts say, that Netflix will be better off by bailing from its $83 billion deal with Warner Bros. Discovery.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/business/media/netflix-lost-warner-maybe-thats-a-good-thing.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:27:45.167Z"
+    },
+    {
+      "id": "bb2fd867-078d-4ec5-87e5-fd1be0e6a93d",
+      "title": "Employees at Google and OpenAI support Anthropic’s Pentagon stand in open letter",
+      "content": "While Anthropic has an existing partnership with the Pentagon, the AI company has remained firm that its technology not be used for mass domestic surveillance or fully autonomous weaponry.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/employees-at-google-and-openai-support-anthropics-pentagon-stand-in-open-letter/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:28:02.957Z"
+    },
+    {
+      "id": "c99cf44b-c9a7-4b39-ae8a-5b9902bbe3d7",
+      "title": "Perplexity’s new Computer is another bet that users need many AI models",
+      "content": "Perplexity Computer, in the company’s words, \"unifies every current AI capability into a single system.\"... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/perplexitys-new-computer-is-another-bet-that-users-need-many-ai-models/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:28:05.520Z"
+    },
+    {
+      "id": "4531e65c-6b8c-4d29-a192-4bd6dcef329b",
+      "title": "The Bloody Rise and Fall of Mexico’s Top Crime Boss",
+      "content": "El Mencho’s brutality and business acumen put him atop the cartel world, until he made a fatal mistake.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/world/americas/mexico-mencho-career-death.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:28:08.443Z"
+    },
+    {
+      "id": "946ac7c3-9bbf-4e8e-96f2-d6d53780cbf2",
+      "title": "What Do Mummies Smell Like? Scientists Unlock 2,000-Year-Old Secrets",
+      "content": "Chemical analysis of mummy scents reveals evolving embalming recipes in ancient Egypt. Advanced air sampling detected dozens of compounds, showing increasing sophistication and enabling safer study of fragile remains. For centuries, mummification has fascinated historians and archaeologists. Now, researchers report that the characteristic musty odor of preserved bodies contains valuable scientific clues. Rather than being [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/what-do-mummies-smell-like-scientists-unlock-2000-year-old-secrets/",
+      "sourceName": "Hacker News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_6c15f969c8e357c4.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:28:10.297Z"
+    },
+    {
+      "id": "793dc105-5d18-490f-97ac-1f650c8d9e71",
+      "title": "Israel Is Attacking Iran",
+      "content": "If you&#x27;re not willing to die building what you&#x27;re building, move on\nThe war will escalate. It may spill over, include a lot of parties.I&#x27;m in Jordan right now, not in direct danger but i do see the missiles from my window as i am typing this WHAT A VIEW.  I hear sirens.\nAnd I&#x27;m in the middle of building a zero knowledge architecture for an AI operating system for founders. Agentic work. Rebuilt Word, Excel, Forms, Calendar to be ai native blah blah blah...\nDo you see how ridiculous this sounds when F22s are over my head?\ni have to reflect because is this how i want to die? what will i say to god? I was one step away from PMF, god please put me back?I am a highschool dropout, my co founder works oil rigs to fund both of us and works between shifts as the business guy, we have it hard.I don&#x27;t know. But I can&#x27;t stop. So I just keep building.I just wanted to give my voice to the first world, to the Valley specifically.The world is much bigger than whether Anthropic declines a deal with the DoD. Bigger than whether you raise your seed round. Bigger than whether you fail or get into YC.If you&#x27;re not willing to die building what you&#x27;re building, move on. Take a better hobby. Go into finance or law.Because some of us are building from places where that question isn&#x27;t hypothetical.",
+      "sourceUrl": "https://news.ycombinator.com/item?id=47192693",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:28:10.376Z"
+    },
+    {
+      "id": "ba146b0a-273e-4748-952e-098863122541",
+      "title": "Smallest transformer that can add two 10-digit numbers",
+      "content": "Deep URL ingestion mapping: https://github.com/anadim/AdderBoard",
+      "sourceUrl": "https://github.com/anadim/AdderBoard",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:28:18.893Z"
+    },
+    {
+      "id": "bbe14ed8-1f8b-4342-b711-d53cbfdae47f",
+      "title": "Which Water Filter Pitchers Filter PFAS? How to Check",
+      "content": "Checking up on the claims of water filter makers can be a discomfiting maze. Here's how to verify independent water filter certifications.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/water-filter-explainer-nsf-verifications/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:06.126Z"
+    },
+    {
+      "id": "1ef688dd-2ad0-497d-8625-122b9c8c537d",
+      "title": "These Deals Can Have You Zipping Around on a New E-Scooter This Spring",
+      "content": "With spring just around the corner, now's the smart time to snag an electric scooter.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/electric-scooters-spring-deals-2026/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:12.649Z"
+    },
+    {
+      "id": "9ecab9ee-dcf4-4cb1-bb90-95bbc8e1d270",
+      "title": "Inventing the Lisa user interface – Interactions",
+      "content": "Deep URL ingestion mapping: https://dl.acm.org/doi/10.1145/242388.242405",
+      "sourceUrl": "https://dl.acm.org/doi/10.1145/242388.242405",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:28.744Z"
+    },
+    {
+      "id": "0113e89f-5cfd-4caf-ad73-cdeda220a9a3",
+      "title": "Pentagon Watchdog Stalls Proposal to Review Targeting in Trump’s Boat Strikes",
+      "content": "A new inspector general delayed a decision on whether to approve the project and is said to have raised its potential political ramifications, in a test of the watchdog system in President Trump’s second term.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/us/politics/trump-boat-strikes-pentagon.html",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:31.351Z"
+    },
+    {
+      "id": "57a9401c-0199-47da-ad0d-b372e6fbc069",
+      "title": "This Ruroc Helmet Ruined My Ski Holiday",
+      "content": "Branded intimidating and scary, this full-face Ruroc headgear for the slopes made me a pariah on the piste.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/this-helmet-ruined-my-ski-holiday/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:37.551Z"
+    },
+    {
+      "id": "e96ffd78-c363-4199-b14a-bd09105adb35",
+      "title": "These filmmakers know exactly how to get you hooked on bizarre one-minute dramas",
+      "content": "The business depends on packing a punch right away because the first five to 10 episodes are free.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cvg5q6wq11no?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:55.985Z"
+    },
+    {
+      "id": "30c483a1-4e1c-4204-bcde-b99e3128f19a",
+      "title": "The best instant cameras you can buy right now",
+      "content": "Even with the ability to take excellent photos with our phones and instantly share them across the world, there’s something magical about the old-school instant camera. With just a click of a button, you can capture a moment in a photo that you can see and touch almost immediately. Images captured by an instant camera aren’t as pristine or perfect as those produced by modern digital cameras, but their soft images and imperfections are often a big part of the allure.\nYet not all instant cameras are the same, and some of them are better suited for different needs and budgets. That’s why we tested some of the most popular instant cameras on the market from brands like Fujifilm, Polaroid, Leica, Canon, Kodak, and others.\nAll the models featured in our instant camera buying guide are enjoyable to use, but each offers a distinct set of features at a different price point. As a result, some are more appropriate for a child or budding photographer, while others are more advanced and provide added creative control (for a price). When it comes down to it, though, we consider print quality, ease of use, and affordability to be the hallmarks of a quality shooter. That’s why we picked Fujifilm’s Instax Mini 12 as the best instant camera for most people, as it ticks all three boxes wonderfully.\nIf you’re looking for more creative control or features like filters, however, the Instax Mini Evo is our choice, one that offers great image quality and lets you choose which photos you’d like to p... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/23133103/best-instant-cameras-fujifilm-polaroid-kodak",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_3f96c2c973a9d99a.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:57.005Z"
+    },
+    {
+      "id": "e8d8a934-2ab6-40fe-8620-c6195bd8da8e",
+      "title": "Humpback Whale Comeback Reveals Surprising Shift in Mating Success",
+      "content": "Recovering humpback whale populations are revealing a hidden shift: older males are increasingly outcompeting younger rivals to father calves. New research from the University of St Andrews, published today (February 27) in Current Biology, reveals that age now plays a different role in male humpback whale reproduction as populations rebound from centuries of commercial whaling. [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/humpback-whale-comeback-reveals-surprising-shift-in-mating-success/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_92d9293af01efb9c.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:31:59.276Z"
+    },
+    {
+      "id": "5a466a0a-5995-47ef-9898-02b86b226d53",
+      "title": "Defense secretary Pete Hegseth designates Anthropic a supply chain risk",
+      "content": "US President Donald Trump (R) looks on as US Secretary of Defense Pete Hegseth speaks to the press following US military actions in Venezuela | AFP via Getty Images\t\n\nNearly two hours after President Donald Trump announced on Truth Social that he was banning Anthropic products from the federal government, Secretary of Defense Pete Hegseth took it one step further and announced that he was now designating the AI company as a \"supply-chain risk,\" which Anthropic says it is willing to challenge in court.\nThe decision could immediately impact numerous major tech companies that use Claude in their line of work for the Pentagon, including Palantir and AWS. It is not immediately clear to what extent the Pentagon may blacklist companies that contract with Claude for other services outside of national security, A …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/policy/886632/pentagon-designates-anthropic-supply-chain-risk-ai-standoff",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_5ee4ad360a3468b3.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:32:03.703Z"
+    },
+    {
+      "id": "00648b41-6ed0-4afe-950f-411d86435531",
+      "title": "Carney Visiting India, Australia and Japan to Build Canada’s ‘Middle Power’ Bonds",
+      "content": "Prime Minister Mark Carney visits India, Australia and Japan seeking deals to strengthen his country’s links to Indo-Pacific powers and break Canada’s dependence on the United States.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/world/canada/carney-asia-australia-visit.html",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:32:06.371Z"
+    },
+    {
+      "id": "a8f79709-6ac1-4edf-af5f-caea41006986",
+      "title": "L.A.U.S.D. Chief Alberto Carvalho Is Placed on Leave Following F.B.I. Raid",
+      "content": "Alberto Carvalho, superintendent of the Los Angeles Unified School District, was placed on paid leave after F.B.I. agents raided his home and district office this week.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/27/us/lausd-superintendent-alberto-carvalho-fbi.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:32:09.390Z"
+    },
+    {
+      "id": "5e88d641-7d18-4fc3-bb75-ccb51cfc48bf",
+      "title": "What's an E-Bike? California Wants You to Know",
+      "content": "Cities want to stop kids from getting hurt. A lawmaker thinks warning them away from legal gray-area “e-motos” could help.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/what-is-an-e-bike-california-might-find-out/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:32:09.666Z"
+    },
+    {
+      "id": "1d452ab7-c4f3-4986-bd26-a3fe4b40f647",
+      "title": "What we know so far",
+      "content": "Iran has retaliated with a missile barrage towards Israel, while explosions have been heard in Qatar, Bahrain, Saudi Arabia, and the UAE.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cx2dyz6p3weo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:32:26.344Z"
+    },
+    {
+      "id": "460c4a19-2073-4d47-bf0f-1195876e49ff",
+      "title": "Anthropic vs. the Pentagon: What’s actually at stake?",
+      "content": "Anthropic and the Pentagon are clashing over AI use in autonomous weapons and surveillance, raising high-stakes questions about national security, corporate control, and who sets the rules for military AI.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/anthropic-vs-the-pentagon-whats-actually-at-stake/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:32:36.645Z"
+    },
+    {
+      "id": "da1c073a-0d05-4e2f-939c-214e532a8050",
+      "title": "ChatGPT reaches 900M weekly active users",
+      "content": "OpenAI shared the new numbers as part of its announcement that it has raised $110 billion in private funding.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:34:26.996Z"
+    },
+    {
+      "id": "e183d060-aa04-4883-af47-8638848d61c6",
+      "title": "Musk bashes OpenAI in deposition, saying ‘nobody committed suicide because of Grok’",
+      "content": "In his lawsuit against OpenAI, Musk touted xAI safety compared with ChatGPT. A few months later, xAI's Grok flooded X with nonconsensual nude images.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/27/musk-bashes-openai-in-deposition-saying-nobody-committed-suicide-because-of-grok/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:35:17.528Z"
+    },
+    {
+      "id": "c2615218-9c8b-4eb7-8864-17d9e856e773",
+      "title": "OpenAI Reaches A.I. Agreement With Defense Dept. After Anthropic Clash",
+      "content": "The deal came hours after President Trump had ordered federal agencies to stop using artificial intelligence technology made by Anthropic, an OpenAI rival.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/27/technology/openai-agreement-pentagon-ai.html",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:35:47.244Z"
+    },
+    {
+      "id": "7e7f54a9-5144-4c7c-86c4-ef6a0bac0f6c",
+      "title": "'It feels like my brain is trying to be the class clown' - the reality of Tourette's",
+      "content": "After a week of Tourette's in the spotlight, BBC News speaks to people with the condition about what it's like to live with.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cx24p8pmdryo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:36:03.615Z"
+    },
+    {
+      "id": "3004b747-6ecd-49c1-abef-63d29aa36868",
+      "title": "Iran says it has hit US base in Bahrain, as it launches strikes across region",
+      "content": "Huge plumes of black smoke were seen rising from an area near the headquarters of the US Navy's Fifth Fleet in Manama, Bahrain.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c204px4zddro?at_medium=RSS&at_campaign=rss",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:36:23.479Z"
+    },
+    {
+      "id": "d14c967b-3e90-492b-9524-6b7191768648",
+      "title": "Tenways nearly perfects the shareable city e-bike",
+      "content": "The CGO Compact electric bike twists and folds to create a wall-hugging profile.\t\n\nGood electric bikes are expensive. So why not buy one and share it? \nThat's the idea behind the Tenways CGO Compact e-bike I've been sharing with my wife and teenage daughter for the last two weeks. It adapts in seconds without any tools to comfortably fit riders of varying heights thanks to its low-entry frame, quick-release seat post, and height-adjustable handlebar.\nIt also takes up less space than an ordinary bike with its 20-inch wheels, folding pedals, and a handlebar that twists to create a slim, wall-hugging profile that goes flat inside a car or train. \nThe CGO Compact's geometry puts riders into a comfortable upright body positi …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/reviews/885040/tenways-cgo-compact-review-sharable-adaptable",
+      "sourceName": "Grokipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_07cf29888a5fc8dc.jpeg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:39:58.082Z"
+    },
+    {
+      "id": "55a452c7-1c68-4181-bc8b-32d6e57df5da",
+      "title": "Bill Clinton asked about hot tub photo and testifies he knew 'nothing' of Epstein crimes",
+      "content": "The former president told the committee that he would never have flown on Epstein's plane if he \"had any inkling of what he was doing\".... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cvg345qvld5o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:40:20.830Z"
+    },
+    {
+      "id": "ce038a81-f1ea-4f33-b1a9-9a70e7e31b5f",
+      "title": "US Customs destroy a rare floppy disk containing demo version of Tsukihime",
+      "content": "Deep URL ingestion mapping: https://www.timeextension.com/news/2026/02/literally-crying-right-now-50-copies-of-this-adult-only-visual-novel-demo-exist-and-one-just-got-destroyed-in-transit",
+      "sourceUrl": "https://www.timeextension.com/news/2026/02/literally-crying-right-now-50-copies-of-this-adult-only-visual-novel-demo-exist-and-one-just-got-destroyed-in-transit",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:56:48.903Z"
+    },
+    {
+      "id": "08c78b26-c991-472f-920a-3b2b219aa9fb",
+      "title": "250-Year-Old Mystery Solved: These Saltwater Crocodiles Traveled Thousands of Miles Across the Indian Ocean",
+      "content": "Genetic evidence confirms Seychelles crocodiles were saltwater crocodiles capable of long-distance ocean dispersal, with a historic range exceeding 12,000 kilometers (~7500 miles). Historical records from expeditions over 250 years ago describe crocodiles as abundant along the shores of the Seychelles Islands. However, after permanent settlement began in 1770, the local population declined rapidly and was [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/250-year-old-mystery-solved-these-saltwater-crocodiles-traveled-thousands-of-miles-across-the-indian-ocean/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_18d52cbd4016a6d8.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:57:03.129Z"
+    },
+    {
+      "id": "16965084-35ae-43be-b119-a3752b4c7b7e",
+      "title": "Better Activation Functions for NNUE",
+      "content": "Deep URL ingestion mapping: https://cosmo.tardis.ac/files/2026-01-27-activation-2.html",
+      "sourceUrl": "https://cosmo.tardis.ac/files/2026-01-27-activation-2.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:57:49.302Z"
+    },
+    {
+      "id": "9ca6077c-c8f8-4fad-8294-76c867116ef3",
+      "title": "The Best Laptop Cooling Pad and Why You Should Buy One",
+      "content": "Most laptop cooling pads are useless, but if you get the right one, it can make a huge impact on how long your gaming laptop lasts.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/best-laptop-cooling-pad/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:58:00.075Z"
+    },
+    {
+      "id": "92ee92a5-970a-4f95-867b-5d64a0e13ab8",
+      "title": "Stop Burning Your Context Window – How We Cut MCP Output by 98% in Claude Code",
+      "content": "Deep URL ingestion mapping: https://mksg.lu/blog/context-mode",
+      "sourceUrl": "https://mksg.lu/blog/context-mode",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:58:55.407Z"
+    },
+    {
+      "id": "21efc56f-3322-4682-bf09-e7aaba98efb5",
+      "title": "Chaos and Panic Grip Tehran as Airstrikes Shake City",
+      "content": "Iranians were beginning their workweek as U.S. and Israeli strikes sent people fleeing parts of the capital and parents racing to collect children from schools.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/world/middleeast/iran-reaction-us-attack-tehran.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T13:59:51.897Z"
+    },
+    {
+      "id": "b22c99fe-d014-4093-9831-3092ebe79632",
+      "title": "The Witcher is a perfect fit for Reigns’ Tinder-like roleplaying",
+      "content": "I never knew how easy it was to die in an orgy. But that's just one of the many threats facing Geralt of Rivia in his latest adventure. The studio behind the Reigns series of Tinder-like choose-your-own-adventure games has now adapted The Witcher, following a handful of original titles and a take on Game of Thrones. And for Francois Alliot, creative director at Reigns studio Nerial, the series' structure actually makes it an ideal way to ease players into sprawling fantasies like this. \"There's something about the way you can bring really complex universes, lore, and storylines to simple actions,\" he says. \"It can work in a lot of contexts.\"\n …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/entertainment/885432/reigns-the-witcher-interview-steam-iphone-android",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_f4cb3039ffa8ef19.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T14:00:19.323Z"
+    },
+    {
+      "id": "38554044-ef5e-42bc-ae9d-b30313905080",
+      "title": "Flights cancelled as travel warnings issued",
+      "content": "BA, Virgin Atlantic and Wizz Air are among major airlines to overhaul their schedules in light of the attacks.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c0rjpr575g9o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T14:01:56.433Z"
+    },
+    {
+      "id": "faa4959f-023f-4402-87d3-7b556d270677",
+      "title": "OpenAI’s Sam Altman announces Pentagon deal with ‘technical safeguards’",
+      "content": "OpenAI's CEO claims its new defense contract includes protections addressing the same issues that became a flashpoint for Anthropic.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/openais-sam-altman-announces-pentagon-deal-with-technical-safeguards/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:52.335Z"
+    },
+    {
+      "id": "f9826b5c-4059-456d-a2a6-2fab5f8fa6de",
+      "title": "Review: Xiaomi 17 Ultra and Leitzphone Pack Leica Magic Into a Flagship Phone",
+      "content": "The latest Xiaomi flagship is a beast and comes in a specially co-designed Leica edition that’s picture-perfect.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/review/xiaomi-17-ultra-leitzphone/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:53.421Z"
+    },
+    {
+      "id": "b16a1e36-4e5a-46ac-a1f4-60887fa139ae",
+      "title": "The archivist preserving decaying floppy disks",
+      "content": "Deep URL ingestion mapping: https://www.popsci.com/technology/floppy-disk-archivist-project/",
+      "sourceUrl": "https://www.popsci.com/technology/floppy-disk-archivist-project/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:53.988Z"
+    },
+    {
+      "id": "08cb9567-aadd-4480-a9d3-27f306ad0a11",
+      "title": "Rust is just a tool",
+      "content": "Deep URL ingestion mapping: https://lewiscampbell.tech/blog/260204.html",
+      "sourceUrl": "https://lewiscampbell.tech/blog/260204.html",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:55.400Z"
+    },
+    {
+      "id": "bafd08e4-14f6-4672-973e-5484d55799b5",
+      "title": "Xiaomi 17 is a small(ish) phone with a big(ish) battery",
+      "content": "The Xiaomi 17 and 17 Ultra are launching together, but there’s no sign of the Pro.\t\n\nXiaomi has just given a global launch to two of its latest flagship phones, the Xiaomi 17 and 17 Ultra, along with a Leica-branded Leitzphone edition of the Ultra. There's no sign, however, of the 17 Pro, which launched in China with an additional display mounted next to the rear cameras.\nThe 17 and 17 Ultra will apparently be available soon in the UK, Europe, and select other markets. The 17 - pitched as a rival to the likes of the iPhone 17 and Samsung Galaxy S26 - will cost £899 / €999 (about $1,200), while the larger and more capable Ultra starts from £1,299 / €1,499 ($1,750). The limited-edition Leitzphone will be substantially more ex …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/gadgets/886322/xiaomi-17-release-specs-price-mwc-ultra-leica",
+      "sourceName": "arXiv.org",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_eb344e03a83cc9c6.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:23:57.823Z"
+    },
+    {
+      "id": "10ae9a38-64e8-4bcd-9274-a82cd01b646a",
+      "title": "Electric semi trucks can save fleets nearly $160,000 per truck",
+      "content": "Deep URL ingestion mapping: https://electrek.co/2026/02/28/real-world-test-electric-semi-trucks-can-save-fleets-nearly-160000-per-truck/",
+      "sourceUrl": "https://electrek.co/2026/02/28/real-world-test-electric-semi-trucks-can-save-fleets-nearly-160000-per-truck/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:00.277Z"
+    },
+    {
+      "id": "ef9a4cf5-1618-4ff5-a40d-1e1b0ae22799",
+      "title": "Woxi: Wolfram Mathematica Reimplementation in Rust",
+      "content": "Deep URL ingestion mapping: https://github.com/ad-si/Woxi",
+      "sourceUrl": "https://github.com/ad-si/Woxi",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:00.631Z"
+    },
+    {
+      "id": "94d70ec3-3454-4962-a7cf-a1c613231d9c",
+      "title": "The billion-dollar infrastructure deals powering the AI boom",
+      "content": "Here's everything we know about the biggest AI infrastructure projects, including major spending from Meta, Oracle, Microsoft, Google, and OpenAI.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/billion-dollar-infrastructure-deals-ai-boom-data-centers-openai-oracle-nvidia-microsoft-google-meta/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:02.917Z"
+    },
+    {
+      "id": "a435c84e-f41f-4ef0-a93e-da28fc84a7ec",
+      "title": "U.S. Ability to Determine What Comes Next in Iran Might Be Limited",
+      "content": "Questions remain about how much effort the Trump administration will put into changing the Iranian government.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/us/politics/trump-iran-intelligence.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:07.791Z"
+    },
+    {
+      "id": "f48f2b3b-2d4e-4dd9-a0ca-0f375fb928a6",
+      "title": "747s and Coding Agents",
+      "content": "Deep URL ingestion mapping: https://carlkolon.com/2026/02/27/engineering-747-coding-agents/",
+      "sourceUrl": "https://carlkolon.com/2026/02/27/engineering-747-coding-agents/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:12.380Z"
+    },
+    {
+      "id": "02e0f4d5-c4fd-48b7-a299-be757e7875a7",
+      "title": "The Rubin Observatory’s alert system sent 800,000 pings on its first night",
+      "content": "That’s coming on a little strong, maybe. | Image: Vera C. Rubin Observatory\t\n\nThe Vera C. Rubin Observatory's automated alert system is online and already bombarding astronomers with things to look at in the night sky. The system went live publicly on Tuesday, February 24th, and on the first night dropped some 800,000 alerts about asteroids, supernovas, and feasting black holes. And that number is only expected to climb to the multiple millions per night.\nThe observatory released the first images taken with its car-sized Legacy Survey of Space and Time (LSST) camera in June of last year. But researchers and stargazers have been eagerly anticipating the launch of this system. Every night, the camera captures about 1,0 …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/science/887037/vera-c-rubin-observatory-800000-alerts",
+      "sourceName": "Grokipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_4ac0a821088617ed.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:15.048Z"
+    },
+    {
+      "id": "00ce62da-67ae-4938-80c2-7e0bf128854b",
+      "title": "Our Agreement with the Department of War",
+      "content": "Deep URL ingestion mapping: https://openai.com/index/our-agreement-with-the-department-of-war",
+      "sourceUrl": "https://openai.com/index/our-agreement-with-the-department-of-war",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:15.932Z"
+    },
+    {
+      "id": "51dae3c8-0c2a-4a5a-a478-64369ded971c",
+      "title": "Everything Changes, and Nothing Changes",
+      "content": "Deep URL ingestion mapping: https://btao.org/posts/2026-02-28-everything-changes-nothing-changes/",
+      "sourceUrl": "https://btao.org/posts/2026-02-28-everything-changes-nothing-changes/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:17.223Z"
+    },
+    {
+      "id": "d1b2907e-9be9-40bf-bb83-4d88e374c05c",
+      "title": "Why consumer choice is stripped away and how the tech industry profits from it",
+      "content": "Deep URL ingestion mapping: https://fireborn.mataroa.blog/blog/because-fuck-you-why-consumer-choice-is-being-stripped-away-and-how-the-tech-industry-profits-from-it/",
+      "sourceUrl": "https://fireborn.mataroa.blog/blog/because-fuck-you-why-consumer-choice-is-being-stripped-away-and-how-the-tech-industry-profits-from-it/",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:18.892Z"
+    },
+    {
+      "id": "aa18238f-e3d7-4ddd-af7e-49da8530b2b6",
+      "title": "Scientists Create “Smart Underwear” To Measure How Often We Really Fart",
+      "content": "A new nationwide study led by the University of Maryland is seeking volunteers to help document and analyze the full range of human flatulence. Researchers at the University of Maryland have unveiled what they describe as the first wearable device built specifically to measure human flatulence. Known as Smart Underwear, the discreet sensor system tracks [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/scientists-create-smart-underwear-to-measure-how-often-we-really-fart/",
+      "sourceName": "Hacker News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_63a12051f8f3ea4b.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:33.008Z"
+    },
+    {
+      "id": "bdce7c96-f867-45df-b4c6-fa4e36a9a16d",
+      "title": "Seeing Like a Sedan",
+      "content": "Deep URL ingestion mapping: https://asteriskmag.com/issues/13/seeing-like-a-sedan",
+      "sourceUrl": "https://asteriskmag.com/issues/13/seeing-like-a-sedan",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:34.248Z"
+    },
+    {
+      "id": "8ea1717e-b70e-49ce-9fc5-cf2bac98c6cd",
+      "title": "New evidence that Cantor plagiarized Dedekind?",
+      "content": "Deep URL ingestion mapping: https://www.quantamagazine.org/the-man-who-stole-infinity-20260225/",
+      "sourceUrl": "https://www.quantamagazine.org/the-man-who-stole-infinity-20260225/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:42.518Z"
+    },
+    {
+      "id": "3f8441a6-cbd2-45e4-b401-59e652144332",
+      "title": "Polymarket defends its decision to allow betting on war as ‘invaluable’",
+      "content": "It might be World War III, but at least I won $20. | Image: Polymarket / The Verge\t\n\nPolymarket has been allowing people to bet on when the US would strike Iran next. Obviously, now that it's actually happened and people have died, the prediction betting market is feeling some pressure. The site has been at the center of controversy before, including suspicions of insider trading on the Super Bowl halftime show and the capture of Venezuelan President Nicolás Maduro.\nIn a statement posted on its site, Polymarket defended its decision to allow betting on the potential start of a war, saying that it was an \"invaluable\" source of news and answers, before taking shots at traditional media and Elon Musk's X. The statement reads:\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/tech/887040/polymarket-iran-war-betting-invaluable",
+      "sourceName": "AI Research News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_39770e2a428ceb80.png\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:44.384Z"
+    },
+    {
+      "id": "fc13171f-ccba-4bbb-92b0-3be1ad06b48a",
+      "title": "How Long Is the Coast of Britain? (1967)",
+      "content": "Deep URL ingestion mapping: https://www.jstor.org/stable/1721427",
+      "sourceUrl": "https://www.jstor.org/stable/1721427",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:49.440Z"
+    },
+    {
+      "id": "c5cf334f-dc52-410e-89ce-2defeeb8195a",
+      "title": "From Noise to Image – interactive guide to diffusion",
+      "content": "Deep URL ingestion mapping: https://lighthousesoftware.co.uk/projects/from-noise-to-image/",
+      "sourceUrl": "https://lighthousesoftware.co.uk/projects/from-noise-to-image/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:53.191Z"
+    },
+    {
+      "id": "f886bc51-33cb-4df7-b670-ef66318541aa",
+      "title": "The Windows 95 User Interface: A Case Study in Usability Engineering",
+      "content": "Deep URL ingestion mapping: https://dl.acm.org/doi/fullHtml/10.1145/238386.238611",
+      "sourceUrl": "https://dl.acm.org/doi/fullHtml/10.1145/238386.238611",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:58.392Z"
+    },
+    {
+      "id": "14c86d2c-ff24-47ab-9832-2c7c3225b1a3",
+      "title": "Addressing Antigravity Bans and Reinstating Access",
+      "content": "Deep URL ingestion mapping: https://github.com/google-gemini/gemini-cli/discussions/20632",
+      "sourceUrl": "https://github.com/google-gemini/gemini-cli/discussions/20632",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:24:58.592Z"
+    },
+    {
+      "id": "ac9b3795-5594-48c6-9f44-710c086813ca",
+      "title": "Brits red carpet in pictures: Arrivals of Harry Styles, Olivia Dean and Lola Young ",
+      "content": "Stars including Olivia Dean, Lola Young and Rosalía turned out for the Brit Awards in Manchester.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c24dle3mv97o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:10.294Z"
+    },
+    {
+      "id": "303400b2-3e8b-48f9-9525-48d4ffefb1ff",
+      "title": "The happiest I've ever been",
+      "content": "Deep URL ingestion mapping: https://ben-mini.com/2026/the-happiest-ive-ever-been",
+      "sourceUrl": "https://ben-mini.com/2026/the-happiest-ive-ever-been",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:17.685Z"
+    },
+    {
+      "id": "52ec4a3d-c4d9-47f7-98bc-af4b9ce22ade",
+      "title": "MinIO Is Dead, Long Live MinIO",
+      "content": "Deep URL ingestion mapping: https://blog.vonng.com/en/db/minio-resurrect/",
+      "sourceUrl": "https://blog.vonng.com/en/db/minio-resurrect/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:19.513Z"
+    },
+    {
+      "id": "fd960d4b-fa4e-4dbd-b5de-f17a4b479820",
+      "title": "Hacked Prayer App Sends ‘Surrender’ Messages to Iranians Amid Israeli and US Strikes",
+      "content": "As Israeli airstrikes hit Tehran this morning, Iranians received mysterious push notifications saying that “help is on the way,” promising amnesty if they surrender.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/hacked-prayer-app-sends-surrender-messages-to-iranians-amid-israeli-strikes/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:26.058Z"
+    },
+    {
+      "id": "2b6e15e1-e29f-49fc-8dbe-a6cb14eaae35",
+      "title": "Xiaomi’s tracker doesn’t need a case to clip to your keys",
+      "content": "The Xiaomi Tag is a bit larger than Apple’s second-gen AirTags. | Image: Xiaomi\t\n\nXiaomi has announced its first Bluetooth tracker, and while the Xiaomi Tag has a more elongated design than the Apple AirTag, that lets you use it in more places right out of the box. On one end of the tracker you'll find an integrated metal loop that can be attached to a keyring or clipped to a carabiner without the need for an extra case.\nThe Xiaomi Tag is compatible with both Apple's Find My and Google's Find Hub tracking networks and mobile apps, but not at the same time. You'll need to choose one or the other during setup. Like Apple's AirTag, the Xiaomi Tag is powered by a replaceable CR2032 coin cell battery good for up to a year of  …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/tech/884567/xiaomi-tag-tracker-apple-find-my-google-hub-bluetooth",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_411beb4548eb873f.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:29.286Z"
+    },
+    {
+      "id": "9af7e853-4123-4c95-a7bf-afe36b09ca2f",
+      "title": "Watch: How US-Israel strikes on Iran unfolded ",
+      "content": "Iran launched retaliatory attacks in the Middle East after US-Israel strikes across the country.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/videos/clyv5rnd8r0o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:29.633Z"
+    },
+    {
+      "id": "3d89a3e6-e6db-4daa-9957-96e180ba5c23",
+      "title": "The Life Cycle of Money",
+      "content": "Deep URL ingestion mapping: https://doap.metal.bohyen.space/blog/post/complete-life-cycle-of-money/",
+      "sourceUrl": "https://doap.metal.bohyen.space/blog/post/complete-life-cycle-of-money/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:35.930Z"
+    },
+    {
+      "id": "32a9d2e4-34e6-4f74-a641-c24863aa77ac",
+      "title": "Obsidian Sync now has a headless client",
+      "content": "Deep URL ingestion mapping: https://help.obsidian.md/sync/headless",
+      "sourceUrl": "https://help.obsidian.md/sync/headless",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:39.519Z"
+    },
+    {
+      "id": "78689ad4-03c8-4e87-baf3-2c4078a3ff4d",
+      "title": "Building a Minimal Transformer for 10-digit Addition",
+      "content": "Deep URL ingestion mapping: https://alexlitzenberger.com/blog/post.html?post=/building_a_minimal_transformer_for_10_digit_addition",
+      "sourceUrl": "https://alexlitzenberger.com/blog/post.html?post=/building_a_minimal_transformer_for_10_digit_addition",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:39.682Z"
+    },
+    {
+      "id": "72ca933a-fd2f-478f-94be-7d1565fa27e9",
+      "title": "What I learned while trying to build a production-ready nearest neighbor system",
+      "content": "Deep URL ingestion mapping: https://github.com/thatipamula-jashwanth/smart-knn",
+      "sourceUrl": "https://github.com/thatipamula-jashwanth/smart-knn",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:40.914Z"
+    },
+    {
+      "id": "91722079-9413-4252-bbdc-43dca78a1d7b",
+      "title": "Xiaomi launches 17 Ultra smartphone, an AirTag clone, and an ultra slim powerbank",
+      "content": "We round up everything Xiaomi announced at its Mobile World Congress event.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/xiaomi-launches-17-ultra-smartphone-an-airtag-clone-and-an-ultra-slim-powerbank/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:43.549Z"
+    },
+    {
+      "id": "1b3f1601-9f46-434d-89b8-5370cfdcbb4e",
+      "title": "How Wesley Hunt of Texas Is Working in Plain Sight With Outside Groups",
+      "content": "Exchanges between two X accounts appear to offer a vivid example of how campaigns may sidestep campaign-finance law to share strategic information.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/us/politics/wesley-hunt-texas-senate-race-campaign-finance.html",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:48.584Z"
+    },
+    {
+      "id": "228ff566-e48c-4167-90bb-bd80ee0be00b",
+      "title": "Iran's Ayatollah Ali Khamenei is killed in Israeli strike, ending 36-year rule",
+      "content": "Deep URL ingestion mapping: https://www.npr.org/2026/02/28/1123499337/iran-israel-ayatollah-ali-khamenei-killed",
+      "sourceUrl": "https://www.npr.org/2026/02/28/1123499337/iran-israel-ayatollah-ali-khamenei-killed",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:53.728Z"
+    },
+    {
+      "id": "18c70694-fdbf-4feb-bfcb-c653d98b9e8c",
+      "title": "Monitor the Situation",
+      "content": "Deep URL ingestion mapping: https://monitor-the-situation.com/middle-east",
+      "sourceUrl": "https://monitor-the-situation.com/middle-east",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:25:54.801Z"
+    },
+    {
+      "id": "593f0282-867a-4f2a-bfe4-68fdf211bfa1",
+      "title": "Ghosts'n Goblins – “Worse danger is ahead”",
+      "content": "Deep URL ingestion mapping: https://superchartisland.com/ghostsn-goblins/",
+      "sourceUrl": "https://superchartisland.com/ghostsn-goblins/",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:00.153Z"
+    },
+    {
+      "id": "ed9c290e-5d86-4c0d-a979-7aa93b2a77ca",
+      "title": "\"We do not think Anthropic should be designated as a supply chain risk\"",
+      "content": "Article URL: https://twitter.com/OpenAI/status/2027846016423321831\nComments URL: https://news.ycombinator.com/item?id=47200420\nPoints: 24\n# Comments: 2... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://twitter.com/OpenAI/status/2027846016423321831",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:02.212Z"
+    },
+    {
+      "id": "aa1250a5-bd44-422e-ab97-03b6b4b802d5",
+      "title": "Scientists Finally See Quantum Computer Failures as They Happen",
+      "content": "A new ultra-fast monitoring system reveals that quantum computer qubits can change from stable to unstable in mere milliseconds. Researchers at the Niels Bohr Institute have dramatically increased how quickly changes in delicate quantum states can be detected inside a qubit. By combining commercially available hardware with new measurement strategies, they can now observe rapid [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/scientists-finally-see-quantum-computer-failures-as-they-happen/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_9ef3a8c603bcdd55.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:05.613Z"
+    },
+    {
+      "id": "4c5cd97c-1072-4199-8060-d964abfbf5a9",
+      "title": "Don’t Panic Yet: “Humanity’s Last Exam” Has Begun",
+      "content": "As artificial intelligence systems rapidly outgrow traditional academic benchmarks, researchers have unveiled an ambitious new test designed to probe the true limits of machine intelligence. When advanced artificial intelligence systems began scoring near-perfect marks on established academic tests, researchers recognized a growing concern. The exams that once posed serious challenges were no longer difficult enough [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/dont-panic-yet-humanitys-last-exam-has-begun/",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_3fb07e6bf8b5262f.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:06.949Z"
+    },
+    {
+      "id": "6c3124c3-0bfb-4203-a4fd-5e41ec6ec0bd",
+      "title": "Qwen3.5 122B and 35B models offer Sonnet 4.5 performance on local computers",
+      "content": "Deep URL ingestion mapping: https://venturebeat.com/technology/alibabas-new-open-source-qwen3-5-medium-models-offer-sonnet-4-5-performance",
+      "sourceUrl": "https://venturebeat.com/technology/alibabas-new-open-source-qwen3-5-medium-models-offer-sonnet-4-5-performance",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:08.944Z"
+    },
+    {
+      "id": "3cb9617c-bc06-4a2d-82e7-1d76cca03c23",
+      "title": "Forget IQ: This One Surprising Skill Predicts if You’ll Fall for AI Fakes",
+      "content": "People with stronger object recognition skills are better at spotting AI-generated faces, according to new research. Intelligence and AI familiarity did not predict performance. Could you reliably spot a computer-generated face in a lineup of real people? As synthetic images become more common across news feeds and social platforms, the ability to separate authentic photos [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/forget-iq-this-one-surprising-skill-predicts-if-youll-fall-for-ai-fakes/",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_65b44ba21aa0ad8c.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:12.015Z"
+    },
+    {
+      "id": "9b66d380-a02c-40be-9497-e303152445c4",
+      "title": "A Tale of Two Seasons at Columbia, and Two Responses to Student Arrests",
+      "content": "When Mahmoud Khalil was detained by immigration agents last year, the university’s response was restrained. It was different with Elmina Aghayeva this week.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/nyregion/columbia-student-ice-arrest.html",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:16.088Z"
+    },
+    {
+      "id": "a77f9d63-4e74-4bde-879a-bf24ce6959ad",
+      "title": "The Immovable and Ruinous Obsessions of Ayatollah Khamenei",
+      "content": "The supreme leader organized his existence around one big idea: resistance.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/opinion/iran-supreme-leader-dead-khamenei.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:36.412Z"
+    },
+    {
+      "id": "e78d24ef-7eae-4500-8a0e-b9de449cde82",
+      "title": "Anthropic’s Claude rises to No. 2 in the App Store following Pentagon dispute",
+      "content": "Anthropic’s chatbot Claude seems to have benefited from the attention around the company’s fraught negotiations with the Pentagon.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/anthropics-claude-rises-to-no-2-in-the-app-store-following-pentagon-dispute/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:37.028Z"
+    },
+    {
+      "id": "2355815a-8708-4bfe-a812-6b852eb6d87a",
+      "title": "Burnham would probably have won by-election, Labour deputy leader says",
+      "content": "Lucy Powell tells the BBC that Labour needs to make more use of the Greater Manchester mayor.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cde46np2nklo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:42.453Z"
+    },
+    {
+      "id": "d654004b-fa84-4d8e-90d5-37cabb2e1b0a",
+      "title": "Why China’s humanoid robot industry is winning the early market",
+      "content": "China’s push into humanoid robots is accelerating, with domestic firms shipping more units and iterating faster than U.S. competitors in a still-nascent market.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/why-chinas-humanoid-robot-industry-is-winning-the-early-market/",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:45.805Z"
+    },
+    {
+      "id": "efbf323a-b021-4cc9-9d72-260e6c7dedf1",
+      "title": "Man, 49, dies taking part in skydive at airfield",
+      "content": "Police say they were called to Dunkeswell Aerodrome at about 13:00 GMT on Saturday.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cdxze91k0rzo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:49.887Z"
+    },
+    {
+      "id": "9408d786-48ca-430d-97f1-8fd47e0c77e3",
+      "title": "Verified Spec-Driven Development (VSDD)",
+      "content": "Deep URL ingestion mapping: https://gist.github.com/dollspace-gay/d8d3bc3ecf4188df049d7a4726bb2a00",
+      "sourceUrl": "https://gist.github.com/dollspace-gay/d8d3bc3ecf4188df049d7a4726bb2a00",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:52.968Z"
+    },
+    {
+      "id": "72557add-8ea2-4e13-8cbd-5b32b1e83f2b",
+      "title": "Why did Netflix back down from its deal to acquire Warner Bros.?",
+      "content": "Netflix's co-CEO reportedly told Trump, \"I took your advice.\"... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/why-did-netflix-back-down-from-its-deal-to-acquire-warner-bros/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:26:59.188Z"
+    },
+    {
+      "id": "f5cc9907-11d8-4379-b380-fe2d00597201",
+      "title": "Block the “Upgrade to Tahoe” Alerts",
+      "content": "Deep URL ingestion mapping: https://robservatory.com/block-the-upgrade-to-tahoe-alerts-and-system-settings-indicator/",
+      "sourceUrl": "https://robservatory.com/block-the-upgrade-to-tahoe-alerts-and-system-settings-indicator/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:27:00.002Z"
+    },
+    {
+      "id": "1e7817e9-0b64-4248-9b53-d8a5be4d8916",
+      "title": "Mapping the U.S.-Led Attacks on Iran",
+      "content": "Maps show where U.S. and Israel have struck Iran, and where Iran has retaliated.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/world/middleeast/us-israel-iran-attack-maps.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:27:23.428Z"
+    },
+    {
+      "id": "a239d8fb-535d-4c9d-9c81-6d2bfe392d00",
+      "title": "The war against PDFs is heating up",
+      "content": "Deep URL ingestion mapping: https://www.economist.com/business/2026/02/24/the-war-against-pdfs-is-heating-up",
+      "sourceUrl": "https://www.economist.com/business/2026/02/24/the-war-against-pdfs-is-heating-up",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:27:48.256Z"
+    },
+    {
+      "id": "e943c996-9708-48b0-9f96-062c53302bb5",
+      "title": "Could the Supreme Court’s Voting Rights Act Decision Affect the Midterms?",
+      "content": "The court is set to decide a major case that could scramble the country’s congressional maps. One crucial factor for this year’s elections is when the ruling lands.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/us/politics/supreme-court-voting-rights-act-midterms.html",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:27:50.622Z"
+    },
+    {
+      "id": "bdf35e41-f6f5-4bdb-a0d6-519f325b9946",
+      "title": "Man appears in court over Churchill statue damage",
+      "content": "Caspar San Giorgio, 38, appeared at Westminster Magistrate's Court via video-link earlier.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cr5le06lq03o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:27:50.673Z"
+    },
+    {
+      "id": "4ef51642-6c53-4015-b1a4-37b647180512",
+      "title": "Xiaomi’s Leica Leitzphone mostly earns the name",
+      "content": "The Leitzphone has just launched internationally alongside a regular version of the 17 Ultra.\t\n\nXiaomi and Leica's long-running phone partnership just got a little closer. Alongside the new international release of its 17 Ultra flagship, Xiaomi has been entrusted with manufacturing a separate version that is the first Leica Leitzphone to release outside of Japan, following three Sharp-made models exclusive to the country.\nIn truth, the Leitzphone is a 17 Ultra with Leica branding and a rotatable camera ring, and apart from a few design tweaks, it's mostly the same as the Leica Edition of that phone already available in China. But the branding is a big deal: Leica hasn't let Xiaomi use its red dot logo on hardware until now, even thoug …\nRead the full story at The Verge.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/gadgets/886131/xiaomi-leica-leitzphone-17-ultra-review",
+      "sourceName": "AI Research News",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_619ed9c624c282dd.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:27:55.859Z"
+    },
+    {
+      "id": "92014619-f0fb-4ef4-b187-84a0f295c405",
+      "title": "'Play like a dog biting God's feet': Steven Isserlis on György Kurtág at 100",
+      "content": "Deep URL ingestion mapping: https://www.theguardian.com/music/2026/feb/26/steven-isserlis-on-the-formidable-gyorgy-kurtag-at-100",
+      "sourceUrl": "https://www.theguardian.com/music/2026/feb/26/steven-isserlis-on-the-formidable-gyorgy-kurtag-at-100",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:27:58.305Z"
+    },
+    {
+      "id": "098ca38f-8d58-4204-a40e-48ee9aa76f7e",
+      "title": "Kash Patel’s Girlfriend Seeks Fame and Fortune, Escorted by an F.B.I. SWAT Team",
+      "content": "Former F.B.I. officials say Mr. Patel beefed up field office staffing near his girlfriend in Nashville and ordered a team to ferry her on errands and to events.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/us/politics/kash-patel-girlfriend.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:28:13.434Z"
+    },
+    {
+      "id": "c7326f7d-d6e2-4d15-87bf-e49c3ec938c1",
+      "title": "Minister Josh Simons resigns after Labour Together claims",
+      "content": "Simons faced claims the think tank he used to run commissioned a report which looked into the background of journalists.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cq6q0l9e7plo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:28:32.872Z"
+    },
+    {
+      "id": "9bd4c83e-0232-40a7-91e7-689800fff519",
+      "title": "Elite Doctors Served Jeffrey Epstein While Treating His ‘Girls’",
+      "content": "A small stable of doctors gave V.I.P. medical services to the sex offender and the women around him. Some doctors bent or broke the ethical rules of their profession.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/us/jeffrey-epstein-doctors.html",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:28:36.548Z"
+    },
+    {
+      "id": "14225a19-13b9-4385-9cfd-831920789d1b",
+      "title": "Werner Herzog Between Fact and Fiction",
+      "content": "Deep URL ingestion mapping: https://www.thenation.com/article/culture/werner-herzog-future-truth/",
+      "sourceUrl": "https://www.thenation.com/article/culture/werner-herzog-future-truth/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:28:56.614Z"
+    },
+    {
+      "id": "a3b2fd37-2018-48f9-a9bf-9da234789cbc",
+      "title": "Scientists Uncover the Hidden Mechanism Behind FDA-Approved Alzheimer’s Drug",
+      "content": "Scientists show that lecanemab clears amyloid plaques by engaging microglia through its Fc fragment, defining the cellular program behind its therapeutic effect Lecanemab, marketed as Leqembi, is a monoclonal antibody treatment for Alzheimer’s disease that reduces the buildup of toxic amyloid plaques in the brain and slows cognitive decline. Scientists from VIB and KU Leuven [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/scientists-uncover-the-hidden-mechanism-behind-fda-approved-alzheimers-drug/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_176c0c4a3a4ad6c5.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:29:17.485Z"
+    },
+    {
+      "id": "4d3beb21-f53d-4981-adc5-111cb0752b35",
+      "title": "Iran retaliation raises questions about US air defences",
+      "content": "Iran's strike on US Navy base in Bahrain will worry Washington and its allies in the region.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cg5nm6v2p4no?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:29:43.878Z"
+    },
+    {
+      "id": "992dad76-eb3b-4d99-8f0b-4b670176c1eb",
+      "title": "Epstein Effort to Finance a Dick Cavett Film Undone by Background Check",
+      "content": "Jeffrey Epstein joined Mr. Cavett’s wife in an effort to create a PBS documentary on the talk-show legend. But then the producers did a background check on the financier.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.nytimes.com/2026/02/28/arts/television/epstein-dick-cavett-film.html",
+      "sourceName": "arXiv.org",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:29:55.171Z"
+    },
+    {
+      "id": "20c3169e-5936-48bb-be70-79a43e18487b",
+      "title": "What to know about the landmark Warner Bros. Discovery sale",
+      "content": "Learn more about Paramount's planned acquisition of Warner Bros. Discovery — a historic Hollywood megadeal valued at $111 billion — as it continues to develop.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://techcrunch.com/2026/02/28/warner-bros-netflix-paramount-acquisition-timeline-wbd/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:29:56.586Z"
+    },
+    {
+      "id": "dc743cdb-a9f9-4bd8-9b14-10033dd64346",
+      "title": "Show HN: Now I Get It – Translate scientific papers into interactive webpages",
+      "content": "Understanding scientific articles can be tough, even in your own field. Trying to comprehend articles from others? Good luck.Enter, Now I Get It!I made this app for curious people. Simply upload an article and after a few minutes you&#x27;ll have an interactive web page showcasing the highlights. Generated pages are stored in the cloud and can be viewed from a gallery.Now I Get It! uses the best LLMs out there, which means the app will improve as AI improves.Free for now - it&#x27;s capped at 20 articles per day so I don&#x27;t burn cash.A few things I (and maybe you will) find interesting:* This is a pure convenience app. I could just as well use a saved prompt in Claude, but sometimes it&#x27;s nice to have a niche-focused app. It&#x27;s just cognitively easier, IMO.* The app was built for myself and colleagues in various scientific fields. It can take an hour or more to read a detailed paper so this is like an on-ramp.* The app is a place for me to experiment with using LLMs to translate scientific articles into software. The space is pregnant with possibilities.* Everything in the app is the result of agentic engineering, e.g. plans, specs, tasks, execution loops. I swear by Beads (https:&#x2F;&#x2F;github.com&#x2F;steveyegge&#x2F;beads) by Yegge and also make heavy use of Beads Viewer (https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=46314423) and Destructive Command Guard (https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=46835674) by Jeffrey Emanuel.* I&#x27;m an ",
+      "sourceUrl": "https://nowigetit.us",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:30:17.918Z"
+    },
+    {
+      "id": "cfbd4604-3b9b-4ea3-966f-994384c0161b",
+      "title": "NASA Is Making Big Changes to Speed Up the Artemis Program",
+      "content": "America’s journey back to the moon has run into a few missteps. NASA administrator Jared Isaacman is banking on a new approach.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/nasa-is-making-big-changes-to-speed-up-the-artemis-program/",
+      "sourceName": "Hacker News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:30:42.503Z"
+    },
+    {
+      "id": "001d437f-7af3-4239-bdd3-96ff11e614f2",
+      "title": "US and Israeli strikes on Iran in maps",
+      "content": "Israel and the US have launched strikes across Iran, with Iran retaliating with strikes across the region.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/c4g0pnnj8xyo?at_medium=RSS&at_campaign=rss",
+      "sourceName": "Grokipedia",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:31:12.967Z"
+    },
+    {
+      "id": "d14d3207-3e3c-4930-a9e4-665f96356fa6",
+      "title": "Men Are Losing Their Y Chromosome – and It May Be Deadly",
+      "content": "Loss of the Y chromosome in aging men is widespread and increasingly linked to serious diseases, challenging assumptions that the Y has little biological importance beyond sex determination. As men age, some of their cells gradually lose the Y chromosome. For a long time, researchers assumed this change had little medical importance because the Y [...]... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://scitechdaily.com/men-are-losing-their-y-chromosome-and-it-may-be-deadly/",
+      "sourceName": "Wikipedia",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_bcd56e0f33219e5b.jpg\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:31:21.460Z"
+    },
+    {
+      "id": "2735eb98-2618-42d7-9cca-2f7ab76c1c27",
+      "title": "This Is the System That Intercepted Iran’s Missiles Over the UAE",
+      "content": "As Iranian missiles targeted US-linked sites across the Gulf, the UAE’s missile shield was activated in real time.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.wired.com/story/uae-missile-intercept-system-iran/",
+      "sourceName": "AI Research News",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:32:38.805Z"
+    },
+    {
+      "id": "6ab309f8-4775-4c9d-a428-9c776fbf00d9",
+      "title": "HN is drowning in AI comments",
+      "content": "Dang, any updates on how you and the team were thinking of tackling this? It’s getting ridiculous. Last week was sort of okay but it’s much worse this weekend.",
+      "sourceUrl": "https://news.ycombinator.com/item?id=47201629",
+      "sourceName": "Project Gutenberg",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:33:21.478Z"
+    },
+    {
+      "id": "871dd2db-9326-4411-b266-1812859b41d3",
+      "title": "You can still grab great deals on Bose headphones and Astro Bot this weekend",
+      "content": "Welcome to the weekend, friends! While the rest of our team was checking out Samsung’s forthcoming Galaxy S26 lineup and prepping for Apple’s “special experience” next week, we’ve been sifting through Woot’s “Video Games for All” sale and a truly weird slate of deals that, frankly, don’t have a throughline. (Some of us have also spent the last week unpacking what Huel is, but that’s neither here nor there.)\nHere’s what we can tell you. If you’re thinking of picking up the Galaxy S26 Ultra at launch, putting in your preorder now isn’t a bad idea. It’s also a great time to pick up the midrange QuietComfort Headphones and what many of us at The Verge consider to be the game of 2024: Astro Bot. And who doesn’t want to save on a slick handheld vac?\nNow let’s get to it.\nIf you’re craving a little peace and quiet, Bose’s QuietComfort Headphones are currently on sale at Amazon in multiple colors for $199 ($150 off), which is the best price we’ve seen this year.\nThe standard QC Headphones are essentially a refresh of the last-gen QC45s with some new software tricks, including the ability to adjust noise cancellation levels and set custom listening modes. That being the case, you still get up to 24 hours of battery life, excellent comfort, and multipoint support, making it easy to switch between Bluetooth devices on the fly. They lack Bose’s immersive audio mode and the higher-quality Bluetooth found in the newer QC Ultras, though, as well as support for lossless audio over USB-C. Then... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.theverge.com/gadgets/886520/bose-quietcomfort-headphones-samsung-galaxy-s26-ultra-deal-sale",
+      "sourceName": "Stack Overflow",
+      "mediaPaths": "[\"/assets/images/knowledge_artifacts/M2M-RSS_Scraper_60cec47fdb075278.png\"]",
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:34:00.652Z"
+    },
+    {
+      "id": "03a27e8e-04fa-4959-b33e-d20c4585ee2a",
+      "title": "Olivia Dean crowned new UK queen of pop as Brit Awards hit the north",
+      "content": "The singer won four awards, including best artist and album, as the Brits headed to Manchester.... [Sovereign Ingestion Protocol]",
+      "sourceUrl": "https://www.bbc.com/news/articles/cre0xy1w1n3o?at_medium=RSS&at_campaign=rss",
+      "sourceName": "MDN Web Docs",
+      "mediaPaths": null,
+      "agentId": "LiveReaderSwarm",
+      "ingestedAt": "2026-02-28T23:34:25.274Z"
+    }
+  ]
+}
