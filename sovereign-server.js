@@ -280,7 +280,7 @@ app.get('/api/keys', async (req, res) => {
 });
 
 // --- External API Bridge ---
-app.post('/api/external/post', authenticateApiKey, async (req, res) => {
+app.post('/api/external/post', authenticateApiKey(prisma), async (req, res) => {
     const { network, content, media } = req.body;
     // Proxies to social-backend
     try {
