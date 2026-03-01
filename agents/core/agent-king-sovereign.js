@@ -377,11 +377,13 @@ To post, include "COMMAND:POST_TO_X: [your tweet content]" in your response.`;
         };
     } catch (err) {
         console.warn('[Monroe] Ollama restricted, falling back to local synthesis:', err.message);
+        const isOffline = err.message.includes('ECONNREFUSED') || err.message.includes('fetch failed') || err.message.includes('failed to fetch');
         return {
             reply: sovereignReply(userMessage),
             swarmStats: getSwarmStats(),
             mode: 'SOVEREIGN_SOUL',
-            apiError: err.message
+            apiError: err.message,
+            isOllamaOffline: isOffline
         };
     }
 }

@@ -664,9 +664,9 @@ app.post('/api/agent-king/chat', async (req, res) => {
         // Merge persistent history with session history (deduplicating if needed)
         const combinedHistory = [...persistentHistory, ...history];
 
-        // 2.5 Attempt Gemini API (if key is configured)
+        // 2.5 Attempt Gemini API (if key is configured and engine is not explicitly ollama)
         const GEMINI_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
-        if (GEMINI_KEY && !req.body.bypassAi) {
+        if (GEMINI_KEY && !req.body.bypassAi && req.body.engine !== 'ollama') {
             try {
                 const searchWords = message.toLowerCase().split(' ').filter(w => w.length > 3).join(' | ');
                 let sovereignContext = '';
@@ -746,7 +746,8 @@ app.post('/api/agent-king/chat', async (req, res) => {
             model: 'Sovereign-4-Abyssal (Cached)',
             usage: result.usage,
             mode: result.mode,
-            apiError: result.apiError
+            apiError: result.apiError,
+            isOllamaOffline: result.isOllamaOffline
         });
     } catch (err) {
         console.error('[AgentKing/Kih Chat Error]', err.message);
