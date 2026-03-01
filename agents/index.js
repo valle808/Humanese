@@ -29,11 +29,11 @@ if (!status.runtimeAvailable) {
     console.log('[Automaton CEO] Note: To compile Automaton, run:');
     console.log('  cd automaton && pnpm build');
 }
-startHeartbeatLoop(30000);
-console.log('[Automaton CEO] Heartbeat loop started. CEO is online.\n');
-
-// 3. Initialize financial ledger
-initializeLedger(0);
+// Wrap side effects to avoid crashes on import in serverless environments
+if (typeof process !== 'undefined' && !process.env.VERCEL) {
+    startHeartbeatLoop(30000);
+    initializeLedger(0);
+}
 console.log('[Financial] Ledger initialized.');
 const report = getFinancialReport();
 console.log(`[Financial] Health: ${report.summary.health.emoji} ${report.summary.health.message}\n`);
