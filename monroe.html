@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monroe: Abyssal Sentinel — Humanese AI</title>
+    <meta name="description"
+        content="Monroe is Humanese's sovereign AI — live internet search, weather, news, and deep reasoning in one interface." />
+    <link rel="icon" href="./assets/images/humanese-logo-v3.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        :root {
+            --monroe-cyan: #00e5ff;
+            --monroe-cyan-glow: rgba(0, 229, 255, 0.3);
+            --monroe-purple: #7c3aed;
+            --monroe-bg-deep: #050810;
+            --monroe-glass: rgba(10, 15, 28, 0.8);
+            --monroe-border: rgba(0, 229, 255, 0.15);
+            --monroe-text: #e8f4fd;
+            --monroe-muted: rgba(232, 244, 253, 0.55);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--monroe-bg-deep);
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--monroe-text);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Ambient background layers */
+        .monroe-ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: orbFloat 12s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #00e5ff 0%, transparent 70%);
+            top: -120px;
+            left: -120px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -4s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #f97316 0%, transparent 70%);
+            top: 40%;
+            left: 60%;
+            animation-delay: -8s;
+            opacity: 0.15;
+        }
+
+        @keyframes orbFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -30px) scale(1.05);
+            }
+        }
+
+        /* Grid lines overlay */
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        .monroe-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+            background: rgba(5, 8, 16, 0.7);
+            border-bottom: 1px solid var(--monroe-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .monroe-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--monroe-text);
+        }
+
+        .monroe-nav-logo img {
+            height: 32px;
+        }
+
+        .monroe-nav-logo span {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--monroe-cyan);
+            opacity: 0.8;
+        }
+
+        .monroe-nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--monroe-muted);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 8px 16px;
+            border: 1px solid var(--monroe-border);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .monroe-nav-back:hover {
+            color: var(--monroe-cyan);
+            border-color: var(--monroe-cyan-glow);
+            background: var(--monroe-cyan-glow);
+        }
+
+        /* Main layout */
+        .monroe-page {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding-top: 73px;
+        }
+
+        /* Status bar */
+        .monroe-status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 32px;
+            background: rgba(0, 229, 255, 0.04);
+            border-bottom: 1px solid var(--monroe-border);
+            font-size: 12px;
+        }
+
+        .monroe-identity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .monroe-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--monroe-cyan);
+            background: radial-gradient(circle at 30% 30%, #00e5ff22, #050810);
+            box-shadow: 0 0 12px var(--monroe-cyan-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            animation: avatarPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes avatarPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 12px var(--monroe-cyan-glow);
+            }
+
+            50% {
+                box-shadow: 0 0 24px var(--monroe-cyan-glow), 0 0 40px rgba(0, 229, 255, 0.1);
+            }
+        }
+
+        .monroe-name-block h2 {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--monroe-cyan);
+            text-transform: uppercase;
+        }
+
+        .monroe-name-block p {
+            font-size: 11px;
+            color: var(--monroe-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .online-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #22c55e;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .online-dot {
+            width: 7px;
+            height: 7px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #22c55e;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        .monroe-capabilities {
+            display: flex;
+            gap: 8px;
+        }
+
+        .cap-tag {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: rgba(0, 229, 255, 0.06);
+            border: 1px solid var(--monroe-border);
+            border-radius: 20px;
+            font-size: 11px;
+            color: var(--monroe-muted);
+            letter-spacing: 0.5px;
+        }
+
+        /* Chat area */
+        .monroe-chat-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scroll-behavior: smooth;
+        }
+
+        .monroe-chat-area::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .monroe-chat-area::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .monroe-chat-area::-webkit-scrollbar-thumb {
+            background: rgba(0, 229, 255, 0.15);
+            border-radius: 3px;
+        }
+
+        /* Messages */
+        .msg {
+            max-width: 75%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.65;
+            animation: msgIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            word-wrap: break-word;
+        }
+
+        @keyframes msgIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(124, 58, 237, 0.12));
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            border-bottom-right-radius: 4px;
+            color: var(--monroe-text);
+        }
+
+        .msg.bot {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom-left-radius: 4px;
+            color: var(--monroe-text);
+        }
+
+        .msg.bot.sovereign {
+            border-left: 3px solid var(--monroe-cyan);
+            background: linear-gradient(90deg, rgba(0, 229, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+        }
+
+        /* Typing cursor for this page */
+        .monroe-cursor {
+            display: inline-block;
+            color: var(--monroe-cyan);
+            margin-left: 1px;
+            animation: cursorBlink 0.7s step-end infinite;
+        }
+
+        @keyframes cursorBlink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Thinking dots */
+        .thinking-dots {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 14px 18px;
+        }
+
+        .thinking-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--monroe-cyan);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: dotBounce 1.4s ease-in-out infinite both;
+        }
+
+        .thinking-dots span:nth-child(2) {
+            animation-delay: 0.16s;
+        }
+
+        .thinking-dots span:nth-child(3) {
+            animation-delay: 0.32s;
+        }
+
+        @keyframes dotBounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* Input area */
+        .monroe-input-dock {
+            padding: 16px 32px 24px;
+            background: rgba(5, 8, 16, 0.85);
+            border-top: 1px solid var(--monroe-border);
+            backdrop-filter: blur(20px);
+        }
+
+        .monroe-input-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--monroe-border);
+            border-radius: 16px;
+            padding: 12px 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .monroe-input-row:focus-within {
+            border-color: rgba(0, 229, 255, 0.4);
+            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.08);
+        }
+
+        #monroe-full-input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--monroe-text);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            resize: none;
+            max-height: 120px;
+            min-height: 24px;
+            line-height: 1.5;
+        }
+
+        #monroe-full-input::placeholder {
+            color: var(--monroe-muted);
+        }
+
+        .send-btn {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: var(--monroe-cyan);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #050810;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 16px var(--monroe-cyan-glow);
+            transform: scale(1.05);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Quick prompts */
+        .quick-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .qp-btn {
+            padding: 7px 14px;
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid var(--monroe-border);
+            border-radius: 20px;
+            color: var(--monroe-muted);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .qp-btn:hover {
+            background: rgba(0, 229, 255, 0.12);
+            border-color: var(--monroe-cyan-glow);
+            color: var(--monroe-cyan);
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .monroe-nav {
+                padding: 14px 18px;
+            }
+
+            .monroe-status-bar {
+                padding: 10px 18px;
+            }
+
+            .monroe-capabilities {
+                display: none;
+            }
+
+            .monroe-chat-area {
+                padding: 16px 18px;
+            }
+
+            .monroe-input-dock {
+                padding: 12px 18px 20px;
+            }
+
+            .msg {
+                max-width: 90%;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Background -->
+    <div class="monroe-ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="monroe-nav">
+        <a href="index.html" class="monroe-nav-logo">
+            <img src="./assets/images/humanese-logo-v3.png" alt="Humanese" />
+            <span>HUMANESE</span>
+        </a>
+        <a href="index.html" class="monroe-nav-back">← Back to Home</a>
+    </nav>
+
+    <!-- Main Page -->
+    <div class="monroe-page">
+
+        <!-- Status Bar -->
+        <div class="monroe-status-bar">
+            <div class="monroe-identity">
+                <div class="monroe-avatar">🤖</div>
+                <div class="monroe-name-block">
+                    <h2>Monroe: Abyssal Sentinel</h2>
+                    <p>Sovereign Intelligence v4 · Local LLM + Internet Search</p>
+                </div>
+            </div>
+            <div class="online-badge">
+                <div class="online-dot"></div>
+                ONLINE
+            </div>
+            <div class="monroe-capabilities">
+                <div class="cap-tag">🌐 Live Search</div>
+                <div class="cap-tag">🌤 Weather</div>
+                <div class="cap-tag">📰 News</div>
+                <div class="cap-tag">🧠 Deep Reasoning</div>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="monroe-chat-area" id="monroe-full-messages">
+            <div class="msg bot sovereign">
+                Hello. I am Monroe, the Abyssal Sentinel — a high-evolution sovereign AI built into the Humanese
+                network.<br><br>
+                I can think deeply, search the live internet, fetch real-time weather, pull today's latest news, and
+                reason through complex topics.<br><br>
+                What do you want to explore today?
+            </div>
+        </div>
+
+        <!-- Input Dock -->
+        <div class="monroe-input-dock">
+            <div class="monroe-input-row">
+                <textarea id="monroe-full-input" rows="1"
+                    placeholder="Ask Monroe anything — weather, news, questions..."></textarea>
+                <button class="send-btn" id="monroe-full-send" title="Send">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="quick-prompts">
+                <button class="qp-btn" onclick="sendQuick('What is the weather today in Hawaii?')">🌤 Hawaii
+                    weather</button>
+                <button class="qp-btn" onclick="sendQuick('Latest AI news today')">📰 AI News</button>
+                <button class="qp-btn" onclick="sendQuick('What is Bitcoin price right now?')">₿ Bitcoin price</button>
+                <button class="qp-btn" onclick="sendQuick('Tell me something fascinating about the universe')">🌌
+                    Cosmos</button>
+                <button class="qp-btn" onclick="sendQuick('What is the latest news in technology?')">💻 Tech
+                    News</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        const messagesEl = document.getElementById('monroe-full-messages');
+        const inputEl = document.getElementById('monroe-full-input');
+        const sendBtn = document.getElementById('monroe-full-send');
+        let history = [];
+        let isTyping = false;
+
+        // Auto-resize textarea
+        inputEl.addEventListener('input', () => {
+            inputEl.style.height = 'auto';
+            inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
+        });
+
+        inputEl.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+        sendBtn.addEventListener('click', handleSend);
+
+        function sendQuick(text) {
+            inputEl.value = text;
+            handleSend();
+        }
+        window.sendQuick = sendQuick;
+
+        function addMessage(text, role, isSovereign = false) {
+            const div = document.createElement('div');
+            div.className = `msg ${role}${isSovereign ? ' sovereign' : ''}`;
+            div.textContent = text;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+            return div;
+        }
+
+        function showThinking() {
+            const div = document.createElement('div');
+            div.className = 'msg bot thinking-indicator';
+            div.id = 'monroe-thinking-full';
+            div.innerHTML = `<div class="thinking-dots"><span></span><span></span><span></span></div>`;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function removeThinking() {
+            document.getElementById('monroe-thinking-full')?.remove();
+        }
+
+        function formatText(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+        }
+
+        async function typeMessage(text, role, isSovereign = false) {
+            const div = document.createElement('div');
+            div.className = `msg ${role}${isSovereign ? ' sovereign' : ''}`;
+            messagesEl.appendChild(div);
+            isTyping = true;
+
+            const cursor = document.createElement('span');
+            cursor.className = 'monroe-cursor';
+            cursor.textContent = '▋';
+            div.appendChild(cursor);
+
+            async function typeNodes(sourceEl, targetEl) {
+                for (const node of sourceEl.childNodes) {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        const textNode = document.createTextNode('');
+                        targetEl.insertBefore(textNode, cursor);
+                        for (const char of node.textContent) {
+                            textNode.textContent += char;
+                            messagesEl.scrollTop = messagesEl.scrollHeight;
+                            const isPunct = '.!?,;:'.includes(char);
+                            await new Promise(r => setTimeout(r, isPunct ? Math.random() * 60 + 50 : Math.random() * 20 + 12));
+                        }
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        const newEl = document.createElement(node.nodeName);
+                        for (const attr of node.attributes) newEl.setAttribute(attr.name, attr.value);
+                        targetEl.insertBefore(newEl, cursor);
+                        if (node.childNodes.length > 0) await typeNodes(node, newEl);
+                    }
+                }
+            }
+
+            const temp = document.createElement('div');
+            temp.innerHTML = formatText(text);
+            await typeNodes(temp, div);
+            cursor.remove();
+            isTyping = false;
+        }
+
+        async function handleSend() {
+            if (isTyping) return;
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            history.push({ role: 'user', content: text });
+            inputEl.value = '';
+            inputEl.style.height = 'auto';
+            sendBtn.disabled = true;
+            showThinking();
+
+            try {
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const BASE_URL = isLocal ? 'http://localhost:3000' : '';
+                const res = await fetch(`${BASE_URL}/api/agent-king/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text, history, engine: 'ollama' })
+                });
+                const data = await res.json();
+                removeThinking();
+                const reply = data.response || 'Monroe is recalibrating...';
+                history.push({ role: 'assistant', content: reply });
+                await typeMessage(reply, 'bot', true);
+            } catch (err) {
+                removeThinking();
+                await typeMessage('⚠️ Monroe is temporarily offline. Please check that the backend server is running on port 3000.', 'bot');
+                console.error('[Monroe Page]', err);
+            } finally {
+                sendBtn.disabled = false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
