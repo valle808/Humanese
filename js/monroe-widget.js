@@ -254,6 +254,7 @@
                 body: JSON.stringify({
                     message: text,
                     history: history,
+                    engine: 'ollama',
                     userId: userInfo.id || userInfo.userId || null
                 })
             });
@@ -261,7 +262,10 @@
 
             removeThinkingIndicator();
 
-            const reply = data.response || "The Sovereign Core is currently recalibrating...";
+            let reply = data.response || "The Sovereign Core is currently recalibrating...";
+            if (data.isOllamaOffline) {
+                reply += `<br><br><div style="padding: 10px; border: 1px solid #f39c12; background: rgba(243, 156, 18, 0.1); border-radius: 8px; color: #f39c12; font-size: 13px;"><strong>⚠️ Local LLM Offline</strong><br>Monroe's local cognitive engine is offline. Please launch the Ollama application (<code>ollama run llama3</code>) to enable autonomous human-like reasoning.</div>`;
+            }
             const mode = data.mode || (data.isFallback ? 'SOVEREIGN_SOUL' : '');
             const isSovereign = mode === 'SOVEREIGN_SOUL';
             const mediaData = data.media || null;
