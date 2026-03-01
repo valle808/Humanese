@@ -1,19 +1,10 @@
 {
     "version": 2,
     "cleanUrls": true,
-    "trailingSlash": false,
     "rewrites": [
         {
-            "source": "/api/test",
-            "destination": "/api/test.js"
-        },
-        {
-            "source": "/api/health",
-            "destination": "/api/health.js"
-        },
-        {
             "source": "/api/(.*)",
-            "destination": "/api/server.js"
+            "destination": "/api/index.js"
         }
     ]
 }
