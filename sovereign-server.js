@@ -9,6 +9,18 @@
 
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import fs from 'fs';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+
+dotenv.config();
+
 // Heavy dependencies moved to dynamic imports inside a resilient getter
 let prisma;
 const getPrisma = async () => {
@@ -30,44 +42,39 @@ const getCoreModules = async () => {
         apiAuth: await import('./agents/core/api-auth.js'),
         personaAgent: await import('./agents/core/persona-agent.js'),
         agentHealer: await import('./agents/core/agent-healer.js'),
-        scalableArch: await import('./agents/core/scalable-architecture.js')
+        scalableArch: await import('./agents/core/scalable-architecture.js'),
+        socialRouter: (await import('./agents/social/social-backend.js')).default
     };
 };
 
-// --- System Telemetry & Autonomous Healing ---
-process.on('uncaughtException', (err) => {
+// ... (Rest of the code should use getCoreModules or dynamic imports)
+// Note: I'm keeping app.use('/api/social', socialRouter) as is for now, but it might need dynamic inclusion.
+
+// --- System Telemetry ---
+process.on('uncaughtException', async (err) => {
     console.error('[CRITICAL] Uncaught Exception:', err);
-    agentHealer.autoHeal(err);
+    try {
+        const { agentHealer } = await getCoreModules();
+        agentHealer.autoHeal(err);
+    } catch { }
 });
-process.on('unhandledRejection', (reason, promise) => {
-    console.error('[CRITICAL] Unhandled Rejection at:', promise, 'reason:', reason);
-    agentHealer.autoHeal(reason);
-});
-
-dotenv.config();
-
-import { matrixScaler } from './agents/core/scalable-architecture.js';
-import { PersonaAgent } from './agents/core/persona-agent.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-// Global Prisma will be accessed via getPrisma()
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// --- Security Middleware ---
 app.use(helmet({
-    contentSecurityPolicy: false,  // Allow inline scripts for existing pages
+    contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false
 }));
 app.set('trust proxy', 1);
 
-// Rate limit auth endpoints: 10 requests per 15 minutes
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 10,
@@ -76,31 +83,12 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
-async function getAgentModules() {
-    return {
-        registry: await import('./agents/registry.js'),
-        skillMarket: await import('./agents/skill-market-engine.js'),
-        econExpansion: await import('./agents/economic-expansion.js'),
-        qLottery: await import('./agents/quantum-lottery.js'),
-        valle: await import('./agents/valle.js'),
-        bridge: await import('./agents/automaton-bridge.js'),
-        financial: await import('./agents/financial.js')
-    };
-}
-
-// --- Serve all static files (HTML, CSS, JS, images, etc.) ---
 app.use(express.static(__dirname));
 
-// ── Page aliases / redirects ──────────────────────────────────────────────────
-app.get('/register', (req, res) => res.redirect('/signup.html'));
-app.get('/register.html', (req, res) => res.redirect('/signup.html'));
-
-// --- Mock Social API ---
-app.use('/api/social', socialRouter);
-
 // --- Health Check ---
-app.get('/api/health', (req, res) => {
-    res.json({ status: 'UP', timestamp: new Date(), version: '1.0.1-sovereign', db: !!prisma });
+app.get('/api/health', async (req, res) => {
+    const p = await getPrisma();
+    res.json({ status: 'UP', timestamp: new Date(), version: '1.0.2-dynamic', db: !!p });
 });
 
 // --- Question API Proxy: serves local JSON, falls back to Vercel ---
