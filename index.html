@@ -652,13 +652,15 @@
       const monroeMsg = appendMessage('monroe', '<span class="typing-cursor"></span>');
 
       try {
-        const res = await fetch('/api/agent-king/chat', {
+        const BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : '';
+        const res = await fetch(`${BASE_URL}/api/agent-king/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message: text,
             history: chatHistory,
             userId: 'Sovereign_User',
+            engine: 'ollama',
             mode: document.querySelector('.mode-select').value
           })
         });
@@ -666,8 +668,12 @@
 
         if (data.error) throw new Error(data.error);
 
-        const responseText = data.response;
+        let responseText = data.response;
         if (!responseText) throw new Error('Empty response from Abyssal Core');
+
+        if (data.isOllamaOffline) {
+          responseText += `<br><br><div style="padding: 10px; border: 1px solid #f39c12; background: rgba(243, 156, 18, 0.1); border-radius: 8px; color: #f39c12; font-size: 13px;"><strong>⚠️ Local LLM Offline</strong><br>Monroe's local cognitive engine is offline. Please launch the Ollama application (<code>ollama run llama3</code>) to enable autonomous human-like reasoning.</div>`;
+        }
 
         // Type out Monroe's response
         monroeMsg.innerHTML = '';
