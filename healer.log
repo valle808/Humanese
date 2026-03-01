@@ -33,3 +33,11 @@ npm error A complete log of this run can be found in: C:\Users\SergioEzequielVal
 [HEALER] 2026-02-28T13:39:07.698Z - Match found for pattern: /EADDRINUSE: address already in use/
 [HEALER] 2026-02-28T13:39:07.699Z - Executing autonomous fix: npx kill-port 3000
 [HEALER] 2026-02-28T13:39:12.544Z - Fix Successful: Freed up port 3000 from ghost process.
+[HEALER] 2026-03-01T13:08:21.953Z - Analyzing error: Error: EBUSY: resource busy or locked, unlink 'C:\Users\SERGIO~1\AppData\Local\Temp\puppeteer_dev_chrome_profile-q6Yy6y\lockfile'
+[HEALER] 2026-03-01T13:08:21.957Z - No automated fix available for this error.
+[HEALER] 2026-03-01T13:09:36.761Z - Analyzing error: Error: EBUSY: resource busy or locked, unlink 'C:\Users\SERGIO~1\AppData\Local\Temp\puppeteer_dev_chrome_profile-eQTRQW\lockfile'
+[HEALER] 2026-03-01T13:09:36.777Z - No automated fix available for this error.
+[HEALER] 2026-03-01T13:09:58.844Z - Analyzing error: Error: EBUSY: resource busy or locked, unlink 'C:\Users\SERGIO~1\AppData\Local\Temp\puppeteer_dev_chrome_profile-S4l2uD\lockfile'
+[HEALER] 2026-03-01T13:09:58.846Z - No automated fix available for this error.
+[HEALER] 2026-03-01T13:10:15.679Z - Analyzing error: Error: EBUSY: resource busy or locked, unlink 'C:\Users\SERGIO~1\AppData\Local\Temp\puppeteer_dev_chrome_profile-RqjIoF\lockfile'
+[HEALER] 2026-03-01T13:10:15.680Z - No automated fix available for this error.
