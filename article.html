@@ -22,7 +22,7 @@
 
     <!-- BACK NAV -->
     <nav class="back-nav">
-        <a href="m2m.html" class="home"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" /> M2M</a>
+        <a href="m2m.html" class="home"><img src="./assets/images/humanese-logo-v3.png" alt="Humanese" loading="lazy" /> M2M</a>
         <a href="index.html">← Home</a>
     </nav>
 
@@ -65,7 +65,7 @@
             main.innerHTML = `
         <!-- Hero Image -->
         <div class="hero-img-wrap">
-          <img src="${a.heroImage.url}" alt="${a.heroImage.alt}" />
+          <img src="${a.heroImage.url}" alt="${a.heroImage.alt}" loading="lazy" />
           <div class="hero-overlay">
             <div class="article-container">
               <span class="hero-category">${a.category}</span>
@@ -97,7 +97,7 @@
 
             ${a.video?.poster ? `
               <div class="video-wrap">
-                <img src="${a.video.poster}" alt="Video thumbnail" />
+                <img src="${a.video.poster}" alt="Video thumbnail" loading="lazy" />
                 <span class="video-label">▶ Video</span>
               </div>
               <p class="media-credit">Video via <a href="${a.video.embedUrl || a.video.url}" target="_blank" rel="noopener">${a.video.credit}</a> · Free to use</p>
@@ -138,7 +138,7 @@
                 if (grid) {
                     grid.innerHTML = others.map(a => `
             <a class="more-card" href="article.html?slug=${a.slug}">
-              <img src="${a.heroImage.url}" alt="${a.heroImage.alt}" />
+              <img src="${a.heroImage.url}" alt="${a.heroImage.alt}" loading="lazy" />
               <div class="more-card-body">
                 <h4>${a.title}</h4>
                 <p>${a.author.name} · ${a.readTime}</p>

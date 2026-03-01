@@ -18,7 +18,7 @@
 <body>
 
     <header class="topbar">
-        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v3.png" alt="" />
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v3.png" alt="" loading="lazy" />
             Marketplace</a>
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="🔍  Search software, hardware, real estate, skills..."
@@ -187,7 +187,7 @@
 
                 box.innerHTML = `
                     <button class="modal-close" onclick="closeModal()" title="Action Button">✕</button>
-                    <img class="modal-header-img" src="${img}" alt="${l.title}" />
+                    <img class="modal-header-img" src="${img}" alt="${l.title}" loading="lazy" />
                     <div class="modal-content-pading">
                         <div class="modal-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
                         <h2 class="modal-title">${l.title}</h2>
