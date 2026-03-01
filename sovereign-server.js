@@ -65,6 +65,18 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
+async function getAgentModules() {
+    return {
+        registry: await import('./agents/registry.js'),
+        skillMarket: await import('./agents/skill-market-engine.js'),
+        econExpansion: await import('./agents/economic-expansion.js'),
+        qLottery: await import('./agents/quantum-lottery.js'),
+        valle: await import('./agents/valle.js'),
+        bridge: await import('./agents/automaton-bridge.js'),
+        financial: await import('./agents/financial.js')
+    };
+}
+
 // --- Serve all static files (HTML, CSS, JS, images, etc.) ---
 app.use(express.static(__dirname));
 
