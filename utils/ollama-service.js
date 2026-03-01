@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
  */
 export class OllamaService {
     constructor(model = 'llama3') {
-        this.baseUrl = 'http://localhost:11434/api';
+        this.baseUrl = 'http://127.0.0.1:11434/api';
         this.model = model;
     }
 
