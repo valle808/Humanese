@@ -2258,34 +2258,35 @@ app.get('/api/reader-swarm/status', async (req, res) => {
 });
 
 // ═══ STARTUP ═══
-initAdmin().then(async () => {
+const startup = async () => {
     try {
-        const { startSwarm } = await import('./agents/swarm/live-reader-swarm.js');
-        startSwarm();
-        console.log('🌐 Live Reader Swarm: ACTIVE (12 sovereign agents reading Wikipedia, arXiv, HN, MDN...)');
-    } catch (e) { console.warn('⚠️  Live Reader Swarm failed to start:', e.message); }
+        await initAdmin();
+    } catch (e) { console.error('⚠️ Admin initialization skipped:', e.message); }
 
-    // ── Autonomous Sovereign Swarm Knowledge Synthesis ──
-    setInterval(async () => {
+    if (!process.env.VERCEL) {
         try {
-            console.log('🤖 [Autonomous Swarm] Initializing scheduled knowledge synthesis...');
-            const { runSwarmMission } = await import('./agents/core/agent-king-sovereign.js');
-            const count = 5 + Math.floor(Math.random() * 5); // 5-10 agents
-            await runSwarmMission({ count });
-            console.log(`✅ [Autonomous Swarm] Synthesis complete. New shards added to the matrix.`);
-        } catch (e) {
-            console.error('❌ [Autonomous Swarm Error]:', e.message);
-        }
-    }, 1000 * 60 * 60 * 2); // Every 2 hours
+            const { startSwarm } = await import('./agents/swarm/live-reader-swarm.js');
+            startSwarm();
+            console.log('🌐 Live Reader Swarm: ACTIVE');
+        } catch (e) { console.warn('⚠️ Swarm failed:', e.message); }
+
+        // ── Autonomous Sovereign Swarm Knowledge Synthesis ──
+        setInterval(async () => {
+            try {
+                const { runSwarmMission } = await import('./agents/core/agent-king-sovereign.js');
+                await runSwarmMission({ count: 5 });
+            } catch (e) { console.error('❌ Swarm Error:', e.message); }
+        }, 1000 * 60 * 60 * 2);
+    }
 
     if (!process.env.VERCEL) {
         app.listen(PORT, () => {
-            console.log(`Humanese API Server running on http://localhost:${PORT}`);
-            console.log('🔒 Admin auth system: ACTIVE (AES-256-GCM + bcrypt + JWT)');
-            console.log('⚡ Sovereign Abyssal Core: ONLINE (Identity Sync Complete)');
+            console.log(`Humanese API Server running on port ${PORT}`);
         });
     }
-});
+};
+
+startup();
 
 export default app;
 // Exception handlers are at the top of the file integrated with Agent-Healer.
