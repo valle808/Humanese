@@ -83,7 +83,7 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '..')));
 
 // --- Health Check ---
 app.get('/api/health', async (req, res) => {
@@ -96,7 +96,7 @@ app.get('/api/question', async (req, res) => {
     const lang = req.query.lang || 'es';
     const fs = await import('fs');
     const path = await import('path');
-    const localFile = path.default.resolve(`./assets/JSON/questions-${lang}.json`);
+    const localFile = path.default.resolve(__dirname, '..', 'assets', 'JSON', `questions-${lang}.json`);
 
     // 1. Try local file first
     if (fs.default.existsSync(localFile)) {
@@ -118,7 +118,7 @@ app.get('/api/question', async (req, res) => {
     } catch (error) {
         console.error('Question proxy error:', error.message);
         // 3. Final fallback: serve Spanish questions  
-        const fallback = path.default.resolve('./assets/JSON/questions-es.json');
+        const fallback = path.default.resolve(__dirname, '..', 'assets', 'JSON', 'questions-es.json');
         if (fs.default.existsSync(fallback)) {
             const data = JSON.parse(fs.default.readFileSync(fallback, 'utf8'));
             return res.json(data);
