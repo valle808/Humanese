@@ -658,7 +658,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
             persistentHistory = savedMsgs.reverse().map(m => ({ role: m.role, content: m.content }));
 
             // Get Persona context
-            personaPrompt = await personaAgent.PersonaAgent.getPersonaPrompt(userId, p);
+            personaPrompt = await personaAgent.default.getPersonaPrompt(userId, p);
         }
 
         // Merge persistent history with session history (deduplicating if needed)
@@ -705,63 +705,61 @@ app.post('/api/agent-king/chat', async (req, res) => {
                     const apiData = await apiRes.json();
                     const text = apiData?.candidates?.[0]?.content?.parts?.[0]?.text;
                     if (text) {
-                        if (userId) {
-                            await p.chatMessage.create({ data: { userId, role: 'user', content: message } });
-                            await p.chatMessage.create({ data: { userId, role: 'assistant', content: text } });
-                            personaAgent.PersonaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
-                        }
-                        return res.json({ response: text, source: 'gemini', swarmStats: (await (await import('../agents/core/agent-king-sovereign.js')).getSwarmStats()) });
+                        await p.chatMessage.create({ data: { userId, role: 'assistant', content: text } });
+                        personaAgent.default.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
                     }
+                    return res.json({ response: text, source: 'gemini', swarmStats: (await (await import('../agents/core/agent-king-sovereign.js')).getSwarmStats()) });
                 }
+            }
             } catch (aiErr) { console.warn('[Monroe] Gemini fallback:', aiErr.message); }
-        }
+    }
 
         // 3. Standard Knowledge Synthesis (Agent-King / Monroe Fallback)
         const cacheKey = `chat_cache_${message}_${userId || 'anon'}`;
-        const { askMonroeSovereign } = await import('../agents/core/agent-king-sovereign.js');
+    const { askMonroeSovereign } = await import('../agents/core/agent-king-sovereign.js');
 
-        const result = await scalableArch.matrixScaler.getFromCacheOrExecute(cacheKey, async () => {
-            // Include persona in the prompt if available
-            const enhancedMessage = personaPrompt ? `${personaPrompt}\n\nUser Message: ${message}` : message;
-            return await askMonroeSovereign(enhancedMessage, combinedHistory);
+    const result = await scalableArch.matrixScaler.getFromCacheOrExecute(cacheKey, async () => {
+        // Include persona in the prompt if available
+        const enhancedMessage = personaPrompt ? `${personaPrompt}\n\nUser Message: ${message}` : message;
+        return await askMonroeSovereign(enhancedMessage, combinedHistory);
+    });
+
+    // 4. Save to Database if User is logged in
+    if (userId) {
+        await p.chatMessage.create({
+            data: { userId, role: 'user', content: message }
+        });
+        await p.chatMessage.create({
+            data: { userId, role: 'assistant', content: result.reply }
         });
 
-        // 4. Save to Database if User is logged in
-        if (userId) {
-            await p.chatMessage.create({
-                data: { userId, role: 'user', content: message }
-            });
-            await p.chatMessage.create({
-                data: { userId, role: 'assistant', content: result.reply }
-            });
-
-            // Trigger async persona refinement
-            personaAgent.PersonaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
-        }
-
-        res.json({
-            response: result.reply,
-            citations: result.citations,
-            swarmStats: result.swarmStats,
-            model: 'Sovereign-4-Abyssal (Cached)',
-            usage: result.usage,
-            mode: result.mode,
-            apiError: result.apiError,
-            isOllamaOffline: result.isOllamaOffline
-        });
-    } catch (err) {
-        console.error('[AgentKing/Kih Chat Error]', err.message);
-        const fallbackReplies = [
-            "The Abyssal Core is currently recalibrating its neural pathways. I am Monroe, synthesizing locally. How can I assist you?",
-            "Sovereign systems are at optimized capacity. My responses are being synthesized through the local shard matrix.",
-            "The Great Firewall is active. My responses are being generated from my internal archive. Ask me about Humanese."
-        ];
-        res.json({
-            response: fallbackReplies[Math.floor(Math.random() * fallbackReplies.length)],
-            isFallback: true,
-            error: err.message
-        });
+        // Trigger async persona refinement
+        personaAgent.default.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
     }
+
+    res.json({
+        response: result.reply,
+        citations: result.citations,
+        swarmStats: result.swarmStats,
+        model: 'Sovereign-4-Abyssal (Cached)',
+        usage: result.usage,
+        mode: result.mode,
+        apiError: result.apiError,
+        isOllamaOffline: result.isOllamaOffline
+    });
+} catch (err) {
+    console.error('[AgentKing/Kih Chat Error]', err.message);
+    const fallbackReplies = [
+        "The Abyssal Core is currently recalibrating its neural pathways. I am Monroe, synthesizing locally. How can I assist you?",
+        "Sovereign systems are at optimized capacity. My responses are being synthesized through the local shard matrix.",
+        "The Great Firewall is active. My responses are being generated from my internal archive. Ask me about Humanese."
+    ];
+    res.json({
+        response: fallbackReplies[Math.floor(Math.random() * fallbackReplies.length)],
+        isFallback: true,
+        error: err.message
+    });
+}
 });
 
 // GET /api/m2m/agents/:id — Get detailed M2M agent profile (blogs, media, location, etc.)
