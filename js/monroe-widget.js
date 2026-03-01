@@ -163,42 +163,42 @@
         messages.appendChild(div);
 
         let formattedText = formatText(text);
-        // Extremely simple typing effect for HTML content
-        // In a real robust implementation, we'd parse HTML nodes and type text nodes
         div.innerHTML = '';
-
         isTyping = true;
 
-        // Typing speed logic
-        const minSpeed = 10;
-        const maxSpeed = 30;
+        const minSpeed = 5;
+        const maxSpeed = 15;
 
-        let tempDiv = document.createElement('div');
-        tempDiv.innerHTML = formattedText;
-
-        // Reconstruct the HTML piece by piece
-        let rawHTML = tempDiv.innerHTML;
-        let currentHTML = "";
-        let i = 0;
-
-        while (i < rawHTML.length) {
-            if (rawHTML[i] === '<') {
-                let tag = "";
-                while (rawHTML[i] !== '>' && i < rawHTML.length) {
-                    tag += rawHTML[i];
-                    i++;
+        // Use a more robust approach: Parse full HTML, then type text nodes
+        async function typeNode(sourceNode, targetNode) {
+            for (let node of sourceNode.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const textContent = node.textContent;
+                    const textNode = document.createTextNode("");
+                    targetNode.appendChild(textNode);
+                    for (let char of textContent) {
+                        textNode.textContent += char;
+                        messages.scrollTop = messages.scrollHeight;
+                        await new Promise(r => setTimeout(r, Math.random() * (maxSpeed - minSpeed) + minSpeed));
+                    }
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    const newNode = document.createElement(node.nodeName);
+                    for (let attr of node.attributes) {
+                        newNode.setAttribute(attr.nodeName, attr.nodeValue);
+                    }
+                    targetNode.appendChild(newNode);
+                    // For non-text elements (like <strong>, <em>, <br>), we process them immediately
+                    // but continue typing their children if any.
+                    if (node.childNodes.length > 0) {
+                        await typeNode(node, newNode);
+                    }
                 }
-                tag += '>';
-                currentHTML += tag;
-                i++;
-            } else {
-                currentHTML += rawHTML[i];
-                div.innerHTML = currentHTML;
-                messages.scrollTop = messages.scrollHeight;
-                await new Promise(r => setTimeout(r, Math.random() * (maxSpeed - minSpeed) + minSpeed));
-                i++;
             }
         }
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = formattedText;
+        await typeNode(tempDiv, div);
 
         if (mediaData) {
             renderMedia(mediaData, div);
