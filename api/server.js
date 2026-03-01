@@ -658,7 +658,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
             persistentHistory = savedMsgs.reverse().map(m => ({ role: m.role, content: m.content }));
 
             // Get Persona context
-            personaPrompt = await personaAgent.getPersonaPrompt(userId);
+            personaPrompt = await personaAgent.PersonaAgent.getPersonaPrompt(userId, p);
         }
 
         // Merge persistent history with session history (deduplicating if needed)
@@ -708,7 +708,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
                         if (userId) {
                             await p.chatMessage.create({ data: { userId, role: 'user', content: message } });
                             await p.chatMessage.create({ data: { userId, role: 'assistant', content: text } });
-                            personaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }]);
+                            personaAgent.PersonaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
                         }
                         return res.json({ response: text, source: 'gemini', swarmStats: (await (await import('../agents/core/agent-king-sovereign.js')).getSwarmStats()) });
                     }
@@ -736,7 +736,7 @@ app.post('/api/agent-king/chat', async (req, res) => {
             });
 
             // Trigger async persona refinement
-            personaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }]);
+            personaAgent.PersonaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }], p);
         }
 
         res.json({
@@ -2256,7 +2256,7 @@ const startup = async () => {
 };
 
 
-// startup(); 
+startup();
 
 export default app;
 // Exception handlers are at the top of the file integrated with Agent-Healer.
