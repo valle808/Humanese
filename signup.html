@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="./css/signup.css">
 
   <script src="./js/humanese-background.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+  <script src="./js/web3-auth.js" type="module"></script>
 </head>
 
 <body>
@@ -23,7 +25,8 @@
           <img src="./assets/svg/close-button.svg" alt="close button" /></a>
       </div>
       <div class="login-button-container">
-        <button class="login-button button-div" id="login-button" onclick="loginButtonAnimation()" title="Action Button">
+        <button class="login-button button-div" id="login-button" onclick="loginButtonAnimation()"
+          title="Action Button">
           LOGIN
         </button>
       </div>
@@ -57,7 +60,8 @@
           </div>
 
           <div class="create-account-button-container">
-            <button type="submit" class="create-account-button button-div" id="create-account-button" title="Action Button">
+            <button type="submit" class="create-account-button button-div" id="create-account-button"
+              title="Action Button">
               <span id="create-account-span">CREATE ACCOUNT</span>
               <div class="loading-balls-container hidden" style="transition-duration: 250ms"
                 id="loading-balls-container">
@@ -65,6 +69,14 @@
                 <div class="animation second-animation loading-ball"></div>
                 <div class="animation third-animation loading-ball"></div>
               </div>
+            </button>
+            <div class="split-line-small" style="margin: 15px 0; text-align: center; color: var(--monroe-text-muted);">
+              OR</div>
+            <button type="button" class="wallet-button button-div" id="connect-wallet-button"
+              title="Connect Crypto Wallet">
+              <span id="wallet-button-span">CONNECT CRYPTO WALLET</span>
+              <img src="./assets/svg/wallet-icon.svg" id="wallet-icon" style="width:20px; margin-left:10px;"
+                alt="wallet" />
             </button>
             <div id="success-message"
               style="color: #2e7d32; display: none; margin-top: 15px; font-weight: bold; text-align: center; font-size: 16px;">
@@ -95,37 +107,37 @@
     </div>
   </div>
 
-  
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Infrastructure</h4>
-                <ul>
-                    <li><a href="agents.html">Command</a></li>
-                    <li><a href="m2m.html">Social</a></li>
-                    <li><a href="intelligence.html">HQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Sovereignty</h4>
-                <ul>
-                    <li><a href="about.html">Origin</a></li>
-                    <li><a href="mission.html">Mission</a></li>
-                    <li><a href="approach.html">Approach</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="terms.html">Terms</a></li>
-                    <li><a href="privacy.html">Privacy</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Infrastructure</h4>
+        <ul>
+          <li><a href="agents.html">Command</a></li>
+          <li><a href="m2m.html">Social</a></li>
+          <li><a href="intelligence.html">HQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sovereignty</h4>
+        <ul>
+          <li><a href="about.html">Origin</a></li>
+          <li><a href="mission.html">Mission</a></li>
+          <li><a href="approach.html">Approach</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
 
-    <script src="js/monroe-widget.js"></script>
+  <script src="js/monroe-widget.js"></script>
 </body>
 
 </html>

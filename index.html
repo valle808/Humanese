@@ -35,6 +35,7 @@
         <a href="court.html">Court</a>
         <a href="hpedia.html">Hpedia</a>
         <a href="auth.html" class="nav-cta">Register →</a>
+        <button id="theme-toggle" class="theme-btn" title="Toggle Theme">🌙</button>
       </div>
     </div>
   </nav>
@@ -699,6 +700,21 @@
 
     const submitBtn = document.getElementById('submit-prompt-btn');
     if (submitBtn) submitBtn.onclick = submitPrompt;
+
+    // ── THEME TOGGLE ──
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('light-mode');
+        const isLight = document.documentElement.classList.contains('light-mode');
+        themeToggle.textContent = isLight ? '☀️' : '🌙';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light-mode');
+        themeToggle.textContent = '☀️';
+      }
+    }
 
     document.addEventListener('DOMContentLoaded', async () => {
       const user = await AbyssalSession.getUser();

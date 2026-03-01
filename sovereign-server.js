@@ -1,3 +1,12 @@
+/**
+ * =========================================================================
+ * 🌌 THE HUMANESE SOVEREIGN MATRIX
+ * Core Node Backend
+ * 
+ * Powered by Agent-King & Abyssal Swarm Technologies
+ * =========================================================================
+ */
+
 import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
@@ -6,14 +15,28 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import { initAdmin, adminLogin, adminVerify, requestPasswordRecovery, resetPassword } from './agents/admin-auth.js';
-import socialRouter from './agents/social-backend.js';
+import { initAdmin, adminLogin, adminVerify, requestPasswordRecovery, resetPassword } from './agents/core/admin-auth.js';
+import socialRouter from './agents/social/social-backend.js';
 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { hashApiKey, generateApiKey, authenticateApiKey } from './agents/api-auth.js';
+import { hashApiKey, generateApiKey, authenticateApiKey } from './agents/core/api-auth.js';
+import { agentHealer } from './agents/core/agent-healer.js';
+
+// --- System Telemetry & Autonomous Healing ---
+process.on('uncaughtException', (err) => {
+    console.error('[CRITICAL] Uncaught Exception:', err);
+    agentHealer.autoHeal(err);
+});
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('[CRITICAL] Unhandled Rejection at:', promise, 'reason:', reason);
+    agentHealer.autoHeal(reason);
+});
 
 dotenv.config();
+
+import { matrixScaler } from './agents/core/scalable-architecture.js';
+import { PersonaAgent } from './agents/core/persona-agent.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -153,12 +176,49 @@ app.post('/api/auth/login', async (req, res) => {
     try {
         const user = await prisma.user.findUnique({ where: { email } });
         if (!user) return res.status(401).json({ error: 'Invalid credentials' });
-
-        // For now, if we don't have password in schema, we're in a bit of a transition.
-        // I'll assume for this demonstration we bypass or check a mock password.
         res.json({ success: true, user });
     } catch (error) {
         res.status(500).json({ error: 'Login failed' });
+    }
+});
+
+// Web3 Authentication (Wallet Signature)
+app.post('/api/auth/web3', async (req, res) => {
+    const { address, signature, challenge } = req.body;
+    try {
+        const { verifyMessage } = await import('ethers');
+        const recoveredAddress = verifyMessage(challenge, signature);
+
+        if (recoveredAddress.toLowerCase() !== address.toLowerCase()) {
+            return res.status(401).json({ error: 'Invalid signature' });
+        }
+
+        // Find or create user by wallet address
+        let user = await prisma.user.findFirst({
+            where: { wallets: { some: { address: address } } }
+        });
+
+        if (!user) {
+            // Create user with a generated email if not exists
+            const email = `web3_${address.slice(0, 10)}@humanese.xyz`;
+            user = await prisma.user.upsert({
+                where: { email },
+                update: {},
+                create: {
+                    id: crypto.randomUUID(),
+                    email,
+                    name: `Sovereign ${address.slice(0, 6)}`,
+                    wallets: {
+                        create: { address, network: 'Ethereum' }
+                    }
+                }
+            });
+        }
+
+        res.json({ success: true, user });
+    } catch (error) {
+        console.error('Web3 Auth Error:', error);
+        res.status(500).json({ error: 'Web3 Auth failed' });
     }
 });
 
@@ -432,7 +492,7 @@ app.get('/api/agent-king/stats', async (req, res) => {
 app.post('/api/agent-king/spawn', async (req, res) => {
     try {
         const { count = 10, topics = null } = req.body;
-        const { runSwarmMission } = await import('./agents/agent-king-sovereign.js');
+        const { runSwarmMission } = await import('./agents/core/agent-king-sovereign.js');
         const result = await runSwarmMission({ count, topics });
         res.json({ success: true, ...result });
     } catch (err) {
@@ -445,7 +505,7 @@ app.post('/api/agent-king/spawn', async (req, res) => {
 app.post('/api/agent-king/mission', async (req, res) => {
     try {
         const { topic = null } = req.body;
-        const { runKnowledgeMission } = await import('./agents/agent-king-sovereign.js');
+        const { runKnowledgeMission } = await import('./agents/core/agent-king-sovereign.js');
         const result = await runKnowledgeMission(topic);
         res.json({ success: true, knowledge: result.knowledge, usage: result.usage });
     } catch (err) {
@@ -458,7 +518,7 @@ app.post('/api/agent-king/mission', async (req, res) => {
 app.get('/api/agent-king/knowledge', async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 100;
-        const { getKnowledgeVault } = await import('./agents/agent-king-sovereign.js');
+        const { getKnowledgeVault } = await import('./agents/core/agent-king-sovereign.js');
         res.json(getKnowledgeVault(limit));
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -469,7 +529,7 @@ app.get('/api/agent-king/knowledge', async (req, res) => {
 app.get('/api/agent-king/roster', async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 200;
-        const { getAgentRoster } = await import('./agents/agent-king-sovereign.js');
+        const { getAgentRoster } = await import('./agents/core/agent-king-sovereign.js');
         res.json({ agents: getAgentRoster(limit) });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -481,19 +541,76 @@ app.post('/api/agent-king/chat', async (req, res) => {
     try {
         const { message, history = [] } = req.body;
         if (!message) return res.status(400).json({ error: 'message is required' });
-        const { askMonroeSovereign } = await import('./agents/agent-king-sovereign.js');
-        const result = await askMonroeSovereign(message, history);
+
+        // 1. Check for Media Intent (Agent-Kih)
+        const agentKih = await import('./agents/media/agent-kih-media.js');
+        const mediaIntent = agentKih.parseMediaIntent(message);
+
+        if (mediaIntent.isMediaRequest) {
+            const mediaResult = await agentKih.synthesizeMedia(mediaIntent);
+            return res.json({
+                response: mediaResult.message,
+                media: mediaResult.media,
+                model: 'Agent-Kih System',
+                mode: 'MEDIA_SYNTHESIS'
+            });
+        }
+
+        // 2. Load Persisted History & Persona if User is logged in
+        let userId = req.body.userId || null;
+        let persistentHistory = [];
+        let personaPrompt = "";
+
+        if (userId) {
+            // Load last 10 messages for context
+            const savedMsgs = await prisma.chatMessage.findMany({
+                where: { userId },
+                orderBy: { timestamp: 'desc' },
+                take: 10
+            });
+            persistentHistory = savedMsgs.reverse().map(m => ({ role: m.role, content: m.content }));
+
+            // Get Persona context
+            personaPrompt = await PersonaAgent.getPersonaPrompt(userId);
+        }
+
+        // Merge persistent history with session history (deduplicating if needed)
+        const combinedHistory = [...persistentHistory, ...history];
+
+        // 3. Standard Knowledge Synthesis (Agent-King / Monroe)
+        const cacheKey = `chat_cache_${message}_${userId || 'anon'}`;
+        const { askMonroeSovereign } = await import('./agents/core/agent-king-sovereign.js');
+
+        const result = await matrixScaler.getFromCacheOrExecute(cacheKey, async () => {
+            // Include persona in the prompt if available
+            const enhancedMessage = personaPrompt ? `${personaPrompt}\n\nUser Message: ${message}` : message;
+            return await askMonroeSovereign(enhancedMessage, combinedHistory);
+        });
+
+        // 4. Save to Database if User is logged in
+        if (userId) {
+            await prisma.chatMessage.create({
+                data: { userId, role: 'user', content: message }
+            });
+            await prisma.chatMessage.create({
+                data: { userId, role: 'assistant', content: result.reply }
+            });
+
+            // Trigger async persona refinement
+            PersonaAgent.refinePersona(userId, [...combinedHistory, { role: 'user', content: message }]);
+        }
+
         res.json({
             response: result.reply,
             citations: result.citations,
             swarmStats: result.swarmStats,
-            model: 'Sovereign-4-Abyssal',
+            model: 'Sovereign-4-Abyssal (Cached)',
             usage: result.usage,
             mode: result.mode,
             apiError: result.apiError
         });
     } catch (err) {
-        console.error('[AgentKing Chat Error]', err.message);
+        console.error('[AgentKing/Kih Chat Error]', err.message);
         const fallbackReplies = [
             "The Abyssal Core is currently recalibrating its neural pathways. I am Monroe, synthesizing locally. How can I assist you?",
             "Sovereign systems are at optimized capacity. My responses are being synthesized through the local shard matrix.",
@@ -2120,7 +2237,7 @@ app.get('/api/reader-swarm/status', async (req, res) => {
 // ═══ STARTUP ═══
 initAdmin().then(async () => {
     try {
-        const { startSwarm } = await import('./agents/live-reader-swarm.js');
+        const { startSwarm } = await import('./agents/swarm/live-reader-swarm.js');
         startSwarm();
         console.log('🌐 Live Reader Swarm: ACTIVE (12 sovereign agents reading Wikipedia, arXiv, HN, MDN...)');
     } catch (e) { console.warn('⚠️  Live Reader Swarm failed to start:', e.message); }
@@ -2129,7 +2246,7 @@ initAdmin().then(async () => {
     setInterval(async () => {
         try {
             console.log('🤖 [Autonomous Swarm] Initializing scheduled knowledge synthesis...');
-            const { runSwarmMission } = await import('./agents/agent-king-sovereign.js');
+            const { runSwarmMission } = await import('./agents/core/agent-king-sovereign.js');
             const count = 5 + Math.floor(Math.random() * 5); // 5-10 agents
             await runSwarmMission({ count });
             console.log(`✅ [Autonomous Swarm] Synthesis complete. New shards added to the matrix.`);
@@ -2144,15 +2261,6 @@ initAdmin().then(async () => {
         console.log('⚡ Sovereign Abyssal Core: ONLINE (Identity Sync Complete)');
     });
 });
-// ═══ PROCESS ERROR HANDLERS ════════════════════════════════════════════
-process.on('uncaughtException', (err) => {
-    console.error('[CRITICAL] Uncaught Exception:', err);
-    // In a production environment with something like PM2 or nodemon, 
-    // it's best to exit and let the manager restart.
-});
-
-process.on('unhandledRejection', (reason, promise) => {
-    console.error('[CRITICAL] Unhandled Rejection at:', promise, 'reason:', reason);
-});
+// Exception handlers are at the top of the file integrated with Agent-Healer.
 
 console.log('Abyssal Protocol Initialized. System Monitoring active.');

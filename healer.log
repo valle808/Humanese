@@ -1,0 +1,35 @@
+[HEALER] 2026-02-28T11:53:08.994Z - Analyzing error: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at app.listen (c:\xampp\htdocs\humanese\node_modules\express\lib\application.js:635:24)
+    at file:///c:/xampp/htdocs/humanese/sovereign-server.js:2177:9
+[HEALER] 2026-02-28T11:53:08.999Z - Match found for pattern: /EADDRINUSE: address already in use/
+[HEALER] 2026-02-28T11:53:09.001Z - Executing autonomous fix: npx kill-port 3000
+[HEALER] 2026-02-28T11:53:12.253Z - Fix Failed: Command failed: npx kill-port 3000
+npm error code ENOSPC
+npm error syscall write
+npm error errno -4055
+npm error nospc ENOSPC: no space left on device, write
+npm error nospc There appears to be insufficient space on your system to finish.
+npm error nospc Clear up some disk space and try again.
+npm error A complete log of this run can be found in: C:\Users\SergioEzequielValleB\AppData\Local\npm-cache\_logs\2026-02-28T11_53_11_214Z-debug-0.log
+
+[HEALER] 2026-02-28T13:24:35.137Z - Analyzing error: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at app.listen (C:\xampp\htdocs\humanese\node_modules\express\lib\application.js:635:24)
+    at file:///C:/xampp/htdocs/humanese/sovereign-server.js:2184:9
+[HEALER] 2026-02-28T13:24:35.255Z - Match found for pattern: /EADDRINUSE: address already in use/
+[HEALER] 2026-02-28T13:24:35.256Z - Executing autonomous fix: npx kill-port 3000
+[HEALER] 2026-02-28T13:24:53.789Z - Fix Successful: Freed up port 3000 from ghost process.
+[HEALER] 2026-02-28T13:39:07.682Z - Analyzing error: Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at app.listen (C:\xampp\htdocs\humanese\node_modules\express\lib\application.js:635:24)
+    at file:///C:/xampp/htdocs/humanese/sovereign-server.js:2258:9
+[HEALER] 2026-02-28T13:39:07.698Z - Match found for pattern: /EADDRINUSE: address already in use/
+[HEALER] 2026-02-28T13:39:07.699Z - Executing autonomous fix: npx kill-port 3000
+[HEALER] 2026-02-28T13:39:12.544Z - Fix Successful: Freed up port 3000 from ghost process.
