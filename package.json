@@ -2,7 +2,6 @@
     "name": "humanese",
     "version": "1.0.0",
     "description": "Humanese - Universal Language Model with AI & Crypto",
-    "main": "api/server.js",
     "type": "module",
     "engines": {
         "node": "20.x"
