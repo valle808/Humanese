@@ -359,3 +359,24 @@
 .fade-in {
     animation: fadeInMsg 0.4s ease-out;
 }
+
+/* Typewriter cursor */
+.monroe-cursor {
+    display: inline-block;
+    color: var(--monroe-primary);
+    font-weight: 100;
+    margin-left: 1px;
+    animation: cursorBlink 0.7s step-end infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
