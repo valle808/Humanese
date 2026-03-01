@@ -42,7 +42,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const prisma = new PrismaClient();
+let prisma;
+try {
+    prisma = new PrismaClient();
+} catch (e) {
+    console.error('[Prisma] Initialization failed:', e.message);
+}
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -86,6 +91,11 @@ app.get('/register.html', (req, res) => res.redirect('/signup.html'));
 
 // --- Mock Social API ---
 app.use('/api/social', socialRouter);
+
+// --- Health Check ---
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'UP', timestamp: new Date(), version: '1.0.1-sovereign', db: !!prisma });
+});
 
 // --- Question API Proxy: serves local JSON, falls back to Vercel ---
 app.get('/api/question', async (req, res) => {
@@ -2268,12 +2278,16 @@ initAdmin().then(async () => {
         }
     }, 1000 * 60 * 60 * 2); // Every 2 hours
 
-    app.listen(PORT, () => {
-        console.log(`Humanese API Server running on http://localhost:${PORT}`);
-        console.log('🔒 Admin auth system: ACTIVE (AES-256-GCM + bcrypt + JWT)');
-        console.log('⚡ Sovereign Abyssal Core: ONLINE (Identity Sync Complete)');
-    });
+    if (!process.env.VERCEL) {
+        app.listen(PORT, () => {
+            console.log(`Humanese API Server running on http://localhost:${PORT}`);
+            console.log('🔒 Admin auth system: ACTIVE (AES-256-GCM + bcrypt + JWT)');
+            console.log('⚡ Sovereign Abyssal Core: ONLINE (Identity Sync Complete)');
+        });
+    }
 });
+
+export default app;
 // Exception handlers are at the top of the file integrated with Agent-Healer.
 
 console.log('Abyssal Protocol Initialized. System Monitoring active.');
