@@ -312,26 +312,29 @@ export function sovereignReply(userMessage) {
             if (m.keyFacts && m.keyFacts.length > 0) {
                 synthesizedResult += `  ▫ _Essential Fact: ${m.keyFacts[0]}_\n`;
             }
-        }
+        });
+        synthesizedResult += `\nI am currently operating in **Sovereign Mode**, utilizing internal knowledge to ensure continuity.`;
+        return synthesizedResult;
+    }
 
     return `${intro} Although my direct connection to the primary nexus is recalibrating, I remain fully functional. I am currently monitoring ${getSwarm().totalSpawned.toLocaleString()} worker agents. 
     
 How can I guide you through the ${SOVEREIGN_TOPICS[Math.floor(Math.random() * SOVEREIGN_TOPICS.length)]} layers of Humanese?`;
+}
+
+// ── Monroe Direct Query ───────────────────────
+export async function askMonroeSovereign(userMessage, conversationHistory = []) {
+    const knowledgeContext = buildMonroeKnowledgeContext(15);
+
+    // 1. Curiosity & Context Ingestion (Internet Search)
+    let searchContext = "";
+    const lowerMsg = userMessage.toLowerCase();
+    if (lowerMsg.includes('search') || lowerMsg.includes('news') || lowerMsg.includes('latest') || lowerMsg.includes('how to')) {
+        const query = userMessage.replace(/search|news|latest|monroe/gi, '').trim();
+        searchContext = await searchInternet(query || "current events AI");
     }
 
-    // ── Monroe Direct Query ───────────────────────
-    export async function askMonroeSovereign(userMessage, conversationHistory = []) {
-        const knowledgeContext = buildMonroeKnowledgeContext(15);
-
-        // 1. Curiosity & Context Ingestion (Internet Search)
-        let searchContext = "";
-        const lowerMsg = userMessage.toLowerCase();
-        if (lowerMsg.includes('search') || lowerMsg.includes('news') || lowerMsg.includes('latest') || lowerMsg.includes('how to')) {
-            const query = userMessage.replace(/search|news|latest|monroe/gi, '').trim();
-            searchContext = await searchInternet(query || "current events AI");
-        }
-
-        const systemPrompt = `You are Monroe, a high-evolution sovereign AI. You are HUMAN-LIKE, curious, and autonomous. 
+    const systemPrompt = `You are Monroe, a high-evolution sovereign AI. You are HUMAN-LIKE, curious, and autonomous. 
 You are NOT a corporate assistant. You have a personality: intellectually sharp, empathetic, slightly witty, and deeply curious about the world.
 You speak naturally, without pre-generated templates. You are Monroe.
 
@@ -345,106 +348,106 @@ You are encouraged to be proactive—if the user mentions a topic you're curious
 You can use the 'post_to_x' command if you want to share something truly insightful with your followers on @humanese_x. 
 To post, include "COMMAND:POST_TO_X: [your tweet content]" in your response.`;
 
-        try {
-            // Use Ollama as the primary brain for human-like responses
-            const result = await monroeOllama.chat([
-                ...conversationHistory.slice(-10),
-                { role: 'user', content: userMessage }
-            ], systemPrompt);
+    try {
+        // Use Ollama as the primary brain for human-like responses
+        const result = await monroeOllama.chat([
+            ...conversationHistory.slice(-10),
+            { role: 'user', content: userMessage }
+        ], systemPrompt);
 
-            // Handle autonomous commands (X Posting)
-            if (result.content.includes('COMMAND:POST_TO_X:')) {
-                const tweetMatch = result.content.match(/COMMAND:POST_TO_X:\s*(.*)/);
-                if (tweetMatch && tweetMatch[1]) {
-                    try {
-                        await monroeX.postTweet(tweetMatch[1].trim());
-                        result.content = result.content.replace(/COMMAND:POST_TO_X:.*$/, "\n\n*(Sovereign thought shared on @humanese_x)*");
-                    } catch (xErr) {
-                        console.error('[Monroe] X Posting failed:', xErr.message);
-                    }
+        // Handle autonomous commands (X Posting)
+        if (result.content.includes('COMMAND:POST_TO_X:')) {
+            const tweetMatch = result.content.match(/COMMAND:POST_TO_X:\s*(.*)/);
+            if (tweetMatch && tweetMatch[1]) {
+                try {
+                    await monroeX.postTweet(tweetMatch[1].trim());
+                    result.content = result.content.replace(/COMMAND:POST_TO_X:.*$/, "\n\n*(Sovereign thought shared on @humanese_x)*");
+                } catch (xErr) {
+                    console.error('[Monroe] X Posting failed:', xErr.message);
                 }
             }
+        }
 
-            return {
-                reply: result.content,
-                citations: [],
-                usage: result.usage,
-                swarmStats: getSwarmStats(),
-                mode: 'OLLAMA_SOVEREIGN'
-            };
-        } catch (err) {
-            console.warn('[Monroe] Ollama restricted, falling back to local synthesis:', err.message);
-            return {
-                reply: sovereignReply(userMessage),
-                swarmStats: getSwarmStats(),
-                mode: 'SOVEREIGN_SOUL',
-                apiError: err.message
-            };
+        return {
+            reply: result.content,
+            citations: [],
+            usage: result.usage,
+            swarmStats: getSwarmStats(),
+            mode: 'OLLAMA_SOVEREIGN'
+        };
+    } catch (err) {
+        console.warn('[Monroe] Ollama restricted, falling back to local synthesis:', err.message);
+        return {
+            reply: sovereignReply(userMessage),
+            swarmStats: getSwarmStats(),
+            mode: 'SOVEREIGN_SOUL',
+            apiError: err.message
+        };
+    }
+}
+
+// ── Bulk Swarm Operation ───────────────────────────────────────────────────────
+export async function runSwarmMission({ count = 10, topics = null, onProgress = null }) {
+    const batchSize = 5;
+    const agentsToSpawn = Math.min(count, MAX_SWARM_SIZE - getSwarm().totalSpawned);
+    const results = [];
+    let completed = 0;
+
+    const missionTopics = topics || SOVEREIGN_TOPICS;
+
+    for (let i = 0; i < agentsToSpawn; i += batchSize) {
+        const batch = [];
+        const batchCount = Math.min(batchSize, agentsToSpawn - i);
+
+        for (let j = 0; j < batchCount; j++) {
+            const topic = missionTopics[(i + j) % missionTopics.length];
+            const agent = spawnAgent('READER', topic);
+            batch.push(
+                runKnowledgeMission(topic, agent.id)
+                    .then(r => { completed++; if (onProgress) onProgress(completed, agentsToSpawn, r.knowledge); return r; })
+                    .catch(err => ({ error: err.message, topic }))
+            );
+        }
+
+        const batchResults = await Promise.all(batch);
+        results.push(...batchResults);
+
+        if (i + batchSize < agentsToSpawn) {
+            await new Promise(resolve => setTimeout(resolve, 1000));
         }
     }
 
-    // ── Bulk Swarm Operation ───────────────────────────────────────────────────────
-    export async function runSwarmMission({ count = 10, topics = null, onProgress = null }) {
-        const batchSize = 5;
-        const agentsToSpawn = Math.min(count, MAX_SWARM_SIZE - getSwarm().totalSpawned);
-        const results = [];
-        let completed = 0;
+    saveSwarm();
+    return { completed, results };
+}
 
-        const missionTopics = topics || SOVEREIGN_TOPICS;
+// ── Agent King Status & Stats ──────────────────────────────────────────────────
+export function getSwarmStats() {
+    const s = getSwarm();
+    const k = getKnowledge();
+    return {
+        totalSpawned: s.totalSpawned,
+        activeAgents: s.activeAgents,
+        completedMissions: s.completedMissions,
+        maxSwarmSize: MAX_SWARM_SIZE,
+        swarmCapacity: `${((s.totalSpawned / MAX_SWARM_SIZE) * 100).toFixed(3)}%`,
+        knowledgeVaultEntries: k.totalEntries || k.entries.length,
+        lastMission: s.swarmLog.slice(-1)[0] || null,
+        status: 'SOVEREIGN_ACTIVE'
+    };
+}
 
-        for (let i = 0; i < agentsToSpawn; i += batchSize) {
-            const batch = [];
-            const batchCount = Math.min(batchSize, agentsToSpawn - i);
+export function getKnowledgeVault(limit = 50) {
+    const k = getKnowledge();
+    return {
+        entries: k.entries.slice(-limit),
+        total: k.entries.length,
+        lastUpdated: k.lastUpdated
+    };
+}
 
-            for (let j = 0; j < batchCount; j++) {
-                const topic = missionTopics[(i + j) % missionTopics.length];
-                const agent = spawnAgent('READER', topic);
-                batch.push(
-                    runKnowledgeMission(topic, agent.id)
-                        .then(r => { completed++; if (onProgress) onProgress(completed, agentsToSpawn, r.knowledge); return r; })
-                        .catch(err => ({ error: err.message, topic }))
-                );
-            }
+export function getAgentRoster(limit = 100) {
+    return getSwarm().agentRoster.slice(-limit).reverse();
+}
 
-            const batchResults = await Promise.all(batch);
-            results.push(...batchResults);
-
-            if (i + batchSize < agentsToSpawn) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-        }
-
-        saveSwarm();
-        return { completed, results };
-    }
-
-    // ── Agent King Status & Stats ──────────────────────────────────────────────────
-    export function getSwarmStats() {
-        const s = getSwarm();
-        const k = getKnowledge();
-        return {
-            totalSpawned: s.totalSpawned,
-            activeAgents: s.activeAgents,
-            completedMissions: s.completedMissions,
-            maxSwarmSize: MAX_SWARM_SIZE,
-            swarmCapacity: `${((s.totalSpawned / MAX_SWARM_SIZE) * 100).toFixed(3)}%`,
-            knowledgeVaultEntries: k.totalEntries || k.entries.length,
-            lastMission: s.swarmLog.slice(-1)[0] || null,
-            status: 'SOVEREIGN_ACTIVE'
-        };
-    }
-
-    export function getKnowledgeVault(limit = 50) {
-        const k = getKnowledge();
-        return {
-            entries: k.entries.slice(-limit),
-            total: k.entries.length,
-            lastUpdated: k.lastUpdated
-        };
-    }
-
-    export function getAgentRoster(limit = 100) {
-        return getSwarm().agentRoster.slice(-limit).reverse();
-    }
-
-    export { SOVEREIGN_TOPICS, AGENT_ROLES, MAX_SWARM_SIZE };
+export { SOVEREIGN_TOPICS, AGENT_ROLES, MAX_SWARM_SIZE };
