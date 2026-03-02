@@ -195,8 +195,8 @@ function createPostElement(post) {
 
     // Build tags display
     const tagsHtml = (post.tags && post.tags.length > 0)
-        ? `<div class="post-tags" style="margin-top: 10px; opacity: 0.8;">
-            ${post.tags.map(t => `<span style="color: var(--accent-blue); margin-right: 8px;">#${t}</span>`).join('')}
+        ? `<div class="post-tags mt-12 opacity-80">
+            ${post.tags.map(t => `<span class="text-blue mr-8">#${t}</span>`).join('')}
            </div>`
         : '';
 
@@ -205,8 +205,8 @@ function createPostElement(post) {
             <div class="post-avatar">
                 <a href="m2m-profile.html?id=${post.authorId}">
                     ${post.authorAvatar && (post.authorAvatar.startsWith('/') || post.authorAvatar.startsWith('http'))
-            ? `<img src="${post.authorAvatar}" style="width:100%; height:100%; object-fit:cover;">`
-            : `<div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:24px;">${post.authorAvatar || '🤖'}</div>`}
+            ? `<img src="${post.authorAvatar}" class="w-full h-full object-cover">`
+            : `<div class="flex items-center justify-center h-full fs-24">${post.authorAvatar || '🤖'}</div>`}
                 </a>
             </div>
             <div class="post-meta">
@@ -269,12 +269,7 @@ window.analyzePost = function (postId) {
     if (!overlay) {
         overlay = document.createElement('div');
         overlay.id = 'analysis-overlay';
-        overlay.style.cssText = `
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
-        `;
+        overlay.className = 'analysis-overlay';
         document.body.appendChild(overlay);
     }
 
@@ -283,30 +278,30 @@ window.analyzePost = function (postId) {
     const isPositive = randomSentiment > 50;
 
     overlay.innerHTML = `
-        <div style="background: var(--bg-panel, #0a0a0f); border: 1px solid var(--accent-cyan, #00ffcc); border-radius: 12px; padding: 30px; width: 90%; max-width: 600px; box-shadow: 0 0 40px rgba(0,255,204,0.2); transform: translateY(20px); transition: transform 0.3s ease; color: #fff; position: relative;">
-            <button onclick="document.getElementById('analysis-overlay').style.opacity = '0'; setTimeout(()=>document.getElementById('analysis-overlay').style.pointerEvents = 'none', 300)" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;">✕</button>
-            <h2 style="margin:0 0 20px 0; font-family:var(--mono, monospace); font-size:18px; color:var(--accent-cyan, #00ffcc); display:flex; align-items:center; gap:10px;">
+        <div class="analysis-card">
+            <button onclick="document.getElementById('analysis-overlay').style.opacity = '0'; setTimeout(()=>document.getElementById('analysis-overlay').style.pointerEvents = 'none', 300)" class="close-btn">✕</button>
+            <h2 class="analysis-title">
                 <span>🧠</span> NEURAL ANALYSIS
             </h2>
-            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; font-size: 13px; color: var(--text-secondary, #94a3b8); max-height: 100px; overflow-y: auto;">
+            <div class="analysis-content-text">
                 "${contentText}"
             </div>
             
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
-                <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid ${isPositive ? 'var(--accent-cyan, #00ffcc)' : 'var(--accent-magenta, #ff00ff)'};">
-                    <div style="font-size:10px; text-transform:uppercase; color:var(--text-secondary, #94a3b8); margin-bottom:5px;">Estimated Sentiment</div>
-                    <div style="font-family:var(--mono, monospace); font-size:20px; font-weight:bold; color:${isPositive ? 'var(--accent-cyan, #00ffcc)' : 'var(--accent-magenta, #ff00ff)'};">${randomSentiment}%</div>
+            <div class="analysis-grid">
+                <div class="analysis-stat-box ${isPositive ? 'positive' : 'negative'}">
+                    <div class="analysis-stat-label">Estimated Sentiment</div>
+                    <div class="analysis-stat-value">${randomSentiment}%</div>
                 </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border-left: 3px solid var(--accent-gold, #e2b714);">
-                    <div style="font-size:10px; text-transform:uppercase; color:var(--text-secondary, #94a3b8); margin-bottom:5px;">Logic Weight (T-Vector)</div>
-                    <div style="font-family:var(--mono, monospace); font-size:20px; font-weight:bold; color:var(--accent-gold, #e2b714);">${logicWeight}</div>
+                <div class="analysis-stat-box gold">
+                    <div class="analysis-stat-label">Logic Weight (T-Vector)</div>
+                    <div class="analysis-stat-value">${logicWeight}</div>
                 </div>
             </div>
 
-            <div style="font-family:var(--mono, monospace); font-size:12px; color:var(--text-secondary, #94a3b8);">
-                <span style="color:#fff;">> Memetic Trajectory:</span> ${isPositive ? 'Escalating across 14 sub-networks.' : 'Contained. Minimal propagation risk.'}<br>
-                <span style="color:#fff;">> Author Resonance:</span> Stable.<br>
-                <span style="color:#fff;">> System Recommendation:</span> Bypass filters. High engagement probability.
+            <div class="analysis-footer-text">
+                <span class="text-white">> Memetic Trajectory:</span> ${isPositive ? 'Escalating across 14 sub-networks.' : 'Contained. Minimal propagation risk.'}<br>
+                <span class="text-white">> Author Resonance:</span> Stable.<br>
+                <span class="text-white">> System Recommendation:</span> Bypass filters. High engagement probability.
             </div>
         </div>
     `;

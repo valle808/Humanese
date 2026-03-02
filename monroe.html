@@ -115,8 +115,8 @@
         /* Glassmorphism 2.0 & Glow */
         .glass-panel {
             background: var(--g-glass);
-            backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
+            backdrop-filter: blur(40px);
             border: 1px solid var(--g-border);
             border-radius: 24px;
             position: relative;
@@ -419,8 +419,7 @@
         }
 
         .msg.bot.sovereign {
-            /* border-left: 2px solid var(--g-blue); */
-            /* padding-left: 20px; */
+            padding-left: 20px;
         }
 
         .monroe-cursor {
@@ -491,6 +490,7 @@
             padding: 24px 40px;
             border-top: 1px solid var(--g-border);
             background: rgba(8, 8, 8, 0.4);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom-left-radius: 24px;
             border-bottom-right-radius: 24px;
@@ -639,6 +639,51 @@
                 padding: 24px;
             }
         }
+
+        /* Utility Classes */
+        .pos-abs-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .flex-1 {
+            flex: 1;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+
+        .fs-18 {
+            font-size: 18px;
+        }
+
+        .fs-13 {
+            font-size: 13px;
+        }
+
+        .text-blue {
+            color: var(--g-blue);
+        }
+
+        .icon-sm {
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon-md {
+            width: 20px;
+            height: 20px;
+        }
     </style>
 </head>
 
@@ -661,34 +706,32 @@
             </a>
 
             <!-- Avatar centered -->
-            <div class="monroe-identity" style="position: absolute; left: 50%; transform: translateX(-50%);">
+            <div class="monroe-identity pos-abs-center">
                 <div class="monroe-avatar" id="monroe-avatar-icon">
-                    <i data-lucide="bot" style="width:20px;height:20px;"></i>
+                    <i data-lucide="bot" class="icon-md"></i>
                 </div>
             </div>
 
             <a href="index.html" class="monroe-nav-back">
-                <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back
+                <i data-lucide="arrow-left" class="icon-sm"></i> Back
             </a>
         </nav>
 
         <!-- Side Panel -->
         <aside class="side-panel">
-            <div class="glass-panel glow-effect gs-reveal" style="flex: 1;">
-                <h3 class="panel-title"><i data-lucide="activity" style="width:16px;height:16px;"></i> System Status
-                </h3>
+            <div class="glass-panel glow-effect gs-reveal flex-1">
+                <h3 class="panel-title"><i data-lucide="activity" class="icon-sm"></i> System Status</h3>
 
-                <div class="monroe-identity" style="margin-bottom: 24px;">
+                <div class="monroe-identity mb-4">
                     <div class="monroe-name-block">
-                        <h2 style="font-size: 18px; color: var(--g-blue);">Monroe</h2>
-                        <p style="font-size: 13px;">Abyssal Sentinel</p>
+                        <h2 class="fs-18 text-blue">Monroe</h2>
+                        <p class="fs-13">Abyssal Sentinel</p>
                     </div>
                 </div>
 
                 <div class="status-item mt-4">
                     <span class="text-muted">Network</span>
-                    <div><span class="online-dot" style="margin-right: 6px;"></span> <span
-                            class="text-green">ONLINE</span></div>
+                    <div><span class="online-dot mr-2"></span> <span class="text-green">ONLINE</span></div>
                 </div>
                 <div class="status-item">
                     <span class="text-muted">Core Model</span> <span>Sovereign Intelligence v4</span>
@@ -701,17 +744,15 @@
                 </div>
             </div>
 
-            <div class="glass-panel glow-effect gs-reveal" style="flex: 1;">
-                <h3 class="panel-title"><i data-lucide="layers" style="width:16px;height:16px;"></i> Capabilities</h3>
+            <div class="glass-panel glow-effect gs-reveal flex-1">
+                <h3 class="panel-title"><i data-lucide="layers" class="icon-sm"></i> Capabilities</h3>
                 <div class="cap-tags mt-4">
-                    <div class="cap-tag"><i data-lucide="globe"
-                            style="width:16px;height:16px; color: var(--g-muted);"></i> Live Search</div>
-                    <div class="cap-tag"><i data-lucide="cloud-sun"
-                            style="width:16px;height:16px; color: var(--g-muted);"></i> Real-time Weather</div>
-                    <div class="cap-tag"><i data-lucide="newspaper"
-                            style="width:16px;height:16px; color: var(--g-muted);"></i> Global News</div>
-                    <div class="cap-tag"><i data-lucide="brain-circuit"
-                            style="width:16px;height:16px; color: var(--g-muted);"></i> Deep Reasoning</div>
+                    <div class="cap-tag"><i data-lucide="globe" class="icon-sm text-muted"></i> Live Search</div>
+                    <div class="cap-tag"><i data-lucide="cloud-sun" class="icon-sm text-muted"></i> Real-time Weather
+                    </div>
+                    <div class="cap-tag"><i data-lucide="newspaper" class="icon-sm text-muted"></i> Global News</div>
+                    <div class="cap-tag"><i data-lucide="brain-circuit" class="icon-sm text-muted"></i> Deep Reasoning
+                    </div>
                 </div>
             </div>
         </aside>
@@ -733,18 +774,18 @@
             <div class="input-dock">
                 <div class="quick-prompts">
                     <button class="qp-btn" onclick="sendQuick('What is the weather today in Hawaii?')"><i
-                            data-lucide="sun" style="width:14px;height:14px;"></i> Hawaii weather</button>
+                            data-lucide="sun" class="icon-sm"></i> Hawaii weather</button>
                     <button class="qp-btn" onclick="sendQuick('Latest AI news today')"><i data-lucide="cpu"
-                            style="width:14px;height:14px;"></i> AI News</button>
+                            class="icon-sm"></i> AI News</button>
                     <button class="qp-btn" onclick="sendQuick('What is Bitcoin price right now?')"><i
-                            data-lucide="bitcoin" style="width:14px;height:14px;"></i> Bitcoin price</button>
+                            data-lucide="bitcoin" class="icon-sm"></i> Bitcoin price</button>
                     <button class="qp-btn" onclick="sendQuick('Tell me something fascinating about the universe')"><i
-                            data-lucide="sparkles" style="width:14px;height:14px;"></i> Cosmos</button>
+                            data-lucide="sparkles" class="icon-sm"></i> Cosmos</button>
                 </div>
                 <div class="monroe-input-row">
                     <textarea id="monroe-full-input" rows="1" placeholder="Ask Monroe anything..."></textarea>
                     <button class="send-btn" id="monroe-full-send" title="Send">
-                        <i data-lucide="arrow-up" style="width:20px;height:20px;"></i>
+                        <i data-lucide="arrow-up" class="icon-md"></i>
                     </button>
                 </div>
             </div>

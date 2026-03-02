@@ -63,7 +63,7 @@ const selectOptionButton = (id) => {
 
     });
     document.querySelectorAll('.option-div-selected').forEach((option) => {
-        option.classList.remove('.option-div-selected');
+        option.classList.remove('option-div-selected');
         option.className = 'option-div'
     });
     document.getElementById('option-no-' + id).className = 'option-no-selected';

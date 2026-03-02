@@ -11,63 +11,159 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./css/admin.css">
 
-    <meta name="google-adsense-account" content="ca-pub-8867340586657793">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793" crossorigin="anonymous"></script>
+    <style>
+        .auth-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+        }
+
+        .auth-card {
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--bd);
+            border-radius: 16px;
+            padding: 36px;
+            max-width: 380px;
+            width: 90%;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .auth-emoji {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .auth-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 0;
+            border: none;
+            padding: 0;
+            color: var(--t);
+        }
+
+        .auth-meta {
+            font-size: 11px;
+            color: var(--ts);
+            margin-top: 4px;
+            font-family: var(--mono);
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--bd);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--t);
+            font-size: 14px;
+            font-family: var(--sans);
+            margin-bottom: 8px;
+            outline: none;
+        }
+
+        .auth-error {
+            color: #ef4444;
+            font-size: 12px;
+            margin-bottom: 8px;
+            font-family: var(--mono);
+            display: none;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: var(--x);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: var(--sans);
+            transition: opacity 0.2s;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .auth-link {
+            color: var(--ts);
+            font-size: 11px;
+            text-decoration: none;
+        }
+
+        .recover-msg {
+            color: var(--x);
+            font-size: 12px;
+            margin-bottom: 8px;
+            font-family: var(--mono);
+            display: none;
+        }
+
+        .recover-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #22c55e;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: var(--sans);
+        }
+    </style>
 </head>
 
 <body>
     <!-- ═══ LOGIN GATE ═══ -->
-    <div id="auth-gate"
-        style="position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;-webkit--webkit-backdrop-filter: blur(20px);
-backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px)">
-        <div
-            style="background:rgba(10,10,15,0.9);
-backdrop-filter: blur(20px)">
-        <div
-            style="background:rgba(10,10,15,0.9);border:1px solid var(--bd);border-radius:16px;padding:36px;max-width:380px;width:90%">
-            <div style="text-align:center;margin-bottom:24px">
-                <div style="font-size:2rem;margin-bottom:8px">🔐</div>
-                <h2
-                    style="font-size:18px;font-weight:800;letter-spacing:-0.5px;margin:0;border:none;padding:0;color:var(--t)">
-                    Supreme Command Access</h2>
-                <div style="font-size:11px;color:var(--ts);margin-top:4px;font-family:var(--mono)">AES-256-GCM ENCRYPTED
-                </div>
+    <div id="auth-gate" class="auth-gate">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-emoji">🔐</div>
+                <h2 class="auth-title">Supreme Command Access</h2>
+                <div class="auth-meta">AES-256-GCM ENCRYPTED</div>
             </div>
 
             <!-- LOGIN FORM -->
             <div id="login-form">
-                <input id="auth-user" type="text" placeholder="Username" autocomplete="username"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:8px;outline:none" />
+                <input id="auth-user" type="text" placeholder="Username" autocomplete="username" class="auth-input" />
                 <input id="auth-pass" type="password" placeholder="Password" autocomplete="current-password"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:12px;outline:none"
-                    onkeydown="if(event.key==='Enter')doLogin()" />
-                <div id="auth-error"
-                    style="color:#ef4444;font-size:12px;margin-bottom:8px;font-family:var(--mono);display:none"></div>
-                <button onclick="doLogin()"
-                    style="width:100%;padding:10px;border:none;border-radius:8px;background:var(--x);color:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--sans);transition:opacity 0.2s"
-                    onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'" title="Action Button">AUTHENTICATE →</button>
-                <div style="text-align:center;margin-top:12px">
-                    <a href="javascript:void(0)" onclick="showRecovery()"
-                        style="color:var(--ts);font-size:11px;text-decoration:none">Forgot password?</a>
+                    class="auth-input" style="margin-bottom:12px" onkeydown="if(event.key==='Enter')doLogin()" />
+                <div id="auth-error" class="auth-error"></div>
+                <button onclick="doLogin()" class="auth-btn" onmouseover="this.style.opacity='0.9'"
+                    onmouseout="this.style.opacity='1'" title="Action Button">AUTHENTICATE →</button>
+                <div class="auth-footer">
+                    <a href="javascript:void(0)" onclick="showRecovery()" class="auth-link">Forgot password?</a>
                 </div>
             </div>
 
             <!-- RECOVERY FORM -->
             <div id="recovery-form" style="display:none">
-                <input id="recover-email" type="email" placeholder="Recovery email"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:8px;outline:none" />
-                <input id="recover-token" type="text" placeholder="Recovery token (from email)"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:8px;outline:none;display:none" />
-                <input id="recover-newpass" type="password" placeholder="New password"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:12px;outline:none;display:none" />
-                <div id="recover-msg"
-                    style="color:var(--x);font-size:12px;margin-bottom:8px;font-family:var(--mono);display:none"></div>
-                <button id="recover-btn" onclick="doRecover()"
-                    style="width:100%;padding:10px;border:none;border-radius:8px;background:#22c55e;color:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--sans)" title="Action Button">SEND
-                    RECOVERY CODE</button>
-                <div style="text-align:center;margin-top:12px">
-                    <a href="javascript:void(0)" onclick="showLogin()"
-                        style="color:var(--ts);font-size:11px;text-decoration:none">← Back to login</a>
+                <input id="recover-email" type="email" placeholder="Recovery email" class="auth-input" />
+                <input id="recover-token" type="text" placeholder="Recovery token (from email)" class="auth-input"
+                    style="display:none" />
+                <input id="recover-newpass" type="password" placeholder="New password" class="auth-input"
+                    style="margin-bottom:12px;display:none" />
+                <div id="recover-msg" class="recover-msg"></div>
+                <button id="recover-btn" onclick="doRecover()" class="recover-btn" title="Action Button">SEND RECOVERY
+                    CODE</button>
+                <div class="auth-footer">
+                    <a href="javascript:void(0)" onclick="showLogin()" class="auth-link">← Back to login</a>
                 </div>
             </div>
         </div>
@@ -125,7 +221,8 @@ backdrop-filter: blur(20px)">
                 oninput="updateCharCount()"></textarea>
             <div class="compose-footer">
                 <span class="char-count" id="charCount">0 / 280</span>
-                <button class="btn-transmit" id="transmitBtn" onclick="transmit()" disabled title="Action Button">TRANSMIT TO X →</button>
+                <button class="btn-transmit" id="transmitBtn" onclick="transmit()" disabled
+                    title="Action Button">TRANSMIT TO X →</button>
             </div>
         </div>
 

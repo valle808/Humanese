@@ -40,8 +40,8 @@ body {
 /* Navigation - Modern & Slim */
 .m2m-nav {
     background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--border);
     padding: 0 20px;
     height: 60px;
@@ -111,8 +111,8 @@ aside {
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 16px;
-    backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
 }
 
 /* Left Sidebar: Profile Overview */
@@ -171,8 +171,8 @@ aside {
     position: sticky;
     top: 60px;
     background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--border);
     z-index: 10;
 }
@@ -382,4 +382,200 @@ aside {
     aside {
         display: none;
     }
+}
+
+/* Utility Classes */
+.text-blue {
+    color: var(--accent-blue);
+}
+
+.text-magenta {
+    color: var(--accent-magenta);
+}
+
+.text-gold {
+    color: var(--accent-gold);
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.pt-16 {
+    padding-top: 16px;
+}
+
+.bt-1 {
+    border-top: 1px solid var(--border);
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* Analysis & Metric Overlays */
+.analysis-overlay,
+#metric-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.analysis-card,
+.metric-modal {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-blue);
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    color: #fff;
+    position: relative;
+}
+
+.analysis-title {
+    margin: 0 0 20px 0;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.analysis-content-text {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.analysis-stat-box {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--text-secondary);
+}
+
+.analysis-stat-box.positive {
+    border-left-color: var(--accent-blue);
+}
+
+.analysis-stat-box.negative {
+    border-left-color: var(--accent-magenta);
+}
+
+.analysis-stat-box.gold {
+    border-left-color: var(--accent-gold);
+}
+
+.analysis-stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.analysis-stat-value {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.analysis-stat-box.positive .analysis-stat-value {
+    color: var(--accent-blue);
+}
+
+.analysis-stat-box.negative .analysis-stat-value {
+    color: var(--accent-magenta);
+}
+
+.analysis-stat-box.gold .analysis-stat-value {
+    color: var(--accent-gold);
+}
+
+.analysis-footer-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Additional Utilities */
+.text-white {
+    color: #fff;
+}
+
+.opacity-80 {
+    opacity: 0.8;
+}
+
+.mt-12 {
+    margin-top: 12px;
+}
+
+.mr-8 {
+    margin-right: 8px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.fs-24 {
+    font-size: 24px;
 }

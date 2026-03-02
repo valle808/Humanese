@@ -1045,6 +1045,7 @@ body {
   flex-direction: column;
   gap: 20px;
   scrollbar-width: thin;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
   mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
 
@@ -1235,8 +1236,8 @@ body {
 }
 
 .mode-select {
-  appearance: none;
   -webkit-appearance: none;
+  appearance: none;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(0, 243, 255, 0.25);
   border-radius: 30px;
@@ -1249,8 +1250,8 @@ body {
   cursor: pointer;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   white-space: nowrap;
 }
 
