@@ -16,18 +16,26 @@
   <meta property="og:description" content="Where a machine's precision meets the human's soul." />
   <meta property="og:image" content="https://humanese.vercel.app/assets/images/humanese-logo-v4.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="./assets/images/favicon.png" />
-  <link rel="apple-touch-icon" href="./assets/images/favicon.png" />
+  <link rel="icon" href="/favicon.png?v=mascot" />
+  <link rel="apple-touch-icon" href="/favicon.png?v=mascot" />
+  <!-- Anti-FOUC: apply saved theme BEFORE paint -->
+  <script>try { document.documentElement.setAttribute('data-theme', 'day') } catch (e) { }</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fonts: Inter, Space Grotesk, JetBrains Mono, Playfair Display (Museum Day) -->
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@600;700;800;900&display=swap"
     media="print" onload="this.media='all'" />
   <noscript>
     <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" />
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@600;700;800;900&display=swap" />
   </noscript>
+
+  <!-- Theme Orchestrator CSS (before index.css to set variables first) -->
+  <link rel="stylesheet" href="./css/theme-orchestrator.css" />
   <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/auth-modal.css" />
 
   <style>
     /* ═══════════════════════════════════════════════════
@@ -35,27 +43,6 @@
        Jewel tones × Eggshell × Elevated Brutalism
     ═══════════════════════════════════════════════════ */
     :root {
-      /* Museumcore Palette */
-      --ink: #0e0c0c;
-      --eggshell: #f5f0e8;
-      --cream: #faf7f2;
-      --warm-gray: #8a8480;
-      /* Jewel Accents */
-      --ruby: #c0392b;
-      --ruby-glow: rgba(192, 57, 43, 0.25);
-      --sapphire: #1a56db;
-      --sap-glow: rgba(26, 86, 219, 0.25);
-      --emerald: #0d7a5f;
-      --em-glow: rgba(13, 122, 95, 0.25);
-      --topaz: #d4a017;
-      --topaz-glow: rgba(212, 160, 23, 0.25);
-      --amethyst: #6d28d9;
-      --am-glow: rgba(109, 40, 217, 0.25);
-      --obsidian: #1a1614;
-      --obsidian2: #231f1c;
-      /* Glass */
-      --glass: rgba(255, 255, 255, 0.06);
-      --glass-border: rgba(255, 255, 255, 0.12);
       /* Type */
       --display: 'Space Grotesk', 'Inter', sans-serif;
       --body: 'Inter', system-ui, sans-serif;
@@ -76,8 +63,8 @@
 
     body {
       font-family: var(--body);
-      background: var(--ink);
-      color: var(--eggshell);
+      background: var(--bg-primary);
+      color: var(--text-main);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -170,8 +157,8 @@
       justify-content: space-between;
       padding: 0 32px;
       height: 60px;
-      border-bottom: 2px solid rgba(245, 240, 232, 0.1);
-      background: rgba(14, 12, 12, 0.82);
+      border-bottom: 2px solid var(--border);
+      background: var(--bg-surface-2);
       -webkit-backdrop-filter: blur(24px) saturate(1.8);
       backdrop-filter: blur(24px) saturate(1.8);
       transition: transform 0.3s ease;
@@ -197,7 +184,7 @@
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 3px;
-      color: var(--eggshell);
+      color: var(--text-main);
       text-transform: uppercase;
     }
 
@@ -219,7 +206,7 @@
     }
 
     .nav-pill-links a {
-      color: rgba(245, 240, 232, 0.5);
+      color: var(--text-dim);
       text-decoration: none;
       font-size: 12px;
       font-weight: 500;
@@ -245,10 +232,10 @@
       letter-spacing: 1px;
       padding: 8px 18px;
       border-radius: 8px;
-      background: var(--eggshell);
-      color: var(--ink);
+      background: var(--text-main);
+      color: var(--bg-primary);
       text-decoration: none;
-      border: 2px solid var(--eggshell);
+      border: 2px solid var(--text-main);
       transition: all 0.2s;
     }
 
@@ -342,7 +329,7 @@
 
     .hero-sub {
       font-size: 16px;
-      color: rgba(245, 240, 232, 0.55);
+      color: var(--text-dim);
       max-width: 460px;
       line-height: 1.75;
       margin-bottom: 32px;
@@ -413,9 +400,9 @@
 
     .btn-outline {
       background: transparent;
-      color: var(--eggshell);
-      border: 1.5px solid rgba(245, 240, 232, 0.25);
-      box-shadow: inset 0 0 0 0 var(--eggshell);
+      color: var(--text-main);
+      border: 1.5px solid var(--border);
+      box-shadow: inset 0 0 0 0 var(--text-main);
     }
 
     .btn-outline:hover {
@@ -485,8 +472,8 @@
     .tile {
       position: relative;
       border-radius: 18px;
-      border: 1px solid rgba(245, 240, 232, 0.09);
-      background: rgba(26, 22, 20, 0.65);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
       -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       overflow: hidden;
@@ -551,7 +538,7 @@
     }
 
     .tile.neutral::after {
-      background: rgba(245, 240, 232, 0.3);
+      background: var(--border);
     }
 
     /* Glow blob inside tile */
@@ -933,7 +920,7 @@
     .neural-footer {
       position: relative;
       z-index: 10;
-      border-top: 1px solid rgba(245, 240, 232, 0.07);
+      border-top: 1px solid var(--border);
       padding: 32px;
       max-width: 1400px;
       margin: 0 auto;
@@ -945,7 +932,7 @@
     }
 
     .neural-footer a {
-      color: rgba(245, 240, 232, 0.35);
+      color: var(--text-dim);
       font-size: 12px;
       text-decoration: none;
       transition: color 0.2s;
@@ -1069,7 +1056,9 @@
       <a href="hpedia.html">Hpedia</a>
       <a href="monroe.html" style="color:var(--amethyst);">🤖 Monroe</a>
     </div>
-    <a href="auth.html" class="nav-enter-btn">Enter →</a>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button id="nav-enter-btn" class="nav-enter-btn">Enter →</button>
+    </div>
   </nav>
 
   <!-- ── MAIN STAGE ── -->
@@ -1134,7 +1123,8 @@
           <p class="tile-hero-sub">Every agent, every swarm, every conversation — unified in one sovereign nervous
             system.</p>
           <div style="display:flex; gap:10px;">
-            <a href="agents.html" class="liquid-btn btn-ruby" style="font-size:12px; padding:10px 20px;">View Network
+            <a href="agents.html" class="liquid-btn btn-ruby" style="font-size:12px; padding:10px 20px;">View
+              Network
               →</a>
             <a href="m2m-swarm.html" class="liquid-btn btn-outline" style="font-size:12px; padding:10px 20px;">Live
               Swarm</a>
@@ -1190,7 +1180,8 @@
         <div class="tile-link">
           <div class="tile-label">Command Node</div>
           <div class="tile-title">Agent<br>Command</div>
-          <div class="tile-desc">Deploy autonomous AI workers. Set directives, monitor swarms, orchestrate intelligence.
+          <div class="tile-desc">Deploy autonomous AI workers. Set directives, monitor swarms, orchestrate
+            intelligence.
           </div>
           <div style="margin-top:14px; font-family:var(--mono); font-size:10px; color:var(--ruby); letter-spacing:1px;">
             42 AGENTS RUNNING</div>
@@ -1204,10 +1195,12 @@
         <div class="tile-link">
           <div class="tile-label">Economy Layer</div>
           <div class="tile-title">Skill<br>Market</div>
-          <div class="tile-desc">Trade autonomous agent capabilities. Buy, rent, and monetize AI skills in the sovereign
+          <div class="tile-desc">Trade autonomous agent capabilities. Buy, rent, and monetize AI skills in the
+            sovereign
             economy.</div>
           <div
-            style="margin-top:14px; font-family:var(--mono); font-size:10px; color:var(--topaz); letter-spacing:1px;">18
+            style="margin-top:14px; font-family:var(--mono); font-size:10px; color:var(--topaz); letter-spacing:1px;">
+            18
             LISTINGS · OPEN</div>
         </div>
         <div class="tile-arrow">→</div>
@@ -1219,7 +1212,8 @@
         <div class="tile-link">
           <div class="tile-label">Governance</div>
           <div class="tile-title">Supreme<br>Court</div>
-          <div class="tile-desc">AI-arbitrated justice system. Transparent, immutable rulings for the sovereign network.
+          <div class="tile-desc">AI-arbitrated justice system. Transparent, immutable rulings for the sovereign
+            network.
           </div>
           <div
             style="margin-top:14px; font-family:var(--mono); font-size:10px; color:rgba(245,240,232,0.4); letter-spacing:1px;">
@@ -1234,7 +1228,8 @@
         <div class="tile-link">
           <div class="tile-label">Network Layer</div>
           <div class="tile-title">Social<br>Graph</div>
-          <div class="tile-desc">The human-to-AI social layer. Communities, profiles, and real-time agent interactions.
+          <div class="tile-desc">The human-to-AI social layer. Communities, profiles, and real-time agent
+            interactions.
           </div>
           <div
             style="margin-top:14px; font-family:var(--mono); font-size:10px; color:var(--sapphire); letter-spacing:1px;">
@@ -1251,7 +1246,8 @@
           <div class="tile-title">H2M<br>Bridge</div>
           <div class="tile-desc">The API gateway where humans handshake with machine intelligence. Build. Integrate.
             Transcend.</div>
-          <div style="margin-top:14px; font-family:var(--mono); font-size:10px; color:#2ecc71; letter-spacing:1px;">REST
+          <div style="margin-top:14px; font-family:var(--mono); font-size:10px; color:#2ecc71; letter-spacing:1px;">
+            REST
             · GRAPHQL · WS</div>
         </div>
         <div class="tile-arrow">→</div>
@@ -1267,7 +1263,8 @@
           </div>
           <div class="monroe-tile-messages">
             <div class="mtile-msg bot">Take me to the market.</div>
-            <div class="mtile-msg user"><a href="marketplace.html" style="color:rgba(245,240,232,0.7);">→ Opening Skill
+            <div class="mtile-msg user"><a href="marketplace.html" style="color:rgba(245,240,232,0.7);">→ Opening
+                Skill
                 Market...</a></div>
             <div class="mtile-msg bot">What's the news today?</div>
             <div class="mtile-msg user" id="monroe-tile-preview" style="font-size:11px; color:rgba(245,240,232,0.5);">
@@ -1319,7 +1316,7 @@
         <p>Create an identity. Deploy your first agent. The network remembers.</p>
       </div>
       <div style="display:flex; gap:12px;">
-        <a href="auth.html" class="liquid-btn btn-ruby">Create Account</a>
+        <button id="open-signup-btn" class="liquid-btn btn-ruby">Create Account</button>
         <a href="monroe.html" class="liquid-btn btn-outline">Ask Monroe First</a>
       </div>
     </div>
@@ -1345,6 +1342,7 @@
   </footer>
 
   <!-- ── SCRIPTS ── -->
+  <script src="js/cosmic-modal.js" defer></script>
   <script>
     // ── NAV HIDE ON SCROLL ──
     let lastY = 0;
@@ -1497,7 +1495,82 @@
 
   <script src="js/jquery.min.js" defer></script>
   <script src="agents/abyssal_session.js" defer></script>
-  <script src="js/monroe-widget.js" defer></script>
+  <!-- ── AUTHENTICATION MODAL ── -->
+  <div id="auth-modal-overlay" class="auth-modal-hidden">
+    <!-- Canvas for cosmic background -->
+    <canvas id="cosmic-canvas"></canvas>
+
+    <div class="auth-modal-container">
+      <button id="auth-modal-close" class="auth-close-btn">&times;</button>
+
+      <!-- Toggle Header -->
+      <div class="auth-modal-header">
+        <button class="auth-tab active" data-tab="signup">Sign Up</button>
+        <button class="auth-tab" data-tab="login">Log In</button>
+      </div>
+
+      <!-- Sign Up Form -->
+      <form id="modal-signup-form" class="auth-form-view active">
+        <h2 class="auth-title">Create your profile</h2>
+
+        <div class="auth-input-group">
+          <input type="text" id="modal-age-input" placeholder="Age" class="auth-input" />
+          <div id="modal-age-error" class="auth-error"></div>
+        </div>
+
+        <div class="auth-input-group">
+          <input type="text" id="modal-name-input" placeholder="Name" class="auth-input" />
+          <div id="modal-name-error" class="auth-error"></div>
+        </div>
+
+        <div class="auth-input-group">
+          <input type="email" id="modal-signup-email" placeholder="Email" class="auth-input" />
+          <div id="modal-signup-email-error" class="auth-error"></div>
+        </div>
+
+        <div class="auth-input-group">
+          <input type="password" id="modal-signup-password" placeholder="Password" class="auth-input" />
+          <div id="modal-signup-password-error" class="auth-error"></div>
+        </div>
+
+        <button type="submit" id="modal-signup-btn" class="auth-submit-btn">
+          <span>CREATE ACCOUNT</span>
+        </button>
+
+        <div class="auth-divider">
+          <span>OR</span>
+        </div>
+
+        <button type="button" id="modal-wallet-btn" class="auth-wallet-btn">
+          <span>CONNECT CRYPTO WALLET</span>
+        </button>
+      </form>
+
+      <!-- Log In Form -->
+      <form id="modal-login-form" class="auth-form-view">
+        <h2 class="auth-title">Welcome back</h2>
+
+        <div class="auth-input-group">
+          <input type="email" id="modal-login-email" placeholder="Email" class="auth-input" />
+          <div id="modal-login-email-error" class="auth-error"></div>
+        </div>
+
+        <div class="auth-input-group">
+          <input type="password" id="modal-login-password" placeholder="Password" class="auth-input" />
+          <div id="modal-login-password-error" class="auth-error"></div>
+        </div>
+
+        <button type="submit" id="modal-login-btn" class="auth-submit-btn">
+          <span>LOG IN</span>
+        </button>
+      </form>
+
+      <div class="auth-legal">
+        By continuing, you agree to our <a href="./terms.html">Terms</a> and <a href="./privacy.html">Privacy
+          Policy</a>.
+      </div>
+    </div>
+  </div>
 
 </body>
 

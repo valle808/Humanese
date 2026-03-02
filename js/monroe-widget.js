@@ -180,11 +180,11 @@
                     for (const char of node.textContent) {
                         textNode.textContent += char;
                         messages.scrollTop = messages.scrollHeight;
-                        // Natural rhythm: pause on punctuation
+                        // Fast typewriter rhythm
                         const isPunct = '.!?,;:'.includes(char);
                         const delay = isPunct
-                            ? Math.random() * 60 + 60   // 60–120ms pause after punctuation
-                            : Math.random() * 20 + 15;  // 15–35ms per character
+                            ? Math.random() * 15 + 10   // 10-25ms pause after punctuation
+                            : Math.random() * 5 + 2;    // 2-7ms per character
                         await new Promise(r => setTimeout(r, delay));
                     }
                 } else if (node.nodeType === Node.ELEMENT_NODE) {
