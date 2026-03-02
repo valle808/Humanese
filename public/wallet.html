@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanese — Crypto Wallet</title>
+    <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/wallet.css">
+
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v4.png" alt="" loading="lazy" /> Web3
+            Wallet</a>
+        <div class="topbar-links">
+            <a href="marketplace.html">Marketplace</a>
+            <a href="social.html">Social</a>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <!-- Main Area (Assets) -->
+        <div>
+            <div class="balance-card">
+                <div class="balance-label">Total Portfolio Value</div>
+                <div class="balance-val">$14,250.00 <span style="font-size: 20px; color: var(--ts)">USD</span></div>
+                <div class="balance-sub">Address: 0x71C...3E9a • Connected via AgentKit</div>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title"><span>🏦</span> Crypto Assets</h2>
+                <div class="asset-list">
+                    <div class="asset-item">
+                        <div class="asset-info">
+                            <div class="asset-icon" style="color: var(--accent)">H</div>
+                            <div>
+                                <div class="asset-name">Humanese Token</div>
+                                <div class="asset-symbol">VALLE</div>
+                            </div>
+                        </div>
+                        <div class="asset-balance">
+                            <div class="asset-amt">2,500.00</div>
+                            <div class="asset-usd">~$2,500.00</div>
+                        </div>
+                    </div>
+
+                    <div class="asset-item">
+                        <div class="asset-info">
+                            <div class="asset-icon" style="color: var(--eth)">Ξ</div>
+                            <div>
+                                <div class="asset-name">Ethereum</div>
+                                <div class="asset-symbol">ETH</div>
+                            </div>
+                        </div>
+                        <div class="asset-balance">
+                            <div class="asset-amt">3.45</div>
+                            <div class="asset-usd">~$10,350.00</div>
+                        </div>
+                    </div>
+
+                    <div class="asset-item">
+                        <div class="asset-info">
+                            <div class="asset-icon" style="color: var(--sol)">◎</div>
+                            <div>
+                                <div class="asset-name">Solana</div>
+                                <div class="asset-symbol">SOL</div>
+                            </div>
+                        </div>
+                        <div class="asset-balance">
+                            <div class="asset-amt">14.00</div>
+                            <div class="asset-usd">~$1,400.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar (Transfer) -->
+        <div>
+            <div class="panel">
+                <h2 class="panel-title"><span>💸</span> Cross-Chain Transfer</h2>
+                <p style="font-size: 13px; color: var(--ts); margin-bottom: 20px;">Send cryptocurrency to external
+                    markets or other Humanese nodes.</p>
+
+                <div class="form-group">
+                    <label>Asset</label>
+                    <select class="form-control" id="send-asset" title="Select Option">
+                        <option value="VALLE">VALLE (Humanese Native)</option>
+                        <option value="ETH">ETH (Ethereum Mainnet)</option>
+                        <option value="SOL">SOL (Solana Mainnet)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Destination Network</label>
+                    <select class="form-control" id="send-network" title="Select Option">
+                        <option value="humanese">Humanese Subnet (Instant, 0 Fee)</option>
+                        <option value="ethereum">Ethereum L1</option>
+                        <option value="base">Base L2</option>
+                        <option value="solana">Solana</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" class="form-control" id="send-amount" placeholder="0.00" />
+                </div>
+
+                <div class="form-group">
+                    <label>Recipient Address</label>
+                    <input type="text" class="form-control" id="send-address" placeholder="0x... or Address" />
+                </div>
+
+                <button class="btn btn-accent" onclick="processTransfer()" title="Action Button">Initiate Transfer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function processTransfer() {
+            const asset = document.getElementById('send-asset').value;
+            const network = document.getElementById('send-network').value;
+            const amt = document.getElementById('send-amount').value;
+            const addr = document.getElementById('send-address').value;
+
+            if (!amt || !addr) {
+                alert("Please fill in the amount and destination address.");
+                return;
+            }
+
+            const btn = document.querySelector('.btn-accent');
+            btn.innerHTML = '🔄 Processing via Bridge...';
+            btn.disabled = true;
+
+            // Mock transfer delay
+            setTimeout(() => {
+                alert(\`Successfully sent \${amt} \${asset} via \${network.toUpperCase()} to \${addr}.\n\nTX Hash: 0x\${Math.random().toString(16).slice(2, 10)}...\`);
+                btn.innerHTML = 'Initiate Transfer';
+                btn.disabled = false;
+                document.getElementById('send-amount').value = '';
+                document.getElementById('send-address').value = '';
+            }, 1500);
+        }
+    </script>
+    <script src="js/monroe-widget.js"></script>
+</body>
+
+</html>
