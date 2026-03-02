@@ -6,47 +6,12 @@
         {
             "source": "/api/(.*)",
             "destination": "/server.js"
-        },
-        {
-            "source": "/",
-            "destination": "/index.html"
         }
     ],
     "headers": [
         {
-            "source": "/assets/(.*)",
+            "source": "/(.*)",
             "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=31536000, immutable"
-                }
-            ]
-        },
-        {
-            "source": "/css/(.*)",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=86400, stale-while-revalidate=604800"
-                }
-            ]
-        },
-        {
-            "source": "/js/(.*)",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=86400, stale-while-revalidate=604800"
-                }
-            ]
-        },
-        {
-            "source": "/(.*)\\.html",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=3600, stale-while-revalidate=86400"
-                },
                 {
                     "key": "X-Content-Type-Options",
                     "value": "nosniff"
@@ -62,15 +27,11 @@
             ]
         },
         {
-            "source": "/api/(.*)",
+            "source": "/assets/(.*)",
             "headers": [
                 {
                     "key": "Cache-Control",
-                    "value": "no-store"
-                },
-                {
-                    "key": "X-Content-Type-Options",
-                    "value": "nosniff"
+                    "value": "public, max-age=31536000, immutable"
                 }
             ]
         }

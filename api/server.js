@@ -88,16 +88,20 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
-// Since we moved assets to /public, Vercel handles static.
-// However, we need to ensure Express can serve them if hit.
-app.use(express.static(path.join(__dirname, '..')));
+// Robust static file serving for Vercel
+const rootDir = path.join(__dirname, '..');
+const publicDir = path.join(rootDir, 'public');
 
-// Fallback for root to serve index.html directly if not caught by Vercel static
+app.use(express.static(publicDir));
+app.use(express.static(rootDir));
+
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
-});
-
-// The API is isolated to serverless functions.
+    const publicIndex = path.join(publicDir, 'index.html');
+    if (fs.existsSync(publicIndex)) {
+        return res.sendFile(publicIndex);
+    }
+    res.sendFile(path.join(rootDir, 'index.html'));
+});// The API is isolated to serverless functions.
 
 // --- Health Check ---
 app.get('/api/health', async (req, res) => {
