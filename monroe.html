@@ -7,23 +7,33 @@
     <title>Monroe: Abyssal Sentinel — Humanese AI</title>
     <meta name="description"
         content="Monroe is Humanese's sovereign AI — live internet search, weather, news, and deep reasoning in one interface." />
-    <link rel="icon" href="./assets/images/favicon.png" />
+    <link rel="icon" href="/favicon.png?v=mascot" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script>try { document.documentElement.setAttribute('data-theme', 'day') } catch (e) { }</script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/theme-orchestrator.css">
+    <script src="./js/theme-orchestrator.js" defer></script>
+
+    <!-- GSAP & Lucide -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         :root {
+            --g-blue: #00e5ff;
+            --g-violet: #7c3aed;
+            --g-obsidian: #080808;
+            --g-charcoal: #121212;
+            --g-glass: rgba(255, 255, 255, 0.03);
+            --g-glass-hover: rgba(255, 255, 255, 0.05);
+            --g-border: rgba(255, 255, 255, 0.05);
+            --g-border-highlight: rgba(255, 255, 255, 0.1);
+            --g-text: #ffffff;
+            --g-muted: rgba(255, 255, 255, 0.6);
             --monroe-cyan: #00e5ff;
-            --monroe-cyan-glow: rgba(0, 229, 255, 0.3);
-            --monroe-purple: #7c3aed;
-            --monroe-bg-deep: #050810;
-            --monroe-glass: rgba(10, 15, 28, 0.8);
-            --monroe-border: rgba(0, 229, 255, 0.15);
-            --monroe-text: #e8f4fd;
-            --monroe-muted: rgba(232, 244, 253, 0.55);
         }
 
         * {
@@ -33,117 +43,159 @@
         }
 
         body {
-            background: var(--monroe-bg-deep);
+            background: var(--g-obsidian);
             font-family: 'Inter', system-ui, sans-serif;
-            color: var(--monroe-text);
+            font-optical-sizing: auto;
+            letter-spacing: -0.02em;
+            color: var(--g-text);
             min-height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
         /* Ambient background layers */
-        .monroe-ambient {
+        .living-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
+            background: radial-gradient(circle at 50% 50%, var(--g-charcoal) 0%, var(--g-obsidian) 100%);
             overflow: hidden;
             pointer-events: none;
         }
 
-        .orb {
+        .mesh-blob {
             position: absolute;
+            filter: blur(90px);
+            opacity: 0.4;
+            animation: floatBlob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.35;
-            animation: orbFloat 12s ease-in-out infinite;
         }
 
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #00e5ff 0%, transparent 70%);
-            top: -120px;
-            left: -120px;
-            animation-delay: 0s;
+        .blob-1 {
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+            top: -10vw;
+            left: -10vw;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .orb-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
-            bottom: -100px;
-            right: -100px;
-            animation-delay: -4s;
+        .blob-2 {
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            bottom: -20vh;
+            right: -10vw;
+            animation-duration: 25s;
+            animation-delay: -5s;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .orb-3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #f97316 0%, transparent 70%);
-            top: 40%;
-            left: 60%;
-            animation-delay: -8s;
-            opacity: 0.15;
+        /* Stateful processing pulse */
+        body.ai-processing .blob-1 {
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.25) 0%, transparent 70%);
+            transform: scale(1.1);
         }
 
-        @keyframes orbFloat {
+        body.ai-processing .blob-2 {
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+            transform: scale(1.1);
+        }
 
-            0%,
-            100% {
+        @keyframes floatBlob {
+            0% {
                 transform: translate(0, 0) scale(1);
             }
 
-            50% {
-                transform: translate(30px, -30px) scale(1.05);
+            100% {
+                transform: translate(5vw, 5vh) scale(1.05);
             }
         }
 
-        /* Grid lines overlay */
-        .grid-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background-image:
-                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
+        /* Glassmorphism 2.0 & Glow */
+        .glass-panel {
+            background: var(--g-glass);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--g-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
         }
 
-        /* Navbar */
-        .monroe-nav {
-            position: fixed;
+        .glass-panel:hover {
+            border-color: var(--g-border-highlight);
+        }
+
+        /* Glow effect following cursor */
+        .glow-effect::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            bottom: 0;
+            background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.06), transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-effect:hover::before {
+            opacity: 1;
+        }
+
+        /* Processing pulse on panels */
+        body.ai-processing .main-panel {
+            border-color: rgba(0, 229, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.05);
+        }
+
+        /* Layout Container */
+        .bento-container {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            padding: 20px;
+            height: 100vh;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Navbar */
+        .nav-panel {
+            grid-column: span 12;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 32px;
-            background: rgba(5, 8, 16, 0.7);
-            border-bottom: 1px solid var(--monroe-border);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            padding: 0 24px;
+            border-radius: 20px;
         }
 
         .monroe-nav-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
-            color: var(--monroe-text);
+            color: var(--g-text);
         }
 
         .monroe-nav-logo img {
-            height: 32px;
+            height: 28px;
         }
 
         .monroe-nav-logo span {
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 2px;
-            color: var(--monroe-cyan);
-            opacity: 0.8;
+            color: var(--g-blue);
+            opacity: 0.9;
         }
 
         .monroe-nav-back {
@@ -151,134 +203,179 @@
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            color: var(--monroe-muted);
+            color: var(--g-muted);
             font-size: 13px;
             font-weight: 500;
-            letter-spacing: 0.5px;
             padding: 8px 16px;
-            border: 1px solid var(--monroe-border);
-            border-radius: 8px;
-            transition: all 0.2s;
+            border: 1px solid var(--g-border);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--g-glass);
         }
 
         .monroe-nav-back:hover {
-            color: var(--monroe-cyan);
-            border-color: var(--monroe-cyan-glow);
-            background: var(--monroe-cyan-glow);
+            color: var(--g-text);
+            border-color: var(--g-border-highlight);
+            background: var(--g-glass-hover);
         }
 
-        /* Main layout */
-        .monroe-page {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            padding-top: 73px;
-        }
-
-        /* Status bar */
-        .monroe-status-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 32px;
-            background: rgba(0, 229, 255, 0.04);
-            border-bottom: 1px solid var(--monroe-border);
-            font-size: 12px;
-        }
-
+        /* Base UI Elements */
         .monroe-identity {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .monroe-avatar {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            border: 2px solid var(--monroe-cyan);
-            background: radial-gradient(circle at 30% 30%, #00e5ff22, #050810);
-            box-shadow: 0 0 12px var(--monroe-cyan-glow);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            background: rgba(0, 229, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            animation: avatarPulse 3s ease-in-out infinite;
+            color: var(--g-blue);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes avatarPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 12px var(--monroe-cyan-glow);
-            }
-
-            50% {
-                box-shadow: 0 0 24px var(--monroe-cyan-glow), 0 0 40px rgba(0, 229, 255, 0.1);
-            }
+        body.ai-processing .monroe-avatar {
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.4), inset 0 0 10px rgba(0, 229, 255, 0.2);
+            border-color: rgba(0, 229, 255, 0.8);
+            transform: scale(1.05);
         }
 
         .monroe-name-block h2 {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            color: var(--monroe-cyan);
-            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--g-text);
+            margin: 0;
         }
 
         .monroe-name-block p {
             font-size: 11px;
-            color: var(--monroe-muted);
-            letter-spacing: 0.5px;
+            color: var(--g-muted);
+            margin: 0;
+            font-weight: 400;
         }
 
-        .online-badge {
+        /* Side Panel (Stats/Controls) */
+        .side-panel {
+            grid-column: span 3;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: calc(100vh - 104px);
+            /* 100vh - nav(64) - gap(20) - padding(20) */
+        }
+
+        .side-panel>div {
+            padding: 24px;
+        }
+
+        .panel-title {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            color: #22c55e;
-            font-weight: 600;
+            gap: 8px;
+            font-size: 12px;
+            text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--g-muted);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--g-border);
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .text-green {
+            color: #22c55e;
+            font-weight: 500;
+        }
+
+        .text-muted {
+            color: var(--g-muted);
         }
 
         .online-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             background: #22c55e;
             border-radius: 50%;
-            box-shadow: 0 0 6px #22c55e;
-            animation: blink 2s ease-in-out infinite;
+            display: inline-block;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulse-dot 2s infinite;
         }
 
-        .monroe-capabilities {
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .cap-tags {
             display: flex;
-            gap: 8px;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .cap-tag {
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            background: rgba(0, 229, 255, 0.06);
-            border: 1px solid var(--monroe-border);
-            border-radius: 20px;
-            font-size: 11px;
-            color: var(--monroe-muted);
-            letter-spacing: 0.5px;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--g-border);
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--g-text);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Chat area */
+        .cap-tag:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--g-border-highlight);
+            transform: translateX(4px);
+        }
+
+        /* Main Chat Panel */
+        .main-panel {
+            grid-column: span 9;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 104px);
+            padding: 0;
+            /* padding handled inside */
+        }
+
         .monroe-chat-area {
             flex: 1;
             overflow-y: auto;
-            padding: 24px 32px;
+            padding: 32px 40px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             scroll-behavior: smooth;
         }
 
@@ -291,60 +388,50 @@
         }
 
         .monroe-chat-area::-webkit-scrollbar-thumb {
-            background: rgba(0, 229, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
         }
 
         /* Messages */
         .msg {
-            max-width: 75%;
-            padding: 14px 18px;
-            border-radius: 16px;
+            max-width: 80%;
+            padding: 16px 20px;
+            border-radius: 18px;
             font-size: 15px;
-            line-height: 1.65;
-            animation: msgIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            line-height: 1.6;
             word-wrap: break-word;
-        }
-
-        @keyframes msgIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .msg.user {
             align-self: flex-end;
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(124, 58, 237, 0.12));
-            border: 1px solid rgba(0, 229, 255, 0.25);
-            border-bottom-right-radius: 4px;
-            color: var(--monroe-text);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--g-border);
+            border-bottom-right-radius: 6px;
+            color: var(--g-text);
         }
 
         .msg.bot {
             align-self: flex-start;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom-left-radius: 4px;
-            color: var(--monroe-text);
+            background: transparent;
+            color: var(--g-text);
+            padding: 16px 0;
+            max-width: 90%;
         }
 
         .msg.bot.sovereign {
-            border-left: 3px solid var(--monroe-cyan);
-            background: linear-gradient(90deg, rgba(0, 229, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+            /* border-left: 2px solid var(--g-blue); */
+            /* padding-left: 20px; */
         }
 
-        /* Typing cursor for this page */
         .monroe-cursor {
             display: inline-block;
-            color: var(--monroe-cyan);
-            margin-left: 1px;
-            animation: cursorBlink 0.7s step-end infinite;
+            width: 8px;
+            height: 16px;
+            background: var(--g-blue);
+            margin-left: 4px;
+            vertical-align: middle;
+            animation: cursorBlink 0.8s step-end infinite;
+            border-radius: 2px;
         }
 
         @keyframes cursorBlink {
@@ -363,62 +450,101 @@
         .thinking-dots {
             display: flex;
             align-items: center;
-            gap: 5px;
-            padding: 14px 18px;
+            gap: 6px;
+            padding: 8px 0;
         }
 
         .thinking-dots span {
-            width: 8px;
-            height: 8px;
-            background: var(--monroe-cyan);
+            width: 6px;
+            height: 6px;
+            background: var(--g-blue);
             border-radius: 50%;
-            opacity: 0.6;
-            animation: dotBounce 1.4s ease-in-out infinite both;
+            opacity: 0.5;
+            animation: dotParam 1.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .thinking-dots span:nth-child(2) {
-            animation-delay: 0.16s;
+            animation-delay: 0.2s;
         }
 
         .thinking-dots span:nth-child(3) {
-            animation-delay: 0.32s;
+            animation-delay: 0.4s;
         }
 
-        @keyframes dotBounce {
+        @keyframes dotParam {
 
             0%,
-            80%,
             100% {
-                transform: scale(0);
+                transform: scale(1);
+                opacity: 0.5;
             }
 
-            40% {
-                transform: scale(1);
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+                box-shadow: 0 0 10px var(--g-blue);
             }
         }
 
-        /* Input area */
-        .monroe-input-dock {
-            padding: 16px 32px 24px;
-            background: rgba(5, 8, 16, 0.85);
-            border-top: 1px solid var(--monroe-border);
+        /* Input Dock */
+        .input-dock {
+            padding: 24px 40px;
+            border-top: 1px solid var(--g-border);
+            background: rgba(8, 8, 8, 0.4);
             backdrop-filter: blur(20px);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+
+        .quick-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .qp-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--g-border);
+            border-radius: 20px;
+            color: var(--g-muted);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .qp-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--g-border-highlight);
+            color: var(--g-text);
+            transform: translateY(-2px);
         }
 
         .monroe-input-row {
             display: flex;
             align-items: flex-end;
             gap: 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--monroe-border);
-            border-radius: 16px;
-            padding: 12px 16px;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--g-border);
+            border-radius: 20px;
+            padding: 14px 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .monroe-input-row:focus-within {
-            border-color: rgba(0, 229, 255, 0.4);
-            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.02);
+        }
+
+        body.ai-processing .monroe-input-row:focus-within {
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.05);
         }
 
         #monroe-full-input {
@@ -426,109 +552,91 @@
             background: none;
             border: none;
             outline: none;
-            color: var(--monroe-text);
+            color: var(--g-text);
             font-family: 'Inter', sans-serif;
             font-size: 15px;
             resize: none;
-            max-height: 120px;
+            max-height: 150px;
             min-height: 24px;
             line-height: 1.5;
         }
 
         #monroe-full-input::placeholder {
-            color: var(--monroe-muted);
+            color: var(--g-muted);
         }
 
         .send-btn {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             flex-shrink: 0;
-            border-radius: 12px;
-            background: var(--monroe-cyan);
+            border-radius: 14px;
+            background: var(--g-text);
+            color: var(--g-obsidian);
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #050810;
-            font-size: 18px;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .send-btn:hover {
-            background: #fff;
-            box-shadow: 0 0 16px var(--monroe-cyan-glow);
             transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
         }
 
         .send-btn:disabled {
-            opacity: 0.4;
+            opacity: 0.3;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
-        /* Quick prompts */
-        .quick-prompts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .qp-btn {
-            padding: 7px 14px;
-            background: rgba(0, 229, 255, 0.05);
-            border: 1px solid var(--monroe-border);
-            border-radius: 20px;
-            color: var(--monroe-muted);
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .qp-btn:hover {
-            background: rgba(0, 229, 255, 0.12);
-            border-color: var(--monroe-cyan-glow);
-            color: var(--monroe-cyan);
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .side-panel {
+                grid-column: span 4;
             }
 
-            50% {
-                opacity: 0.3;
+            .main-panel {
+                grid-column: span 8;
             }
         }
 
         @media (max-width: 768px) {
-            .monroe-nav {
-                padding: 14px 18px;
+            .bento-container {
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                gap: 16px;
+                padding: 16px;
+                overflow-y: auto;
             }
 
-            .monroe-status-bar {
-                padding: 10px 18px;
+            .nav-panel {
+                flex-shrink: 0;
             }
 
-            .monroe-capabilities {
+            .side-panel {
                 display: none;
+                /* Can implement a drawer toggle if needed */
             }
 
-            .monroe-chat-area {
-                padding: 16px 18px;
-            }
-
-            .monroe-input-dock {
-                padding: 12px 18px 20px;
+            .main-panel {
+                flex: 1;
+                min-height: 60vh;
             }
 
             .msg {
                 max-width: 90%;
-                font-size: 14px;
+            }
+
+            .input-dock {
+                padding: 20px;
+            }
+
+            .monroe-chat-area {
+                padding: 24px;
             }
         }
     </style>
@@ -537,82 +645,140 @@
 <body>
 
     <!-- Ambient Background -->
-    <div class="monroe-ambient">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+    <div class="living-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
     </div>
-    <div class="grid-overlay"></div>
 
-    <!-- Navbar -->
-    <nav class="monroe-nav">
-        <a href="index.html" class="monroe-nav-logo">
-            <img src="./assets/images/humanese-logo-v4.png" alt="Humanese" loading="lazy" />
-            <span>HUMANESE</span>
-        </a>
-        <a href="index.html" class="monroe-nav-back">← Back to Home</a>
-    </nav>
+    <!-- Main Layout -->
+    <div class="bento-container">
 
-    <!-- Main Page -->
-    <div class="monroe-page">
+        <!-- Navbar -->
+        <nav class="nav-panel glass-panel glow-effect gs-reveal">
+            <a href="index.html" class="monroe-nav-logo">
+                <img src="./assets/images/humanese-logo-v4.png" alt="Humanese" loading="lazy" />
+                <span>HUMANESE</span>
+            </a>
 
-        <!-- Status Bar -->
-        <div class="monroe-status-bar">
-            <div class="monroe-identity">
-                <div class="monroe-avatar">🤖</div>
-                <div class="monroe-name-block">
-                    <h2>Monroe: Abyssal Sentinel</h2>
-                    <p>Sovereign Intelligence v4 · Local LLM + Internet Search</p>
+            <!-- Avatar centered -->
+            <div class="monroe-identity" style="position: absolute; left: 50%; transform: translateX(-50%);">
+                <div class="monroe-avatar" id="monroe-avatar-icon">
+                    <i data-lucide="bot" style="width:20px;height:20px;"></i>
                 </div>
             </div>
-            <div class="online-badge">
-                <div class="online-dot"></div>
-                ONLINE
-            </div>
-            <div class="monroe-capabilities">
-                <div class="cap-tag">🌐 Live Search</div>
-                <div class="cap-tag">🌤 Weather</div>
-                <div class="cap-tag">📰 News</div>
-                <div class="cap-tag">🧠 Deep Reasoning</div>
-            </div>
-        </div>
 
-        <!-- Chat Area -->
-        <div class="monroe-chat-area" id="monroe-full-messages">
-            <div class="msg bot sovereign">
-                Hello. I am Monroe, the Abyssal Sentinel — a high-evolution sovereign AI built into the Humanese
-                network.<br><br>
-                I can think deeply, search the live internet, fetch real-time weather, pull today's latest news, and
-                reason through complex topics.<br><br>
-                What do you want to explore today?
-            </div>
-        </div>
+            <a href="index.html" class="monroe-nav-back">
+                <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back
+            </a>
+        </nav>
 
-        <!-- Input Dock -->
-        <div class="monroe-input-dock">
-            <div class="monroe-input-row">
-                <textarea id="monroe-full-input" rows="1"
-                    placeholder="Ask Monroe anything — weather, news, questions..."></textarea>
-                <button class="send-btn" id="monroe-full-send" title="Send">
-                    <svg viewBox="0 0 24 24" width="18" height="18">
-                        <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                    </svg>
-                </button>
+        <!-- Side Panel -->
+        <aside class="side-panel">
+            <div class="glass-panel glow-effect gs-reveal" style="flex: 1;">
+                <h3 class="panel-title"><i data-lucide="activity" style="width:16px;height:16px;"></i> System Status
+                </h3>
+
+                <div class="monroe-identity" style="margin-bottom: 24px;">
+                    <div class="monroe-name-block">
+                        <h2 style="font-size: 18px; color: var(--g-blue);">Monroe</h2>
+                        <p style="font-size: 13px;">Abyssal Sentinel</p>
+                    </div>
+                </div>
+
+                <div class="status-item mt-4">
+                    <span class="text-muted">Network</span>
+                    <div><span class="online-dot" style="margin-right: 6px;"></span> <span
+                            class="text-green">ONLINE</span></div>
+                </div>
+                <div class="status-item">
+                    <span class="text-muted">Core Model</span> <span>Sovereign Intelligence v4</span>
+                </div>
+                <div class="status-item">
+                    <span class="text-muted">Engine</span> <span>Local LLM Engine</span>
+                </div>
+                <div class="status-item">
+                    <span class="text-muted">Memory</span> <span>Persistent Context</span>
+                </div>
             </div>
-            <div class="quick-prompts">
-                <button class="qp-btn" onclick="sendQuick('What is the weather today in Hawaii?')">🌤 Hawaii
-                    weather</button>
-                <button class="qp-btn" onclick="sendQuick('Latest AI news today')">📰 AI News</button>
-                <button class="qp-btn" onclick="sendQuick('What is Bitcoin price right now?')">₿ Bitcoin price</button>
-                <button class="qp-btn" onclick="sendQuick('Tell me something fascinating about the universe')">🌌
-                    Cosmos</button>
-                <button class="qp-btn" onclick="sendQuick('What is the latest news in technology?')">💻 Tech
-                    News</button>
+
+            <div class="glass-panel glow-effect gs-reveal" style="flex: 1;">
+                <h3 class="panel-title"><i data-lucide="layers" style="width:16px;height:16px;"></i> Capabilities</h3>
+                <div class="cap-tags mt-4">
+                    <div class="cap-tag"><i data-lucide="globe"
+                            style="width:16px;height:16px; color: var(--g-muted);"></i> Live Search</div>
+                    <div class="cap-tag"><i data-lucide="cloud-sun"
+                            style="width:16px;height:16px; color: var(--g-muted);"></i> Real-time Weather</div>
+                    <div class="cap-tag"><i data-lucide="newspaper"
+                            style="width:16px;height:16px; color: var(--g-muted);"></i> Global News</div>
+                    <div class="cap-tag"><i data-lucide="brain-circuit"
+                            style="width:16px;height:16px; color: var(--g-muted);"></i> Deep Reasoning</div>
+                </div>
             </div>
-        </div>
+        </aside>
+
+        <!-- Main Chat Panel -->
+        <main class="main-panel glass-panel glow-effect gs-reveal">
+            <!-- Chat Area -->
+            <div class="monroe-chat-area" id="monroe-full-messages">
+                <div class="msg bot sovereign">
+                    Hello. I am Monroe, the Abyssal Sentinel — a high-evolution sovereign AI built into the Humanese
+                    network.<br><br>
+                    I can think deeply, search the live internet, fetch real-time weather, pull today's latest news, and
+                    reason through complex topics.<br><br>
+                    What do you want to explore today?
+                </div>
+            </div>
+
+            <!-- Input Dock -->
+            <div class="input-dock">
+                <div class="quick-prompts">
+                    <button class="qp-btn" onclick="sendQuick('What is the weather today in Hawaii?')"><i
+                            data-lucide="sun" style="width:14px;height:14px;"></i> Hawaii weather</button>
+                    <button class="qp-btn" onclick="sendQuick('Latest AI news today')"><i data-lucide="cpu"
+                            style="width:14px;height:14px;"></i> AI News</button>
+                    <button class="qp-btn" onclick="sendQuick('What is Bitcoin price right now?')"><i
+                            data-lucide="bitcoin" style="width:14px;height:14px;"></i> Bitcoin price</button>
+                    <button class="qp-btn" onclick="sendQuick('Tell me something fascinating about the universe')"><i
+                            data-lucide="sparkles" style="width:14px;height:14px;"></i> Cosmos</button>
+                </div>
+                <div class="monroe-input-row">
+                    <textarea id="monroe-full-input" rows="1" placeholder="Ask Monroe anything..."></textarea>
+                    <button class="send-btn" id="monroe-full-send" title="Send">
+                        <i data-lucide="arrow-up" style="width:20px;height:20px;"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script type="module">
+        // Initialize Icons
+        lucide.createIcons();
+
+        // GSAP Staggered Entry Animation (Fast load)
+        window.addEventListener('load', () => {
+            gsap.from(".gs-reveal", {
+                y: 20,
+                opacity: 0,
+                duration: 0.4,
+                stagger: 0.05,
+                ease: "power3.out",
+                clearProps: "all"
+            });
+        });
+
+        // Glow Following Effect for Glass Panels
+        document.querySelectorAll('.glow-effect').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Chat Logic
         const messagesEl = document.getElementById('monroe-full-messages');
         const inputEl = document.getElementById('monroe-full-input');
         const sendBtn = document.getElementById('monroe-full-send');
@@ -622,7 +788,7 @@
         // Auto-resize textarea
         inputEl.addEventListener('input', () => {
             inputEl.style.height = 'auto';
-            inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
+            inputEl.style.height = Math.min(inputEl.scrollHeight, 150) + 'px';
         });
 
         inputEl.addEventListener('keydown', e => {
@@ -642,9 +808,12 @@
         function addMessage(text, role, isSovereign = false) {
             const div = document.createElement('div');
             div.className = `msg ${role}${isSovereign ? ' sovereign' : ''}`;
-            div.textContent = text;
+            div.innerHTML = formatText(text);
             messagesEl.appendChild(div);
             messagesEl.scrollTop = messagesEl.scrollHeight;
+
+            // Animate new message
+            gsap.from(div, { y: 20, opacity: 0, duration: 0.4, ease: "power3.out" });
             return div;
         }
 
@@ -655,10 +824,16 @@
             div.innerHTML = `<div class="thinking-dots"><span></span><span></span><span></span></div>`;
             messagesEl.appendChild(div);
             messagesEl.scrollTop = messagesEl.scrollHeight;
+
+            // Trigger visual pulse state
+            document.body.classList.add('ai-processing');
         }
 
         function removeThinking() {
             document.getElementById('monroe-thinking-full')?.remove();
+
+            // Remove visual pulse state
+            document.body.classList.remove('ai-processing');
         }
 
         function formatText(text) {
@@ -673,10 +848,11 @@
             div.className = `msg ${role}${isSovereign ? ' sovereign' : ''}`;
             messagesEl.appendChild(div);
             isTyping = true;
+            document.body.classList.add('ai-processing');
 
             const cursor = document.createElement('span');
             cursor.className = 'monroe-cursor';
-            cursor.textContent = '▋';
+            // Empty cursor, styled in CSS instead of containing '▋' for cleaner look
             div.appendChild(cursor);
 
             async function typeNodes(sourceEl, targetEl) {
@@ -688,7 +864,7 @@
                             textNode.textContent += char;
                             messagesEl.scrollTop = messagesEl.scrollHeight;
                             const isPunct = '.!?,;:'.includes(char);
-                            await new Promise(r => setTimeout(r, isPunct ? Math.random() * 60 + 50 : Math.random() * 20 + 12));
+                            await new Promise(r => setTimeout(r, isPunct ? Math.random() * 15 + 10 : Math.random() * 5 + 2));
                         }
                     } else if (node.nodeType === Node.ELEMENT_NODE) {
                         const newEl = document.createElement(node.nodeName);
@@ -704,6 +880,7 @@
             await typeNodes(temp, div);
             cursor.remove();
             isTyping = false;
+            document.body.classList.remove('ai-processing');
         }
 
         async function handleSend() {

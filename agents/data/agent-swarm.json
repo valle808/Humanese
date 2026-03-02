@@ -1,7 +1,7 @@
 {
-  "totalSpawned": 14,
+  "totalSpawned": 19,
   "activeAgents": 3,
-  "completedMissions": 11,
+  "completedMissions": 16,
   "agentRoster": [
     {
       "id": "AK-REA-1772159765304-9615",
@@ -128,6 +128,51 @@
       "spawnedAt": "2026-03-01T23:47:27.062Z",
       "missionsCompleted": 1,
       "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772418395218-3123",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-03-02T02:26:35.218Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772418395223-2409",
+      "role": "READER",
+      "topic": "machine learning",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-03-02T02:26:35.223Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772418395223-0127",
+      "role": "READER",
+      "topic": "neural networks",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-03-02T02:26:35.223Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772418395223-3512",
+      "role": "READER",
+      "topic": "quantum computing",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-03-02T02:26:35.223Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
+    },
+    {
+      "id": "AK-REA-1772418395223-5733",
+      "role": "READER",
+      "topic": "blockchain",
+      "status": "COMPLETE",
+      "spawnedAt": "2026-03-02T02:26:35.224Z",
+      "missionsCompleted": 1,
+      "knowledgeHarvested": 1
     }
   ],
   "swarmLog": [
@@ -228,6 +273,41 @@
       "role": "READER",
       "topic": "blockchain",
       "timestamp": "2026-03-01T23:47:27.062Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772418395218-3123",
+      "role": "READER",
+      "topic": "artificial intelligence",
+      "timestamp": "2026-03-02T02:26:35.222Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772418395223-2409",
+      "role": "READER",
+      "topic": "machine learning",
+      "timestamp": "2026-03-02T02:26:35.223Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772418395223-0127",
+      "role": "READER",
+      "topic": "neural networks",
+      "timestamp": "2026-03-02T02:26:35.223Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772418395223-3512",
+      "role": "READER",
+      "topic": "quantum computing",
+      "timestamp": "2026-03-02T02:26:35.223Z"
+    },
+    {
+      "event": "SPAWN",
+      "agentId": "AK-REA-1772418395223-5733",
+      "role": "READER",
+      "topic": "blockchain",
+      "timestamp": "2026-03-02T02:26:35.224Z"
     }
   ]
 }

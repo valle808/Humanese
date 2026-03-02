@@ -65,6 +65,15 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
+// Handle JSON parsing errors so they don't crash the server
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+        console.error('JSON parsing error:', err.message);
+        return res.status(400).json({ error: 'Invalid JSON payload format' });
+    }
+    next();
+});
+
 app.use(helmet({
     contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false
