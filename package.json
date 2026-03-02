@@ -7,7 +7,7 @@
         "node": "20.x"
     },
     "scripts": {
-        "build": "prisma generate && mkdir -p public && cp -r *.html css js assets agents data ts docs utils vendor scripts public/ 2>/dev/null || true",
+        "build": "prisma generate && node scripts/build_public.js",
         "autoheal": "node watcher_agent.js",
         "prisma:generate": "prisma generate",
         "prisma:migrate": "prisma migrate dev --name init",
