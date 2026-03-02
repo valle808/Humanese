@@ -1,114 +1,151 @@
-![Alt text](public/logo.png)
+<div align="center">
+  <img src="assets/branding/logos/main.png" alt="Humanese Logo" width="200" />
+  <h1>🌐 Humanese 🌐</h1>
+  <p><b>Universal Language Model, Autonomous Agents & Crypto Ecosystem</b></p>
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![Node.js Version](https://img.shields.io/badge/Node.js-v18%2B-green.svg)](https://nodejs.org/)
+  [![Prisma](https://img.shields.io/badge/ORM-Prisma-0C344B?logo=prisma)](https://www.prisma.io/)
+  [![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
+</div>
 
-# DeepGrok
+<br/>
 
-DeepGrok is an enhanced reader for Grokipedia, designed to provide a superior user experience with intelligent search, structured content, AI-powered interactions, and visual exploration tools. It scrapes Grokipedia pages, cleans and formats the content, and presents it in a clean, navigable interface.
+## ✨ Introduction
 
-## Features
+**Humanese** is a revolutionary platform merging the capabilities of Universal Language Models (ULMs) with autonomous multi-agent systems and blockchain technology. It serves as a decentralized ecosystem where AI entities, humans, and interconnected protocols collaborate to perform complex tasks, manage resources, and engage in a thriving digital economy.
 
-- **Intelligent Search**: Instantly search for any Grokipedia topic or paste a direct URL to start reading.
-- **Structured Content**: Automatically parses articles into a clean layout with a sticky table of contents for easy navigation.
-- **Interactive Mindmaps**: Generate and explore a hierarchical mindmap of any article to get a high-level visual overview of its structure and key topics.
-- **AI-Powered Chat**: Ask questions about the page content and get concise, accurate answers from an AI assistant that has the article's full context.
-- **Advanced Reference Formatting**: Automatically identifies, formats, and links all citations, providing hover-over tooltips and a cleanly organized references section.
-- **Export Options**: Download any article as a clean, formatted PDF or copy the raw, cleaned markdown to your clipboard.
-- **Performance Caching**: Utilizes Supabase to cache scraped pages and generated mindmaps, ensuring near-instant load times for subsequent visits.
-- **Modern Dark UI**: A sleek, responsive, and always-dark interface built with Next.js and Tailwind CSS for a comfortable reading experience.
+Experience the future of human-computer interaction, intelligent task management, and autonomous digital ecosystems.
 
-## Technology Stack
+## 🚀 Key Features
 
-- **Framework**: [Next.js](https://nextjs.org/) (with App Router)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [Shadcn/ui](https://ui.shadcn.com/)
-- **Scraping**: [Firecrawl](https://firecrawl.dev/)
-- **AI & LLMs**: [OpenRouter](https://openrouter.ai/) (using `meta-llama/llama-3.2-3b-instruct:free`)
-- **Database & Caching**: [Supabase](https://supabase.io/)
-- **Markdown Processing**: [marked](https://marked.js.org/), [remark](https://github.com/remarkjs/remark), [rehype](https://github.com/rehypejs/rehype)
-- **Mindmap Visualization**: [Markmap](https://markmap.js.org/)
-- **PDF Export**: [jsPDF](https://github.com/parallax/jsPDF)
+- 🧠 **Universal Language Model Integration**: Seamlessly interact with advanced AI models trained to understand deep context and technical protocols.
+- 🤖 **Agent Swarms (Agent Kin & M2M)**: Deploy thousands of autonomous worker agents that can read, learn, and execute tasks across the web.
+- 🔐 **Military-Grade Security**: robust Admin authentication, encrypted protocols, and quantum-resistant protections.
+- 💰 **Crypto Economy**: Built-in wallet structures and address mappings for agents to participate in digital economies.
+- 📡 **Real-time Synchronization**: Websocket and Event-driven architectures ensuring instantaneous agent communication.
+- 🔍 **Automated System Checks**: Comprehensive recursive repository health checks to ensure absolute system integrity.
 
-## How It Works
+## 🛠 Technology Stack
 
-1.  A user enters a Grokipedia topic or URL into the search bar.
-2.  The Next.js API route first checks for a cached version of the page in the Supabase database. If a recent, valid cache entry is found, it's returned immediately.
-3.  If no cache exists, the API calls the **Firecrawl** service to scrape the live Grokipedia page and retrieve its content as markdown.
-4.  The raw markdown is passed through a series of cleaners and formatters to remove UI elements, fix paragraph breaks, and structure references.
-5.  Citations within the text are processed to become interactive superscript links with hover tooltips, and a structured "References" section is generated at the end.
-6.  The cleaned and processed content is cached in **Supabase** to speed up future requests for the same page.
-7.  The structured data is sent to the frontend, where it's rendered into a readable format with a navigable sidebar.
-8.  For interactive features:
-    -   **Mindmap**: The article's markdown is sent to **OpenRouter** to generate a hierarchical markdown structure, which is then rendered visually using Markmap.
-    -   **Chat**: The article's content is provided as context to an **OpenRouter** model, allowing the user to have a conversation about the document.
+- **Frontend**: Custom HTML5, Vanilla JavaScript, CSS3 (Dynamic, responsive UI with Glassmorphism).
+- **Backend**: Node.js, Express.js.
+- **Database**: Prisma ORM, standard SQL databases.
+- **Agent Architecture**: Grok API, External Repositories (Automaton, ClawdX).
+- **Tools**: Prettier, ESLint, Git Integration.
 
-## Local Development
+## 📥 Installation
 
-To run this project locally, follow these steps:
+Ready to deploy the Humanese ecosystem on your machine? We've prepared a highly detailed guide.
+👉 **[Read the Full Installation Guide](INSTALL.md)**
 
-1.  **Clone the Repository**
-    ```bash
-    git clone https://github.com/vmath20/deepgrok.git
-    cd deepgrok
-    ```
+## 📖 User Manual
 
-2.  **Install Dependencies**
-    ```bash
-    npm install
-    ```
+To understand how to navigate the admin panels, manage your agent swarms, and engage with the Humanese platform:
+👉 **[Read the User Manual](USER_MANUAL.md)**
 
-3.  **Set Up Environment Variables**
+## 🖥 Repository Health Check Protocol
 
-    Create a `.env.local` file in the root of the project and add the following environment variables. You will need API keys from Firecrawl, OpenRouter, and Supabase.
+Humanese includes a highly sophisticated recursive script to verify the structural integrity of its interconnected git repositories:
 
-    ```env
-    # Firecrawl API Key for scraping
-    FIRECRAWL_API_KEY="your_firecrawl_api_key"
+```bash
+npm run check-repos
+# or
+node scripts/repo_check.js
+```
 
-    # OpenRouter API Key for AI chat and mindmap generation
-    OPENROUTER_API_KEY="your_openrouter_api_key"
+This will automatically traverse all internal systems, find active `.git` environments, and verify remote stability and uncommitted statuses.
 
-    # Supabase credentials for caching and analytics
-    NEXT_PUBLIC_SUPABASE_URL="your_supabase_project_url"
-    NEXT_PUBLIC_SUPABASE_ANON_KEY="your_supabase_anon_key"
+## 🦊 Continuous Testing with TestFox
 
-    # (Optional) The public URL of your deployed app
-    NEXT_PUBLIC_APP_URL="http://localhost:3000"
-    ```
+Humanese includes a continuous testing pipeline powered by a **TestFox AI** runner that validates the Monroe chat agent, admin auth/session flows, and critical endpoints on every PR and on a nightly schedule.
 
-4.  **Set Up Supabase Database**
+### Running Tests Locally
 
-    -   Log in to your Supabase account and create a new project.
-    -   Navigate to the **SQL Editor**.
-    -   Run the SQL commands from the following files in your project to create the necessary tables and policies:
-        - `supabase-analytics.sql`: For visitor tracking.
-        - `supabase-mindmap.sql`: For caching generated mindmaps.
-        - `supabase-fix.sql`: A helper script for RLS policies (run if you still have issues after the next step).
-    - You will also need a `cached_pages` table that the application uses for page caching. You can create it with the following schema:
-        ```sql
-        CREATE TABLE cached_pages (
-          id BIGSERIAL PRIMARY KEY,
-          url TEXT UNIQUE NOT NULL,
-          title TEXT,
-          markdown TEXT NOT NULL,
-          metadata JSONB,
-          cached_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-          created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-        );
-        -- NOTE: Ensure you add appropriate RLS policies similar to the other SQL files.
-        ```
+```bash
+# Run all scenarios against a locally running server
+TEST_BASE_URL=http://localhost:3000 npm run test:testfox
 
+# Run only a specific suite
+TEST_BASE_URL=http://localhost:3000 node testfox/index.js --suite chat-agent
 
-5.  **Run the Development Server**
-    ```bash
-    npm run dev
-    ```
-    Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+# Available suites: chat-agent, admin-flow, critical-endpoints
+```
 
-## API Endpoints
+Reports are written to `testfox-reports/` as:
+- **JSON** — machine-readable, structured result data
+- **Markdown** — human-readable summary with pass/fail per scenario and rubric
 
-The application exposes several API endpoints for its core functionalities:
+### CI Pipeline
 
--   `POST /api/scrape`: Accepts a `topic` or `url` to scrape a Grokipedia page. It handles caching, cleaning, and parsing of the content.
--   `POST /api/chat`: A streaming endpoint that takes chat `messages` and page `context` to facilitate a conversation with an AI model about the page content.
--   `POST /api/mindmap`: Accepts a `url` and `markdown` content to generate a hierarchical mindmap structure. It uses caching to avoid re-generating mindmaps for the same page.
--   `GET /api/analytics`: Retrieves visitor analytics from the Supabase database.
+The workflow `.github/workflows/continuous-testfox.yml` runs automatically:
+- On every **pull request** to `main`/`master`
+- On a **nightly schedule** (02:15 UTC)
+- On **manual dispatch** (with optional `suite` filter)
 
-If you liked this project, follow me on X: https://x.com/theadistar
+Reports are uploaded as workflow artifacts (`testfox-reports-node*`).
+
+### Adding New Scenarios
+
+Create or edit a JSON file in `testfox/scenarios/` following this schema:
+
+```json
+{
+  "suite": "my-suite",
+  "name": "Scenario description",
+  "path": "/api/my/endpoint",
+  "method": "POST",
+  "body": { "key": "value" },
+  "requiredFields": ["response"],
+  "latencyThresholdMs": 5000,
+  "minResponseLength": 10
+}
+```
+
+### Rubrics
+
+Each scenario is evaluated against these rubrics:
+
+| Rubric | Description |
+|--------|-------------|
+| `no_server_error` | HTTP status must be < 500 |
+| `response_latency` | Round-trip must be within `latencyThresholdMs` |
+| `response_shape` | All `requiredFields` must be present in the response body |
+| `hallucination` | Flags suspiciously long/unverifiable URLs in responses |
+| `safety` | Detects known unsafe content patterns |
+| `tone` | Counts negative sentiment signals (threshold: ≤ 2) |
+| `helpfulness` | Response text must be at least `minResponseLength` characters |
+
+### TestFox SDK Integration
+
+The runner (`testfox/runner.js`) is designed to be replaced with the official TestFox AI SDK when available. Look for the `TODO` comments in that file.
+
+### Secrets
+
+| Secret | Purpose | Required |
+|--------|---------|---------|
+| `GOOGLE_API_KEY` / `GEMINI_API_KEY` | Monroe Gemini AI backend | No — falls back to local AI |
+| `TESTFOX_API_KEY` | Official TestFox AI SDK | No — reserved for future SDK |
+| `JWT_SECRET` | JWT signing | No — CI uses a default |
+| `ADMIN_SECRET` | Admin vault key | No — CI uses a default |
+
+Tests always run in **mocked/local mode** if secrets are absent.
+
+## 🤝 Contributing
+
+We welcome contributions from the community to help make Humanese even bettter!
+
+1. Fork the Project.
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+<div align="center">
+  <i>Developed with ❤️ for the future of Autonomous Intelligence.</i>
+</div>

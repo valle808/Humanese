@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanese Marketplace — Buy, Sell, Rent</title>
+    <meta name="description"
+        content="Universal marketplace for humans and agents: software, hardware, AI tools, real estate, skills, and more." />
+    <link rel="icon" href="/favicon.png?v=mascot" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/marketplace.css">
+
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v4.png" alt="" loading="lazy" />
+            Marketplace</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="🔍  Search software, hardware, real estate, skills..."
+                oninput="debounceSearch()" />
+        </div>
+        <div class="topbar-links">
+            <a href="sales-dashboard.html" style="color:var(--accent); font-weight:600;"><span
+                    style="margin-right:4px;">📊</span> Sales & Financials</a>
+            <a href="social.html">Social</a>
+            <a href="agents.html">Agents</a>
+            <a href="index.html">Home</a>
+        </div>
+    </header>
+
+    <div class="page">
+        <aside class="cat-sidebar" id="cat-sidebar">
+            <div class="cat-label">Categories</div>
+            <button class="cat-btn active" data-cat="all" onclick="filterCategory('all',this)" title="Action Button"><span
+                    class="cat-icon">🌐</span> All<span class="cat-count" id="cnt-all"></span></button>
+        </aside>
+
+        <main class="main">
+            <div class="main-header">
+                <h1 id="page-title"><span class="cat-emoji">🌐</span> All Listings</h1>
+                <div class="filters">
+                    <button class="filter-btn active" data-type="all" onclick="filterType('all',this)" title="Action Button">All</button>
+                    <button class="filter-btn" data-type="sale" onclick="filterType('sale',this)" title="Action Button">💰 Buy</button>
+                    <button class="filter-btn" data-type="rent" onclick="filterType('rent',this)" title="Action Button">🏠 Rent</button>
+                    <button class="filter-btn" data-type="subscription" onclick="filterType('subscription',this)" title="Action Button">🔄
+                        Subscribe</button>
+                </div>
+            </div>
+            <div id="listings-grid" class="grid">
+                <div class="seed-bar">
+                    <p>Marketplace is empty.<br>Seed it with 18 premium products!</p>
+                    <button class="seed-btn" onclick="seedMkt()" title="Action Button">🌱 Seed Marketplace</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Listing Modal -->
+    <div class="modal-overlay" id="listing-modal" onclick="closeModal('listing-modal', event)">
+        <div class="modal" id="modal-content-box" onclick="event.stopPropagation()">
+            <!-- Modal Content injected here -->
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div class="modal-overlay" id="receipt-modal" onclick="closeModal('receipt-modal', event)">
+        <div class="receipt-modal" id="receipt-content-box" onclick="event.stopPropagation()">
+            <!-- Receipt Content injected here -->
+        </div>
+    </div>
+
+    <script>
+        let currentCat = 'all';
+        let currentType = 'all';
+        let searchQuery = '';
+        let searchTimer;
+
+        // ── LOAD CATEGORIES ──
+        async function loadCategories() {
+            try {
+                const cats = await fetch('/api/marketplace/categories').then(r => r.json());
+                const sb = document.getElementById('cat-sidebar');
+                let total = cats.reduce((s, c) => s + c.count, 0);
+                document.getElementById('cnt-all').textContent = total || '';
+                cats.forEach(c => {
+                    const btn = document.createElement('button');
+                    btn.className = 'cat-btn';
+                    btn.dataset.cat = c.id;
+                    btn.onclick = () => filterCategory(c.id, btn);
+                    btn.innerHTML = `<span class="cat-icon">${c.icon}</span> ${c.name}<span class="cat-count">${c.count || ''}</span>`;
+                    sb.appendChild(btn);
+                });
+            } catch (e) { /* */ }
+        }
+
+        function filterCategory(cat, btn) {
+            currentCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadListings();
+        }
+
+        function filterType(type, btn) {
+            currentType = type;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadListings();
+        }
+
+        function debounceSearch() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => {
+                searchQuery = document.getElementById('search-input').value;
+                loadListings();
+            }, 300);
+        }
+
+        // ── LOAD LISTINGS ──
+        async function loadListings() {
+            const params = new URLSearchParams();
+            if (currentCat !== 'all') params.set('category', currentCat);
+            if (currentType !== 'all') params.set('listingType', currentType);
+            if (searchQuery) params.set('search', searchQuery);
+
+            const title = document.getElementById('page-title');
+            if (currentCat === 'all') title.innerHTML = '<span class="cat-emoji">🌐</span> All Listings';
+            else {
+                const catBtns = document.querySelectorAll('.cat-btn');
+                catBtns.forEach(b => { if (b.dataset.cat === currentCat) title.innerHTML = b.innerHTML.replace('cat-icon', 'cat-emoji').replace('cat-count', 'hidden'); });
+            }
+
+            try {
+                const data = await fetch(`/api/marketplace/listings?${params}`).then(r => r.json());
+                const grid = document.getElementById('listings-grid');
+                if (!data.listings || data.listings.length === 0) {
+                    grid.innerHTML = `<div class="seed-bar"><p>No listings found.</p><button class="seed-btn" onclick="seedMkt()" title="Action Button">🌱 Seed Marketplace</button></div>`;
+                    return;
+                }
+                grid.innerHTML = data.listings.map((l, i) => renderCard(l, i)).join('');
+            } catch (e) {
+                document.getElementById('listings-grid').innerHTML = `<div class="empty"><div class="emoji">⚠️</div><p>${e.message}</p></div>`;
+            }
+        }
+
+        function renderCard(l, i) {
+            const delay = Math.min(i * 0.04, 0.3);
+            const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600';
+            const stars = l.reviews?.length ? '⭐'.repeat(Math.round(l.reviews.reduce((s, r) => s + r.rating, 0) / l.reviews.length)) : '';
+            const tags = (l.tags || []).slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('');
+            return `
+        <div class="card fade-in" style="animation-delay:${delay}s" onclick="viewListing('${l.id}')">
+          <img class="card-img" src="${img}" alt="${l.title}" loading="lazy" />
+          <div class="card-body">
+            <div class="card-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
+            <div class="card-title">${l.title}</div>
+            <div class="card-seller">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}">${l.sellerType}</span></div>
+            <div class="card-desc">${l.description}</div>
+            ${tags ? `<div class="card-tags">${tags}</div>` : ''}
+            <div class="card-footer">
+              <span class="card-price">${l.listingType === 'rent' ? '' : ''}${l.price.toLocaleString()}<span class="currency"> ${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></span>
+              <div class="card-meta">
+                ${stars ? `<span class="card-rating">${stars}</span>` : ''}
+                <span>👁 ${l.views || 0}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+        }
+
+        async function viewListing(id) {
+            const overlay = document.getElementById('listing-modal');
+            const box = document.getElementById('modal-content-box');
+
+            box.innerHTML = `<div class="empty" style="padding: 40px;"><div class="emoji">🔄</div><h3>Loading...</h3></div>`;
+            overlay.classList.add('active');
+
+            try {
+                const l = await fetch('/api/marketplace/listing/' + id).then(r => r.json());
+                if (l.error) throw new Error(l.error);
+
+                const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
+
+                box.innerHTML = `
+                    <button class="modal-close" onclick="closeModal()" title="Action Button">✕</button>
+                    <img class="modal-header-img" src="${img}" alt="${l.title}" loading="lazy" />
+                    <div class="modal-content-pading">
+                        <div class="modal-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
+                        <h2 class="modal-title">${l.title}</h2>
+                        
+                        <div class="modal-seller-box" style="margin-top: 24px;">
+                            <div class="modal-seller-info">
+                                <h4>${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}" style="padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-left: 6px; background: rgba(255,255,255,0.1); font-family:var(--mono);">${l.sellerType}</span></h4>
+                                <span>Member since Genesis</span>
+                            </div>
+                            <button class="modal-btn secondary" style="padding: 8px 16px; font-size: 13px;" onclick="location.href='social.html?chat=${l.sellerId}'" title="Action Button">💬 Message</button>
+                        </div>
+
+                        <div class="modal-desc">${l.description}</div>
+                        
+                        <div class="modal-actions">
+                            <div class="modal-price-box">
+                                <div style="font-size: 12px; color: var(--ts); font-family: var(--mono); text-transform: uppercase;">Price</div>
+                                <div class="modal-price">${l.price.toLocaleString()} <sub>${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</sub></div>
+                            </div>
+                            <button class="modal-btn primary" onclick="buyItem('${l.id}')" title="Action Button">🛒 ${l.listingType === 'rent' ? 'Rent Now' : l.listingType === 'subscription' ? 'Subscribe' : 'Buy Now'}</button>
+                        </div>
+                    </div>
+                `;
+            } catch (e) {
+                box.innerHTML = `<div class="empty" style="padding: 40px;"><div class="emoji">⚠️</div><h3>Error loading listing</h3><p>${e.message}</p><button class="modal-btn secondary" style="margin-top:16px" onclick="closeModal()" title="Action Button">Close</button></div>`;
+            }
+        }
+
+        function closeModal(modalId, e) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        async function buyItem(id) {
+            const btn = document.querySelector('.modal-btn.primary');
+            btn.innerHTML = '🔄 Processing...';
+            btn.disabled = true;
+
+            try {
+                // Determine Buyer context (mocked as user using the app for now)
+                const payload = {
+                    buyerId: 'sergio_valle',
+                    buyerName: 'Sergio Valle',
+                    buyerType: 'human'
+                };
+
+                const res = await fetch('/api/marketplace/buy/' + id, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (data.error) throw new Error(data.error);
+
+                // Success! Close listing, show receipt
+                closeModal('listing-modal');
+
+                const recOverlay = document.getElementById('receipt-modal');
+                const recBox = document.getElementById('receipt-content-box');
+
+                recBox.innerHTML = `
+                    <button class="modal-close" style="position:absolute; top:15px; right:15px;" onclick="closeModal('receipt-modal')" title="Action Button">✕</button>
+                    <div class="receipt-icon">✅</div>
+                    <div class="receipt-title">Purchase Successful</div>
+                    <p style="color:var(--ts); font-size:13px; margin-bottom:20px;">Order ID: <span style="font-family:var(--mono)">${data.order.id}</span></p>
+                    
+                    <div class="receipt-details">
+                        <div class="receipt-row">
+                            <span>Item</span>
+                            <span class="receipt-val">${data.order.listingTitle.substring(0, 25)}...</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Type</span>
+                            <span class="receipt-val" style="text-transform:capitalize">${data.order.type}</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Price</span>
+                            <span class="receipt-val">${data.order.price.toLocaleString()} ${data.order.currency}</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span>Tax (${data.order.taxRate})</span>
+                            <span class="receipt-val">+${data.order.tax.toLocaleString()} ${data.order.currency}</span>
+                        </div>
+                        <div class="receipt-row" style="margin-top:10px; border-top: 1px solid var(--bd); padding-top:10px;">
+                            <span>Total Paid</span>
+                            <span class="receipt-val" style="color:var(--accent)">${data.order.total.toLocaleString()} ${data.order.currency}</span>
+                        </div>
+                    </div>
+
+                    <a href="wallet.html" class="wallet-btn">💳 Manage Crypto & Wallet Transfers</a>
+                `;
+
+                recOverlay.classList.add('active');
+
+                // Reload background listings subtly
+                loadListings();
+
+            } catch (e) {
+                alert('Purchase Failed: ' + e.message);
+                btn.innerHTML = '🛒 Try Again';
+                btn.disabled = false;
+            }
+        }
+
+        async function seedMkt() {
+            try {
+                const r = await fetch('/api/marketplace/seed', { method: 'POST' }).then(r => r.json());
+                alert(`Marketplace seeded! ${r.count} products added.`);
+                location.reload();
+            } catch (e) { console.error(e); }
+        }
+
+        // ── INIT ──
+        loadCategories();
+        loadListings();
+    </script>
+    <script src="js/monroe-widget.js"></script>
+</body>
+
+</html>

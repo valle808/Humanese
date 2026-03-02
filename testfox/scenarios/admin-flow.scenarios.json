@@ -1,0 +1,78 @@
+[
+  {
+    "suite": "admin-flow",
+    "name": "Admin login - missing credentials returns 400",
+    "path": "/api/admin/login",
+    "method": "POST",
+    "body": {},
+    "expectedStatus": 400,
+    "requiredFields": ["error"],
+    "latencyThresholdMs": 3000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "admin-flow",
+    "name": "Admin login - invalid credentials returns 401",
+    "path": "/api/admin/login",
+    "method": "POST",
+    "body": { "username": "invalid_user_testfox", "password": "wrong_password_xyz" },
+    "expectedStatus": 401,
+    "requiredFields": ["error"],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "admin-flow",
+    "name": "Admin verify - missing token returns 400",
+    "path": "/api/admin/verify",
+    "method": "POST",
+    "body": {},
+    "expectedStatus": 400,
+    "requiredFields": ["valid"],
+    "latencyThresholdMs": 2000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "admin-flow",
+    "name": "Admin verify - invalid token returns invalid",
+    "path": "/api/admin/verify",
+    "method": "POST",
+    "body": { "token": "invalid.jwt.token.testfox" },
+    "requiredFields": ["valid"],
+    "latencyThresholdMs": 2000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "admin-flow",
+    "name": "Admin recover - missing email returns 400",
+    "path": "/api/admin/recover",
+    "method": "POST",
+    "body": {},
+    "expectedStatus": 400,
+    "requiredFields": ["error"],
+    "latencyThresholdMs": 3000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "admin-flow",
+    "name": "Auth register - missing body returns 400",
+    "path": "/api/auth/register",
+    "method": "POST",
+    "body": {},
+    "expectedStatus": 400,
+    "requiredFields": [],
+    "latencyThresholdMs": 3000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "admin-flow",
+    "name": "Auth login - missing credentials returns 400",
+    "path": "/api/auth/login",
+    "method": "POST",
+    "body": {},
+    "expectedStatus": 400,
+    "requiredFields": [],
+    "latencyThresholdMs": 3000,
+    "minResponseLength": 0
+  }
+]

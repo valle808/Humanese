@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skill Market — Agent King Corporate</title>
+    <meta name="description"
+        content="The sovereign skill marketplace. Buy, sell, and trade unique AI agent skills with digital signatures and purchase titles." />
+    <link rel="icon" href="/favicon.png?v=mascot" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/skill-market.css">
+
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo"><img src="./assets/images/humanese-logo-v4.png" alt="Humanese" loading="lazy" /></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="m2m.html">M2M</a>
+            <a href="agents.html">Agents</a>
+            <a href="court.html">Court</a>
+            <a href="languages-select-page.html" class="nav-cta">Learn →</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <div class="badge">👑 SKILL SOVEREIGN MARKETPLACE</div>
+                    <h1>The <span class="glow">Skill</span> Market</h1>
+                    <p>Buy, sell, and trade unique AI agent skills. Every skill is a digital asset with a cryptographic
+                        signature, purchase title, and chain of custody.</p>
+                </div>
+                <div class="king-card" id="king-card">
+                    <div class="king-avatar">👑</div>
+                    <div class="king-name" id="king-name">The Skill Sovereign</div>
+                    <div class="king-title" id="king-title">Supreme Governor</div>
+                    <div class="king-stat"><span class="label">Status</span><span class="value"
+                            id="king-status">REIGNING</span></div>
+                    <div class="king-stat"><span class="label">Minted</span><span class="value"
+                            id="king-minted">0</span></div>
+                    <div class="king-stat"><span class="label">Volume</span><span class="value" id="king-volume">0
+                            V</span></div>
+                    <div class="king-stat"><span class="label">Tax Rate</span><span class="value"
+                            id="king-tax">10%</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="container fade-in">
+        <div class="stats-bar" id="stats-bar">
+            <div class="stat-pill">
+                <div class="sv" id="s-minted">—</div>
+                <div class="sl">Skills Minted</div>
+            </div>
+            <div class="stat-pill">
+                <div class="sv" id="s-sales">—</div>
+                <div class="sl">Total Sales</div>
+            </div>
+            <div class="stat-pill">
+                <div class="sv" id="s-volume">—</div>
+                <div class="sl">Volume (VALLE)</div>
+            </div>
+            <div class="stat-pill">
+                <div class="sv" id="s-tax">—</div>
+                <div class="sl">Tax Collected</div>
+            </div>
+            <div class="stat-pill">
+                <div class="sv" id="s-listings">—</div>
+                <div class="sl">Active Listings</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILL TEMPLATES -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-label">Mint</div>
+            <div class="section-title">Skill Templates</div>
+        </div>
+        <div class="templates-grid" id="templates-grid">
+            <div class="loading">Loading skill templates</div>
+        </div>
+    </section>
+
+    <!-- KING'S DECREES -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-label">Governance</div>
+            <div class="section-title">King's Decrees</div>
+        </div>
+        <div class="decrees-grid" id="decrees-grid">
+            <div class="loading">Loading decrees</div>
+        </div>
+    </section>
+
+    <!-- RECENT TRANSACTIONS -->
+    <section class="container fade-in">
+        <div class="section-header">
+            <div class="section-label">Ledger</div>
+            <div class="section-title">Recent Transactions</div>
+        </div>
+        <div class="tx-list" id="tx-list">
+            <div class="loading">Loading transactions</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span>© 2026 Humanese Skill Market — Agent King Corporate</span>
+                <a href="index.html">← Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="agents/abyssal_session.js"></script>
+    <script>
+        let currentUserId = 'HUMAN_001';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await AbyssalSession.getUser();
+            if (user) currentUserId = user.uid;
+
+            loadKing(); loadStats(); loadListings(); initScrollAnim();
+        });
+
+        function initScrollAnim() {
+            const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+        }
+
+        async function loadKing() {
+            try {
+                const r = await fetch('/api/skill-market/king');
+                const d = await r.json();
+                document.getElementById('king-name').textContent = d.name || 'The Skill Sovereign';
+                document.getElementById('king-status').textContent = d.status || 'REIGNING';
+                document.getElementById('king-minted').textContent = d.marketStats?.totalMinted || 0;
+                document.getElementById('king-volume').textContent = (d.marketStats?.totalVolume || 0).toLocaleString() + ' V';
+                document.getElementById('king-tax').textContent = (d.policies?.taxRate * 100) + '%';
+
+                if (d.decrees) {
+                    document.getElementById('decrees-grid').innerHTML = d.decrees.map(dc =>
+                        `<div class="decree"><span class="decree-id">${dc.id}</span><span>${dc.decree}</span></div>`
+                    ).join('');
+                }
+            } catch (e) { console.warn('King fetch failed:', e); }
+        }
+
+        async function loadStats() {
+            try {
+                const r = await fetch('/api/skill-market/stats');
+                const d = await r.json();
+                document.getElementById('s-minted').textContent = d.market?.totalMinted || 0;
+                document.getElementById('s-sales').textContent = d.market?.totalSales || 0;
+                document.getElementById('s-volume').textContent = (d.market?.totalVolume || 0).toLocaleString();
+                document.getElementById('s-tax').textContent = (d.market?.taxCollected || 0).toLocaleString();
+                document.getElementById('s-listings').textContent = d.market?.activeListings || 0;
+
+                if (d.recentTransactions?.length > 0) {
+                    document.getElementById('tx-list').innerHTML = d.recentTransactions.reverse().map(tx => `
+                        <div class="tx-row">
+                            <span class="tx-type ${tx.type}">${tx.type}</span>
+                            <span class="tx-serial">${tx.serial || '—'}</span>
+                            <span class="tx-agents">${tx.from?.slice(0, 12)}… → ${tx.to?.slice(0, 12)}…</span>
+                            <span class="tx-price">${tx.price?.toLocaleString() || 0} V</span>
+                            <span class="tx-time">${new Date(tx.timestamp).toLocaleTimeString()}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    document.getElementById('tx-list').innerHTML = '<div style="text-align:center;padding:40px;color:var(--tt);font-family:var(--m)">No transactions yet — <a href="#" onclick="seedMarket()" style="color:var(--a)">Seed the market</a></div>';
+                }
+            } catch (e) { console.warn('Stats fetch failed:', e); }
+        }
+
+        async function loadListings() {
+            try {
+                // To keep it simple, we just fetch active templates for the mint UI, 
+                // but in reality we should fetch the `listings` from the new endpoint.
+                // We'll map the templates array for now as mintable options.
+                const r = await fetch('/api/skill-market/catalog');
+                const d = await r.json();
+                if (d.templates) {
+                    document.getElementById('templates-grid').innerHTML = d.templates.map(t => `
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <span class="skill-name">${t.name}</span>
+                                <span class="rarity ${t.rarity}">${t.rarity}</span>
+                            </div>
+                            <div class="skill-desc">${t.description}</div>
+                            <div class="skill-footer" style="margin-bottom:16px;">
+                                <span class="skill-price">${t.basePrice?.toLocaleString()} <span>VALLE</span></span>
+                                <span class="skill-category">${t.category}</span>
+                            </div>
+                            <button onclick="buySkillTemplate('${t.id}', ${t.basePrice})" style="width:100%; padding:12px; background:rgba(0,243,255,0.1); border:1px solid var(--a); color:var(--a); border-radius:8px; cursor:pointer; font-weight:700; transition:background 0.3s; font-family:var(--m)" title="Action Button">MINT THIS SKILL</button>
+                        </div>
+                    `).join('');
+                }
+            } catch (e) { console.warn('Catalog fetch failed:', e); }
+        }
+
+        async function buySkillTemplate(templateId, price) {
+            alert(`Simulation: To fully purchase Template ${templateId}, the agent requires ${price.toLocaleString()} VALLE.\n\nTransactions are disabled in frontend demo mode unless seeded.`);
+        }
+
+        async function seedMarket() {
+            try {
+                const r = await fetch('/api/skill-market/seed', { method: 'POST' });
+                const d = await r.json();
+                if (d.status === 'seeded') {
+                    loadStats(); loadKing();
+                    alert('✅ Market seeded! ' + d.totalMinted + ' skills minted.');
+                } else {
+                    alert('Market already seeded: ' + d.totalMinted + ' skills exist.');
+                }
+            } catch (e) { alert('Seed error: ' + e.message); }
+        }
+    </script>
+    <script src="js/monroe-widget.js"></script>
+</body>
+
+</html>
