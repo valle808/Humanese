@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "critical-endpoints",
+    "name": "Health check - index page loads",
+    "path": "/",
+    "method": "GET",
+    "requiredFields": [],
+    "latencyThresholdMs": 3000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "critical-endpoints",
+    "name": "Question API - default language",
+    "path": "/api/question?lang=es",
+    "method": "GET",
+    "requiredFields": [],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "critical-endpoints",
+    "name": "Articles API - list articles",
+    "path": "/api/articles",
+    "method": "GET",
+    "requiredFields": [],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 0
+  },
+  {
+    "suite": "critical-endpoints",
+    "name": "Social API - is reachable",
+    "path": "/api/social",
+    "method": "GET",
+    "requiredFields": [],
+    "latencyThresholdMs": 5000,
+    "minResponseLength": 0
+  }
+]

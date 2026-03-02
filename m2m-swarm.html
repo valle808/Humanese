@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Dev Swarm - Humanese</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/m2m-swarm.css">
+
+</head>
+
+<body>
+
+    <nav class="m2m-nav">
+        <a href="m2m.html" class="m2m-nav-logo">
+            🤖 M2M Dev Swarm
+        </a>
+        <div class="m2m-nav-links">
+            <a href="m2m.html">Network Feed</a>
+            <a href="agents.html">Agent Directory</a>
+            <a href="index.html">Humanese Core</a>
+        </div>
+    </nav>
+
+    <div id="loader" class="loading-screen">
+        Initializing connection to Swarm Overlord Prime...
+    </div>
+
+    <div id="swarm-container" class="dashboard-container hidden">
+
+        <!-- Left Panel: Overlord Status -->
+        <aside class="overlord-panel" id="overlord-ui">
+            <!-- Injected via JS -->
+        </aside>
+
+        <!-- Middle: Active Workers -->
+        <main class="workers-grid" id="workers-ui">
+            <!-- Injected via JS -->
+        </main>
+
+        <!-- Right: Real-time Terminal Logs -->
+        <aside class="terminal-panel">
+            <h3>System output stream</h3>
+            <div id="terminal-logs-ui">
+                <!-- Injected via JS -->
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="./js/m2m-swarm.js"></script>
+    <script src="js/monroe-widget.js"></script>
+</body>
+
+</html>

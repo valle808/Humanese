@@ -1,96 +1,33 @@
-# Contributing to DeepGrok
+# Contributing to Humanese
 
-Thank you for your interest in contributing to DeepGrok! We welcome contributions from the community.
+Thank you for your interest in contributing to Humanese! We appreciate your efforts to improve our project. Below are some guidelines to help you make your contributions effectively.
 
-## Contributor License Agreement (CLA)
+## Bug Reporting
+1. **Check Existing Issues:** Before reporting a bug, please check if the issue has already been reported. You can refer to the [Issues section](https://github.com/valle808/Humanese/issues).
+2. **Provide Detailed Information:** When reporting a bug, include the following:
+   - A clear and descriptive title for the issue.
+   - Steps to reproduce the bug.
+   - The expected behavior and what actually happens.
+   - Screenshots or logs, if applicable.
 
-By contributing to this project, you agree to the following terms:
+## Feature Proposals
+1. **Suggest Enhancements:** If you have an idea for a new feature, please open an issue to discuss it. Provide as much detail as possible on what the feature is and why it would be valuable.
+2. **Gather Feedback:** We encourage discussions on proposed features to refine the idea.
 
-1. **Grant of Rights**: You grant Vaibhav Mishra (vmath20) a perpetual, worldwide, non-exclusive, royalty-free, irrevocable license to use, modify, sublicense, and distribute your contributions.
+## Pull Request Process
+1. **Fork the Repository:** Create a fork of the repository and clone it to your local machine.
+2. **Create a New Branch:** Make your changes in a new branch (e.g., `feature/my-new-feature`).
+3. **Test Your Changes:** Ensure nothing breaks and that your code works as intended.
+4. **Submit a Pull Request:** Push your branch to your forked repository and submit a pull request to the main repository. Please provide a clear description of your changes.
 
-2. **Ownership**: You retain ownership of your contributions, but grant the project maintainer the right to relicense your contributions in the future, including for commercial purposes.
+## Code Standards
+- Follow the coding style used in the project.
+- Include comments where necessary to explain complex parts of the code.
+- Maintain documentation for any new features added.
 
-3. **Original Work**: You confirm that your contribution is your original work and that you have the right to grant this license.
+## Community Guidelines
+- Be respectful and constructive in your interactions.
+- Avoid using offensive or derogatory language.
+- Be open to feedback and willing to collaborate.
 
-4. **No Warranty**: Your contributions are provided "as is" without warranty of any kind.
-
-By submitting a pull request, you acknowledge that you have read this agreement and agree to its terms.
-
----
-
-## How to Contribute
-
-### Reporting Issues
-
-- Use GitHub Issues to report bugs or suggest features
-- Provide clear reproduction steps
-- Include screenshots if relevant
-
-### Submitting Pull Requests
-
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Make your changes**
-4. **Test thoroughly** - ensure `npm run build` passes
-5. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-6. **Push to your fork** (`git push origin feature/amazing-feature`)
-7. **Open a Pull Request**
-
-### Code Style
-
-- Follow existing code patterns
-- Use TypeScript for type safety
-- Format code before committing
-- Write clear commit messages
-
-### Areas for Contribution
-
-We welcome contributions in these areas:
-
-- 🐛 **Bug fixes**
-- 📚 **Documentation improvements**
-- ✨ **UI/UX enhancements**
-- 🎨 **Design improvements**
-- 🧪 **Test coverage**
-- 🌐 **Internationalization**
-- ♿ **Accessibility improvements**
-
-### What We Don't Accept
-
-- Breaking changes without discussion
-- Code that doesn't pass TypeScript compilation
-- Features that significantly increase bundle size
-- Contributions without proper attribution
-
----
-
-## Development Setup
-
-See the main README.md for detailed setup instructions.
-
-Quick start:
-```bash
-npm install
-cp .env.local.example .env.local
-# Add your API keys
-npm run dev
-```
-
----
-
-## Questions?
-
-- Open a GitHub Discussion
-- Check existing Issues
-- Review closed PRs for examples
-
----
-
-## Code of Conduct
-
-Be respectful, inclusive, and constructive. We're all here to build something great together.
-
----
-
-**Thank you for contributing to DeepGrok!** 🚀
-
+Thank you for helping us make Humanese better! Happy contributing!

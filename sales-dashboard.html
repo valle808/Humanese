@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanese Marketplace — Sales & Financials</title>
+    <link rel="icon" href="/favicon.png?v=mascot" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/sales-dashboard.css">
+
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v4.png" alt="" loading="lazy" /> Marketplace
+            Admin</a>
+        <div class="topbar-links">
+            <a href="marketplace.html">Back to Marketplace</a>
+            <a href="social.html">Social</a>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <div class="dash-header">
+            <div>
+                <h1 class="dash-title">Sales & Financials Point</h1>
+                <p class="dash-subtitle">Global Marketplace Metrics & Revenue Administration</p>
+            </div>
+        </div>
+
+        <div class="kpi-grid" id="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">...</div>
+                <div class="kpi-val">...</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2 class="panel-title"><span>🛒</span> Recent Transactions</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Item</th>
+                            <th>Type</th>
+                            <th>Buyer</th>
+                            <th>Total Amount</th>
+                            <th>Tax Coll.</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tx-tbody">
+                        <tr>
+                            <td colspan="7" class="empty">Loading financial streams...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/marketplace/stats');
+                const data = await res.json();
+
+                // 1. Fill KPIs
+                document.getElementById('kpi-grid').innerHTML = `
+                    <div class="kpi-card" style="border-top-color: var(--accent)">
+                        <div class="kpi-label"><span>📈</span> Total Revenue</div>
+                        <div class="kpi-val" style="color:var(--accent)">$${data.revenue.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+                    </div>
+                    <div class="kpi-card" style="border-top-color: #fbbf24">
+                        <div class="kpi-label"><span>🏛️</span> Tax Collected</div>
+                        <div class="kpi-val" style="color:#fbbf24">$${data.taxCollected.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+                    </div>
+                    <div class="kpi-card" style="border-top-color: #3b82f6">
+                        <div class="kpi-label"><span>🛍️</span> Total Sales</div>
+                        <div class="kpi-val">${data.totalSales + data.totalRentals}</div>
+                    </div>
+                    <div class="kpi-card" style="border-top-color: #10b981">
+                        <div class="kpi-label"><span>🌐</span> Active Listings</div>
+                        <div class="kpi-val">${data.activeListings}</div>
+                    </div>
+                `;
+
+                // 2. Fill Transactions
+                const tbody = document.getElementById('tx-tbody');
+                if (!data.recentOrders || data.recentOrders.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="empty">No transactions found on the ledger.</td></tr>';
+                    return;
+                }
+
+                // Reverse to show newest first mathematically (slice(-5) returns oldest first usually if push is used)
+                const orders = [...data.recentOrders].reverse();
+
+                tbody.innerHTML = orders.map(o => `
+                    <tr>
+                        <td style="font-family:var(--mono); font-size:12px; color:var(--ts)">${o.id.split('_')[2]}</td>
+                        <td style="font-weight:600">${o.listingTitle.substring(0, 35)}${o.listingTitle.length > 35 ? '...' : ''}</td>
+                        <td><span class="badge ${o.type}">${o.type}</span></td>
+                        <td>
+                             <span style="font-size:14px">${o.buyerName}</span>
+                             <span style="display:block; font-size:10px; color:var(--ts); font-family:var(--mono)">${o.buyerType.toUpperCase()}</span>
+                        </td>
+                        <td style="font-family:var(--mono); font-weight:700">${o.total.toLocaleString()} ${o.currency}</td>
+                        <td style="font-family:var(--mono); color:var(--ts)">${o.tax.toLocaleString()} ${o.currency}</td>
+                        <td style="font-size:12px; color:var(--ts)">${new Date(o.createdAt).toLocaleDateString()}</td>
+                    </tr>
+                `).join('');
+
+            } catch (e) {
+                console.error("Failed to load admin stats", e);
+                document.getElementById('tx-tbody').innerHTML = '<tr><td colspan="7" class="empty" style="color:var(--red)">Failed to reach financial core. Node offline.</td></tr>';
+            }
+        }
+
+        loadStats();
+    </script>
+    <script src="js/monroe-widget.js"></script>
+</body>
+
+</html>
