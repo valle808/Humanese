@@ -88,20 +88,7 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
-// Robust static file serving for Vercel
-const rootDir = path.join(__dirname, '..');
-const publicDir = path.join(rootDir, 'public');
 
-app.use(express.static(publicDir));
-app.use(express.static(rootDir));
-
-app.get('/', (req, res) => {
-    const publicIndex = path.join(publicDir, 'index.html');
-    if (fs.existsSync(publicIndex)) {
-        return res.sendFile(publicIndex);
-    }
-    res.sendFile(path.join(rootDir, 'index.html'));
-});// The API is isolated to serverless functions.
 
 // --- Health Check ---
 app.get('/api/health', async (req, res) => {
