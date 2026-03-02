@@ -434,9 +434,9 @@ export function MonroeAssistant() {
                             <div className="flex justify-start">
                                 <div className="bg-white/5 border border-white/8 rounded-2xl rounded-bl-sm px-4 py-3">
                                     <div className="flex gap-1 items-center">
-                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce [animation-delay:0ms]" />
+                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce [animation-delay:150ms]" />
+                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce [animation-delay:300ms]" />
                                     </div>
                                 </div>
                             </div>

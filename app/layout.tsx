@@ -12,6 +12,10 @@ export const metadata: Metadata = {
 import { MonroeAssistant } from "@/components/MonroeAssistant";
 import { BackToTop } from "@/components/BackToTop";
 
+export const viewport = {
+  themeColor: '#0b0f19',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,7 +45,6 @@ export default function RootLayout({
         {/* Google AdSense Script Injected System-Wide */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
           crossOrigin="anonymous"></script>
-        <meta name="theme-color" content="#0b0f19" />
       </head>
       <body className="antialiased">
         {children}
