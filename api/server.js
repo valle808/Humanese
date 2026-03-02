@@ -89,6 +89,14 @@ const authLimiter = rateLimit({
 });
 
 // Since we moved assets to /public, Vercel handles static.
+// However, we need to ensure Express can serve them if hit.
+app.use(express.static(path.join(__dirname, '..')));
+
+// Fallback for root to serve index.html directly if not caught by Vercel static
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
+
 // The API is isolated to serverless functions.
 
 // --- Health Check ---

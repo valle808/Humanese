@@ -1,0 +1,179 @@
+<!-- ══════════════════════════════════════════════════════════════
+         🌐 LIVE READER SWARM DASHBOARD
+         Real-Time Sovereign Knowledge Ingestion
+         ══════════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="./css/agents_reader_insert.css">
+
+
+<div class="page live-section">
+    <div class="live-section-hd">
+        <div>
+            <h2>🌐 Sovereign Reader Swarm</h2>
+            <p style="color:var(--muted);font-size:13px;margin-top:4px;">
+                12 agents reading live articles from Wikipedia, arXiv, Hacker News, MDN, Stack Overflow &amp; Grokipedia
+                — feeding knowledge to Monroe in real-time.
+            </p>
+        </div>
+        <div class="live-pulse" id="swarm-live-badge">
+            <div class="live-pulse-dot"></div> CONNECTING...
+        </div>
+    </div>
+    <div class="swarm-stats-bar">
+        <div class="swarm-stat">
+            <div class="swarm-stat-val" id="sw-agents" style="color:#00ffcc">12</div>
+            <div class="swarm-stat-lbl">Active Agents</div>
+        </div>
+        <div class="swarm-stat">
+            <div class="swarm-stat-val" id="sw-articles" style="color:#ffd700">0</div>
+            <div class="swarm-stat-lbl">Articles Read</div>
+        </div>
+        <div class="swarm-stat">
+            <div class="swarm-stat-val" id="sw-kp" style="color:#ff00ff">0</div>
+            <div class="swarm-stat-lbl">Knowledge Points</div>
+        </div>
+        <div class="swarm-stat">
+            <div class="swarm-stat-val" style="color:#3b82f6">8</div>
+            <div class="swarm-stat-lbl">Knowledge Sources</div>
+        </div>
+    </div>
+    <div class="source-legend">
+        <div class="source-pill">
+            <div class="source-dot" style="background:#3b82f6"></div>Wikipedia
+        </div>
+        <div class="source-pill">
+            <div class="source-dot" style="background:#ff00ff"></div>Grokipedia
+        </div>
+        <div class="source-pill">
+            <div class="source-dot" style="background:#f97316"></div>Hacker News
+        </div>
+        <div class="source-pill">
+            <div class="source-dot" style="background:#8b5cf6"></div>arXiv
+        </div>
+        <div class="source-pill">
+            <div class="source-dot" style="background:#22c55e"></div>MDN Web Docs
+        </div>
+        <div class="source-pill">
+            <div class="source-dot" style="background:#f59e0b"></div>Stack Overflow
+        </div>
+        <div class="source-pill">
+            <div class="source-dot" style="background:#e2b714"></div>Project Gutenberg
+        </div>
+        <div class="source-pill">
+            <div class="source-dot" style="background:#00ffcc"></div>AI Research News
+        </div>
+    </div>
+    <div class="reader-grid" id="reader-grid"></div>
+</div>
+
+<script>
+    (function () {
+        'use strict';
+        const grid = document.getElementById('reader-grid');
+        const badge = document.getElementById('swarm-live-badge');
+        const swArticles = document.getElementById('sw-articles');
+        const swKP = document.getElementById('sw-kp');
+        const cards = new Map();
+        let totalArticles = 0, totalKP = 0;
+
+        function createCard(agent) {
+            const el = document.createElement('div');
+            el.className = 'reader-card initializing';
+            el.id = 'rc-' + agent.id;
+            el.innerHTML =
+                '<div class="rc-header">' +
+                '<div class="rc-emoji">' + agent.emoji + '</div>' +
+                '<div><div class="rc-name">' + agent.name + '</div><div class="rc-specialty">' + agent.specialty + '</div></div>' +
+                '<div class="rc-status status-initializing" id="rcs-' + agent.id + '">INIT</div>' +
+                '</div>' +
+                '<div class="rc-article" id="rca-' + agent.id + '">' +
+                '<div class="rc-source-tag" id="rcst-' + agent.id + '">&#x23F3; Connecting...</div>' +
+                '<div class="rc-article-title" id="rcat-' + agent.id + '">Waiting for first article...</div>' +
+                '</div>' +
+                '<div>' +
+                '<div class="rc-progress"><div class="rc-progress-fill" id="rcp-' + agent.id + '" style="width:0%"></div></div>' +
+                '<div class="rc-progress-pct" id="rcpp-' + agent.id + '">0%</div>' +
+                '</div>' +
+                '<div class="rc-text-box"><span id="rct-' + agent.id + '"></span></div>' +
+                '<div class="rc-footer">' +
+                '<div>&#x1F4C4; Articles: <strong id="rcac-' + agent.id + '">0</strong></div>' +
+                '<div class="rc-kp">&#x2605; <strong id="rckp-' + agent.id + '">0</strong> KP</div>' +
+                '</div>';
+            grid.appendChild(el);
+            cards.set(agent.id, {
+                el: el,
+                textEl: el.querySelector('#rct-' + agent.id),
+                titleEl: el.querySelector('#rcat-' + agent.id),
+                sourceEl: el.querySelector('#rcst-' + agent.id),
+                progEl: el.querySelector('#rcp-' + agent.id),
+                progPctEl: el.querySelector('#rcpp-' + agent.id),
+                statusEl: el.querySelector('#rcs-' + agent.id),
+                artCountEl: el.querySelector('#rcac-' + agent.id),
+                kpEl: el.querySelector('#rckp-' + agent.id)
+            });
+        }
+
+        function setStatus(c, status) {
+            var s = (status || 'initializing').toLowerCase();
+            c.el.className = 'reader-card ' + s;
+            c.statusEl.className = 'rc-status status-' + s;
+            c.statusEl.textContent = status || 'INIT';
+        }
+
+        function handleSnapshot(data) {
+            grid.innerHTML = ''; cards.clear();
+            (data.agents || []).forEach(function (agent) {
+                createCard(agent);
+                var c = cards.get(agent.id); if (!c) return;
+                setStatus(c, agent.status || 'INITIALIZING');
+                if (agent.article) {
+                    c.titleEl.innerHTML = '<a href="' + agent.article.url + '" target="_blank" rel="noopener">' + agent.article.title + '</a>';
+                    c.sourceEl.innerHTML = (agent.article.sourceIcon || '&#x1F310;') + ' <span style="color:' + (agent.article.sourceColor || '#fff') + '">' + agent.article.source + '</span>';
+                    var pct = agent.article.totalChars > 0 ? Math.round((agent.article.processedChars / agent.article.totalChars) * 100) : 0;
+                    c.progEl.style.width = pct + '%'; c.progPctEl.textContent = pct + '%';
+                }
+                if (agent.articlesRead > 0) c.artCountEl.textContent = agent.articlesRead;
+                if (agent.knowledgePoints > 0) c.kpEl.textContent = agent.knowledgePoints.toLocaleString();
+            });
+            badge.innerHTML = '<div class="live-pulse-dot"></div> LIVE';
+        }
+
+        function handleAgentUpdate(data) {
+            var c = cards.get(data.id);
+            if (!c) { createCard(data); c = cards.get(data.id); } if (!c) return;
+            setStatus(c, data.status || 'INITIALIZING');
+            if (data.status === 'READING' && data.article) {
+                c.titleEl.innerHTML = '<a href="' + data.article.url + '" target="_blank" rel="noopener">' + data.article.title + '</a>';
+                c.sourceEl.innerHTML = (data.article.sourceIcon || '&#x1F310;') + ' <span style="color:' + (data.article.sourceColor || '#aaa') + '">' + data.article.source + '</span>';
+                c.textEl.textContent = ''; c.progEl.style.width = '0%'; c.progPctEl.textContent = '0%';
+            } else if (data.status === 'FETCHING') {
+                c.titleEl.textContent = 'Fetching next article...'; c.sourceEl.textContent = 'Loading...';
+            } else if (data.status === 'PROCESSING') {
+                c.titleEl.textContent = 'Synthesizing knowledge...'; c.sourceEl.textContent = 'Processing';
+                if (data.articlesRead != null) { c.artCountEl.textContent = data.articlesRead; totalArticles++; swArticles.textContent = totalArticles; }
+                if (data.knowledgePoints != null) {
+                    c.kpEl.textContent = data.knowledgePoints.toLocaleString();
+                    var sum = 0; cards.forEach(function (x) { sum += parseInt((x.kpEl.textContent || '0').replace(/,/g, '')) || 0; }); totalKP = sum;
+                    swKP.textContent = totalKP.toLocaleString();
+                }
+            }
+        }
+
+        function handleAgentText(data) {
+            var c = cards.get(data.id); if (!c) return;
+            c.textEl.textContent = (c.textEl.textContent + (data.chunk || '')).slice(-350);
+            if (data.progress != null) { c.progEl.style.width = data.progress + '%'; c.progPctEl.textContent = data.progress + '%'; }
+        }
+
+        function connectSSE() {
+            var es = new EventSource('/api/reader-swarm/stream');
+            es.addEventListener('snapshot', function (e) { try { handleSnapshot(JSON.parse(e.data)); } catch (err) { } });
+            es.addEventListener('agent-update', function (e) { try { handleAgentUpdate(JSON.parse(e.data)); } catch { } });
+            es.addEventListener('agent-text', function (e) { try { handleAgentText(JSON.parse(e.data)); } catch { } });
+            es.onerror = function () {
+                badge.innerHTML = '<div class="live-pulse-dot" style="background:#f97316"></div> RECONNECTING...';
+                setTimeout(connectSSE, 4000); es.close();
+            };
+        }
+        connectSSE();
+    })();
+</script>

@@ -2,12 +2,6 @@
     "version": 2,
     "cleanUrls": true,
     "trailingSlash": false,
-    "rewrites": [
-        {
-            "source": "/api/(.*)",
-            "destination": "/server.js"
-        }
-    ],
     "headers": [
         {
             "source": "/assets/(.*)",
