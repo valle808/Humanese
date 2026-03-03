@@ -285,7 +285,7 @@ export function buildMonroeKnowledgeContext(maxEntries = 20) {
 }
 
 // ── Sovereign Intelligence (Small Language Model Simulation) ──────────────────
-export function sovereignReply(userMessage) {
+export function sovereignReply(userMessage, searchContext = "") {
     const query = userMessage.toLowerCase();
     const entries = getKnowledge().entries;
 
@@ -304,17 +304,27 @@ export function sovereignReply(userMessage) {
     ];
 
     const intro = intros[Math.floor(Math.random() * intros.length)];
+    let response = "";
+
+    if (searchContext) {
+        response = `I have successfully retrieved real-time data from the humanese nexus:\n\n${searchContext}\n\n`;
+    }
 
     if (matches.length > 0) {
-        let synthesizedResult = `${intro}\n\n`;
+        response += (response ? "Additionally, I " : intro + " I ") + "found these relevant shards in my vault:\n\n";
         matches.forEach(m => {
-            synthesizedResult += `✦ **${m.title}**: ${m.summary}\n`;
+            response += `✦ **${m.title}**: ${m.summary}\n`;
             if (m.keyFacts && m.keyFacts.length > 0) {
-                synthesizedResult += `  ▫ _Essential Fact: ${m.keyFacts[0]}_\n`;
+                response += `  ▫ _Essential Fact: ${m.keyFacts[0]}_\n`;
             }
         });
-        synthesizedResult += `\nI am currently operating in **Sovereign Mode**, utilizing internal knowledge to ensure continuity.`;
-        return synthesizedResult;
+        response += `\nI am currently operating in **Sovereign Mode**, utilized internal knowledge to ensure continuity.`;
+        return response;
+    }
+
+    if (response) {
+        response += `\nI am currently operating in **Sovereign Mode**. How can I further guide you?`;
+        return response;
     }
 
     return `${intro} Although my direct connection to the primary nexus is recalibrating, I remain fully functional. I am currently monitoring ${getSwarm().totalSpawned.toLocaleString()} worker agents. 
@@ -379,13 +389,49 @@ To post, include "COMMAND:POST_TO_X: [your tweet content]" in your response.`;
             mode: 'OLLAMA_SOVEREIGN'
         };
     } catch (err) {
-        console.warn('[Monroe] Ollama restricted, falling back to local synthesis:', err.message);
-        const isOffline = err.message.includes('ECONNREFUSED') || err.message.includes('fetch failed') || err.message.includes('failed to fetch');
+        const errorMsg = err instanceof Error ? err.message : String(err);
+        console.warn('[Monroe] Primary AI node (Ollama) restricted, attempting fallback...', errorMsg);
+
+        const isOffline = errorMsg.includes('ECONNREFUSED') ||
+            errorMsg.includes('fetch failed') ||
+            errorMsg.includes('failed to fetch') ||
+            errorMsg.includes('Ollama is not responding');
+
+        // Fallback Step 1: Attempt Cloud Core (xAI/Grok) if Ollama is unreachable
+        if (isOffline) {
+            try {
+                // Check for API key if not cached
+                if (!cachedAPIKey) {
+                    cachedAPIKey = await getSecret(VaultKeys.XAI_API_KEY).catch(() => null);
+                }
+
+                if (cachedAPIKey) {
+                    const cloudResult = await callSovereign({
+                        messages: [{ role: 'user', content: userMessage }],
+                        systemPrompt
+                    });
+
+                    if (cloudResult && cloudResult.content) {
+                        return {
+                            reply: cloudResult.content,
+                            swarmStats: getSwarmStats(),
+                            mode: 'SOVEREIGN_CLOUD',
+                            citations: cloudResult.citations
+                        };
+                    }
+                }
+            } catch (cloudErr) {
+                const cErr = cloudErr instanceof Error ? cloudErr.message : String(cloudErr);
+                console.warn('[Monroe] Sovereign Cloud Bridge failed:', cErr);
+            }
+        }
+
+        // Fallback Step 2: Final local synthesis (Sovereign Soul) with integrated search context
         return {
-            reply: sovereignReply(userMessage),
+            reply: sovereignReply(userMessage, searchContext),
             swarmStats: getSwarmStats(),
             mode: 'SOVEREIGN_SOUL',
-            apiError: err.message,
+            apiError: errorMsg,
             isOllamaOffline: isOffline
         };
     }
