@@ -921,15 +921,7 @@
                 removeThinking();
                 const reply = data.response || 'Monroe is recalibrating...';
                 history.push({ role: 'assistant', content: reply });
-                await typeMessage(reply, 'bot', true);
-            } catch (err) {
-                removeThinking();
-                await typeMessage('⚠️ Monroe is temporarily offline. Please check that the backend server is running on port 3000.', 'bot');
-                console.error('[Monroe Page]', err);
-            } finally {
-                sendBtn.disabled = false;
-            }
-        }
+
     </script>
 
 </body>
