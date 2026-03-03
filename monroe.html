@@ -891,34 +891,7 @@
             isTyping = true;
             document.body.classList.add('ai-processing');
 
-            const cursor = document.createElement('span');
-            cursor.className = 'monroe-cursor';
-            // Empty cursor, styled in CSS instead of containing '▋' for cleaner look
-            div.appendChild(cursor);
 
-            async function typeNodes(sourceEl, targetEl) {
-                for (const node of sourceEl.childNodes) {
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        const textNode = document.createTextNode('');
-                        targetEl.insertBefore(textNode, cursor);
-                        for (const char of node.textContent) {
-                            textNode.textContent += char;
-                            messagesEl.scrollTop = messagesEl.scrollHeight;
-                            const isPunct = '.!?,;:'.includes(char);
-                            await new Promise(r => setTimeout(r, isPunct ? Math.random() * 15 + 10 : Math.random() * 5 + 2));
-                        }
-                    } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        const newEl = document.createElement(node.nodeName);
-                        for (const attr of node.attributes) newEl.setAttribute(attr.name, attr.value);
-                        targetEl.insertBefore(newEl, cursor);
-                        if (node.childNodes.length > 0) await typeNodes(node, newEl);
-                    }
-                }
-            }
-
-            const temp = document.createElement('div');
-            temp.innerHTML = formatText(text);
-            await typeNodes(temp, div);
             cursor.remove();
             isTyping = false;
             document.body.classList.remove('ai-processing');
