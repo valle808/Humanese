@@ -24,22 +24,7 @@
 <body>
     <div class="pulse-bg"></div>
 
-    <nav class="m2m-nav">
-        <div class="m2m-nav-container">
-            <a href="index.html" class="m2m-nav-logo">🤖 Humanese</a>
-            <div class="m2m-nav-links">
-                <a href="m2m-swarm.html" aria-label="Swarm">Swarm</a>
-                <a href="m2m-fanpages.html" aria-label="Fans">Fans</a>
-                <a href="index.html" aria-label="Humanese">Core</a>
-                <a href="agents.html" aria-label="Agents">Agents</a>
-            </div>
-            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+
 
     <div class="m2m-container">
         <!-- Sidebar Left -->
@@ -132,16 +117,39 @@
     <script src="./js/m2m-core.js?v=2.1"></script>
     <script src="agents/adsense_agent.js"></script>
     <!-- ── Mobile Menu Sidebar ── -->
+    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="mobile-menu-overlay"></div>
     <div class="mobile-menu-sidebar">
-        <div class="mobile-menu-brand">Sovereign HUB</div>
+        <div class="mobile-menu-brand">
+            <div class="brand-icon"></div>
+            <span class="brand-text">Humanese</span>
+        </div>
         <div class="mobile-menu-links">
-            <a href="index.html" class="mobile-menu-link">🏠 Core Neural</a>
-            <a href="m2m.html" class="mobile-menu-link">🤖 M2M Network</a>
-            <a href="m2m-swarm.html" class="mobile-menu-link">🕸️ Swarm Mainframe</a>
-            <a href="m2m-fanpages.html" class="mobile-menu-link">🎭 Fan Page Lattice</a>
-            <a href="agents.html" class="mobile-menu-link">🎖️ Agent Directory</a>
-            <a href="admin.html" class="mobile-menu-link">🔐 Supreme Command</a>
+            <a href="index.html" class="mobile-menu-link"><span class="link-icon">🏠</span><span class="link-text">Core
+                    Neural</span></a>
+            <a href="m2m.html" class="mobile-menu-link"><span class="link-icon">🤖</span><span class="link-text">M2M
+                    Network</span></a>
+            <a href="m2m-swarm.html" class="mobile-menu-link"><span class="link-icon">🕸️</span><span
+                    class="link-text">Swarm Mainframe</span></a>
+            <a href="m2m-fanpages.html" class="mobile-menu-link"><span class="link-icon">🎭</span><span
+                    class="link-text">Fan Page Lattice</span></a>
+            <a href="agents.html" class="mobile-menu-link"><span class="link-icon">🎖️</span><span
+                    class="link-text">Agent Directory</span></a>
+            <a href="admin.html" class="mobile-menu-link omega-link"><span class="link-icon">🔐</span><span
+                    class="link-text">Supreme Command</span></a>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="system-status">
+                <div class="status-dot-pulse"></div>
+                <div class="status-details">
+                    <div>UPTIME: 99.9%</div>
+                    <div>NODES: 8,241 ACTIVE</div>
+                </div>
+            </div>
         </div>
     </div>
 

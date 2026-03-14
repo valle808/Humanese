@@ -1,45 +1,92 @@
 /**
- * mobile-menu.js — Sovereign Mobile Navigation Engine
- * Managed by Abyssal Sentinels
+ * HUMANESE NEXUS NAV — v5.0 Controller
+ * Premium Hybrid Navigation: Desktop Topbar + Mobile Drawer
  */
 (function () {
     'use strict';
 
-    function initMobileMenu() {
-        const toggle = document.querySelector('.mobile-menu-toggle');
+    function initNexusNav() {
         const sidebar = document.querySelector('.mobile-menu-sidebar');
         const overlay = document.querySelector('.mobile-menu-overlay');
+        const toggle = document.querySelector('.mobile-menu-toggle');
         const links = document.querySelectorAll('.mobile-menu-link');
 
-        if (!toggle || !sidebar) return;
+        if (!sidebar) return;
 
-        function toggleMenu() {
-            const isActive = toggle.classList.toggle('active');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = isActive ? 'hidden' : '';
+        // ── Mobile Drawer Toggle ──────────────────────────────
+        function openDrawer() {
+            sidebar.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+            if (toggle) toggle.classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
 
-        toggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+        function closeDrawer() {
+            sidebar.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            if (toggle) toggle.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                sidebar.classList.contains('active') ? closeDrawer() : openDrawer();
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', closeDrawer);
+        }
+
+        // Close drawer on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDrawer();
+        });
+
+        // ── Active Link Detection ─────────────────────────────
+        const rawPath = window.location.pathname.split('/').pop() || 'index.html';
+        const currentPage = rawPath === '' ? 'index.html' : rawPath;
 
         links.forEach(link => {
+            const href = (link.getAttribute('href') || '').split('/').pop();
+
+            if (href === currentPage) {
+                link.classList.add('active');
+            }
+
+            // Mark omega links
+            const text = link.textContent.trim().toLowerCase();
+            const target = (link.getAttribute('href') || '').toLowerCase();
+            if (text.includes('supreme') || target.includes('admin')) {
+                link.classList.add('omega-link');
+            }
+
+            // Close drawer on nav link click (mobile only)
             link.addEventListener('click', () => {
-                if (toggle.classList.contains('active')) toggleMenu();
+                if (window.innerWidth <= 900) {
+                    closeDrawer();
+                }
             });
         });
 
-        // Set active link based on current path
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        links.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === currentPath) {
-                link.classList.add('active');
-            }
+        // ── Resize Handler ────────────────────────────────────
+        // Ensure drawer is closed if user resizes from mobile → desktop
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 900) {
+                    closeDrawer();
+                }
+            }, 150);
         });
     }
 
-    document.addEventListener('DOMContentLoaded', initMobileMenu);
-    if (document.readyState !== 'loading') initMobileMenu();
+    // Initialize
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNexusNav);
+    } else {
+        initNexusNav();
+    }
 
 })();

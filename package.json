@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "@prisma/client": "^6.0.0",
+        "@solana/spl-token": "^0.4.14",
+        "@solana/web3.js": "^1.98.4",
         "bcryptjs": "^3.0.3",
         "clsx": "^2.1.1",
         "compression": "^1.8.1",
@@ -48,6 +50,7 @@
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
         "concurrently": "^9.2.1",
+        "firebase-tools": "^15.10.0",
         "nodemon": "^3.0.3"
     }
 }
