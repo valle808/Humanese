@@ -1,11 +1,11 @@
 /**
- * Sovereign Sidebar Controller
- * Unified Logic for Next.js & Legacy HTML Nodes
+ * HUMANESE NEXUS NAV — v5.0 Controller
+ * Premium Hybrid Navigation: Desktop Topbar + Mobile Drawer
  */
 (function () {
     'use strict';
 
-    function initSovereignSidebar() {
+    function initNexusNav() {
         const sidebar = document.querySelector('.mobile-menu-sidebar');
         const overlay = document.querySelector('.mobile-menu-overlay');
         const toggle = document.querySelector('.mobile-menu-toggle');
@@ -13,65 +13,80 @@
 
         if (!sidebar) return;
 
-        // ── State Management ──
-        // The desktop top-bar is now permanently visible.
-        // We only need to manage state for the mobile slide drawer.
-        let isExpandedMobile = false;
+        // ── Mobile Drawer Toggle ──────────────────────────────
+        function openDrawer() {
+            sidebar.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+            if (toggle) toggle.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
 
-        // ── Desktop Hover/Click Logic ──
-        // REMOVED: Desktop is now a static horizontal top-bar.
+        function closeDrawer() {
+            sidebar.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            if (toggle) toggle.classList.remove('open');
+            document.body.style.overflow = '';
+        }
 
-        // ── Mobile Toggle Logic ──
         if (toggle) {
             toggle.addEventListener('click', () => {
-                sidebar.classList.toggle('active');
-                overlay.classList.toggle('active');
-                const isOpen = sidebar.classList.contains('active');
-                document.body.style.overflow = isOpen ? 'hidden' : '';
+                sidebar.classList.contains('active') ? closeDrawer() : openDrawer();
             });
         }
 
         if (overlay) {
-            overlay.addEventListener('click', () => {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
+            overlay.addEventListener('click', closeDrawer);
         }
 
-        // ── Active Link Detection ──
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        // Close drawer on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDrawer();
+        });
+
+        // ── Active Link Detection ─────────────────────────────
+        const rawPath = window.location.pathname.split('/').pop() || 'index.html';
+        const currentPage = rawPath === '' ? 'index.html' : rawPath;
+
         links.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+            const href = (link.getAttribute('href') || '').split('/').pop();
+
+            if (href === currentPage) {
                 link.classList.add('active');
             }
 
-            // Close menu on link click (mobile)
+            // Mark omega links
+            const text = link.textContent.trim().toLowerCase();
+            const target = (link.getAttribute('href') || '').toLowerCase();
+            if (text.includes('supreme') || target.includes('admin')) {
+                link.classList.add('omega-link');
+            }
+
+            // Close drawer on nav link click (mobile only)
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 900) {
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = '';
+                    closeDrawer();
                 }
             });
         });
 
-    });
+        // ── Resize Handler ────────────────────────────────────
+        // Ensure drawer is closed if user resizes from mobile → desktop
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 900) {
+                    closeDrawer();
+                }
+            }, 150);
+        });
+    }
 
-    // ── OMEGA Awareness ──
-    // Check if any link has OMEGA clearance requirement
-    links.forEach(link => {
-        if (link.textContent.includes('Supreme Command') || link.getAttribute('href').includes('admin')) {
-            link.classList.add('omega-link');
-        }
-    });
-}
-
-    // Initialize on load
+    // Initialize
     if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSovereignSidebar);
-} else {
-    initSovereignSidebar();
-}
-}) ();
+        document.addEventListener('DOMContentLoaded', initNexusNav);
+    } else {
+        initNexusNav();
+    }
+
+})();
