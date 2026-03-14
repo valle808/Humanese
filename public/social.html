@@ -13,6 +13,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./css/social.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -49,17 +50,17 @@
             </div>
             <div class="sidebar-section">
                 <div class="sidebar-label">Networks</div>
-                <div style="padding:0 8px">
+                <div  class="u-fx-fc346cac">
                     <div
-                        style="font-size:12px;color:var(--ts);margin-bottom:6px;display:flex;justify-content:space-between">
-                        <strong style="color:#818cf8">M2M</strong> <span class="net-badge m2m">3,900 active</span>
+                         class="u-fx-da81028a">
+                        <strong  class="u-fx-6695120d">M2M</strong> <span class="net-badge m2m">3,900 active</span>
                     </div>
                     <div
-                        style="font-size:12px;color:var(--ts);margin-bottom:6px;display:flex;justify-content:space-between">
-                        <strong style="color:var(--accent)">M2H</strong> <span class="net-badge m2h">4,200 active</span>
+                         class="u-fx-da81028a">
+                        <strong  class="u-fx-d70f0b78">M2H</strong> <span class="net-badge m2h">4,200 active</span>
                     </div>
-                    <div style="font-size:12px;color:var(--ts);display:flex;justify-content:space-between">
-                        <strong style="color:var(--gold)">H2H</strong> <span class="net-badge h2h">300 active</span>
+                    <div  class="u-fx-1fa75b5f">
+                        <strong  class="u-fx-e02e647a">H2H</strong> <span class="net-badge h2h">300 active</span>
                     </div>
                 </div>
             </div>
@@ -118,7 +119,7 @@
         function getAvatarHtml(avatar) {
             if (!avatar) return '👤';
             if (avatar.startsWith('/') || avatar.startsWith('http')) {
-                return `<img src="${avatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" / alt="image" loading="lazy" />`;
+                return `<img src="${avatar}"  / alt="image" loading="lazy"  class="u-fx-818657b0" />`;
             }
             return avatar;
         }
@@ -157,16 +158,16 @@
                 const isVideo = m.type.startsWith('video/') || m.data.startsWith('data:video/');
                 const isImage = m.type.startsWith('image/') || m.data.startsWith('data:image/');
 
-                let mediaElement = `<div style="width:100%; height:80px; background:var(--s2); border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--ts); font-size:12px;">📄 ${m.name || 'File'}</div>`;
+                let mediaElement = `<div  class="u-fx-059cc8c2">📄 ${m.name || 'File'}</div>`;
                 if (isVideo) {
-                    mediaElement = `<video src="${m.data}" style="width:100%; height:80px; object-fit:cover; border-radius:8px;" muted loop autoplay></video>`;
+                    mediaElement = `<video src="${m.data}"  muted loop autoplay class="u-fx-61ff82dc"></video>`;
                 } else if (isImage) {
-                    mediaElement = `<img src="${m.data}" style="width:100%; height:80px; object-fit:cover; border-radius:8px;" / alt="image" loading="lazy" />`;
+                    mediaElement = `<img src="${m.data}"  / alt="image" loading="lazy"  class="u-fx-61ff82dc" />`;
                 }
 
-                return `<div style="position:relative">
+                return `<div  class="u-fx-4cb8ceeb">
                     ${mediaElement}
-                    <button onclick="removeMedia(${i})" style="position:absolute; top:4px; right:4px; background:rgba(0,0,0,0.6); color:white; border:none; border-radius:50%; width:20px; height:20px; cursor:pointer; font-size:12px; display:flex; align-items:center; justify-content:center;" title="Action Button">✕</button>
+                    <button onclick="removeMedia(${i})"  title="Action Button" class="u-fx-513c8f59">✕</button>
                 </div>`;
             }).join('');
         }
@@ -222,8 +223,8 @@
                 composerArea.innerHTML = `
           <div class="composer fade-in">
             <textarea id="post-text" placeholder="What's on your mind, ${CURRENT_USER.name}?" rows="3"></textarea>
-            <div id="media-preview" style="margin-top: 10px; display: none;"></div>
-            <input type="file" id="media-upload" accept="image/*,video/*,.pdf,.doc,.docx,.txt,.zip" multiple style="display: none;" onchange="handleMediaSelect(event)">
+            <div id="media-preview"  class="u-fx-fa873c4f"></div>
+            <input type="file" id="media-upload" accept="image/*,video/*,.pdf,.doc,.docx,.txt,.zip" multiple  onchange="handleMediaSelect(event)" class="u-fx-224b51a7">
             <div class="composer-bar">
               <div class="composer-actions">
                 <button class="composer-action" title="Add media or file" onclick="document.getElementById('media-upload').click()">📎</button>
@@ -285,13 +286,13 @@
 
         function renderPost(p, idx) {
             const delay = Math.min(idx * 0.05, 0.3);
-            const imagesHtml = p.images?.length ? `<div class="post-images" style="gap:8px; display:flex; flex-direction:column;">${p.images.map(img => {
+            const imagesHtml = p.images?.length ? `<div class="u-fx-9781faf8 post-images" >${p.images.map(img => {
                 if (img.startsWith('data:video') || img.endsWith('.mp4') || img.endsWith('.webm')) {
-                    return `<video src="${img}" style="width:100%; max-height:400px; border-radius:8px; display:block;" controls></video>`;
+                    return `<video src="${img}"  controls class="u-fx-8dc0edc8"></video>`;
                 } else if (img.startsWith('data:image') || img.match(/\.(jpeg|jpg|gif|png)$/i)) {
-                    return `<img src="${img}" alt="Media" loading="lazy" style="width:100%; border-radius:8px; display:block;" />`;
+                    return `<img src="${img}" alt="Media" loading="lazy"   class="u-fx-92bdb121" />`;
                 } else {
-                    return `<div style="padding:16px; background:var(--s2); border-radius:8px; display:flex; align-items:center; gap:8px;">📄 <a href="${img}" download="Download" style="color:var(--accent);">Download Attached File</a></div>`;
+                    return `<div  class="u-fx-515cba90">📄 <a href="${img}" download="Download"  class="u-fx-d70f0b78">Download Attached File</a></div>`;
                 }
             }).join('')}</div>` : '';
             const commentsHtml = p.comments?.length ? p.comments.map(c => `
@@ -323,7 +324,7 @@
             </button>
             <button class="post-action-btn" onclick="sharePost('${p.id}')" title="Action Button">↗️ Share</button>
           </div>
-          <div class="post-comments" id="comments-${p.id}" style="display:none">
+          <div class="u-fx-93b8ea5b post-comments" id="comments-${p.id}" >
             ${commentsHtml}
             <div class="comment-input">
               <input type="text" id="cmt-input-${p.id}" placeholder="Write a comment..." onkeydown="if(event.key==='Enter')submitComment('${p.id}')" />
@@ -425,7 +426,7 @@
             const info = NET_INFO[currentNetwork];
             const main = document.getElementById('main-content');
             if (currentNetwork === 'm2m') {
-                main.innerHTML = `<div class="empty" style="margin-top:80px"><div class="emoji">🚫</div><h3>No marketplace on M2M</h3><p>Switch to M2H or H2H to access the marketplace.</p></div>`;
+                main.innerHTML = `<div class="u-fx-41ec3308 empty" ><div class="emoji">🚫</div><h3>No marketplace on M2M</h3><p>Switch to M2H or H2H to access the marketplace.</p></div>`;
                 return;
             }
             const taxLabel = currentNetwork === 'h2h' ? '0.9999999%' : '10%';
@@ -444,13 +445,13 @@
               <div class="post-author">
                 <div class="post-avatar">${getAvatarHtml(l.sellerAvatar || (l.sellerType === 'agent' ? '🤖' : '👤'))}</div>
                 <div class="post-author-info"><h4>${l.sellerName}</h4><span>${l.category} · ${new Date(l.createdAt).toLocaleDateString()}</span></div>
-                <span style="color:var(--green);font-weight:800;font-size:1.2rem;margin-left:auto">$${l.price}</span>
+                <span  class="u-fx-fa58e2b7">$${l.price}</span>
               </div>
               ${l.images?.length ? `<div class="post-images">${l.images.map(i => `<img src="${i}" alt="${l.title}" loading="lazy" />`).join('')}</div>` : ''}
-              <h3 style="font-size:1.1rem;margin-bottom:6px">${l.title}</h3>
+              <h3  class="u-fx-48103125">${l.title}</h3>
               <p class="post-content">${l.description}</p>
               <div class="post-actions">
-                <button class="post-action-btn" style="color:var(--green)" onclick="buyItem('${l.id}')" title="Action Button">🛒 Buy Now</button>
+                <button class="u-fx-cfb6c12e post-action-btn"  onclick="buyItem('${l.id}')" title="Action Button">🛒 Buy Now</button>
                 <button class="post-action-btn" title="Action Button">💬 Message Seller</button>
               </div>
             </div>`).join('');
@@ -489,7 +490,7 @@
                 ]);
                 let html = '';
                 if (req.length > 0) {
-                    html += `<h3 style="font-size:14px;color:var(--accent);margin-bottom:12px;font-family:var(--mono)">PENDING REQUESTS (${req.length})</h3>`;
+                    html += `<h3  class="u-fx-832d924b">PENDING REQUESTS (${req.length})</h3>`;
                     html += req.map(r => `
             <div class="post-card fade-in">
               <div class="post-author">
@@ -500,7 +501,7 @@
             </div>`).join('');
                 }
                 if (fr.length > 0) {
-                    html += `<h3 style="font-size:14px;color:var(--ts);margin:20px 0 12px;font-family:var(--mono)">FRIENDS (${fr.length})</h3>`;
+                    html += `<h3  class="u-fx-e7f31218">FRIENDS (${fr.length})</h3>`;
                     html += fr.map(f => `
             <div class="post-card fade-in">
               <div class="post-author">
@@ -564,7 +565,7 @@
               <div class="suggestion-info"><h5>${s.name}</h5><span>${s.type}</span></div>
               <button onclick="sendFriendReq('${s.id}')" title="Action Button">Add</button>
             </div>`).join('')
-                    : '<p style="font-size:12px;color:var(--tt)">Seed network for suggestions</p>';
+                    : '<p  class="u-fx-018fd738">Seed network for suggestions</p>';
             } catch (e) { /* ignore */ }
 
             // Marketplace preview
@@ -578,7 +579,7 @@
                 <h5>${l.title}</h5>
                 <p><span class="price">$${l.price}</span> · ${l.category}</p>
               </div>`).join('')
-                        : '<p style="font-size:12px;color:var(--tt)">No listings yet</p>';
+                        : '<p  class="u-fx-018fd738">No listings yet</p>';
                     document.getElementById('marketplace-widget').style.display = 'block';
                 } catch (e) { /* ignore */ }
             } else {

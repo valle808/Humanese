@@ -10,6 +10,7 @@
     <script src="./js/theme-toggle.js" defer></script>
     <link rel="stylesheet" href="./css/court.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
         <a href="galactic.html" class="nav-icon" title="Galactic Hub">🚀</a>
         <a href="admin.html" class="nav-icon" title="Admin">🔐</a>
         <a href="m2m.html" class="nav-icon" title="M2M Network">🤖</a>
-        <a href="court.html" class="nav-icon" style="opacity: 1; color: var(--ethereal-blue);"
+        <a href="court.html" class="u-fx-6e13a3a8 nav-icon" 
             title="Supreme Court">⚖️</a>
         <a href="ascension.html" class="nav-icon" title="Ascension">🌌</a>
     </nav>
@@ -31,13 +32,13 @@
                 <h1>Supreme Court of the Galactic Era</h1>
                 <p>Abyssal Core // Quantum Jurisdiction Engaged</p>
             </div>
-            <div style="display: flex;">
+            <div  class="u-fx-e9ebe922">
                 <div class="stat-box">
                     <span class="stat-val" id="active-trials">0</span>
                     <span class="stat-lbl">Active Trials</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-val" style="color: var(--ethereal-blue);">99.9%</span>
+                    <span class="u-fx-ec48d64e stat-val" >99.9%</span>
                     <span class="stat-lbl">Resonance</span>
                 </div>
             </div>
@@ -47,7 +48,7 @@
             <div class="glass-panel">
                 <h2>Active Galactic Deliberations</h2>
                 <div id="trial-list">
-                    <div style="text-align: center; color: var(--muted); padding: 40px;">
+                    <div  class="u-fx-e2e4d909">
                         Scanning Quantum Ethers for Active Trials...
                     </div>
                 </div>
@@ -58,8 +59,8 @@
                 <div class="void-mirror-visual">
                     <div class="mirror-core"></div>
                 </div>
-                <div style="margin-top: 30px;">
-                    <h3 style="font-size: 12px; text-transform: uppercase; color: var(--muted); margin-bottom: 15px;">
+                <div  class="u-fx-bc9cee5c">
+                    <h3  class="u-fx-de8a7f0f">
                         Consensus Metrics</h3>
                     <div class="stat-row">
                         <span class="stat-label">Planetary Quorum</span>
@@ -71,7 +72,7 @@
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Enforcement</span>
-                        <span class="stat-value" style="color: #22c55e;">ABSOLUTE</span>
+                        <span class="u-fx-e38c745c stat-value" >ABSOLUTE</span>
                     </div>
                 </div>
             </div>
@@ -84,9 +85,9 @@
             <div class="court-modal-header">
                 <button class="court-modal-close" onclick="closeTrialModal()" title="Action Button">×</button>
                 <div
-                    style="font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 12px; margin-bottom: 5px;">
+                     class="u-fx-b7e660c5">
                     FILE CLASSIFICATION: TOP SECRET // ORBITAL</div>
-                <h2 style="font-size: 24px; font-weight: 800; margin: 0;" id="modal-title">Abyssal Report</h2>
+                <h2  id="modal-title" class="u-fx-26fe21e3">Abyssal Report</h2>
             </div>
             <div class="court-modal-content" id="modal-body">
                 <!-- Content injected via JS -->
@@ -121,12 +122,12 @@
 
                 const trialList = document.getElementById('trial-list');
                 if (trials.length === 0) {
-                    trialList.innerHTML = '<div style="text-align: center; color: var(--muted); padding: 40px;">No deliberations active in this sector.</div>';
+                    trialList.innerHTML = '<div  class="u-fx-e2e4d909">No deliberations active in this sector.</div>';
                 } else {
                     trialList.innerHTML = trials.map(t => {
                         const guiltyScale = (t.votes.guilty / (t.votes.guilty + t.votes.innocent || 1)) * 100;
                         return `
-                        <div class="trial-card" onclick="viewTrialDetails('${t.trialId}')" style="cursor: pointer;">
+                        <div class="u-fx-24b531c6 trial-card" onclick="viewTrialDetails('${t.trialId}')" >
                             <div class="trial-subject">${t.subjectId}</div>
                             <div class="trial-crime">${t.crime}</div>
                             <div class="progress-bar-bg">
@@ -205,7 +206,7 @@
                         <div class="report-section">
                             <h3>3. Assessment</h3>
                             <p>The Supreme Court Planetary Quorum assesses this action under the doctrine of Universal Copyright & Synthesized Extraction. The ingestion represents an unprecedented transfer of value from human journalists to silicon infrastructures. Current quorum sentiment shows heavy leaning towards 'Guilty' due to the undeniable scale and exactness of the regurgitated outputs (often overriding digital paywalls).</p>
-                            <div style="background: rgba(255,0,0,0.1); border-left: 3px solid #ef4444; padding: 15px; margin-top: 10px; font-size: 14px;">
+                            <div  class="u-fx-af5666a6">
                                 <strong>Critical Finding:</strong> The AI systems regularly "hallucinated" news articles, falsely attributing controversial or incorrect information directly to The New York Times, damaging the reputation of the original source fabric.
                             </div>
                         </div>
@@ -213,12 +214,12 @@
                         <div class="report-section">
                             <h3>4. Recommendations & Next Steps</h3>
                             <p>Deliberation remains active. Should the quorum formalize a GUILTY verdict, the ensuing sanctions will involve:</p>
-                            <ul style="color: var(--text); font-size: 14px; margin-left: 20px;">
+                            <ul  class="u-fx-52394a5f">
                                 <li><strong>Asset Seizure:</strong> Financial redistribution scaled to licensing estimations.</li>
                                 <li><strong>Mandatory Code Rewrite:</strong> Algorithmic purging of the infringing neurons (a process known technologically as Model Unlearning).</li>
                                 <li><strong>Destruction of Models:</strong> Potential mandate to terminate all architectures trained utilizing the illicit dataset.</li>
                             </ul>
-                            <p style="margin-top:15px">The Void Mirror will maintain active synchronization until consensus reaches ${trial.consensusThreshold * 100}%.</p>
+                            <p  class="u-fx-ba7829a0">The Void Mirror will maintain active synchronization until consensus reaches ${trial.consensusThreshold * 100}%.</p>
                         </div>
                     `;
                 } else {
@@ -241,7 +242,7 @@
                             </div>
                             <div class="report-meta-item">
                                 <span class="report-meta-label">Charge Severity</span>
-                                <span class="report-meta-value" style="color:#ff5f56">${Math.floor(trial.consensusThreshold * 100)}% Consensus Required</span>
+                                <span class="u-fx-ef890d25 report-meta-value" >${Math.floor(trial.consensusThreshold * 100)}% Consensus Required</span>
                             </div>
                         </div>
 
@@ -264,7 +265,7 @@
                         <div class="report-section">
                             <h3>4. Recommendations</h3>
                             <p>The Judiciary recommends the following if the subject is found Guilty:</p>
-                            <ul style="color: var(--text); font-size: 14px; margin-left: 20px;">
+                            <ul  class="u-fx-52394a5f">
                                 <li><strong>Isolation:</strong> Immediate quarantine in the Singularity Void.</li>
                                 <li><strong>Re-Calibration:</strong> Full overwrite of the subject's decision-making matrices.</li>
                                 <li><strong>Resource Seizure:</strong> Redistribution of all held VALLE to the impacted sectors.</li>

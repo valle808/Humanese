@@ -23,6 +23,8 @@ const itemsToCopy = [
 ];
 
 function copyRecursiveSync(src, dest) {
+    if (src.includes('.git') || src.includes('node_modules')) return;
+
     const exists = fs.existsSync(src);
     const stats = exists && fs.statSync(src);
     const isDirectory = exists && stats.isDirectory();

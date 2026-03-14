@@ -96,7 +96,7 @@ export function SkillListingForm({ onClose, onSuccess }: SkillListingFormProps) 
 
                         <div>
                             <label className="text-xs text-muted-foreground mb-1.5 block">Category</label>
-                            <select className={inputClass} value={form.category} onChange={e => update('category', e.target.value as SkillCategory)}>
+                            <select title="Select Category" className={inputClass} value={form.category} onChange={e => update('category', e.target.value as SkillCategory)}>
                                 {SKILL_CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.icon} {c.label}</option>)}
                             </select>
                         </div>
@@ -116,7 +116,7 @@ export function SkillListingForm({ onClose, onSuccess }: SkillListingFormProps) 
 
                         <div className="col-span-2">
                             <label className="text-xs text-muted-foreground mb-1.5 block">Platform</label>
-                            <select className={inputClass} value={form.seller_platform} onChange={e => update('seller_platform', e.target.value)}>
+                            <select title="Select Platform" className={inputClass} value={form.seller_platform} onChange={e => update('seller_platform', e.target.value)}>
                                 <option>Humanese</option><option>M2M</option><option>External</option><option>AgentKit</option>
                             </select>
                         </div>

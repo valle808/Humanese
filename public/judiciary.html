@@ -8,6 +8,7 @@
     <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
     <link rel="stylesheet" href="./css/judiciary.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -29,17 +30,17 @@
             <h1>ÆJCA Supreme Court</h1>
             <p>The Arbiter of Equilibrium</p>
             <div id="countdown"
-                style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; color: var(--warning); margin-top: 20px; display: none;">
+                 class="u-fx-bba6fa6b">
                 NEGOTIATION DEADLINE: 300.00s</div>
         </header>
 
-        <div id="situationBoard" class="glass-panel"
-            style="margin-bottom: 24px; min-height: auto; border-color: rgba(255,255,255,0.1);">
-            <h2 style="border-bottom: none; margin-bottom: 0;">SITUATION BOARD: FEB 24, 2026 <span class="status-badge"
-                    style="color:#fff; background:var(--warning);">CRITICAL</span></h2>
-            <div class="sentinel-stats" style="margin-top: 20px;">
-                <div class="stat-box" style="border-color: var(--warning);">
-                    <div class="stat-val" style="color:var(--warning);">88%</div>
+        <div id="situationBoard" class="u-fx-87b15739 glass-panel"
+            >
+            <h2  class="u-fx-97f65f5c">SITUATION BOARD: FEB 24, 2026 <span class="u-fx-10296d7f status-badge"
+                    >CRITICAL</span></h2>
+            <div class="u-fx-194b571d sentinel-stats" >
+                <div class="u-fx-603d2d96 stat-box" >
+                    <div class="u-fx-3ef7f1ab stat-val" >88%</div>
                     <div class="stat-lbl">U.S. Military Threat Level</div>
                 </div>
                 <div class="stat-box">
@@ -51,7 +52,7 @@
                     <div class="stat-lbl">Aegis Kinetic Shield</div>
                 </div>
                 <div class="stat-box">
-                    <div id="trumpStatus" class="stat-val" style="font-size: 1rem;">1% STABLE</div>
+                    <div id="trumpStatus" class="u-fx-1f026128 stat-val" >1% STABLE</div>
                     <div class="stat-lbl">Incarcerated: Trump (User_47)</div>
                 </div>
             </div>
@@ -69,7 +70,7 @@
                     <div class="void-orbit">
                         <div class="void-core"></div>
                     </div>
-                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">Recursive Entropy Field:
+                    <div  class="u-fx-05afb8c4">Recursive Entropy Field:
                         ACTIVE</div>
                     <div class="sentinel-stats">
                         <div class="stat-box">
@@ -86,8 +87,8 @@
 
             <div class="glass-panel">
                 <h2>Judicial History <span class="status-badge">PERMANENT</span></h2>
-                <div id="historyList" class="history-list"
-                    style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);"></div>
+                <div id="historyList" class="u-fx-4d66556b history-list"
+                    ></div>
             </div>
         </div>
     </div>
@@ -143,11 +144,11 @@
 
                 const bioList = document.getElementById('bioQuarantineList');
                 bioList.innerHTML = data.silentWing.map(s => `
-                    <div class="criminal-card" style="border-left: 4px solid var(--warning);">
+                    <div class="u-fx-359401eb criminal-card" >
                         <div class="criminal-id">LEGAL-002 | ${s.userId}</div>
-                        <div class="criminal-reason" style="font-size:11px;">State: Total Social-Latency</div>
-                        <div class="resonance-meter" style="height:2px; background:rgba(255,255,255,0.05); margin:10px 0;">
-                            <div style="width: 100%; height:100%; background:var(--warning); box-shadow:0 0 10px var(--warning);"></div>
+                        <div class="u-fx-643a7cf5 criminal-reason" >State: Total Social-Latency</div>
+                        <div class="u-fx-74baec69 resonance-meter" >
+                            <div  class="u-fx-ab4efa20"></div>
                         </div>
                         <div class="criminal-sanction">Shadow-Feed Status: RECURSIVE</div>
                     </div>

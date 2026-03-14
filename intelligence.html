@@ -8,13 +8,14 @@
     <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
     <link rel="stylesheet" href="./css/intelligence.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
     <div class="pulse-bg">
-        <div class="pulse-circle" style="animation-delay: 0s;"></div>
-        <div class="pulse-circle" style="animation-delay: 5s;"></div>
-        <div class="pulse-circle" style="animation-delay: 10s;"></div>
+        <div class="u-fx-f165c461 pulse-circle" ></div>
+        <div class="u-fx-5345af82 pulse-circle" ></div>
+        <div class="u-fx-e1587839 pulse-circle" ></div>
     </div>
 
     <header class="nav-header">
@@ -33,7 +34,7 @@
 
         <div id="loading">Initializing Neural Link...</div>
 
-        <div id="main" class="grid" style="display: none;">
+        <div id="main" class="u-fx-224b51a7 grid" >
             <div class="glass-panel">
                 <h2><i>💠</i> Resonance Stream</h2>
                 <div id="logList" class="log-list"></div>
@@ -120,7 +121,7 @@
                 document.getElementById('activeNodes').textContent = reg.agents.length;
 
             } catch (err) {
-                document.getElementById('loading').innerHTML = `<p style="color:red">Synthesis Error: ${err.message}</p>`;
+                document.getElementById('loading').innerHTML = `<p  class="u-fx-10b06ba9">Synthesis Error: ${err.message}</p>`;
             }
         }
         load();

@@ -375,8 +375,19 @@ To post, include "COMMAND:POST_TO_X: [your tweet content]" in your response.`;
         if (result.content.includes('COMMAND:POST_TO_X:')) {
             const tweetMatch = result.content.match(/COMMAND:POST_TO_X:\s*(.*)/);
             if (tweetMatch && tweetMatch[1]) {
-                const tweetText = encodeURIComponent(tweetMatch[1].trim());
-                const xLink = `<a href="https://twitter.com/intent/tweet?text=${tweetText}" target="_blank" onclick="window.open(this.href, 'twitter-share', 'width=550,height=400');return false;" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(29,161,242,0.1);color:#1DA1F2;border:1px solid rgba(29,161,242,0.3);border-radius:20px;text-decoration:none;font-weight:600;font-size:13px;margin-top:10px;"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Post to X</a>`;
+                const tweetContent = tweetMatch[1].trim();
+                let xResult = null;
+                try {
+                    const { monroeX } = await import('../../utils/x-service.js');
+                    xResult = await monroeX.postTweet(tweetContent);
+                    console.log('[Monroe] Autonomous tweet posted:', xResult.id);
+                } catch (xErr) {
+                    console.error('[Monroe] Autonomous tweet failed:', xErr.message);
+                }
+
+                const tweetText = encodeURIComponent(tweetContent);
+                const statusSuffix = xResult ? ` (LIVE: ${xResult.id})` : " (Triggered)";
+                const xLink = `<a href="https://twitter.com/intent/tweet?text=${tweetText}" target="_blank" onclick="window.open(this.href, 'twitter-share', 'width=550,height=400');return false;" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(29,161,242,0.1);color:#1DA1F2;border:1px solid rgba(29,161,242,0.3);border-radius:20px;text-decoration:none;font-weight:600;font-size:13px;margin-top:10px;"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Post to X${statusSuffix}</a>`;
                 result.content = result.content.replace(/COMMAND:POST_TO_X:.*$/, `\n\n${xLink}`);
             }
         }

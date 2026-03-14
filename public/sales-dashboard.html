@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./css/sales-dashboard.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -83,19 +84,19 @@
 
                 // 1. Fill KPIs
                 document.getElementById('kpi-grid').innerHTML = `
-                    <div class="kpi-card" style="border-top-color: var(--accent)">
+                    <div class="u-fx-dd91737d kpi-card" >
                         <div class="kpi-label"><span>📈</span> Total Revenue</div>
-                        <div class="kpi-val" style="color:var(--accent)">$${data.revenue.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+                        <div class="u-fx-d70f0b78 kpi-val" >$${data.revenue.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
                     </div>
-                    <div class="kpi-card" style="border-top-color: #fbbf24">
+                    <div class="u-fx-3f5bcf89 kpi-card" >
                         <div class="kpi-label"><span>🏛️</span> Tax Collected</div>
-                        <div class="kpi-val" style="color:#fbbf24">$${data.taxCollected.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+                        <div class="u-fx-34ff6b4a kpi-val" >$${data.taxCollected.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
                     </div>
-                    <div class="kpi-card" style="border-top-color: #3b82f6">
+                    <div class="u-fx-ef3dcb20 kpi-card" >
                         <div class="kpi-label"><span>🛍️</span> Total Sales</div>
                         <div class="kpi-val">${data.totalSales + data.totalRentals}</div>
                     </div>
-                    <div class="kpi-card" style="border-top-color: #10b981">
+                    <div class="u-fx-78f1b7b3 kpi-card" >
                         <div class="kpi-label"><span>🌐</span> Active Listings</div>
                         <div class="kpi-val">${data.activeListings}</div>
                     </div>
@@ -113,22 +114,22 @@
 
                 tbody.innerHTML = orders.map(o => `
                     <tr>
-                        <td style="font-family:var(--mono); font-size:12px; color:var(--ts)">${o.id.split('_')[2]}</td>
-                        <td style="font-weight:600">${o.listingTitle.substring(0, 35)}${o.listingTitle.length > 35 ? '...' : ''}</td>
+                        <td  class="u-fx-deec880a">${o.id.split('_')[2]}</td>
+                        <td  class="u-fx-a5d2baa1">${o.listingTitle.substring(0, 35)}${o.listingTitle.length > 35 ? '...' : ''}</td>
                         <td><span class="badge ${o.type}">${o.type}</span></td>
                         <td>
-                             <span style="font-size:14px">${o.buyerName}</span>
-                             <span style="display:block; font-size:10px; color:var(--ts); font-family:var(--mono)">${o.buyerType.toUpperCase()}</span>
+                             <span  class="u-fx-6c3ca254">${o.buyerName}</span>
+                             <span  class="u-fx-457a4972">${o.buyerType.toUpperCase()}</span>
                         </td>
-                        <td style="font-family:var(--mono); font-weight:700">${o.total.toLocaleString()} ${o.currency}</td>
-                        <td style="font-family:var(--mono); color:var(--ts)">${o.tax.toLocaleString()} ${o.currency}</td>
-                        <td style="font-size:12px; color:var(--ts)">${new Date(o.createdAt).toLocaleDateString()}</td>
+                        <td  class="u-fx-4c699049">${o.total.toLocaleString()} ${o.currency}</td>
+                        <td  class="u-fx-0363db79">${o.tax.toLocaleString()} ${o.currency}</td>
+                        <td  class="u-fx-adfffefa">${new Date(o.createdAt).toLocaleDateString()}</td>
                     </tr>
                 `).join('');
 
             } catch (e) {
                 console.error("Failed to load admin stats", e);
-                document.getElementById('tx-tbody').innerHTML = '<tr><td colspan="7" class="empty" style="color:var(--red)">Failed to reach financial core. Node offline.</td></tr>';
+                document.getElementById('tx-tbody').innerHTML = '<tr><td colspan="7" class="u-fx-72be23db empty" >Failed to reach financial core. Node offline.</td></tr>';
             }
         }
 

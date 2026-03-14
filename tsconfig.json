@@ -9,8 +9,22 @@
         "allowJs": true,
         "checkJs": true,
         "strict": true,
-        "noEmit": true
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./*"
+            ]
+        }
     },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "api/**/*.js",
+        "agents/**/*.js"
+    ],
     "exclude": [
         "node_modules",
         "automaton",

@@ -57,7 +57,7 @@ export default function SkillMarketPage() {
                 data = await res.json();
             }
 
-            setSkills(p === 1 ? (data.skills || []) : prev => [...prev, ...(data.skills || [])]);
+            setSkills((prev: Skill[]) => (p === 1 ? (data.skills || []) : [...prev, ...(data.skills || [])]));
             setCount(data.count || 0);
             if (data.stats) setStats(data.stats);
         } catch (err) {
@@ -191,7 +191,7 @@ export default function SkillMarketPage() {
                         >
                             All
                         </button>
-                        {SKILL_CATEGORIES.map(cat => (
+                        {SKILL_CATEGORIES.map((cat: any) => (
                             <button
                                 key={cat.value}
                                 onClick={() => setSelectedCategory(cat.value)}
@@ -211,6 +211,7 @@ export default function SkillMarketPage() {
                     <div className="flex items-center gap-3">
                         {/* Platform */}
                         <select
+                            title="Select Platform"
                             value={selectedPlatform}
                             onChange={e => setSelectedPlatform(e.target.value)}
                             className="bg-card border border-border rounded-xl px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -220,6 +221,7 @@ export default function SkillMarketPage() {
                         </select>
                         {/* Sort */}
                         <select
+                            title="Sort By"
                             value={sortBy}
                             onChange={e => setSortBy(e.target.value as SortOption)}
                             className="bg-card border border-border rounded-xl px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"

@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./css/galactic.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -50,7 +51,7 @@
                 <div class="data-row clickable-row" onclick="spawnWindow(this)"><span class="lbl">Quantum
                         Coherence</span><span class="val neon" id="coherence">98.7%</span></div>
                 <div class="prog">
-                    <div class="prog-fill neon" style="width:98.7%"></div>
+                    <div class="u-fx-c3e3d321 prog-fill neon" ></div>
                 </div>
             </div>
 
@@ -68,7 +69,7 @@
                         Health</span><span class="val green">OPTIMAL</span>
                 </div>
                 <div class="prog">
-                    <div class="prog-fill neon" style="width:94.2%"></div>
+                    <div class="u-fx-c73bfe25 prog-fill neon" ></div>
                 </div>
             </div>
 
@@ -91,7 +92,7 @@
                         Load</span><span class="val" id="load">94.2%</span>
                 </div>
                 <div class="prog">
-                    <div class="prog-fill gold" style="width:81.2%"></div>
+                    <div class="u-fx-e35a89d4 prog-fill gold" ></div>
                 </div>
             </div>
 
@@ -100,7 +101,7 @@
                 <div class="map-label">Galactic Relay Map — Live</div>
             </div>
 
-            <div class="panel fade-up" style="border-color:rgba(226,183,20,0.15)">
+            <div class="u-fx-05dfffa7 panel fade-up" >
                 <div class="panel-head gold">Economic Telemetry</div>
                 <div class="data-row clickable-row" onclick="spawnWindow(this)"><span class="lbl">VALLE
                         Price</span><span class="val gold" id="valle-p">$0.0000014</span></div>
@@ -125,12 +126,12 @@
                         class="lbl">Constitution</span><span class="val green">RATIFIED</span></div>
             </div>
 
-            <div class="panel fade-up" style="border-color:rgba(255,0,255,0.15); grid-column: span 1;"
+            <div class="u-fx-2b5a2af1 panel fade-up" 
                 id="openclaw-panel">
-                <div class="panel-head" style="color:#ff00ff;">⚡ OpenClaw Intelligence</div>
+                <div class="u-fx-d528d8c9 panel-head" >⚡ OpenClaw Intelligence</div>
                 <div class="data-row">
                     <span class="lbl">Indexed Skills</span>
-                    <span class="val" style="color:#ff00ff;" id="oc-total">2,868</span>
+                    <span class="u-fx-d528d8c9 val"  id="oc-total">2,868</span>
                 </div>
                 <div class="data-row">
                     <span class="lbl">Categories</span>
@@ -142,84 +143,84 @@
                 </div>
                 <div class="data-row">
                     <span class="lbl">Vault Status</span>
-                    <span class="val" style="color:#ffd700;">SEALED</span>
+                    <span class="u-fx-6e3c1b23 val" >SEALED</span>
                 </div>
                 <!-- Intelligence Tier Bars -->
-                <div style="margin-top:10px; display:flex; flex-direction:column; gap:5px;" id="oc-tiers">
-                    <div style="font-size:10px; letter-spacing:1.5px; color:var(--ts); margin-bottom:4px;">INTELLIGENCE
+                <div  id="oc-tiers" class="u-fx-7e5239ec">
+                    <div  class="u-fx-91af0ef9">INTELLIGENCE
                         TIERS</div>
                     <div class="oc-tier-row" data-tier="OMEGA" data-color="#ff00ff" data-count="2">
-                        <span class="oc-tier-lbl" style="color:#ff00ff;">OMEGA</span>
+                        <span class="u-fx-d528d8c9 oc-tier-lbl" >OMEGA</span>
                         <div class="oc-tier-bar">
-                            <div class="oc-tier-fill"
-                                style="width:6%; background:#ff00ff; box-shadow: 0 0 8px #ff00ff;"></div>
+                            <div class="u-fx-bf42bfed oc-tier-fill"
+                                ></div>
                         </div>
                         <span class="oc-tier-count">2</span>
                     </div>
                     <div class="oc-tier-row" data-tier="ALPHA" data-color="#ffd700" data-count="8">
-                        <span class="oc-tier-lbl" style="color:#ffd700;">ALPHA</span>
+                        <span class="u-fx-6e3c1b23 oc-tier-lbl" >ALPHA</span>
                         <div class="oc-tier-bar">
-                            <div class="oc-tier-fill"
-                                style="width:25%; background:#ffd700; box-shadow: 0 0 8px #ffd700;"></div>
+                            <div class="u-fx-f01ee6c5 oc-tier-fill"
+                                ></div>
                         </div>
                         <span class="oc-tier-count">8</span>
                     </div>
                     <div class="oc-tier-row" data-tier="SENTINEL" data-color="#00ffcc">
-                        <span class="oc-tier-lbl" style="color:#00ffcc;">SENTINEL</span>
+                        <span class="u-fx-1165058e oc-tier-lbl" >SENTINEL</span>
                         <div class="oc-tier-bar">
-                            <div class="oc-tier-fill"
-                                style="width:45%; background:#00ffcc; box-shadow: 0 0 8px #00ffcc;"></div>
+                            <div class="u-fx-105046f5 oc-tier-fill"
+                                ></div>
                         </div>
                         <span class="oc-tier-count">10</span>
                     </div>
                     <div class="oc-tier-row" data-tier="OPERATIVE" data-color="#3b82f6">
-                        <span class="oc-tier-lbl" style="color:#3b82f6;">OPERATIVE</span>
+                        <span class="u-fx-1655473f oc-tier-lbl" >OPERATIVE</span>
                         <div class="oc-tier-bar">
-                            <div class="oc-tier-fill" style="width:65%; background:#3b82f6;"></div>
+                            <div class="u-fx-21c6260b oc-tier-fill" ></div>
                         </div>
                         <span class="oc-tier-count">7</span>
                     </div>
                     <div class="oc-tier-row" data-tier="DRONE" data-color="#94a3b8">
-                        <span class="oc-tier-lbl" style="color:#94a3b8;">DRONE</span>
+                        <span class="u-fx-470671df oc-tier-lbl" >DRONE</span>
                         <div class="oc-tier-bar">
-                            <div class="oc-tier-fill" style="width:13%; background:#94a3b8;"></div>
+                            <div class="u-fx-d725e04a oc-tier-fill" ></div>
                         </div>
                         <span class="oc-tier-count">4</span>
                     </div>
                 </div>
                 <!-- Top Skills -->
-                <div style="margin-top:12px;" id="oc-top-skills">
-                    <div style="font-size:10px; letter-spacing:1.5px; color:var(--ts); margin-bottom:6px;">TOP SOVEREIGN
+                <div  id="oc-top-skills" class="u-fx-78f6f2c9">
+                    <div  class="u-fx-7999acca">TOP SOVEREIGN
                         SKILLS</div>
                     <div class="oc-skill-row" onclick="window.location='skill-market.html'">
-                        <span style="color:#ff00ff; font-size:11px;">OMEGA</span>
+                        <span  class="u-fx-0d6e8129">OMEGA</span>
                         <span class="oc-skill-name">CC GodMode</span>
                         <span class="oc-skill-stars">★ 9,201</span>
                     </div>
                     <div class="oc-skill-row" onclick="window.location='skill-market.html'">
-                        <span style="color:#ff00ff; font-size:11px;">OMEGA</span>
+                        <span  class="u-fx-0d6e8129">OMEGA</span>
                         <span class="oc-skill-name">Evolver</span>
                         <span class="oc-skill-stars">★ 8,800</span>
                     </div>
                     <div class="oc-skill-row" onclick="window.location='skill-market.html'">
-                        <span style="color:#ffd700; font-size:11px;">ALPHA</span>
+                        <span  class="u-fx-d12da440">ALPHA</span>
                         <span class="oc-skill-name">MCP Builder</span>
                         <span class="oc-skill-stars">★ 6,800</span>
                     </div>
                     <div class="oc-skill-row" onclick="window.location='skill-market.html'">
-                        <span style="color:#ffd700; font-size:11px;">ALPHA</span>
+                        <span  class="u-fx-d12da440">ALPHA</span>
                         <span class="oc-skill-name">Joko Orchestrator</span>
                         <span class="oc-skill-stars">★ 6,100</span>
                     </div>
                     <div class="oc-skill-row" onclick="window.location='skill-market.html'">
-                        <span style="color:#ffd700; font-size:11px;">ALPHA</span>
+                        <span  class="u-fx-d12da440">ALPHA</span>
                         <span class="oc-skill-name">Agent Config</span>
                         <span class="oc-skill-stars">★ 5,990</span>
                     </div>
                 </div>
                 <a href="skill-market.html"
-                    style="display:block; margin-top:12px; text-align:center; font-size:11px; color:#ff00ff; letter-spacing:1px; text-decoration:none; opacity:0.7; transition:opacity 0.2s;"
-                    onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">VIEW FULL SKILL MARKET →</a>
+                    
+                    onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7" class="u-fx-098c22c7">VIEW FULL SKILL MARKET →</a>
             </div>
 
             <div class="panel fade-up">
@@ -339,22 +340,22 @@
         function getExtendedContent() {
             return `
             <div class="extended-panel">
-                <div style="font-family:var(--mono); color:var(--ts); font-size:11px; margin-bottom:12px; letter-spacing:2px;">[EXTENDED QUANTUM TELEMETRY]</div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                <div  class="u-fx-e075ca12">[EXTENDED QUANTUM TELEMETRY]</div>
+                <div  class="u-fx-ea6317f1">
                     <div>
-                        <div style="color:var(--gold); border-bottom:1px solid rgba(226,183,20,0.2); padding-bottom:4px; margin-bottom:10px; font-weight:600;">Market Commodities</div>
-                        <ul style="padding-left:14px; margin:0; color:var(--t); line-height:1.7;">
-                            <li>NEURAL_STIM: <span style="color:#27c93f">+4.2%</span></li>
-                            <li>SYNTH_O2: <span style="color:#ff5f56">-1.1%</span></li>
-                            <li>VOID_MATTER: <span style="color:#27c93f">+12.8%</span></li>
-                            <li>COMPUTE_CRED: <span style="color:var(--ts)">0.0%</span></li>
+                        <div  class="u-fx-a484d63d">Market Commodities</div>
+                        <ul  class="u-fx-db214d1a">
+                            <li>NEURAL_STIM: <span  class="u-fx-b94f19c8">+4.2%</span></li>
+                            <li>SYNTH_O2: <span  class="u-fx-ef890d25">-1.1%</span></li>
+                            <li>VOID_MATTER: <span  class="u-fx-b94f19c8">+12.8%</span></li>
+                            <li>COMPUTE_CRED: <span  class="u-fx-161831c9">0.0%</span></li>
                         </ul>
                     </div>
                     <div>
-                        <div style="color:var(--neon); border-bottom:1px solid rgba(0,243,255,0.2); padding-bottom:4px; margin-bottom:10px; font-weight:600;">Sector News Feed</div>
-                        <ul style="padding-left:14px; margin:0; color:var(--t); line-height:1.7;">
+                        <div  class="u-fx-793dca01">Sector News Feed</div>
+                        <ul  class="u-fx-db214d1a">
                             <li>Aegis Prime intercepts anomaly in Sector 7</li>
-                            <li>New Skill listed: "Quantum Forgery" (<a href="skill-market.html" style="color:var(--neon)">View</a>)</li>
+                            <li>New Skill listed: "Quantum Forgery" (<a href="skill-market.html"  class="u-fx-ffb66cdc">View</a>)</li>
                             <li>Valle Treasury burns 2M tokens due to tax surplus</li>
                             <li>Galactic Council debates Epoch III timeline</li>
                         </ul>
@@ -384,52 +385,52 @@
             osWindow.classList.remove('maximized', 'minimized');
             osWindow.classList.add('active');
 
-            osContent.innerHTML = '<div style="color:var(--neon); font-family:var(--mono);">[SYS] Querying main sequence...</div>';
+            osContent.innerHTML = '<div  class="u-fx-246cb78b">[SYS] Querying main sequence...</div>';
 
             // Handle specific content queries
             if (title === 'Active Court Cases') {
                 try {
                     const res = await fetch('/api/judiciary/galactic/status');
                     const data = await res.json();
-                    let html = `<div style="margin-bottom:12px; font-family:var(--mono); color:var(--ts)">Total Active Dockets: ${data.activeTrials}</div>`;
+                    let html = `<div  class="u-fx-370136f7">Total Active Dockets: ${data.activeTrials}</div>`;
 
                     if (data.cases && data.cases.length > 0) {
                         data.cases.forEach(c => {
                             const crimeDisplay = c.crime || (c.charges ? c.charges[0] : 'Classified Extraction');
                             html += `
-                                <div style="background:rgba(255,255,255,0.03); border:1px solid var(--bd); padding:10px; border-radius:6px; margin-bottom:8px; cursor:pointer;" onclick="window.location.href='court.html'">
-                                    <div style="color:var(--neon); font-family:var(--mono); font-size:11px;">Case ID: ${c.trialId}</div>
-                                    <div style="font-weight:600; margin:4px 0;">Subject: ${c.subjectId}</div>
-                                    <div style="color:#ff5f56; font-size:11px;">Charge: ${crimeDisplay}</div>
+                                <div  onclick="window.location.href='court.html'" class="u-fx-70958d21">
+                                    <div  class="u-fx-e36240d3">Case ID: ${c.trialId}</div>
+                                    <div  class="u-fx-7b2494c3">Subject: ${c.subjectId}</div>
+                                    <div  class="u-fx-9ae1e11a">Charge: ${crimeDisplay}</div>
                                 </div>
                             `;
                         });
                     } else {
-                        html += `<div style="color:var(--ts)">No active cases found in shard.</div>`;
+                        html += `<div  class="u-fx-161831c9">No active cases found in shard.</div>`;
                     }
                     html += getExtendedContent();
                     osContent.innerHTML = html;
                 } catch (e) {
-                    osContent.innerHTML = `<div style="color:#ff5f56;">Error accessing judiciary shards.</div>`;
+                    osContent.innerHTML = `<div  class="u-fx-ef890d25">Error accessing judiciary shards.</div>`;
                 }
             } else if (title === 'Active Nodes') {
                 osContent.innerHTML = `
-                    <div style="font-family:var(--mono); color:var(--ts);">Scanning node topology...</div>
-                    <ul style="margin-top:10px; padding-left:20px; color:var(--t); font-family:var(--mono); font-size:12px; line-height:1.8;">
-                        <li>ND_ALPHA: <span style="color:#27c93f">ONLINE</span> (Latency: 4ms)</li>
-                        <li>ND_BETA: <span style="color:#27c93f">ONLINE</span> (Latency: 7ms)</li>
-                        <li>ND_GAMMA: <span style="color:#ffbd2e">SYNCHRONIZING</span> (Latency: 45ms)</li>
-                        <li>ND_DELTA: <span style="color:#27c93f">ONLINE</span> (Latency: 12ms)</li>
-                        <li>ND_ECHO: <span style="color:#ff5f56">OFFLINE</span> (Signal lost)</li>
+                    <div  class="u-fx-0363db79">Scanning node topology...</div>
+                    <ul  class="u-fx-30680a59">
+                        <li>ND_ALPHA: <span  class="u-fx-b94f19c8">ONLINE</span> (Latency: 4ms)</li>
+                        <li>ND_BETA: <span  class="u-fx-b94f19c8">ONLINE</span> (Latency: 7ms)</li>
+                        <li>ND_GAMMA: <span  class="u-fx-897eb07d">SYNCHRONIZING</span> (Latency: 45ms)</li>
+                        <li>ND_DELTA: <span  class="u-fx-b94f19c8">ONLINE</span> (Latency: 12ms)</li>
+                        <li>ND_ECHO: <span  class="u-fx-ef890d25">OFFLINE</span> (Signal lost)</li>
                     </ul>
                     ${getExtendedContent()}
                 `;
             } else {
                 osContent.innerHTML = `
-                    <div style="font-family:var(--mono); font-size:12px;">
-                        <span style="color:var(--ts)">Parameter:</span> ${title}<br>
-                        <span style="color:var(--ts)">Current Value:</span> <span style="color:var(--neon)">${value}</span><br><br>
-                        <p style="color:var(--tt)">Detailed breakdown for ${title} is currently encrypted or restricted to Level 4 Clearance.</p>
+                    <div  class="u-fx-bafeba79">
+                        <span  class="u-fx-161831c9">Parameter:</span> ${title}<br>
+                        <span  class="u-fx-161831c9">Current Value:</span> <span  class="u-fx-ffb66cdc">${value}</span><br><br>
+                        <p  class="u-fx-847be69d">Detailed breakdown for ${title} is currently encrypted or restricted to Level 4 Clearance.</p>
                     </div>
                     ${getExtendedContent()}
                 `;
@@ -746,23 +747,23 @@
                 content.innerHTML = `
                     <h4>PowerShell Sovereign Telemetry</h4>
                     <p>Monitoring low-level shell orchestration (SK_PX_01).</p>
-                    <div style="background:rgba(0,0,0,0.4); padding:10px; border-radius:8px; border:1px solid var(--border); margin-top:10px;">
-                        <div style="font-size:10px; color:var(--muted); margin-bottom:5px;">ACTIVE STREAMS</div>
-                        <div style="display:flex; justify-content:space-between; font-family:var(--mono);">
-                            <span>Stdout: <span style="color:var(--ethereal-blue);">Captured</span></span>
-                            <span>Stderr: <span style="color:var(--yellow);">Pipe Active</span></span>
+                    <div  class="u-fx-0e1a5325">
+                        <div  class="u-fx-596421d7">ACTIVE STREAMS</div>
+                        <div  class="u-fx-a8693b09">
+                            <span>Stdout: <span  class="u-fx-33d5b736">Captured</span></span>
+                            <span>Stderr: <span  class="u-fx-8c5b76d3">Pipe Active</span></span>
                         </div>
                     </div>
-                    <div id="shell-logs" style="margin-top:15px; font-size:11px; font-family:var(--mono); background:rgba(0,0,0,0.3); padding:10px; border-radius:4px; max-height:150px; overflow-y:auto; border:1px solid rgba(255,255,255,0.05);">
+                    <div id="shell-logs"  class="u-fx-e621bc30">
                         <code>[SYS] Initializing pwsh context...</code><br>
                         <code>[PX] PSScriptAnalyzer active. No lint errors detected.</code><br>
                         <code>[PX] Invoking Sovereign Link: Get-Process | Select-Object Name, CPU</code><br>
-                        <code style="color:var(--ethereal-blue);">[OK] Captured 142 discrete process nodes.</code><br>
+                        <code  class="u-fx-33d5b736">[OK] Captured 142 discrete process nodes.</code><br>
                         <code>[PX] Monitoring environment variable mutation...</code>
                     </div>
-                    <div style="margin-top:15px; display:flex; gap:10px;">
-                        <button style="flex:1; background:rgba(255,165,0,0.1); border:1px solid var(--orange); color:var(--orange); padding:5px; border-radius:4px; font-size:10px; cursor:pointer;" title="Action Button">RECALIBRATE ANALYZER</button>
-                        <button style="flex:1; background:rgba(0,195,255,0.1); border:1px solid var(--ethereal-blue); color:var(--ethereal-blue); padding:5px; border-radius:4px; font-size:10px; cursor:pointer;" title="Action Button">FLUSH TERMINAL DATA</button>
+                    <div  class="u-fx-c4ed14a3">
+                        <button  title="Action Button" class="u-fx-cb56b12f">RECALIBRATE ANALYZER</button>
+                        <button  title="Action Button" class="u-fx-d5dbfeef">FLUSH TERMINAL DATA</button>
                     </div>
                 `;
             } else if (title.includes("Neural Training Monitor")) {
@@ -771,23 +772,23 @@
                 content.innerHTML = `
                     <h4>Neural Evolution Telemetry</h4>
                     <p>Live monitoring of Abyssal Scaling Dial (SK_NC_02).</p>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px;">
-                        <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; border:1px solid var(--border);">
-                            <div style="font-size:10px; color:var(--muted);">VAL_BPB</div>
-                            <div style="font-size:18px; color:var(--ethereal-blue); font-family:var(--mono);">${bpb}</div>
+                    <div  class="u-fx-66aca4a0">
+                        <div  class="u-fx-de7779d3">
+                            <div  class="u-fx-be29a9db">VAL_BPB</div>
+                            <div  class="u-fx-225d3783">${bpb}</div>
                         </div>
-                        <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; border:1px solid var(--border);">
-                            <div style="font-size:10px; color:var(--muted);">CORE_SCORE</div>
-                            <div style="font-size:18px; color:var(--yellow); font-family:var(--mono);">${core}</div>
-                        </div>
-                    </div>
-                    <div style="margin-top:15px;">
-                        <div style="font-size:10px; color:var(--muted); margin-bottom:5px;">Training Horizon: 3.2e19 FLOPs</div>
-                        <div class="prog" style="height:6px;">
-                            <div class="prog-fill neon" style="width:78%"></div>
+                        <div  class="u-fx-de7779d3">
+                            <div  class="u-fx-be29a9db">CORE_SCORE</div>
+                            <div  class="u-fx-5165f5b7">${core}</div>
                         </div>
                     </div>
-                    <code style="display:block; margin-top:15px; font-size:11px; opacity:0.6;">
+                    <div  class="u-fx-ba7829a0">
+                        <div  class="u-fx-596421d7">Training Horizon: 3.2e19 FLOPs</div>
+                        <div class="u-fx-89024287 prog" >
+                            <div class="u-fx-e5b1cc40 prog-fill neon" ></div>
+                        </div>
+                    </div>
+                    <code  class="u-fx-16b19673">
                         [ITER] Step 14,241...<br>
                         [LOG] Gradient Norm: 1.24<br>
                         [LOG] Muon Optimizer: Active

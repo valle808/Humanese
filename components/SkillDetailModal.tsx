@@ -151,6 +151,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                         className="w-full bg-input border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                                     />
                                     <select
+                                        title="Select Payment Platform"
                                         value={buyerPlatform}
                                         onChange={e => setBuyerPlatform(e.target.value)}
                                         className="w-full bg-input border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -172,6 +173,8 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                             </p>
                                         </div>
                                         <button
+                                            title="Toggle Ghost Mode"
+                                            aria-label="Toggle Ghost Mode"
                                             onClick={() => setGhostMode(!ghostMode)}
                                             className={`relative w-11 h-6 rounded-full transition-colors ${ghostMode ? 'bg-primary' : 'bg-muted-foreground/30'}`}
                                         >

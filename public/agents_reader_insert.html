@@ -9,7 +9,7 @@
     <div class="live-section-hd">
         <div>
             <h2>🌐 Sovereign Reader Swarm</h2>
-            <p style="color:var(--muted);font-size:13px;margin-top:4px;">
+            <p  class="u-fx-37135ca5">
                 12 agents reading live articles from Wikipedia, arXiv, Hacker News, MDN, Stack Overflow &amp; Grokipedia
                 — feeding knowledge to Monroe in real-time.
             </p>
@@ -20,46 +20,46 @@
     </div>
     <div class="swarm-stats-bar">
         <div class="swarm-stat">
-            <div class="swarm-stat-val" id="sw-agents" style="color:#00ffcc">12</div>
+            <div class="u-fx-1165058e swarm-stat-val" id="sw-agents" >12</div>
             <div class="swarm-stat-lbl">Active Agents</div>
         </div>
         <div class="swarm-stat">
-            <div class="swarm-stat-val" id="sw-articles" style="color:#ffd700">0</div>
+            <div class="u-fx-6e3c1b23 swarm-stat-val" id="sw-articles" >0</div>
             <div class="swarm-stat-lbl">Articles Read</div>
         </div>
         <div class="swarm-stat">
-            <div class="swarm-stat-val" id="sw-kp" style="color:#ff00ff">0</div>
+            <div class="u-fx-d528d8c9 swarm-stat-val" id="sw-kp" >0</div>
             <div class="swarm-stat-lbl">Knowledge Points</div>
         </div>
         <div class="swarm-stat">
-            <div class="swarm-stat-val" style="color:#3b82f6">8</div>
+            <div class="u-fx-1655473f swarm-stat-val" >8</div>
             <div class="swarm-stat-lbl">Knowledge Sources</div>
         </div>
     </div>
     <div class="source-legend">
         <div class="source-pill">
-            <div class="source-dot" style="background:#3b82f6"></div>Wikipedia
+            <div class="u-fx-497322d3 source-dot" ></div>Wikipedia
         </div>
         <div class="source-pill">
-            <div class="source-dot" style="background:#ff00ff"></div>Grokipedia
+            <div class="u-fx-7dc4a9f8 source-dot" ></div>Grokipedia
         </div>
         <div class="source-pill">
-            <div class="source-dot" style="background:#f97316"></div>Hacker News
+            <div class="u-fx-451eca8b source-dot" ></div>Hacker News
         </div>
         <div class="source-pill">
-            <div class="source-dot" style="background:#8b5cf6"></div>arXiv
+            <div class="u-fx-23bcb4b1 source-dot" ></div>arXiv
         </div>
         <div class="source-pill">
-            <div class="source-dot" style="background:#22c55e"></div>MDN Web Docs
+            <div class="u-fx-175ff370 source-dot" ></div>MDN Web Docs
         </div>
         <div class="source-pill">
-            <div class="source-dot" style="background:#f59e0b"></div>Stack Overflow
+            <div class="u-fx-1ade0dff source-dot" ></div>Stack Overflow
         </div>
         <div class="source-pill">
-            <div class="source-dot" style="background:#e2b714"></div>Project Gutenberg
+            <div class="u-fx-8daefe54 source-dot" ></div>Project Gutenberg
         </div>
         <div class="source-pill">
-            <div class="source-dot" style="background:#00ffcc"></div>AI Research News
+            <div class="u-fx-9414ffc2 source-dot" ></div>AI Research News
         </div>
     </div>
     <div class="reader-grid" id="reader-grid"></div>
@@ -90,7 +90,7 @@
                 '<div class="rc-article-title" id="rcat-' + agent.id + '">Waiting for first article...</div>' +
                 '</div>' +
                 '<div>' +
-                '<div class="rc-progress"><div class="rc-progress-fill" id="rcp-' + agent.id + '" style="width:0%"></div></div>' +
+                '<div class="rc-progress"><div class="u-fx-2f58115a rc-progress-fill" id="rcp-' + agent.id + '" ></div></div>' +
                 '<div class="rc-progress-pct" id="rcpp-' + agent.id + '">0%</div>' +
                 '</div>' +
                 '<div class="rc-text-box"><span id="rct-' + agent.id + '"></span></div>' +
@@ -127,7 +127,7 @@
                 setStatus(c, agent.status || 'INITIALIZING');
                 if (agent.article) {
                     c.titleEl.innerHTML = '<a href="' + agent.article.url + '" target="_blank" rel="noopener">' + agent.article.title + '</a>';
-                    c.sourceEl.innerHTML = (agent.article.sourceIcon || '&#x1F310;') + ' <span style="color:' + (agent.article.sourceColor || '#fff') + '">' + agent.article.source + '</span>';
+                    c.sourceEl.innerHTML = (agent.article.sourceIcon || '&#x1F310;') + ' <span  class="u-fx-f06504fb">' + agent.article.source + '</span>';
                     var pct = agent.article.totalChars > 0 ? Math.round((agent.article.processedChars / agent.article.totalChars) * 100) : 0;
                     c.progEl.style.width = pct + '%'; c.progPctEl.textContent = pct + '%';
                 }
@@ -143,7 +143,7 @@
             setStatus(c, data.status || 'INITIALIZING');
             if (data.status === 'READING' && data.article) {
                 c.titleEl.innerHTML = '<a href="' + data.article.url + '" target="_blank" rel="noopener">' + data.article.title + '</a>';
-                c.sourceEl.innerHTML = (data.article.sourceIcon || '&#x1F310;') + ' <span style="color:' + (data.article.sourceColor || '#aaa') + '">' + data.article.source + '</span>';
+                c.sourceEl.innerHTML = (data.article.sourceIcon || '&#x1F310;') + ' <span  class="u-fx-26bf475a">' + data.article.source + '</span>';
                 c.textEl.textContent = ''; c.progEl.style.width = '0%'; c.progPctEl.textContent = '0%';
             } else if (data.status === 'FETCHING') {
                 c.titleEl.textContent = 'Fetching next article...'; c.sourceEl.textContent = 'Loading...';
@@ -170,7 +170,7 @@
             es.addEventListener('agent-update', function (e) { try { handleAgentUpdate(JSON.parse(e.data)); } catch { } });
             es.addEventListener('agent-text', function (e) { try { handleAgentText(JSON.parse(e.data)); } catch { } });
             es.onerror = function () {
-                badge.innerHTML = '<div class="live-pulse-dot" style="background:#f97316"></div> RECONNECTING...';
+                badge.innerHTML = '<div class="u-fx-451eca8b live-pulse-dot" ></div> RECONNECTING...';
                 setTimeout(connectSSE, 4000); es.close();
             };
         }
