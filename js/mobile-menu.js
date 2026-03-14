@@ -14,39 +14,12 @@
         if (!sidebar) return;
 
         // ── State Management ──
-        const savedState = localStorage.getItem('sovereign_sidebar_expanded');
-        let isExpanded = savedState === 'true';
-
-        function applyState() {
-            if (window.innerWidth > 900) {
-                if (isExpanded) {
-                    sidebar.classList.add('active');
-                    document.body.classList.add('sidebar-expanded');
-                } else {
-                    sidebar.classList.remove('active');
-                    document.body.classList.remove('sidebar-expanded');
-                }
-            }
-        }
-
-        function toggleState() {
-            isExpanded = !isExpanded;
-            localStorage.setItem('sovereign_sidebar_expanded', isExpanded);
-            applyState();
-        }
+        // The desktop top-bar is now permanently visible.
+        // We only need to manage state for the mobile slide drawer.
+        let isExpandedMobile = false;
 
         // ── Desktop Hover/Click Logic ──
-        sidebar.addEventListener('mouseenter', () => {
-            if (!isExpanded && window.innerWidth > 900) {
-                sidebar.classList.add('active');
-            }
-        });
-
-        sidebar.addEventListener('mouseleave', () => {
-            if (!isExpanded && window.innerWidth > 900) {
-                sidebar.classList.remove('active');
-            }
-        });
+        // REMOVED: Desktop is now a static horizontal top-bar.
 
         // ── Mobile Toggle Logic ──
         if (toggle) {
@@ -84,25 +57,21 @@
             });
         });
 
-        // Initialize state
-        applyState();
+    });
 
-        // Handle resize
-        window.addEventListener('resize', applyState);
-
-        // ── OMEGA Awareness ──
-        // Check if any link has OMEGA clearance requirement
-        links.forEach(link => {
-            if (link.textContent.includes('Supreme Command') || link.getAttribute('href').includes('admin')) {
-                link.classList.add('omega-link');
-            }
-        });
-    }
+    // ── OMEGA Awareness ──
+    // Check if any link has OMEGA clearance requirement
+    links.forEach(link => {
+        if (link.textContent.includes('Supreme Command') || link.getAttribute('href').includes('admin')) {
+            link.classList.add('omega-link');
+        }
+    });
+}
 
     // Initialize on load
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSovereignSidebar);
-    } else {
-        initSovereignSidebar();
-    }
-})();
+    document.addEventListener('DOMContentLoaded', initSovereignSidebar);
+} else {
+    initSovereignSidebar();
+}
+}) ();
