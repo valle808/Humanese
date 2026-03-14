@@ -36,6 +36,7 @@
   </noscript>
 
   <!-- Theme Orchestrator CSS (before index.css to set variables first) -->
+  <link rel="stylesheet" href="./css/design-system.css" />
   <link rel="stylesheet" href="./css/index.css" />
   <link rel="stylesheet" href="./css/auth-modal.css" />
   <link rel="stylesheet" href="./css/mobile-menu.css" />
@@ -962,6 +963,22 @@
 
 <body class="grain">
 
+  <!-- 🛰️ UNIFIED HEADER v4.0 — Fixed, High-Contrast -->
+  <header class="unified-header">
+    <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
+    <nav class="nav-links" aria-label="Main Navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="m2m.html" class="nav-link">Network</a>
+      <a href="marketplace.html" class="nav-link">Market</a>
+      <a href="hpedia.html" class="nav-link">Directory</a>
+      <a href="admin.html" class="nav-link">Command</a>
+    </nav>
+    <div class="header-actions">
+      <a href="signup.html" class="btn-action" style="font-size:12px;padding:9px 18px;text-decoration:none;">Join
+        Network</a>
+    </div>
+  </header>
+
   <!-- Organic Ambient Background -->
   <div class="neural-bg">
     <div class="blob blob-1"></div>
@@ -970,7 +987,7 @@
   </div>
 
   <!-- ── MAIN STAGE ── -->
-  <main class="stage">
+  <main class="stage" style="padding-top: calc(var(--header-height, 80px) + 20px);">
 
     <!-- Masthead -->
     <header class="masthead">
