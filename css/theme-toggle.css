@@ -15,7 +15,7 @@
 /* Offset theme toggle on mobile to make room for the Sovereign Sidebar hamburger menu */
 @media (max-width: 900px) {
     #theme-toggle-container {
-        right: 80px;
+        right: 90px !important;
     }
 }
 
