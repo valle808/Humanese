@@ -109,6 +109,16 @@
     gap: 8px;
     padding: 20px 12px;
     overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.mobile-menu-links::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Opera */
 }
 
 .mobile-menu-link {
