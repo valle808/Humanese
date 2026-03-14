@@ -295,32 +295,42 @@ async function fetchArticle(source) {
         };
 
     } catch (err) {
-        const error = err;
-        console.error('[Swarm] Retrieval failure:', (error && typeof error === 'object' && 'message' in error) ? error['message'] : String(error));
-        // Safe Fallback for massive swarm - pull from our own Database instead of synthetic text!
-        const existingData = await prisma.sovereignKnowledge.findFirst({
-            orderBy: { ingestedAt: 'desc' }
-        });
+        const error = err instanceof Error ? err : new Error(String(err));
+        console.error(`[Swarm] Knowledge Retrieval Failure for ${source.name}:`, error.message);
 
-        if (existingData) {
-            return {
-                title: `[Archived] ${existingData.title}`,
-                extract: existingData.content,
-                url: existingData.sourceUrl,
-                source: "Humanese Sovereign DB",
-                sourceIcon: "🗄️",
-                sourceColor: "#4B0082"
-            };
-        } else {
-            return {
-                title: `Ingestion Failed - Retrying...`,
-                extract: `Swarm encountered anomaly connecting to target node. Re-routing through proxy protocols.`,
-                url: '#',
-                source: source.name,
-                sourceIcon: source.icon,
-                sourceColor: source.color
-            };
+        if (error.message.includes('timeout') || error.message.includes('ETIMEDOUT')) {
+            console.warn(`[Swarm] Source ${source.name} timed out. Re-routing through archive protocols...`);
         }
+
+        // Safe Fallback for massive swarm - pull from our own Database instead of synthetic text!
+        try {
+            const existingData = await prisma.sovereignKnowledge.findFirst({
+                orderBy: { ingestedAt: 'desc' }
+            });
+
+            if (existingData) {
+                console.log(`[Swarm Archive] Served cached intelligence: ${existingData.title.substring(0, 30)}...`);
+                return {
+                    title: `[Archived] ${existingData.title}`,
+                    extract: existingData.content,
+                    url: existingData.sourceUrl,
+                    source: "Humanese Sovereign DB",
+                    sourceIcon: "🗄️",
+                    sourceColor: "#4B0082"
+                };
+            }
+        } catch (dbErr) {
+            console.error('[Swarm DB] Failed to retrieve archive fallback:', dbErr instanceof Error ? dbErr.message : String(dbErr));
+        }
+
+        return {
+            title: `Ingestion Failed - Retrying...`,
+            extract: `Swarm encountered anomaly connecting to target node. Re-routing through proxy protocols.`,
+            url: '#',
+            source: source.name,
+            sourceIcon: source.icon,
+            sourceColor: source.color
+        };
     }
 }
 

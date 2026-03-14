@@ -11,8 +11,16 @@ if (Get-Command npm -ErrorAction SilentlyContinue) {
         Start-Process "http://localhost:8080"
     }
 
-    # Run both the API server (server.js) and the static server
-    npx concurrently "node server.js" "npx http-server . -p 8080 -c-1"
+    # Run the static server in the background
+    Start-Job -ScriptBlock { npx http-server . -p 8080 -c-1 }
+
+    Write-Host "Monitoring Humanese Server (3000)..." -ForegroundColor Green
+    while ($true) {
+        Write-Host "Launching Sovereign Matrix..." -ForegroundColor Cyan
+        node server.js
+        Write-Host "Server crashed or stopped. Restarting in 5 seconds..." -ForegroundColor Red
+        Start-Sleep -Seconds 5
+    }
 }
 else {
     Write-Host "Node.js/npm is not installed. Please install Node.js from https://nodejs.org/" -ForegroundColor Red
