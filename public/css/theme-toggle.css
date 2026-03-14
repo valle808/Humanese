@@ -9,6 +9,16 @@
     display: flex;
     align-items: center;
     height: 32px;
+    transition: right 0.3s ease;
+}
+
+/* Offset theme toggle on mobile to make room for the Sovereign Sidebar hamburger menu */
+@media (max-width: 900px) {
+    #theme-toggle-container {
+        right: 76px !important;
+        /* hamburger is 46px wide, margin 14px right + 16px gap = 76px */
+        top: 18px !important;
+    }
 }
 
 .day-night-switch {
