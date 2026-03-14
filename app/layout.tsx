@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 import { MonroeAssistant } from "@/components/MonroeAssistant";
 import { BackToTop } from "@/components/BackToTop";
+import { Sidebar } from "@/components/Sidebar";
 
 export const viewport = {
   themeColor: '#0b0f19',
@@ -46,8 +47,11 @@ export default function RootLayout({
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
           crossOrigin="anonymous"></script>
       </head>
-      <body className="antialiased">
-        {children}
+      <body className="antialiased min-h-screen bg-background">
+        <Sidebar />
+        <main id="root-content" className="relative flex flex-col min-h-screen">
+          {children}
+        </main>
         <MonroeAssistant />
         <BackToTop />
       </body>

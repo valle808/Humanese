@@ -1,0 +1,139 @@
+/* 
+   Sovereign Mobile Menu — Premium HUD System 
+   Managed by Abyssal Sentinels
+*/
+
+:root {
+    --mm-bg: rgba(5, 5, 8, 0.95);
+    --mm-accent: #00ffcc;
+    --mm-text: #e0f0ff;
+    --mm-border: rgba(0, 255, 204, 0.15);
+}
+
+/* ── Hamburger Toggle ── */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+    padding: 10px;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--mm-accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Sidebar Container ── */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.mobile-menu-sidebar {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100%;
+    background: var(--mm-bg);
+    border-left: 1px solid var(--mm-border);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    z-index: 10000;
+    padding: 80px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-menu-sidebar.active {
+    transform: translateX(-320px);
+}
+
+/* ── Menu Content ── */
+.mobile-menu-brand {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--mm-accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid var(--mm-border);
+    padding-bottom: 20px;
+}
+
+.mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mobile-menu-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--mm-text);
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-menu-link:hover {
+    background: rgba(0, 255, 204, 0.08);
+    border-color: var(--mm-border);
+    color: var(--mm-accent);
+    transform: translateX(5px);
+}
+
+.mobile-menu-link.active {
+    background: rgba(0, 255, 204, 0.1);
+    border-color: var(--mm-accent);
+    color: var(--mm-accent);
+    font-weight: 700;
+}
+
+/* ── Show Toggle on Mobile ── */
+@media (max-width: 900px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}

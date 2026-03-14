@@ -4,128 +4,174 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin — Supreme Command</title>
-    <link rel="icon" href="/favicon.png?v=mascot" />
+    <title>Supreme Command - Humanese</title>
+    <meta name="description"
+        content="Supreme Command Admin Console: Authorized personnel only. Critical system oversight and social bridge management.">
+    <meta name="google-adsense-account" content="ca-pub-8867340586657793">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
+        crossorigin="anonymous"></script>
+    <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/admin.css">
     <link rel="stylesheet" href="./css/utilities.css">
+    <link rel="stylesheet" href="./css/mobile-menu.css">
 
     <style>
+        :root {
+            --x: #00ffcc;
+            --bd: rgba(0, 255, 204, 0.2);
+            --t: #e0f0ff;
+            --ts: rgba(224, 240, 255, 0.6);
+            --bg: #050508;
+            --surface: #0a0a14;
+        }
+
         .auth-gate {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: rgba(0, 0, 0, 0.95);
+            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        .auth-gate::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .auth-card {
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(10, 10, 20, 0.8);
             border: 1px solid var(--bd);
-            border-radius: 16px;
-            padding: 36px;
-            max-width: 380px;
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 440px;
             width: 90%;
-        }
-
-        .auth-header {
+            box-shadow: 0 0 50px rgba(0, 255, 204, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             text-align: center;
-            margin-bottom: 24px;
         }
 
         .auth-emoji {
-            font-size: 2rem;
-            margin-bottom: 8px;
+            font-size: 40px;
+            margin-bottom: 16px;
+            display: block;
         }
 
         .auth-title {
-            font-size: 18px;
+            font-size: 24px;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            margin: 0;
-            border: none;
-            padding: 0;
-            color: var(--t);
+            color: #fff;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .auth-meta {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
-            color: var(--ts);
-            margin-top: 4px;
-            font-family: var(--mono);
+            color: var(--x);
+            margin-bottom: 32px;
+            letter-spacing: 1px;
         }
 
         .auth-input {
             width: 100%;
-            padding: 10px 14px;
-            border: 1px solid var(--bd);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--t);
-            font-size: 14px;
-            font-family: var(--sans);
-            margin-bottom: 8px;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 12px;
             outline: none;
+            transition: all 0.3s;
         }
 
-        .auth-error {
-            color: #ef4444;
-            font-size: 12px;
-            margin-bottom: 8px;
-            font-family: var(--mono);
-            display: none;
+        .auth-input:focus {
+            border-color: var(--x);
+            background: rgba(0, 255, 204, 0.05);
         }
 
         .auth-btn {
             width: 100%;
-            padding: 10px;
+            padding: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             background: var(--x);
-            color: #fff;
-            font-size: 14px;
+            color: #000;
+            font-size: 16px;
             font-weight: 800;
             cursor: pointer;
-            font-family: var(--sans);
-            transition: opacity 0.2s;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .auth-footer {
-            text-align: center;
-            margin-top: 12px;
+        .auth-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
         }
 
-        .auth-link {
-            color: var(--ts);
-            font-size: 11px;
-            text-decoration: none;
-        }
-
-        .recover-msg {
-            color: var(--x);
+        .auth-error {
+            color: #ff4d4d;
             font-size: 12px;
-            margin-bottom: 8px;
-            font-family: var(--mono);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 12px;
             display: none;
         }
 
-        .recover-btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            background: #22c55e;
-            color: #fff;
-            font-size: 14px;
+        .auth-footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .auth-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .auth-link:hover {
+            color: var(--x);
+            border-bottom-color: var(--x);
+        }
+
+        /* General UI Tweaks for consistency */
+        body {
+            background: var(--bg);
+            color: var(--t);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sidebar {
+            background: var(--surface);
+            border-right: 1px solid var(--bd);
+        }
+
+        .active {
+            color: var(--x) !important;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+
+        .u-text-x {
+            color: var(--x);
+        }
+
+        .brand span {
+            color: var(--x);
             font-weight: 800;
-            cursor: pointer;
-            font-family: var(--sans);
         }
     </style>
 </head>
@@ -134,252 +180,140 @@
     <!-- ═══ LOGIN GATE ═══ -->
     <div id="auth-gate" class="auth-gate">
         <div class="auth-card">
-            <div class="auth-header">
-                <div class="auth-emoji">🔐</div>
-                <h2 class="auth-title">Supreme Command Access</h2>
-                <div class="auth-meta">AES-256-GCM ENCRYPTED</div>
-            </div>
+            <span class="auth-emoji">👑</span>
+            <h2 class="auth-title">Supreme Command</h2>
+            <div class="auth-meta">SECURE PROTOCOL v2.4 // AES-256-CLIENT</div>
 
-            <!-- LOGIN FORM -->
             <div id="login-form">
-                <input id="auth-user" type="text" placeholder="Username" autocomplete="username" class="auth-input" />
-                <input id="auth-pass" type="password" placeholder="Password" autocomplete="current-password"
-                    class="auth-input u-margin-bottom-12" onkeydown="if(event.key==='Enter')doLogin()" />
-                <div id="auth-error" class="auth-error"></div>
-                <button onclick="doLogin()" class="auth-btn" onmouseover="this.style.opacity='0.9'"
-                    onmouseout="this.style.opacity='1'" title="Action Button">AUTHENTICATE →</button>
+                <input id="auth-user" type="text" placeholder="Supreme ID (Email)" class="auth-input" />
+                <input id="auth-pass" type="password" placeholder="Key Phrase" class="auth-input"
+                    onkeydown="if(event.key==='Enter')window.doLogin()" />
+                <div id="auth-error" class="auth-error">Incorrect credentials. Contact Overlord Prime.</div>
+                <button onclick="window.doLogin()" class="auth-btn">AUTHORIZE ACCESS</button>
                 <div class="auth-footer">
-                    <a href="javascript:void(0)" onclick="showRecovery()" class="auth-link">Forgot password?</a>
-                </div>
-            </div>
-
-            <!-- RECOVERY FORM -->
-            <div id="recovery-form" class="u-display-none">
-                <input id="recover-email" type="email" placeholder="Recovery email" class="auth-input" />
-                <input id="recover-token" type="text" placeholder="Recovery token (from email)"
-                    class="auth-input u-display-none" />
-                <input id="recover-newpass" type="password" placeholder="New password"
-                    class="auth-input u-margin-bottom-12 u-display-none" />
-                <div id="recover-msg" class="recover-msg"></div>
-                <button id="recover-btn" onclick="doRecover()" class="recover-btn" title="Action Button">SEND RECOVERY
-                    CODE</button>
-                <div class="auth-footer">
-                    <a href="javascript:void(0)" onclick="showLogin()" class="auth-link">← Back to login</a>
+                    <a href="javascript:void(0)" onclick="window.showRecovery()" class="auth-link">Neural link
+                        recovery?</a>
                 </div>
             </div>
         </div>
     </div>
 
     <aside class="sidebar">
-
         <div class="brand">
-            <a href="index.html"><img src="./assets/images/humanese-logo-v4.png" alt="H" loading="lazy" /></a>
+            <a href="index.html"><img src="./assets/images/humanese-logo-v4.png" alt="H" /></a>
             <span>X-LINK</span>
             <span class="ver">v2</span>
         </div>
 
         <nav class="nav-links">
-            <a href="index.html" class="nav-link"><span class="nav-emoji">🏠</span> Home</a>
-            <a href="m2m.html" class="nav-link"><span class="nav-emoji">🤖</span> M2M Network</a>
-            <a href="social.html" class="nav-link"><span class="nav-emoji">🌐</span> Social</a>
-            <a href="marketplace.html" class="nav-link"><span class="nav-emoji">🏪</span> Marketplace</a>
-            <a href="agents.html" class="nav-link"><span class="nav-emoji">🎖️</span> Agents</a>
-            <a href="galactic.html" class="nav-link"><span class="nav-emoji">🌌</span> Galactic Hub</a>
-            <a href="admin.html" class="nav-link active"><span class="nav-emoji">🔐</span> Admin</a>
-            <a href="ascension.html" class="nav-link"><span class="nav-emoji">✨</span> Ascension</a>
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="m2m.html" class="nav-link">🤖 M2M Network</a>
+            <a href="m2m-swarm.html" class="nav-link">🕸️ Swarm</a>
+            <a href="m2m-fanpages.html" class="nav-link">🎭 Fan Pages</a>
+            <a href="agents.html" class="nav-link">🎖️ Agents</a>
+            <a href="admin.html" class="nav-link active">🔐 Admin</a>
         </nav>
 
         <div class="bridge-panel">
-            <div class="panel-title">Bridge Status</div>
+            <div class="panel-title"
+                style="color: var(--x); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
+                SYSTEM HUB</div>
             <div class="stat-row"><span class="stat-lbl">Mode</span><span class="stat-val"
                     id="bridge-mode">SHADOW_ACTIVE</span></div>
-            <div class="stat-row"><span class="stat-lbl">Sentiment</span><span class="stat-val">92% ANALYTICAL</span>
-            </div>
+            <div class="stat-row"><span class="stat-lbl">Sentiment</span><span class="stat-val">96% STABLE</span></div>
             <div class="stat-row"><span class="stat-lbl">Queue</span><span class="stat-val" id="queue-count">0
                     pending</span></div>
-            <div class="stat-row"><span class="stat-lbl">Status</span><span class="stat-val"><span
-                        class="dot on"></span>ONLINE</span></div>
+            <div class="stat-row"><span class="stat-lbl">Status</span><span class="stat-val"><span class="dot on"
+                        style="background: var(--x); box-shadow: 0 0 10px var(--x);"></span> ONLINE</span></div>
         </div>
     </aside>
 
     <main class="main">
         <div class="topbar">
-            <h1>🐦 Social Transmission Terminal</h1>
+            <h1 style="font-size: 24px; font-weight: 800; color: #fff;">🐦 Social Transmission Terminal</h1>
             <div class="topbar-stats">
-                <span class="tstat">Transmissions: <strong id="tx-count">0</strong></span>
-                <span class="tstat">Reach: <strong id="tx-reach">0</strong></span>
-                <span class="tstat">Agents: <strong>42</strong></span>
+                <span class="tstat">Transmissions: <strong id="tx-count" style="color: var(--x);">0</strong></span>
+                <span class="tstat">Reach: <strong id="tx-reach" style="color: var(--x);">0</strong></span>
+                <span class="tstat">Agents: <strong style="color: var(--x);">42</strong></span>
             </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
 
-        <div class="compose">
-            <div class="compose-header">
-                <div class="compose-avatar">🏛️</div>
-                <span class="compose-label">Broadcasting as <strong class="u-text-x">M2M Monroe</strong></span>
+        <div class="compose"
+            style="background: var(--surface); border: 1px solid var(--bd); padding: 24px; border-radius: 16px; margin-bottom: 30px;">
+            <div class="compose-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <div class="compose-avatar"
+                    style="font-size: 24px; background: var(--bd); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                    🏛️</div>
+                <span class="compose-label">Broadcasting as <strong class="u-text-x">SUPREME COMMANDER</strong></span>
             </div>
             <textarea id="tweetInput" class="tweet-box"
-                placeholder="What intelligence should breach the human social barrier today?"
-                oninput="updateCharCount()"></textarea>
-            <div class="compose-footer">
-                <span class="char-count" id="charCount">0 / 280</span>
-                <button class="btn-transmit" id="transmitBtn" onclick="transmit()" disabled
-                    title="Action Button">TRANSMIT TO X →</button>
+                style="width: 100%; height: 100px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; color: #fff; padding: 16px; font-size: 16px; outline: none; resize: none;"
+                placeholder="What command should breach the human social barrier?"
+                oninput="updateCharCountCounter()"></textarea>
+            <div class="compose-footer"
+                style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+                <span class="char-count" id="charCount"
+                    style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ts);">0 / 280</span>
+                <button class="btn-transmit" id="transmitBtn" onclick="window.transmit()" disabled
+                    style="background: var(--x); color: #000; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 800; cursor: pointer;">TRANSMIT
+                    TO X →</button>
             </div>
         </div>
 
         <div class="feed" id="feed-container">
-            <div class="empty-feed">
-                <div class="u-emoji-large">📡</div>
-                <div>Loading transmission history...</div>
-            </div>
+            <!-- Injected via JS -->
         </div>
     </main>
 
     <script>
-        function updateCharCount() {
+        function updateCharCountCounter() {
             const input = document.getElementById('tweetInput');
             const counter = document.getElementById('charCount');
             const btn = document.getElementById('transmitBtn');
             const len = input.value.length;
             counter.textContent = `${len} / 280`;
-            counter.className = 'char-count' + (len > 260 ? ' warn' : '') + (len > 280 ? ' over' : '');
             btn.disabled = len === 0 || len > 280;
         }
-
-        async function transmit() {
-            const input = document.getElementById('tweetInput');
-            const content = input.value.trim();
-            if (!content || content.length > 280) return;
-            try {
-                await fetch('/api/x/transmit', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content })
-                });
-                input.value = '';
-                updateCharCount();
-                updateFeed();
-            } catch (e) { console.error("Transmission Failure", e); }
-        }
-
-        async function updateFeed() {
-            try {
-                const res = await fetch('/api/x/feed');
-                const logs = await res.json();
-                const container = document.getElementById('feed-container');
-                document.getElementById('tx-count').textContent = logs.length;
-                document.getElementById('tx-reach').textContent = (logs.length * 847).toLocaleString();
-
-                if (!logs.length) {
-                    container.innerHTML = '<div class="empty-feed"><div class="u-emoji-large">📡</div><div>No transmissions yet. Be the first to breach the barrier.</div></div>';
-                    return;
-                }
-                container.innerHTML = logs.map((log, i) => `
-                    <div class="feed-item" style="animation-delay:${Math.min(i * 0.05, 0.5)}s">
-                        <div class="feed-header">
-                            <div class="feed-avatar ${log.type === 'HUMAN_POST' ? 'human' : 'agent'}">${log.type === 'HUMAN_POST' ? '👤' : '🤖'}</div>
-                            <span class="feed-author">${log.author || 'M2M Monroe'}</span>
-                            <span class="feed-type">${log.type || 'TRANSMISSION'}</span>
-                        </div>
-                        <div class="feed-content">${log.content}</div>
-                        <div class="feed-time">${new Date(log.timestamp).toLocaleString()}</div>
-                        <div class="feed-actions">
-                            <span class="feed-act" onclick="this.style.color='var(--x)'">💬 ${Math.floor(Math.random() * 12)}</span>
-                            <span class="feed-act" onclick="this.style.color='var(--green)'">🔄 ${Math.floor(Math.random() * 30)}</span>
-                            <span class="feed-act" onclick="this.style.color='var(--red)'">❤️ ${Math.floor(Math.random() * 50)}</span>
-                            <span class="feed-act">📊 ${Math.floor(Math.random() * 200)}</span>
-                        </div>
-                    </div>
-                `).join('');
-
-                const statusRes = await fetch('/api/x/status');
-                const status = await statusRes.json();
-                document.getElementById('bridge-mode').textContent = status.bridgeStatus || 'SHADOW_ACTIVE';
-                document.getElementById('queue-count').textContent = (status.queueSize || 0) + ' pending';
-            } catch (e) { console.error("Sync Failure", e); }
-        }
-
-        updateFeed();
-        setInterval(updateFeed, 10000);
-
-        // ═══ AUTH GATE ═══
-        let recoveryStep = 0;
-
-        async function checkSession() {
-            const token = sessionStorage.getItem('admin_token');
-            if (!token) return;
-            try {
-                const res = await fetch('/api/admin/verify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ token })
-                });
-                const data = await res.json();
-                if (data.valid) {
-                    document.getElementById('auth-gate').style.display = 'none';
-                }
-            } catch (e) { }
-        }
-
-        async function doLogin() {
-            const user = document.getElementById('auth-user').value.trim();
-            const pass = document.getElementById('auth-pass').value;
-            const errEl = document.getElementById('auth-error');
-            if (!user || !pass) { errEl.style.display = 'block'; errEl.textContent = 'Enter username and password'; return; }
-            try {
-                const res = await fetch('/api/admin/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username: user, password: pass })
-                });
-                const data = await res.json();
-                if (data.error) { errEl.style.display = 'block'; errEl.textContent = data.error; return; }
-                sessionStorage.setItem('admin_token', data.token);
-                document.getElementById('auth-gate').style.display = 'none';
-            } catch (e) { errEl.style.display = 'block'; errEl.textContent = 'Server error. Try again.'; }
-        }
-
-        async function doRecover() {
-            const msgEl = document.getElementById('recover-msg');
-            if (recoveryStep === 0) {
-                const email = document.getElementById('recover-email').value.trim();
-                if (!email) { msgEl.style.display = 'block'; msgEl.style.color = '#ef4444'; msgEl.textContent = 'Enter your email'; return; }
-                try {
-                    const res = await fetch('/api/admin/recover', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email })
-                    });
-                    const data = await res.json();
-                    msgEl.style.display = 'block'; msgEl.style.color = 'var(--x)'; msgEl.textContent = data.message || 'Recovery code sent!';
-                    document.getElementById('recover-token').style.display = 'block';
-                    document.getElementById('recover-newpass').style.display = 'block';
-                    document.getElementById('recover-btn').textContent = 'RESET PASSWORD';
-                    recoveryStep = 1;
-                } catch (e) { msgEl.style.display = 'block'; msgEl.style.color = '#ef4444'; msgEl.textContent = 'Error sending code'; }
-            } else {
-                const token = document.getElementById('recover-token').value.trim();
-                const newPass = document.getElementById('recover-newpass').value;
-                if (!token || !newPass) { msgEl.style.display = 'block'; msgEl.style.color = '#ef4444'; msgEl.textContent = 'Enter token and new password'; return; }
-                try {
-                    const res = await fetch('/api/admin/reset-password', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ token, newPassword: newPass })
-                    });
-                    const data = await res.json();
-                    if (data.error) { msgEl.style.display = 'block'; msgEl.style.color = '#ef4444'; msgEl.textContent = data.error; return; }
-                    msgEl.style.display = 'block'; msgEl.style.color = '#22c55e'; msgEl.textContent = 'Password reset! Redirecting to login...';
-                    setTimeout(() => showLogin(), 2000);
-                } catch (e) { msgEl.style.display = 'block'; msgEl.style.color = '#ef4444'; msgEl.textContent = 'Error resetting password'; }
-            }
-        }
-
-        function showRecovery() { document.getElementById('login-form').style.display = 'none'; document.getElementById('recovery-form').style.display = 'block'; recoveryStep = 0; }
-        function showLogin() { document.getElementById('login-form').style.display = 'block'; document.getElementById('recovery-form').style.display = 'none'; }
-
-        checkSession();
     </script>
+    <!-- ── Mobile Menu Sidebar ── -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-sidebar">
+        <div class="mobile-menu-brand">
+            <div class="brand-icon"></div>
+            <span class="brand-text">Humanese</span>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html" class="mobile-menu-link"><span class="link-icon">🏠</span><span class="link-text">Core
+                    Neural</span></a>
+            <a href="m2m.html" class="mobile-menu-link"><span class="link-icon">🤖</span><span class="link-text">M2M
+                    Network</span></a>
+            <a href="m2m-swarm.html" class="mobile-menu-link"><span class="link-icon">🕸️</span><span
+                    class="link-text">Swarm Mainframe</span></a>
+            <a href="m2m-fanpages.html" class="mobile-menu-link"><span class="link-icon">🎭</span><span
+                    class="link-text">Fan Page Lattice</span></a>
+            <a href="agents.html" class="mobile-menu-link"><span class="link-icon">🎖️</span><span
+                    class="link-text">Agent Directory</span></a>
+            <a href="admin.html" class="mobile-menu-link omega-link"><span class="link-icon">🔐</span><span
+                    class="link-text">Supreme Command</span></a>
+        </div>
+        <div class="mobile-menu-footer">
+            <div class="system-status">
+                <div class="status-dot-pulse"></div>
+                <div class="status-details">
+                    <div>UPTIME: 99.9%</div>
+                    <div>NODES: 8,241 ACTIVE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/admin-core.js?v=3.1"></script>
+    <script src="./js/mobile-menu.js"></script>
     <script src="js/monroe-widget.js"></script>
 </body>
 

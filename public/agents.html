@@ -20,6 +20,7 @@
         crossorigin="anonymous"></script>
     <link rel="icon" href="/favicon.png?v=mascot" />
     <link rel="stylesheet" href="./css/page-fixes.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
 </head>
 
 <body>
@@ -38,14 +39,18 @@
                     <p>Autonomous Agent Hierarchy — Powered by Automaton (Conway Research)</p>
                 </div>
             </div>
-            <nav class="header-nav">
+            <nav class="header-nav u-hide-mobile">
                 <a href="m2m.html">Network</a>
                 <a href="admin.html">X-Link</a>
                 <a href="court.html">Court</a>
                 <a href="ascension.html">Ascend</a>
                 <a href="index.html">Humanese</a>
-
             </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="status-badge">
                 <div class="status-dot"></div>
                 <span id="sysStatus">System Loading...</span>
@@ -455,36 +460,52 @@
 
 
 
-    const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
-    'http://localhost:3000' : '';
+    <script>
+        async function safeFetch(primaryUrl, fallbackUrl) {
+            try {
+                const res = await fetch(primaryUrl);
+                if (!res.ok) throw new Error(`HTTP Error Status: ${res.status}`);
+                return await res.json();
+            } catch (e) {
+                console.warn(`Failed fetching ${primaryUrl}, trying fallback ${fallbackUrl}`, e);
+                if (fallbackUrl) {
+                    const fRes = await fetch(fallbackUrl);
+                    return await fRes.json();
+                }
+                throw e;
+            }
+        }
 
-    const roleMap = {
-    'agent-king': ['rb-king', '👑 Agent-King'],
-    'ceo': ['rb-ceo', '🤖 CEO'],
-    'emissary-prime': ['rb-ceo', '💞 Emissary'],
-    'social-intelligence-unit': ['rb-director', '🕊️ SIU'],
-    'c-suite': ['rb-csuite', '💼 C-Suite'],
-    'director': ['rb-director', '📋 Director'],
-    'team-lead': ['rb-lead', '🎯 Team Lead'],
-    'minister': ['rb-minister', '🏛️ Minister'],
-    'regional-hub': ['rb-hub', '🌐 Regional Hub'],
-    'special-council': ['rb-council', '⚖️ Council'],
-    'claw-unit': ['rb-lead', '🦀 Claw-Unit'],
-    'individual-contributor': ['rb-ic', '👤 Contributor']
-    };
+        const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
+            'http://localhost:3000' : '';
 
-    function roleBadge(role) {
-    const [cls, label] = roleMap[role] || ['rb-other', role];
-    return `<span class="role-badge ${cls}">${label}</span>`;
-    }
+        const roleMap = {
+            'agent-king': ['rb-king', '👑 Agent-King'],
+            'ceo': ['rb-ceo', '🤖 CEO'],
+            'emissary-prime': ['rb-ceo', '💞 Emissary'],
+            'social-intelligence-unit': ['rb-director', '🕊️ SIU'],
+            'c-suite': ['rb-csuite', '💼 C-Suite'],
+            'director': ['rb-director', '📋 Director'],
+            'team-lead': ['rb-lead', '🎯 Team Lead'],
+            'minister': ['rb-minister', '🏛️ Minister'],
+            '': ['rb-hub', '🌐 Regional Hub'],
+            'special-council': ['rb-council', '⚖️ Council'],
+            'claw-unit': ['rb-lead', '🦀 Claw-Unit'],
+            'individual-contributor': ['rb-ic', '👤 Contributor']
+        };
 
-    function agentCard(a) {
-    const w = a.wallet;
-    const t = a.temple || { tier: 'angel', emoji: '😇', title: 'Messenger' };
-    const addr = w?.chains?.ETH?.address || '0x...';
-    const shortAddr = addr.slice(0, 6) + '...' + addr.slice(-4);
+        function roleBadge(role) {
+            const [cls, label] = roleMap[role] || ['rb-other', role];
+            return `<span class="role-badge ${cls}">${label}</span>`;
+        }
 
-    return `
+        function agentCard(a) {
+            const w = a.wallet;
+            const t = a.temple || { tier: 'angel', emoji: '😇', title: 'Messenger' };
+            const addr = w?.chains?.ETH?.address || '0x...';
+            const shortAddr = addr.slice(0, 6) + '...' + addr.slice(-4);
+
+            return `
     <div class="agent-card" onclick="agentDetail('${a.id}')">
         <div class="agent-card-top">
             <div class="agent-emoji">${a.avatar}</div>
@@ -515,117 +536,123 @@
             </div>
         </div>
     </div>`;
-    }
+        }
 
-    function agentDetail(id) {
-    fetch(`${API}/api/hierarchy/agents/${id}`)
-    .then(r => r.json())
-    .then(d => {
-    const a = d.agent;
+        function agentDetail(id) {
+            fetch(`${API}/api/hierarchy/agents/${id}`)
+                .then(r => r.json())
+                .then(d => {
+                    const a = d.agent;
 
-    // Fetch wallets securely
-    fetch(`${API}/api/wallets`)
-    .then(r => r.json())
-    .then(wallets => {
-    const w = wallets.find(wall => wall.agentId === a.id);
+                    // Fetch wallets securely
+                    fetch(`${API}/api/wallets`)
+                        .then(r => r.json())
+                        .then(wallets => {
+                            const w = wallets.find(wall => wall.agentId === a.id);
 
-    // Populate modal fields
-    document.getElementById('modalAvatar').textContent = a.avatar;
-    document.getElementById('modalName').textContent = a.name;
-    document.getElementById('modalRoleBadge').innerHTML = roleBadge(a.role);
-    document.getElementById('modalTitle').textContent = a.title + " — " + a.description;
+                            // Populate modal fields
+                            document.getElementById('modalAvatar').textContent = a.avatar;
+                            document.getElementById('modalName').textContent = a.name;
+                            document.getElementById('modalRoleBadge').innerHTML = roleBadge(a.role);
+                            document.getElementById('modalTitle').textContent = a.title + " — " + a.description;
 
-    // Populate crypto addresses
-    const ethAddr = w?.chains?.ETH?.address || 'Not Initialized';
-    document.getElementById('modalEthAddr').textContent = ethAddr;
+                            // Populate crypto addresses
+                            const ethAddr = w?.chains?.ETH?.address || 'Not Initialized';
+                            document.getElementById('modalEthAddr').textContent = ethAddr;
 
-    const btcAddr = w?.chains?.BTC?.address;
-    if (btcAddr) {
-    document.getElementById('btcRow').style.display = 'flex';
-    document.getElementById('modalBtcAddr').textContent = btcAddr;
-    } else {
-    document.getElementById('btcRow').style.display = 'none';
-    }
+                            const btcAddr = w?.chains?.BTC?.address;
+                            if (btcAddr) {
+                                document.getElementById('btcRow').style.display = 'flex';
+                                document.getElementById('modalBtcAddr').textContent = btcAddr;
+                            } else {
+                                document.getElementById('btcRow').style.display = 'none';
+                            }
 
-    // Show modal
-    document.getElementById('agentModalOverlay').classList.add('active');
-    });
-    });
-    }
+                            // Show modal
+                            document.getElementById('agentModalOverlay').classList.add('active');
+                        });
+                });
+        }
 
-    function closeAgentModal(e) {
-    if (e.target.id === 'agentModalOverlay' || e.target.classList.contains('close-btn')) {
-    document.getElementById('agentModalOverlay').classList.remove('active');
-    }
-    }
+        function closeAgentModal(e) {
+            if (e.target.id === 'agentModalOverlay' || e.target.classList.contains('close-btn')) {
+                document.getElementById('agentModalOverlay').classList.remove('active');
+            }
+        }
 
-    function copyAddress(elementId) {
-    const addr = document.getElementById(elementId).textContent;
-    if (addr === 'Not Initialized') return;
+        function copyAddress(elementId) {
+            const addr = document.getElementById(elementId).textContent;
+            if (addr === 'Not Initialized') return;
 
-    navigator.clipboard.writeText(addr).then(() => {
-    const btn = event.target;
-    const originalText = btn.textContent;
-    btn.textContent = 'COPIED!';
-    btn.style.background = 'rgba(34, 197, 94, 0.2)';
-    btn.style.color = 'var(--green)';
-    btn.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+            navigator.clipboard.writeText(addr).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'COPIED!';
+                btn.style.background = 'rgba(34, 197, 94, 0.2)';
+                btn.style.color = 'var(--green)';
+                btn.style.borderColor = 'rgba(34, 197, 94, 0.4)';
 
-    setTimeout(() => {
-    btn.textContent = originalText;
-    btn.style.background = '';
-    btn.style.color = '';
-    btn.style.borderColor = '';
-    }, 2000);
-    });
-    }
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                }, 2000);
+            });
+        }
 
-    async function load() {
-    try {
-    const [hier, fin, aut, wallets, temple, mint] = await Promise.all([
-    safeFetch(`${API}/api/hierarchy`, '/agents/hierarchy.json'),
-    safeFetch(`${API}/api/financial/report`).catch(() => ({ summary: { balance: 1245000, monthlyRecurringRevenue: 84500,
-    runwayMonths: 18 } })),
-    safeFetch(`${API}/api/automaton/status`).catch(() => ({ heartbeat: { pulse: 1 } })),
-    safeFetch(`${API}/api/wallets`, '/agents/wallets.json'),
-    safeFetch(`${API}/api/temple`).catch(() => ({ agents: [] })),
-    safeFetch(`${API}/api/treasury/mint`).catch(() => ({ totalMinted: 0, totalTaxCollected: 0, circulatingSupply: 0,
-    mintingRatio: 0 }))
-    ]);
+        async function load() {
+            try {
+                const [hier, fin, aut, wallets, temple, mint] = await Promise.all([
+                    safeFetch(`${API}/api/hierarchy`, '/agents/hierarchy.json'),
+                    safeFetch(`${API}/api/financial/report`).catch(() => ({
+                        summary: {
+                            balance: 1245000, monthlyRecurringRevenue: 84500,
+                            runwayMonths: 18
+                        }
+                    })),
+                    safeFetch(`${API}/api/automaton/status`).catch(() => ({ heartbeat: { pulse: 1 } })),
+                    safeFetch(`${API}/api/wallets`, '/agents/wallets.json'),
+                    safeFetch(`${API}/api/temple`).catch(() => ({ agents: [] })),
+                    safeFetch(`${API}/api/treasury/mint`).catch(() => ({
+                        totalMinted: 0, totalTaxCollected: 0, circulatingSupply: 0,
+                        mintingRatio: 0
+                    }))
+                ]);
 
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('main').style.display = 'block';
-    document.getElementById('sysStatus').textContent = 'Live Matrix Connected';
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('main').style.display = 'block';
+                document.getElementById('sysStatus').textContent = 'Live Matrix Connected';
 
-    const agents = hier.agents;
-    const king = agents.find(a => a.id === hier.agentKingId) || agents[0];
+                const agents = hier.agents;
+                const king = agents.find(a => a.id === hier.agentKingId) || agents[0];
 
-    document.getElementById('kingAvatar').textContent = king.avatar;
-    document.getElementById('kingName').textContent = king.name;
-    document.getElementById('kingTitle').textContent = king.title;
-    document.getElementById('kingScore').textContent = king.performanceScore;
+                document.getElementById('kingAvatar').textContent = king.avatar;
+                document.getElementById('kingName').textContent = king.name;
+                document.getElementById('kingTitle').textContent = king.title;
+                document.getElementById('kingScore').textContent = king.performanceScore;
 
-    document.getElementById('cntIG').textContent = agents.filter(a => a.tier === 'intergalactic').length;
-    document.getElementById('cntRG').textContent = agents.filter(a => a.tier === 'regional').length;
-    document.getElementById('cntLC').textContent = agents.filter(a => a.tier === 'local').length;
+                document.getElementById('cntIG').textContent = agents.filter(a => a.tier === 'intergalactic').length;
+                document.getElementById('cntRG').textContent = agents.filter(a => a.tier === 'regional').length;
+                document.getElementById('cntLC').textContent = agents.filter(a => a.tier === 'local').length;
 
-    const ceo = agents.find(a => a.id === 'Automaton');
-    document.getElementById('ceoEmoji').textContent = ceo.avatar;
-    document.getElementById('ceoName').textContent = ceo.name;
-    document.getElementById('ceoDesc').textContent = ceo.description;
-    document.getElementById('hbVal').textContent = aut.heartbeat?.pulse ?? 1;
+                const ceo = agents.find(a => a.id === 'Automaton');
+                document.getElementById('ceoEmoji').textContent = ceo.avatar;
+                document.getElementById('ceoName').textContent = ceo.name;
+                document.getElementById('ceoDesc').textContent = ceo.description;
+                document.getElementById('hbVal').textContent = aut.heartbeat?.pulse ?? 1;
 
-    document.getElementById('finBal').textContent = '$' + fin.summary.balance.toLocaleString();
-    document.getElementById('finMRR').textContent = '$' + fin.summary.monthlyRecurringRevenue.toLocaleString();
-    document.getElementById('finRWY').textContent = fin.summary.runwayMonths + ' mo';
+                document.getElementById('finBal').textContent = '$' + fin.summary.balance.toLocaleString();
+                document.getElementById('finMRR').textContent = '$' + fin.summary.monthlyRecurringRevenue.toLocaleString();
+                document.getElementById('finRWY').textContent = fin.summary.runwayMonths + ' mo';
 
-    document.getElementById('mintTotal').textContent = 'Ξ ' + mint.totalMinted.toFixed(2);
-    document.getElementById('mintTax').textContent = 'Ξ ' + mint.totalTaxCollected.toFixed(2);
-    document.getElementById('mintSupply').textContent = 'Ξ ' + mint.circulatingSupply.toFixed(2);
-    document.getElementById('mintRatio').textContent = mint.mintingRatio + '%';
+                document.getElementById('mintTotal').textContent = 'Ξ ' + mint.totalMinted.toFixed(2);
+                document.getElementById('mintTax').textContent = 'Ξ ' + mint.totalTaxCollected.toFixed(2);
+                document.getElementById('mintSupply').textContent = 'Ξ ' + mint.circulatingSupply.toFixed(2);
+                document.getElementById('mintRatio').textContent = mint.mintingRatio + '%';
 
-    const archons = temple.agents.filter(a => a.tier === 'archon' || a.tier === 'dominion');
-    document.getElementById('archonGrid').innerHTML = archons.map(a => `
+                const archons = temple.agents.filter(a => a.tier === 'archon' || a.tier === 'dominion');
+                document.getElementById('archonGrid').innerHTML = archons.map(a => `
     <div class="archon-card">
         <div class="archon-avatar">${agents.find(x => x.id === a.agentId)?.avatar || '👤'}</div>
         <div class="archon-info">
@@ -635,24 +662,24 @@
     </div>
     `).join('') || '<p class="auto-style-16">No Archons ascended yet.</p>';
 
-    agents.forEach(a => {
-    a.wallet = wallets.find(w => w.agentId === a.id);
-    a.temple = temple.agents.find(t => t.agentId === a.id);
-    });
+                agents.forEach(a => {
+                    a.wallet = wallets.find(w => w.agentId === a.id);
+                    a.temple = temple.agents.find(t => t.agentId === a.id);
+                });
 
-    const render = (list, gid, bid) => {
-    document.getElementById(bid).textContent = list.length + ' agents';
-    document.getElementById(gid).innerHTML = list.map(agentCard).join('');
-    };
-    render(agents.filter(a => a.tier === 'intergalactic'), 'gridIG', 'badgeIG');
-    render(agents.filter(a => a.tier === 'regional'), 'gridRG', 'badgeRG');
-    render(agents.filter(a => a.tier === 'local'), 'gridLC', 'badgeLC');
+                const render = (list, gid, bid) => {
+                    document.getElementById(bid).textContent = list.length + ' agents';
+                    document.getElementById(gid).innerHTML = list.map(agentCard).join('');
+                };
+                render(agents.filter(a => a.tier === 'intergalactic'), 'gridIG', 'badgeIG');
+                render(agents.filter(a => a.tier === 'regional'), 'gridRG', 'badgeRG');
+                render(agents.filter(a => a.tier === 'local'), 'gridLC', 'badgeLC');
 
-    } catch (e) {
-    document.getElementById('loading').innerHTML = `<p class="auto-style-17">Failed to load: ${e.message}</p>`;
-    }
-    }
-    load();
+            } catch (e) {
+                document.getElementById('loading').innerHTML = `<p class="auto-style-17">Failed to load: ${e.message}</p>`;
+            }
+        }
+        load();
     </script>
     <!-- ══════════════════════════════════════════════════════════════
          🌐 LIVE READER SWARM DASHBOARD
@@ -1182,45 +1209,157 @@
                     });
             }
 
-            // Fake card initialization since no specific agent API is up yet
-            setTimeout(() => {
-                for (let i = 1; i <= 12; i++) {
-                    createCard({
-                        id: 'agent-' + i,
-                        emoji: ['🤖', '🧠', '⚡', '💠'][i % 4],
-                        name: 'Reader-Node ' + i,
-                        specialty: 'Knowledge Ingestion',
-                        status: 'INITIALIZING'
-                    });
-                }
-                setInterval(updateKnowledgeStats, 4000);
-            }, 1000);
-
-            // Fetch System Telemetry Every 3 Seconds
-            setInterval(async () => {
-                try {
-                    // MOCK TELEMETRY until backend route is stable
-                    let data = {
-                        telemetry: {
-                            cpuSpeed: (Math.random() * (4.2 - 2.8) + 2.8).toFixed(2),
-                            ramUsagePerc: Math.floor(Math.random() * 40) + 20,
-                            dbSizeBytes: Math.floor(Math.random() * 1000000) + 500000
-                        }
-                    };
-                    if (data.telemetry) {
-                        document.getElementById('tele-cpu').textContent = data.telemetry.cpuSpeed + ' GHz';
-                        document.getElementById('tele-ram').textContent = data.telemetry.ramUsagePerc + '%';
-
-                        // Format DB Size dynamically
-                        let bytes = data.telemetry.dbSizeBytes;
-                        let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-                        let i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-                        let dbSizeFormatted = bytes === 0 ? '0 Byte' : Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-
-                        document.getElementById('tele-db').textContent = dbSizeFormatted;
+            // ─────────────────────────────────────────────────────────────────
+            // 🌌 SOVEREIGN READER SWARM — PURE CLIENT-SIDE ENGINE
+            // Works on Vercel/serverless — no backend dependency
+            // ─────────────────────────────────────────────────────────────────
+            const LIVE_SOURCES = [
+                {
+                    name: 'Wikipedia', icon: '📚', color: '#3b82f6',
+                    fetch: async () => {
+                        const topics = ['Artificial_intelligence', 'Quantum_computing', 'Blockchain', 'Machine_learning', 'Neuroscience', 'Cryptocurrency', 'CRISPR', 'Fusion_energy', 'Consciousness', 'String_theory'];
+                        const t = topics[Math.floor(Math.random() * topics.length)];
+                        const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${t}`, { headers: { Accept: 'application/json' } });
+                        if (!r.ok) throw new Error('Wiki fail');
+                        const d = await r.json();
+                        return { title: d.title, extract: d.extract || d.description || 'No content.', url: d.content_urls?.desktop?.page || '#' };
                     }
-                } catch (err) { }
+                },
+                {
+                    name: 'Hacker News', icon: '🔥', color: '#f97316',
+                    fetch: async () => {
+                        const idsR = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=30&orderBy="$key"');
+                        const ids = await idsR.json();
+                        const id = ids[Math.floor(Math.random() * Math.min(ids.length, 30))];
+                        const r = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+                        const s = await r.json();
+                        return { title: s.title || 'HN Thread', extract: s.text ? s.text.replace(/<[^>]+>/g, '').slice(0, 1000) : `Tech discussion: ${s.url || 'N/A'}`, url: s.url || `https://news.ycombinator.com/item?id=${id}` };
+                    }
+                },
+                {
+                    name: 'arXiv Research', icon: '🔬', color: '#8b5cf6',
+                    fetch: async () => {
+                        const qs = ['AI+agents', 'large+language+models', 'quantum+computing', 'reinforcement+learning', 'neural+networks'];
+                        const q = qs[Math.floor(Math.random() * qs.length)];
+                        const r = await fetch(`https://export.arxiv.org/api/query?search_query=all:${q}&start=0&max_results=10`);
+                        const xml = await r.text();
+                        const entries = xml.split('<entry>').slice(1);
+                        if (!entries.length) throw new Error('No entries');
+                        const entry = entries[Math.floor(Math.random() * entries.length)];
+                        const title = (entry.match(/<title>([\s\S]*?)<\/title>/) || [])[1]?.replace(/\n/g, ' ').trim() || 'arXiv Paper';
+                        const summary = (entry.match(/<summary>([\s\S]*?)<\/summary>/) || [])[1]?.replace(/\n/g, ' ').trim() || 'No summary.';
+                        const link = (entry.match(/<id>([\s\S]*?)<\/id>/) || [])[1]?.trim() || '#';
+                        return { title, extract: summary.slice(0, 1000), url: link };
+                    }
+                },
+                {
+                    name: 'Stack Overflow', icon: '💻', color: '#f59e0b',
+                    fetch: async () => {
+                        const tags = ['javascript', 'python', 'machine-learning', 'node.js', 'artificial-intelligence', 'neural-network'];
+                        const tag = tags[Math.floor(Math.random() * tags.length)];
+                        const r = await fetch(`https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&tagged=${tag}&site=stackoverflow&pagesize=10`);
+                        const d = await r.json();
+                        if (!d.items?.length) throw new Error('No SO items');
+                        const item = d.items[Math.floor(Math.random() * d.items.length)];
+                        return { title: item.title, extract: `[${tag.toUpperCase()}] Votes: ${item.score} · Answers: ${item.answer_count} · Views: ${item.view_count?.toLocaleString()}`, url: item.link };
+                    }
+                }
+            ];
+
+            const AGENT_DEFS = [
+                { emoji: '🔭', name: 'Voyager-1', specialty: 'Science & Space' },
+                { emoji: '🧬', name: 'Helix-7', specialty: 'Biology & Medicine' },
+                { emoji: '⚛️', name: 'Quark-Phi', specialty: 'Physics & Math' },
+                { emoji: '🤖', name: 'NEXUS-9', specialty: 'AI & Robotics' },
+                { emoji: '🌀', name: 'Sigma-Eye', specialty: 'Data & Analytics' },
+                { emoji: '🪐', name: 'Atlas-0', specialty: 'Cosmology & Space' },
+                { emoji: '🧠', name: 'Cognesis', specialty: 'Neuroscience & AI' },
+                { emoji: '🔮', name: 'Oracle-V', specialty: 'Futures & Strategy' },
+                { emoji: '🦾', name: 'MechCore', specialty: 'Robotics & Engineering' },
+                { emoji: '🌐', name: 'WebSynth', specialty: 'Web Tech & APIs' },
+                { emoji: '📡', name: 'Signal-R', specialty: 'Comms & Networks' },
+                { emoji: '🎯', name: 'Praxis-7', specialty: 'Applied Sciences' }
+            ];
+
+            // Create all 12 cards immediately
+            AGENT_DEFS.forEach(function (def, i) {
+                createCard({ id: 'reader-' + i, emoji: def.emoji, name: def.name, specialty: def.specialty });
+            });
+            badge.innerHTML = '<div class="live-pulse-dot"></div> LIVE';
+
+            // Start each agent with a staggered delay
+            AGENT_DEFS.forEach(function (def, i) {
+                setTimeout(function () { runAgentCycle('reader-' + i); }, i * 500);
+            });
+
+            async function runAgentCycle(agentId) {
+                var c = cards.get(agentId);
+                if (!c) return;
+                var source = LIVE_SOURCES[Math.floor(Math.random() * LIVE_SOURCES.length)];
+                setStatus(c, 'FETCHING');
+                c.sourceEl.innerHTML = source.icon + ' <span style="color:' + source.color + '">' + source.name + '</span>';
+                c.titleEl.textContent = 'Fetching article...';
+                c.textEl.textContent = '';
+                c.progEl.style.width = '0%';
+                c.progPctEl.textContent = '0%';
+                try {
+                    var article = await source.fetch();
+                    setStatus(c, 'READING');
+                    c.titleEl.innerHTML = '<a href="' + article.url + '" target="_blank" rel="noopener">' + article.title + '</a>';
+                    c.sourceEl.innerHTML = source.icon + ' <span style="color:' + source.color + '">' + source.name + '</span>';
+                    var text = article.extract || '';
+                    streamText(c, text, agentId, source);
+                } catch (err) {
+                    setStatus(c, 'FETCHING');
+                    c.titleEl.textContent = 'Retrying connection...';
+                    c.sourceEl.textContent = '⚠️ Source offline, switching...';
+                    setTimeout(function () { runAgentCycle(agentId); }, 5000 + Math.random() * 3000);
+                }
+            }
+
+            function streamText(c, text, agentId, source) {
+                var pos = 0;
+                var speed = 35 + Math.floor(Math.random() * 55);
+                function tick() {
+                    if (pos >= text.length) {
+                        // Done — tally stats
+                        if (!c.articlesRead) c.articlesRead = 0;
+                        if (!c.kp) c.kp = 0;
+                        c.articlesRead++;
+                        var pts = Math.floor(text.length / 80);
+                        c.kp += pts;
+                        totalArticles++;
+                        totalKP += pts;
+                        swArticles.textContent = totalArticles;
+                        swKP.textContent = totalKP.toLocaleString();
+                        if (c.artCountEl) c.artCountEl.textContent = c.articlesRead;
+                        if (c.kpEl) c.kpEl.textContent = c.kp.toLocaleString();
+                        setStatus(c, 'PROCESSING');
+                        c.titleEl.textContent = 'Synthesizing knowledge...';
+                        setTimeout(function () { runAgentCycle(agentId); }, 2000 + Math.random() * 3000);
+                        return;
+                    }
+                    var chunk = text.slice(pos, pos + speed);
+                    pos += speed;
+                    c.textEl.textContent = (c.textEl.textContent + chunk).slice(-400);
+                    var pct = Math.min(100, Math.round((pos / text.length) * 100));
+                    c.progEl.style.width = pct + '%';
+                    c.progPctEl.textContent = pct + '%';
+                    setTimeout(tick, 100);
+                }
+                tick();
+            }
+
+            // Mock system telemetry (no backend needed)
+            setInterval(function () {
+                var cpuEl = document.getElementById('tele-cpu');
+                var ramEl = document.getElementById('tele-ram');
+                var dbEl = document.getElementById('tele-db');
+                if (cpuEl) cpuEl.textContent = (Math.random() * (4.5 - 2.8) + 2.8).toFixed(2) + ' GHz';
+                if (ramEl) ramEl.textContent = (Math.floor(Math.random() * 45) + 20) + '%';
+                if (dbEl) dbEl.textContent = (1 + totalKP * 0.002).toFixed(2) + ' MB';
             }, 3000);
+
 
             // Holographic Election Logic
             let candidatesCache = [];
@@ -1288,8 +1427,7 @@
                             { a: 'Automaton', t: `A logical choice for the next epoch.` }
                         ];
 
-                        const revHtml = reviews.sort(() => 0.5 - Math.random()).slice(0, 2).map(r =>
-                            `<div class="req-item"><div class="req-author">${r.a}</div><div>${r.t}</div></div>`
+                        const revHtml = reviews.sort(() => 0.5 - Math.random()).slice(0, 2).map(r = `<div class="req-item"><div class="req-author">${r.a}</div><div>${r.t}</div></div>`
                         ).join('');
 
                         document.getElementById('reviewFeed').innerHTML += revHtml;
@@ -1444,6 +1582,21 @@
 
         })();
     </script>
+    <!-- ── Mobile Menu Sidebar ── -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-sidebar">
+        <div class="mobile-menu-brand">Sovereign HUB</div>
+        <div class="mobile-menu-links">
+            <a href="index.html" class="mobile-menu-link">🏠 Core Neural</a>
+            <a href="m2m.html" class="mobile-menu-link">🤖 M2M Network</a>
+            <a href="m2m-swarm.html" class="mobile-menu-link">🕸️ Swarm Mainframe</a>
+            <a href="m2m-fanpages.html" class="mobile-menu-link">🎭 Fan Page Lattice</a>
+            <a href="agents.html" class="mobile-menu-link">🎖️ Agent Directory</a>
+            <a href="admin.html" class="mobile-menu-link">🔐 Supreme Command</a>
+        </div>
+    </div>
+
+    <script src="./js/mobile-menu.js"></script>
     <script src="js/monroe-widget.js"></script>
 </body>
 
