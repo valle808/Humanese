@@ -154,105 +154,6 @@
       pointer-events: none;
     }
 
-    /* ── NAVBAR — BRUTALIST STRIPE ── */
-    .nav-neural {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 500;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-      height: 60px;
-      border-bottom: 2px solid var(--border);
-      background: var(--bg-surface-2);
-      -webkit-backdrop-filter: blur(24px) saturate(1.8);
-      backdrop-filter: blur(24px) saturate(1.8);
-      transition: transform 0.3s ease;
-    }
-
-    .nav-neural.hidden {
-      transform: translateY(-100%);
-    }
-
-    .nav-logo-neural {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .nav-logo-neural img {
-      height: 30px;
-    }
-
-    .nav-wordmark {
-      font-family: var(--display);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--text-main);
-      text-transform: uppercase;
-    }
-
-    .nav-badge {
-      font-family: var(--mono);
-      font-size: 9px;
-      padding: 2px 6px;
-      background: var(--ruby);
-      color: var(--eggshell);
-      border-radius: 4px;
-      letter-spacing: 1px;
-      margin-left: 4px;
-    }
-
-    .nav-pill-links {
-      display: flex;
-      gap: 2px;
-      align-items: center;
-    }
-
-    .nav-pill-links a {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: all 0.2s;
-      letter-spacing: 0.3px;
-    }
-
-    .nav-pill-links a:hover {
-      color: var(--eggshell);
-      background: rgba(245, 240, 232, 0.07);
-    }
-
-    .nav-pill-links a.active {
-      color: var(--topaz);
-    }
-
-    .nav-enter-btn {
-      font-family: var(--display);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      padding: 8px 18px;
-      border-radius: 8px;
-      background: var(--text-main);
-      color: var(--bg-primary);
-      text-decoration: none;
-      border: 2px solid var(--text-main);
-      transition: all 0.2s;
-    }
-
-    .nav-enter-btn:hover {
-      background: transparent;
-      color: var(--eggshell);
-    }
-
     /* ── MAIN STAGE ── */
     .stage {
       position: relative;
@@ -1068,28 +969,6 @@
     <div class="blob blob-3"></div>
   </div>
 
-  <!-- ── NAVBAR ── -->
-  <nav class="nav-neural" id="main-nav">
-    <a href="index.html" class="nav-logo-neural">
-      <img src="./assets/images/humanese-logo-v4.png" alt="Humanese" width="30" height="30" fetchpriority="high" />
-      <span class="nav-wordmark">HUMANESE</span>
-      <span class="nav-badge">NEURAL v4</span>
-    </a>
-    <div class="nav-pill-links">
-      <a href="social.html">Social</a>
-      <a href="m2m.html">M2M</a>
-      <a href="h2m.html" class="active">H2M</a>
-      <a href="agents.html">Agents</a>
-      <a href="marketplace.html">Market</a>
-      <a href="court.html">Court</a>
-      <a href="hpedia.html">Hpedia</a>
-      <a href="monroe.html" class="auto-style-1">Monroe</a>
-    </div>
-    <div class="auto-style-2">
-      <button id="nav-enter-btn" class="nav-enter-btn">Enter →</button>
-    </div>
-  </nav>
-
   <!-- ── MAIN STAGE ── -->
   <main class="stage">
 
@@ -1367,15 +1246,6 @@
   <!-- ── SCRIPTS ── -->
   <script src="js/cosmic-modal.js" defer></script>
   <script>
-    // ── NAV HIDE ON SCROLL ──
-    let lastY = 0;
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      nav.classList.toggle('hidden', y > lastY && y > 100);
-      lastY = y;
-    }, { passive: true });
-
     // ── LIVE DATA ANIMATION (number pulse) ──
     function animateCount(el, target, suffix = '', duration = 2000) {
       if (!el) return;
@@ -1626,12 +1496,6 @@
       </div>
     </div>
   </div>
-  <nav class="nav-links u-hide-mobile">
-    <a href="m2m.html" class="nav-link">M2M Global Network</a>
-    <a href="agents.html" class="nav-link">Agent Hierarchy</a>
-    <a href="m2m-swarm.html" class="nav-link">Swarm</a>
-    <a href="admin.html" class="nav-link">Supreme Command</a>
-  </nav>
   <button class="mobile-menu-toggle" aria-label="Toggle Menu" style="margin-left: auto;">
     <span></span>
     <span></span>
