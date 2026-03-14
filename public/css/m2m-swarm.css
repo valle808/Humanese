@@ -1,224 +1,399 @@
+:root {
+    --sw-bg: #050508;
+    --sw-surface: #0a0a14;
+    --sw-border: rgba(0, 255, 204, 0.1);
+    --sw-accent: #00ffcc;
+    --sw-accent-muted: rgba(0, 255, 204, 0.5);
+    --sw-accent-dim: rgba(0, 255, 204, 0.1);
+    --sw-text: #b0c4de;
+    --sw-text-bright: #e0f0ff;
+    --sw-neon-warning: #ffcc00;
+}
+
 body {
-            background-color: #0a0a0a;
-            font-family: 'Inter', sans-serif;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
+    background-color: var(--sw-bg);
+    background-image:
+        linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    font-family: 'Inter', 'JetBrains Mono', sans-serif;
+    color: var(--sw-text);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
 
-        /* Navbar */
-        .m2m-nav {
-            background: rgba(10, 10, 10, 0.9);
-            border-bottom: 1px solid #333;
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* Navbar HUD */
+.m2m-nav {
+    background: rgba(5, 5, 8, 0.85);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--sw-border);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .m2m-nav-logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: #00ffcc;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+.m2m-nav-logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--sw-accent);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
 
-        .m2m-nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 24px;
-            transition: color 0.2s;
-        }
+.m2m-nav-links a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    margin-left: 24px;
+    transition: color 0.3s;
+    letter-spacing: 1px;
+}
 
-        .m2m-nav-links a:hover {
-            color: #00ffcc;
-        }
+.m2m-nav-links a:hover {
+    color: var(--sw-accent);
+}
 
-        .dashboard-container {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 300px 1fr 350px;
-            gap: 24px;
-        }
+.dashboard-container {
+    max-width: 1500px;
+    margin: 30px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 320px 1fr 380px;
+    gap: 24px;
+}
 
-        /* Overlord Panel */
-        .overlord-panel {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 24px;
-            height: fit-content;
-        }
+/* Panel Styles */
+.overlord-panel,
+.terminal-panel {
+    background: var(--sw-surface);
+    border: 1px solid var(--sw-border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
 
-        .overlord-avatar {
-            font-size: 60px;
-            text-align: center;
-            margin-bottom: 16px;
-        }
+/* Overlord UI */
+.overlord-avatar {
+    font-size: 50px;
+    background: var(--sw-accent-dim);
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 1px solid var(--sw-accent);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+}
 
-        .overlord-panel h2 {
-            margin: 0 0 8px 0;
-            color: #00ffcc;
-            text-align: center;
-            font-size: 20px;
-        }
+.overlord-panel h2 {
+    color: var(--sw-text-bright);
+    text-align: center;
+    font-size: 22px;
+    margin: 0 0 8px;
+    letter-spacing: 1px;
+}
 
-        .status-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #00ffcc;
-            box-shadow: 0 0 10px #00ffcc;
-            margin-right: 8px;
-        }
+.health-metric {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 24px 0;
+    border-left: 3px solid var(--sw-accent);
+}
 
-        /* Active Workers Grid */
-        .workers-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
+.health-label {
+    font-size: 11px;
+    color: var(--sw-accent-muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
 
-        .worker-card {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 24px;
-            position: relative;
-            overflow: hidden;
-        }
+.health-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--sw-accent);
+    font-family: 'JetBrains Mono', monospace;
+}
 
-        .worker-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #00ffcc;
-        }
+/* Workers Grid */
+.workers-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
 
-        .worker-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
+.worker-card {
+    background: var(--sw-surface);
+    border: 1px solid var(--sw-border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+}
 
-        .worker-avatar {
-            font-size: 32px;
-            background: #222;
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.worker-card:hover {
+    border-color: var(--sw-accent-muted);
+    transform: translateX(4px);
+}
 
-        .worker-info h3 {
-            margin: 0;
-            color: #fff;
-        }
+.worker-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--sw-accent);
+    opacity: 0.3;
+}
 
-        .worker-info p {
-            margin: 4px 0 0 0;
-            color: #888;
-            font-size: 13px;
-        }
+.worker-avatar {
+    font-size: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
 
-        .task-box {
-            background: #000;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 16px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-        }
+.worker-content {
+    flex: 1;
+}
 
-        .task-running {
-            color: #00ffcc;
-            margin-bottom: 16px;
-        }
+.worker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+}
 
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: #333;
-            border-radius: 2px;
-            overflow: hidden;
-            margin-top: 8px;
-        }
+.worker-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--sw-text-bright);
+}
 
-        .progress-fill {
-            height: 100%;
-            background: #00ffcc;
-            transition: width 1s ease-in-out;
-        }
+.worker-status-badge {
+    font-size: 10px;
+    color: var(--sw-accent);
+    background: var(--sw-accent-dim);
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
 
-        /* Terminal Logs */
-        .terminal-panel {
-            background: #050505;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 24px;
-            font-family: 'JetBrains Mono', monospace;
-            height: 600px;
-            overflow-y: auto;
-        }
+.task-box {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+}
 
-        .terminal-panel h3 {
-            color: #555;
-            margin: 0 0 16px 0;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+.task-cmd {
+    font-size: 12px;
+    color: var(--sw-accent);
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-        .log-entry {
-            margin-bottom: 12px;
-            font-size: 12px;
-            line-height: 1.5;
-            color: #888;
-        }
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-        .log-entry.success {
-            color: #00ffcc;
-        }
+.progress-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
 
-        .loading-screen {
-            text-align: center;
-            padding: 100px;
-            font-size: 20px;
-            font-weight: 800;
-            color: #888;
-        }
+.progress-fill {
+    height: 100%;
+    background: var(--sw-accent);
+    box-shadow: 0 0 10px var(--sw-accent);
+    transition: width 0.5s linear;
+}
 
-        .hidden {
-            display: none !important;
-        }
+.progress-pct {
+    font-size: 11px;
+    color: var(--sw-muted);
+    min-width: 30px;
+    text-align: right;
+}
 
-        /* Scrollbar styling for terminal */
-        .terminal-panel::-webkit-scrollbar {
-            width: 8px;
-        }
+/* Terminal */
+.terminal-panel {
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+}
 
-        .terminal-panel::-webkit-scrollbar-track {
-            background: #050505;
-        }
+.terminal-header {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--sw-muted);
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+}
 
-        .terminal-panel::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
+#terminal-logs-ui {
+    flex: 1;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #8a9ba8;
+}
+
+.log-entry {
+    margin-bottom: 8px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.log-entry span.time {
+    color: #5c7080;
+    margin-right: 8px;
+}
+
+.log-entry span.cmd {
+    color: var(--sw-accent);
+    margin-right: 8px;
+}
+
+.log-entry.success {
+    color: var(--sw-accent-muted);
+}
+
+.log-entry.warning {
+    color: var(--sw-neon-warning);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--sw-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.loader-text {
+    color: var(--sw-accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.scanner-bar {
+    width: 240px;
+    height: 2px;
+    background: var(--sw-accent-dim);
+    position: relative;
+    overflow: hidden;
+}
+
+.scanner-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background: var(--sw-accent);
+    box-shadow: 0 0 15px var(--sw-accent);
+    animation: scan 2s infinite ease-in-out;
+}
+
+@keyframes scan {
+    0% {
+        left: -60px;
+    }
+
+    100% {
+        left: 240px;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 1200px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+    }
+
+    .terminal-panel {
+        height: 350px;
+    }
+}
+
+@media (max-width: 600px) {
+    .m2m-nav {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .m2m-nav-links {
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 8px;
+    }
+
+    .m2m-nav-links a {
+        margin-left: 0;
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+
+    .overlord-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
+}

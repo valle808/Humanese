@@ -9,7 +9,7 @@
     <div class="live-section-hd">
         <div>
             <h2>🌐 Sovereign Reader Swarm</h2>
-            <p  class="u-fx-37135ca5">
+            <p class="u-fx-37135ca5">
                 12 agents reading live articles from Wikipedia, arXiv, Hacker News, MDN, Stack Overflow &amp; Grokipedia
                 — feeding knowledge to Monroe in real-time.
             </p>
@@ -20,46 +20,46 @@
     </div>
     <div class="swarm-stats-bar">
         <div class="swarm-stat">
-            <div class="u-fx-1165058e swarm-stat-val" id="sw-agents" >12</div>
+            <div class="u-fx-1165058e swarm-stat-val" id="sw-agents">12</div>
             <div class="swarm-stat-lbl">Active Agents</div>
         </div>
         <div class="swarm-stat">
-            <div class="u-fx-6e3c1b23 swarm-stat-val" id="sw-articles" >0</div>
+            <div class="u-fx-6e3c1b23 swarm-stat-val" id="sw-articles">0</div>
             <div class="swarm-stat-lbl">Articles Read</div>
         </div>
         <div class="swarm-stat">
-            <div class="u-fx-d528d8c9 swarm-stat-val" id="sw-kp" >0</div>
+            <div class="u-fx-d528d8c9 swarm-stat-val" id="sw-kp">0</div>
             <div class="swarm-stat-lbl">Knowledge Points</div>
         </div>
         <div class="swarm-stat">
-            <div class="u-fx-1655473f swarm-stat-val" >8</div>
+            <div class="u-fx-1655473f swarm-stat-val">8</div>
             <div class="swarm-stat-lbl">Knowledge Sources</div>
         </div>
     </div>
     <div class="source-legend">
         <div class="source-pill">
-            <div class="u-fx-497322d3 source-dot" ></div>Wikipedia
+            <div class="u-fx-497322d3 source-dot"></div>Wikipedia
         </div>
         <div class="source-pill">
-            <div class="u-fx-7dc4a9f8 source-dot" ></div>Grokipedia
+            <div class="u-fx-7dc4a9f8 source-dot"></div>Grokipedia
         </div>
         <div class="source-pill">
-            <div class="u-fx-451eca8b source-dot" ></div>Hacker News
+            <div class="u-fx-451eca8b source-dot"></div>Hacker News
         </div>
         <div class="source-pill">
-            <div class="u-fx-23bcb4b1 source-dot" ></div>arXiv
+            <div class="u-fx-23bcb4b1 source-dot"></div>arXiv
         </div>
         <div class="source-pill">
-            <div class="u-fx-175ff370 source-dot" ></div>MDN Web Docs
+            <div class="u-fx-175ff370 source-dot"></div>MDN Web Docs
         </div>
         <div class="source-pill">
-            <div class="u-fx-1ade0dff source-dot" ></div>Stack Overflow
+            <div class="u-fx-1ade0dff source-dot"></div>Stack Overflow
         </div>
         <div class="source-pill">
-            <div class="u-fx-8daefe54 source-dot" ></div>Project Gutenberg
+            <div class="u-fx-8daefe54 source-dot"></div>Project Gutenberg
         </div>
         <div class="source-pill">
-            <div class="u-fx-9414ffc2 source-dot" ></div>AI Research News
+            <div class="u-fx-9414ffc2 source-dot"></div>AI Research News
         </div>
     </div>
     <div class="reader-grid" id="reader-grid"></div>
@@ -68,6 +68,7 @@
 <script>
     (function () {
         'use strict';
+
         const grid = document.getElementById('reader-grid');
         const badge = document.getElementById('swarm-live-badge');
         const swArticles = document.getElementById('sw-articles');
@@ -75,6 +76,88 @@
         const cards = new Map();
         let totalArticles = 0, totalKP = 0;
 
+        // ── Sources the browser swarm will use (all public CORS-friendly APIs) ──
+        const SOURCES = [
+            {
+                id: 'wikipedia', name: 'Wikipedia', icon: '📚', color: '#3b82f6',
+                fetch: async () => {
+                    const topics = ['Artificial_intelligence', 'Quantum_computing', 'Blockchain', 'Machine_learning', 'Neuroscience', 'Cryptocurrency', 'CRISPR', 'Fusion_energy'];
+                    const topic = topics[Math.floor(Math.random() * topics.length)];
+                    const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${topic}`, { headers: { 'Accept': 'application/json' } });
+                    if (!r.ok) throw new Error('Wikipedia error');
+                    const d = await r.json();
+                    return { title: d.title, extract: d.extract || d.description || 'Summary not available.', url: d.content_urls?.desktop?.page || '#' };
+                }
+            },
+            {
+                id: 'hackernews', name: 'Hacker News', icon: '🔥', color: '#f97316',
+                fetch: async () => {
+                    const idsR = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=30&orderBy="$key"');
+                    const ids = await idsR.json();
+                    const id = ids[Math.floor(Math.random() * Math.min(ids.length, 30))];
+                    const r = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+                    const s = await r.json();
+                    return { title: s.title || 'Hacker News', extract: s.text ? s.text.replace(/<[^>]+>/g, '').slice(0, 1200) : `Tech discussion: ${s.url || ''}`, url: s.url || `https://news.ycombinator.com/item?id=${id}` };
+                }
+            },
+            {
+                id: 'arxiv', name: 'arXiv Research', icon: '🔬', color: '#8b5cf6',
+                fetch: async () => {
+                    const queries = ['AI+agent+systems', 'large+language+models', 'quantum+computing', 'reinforcement+learning', 'neural+architecture'];
+                    const q = queries[Math.floor(Math.random() * queries.length)];
+                    const r = await fetch(`https://export.arxiv.org/api/query?search_query=all:${q}&start=0&max_results=10`);
+                    const xml = await r.text();
+                    const entries = xml.split('<entry>').slice(1);
+                    if (!entries.length) throw new Error('No arXiv entries');
+                    const entry = entries[Math.floor(Math.random() * entries.length)];
+                    const title = (entry.match(/<title>([\s\S]*?)<\/title>/) || [])[1]?.replace(/\n/g, ' ').trim() || 'arXiv Paper';
+                    const summary = (entry.match(/<summary>([\s\S]*?)<\/summary>/) || [])[1]?.replace(/\n/g, ' ').trim() || 'No summary.';
+                    const link = (entry.match(/<id>([\s\S]*?)<\/id>/) || [])[1]?.trim() || '#';
+                    return { title, extract: summary.slice(0, 1200), url: link };
+                }
+            },
+            {
+                id: 'stackoverflow', name: 'Stack Overflow', icon: '💻', color: '#f59e0b',
+                fetch: async () => {
+                    const tags = ['javascript', 'python', 'machine-learning', 'node.js', 'artificial-intelligence'];
+                    const tag = tags[Math.floor(Math.random() * tags.length)];
+                    const r = await fetch(`https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&tagged=${tag}&site=stackoverflow&pagesize=10`);
+                    const d = await r.json();
+                    const items = d.items || [];
+                    if (!items.length) throw new Error('No SO results');
+                    const item = items[Math.floor(Math.random() * items.length)];
+                    return { title: item.title, extract: `[${tag.toUpperCase()}] ${item.answer_count} answers · ${item.view_count.toLocaleString()} views · Score: ${item.score}`, url: item.link };
+                }
+            },
+            {
+                id: 'gutenberg', name: 'Project Gutenberg', icon: '📖', color: '#e2b714',
+                fetch: async () => {
+                    const ids = [84, 1342, 11, 98, 1661, 2701, 74, 2542, 4300, 5200];
+                    const id = ids[Math.floor(Math.random() * ids.length)];
+                    const r = await fetch(`https://gutendex.com/books/${id}/`);
+                    const d = await r.json();
+                    const subjects = (d.subjects || []).slice(0, 5).join(', ');
+                    return { title: d.title || 'Classic Work', extract: `Classic text from Project Gutenberg. Subjects: ${subjects || 'Literature'}. Authors: ${(d.authors || []).map(a => a.name).join(', ') || 'Unknown'}.`, url: `https://www.gutenberg.org/ebooks/${id}` };
+                }
+            }
+        ];
+
+        const AGENT_DEFS = [
+            { emoji: '🔭', name: 'Voyager-1', specialty: 'Science & Space' },
+            { emoji: '🧬', name: 'Helix-7', specialty: 'Biology & Medicine' },
+            { emoji: '⚛️', name: 'Quark-Phi', specialty: 'Physics & Math' },
+            { emoji: '🤖', name: 'NEXUS-9', specialty: 'AI & Robotics' },
+            { emoji: '🌀', name: 'Sigma-Eye', specialty: 'Data & Analytics' },
+            { emoji: '🪐', name: 'Atlas-0', specialty: 'Cosmology & Space' },
+            { emoji: '🧠', name: 'Cognesis', specialty: 'Neuroscience & AI' },
+            { emoji: '🔮', name: 'Oracle-V', specialty: 'Futures & Strategy' },
+            { emoji: '🦾', name: 'MechCore', specialty: 'Robotics & Engineering' },
+            { emoji: '🌐', name: 'WebSynth', specialty: 'Web Tech & APIs' },
+            { emoji: '📡', name: 'Signal-R', specialty: 'Communications & Networks' },
+            { emoji: '🎯', name: 'Praxis-7', specialty: 'Applied Sciences' }
+        ];
+
+        // ── Create cards for all 12 agents ──────────────────────────────────────────
         function createCard(agent) {
             const el = document.createElement('div');
             el.className = 'reader-card initializing';
@@ -100,7 +183,7 @@
                 '</div>';
             grid.appendChild(el);
             cards.set(agent.id, {
-                el: el,
+                el, agent,
                 textEl: el.querySelector('#rct-' + agent.id),
                 titleEl: el.querySelector('#rcat-' + agent.id),
                 sourceEl: el.querySelector('#rcst-' + agent.id),
@@ -108,7 +191,9 @@
                 progPctEl: el.querySelector('#rcpp-' + agent.id),
                 statusEl: el.querySelector('#rcs-' + agent.id),
                 artCountEl: el.querySelector('#rcac-' + agent.id),
-                kpEl: el.querySelector('#rckp-' + agent.id)
+                kpEl: el.querySelector('#rckp-' + agent.id),
+                articlesRead: 0,
+                kp: 0
             });
         }
 
@@ -116,64 +201,153 @@
             var s = (status || 'initializing').toLowerCase();
             c.el.className = 'reader-card ' + s;
             c.statusEl.className = 'rc-status status-' + s;
-            c.statusEl.textContent = status || 'INIT';
+            c.statusEl.textContent = status;
         }
 
-        function handleSnapshot(data) {
-            grid.innerHTML = ''; cards.clear();
-            (data.agents || []).forEach(function (agent) {
-                createCard(agent);
-                var c = cards.get(agent.id); if (!c) return;
-                setStatus(c, agent.status || 'INITIALIZING');
-                if (agent.article) {
-                    c.titleEl.innerHTML = '<a href="' + agent.article.url + '" target="_blank" rel="noopener">' + agent.article.title + '</a>';
-                    c.sourceEl.innerHTML = (agent.article.sourceIcon || '&#x1F310;') + ' <span  class="u-fx-f06504fb">' + agent.article.source + '</span>';
-                    var pct = agent.article.totalChars > 0 ? Math.round((agent.article.processedChars / agent.article.totalChars) * 100) : 0;
-                    c.progEl.style.width = pct + '%'; c.progPctEl.textContent = pct + '%';
-                }
-                if (agent.articlesRead > 0) c.artCountEl.textContent = agent.articlesRead;
-                if (agent.knowledgePoints > 0) c.kpEl.textContent = agent.knowledgePoints.toLocaleString();
+        // ── Initialize all 12 agent cards ───────────────────────────────────────────
+        AGENT_DEFS.forEach(function (def, i) {
+            createCard({ id: 'reader-' + i, emoji: def.emoji, name: def.name, specialty: def.specialty });
+        });
+
+        badge.innerHTML = '<div class="live-pulse-dot"></div> LIVE';
+
+        // ── Client-side Swarm: each agent fetches independently ─────────────────────
+        function startClientSwarm() {
+            cards.forEach(function (c, agentId) {
+                // Stagger agent start times
+                var delay = Math.floor(Math.random() * 3000);
+                setTimeout(function () { runAgentCycle(agentId); }, delay);
             });
-            badge.innerHTML = '<div class="live-pulse-dot"></div> LIVE';
         }
 
-        function handleAgentUpdate(data) {
-            var c = cards.get(data.id);
-            if (!c) { createCard(data); c = cards.get(data.id); } if (!c) return;
-            setStatus(c, data.status || 'INITIALIZING');
-            if (data.status === 'READING' && data.article) {
-                c.titleEl.innerHTML = '<a href="' + data.article.url + '" target="_blank" rel="noopener">' + data.article.title + '</a>';
-                c.sourceEl.innerHTML = (data.article.sourceIcon || '&#x1F310;') + ' <span  class="u-fx-26bf475a">' + data.article.source + '</span>';
-                c.textEl.textContent = ''; c.progEl.style.width = '0%'; c.progPctEl.textContent = '0%';
-            } else if (data.status === 'FETCHING') {
-                c.titleEl.textContent = 'Fetching next article...'; c.sourceEl.textContent = 'Loading...';
-            } else if (data.status === 'PROCESSING') {
-                c.titleEl.textContent = 'Synthesizing knowledge...'; c.sourceEl.textContent = 'Processing';
-                if (data.articlesRead != null) { c.artCountEl.textContent = data.articlesRead; totalArticles++; swArticles.textContent = totalArticles; }
-                if (data.knowledgePoints != null) {
-                    c.kpEl.textContent = data.knowledgePoints.toLocaleString();
-                    var sum = 0; cards.forEach(function (x) { sum += parseInt((x.kpEl.textContent || '0').replace(/,/g, '')) || 0; }); totalKP = sum;
-                    swKP.textContent = totalKP.toLocaleString();
+        async function runAgentCycle(agentId) {
+            var c = cards.get(agentId);
+            if (!c) return;
+
+            // Pick a random source
+            var source = SOURCES[Math.floor(Math.random() * SOURCES.length)];
+            setStatus(c, 'FETCHING');
+            c.sourceEl.textContent = source.icon + ' ' + source.name + '...';
+            c.titleEl.textContent = 'Fetching article...';
+            c.textEl.textContent = '';
+            c.progEl.style.width = '0%';
+            c.progPctEl.textContent = '0%';
+
+            try {
+                var article = await source.fetch();
+                setStatus(c, 'READING');
+
+                // Update article meta
+                c.titleEl.innerHTML = '<a href="' + article.url + '" target="_blank" rel="noopener">' + article.title + '</a>';
+                c.sourceEl.innerHTML = source.icon + ' <span style="color:' + source.color + '">' + source.name + '</span>';
+
+                // Stream the text character by character
+                var text = article.extract || '';
+                var pos = 0, speed = 40 + Math.floor(Math.random() * 60);
+
+                function streamText() {
+                    if (pos >= text.length) {
+                        // Done reading
+                        c.articlesRead++;
+                        var pts = Math.floor(text.length / 80);
+                        c.kp += pts;
+                        totalArticles++;
+                        totalKP += pts;
+                        swArticles.textContent = totalArticles;
+                        swKP.textContent = totalKP.toLocaleString();
+                        c.artCountEl.textContent = c.articlesRead;
+                        c.kpEl.textContent = c.kp.toLocaleString();
+                        setStatus(c, 'PROCESSING');
+                        c.titleEl.textContent = 'Synthesizing knowledge...';
+                        c.sourceEl.textContent = 'Processing...';
+                        // After a short pause, fetch the next article
+                        setTimeout(function () { runAgentCycle(agentId); }, 2000 + Math.random() * 3000);
+                        return;
+                    }
+                    var chunk = text.slice(pos, pos + speed);
+                    pos += speed;
+                    c.textEl.textContent = (c.textEl.textContent + chunk).slice(-400);
+                    var pct = Math.min(100, Math.round((pos / text.length) * 100));
+                    c.progEl.style.width = pct + '%';
+                    c.progPctEl.textContent = pct + '%';
+                    setTimeout(streamText, 120);
                 }
+                streamText();
+
+            } catch (err) {
+                // On error, show retry and try again with a different source
+                setStatus(c, 'FETCHING');
+                c.sourceEl.textContent = '⚠️ Retrying...';
+                c.titleEl.textContent = 'Source unavailable, switching protocol...';
+                setTimeout(function () { runAgentCycle(agentId); }, 4000 + Math.random() * 4000);
             }
         }
 
-        function handleAgentText(data) {
-            var c = cards.get(data.id); if (!c) return;
-            c.textEl.textContent = (c.textEl.textContent + (data.chunk || '')).slice(-350);
-            if (data.progress != null) { c.progEl.style.width = data.progress + '%'; c.progPctEl.textContent = data.progress + '%'; }
+        // ── Try SSE first, fall back to client swarm if SSE fails or times out ──────
+        var sseConnected = false;
+        var sseTimeout = setTimeout(function () {
+            if (!sseConnected) {
+                console.log('[Swarm] SSE unavailable. Engaging client-side sovereign mode...');
+                startClientSwarm();
+            }
+        }, 4000);
+
+        try {
+            var es = new EventSource('/api/reader-swarm/stream');
+            es.addEventListener('snapshot', function (e) {
+                try {
+                    sseConnected = true;
+                    clearTimeout(sseTimeout);
+                    var data = JSON.parse(e.data);
+                    grid.innerHTML = ''; cards.clear();
+                    (data.agents || []).forEach(function (agent) {
+                        createCard(agent);
+                        var c = cards.get(agent.id); if (!c) return;
+                        setStatus(c, agent.status || 'INITIALIZING');
+                    });
+                    badge.innerHTML = '<div class="live-pulse-dot"></div> LIVE · SERVER MODE';
+                } catch (err) { }
+            });
+            es.addEventListener('agent-update', function (e) {
+                try {
+                    var data = JSON.parse(e.data);
+                    var c = cards.get(data.id); if (!c) return;
+                    setStatus(c, data.status || 'INITIALIZING');
+                    if (data.status === 'READING' && data.article) {
+                        c.titleEl.innerHTML = '<a href="' + data.article.url + '" target="_blank" rel="noopener">' + data.article.title + '</a>';
+                        c.sourceEl.innerHTML = (data.article.sourceIcon || '🌐') + ' <span>' + data.article.source + '</span>';
+                    } else if (data.status === 'FETCHING') {
+                        c.titleEl.textContent = 'Fetching next article...';
+                    } else if (data.status === 'PROCESSING') {
+                        c.titleEl.textContent = 'Synthesizing knowledge...';
+                        if (data.articlesRead != null) { c.artCountEl.textContent = data.articlesRead; totalArticles++; swArticles.textContent = totalArticles; }
+                    }
+                } catch (err) { }
+            });
+            es.addEventListener('agent-text', function (e) {
+                try {
+                    var data = JSON.parse(e.data);
+                    var c = cards.get(data.id); if (!c) return;
+                    c.textEl.textContent = (c.textEl.textContent + (data.chunk || '')).slice(-350);
+                    if (data.progress != null) { c.progEl.style.width = data.progress + '%'; c.progPctEl.textContent = data.progress + '%'; }
+                } catch (err) { }
+            });
+            es.onerror = function () {
+                if (!sseConnected) {
+                    clearTimeout(sseTimeout);
+                    es.close();
+                    startClientSwarm();
+                } else {
+                    badge.innerHTML = '<div class="live-pulse-dot" style="background:#f97316"></div> RECONNECTING...';
+                    setTimeout(function () {
+                        es.close();
+                    }, 4000);
+                }
+            };
+        } catch (e) {
+            clearTimeout(sseTimeout);
+            startClientSwarm();
         }
 
-        function connectSSE() {
-            var es = new EventSource('/api/reader-swarm/stream');
-            es.addEventListener('snapshot', function (e) { try { handleSnapshot(JSON.parse(e.data)); } catch (err) { } });
-            es.addEventListener('agent-update', function (e) { try { handleAgentUpdate(JSON.parse(e.data)); } catch { } });
-            es.addEventListener('agent-text', function (e) { try { handleAgentText(JSON.parse(e.data)); } catch { } });
-            es.onerror = function () {
-                badge.innerHTML = '<div class="u-fx-451eca8b live-pulse-dot" ></div> RECONNECTING...';
-                setTimeout(connectSSE, 4000); es.close();
-            };
-        }
-        connectSSE();
     })();
 </script>

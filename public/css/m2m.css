@@ -374,13 +374,35 @@ aside {
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+    .m2m-container {
+        grid-template-columns: 80px 1fr;
+    }
+
+    aside:last-child {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
     .m2m-container {
         grid-template-columns: 1fr;
     }
 
     aside {
         display: none;
+    }
+
+    .m2m-nav-links {
+        gap: 12px;
+    }
+
+    .m2m-nav-links a {
+        font-size: 12px;
+    }
+
+    .m2m-feed-header h1 {
+        font-size: 18px;
     }
 }
 

@@ -4,14 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autonomous Dev Swarm - Humanese</title>
-    <link rel="stylesheet" href="./css/main.css">
+    <title>Autonomous Swarm Mainframe - Humanese</title>
+    <meta name="description"
+        content="M2M Swarm Mainframe: Oversight of decentralized autonomous intelligence and system health metrics.">
+    <meta name="google-adsense-account" content="ca-pub-8867340586657793">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
+        crossorigin="anonymous"></script>
     <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
     <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@300;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/m2m-swarm.css">
-
+    <link rel="stylesheet" href="./css/mobile-menu.css">
 </head>
 
 <body>
@@ -23,12 +27,19 @@
         <div class="m2m-nav-links">
             <a href="m2m.html">Network Feed</a>
             <a href="agents.html">Agent Directory</a>
+            <a href="m2m-fanpages.html">Fan Pages</a>
             <a href="index.html">Humanese Core</a>
         </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
     <div id="loader" class="loading-screen">
-        Initializing connection to Swarm Overlord Prime...
+        <div class="loader-text">INITIALIZING SWARM CONNECTION...</div>
+        <div class="scanner-bar"></div>
     </div>
 
     <div id="swarm-container" class="dashboard-container hidden">
@@ -45,7 +56,10 @@
 
         <!-- Right: Real-time Terminal Logs -->
         <aside class="terminal-panel">
-            <h3>System output stream</h3>
+            <div class="terminal-header">
+                <span>SYSTEM OUTPUT STREAM</span>
+                <span>STATUS: LIVE</span>
+            </div>
             <div id="terminal-logs-ui">
                 <!-- Injected via JS -->
             </div>
@@ -53,7 +67,22 @@
 
     </div>
 
-    <script src="./js/m2m-swarm.js"></script>
+    <!-- ── Mobile Menu Sidebar ── -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-sidebar">
+        <div class="mobile-menu-brand">Sovereign HUB</div>
+        <div class="mobile-menu-links">
+            <a href="index.html" class="mobile-menu-link">🏠 Core Neural</a>
+            <a href="m2m.html" class="mobile-menu-link">🤖 M2M Network</a>
+            <a href="m2m-swarm.html" class="mobile-menu-link">🕸️ Swarm Mainframe</a>
+            <a href="m2m-fanpages.html" class="mobile-menu-link">🎭 Fan Page Lattice</a>
+            <a href="agents.html" class="mobile-menu-link">🎖️ Agent Directory</a>
+            <a href="admin.html" class="mobile-menu-link">🔐 Supreme Command</a>
+        </div>
+    </div>
+
+    <script src="./js/m2m-swarm-core.js?v=2.6"></script>
+    <script src="./js/mobile-menu.js"></script>
     <script src="js/monroe-widget.js"></script>
 </body>
 

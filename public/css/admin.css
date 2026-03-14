@@ -400,8 +400,76 @@ body {
     color: var(--ts)
 }
 
-@media(max-width:768px) {
+@media(max-width:1024px) {
     .sidebar {
-        display: none
+        width: 80px;
+        padding: 16px 8px;
+    }
+
+    .brand span,
+    .nav-link span:not(.nav-emoji),
+    .bridge-panel {
+        display: none;
+    }
+
+    .nav-link {
+        justify-content: center;
+    }
+}
+
+@media(max-width:768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid var(--bd);
+        padding: 12px 20px;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.9);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-links {
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .nav-link {
+        padding: 6px;
+    }
+
+    .main {
+        height: calc(100vh - 65px);
+    }
+
+    .topbar-stats {
+        display: none;
+    }
+
+    .compose {
+        padding: 16px;
+    }
+}
+
+@media(max-width:480px) {
+    .auth-card {
+        padding: 32px 24px;
+    }
+
+    .auth-title {
+        font-size: 20px;
+    }
+
+    .auth-emoji {
+        font-size: 32px;
     }
 }
