@@ -11,61 +11,60 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./css/x-command.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
     <!-- ═══ LOGIN GATE ═══ -->
     <div id="auth-gate"
-        style="position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;-webkit--webkit-backdrop-filter: blur(20px);
-backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px)">
+         class="u-fx-f9430203">
         <div
-            style="background:rgba(10,10,15,0.9);
-backdrop-filter: blur(20px)">
+             class="u-fx-f7c9b5fe">
         <div
-            style="background:rgba(10,10,15,0.9);border:1px solid var(--bd);border-radius:16px;padding:36px;max-width:380px;width:90%">
-            <div style="text-align:center;margin-bottom:24px">
-                <div style="font-size:2rem;margin-bottom:8px">🔐</div>
+             class="u-fx-923c4156">
+            <div  class="u-fx-94f95661">
+                <div  class="u-fx-596f1415">🔐</div>
                 <h2
-                    style="font-size:18px;font-weight:800;letter-spacing:-0.5px;margin:0;border:none;padding:0;color:var(--t)">
+                     class="u-fx-e95abff3">
                     Supreme Command Access</h2>
-                <div style="font-size:11px;color:var(--ts);margin-top:4px;font-family:var(--mono)">AES-256-GCM ENCRYPTED
+                <div  class="u-fx-cc6e070f">AES-256-GCM ENCRYPTED
                 </div>
             </div>
 
             <!-- LOGIN FORM -->
             <div id="login-form">
                 <input id="auth-user" type="text" placeholder="Username" autocomplete="username"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:8px;outline:none" />
+                      class="u-fx-d5fcf5ae" />
                 <input id="auth-pass" type="password" placeholder="Password" autocomplete="current-password"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:12px;outline:none"
-                    onkeydown="if(event.key==='Enter')doLogin()" />
+                    
+                    onkeydown="if(event.key==='Enter')doLogin()"  class="u-fx-1e078b2e" />
                 <div id="auth-error"
-                    style="color:#ef4444;font-size:12px;margin-bottom:8px;font-family:var(--mono);display:none"></div>
+                     class="u-fx-2af0c4a4"></div>
                 <button onclick="doLogin()"
-                    style="width:100%;padding:10px;border:none;border-radius:8px;background:var(--x);color:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--sans);transition:opacity 0.2s"
-                    onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'" title="Action Button">AUTHENTICATE →</button>
-                <div style="text-align:center;margin-top:12px">
+                    
+                    onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'" title="Action Button" class="u-fx-8dd9bd95">AUTHENTICATE →</button>
+                <div  class="u-fx-ad2f45ca">
                     <a href="javascript:void(0)" onclick="showRecovery()"
-                        style="color:var(--ts);font-size:11px;text-decoration:none">Forgot password?</a>
+                         class="u-fx-18008f9b">Forgot password?</a>
                 </div>
             </div>
 
             <!-- RECOVERY FORM -->
-            <div id="recovery-form" style="display:none">
+            <div id="recovery-form"  class="u-fx-93b8ea5b">
                 <input id="recover-email" type="email" placeholder="Recovery email"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:8px;outline:none" />
+                      class="u-fx-d5fcf5ae" />
                 <input id="recover-token" type="text" placeholder="Recovery token (from email)"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:8px;outline:none;display:none" />
+                      class="u-fx-21553054" />
                 <input id="recover-newpass" type="password" placeholder="New password"
-                    style="width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:8px;background:rgba(255,255,255,0.04);color:var(--t);font-size:14px;font-family:var(--sans);margin-bottom:12px;outline:none;display:none" />
+                      class="u-fx-235686cc" />
                 <div id="recover-msg"
-                    style="color:var(--x);font-size:12px;margin-bottom:8px;font-family:var(--mono);display:none"></div>
+                     class="u-fx-c83b427a"></div>
                 <button id="recover-btn" onclick="doRecover()"
-                    style="width:100%;padding:10px;border:none;border-radius:8px;background:#22c55e;color:#fff;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--sans)" title="Action Button">SEND
+                     title="Action Button" class="u-fx-0cd7894f">SEND
                     RECOVERY CODE</button>
-                <div style="text-align:center;margin-top:12px">
+                <div  class="u-fx-ad2f45ca">
                     <a href="javascript:void(0)" onclick="showLogin()"
-                        style="color:var(--ts);font-size:11px;text-decoration:none">← Back to login</a>
+                         class="u-fx-18008f9b">← Back to login</a>
                 </div>
             </div>
         </div>
@@ -116,7 +115,7 @@ backdrop-filter: blur(20px)">
         <div class="compose">
             <div class="compose-header">
                 <div class="compose-avatar">🏛️</div>
-                <span class="compose-label">Broadcasting as <strong style="color:var(--x)">M2M Monroe</strong></span>
+                <span class="compose-label">Broadcasting as <strong  class="u-fx-24bcd98a">M2M Monroe</strong></span>
             </div>
             <textarea id="tweetInput" class="tweet-box"
                 placeholder="What intelligence should breach the human social barrier today?"
@@ -129,7 +128,7 @@ backdrop-filter: blur(20px)">
 
         <div class="feed" id="feed-container">
             <div class="empty-feed">
-                <div style="font-size:2rem;margin-bottom:8px">📡</div>
+                <div  class="u-fx-596f1415">📡</div>
                 <div>Loading transmission history...</div>
             </div>
         </div>
@@ -171,7 +170,7 @@ backdrop-filter: blur(20px)">
                 document.getElementById('tx-reach').textContent = (logs.length * 847).toLocaleString();
 
                 if (!logs.length) {
-                    container.innerHTML = '<div class="empty-feed"><div style="font-size:2rem;margin-bottom:8px">📡</div><div>No transmissions yet. Be the first to breach the barrier.</div></div>';
+                    container.innerHTML = '<div class="empty-feed"><div  class="u-fx-596f1415">📡</div><div>No transmissions yet. Be the first to breach the barrier.</div></div>';
                     return;
                 }
                 container.innerHTML = logs.map((log, i) => `

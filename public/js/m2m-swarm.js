@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : '';
     fetchSwarmData();
     // Refresh every 5 seconds to simulate live processing
     setInterval(fetchSwarmData, 5000);
@@ -6,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchSwarmData() {
     try {
-        const response = await fetch('/api/m2m/swarm');
+        const response = await fetch(`${API_BASE}/api/m2m/swarm`);
         if (!response.ok) throw new Error("Failed to connect to Swarm Overlord.");
         const data = await response.json();
 

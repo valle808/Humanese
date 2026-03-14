@@ -15,6 +15,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./css/skill-market.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -182,7 +183,7 @@
                         </div>
                     `).join('');
                 } else {
-                    document.getElementById('tx-list').innerHTML = '<div style="text-align:center;padding:40px;color:var(--tt);font-family:var(--m)">No transactions yet — <a href="#" onclick="seedMarket()" style="color:var(--a)">Seed the market</a></div>';
+                    document.getElementById('tx-list').innerHTML = '<div  class="u-fx-b607113f">No transactions yet — <a href="#" onclick="seedMarket()"  class="u-fx-1c83eb3d">Seed the market</a></div>';
                 }
             } catch (e) { console.warn('Stats fetch failed:', e); }
         }
@@ -202,11 +203,11 @@
                                 <span class="rarity ${t.rarity}">${t.rarity}</span>
                             </div>
                             <div class="skill-desc">${t.description}</div>
-                            <div class="skill-footer" style="margin-bottom:16px;">
+                            <div class="u-fx-5534b3b3 skill-footer" >
                                 <span class="skill-price">${t.basePrice?.toLocaleString()} <span>VALLE</span></span>
                                 <span class="skill-category">${t.category}</span>
                             </div>
-                            <button onclick="buySkillTemplate('${t.id}', ${t.basePrice})" style="width:100%; padding:12px; background:rgba(0,243,255,0.1); border:1px solid var(--a); color:var(--a); border-radius:8px; cursor:pointer; font-weight:700; transition:background 0.3s; font-family:var(--m)" title="Action Button">MINT THIS SKILL</button>
+                            <button onclick="buySkillTemplate('${t.id}', ${t.basePrice})"  title="Action Button" class="u-fx-5d542ca8">MINT THIS SKILL</button>
                         </div>
                     `).join('');
                 }

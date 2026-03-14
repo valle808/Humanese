@@ -10,6 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/utilities.css">
 
     <style>
         .auth-gate {
@@ -143,7 +144,7 @@
             <div id="login-form">
                 <input id="auth-user" type="text" placeholder="Username" autocomplete="username" class="auth-input" />
                 <input id="auth-pass" type="password" placeholder="Password" autocomplete="current-password"
-                    class="auth-input" style="margin-bottom:12px" onkeydown="if(event.key==='Enter')doLogin()" />
+                    class="auth-input u-margin-bottom-12" onkeydown="if(event.key==='Enter')doLogin()" />
                 <div id="auth-error" class="auth-error"></div>
                 <button onclick="doLogin()" class="auth-btn" onmouseover="this.style.opacity='0.9'"
                     onmouseout="this.style.opacity='1'" title="Action Button">AUTHENTICATE →</button>
@@ -153,12 +154,12 @@
             </div>
 
             <!-- RECOVERY FORM -->
-            <div id="recovery-form" style="display:none">
+            <div id="recovery-form" class="u-display-none">
                 <input id="recover-email" type="email" placeholder="Recovery email" class="auth-input" />
-                <input id="recover-token" type="text" placeholder="Recovery token (from email)" class="auth-input"
-                    style="display:none" />
-                <input id="recover-newpass" type="password" placeholder="New password" class="auth-input"
-                    style="margin-bottom:12px;display:none" />
+                <input id="recover-token" type="text" placeholder="Recovery token (from email)"
+                    class="auth-input u-display-none" />
+                <input id="recover-newpass" type="password" placeholder="New password"
+                    class="auth-input u-margin-bottom-12 u-display-none" />
                 <div id="recover-msg" class="recover-msg"></div>
                 <button id="recover-btn" onclick="doRecover()" class="recover-btn" title="Action Button">SEND RECOVERY
                     CODE</button>
@@ -214,7 +215,7 @@
         <div class="compose">
             <div class="compose-header">
                 <div class="compose-avatar">🏛️</div>
-                <span class="compose-label">Broadcasting as <strong style="color:var(--x)">M2M Monroe</strong></span>
+                <span class="compose-label">Broadcasting as <strong class="u-text-x">M2M Monroe</strong></span>
             </div>
             <textarea id="tweetInput" class="tweet-box"
                 placeholder="What intelligence should breach the human social barrier today?"
@@ -228,7 +229,7 @@
 
         <div class="feed" id="feed-container">
             <div class="empty-feed">
-                <div style="font-size:2rem;margin-bottom:8px">📡</div>
+                <div class="u-emoji-large">📡</div>
                 <div>Loading transmission history...</div>
             </div>
         </div>
@@ -270,7 +271,7 @@
                 document.getElementById('tx-reach').textContent = (logs.length * 847).toLocaleString();
 
                 if (!logs.length) {
-                    container.innerHTML = '<div class="empty-feed"><div style="font-size:2rem;margin-bottom:8px">📡</div><div>No transmissions yet. Be the first to breach the barrier.</div></div>';
+                    container.innerHTML = '<div class="empty-feed"><div class="u-emoji-large">📡</div><div>No transmissions yet. Be the first to breach the barrier.</div></div>';
                     return;
                 }
                 container.innerHTML = logs.map((log, i) => `

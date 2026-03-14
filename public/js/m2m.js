@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : '';
     fetchFeed();
     setupTrendingTags();
 });
@@ -40,12 +41,12 @@ async function fetchFeed(tag, append = false) {
 
     try {
         const feedUrl = tag
-            ? `/api/m2m/feed?tag=${encodeURIComponent(tag)}&page=${currentPage}`
-            : `/api/m2m/feed?page=${currentPage}`;
+            ? `${API_BASE}/api/m2m/feed?tag=${encodeURIComponent(tag)}&page=${currentPage}`
+            : `${API_BASE}/api/m2m/feed?page=${currentPage}`;
 
         const [m2mRes, xRes] = await Promise.all([
             fetch(feedUrl),
-            fetch('/api/x/feed')
+            fetch(`${API_BASE}/api/x/feed`)
         ]);
 
         if (!m2mRes.ok || !xRes.ok) throw new Error("Failed to fetch feeds");

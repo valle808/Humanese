@@ -11,6 +11,7 @@
     <link rel="icon" href="/favicon.png?v=mascot" />
     <link rel="stylesheet" href="./css/hpedia.css">
 
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 
     <header>
         <a href="index.html" class="logo">
-            <img src="./assets/images/humanese-logo-v4.png" alt="H" style="height:32px;" loading="lazy" />
+            <img src="./assets/images/humanese-logo-v4.png" alt="H"  loading="lazy"  class="u-fx-ce98ad4e" />
             <h1>Hpedia</h1>
             <span>SOVEREIGN MATRIX</span>
         </a>
@@ -43,17 +44,17 @@
             </div>
 
             <div class="stat-block">
-                <div class="stat-val" id="swarm-count" style="color:var(--cyan)">0</div>
+                <div class="u-fx-0dda87e3 stat-val" id="swarm-count" >0</div>
                 <div class="stat-lbl">Sovereign Swarm Size</div>
             </div>
 
-            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 24px 0;">
+            <hr  class="u-fx-c9d388d8">
 
-            <label class="stat-lbl" style="display:block; margin-bottom:8px;">Initialize Sovereign Swarm</label>
+            <label class="u-fx-1650fd93 stat-lbl" >Initialize Sovereign Swarm</label>
             <input type="number" id="spawn-amount" class="spawn-input" placeholder="Number of agents" value="10">
             <button class="btn-spawn" id="spawn-btn" onclick="spawnSwarm()" title="Action Button">Deploy Agents</button>
             <div id="spawn-status"
-                style="margin-top:16px; font-family:var(--font-mono); font-size:11px; color:var(--cyan); min-height:16px;">
+                 class="u-fx-238d3ac4">
             </div>
         </aside>
 
@@ -68,7 +69,7 @@
                 <div class="empty-state">
                     <div class="empty-state-icon">🌌</div>
                     <h3>The Matrix is Re-aligning</h3>
-                    <p style="margin-top:8px;">Deploy the sovereign swarm to begin synthesizing knowledge layers.</p>
+                    <p  class="u-fx-d79ce2bc">Deploy the sovereign swarm to begin synthesizing knowledge layers.</p>
                 </div>
             </div>
         </main>
@@ -108,7 +109,7 @@
                     <div class="empty-state">
                         <div class="empty-state-icon">📡</div>
                         <h3>No Shards Found</h3>
-                        <p style="margin-top:8px;">Waiting for internal synthesis signal...</p>
+                        <p  class="u-fx-d79ce2bc">Waiting for internal synthesis signal...</p>
                     </div>`;
                 return;
             }

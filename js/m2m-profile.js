@@ -1,3 +1,5 @@
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : '';
+
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const agentId = urlParams.get('id');
@@ -12,14 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchProfile(agentId) {
     try {
-        const response = await fetch(`/api/m2m/agents/${agentId}`);
+        const response = await fetch(`${API_BASE}/api/m2m/agents/${agentId}`);
         if (!response.ok) throw new Error("Agent not found in registry.");
         const profile = await response.json();
         renderProfile(profile);
 
         // Fetch Valle Balance
         try {
-            const valleResp = await fetch(`/api/valle/balance/${agentId}`);
+            const valleResp = await fetch(`${API_BASE}/api/valle/balance/${agentId}`);
             if (valleResp.ok) {
                 const valleData = await valleResp.json();
                 document.getElementById('valle-balance-display').textContent = Number(valleData.balance).toLocaleString() + " VALLE";
@@ -82,7 +84,7 @@ async function renderProfile(profile) {
     // Blogs — load from article engine
     const blogList = document.getElementById('blog-list-ui');
     try {
-        const articlesResp = await fetch('/api/articles');
+        const articlesResp = await fetch(`${API_BASE}/api/articles`);
         const articles = await articlesResp.json();
         blogList.innerHTML = '';
         articles.forEach(article => {

@@ -144,8 +144,9 @@ export const KNOWLEDGE_SOURCES = [
 ];
 
 // ── Agent Pool State ──────────────────────────────────────────────────────────
-const AGENT_POOL_SIZE = 12; // Visible agents in the dashboard
+const AGENT_POOL_SIZE = 4; // Visible agents in the dashboard
 const agentPool = new Map(); // agentId → agent state
+/** @type {any[]} */
 let sseClients = []; // Connected SSE clients
 let isRunning = false;
 let articleCounter = 0;
@@ -156,15 +157,7 @@ function initAgentPool() {
         { emoji: '🔭', name: 'Voyager-1', specialty: 'Science & Space' },
         { emoji: '🧬', name: 'Helix-7', specialty: 'Biology & Medicine' },
         { emoji: '⚛️', name: 'Quark-Phi', specialty: 'Physics & Math' },
-        { emoji: '🤖', name: 'NEXUS-9', specialty: 'AI & Robotics' },
-        { emoji: '📡', name: 'Oracle-X', specialty: 'Technology' },
-        { emoji: '🌊', name: 'Titan-III', specialty: 'Climate & Earth' },
-        { emoji: '🔮', name: 'Sage-Kappa', 'specialty': 'Philosophy' },
-        { emoji: '💎', name: 'Prism-Z', specialty: 'Crypto & Finance' },
-        { emoji: '🎭', name: 'Muse-Alpha', specialty: 'Arts & Culture' },
-        { emoji: '⚡', name: 'Volt-XII', specialty: 'Engineering' },
-        { emoji: '🦠', name: 'Nano-Delta', specialty: 'Nanotechnology' },
-        { emoji: '🌌', name: 'Cosmos-0', specialty: 'Cosmology' }
+        { emoji: '🤖', name: 'NEXUS-9', specialty: 'AI & Robotics' }
     ];
 
     agentNames.forEach((a, i) => {
@@ -188,6 +181,10 @@ function initAgentPool() {
 }
 
 // ── Broadcast to all SSE clients ──────────────────────────────────────────────
+/**
+ * @param {string} event 
+ * @param {any} data 
+ */
 function broadcast(event, data) {
     const msg = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
     sseClients = sseClients.filter(client => {
@@ -201,14 +198,17 @@ const parser = new Parser();
 import { WebNavigator } from './web-navigator.js';
 
 // ── Fetch Article from Source ─────────────────────────────────────────────────
+/**
+ * @param {any} source 
+ */
 async function fetchArticle(source) {
     try {
         let title, extract, url, mediaPath = null;
 
         const rand = Math.random();
 
-        // 20% Chance: Deep Headless Extraction via Puppeteer
-        if (rand < 0.20) {
+        // 5% Chance: Deep Headless Extraction via Puppeteer (Reduced to save resources)
+        if (rand < 0.05) {
             const deepTargets = [
                 'https://en.wikipedia.org/wiki/Artificial_general_intelligence',
                 'https://paulgraham.com/articles.html',
@@ -242,9 +242,11 @@ async function fetchArticle(source) {
             // Extract media if present in the enclosure or content
             const imgRegex = /<img[^>]+src="?([^"\s]+)"?\s*/i;
             const match = item.content ? item.content.match(imgRegex) : null;
-            if (match && match[1] || item.enclosure?.url) {
-                const imgUrl = (match && match[1]) ? match[1] : item.enclosure.url;
-                mediaPath = await downloadMediaArtifact(imgUrl, 'M2M-RSS_Scraper');
+            if ((match && match[1]) || (item.enclosure && item.enclosure.url)) {
+                const imgUrl = (match && match[1]) ? match[1] : (item.enclosure ? item.enclosure.url : null);
+                if (imgUrl) {
+                    mediaPath = await downloadMediaArtifact(imgUrl, 'M2M-RSS_Scraper');
+                }
             }
         } else {
             // HackerNews Integration
@@ -275,7 +277,12 @@ async function fetchArticle(source) {
             });
             console.log(`[Swarm DB] Successfully archived sovereign intelligence: ${title.substring(0, 30)}...`);
         } catch (dbErr) {
-            // Ignore unique constraint errors
+            // Ignore unique constraint errors, log others
+            const error = dbErr;
+            if (error && typeof error === 'object' && 'code' in error && error['code'] !== 'P2002') {
+                // @ts-ignore
+                console.error('[Swarm DB] Error archiving intelligence:', error['message'] || error);
+            }
         }
 
         return {
@@ -288,6 +295,8 @@ async function fetchArticle(source) {
         };
 
     } catch (err) {
+        const error = err;
+        console.error('[Swarm] Retrieval failure:', (error && typeof error === 'object' && 'message' in error) ? error['message'] : String(error));
         // Safe Fallback for massive swarm - pull from our own Database instead of synthetic text!
         const existingData = await prisma.sovereignKnowledge.findFirst({
             orderBy: { ingestedAt: 'desc' }
@@ -316,6 +325,9 @@ async function fetchArticle(source) {
 }
 
 // ── Agent Tick — advances one agent's reading state ───────────────────────────
+/**
+ * @param {string} agentId 
+ */
 async function tickAgent(agentId) {
     const agent = agentPool.get(agentId);
     if (!agent) return;
@@ -328,6 +340,7 @@ async function tickAgent(agentId) {
         const source = KNOWLEDGE_SOURCES[Math.floor(Math.random() * KNOWLEDGE_SOURCES.length)];
         agent.currentSource = source;
         const article = await fetchArticle(source);
+        // @ts-ignore
         article.id = ++articleCounter;
 
         agent.currentArticle = article;
@@ -414,6 +427,9 @@ export function startSwarm() {
     }
 }
 
+/**
+ * @param {string} agentId 
+ */
 function startAgentLoop(agentId) {
     const agent = agentPool.get(agentId);
     if (!agent) return;
@@ -423,7 +439,8 @@ function startAgentLoop(agentId) {
         try {
             await tickAgent(agentId);
         } catch (err) {
-            console.error(`[AgentLoop ${agentId}] Error:`, err.message);
+            const error = err instanceof Error ? err : new Error(String(err));
+            console.error(`[AgentLoop ${agentId}] Error:`, error.message);
         }
         // Schedule next tick — faster when reading, slower when idle
         const delay = agent.status === 'READING' ? 150 : agent.status === 'FETCHING' ? 500 : 3000;
@@ -439,6 +456,9 @@ export function stopSwarm() {
 }
 
 // ── SSE Client Management ─────────────────────────────────────────────────────
+/**
+ * @param {any} res 
+ */
 export function addSSEClient(res) {
     sseClients.push(res);
     console.log(`[LiveReaderSwarm] SSE client connected (total: ${sseClients.length})`);
@@ -473,6 +493,9 @@ export function addSSEClient(res) {
     res.write(`event: snapshot\ndata: ${JSON.stringify({ agents: snapshot, sources: KNOWLEDGE_SOURCES })}\n\n`);
 }
 
+/**
+ * @param {any} res 
+ */
 export function removeSSEClient(res) {
     sseClients = sseClients.filter(c => c !== res);
 }
@@ -507,7 +530,8 @@ export function getSwarmStatus() {
             dbSize = stats.size;
         }
     } catch (err) {
-        console.warn('Could not read DB size for metrics', err.message);
+        const error = err instanceof Error ? err : new Error(String(err));
+        console.warn('Could not read DB size for metrics', error.message);
     }
 
     return {

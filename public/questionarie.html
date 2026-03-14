@@ -9,6 +9,7 @@
 
   <title>Humanese</title>
   <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
+  <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -16,7 +17,8 @@
     <div class="question-page-sections">
       <div class="top-row-question-page-sections">
         <div class="fields-top-row">
-          <a onclick="showAlertPopup()" class="close-button"><img src="./assets/svg/close-button.svg" alt="Close" loading="lazy" /></a>
+          <a onclick="showAlertPopup()" class="close-button"><img src="./assets/svg/close-button.svg" alt="Close"
+              loading="lazy" /></a>
           <div class="progress-bar-container">
             <div class="inner-green-bar">
               <div class="inner-light-green-bar"></div>
@@ -39,12 +41,13 @@
       <div class="bottom-row-question-page-sections">
         <div class="bottom-row">
           <div class="bottom-buttons">
-            <div class="skip-button" style="display: block">
-              <button class="button-div skip-button-inner" id="skip-button" onclick="skipButton(this.id)" title="Action Button">
+            <div class="u-fx-19fae44a skip-button">
+              <button class="button-div skip-button-inner" id="skip-button" onclick="skipButton(this.id)"
+                title="Action Button">
                 <span id="skip-span">Skip</span>
               </button>
             </div>
-            <div class="correct-left" id="correct-left" style="display: none">
+            <div class="u-fx-224b51a7 correct-left" id="correct-left">
               <div class="correct-content">
                 <div class="correct-tick">
                   <img class="green-tick" src="./assets/svg/correct-tick-green.svg" / alt="image" loading="lazy" />
@@ -54,7 +57,7 @@
                 </div>
               </div>
             </div>
-            <div class="correct-left" id="wrong-left" style="display: none">
+            <div class="u-fx-224b51a7 correct-left" id="wrong-left">
               <div class="correct-content">
                 <div class="correct-tick">
                   <img class="green-tick" src="./assets/svg/wrong-x-red.svg" / alt="image" loading="lazy" />
@@ -66,7 +69,8 @@
               </div>
             </div>
             <div class="check-button" id="check-button-div">
-              <button class="button-div check-button-inner-inactive" id="check-button" onclick="checkButton(this.id)" title="Action Button">
+              <button class="button-div check-button-inner-inactive" id="check-button" onclick="checkButton(this.id)"
+                title="Action Button">
                 <span id="continue-button">Check</span>
               </button>
             </div>
@@ -75,8 +79,8 @@
       </div>
     </div>
   </div>
-  <div class="exit-overlay-outer-div" style="display: none">
-    <div class="exit-overlay" style="display: none">
+  <div class="u-fx-224b51a7 exit-overlay-outer-div">
+    <div class="u-fx-224b51a7 exit-overlay">
       <div class="exit-box">
         <div class="exit-box-contents">
           <div class="exit-image">
@@ -85,9 +89,10 @@
           <span class="exit-text-head">Wait, don’t go!</span>
           <span class="exit-text-description">You’re right on track! If you quit now, you’ll lose your
             progress.</span>
-          <div class="keep-learning-button-outer-active" id="check-button-div">
-            <button class="button-div keep-learning-button" id="keep-learning-button" onclick="revertQuestionScreen()" title="Action Button">
-              <span id="keep-learning">KEEP LEARNING</span>
+          <div class="keep-learning-button-outer-active" id="keep-learning-button-div">
+            <button class="button-div keep-learning-button" id="keep-learning-btn" onclick="revertQuestionScreen()"
+              title="Action Button">
+              <span id="keep-learning-text">KEEP LEARNING</span>
             </button>
           </div>
           <button class="end-question-session" onclick="exitToLearn()" title="Action Button">
@@ -97,8 +102,8 @@
       </div>
     </div>
   </div>
-  <div class="shop-overlay-outer-div" style="display: none">
-    <div class="shop-overlay" style="display: none">
+  <div class="u-fx-224b51a7 shop-overlay-outer-div">
+    <div class="u-fx-224b51a7 shop-overlay">
       <div class="exit-box">
         <div class="exit-box-contents">
           <div class="gem-head-popup">
@@ -109,9 +114,10 @@
           </div>
           <span class="exit-text-head">You ran out of hearts!!</span>
           <span class="exit-text-description">Get Super for Unlimited Hearts, or use gems to buy hearts.</span>
-          <div class="keep-learning-button-outer-active" id="check-button-div">
-            <button class="button-div keep-learning-button" id="keep-learning-button" onclick="goToShop()" title="Action Button">
-              <span id="keep-learning">GO TO SHOP</span>
+          <div class="keep-learning-button-outer-active" id="shop-button-div">
+            <button class="button-div keep-learning-button" id="go-to-shop-btn" onclick="goToShop()"
+              title="Action Button">
+              <span id="go-to-shop-text">GO TO SHOP</span>
             </button>
           </div>
           <button class="end-question-session" onclick="exitToLearn()" title="Action Button">

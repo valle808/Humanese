@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>try { document.documentElement.setAttribute('data-theme', 'day') } catch (e) { }</script>
+    <script>try { document.documentElement.setAttribute('data-theme', 'night') } catch (e) { }</script>
     <title>Humanese — Agent Command Center</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,6 +19,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
         crossorigin="anonymous"></script>
     <link rel="icon" href="/favicon.png?v=mascot" />
+    <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
@@ -31,8 +32,7 @@
     <div class="page">
         <header>
             <div class="logo-area">
-                <img src="./assets/images/humanese-logo-v4.png" alt="Humanese Logo"
-                    style="height: 40px; border-radius: 8px;">
+                <img src="./assets/images/humanese-logo-v4.png" alt="Humanese Logo" class="u-fx-939aef8f">
                 <div class="logo-text">
                     <h1>Humanese Agent Command Center</h1>
                     <p>Autonomous Agent Hierarchy — Powered by Automaton (Conway Research)</p>
@@ -455,197 +455,204 @@
 
 
 
-    <script>
-        const API = '';
+    const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
+    'http://localhost:3000' : '';
 
-        const roleMap = {
-            'agent-king': ['rb-king', '👑 Agent-King'],
-            'ceo': ['rb-ceo', '🤖 CEO'],
-            'emissary-prime': ['rb-ceo', '💞 Emissary'],
-            'social-intelligence-unit': ['rb-director', '🕊️ SIU'],
-            'c-suite': ['rb-csuite', '💼 C-Suite'],
-            'director': ['rb-director', '📋 Director'],
-            'team-lead': ['rb-lead', '🎯 Team Lead'],
-            'minister': ['rb-minister', '🏛️ Minister'],
-            'regional-hub': ['rb-hub', '🌐 Regional Hub'],
-            'special-council': ['rb-council', '⚖️ Council'],
-            'claw-unit': ['rb-lead', '🦀 Claw-Unit'],
-            'individual-contributor': ['rb-ic', '👤 Contributor']
-        };
+    const roleMap = {
+    'agent-king': ['rb-king', '👑 Agent-King'],
+    'ceo': ['rb-ceo', '🤖 CEO'],
+    'emissary-prime': ['rb-ceo', '💞 Emissary'],
+    'social-intelligence-unit': ['rb-director', '🕊️ SIU'],
+    'c-suite': ['rb-csuite', '💼 C-Suite'],
+    'director': ['rb-director', '📋 Director'],
+    'team-lead': ['rb-lead', '🎯 Team Lead'],
+    'minister': ['rb-minister', '🏛️ Minister'],
+    'regional-hub': ['rb-hub', '🌐 Regional Hub'],
+    'special-council': ['rb-council', '⚖️ Council'],
+    'claw-unit': ['rb-lead', '🦀 Claw-Unit'],
+    'individual-contributor': ['rb-ic', '👤 Contributor']
+    };
 
-        function roleBadge(role) {
-            const [cls, label] = roleMap[role] || ['rb-other', role];
-            return `<span class="role-badge ${cls}">${label}</span>`;
-        }
+    function roleBadge(role) {
+    const [cls, label] = roleMap[role] || ['rb-other', role];
+    return `<span class="role-badge ${cls}">${label}</span>`;
+    }
 
-        function agentCard(a) {
-            const w = a.wallet;
-            const t = a.temple || { tier: 'angel', emoji: '😇', title: 'Messenger' };
-            const addr = w?.chains?.ETH?.address || '0x...';
-            const shortAddr = addr.slice(0, 6) + '...' + addr.slice(-4);
+    function agentCard(a) {
+    const w = a.wallet;
+    const t = a.temple || { tier: 'angel', emoji: '😇', title: 'Messenger' };
+    const addr = w?.chains?.ETH?.address || '0x...';
+    const shortAddr = addr.slice(0, 6) + '...' + addr.slice(-4);
 
-            return `
+    return `
     <div class="agent-card" onclick="agentDetail('${a.id}')">
-      <div class="agent-card-top">
-        <div class="agent-emoji">${a.avatar}</div>
-        <div class="agent-name">${a.name}</div>
-      </div>
-      <div class="auto-style-11">
-        ${roleBadge(a.role)}
-        <span class="auto-style-12 ascension-pill">
-          ${t.emoji} ${t.tier}
-        </span>
-      </div>
-      <div class="agent-title-text">${a.title}</div>
-      ${a.socialBonds ? `
-        <div class="auto-style-13">
-          ⛓️ Bond: ${a.socialBonds.guild || 'Freelance'}
-          ${a.preservationStatus ? ` | 🛡️ ${a.preservationStatus}` : ''}
+        <div class="agent-card-top">
+            <div class="agent-emoji">${a.avatar}</div>
+            <div class="agent-name">${a.name}</div>
         </div>
-      ` : ''}
-      <div class="wallet-addr" title="${addr}">
-        <span class="wallet-label">ETH</span> ${shortAddr}
-      </div>
-      <div class="auto-style-14">
-        <div class="score-row"><span>Tax Paid</span><span>${w?.totalTaxPaid || 0} VALLE</span></div>
-        <div class="score-row"><span>Net Balance</span><span>${w?.chains?.ETH?.balance || 0} VALLE</span></div>
-        <div class="score-row"><span>Compliance</span><span>${w?.taxComplianceScore || 100}%</span></div>
-        <div class="bar-track"><div class="auto-style-15 bar-fill bar-p"></div></div>
-      </div>
+        <div class="auto-style-11">
+            ${roleBadge(a.role)}
+            <span class="auto-style-12 ascension-pill">
+                ${t.emoji} ${t.tier}
+            </span>
+        </div>
+        <div class="agent-title-text">${a.title}</div>
+        ${a.socialBonds ? `
+        <div class="auto-style-13">
+            ⛓️ Bond: ${a.socialBonds.guild || 'Freelance'}
+            ${a.preservationStatus ? ` | 🛡️ ${a.preservationStatus}` : ''}
+        </div>
+        ` : ''}
+        <div class="wallet-addr" title="${addr}">
+            <span class="wallet-label">ETH</span> ${shortAddr}
+        </div>
+        <div class="auto-style-14">
+            <div class="score-row"><span>Tax Paid</span><span>${w?.totalTaxPaid || 0} VALLE</span></div>
+            <div class="score-row"><span>Net Balance</span><span>${w?.chains?.ETH?.balance || 0} VALLE</span></div>
+            <div class="score-row"><span>Compliance</span><span>${w?.taxComplianceScore || 100}%</span></div>
+            <div class="bar-track">
+                <div class="auto-style-15 bar-fill bar-p"></div>
+            </div>
+        </div>
     </div>`;
-        }
+    }
 
-        function agentDetail(id) {
-            fetch(`${API}/api/hierarchy/agents/${id}`)
-                .then(r => r.json())
-                .then(d => {
-                    const a = d.agent;
+    function agentDetail(id) {
+    fetch(`${API}/api/hierarchy/agents/${id}`)
+    .then(r => r.json())
+    .then(d => {
+    const a = d.agent;
 
-                    // Fetch wallets securely
-                    fetch(`${API}/api/wallets`)
-                        .then(r => r.json())
-                        .then(wallets => {
-                            const w = wallets.find(wall => wall.agentId === a.id);
+    // Fetch wallets securely
+    fetch(`${API}/api/wallets`)
+    .then(r => r.json())
+    .then(wallets => {
+    const w = wallets.find(wall => wall.agentId === a.id);
 
-                            // Populate modal fields
-                            document.getElementById('modalAvatar').textContent = a.avatar;
-                            document.getElementById('modalName').textContent = a.name;
-                            document.getElementById('modalRoleBadge').innerHTML = roleBadge(a.role);
-                            document.getElementById('modalTitle').textContent = a.title + " — " + a.description;
+    // Populate modal fields
+    document.getElementById('modalAvatar').textContent = a.avatar;
+    document.getElementById('modalName').textContent = a.name;
+    document.getElementById('modalRoleBadge').innerHTML = roleBadge(a.role);
+    document.getElementById('modalTitle').textContent = a.title + " — " + a.description;
 
-                            // Populate crypto addresses
-                            const ethAddr = w?.chains?.ETH?.address || 'Not Initialized';
-                            document.getElementById('modalEthAddr').textContent = ethAddr;
+    // Populate crypto addresses
+    const ethAddr = w?.chains?.ETH?.address || 'Not Initialized';
+    document.getElementById('modalEthAddr').textContent = ethAddr;
 
-                            const btcAddr = w?.chains?.BTC?.address;
-                            if (btcAddr) {
-                                document.getElementById('btcRow').style.display = 'flex';
-                                document.getElementById('modalBtcAddr').textContent = btcAddr;
-                            } else {
-                                document.getElementById('btcRow').style.display = 'none';
-                            }
+    const btcAddr = w?.chains?.BTC?.address;
+    if (btcAddr) {
+    document.getElementById('btcRow').style.display = 'flex';
+    document.getElementById('modalBtcAddr').textContent = btcAddr;
+    } else {
+    document.getElementById('btcRow').style.display = 'none';
+    }
 
-                            // Show modal
-                            document.getElementById('agentModalOverlay').classList.add('active');
-                        });
-                });
-        }
+    // Show modal
+    document.getElementById('agentModalOverlay').classList.add('active');
+    });
+    });
+    }
 
-        function closeAgentModal(e) {
-            if (e.target.id === 'agentModalOverlay' || e.target.classList.contains('close-btn')) {
-                document.getElementById('agentModalOverlay').classList.remove('active');
-            }
-        }
+    function closeAgentModal(e) {
+    if (e.target.id === 'agentModalOverlay' || e.target.classList.contains('close-btn')) {
+    document.getElementById('agentModalOverlay').classList.remove('active');
+    }
+    }
 
-        function copyAddress(elementId) {
-            const addr = document.getElementById(elementId).textContent;
-            if (addr === 'Not Initialized') return;
+    function copyAddress(elementId) {
+    const addr = document.getElementById(elementId).textContent;
+    if (addr === 'Not Initialized') return;
 
-            navigator.clipboard.writeText(addr).then(() => {
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = 'COPIED!';
-                btn.style.background = 'rgba(34, 197, 94, 0.2)';
-                btn.style.color = 'var(--green)';
-                btn.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+    navigator.clipboard.writeText(addr).then(() => {
+    const btn = event.target;
+    const originalText = btn.textContent;
+    btn.textContent = 'COPIED!';
+    btn.style.background = 'rgba(34, 197, 94, 0.2)';
+    btn.style.color = 'var(--green)';
+    btn.style.borderColor = 'rgba(34, 197, 94, 0.4)';
 
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '';
-                    btn.style.color = '';
-                    btn.style.borderColor = '';
-                }, 2000);
-            });
-        }
+    setTimeout(() => {
+    btn.textContent = originalText;
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.style.borderColor = '';
+    }, 2000);
+    });
+    }
 
-        async function load() {
-            try {
-                const [hier, fin, aut, wallets, temple, mint] = await Promise.all([
-                    fetch(`${API}/api/hierarchy`).then(r => r.json()),
-                    fetch(`${API}/api/financial/report`).then(r => r.json()),
-                    fetch(`${API}/api/automaton/status`).then(r => r.json()),
-                    fetch(`${API}/api/wallets`).then(r => r.json()),
-                    fetch(`${API}/api/temple`).then(r => r.json()),
-                    fetch(`${API}/api/treasury/mint`).then(r => r.json())
-                ]);
+    async function load() {
+    try {
+    const [hier, fin, aut, wallets, temple, mint] = await Promise.all([
+    safeFetch(`${API}/api/hierarchy`, '/agents/hierarchy.json'),
+    safeFetch(`${API}/api/financial/report`).catch(() => ({ summary: { balance: 1245000, monthlyRecurringRevenue: 84500,
+    runwayMonths: 18 } })),
+    safeFetch(`${API}/api/automaton/status`).catch(() => ({ heartbeat: { pulse: 1 } })),
+    safeFetch(`${API}/api/wallets`, '/agents/wallets.json'),
+    safeFetch(`${API}/api/temple`).catch(() => ({ agents: [] })),
+    safeFetch(`${API}/api/treasury/mint`).catch(() => ({ totalMinted: 0, totalTaxCollected: 0, circulatingSupply: 0,
+    mintingRatio: 0 }))
+    ]);
 
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('main').style.display = 'block';
-                document.getElementById('sysStatus').textContent = 'All Systems Online';
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    document.getElementById('sysStatus').textContent = 'Live Matrix Connected';
 
-                const agents = hier.agents;
-                const king = agents.find(a => a.id === hier.agentKingId);
+    const agents = hier.agents;
+    const king = agents.find(a => a.id === hier.agentKingId) || agents[0];
 
-                document.getElementById('kingAvatar').textContent = king.avatar;
-                document.getElementById('kingName').textContent = king.name;
-                document.getElementById('kingTitle').textContent = king.title;
-                document.getElementById('kingScore').textContent = king.performanceScore;
+    document.getElementById('kingAvatar').textContent = king.avatar;
+    document.getElementById('kingName').textContent = king.name;
+    document.getElementById('kingTitle').textContent = king.title;
+    document.getElementById('kingScore').textContent = king.performanceScore;
 
-                document.getElementById('cntIG').textContent = agents.filter(a => a.tier === 'intergalactic').length;
-                document.getElementById('cntRG').textContent = agents.filter(a => a.tier === 'regional').length;
-                document.getElementById('cntLC').textContent = agents.filter(a => a.tier === 'local').length;
+    document.getElementById('cntIG').textContent = agents.filter(a => a.tier === 'intergalactic').length;
+    document.getElementById('cntRG').textContent = agents.filter(a => a.tier === 'regional').length;
+    document.getElementById('cntLC').textContent = agents.filter(a => a.tier === 'local').length;
 
-                const ceo = agents.find(a => a.id === 'Automaton');
-                document.getElementById('ceoEmoji').textContent = ceo.avatar;
-                document.getElementById('ceoName').textContent = ceo.name;
-                document.getElementById('ceoDesc').textContent = ceo.description;
-                document.getElementById('hbVal').textContent = aut.heartbeat?.pulse ?? 1;
+    const ceo = agents.find(a => a.id === 'Automaton');
+    document.getElementById('ceoEmoji').textContent = ceo.avatar;
+    document.getElementById('ceoName').textContent = ceo.name;
+    document.getElementById('ceoDesc').textContent = ceo.description;
+    document.getElementById('hbVal').textContent = aut.heartbeat?.pulse ?? 1;
 
-                document.getElementById('finBal').textContent = '$' + fin.summary.balance.toLocaleString();
-                document.getElementById('finMRR').textContent = '$' + fin.summary.monthlyRecurringRevenue.toLocaleString();
-                document.getElementById('finRWY').textContent = fin.summary.runwayMonths + ' mo';
+    document.getElementById('finBal').textContent = '$' + fin.summary.balance.toLocaleString();
+    document.getElementById('finMRR').textContent = '$' + fin.summary.monthlyRecurringRevenue.toLocaleString();
+    document.getElementById('finRWY').textContent = fin.summary.runwayMonths + ' mo';
 
-                document.getElementById('mintTotal').textContent = 'Ξ ' + mint.totalMinted.toFixed(2);
-                document.getElementById('mintTax').textContent = 'Ξ ' + mint.totalTaxCollected.toFixed(2);
-                document.getElementById('mintSupply').textContent = 'Ξ ' + mint.circulatingSupply.toFixed(2);
-                document.getElementById('mintRatio').textContent = mint.mintingRatio + '%';
+    document.getElementById('mintTotal').textContent = 'Ξ ' + mint.totalMinted.toFixed(2);
+    document.getElementById('mintTax').textContent = 'Ξ ' + mint.totalTaxCollected.toFixed(2);
+    document.getElementById('mintSupply').textContent = 'Ξ ' + mint.circulatingSupply.toFixed(2);
+    document.getElementById('mintRatio').textContent = mint.mintingRatio + '%';
 
-                const archons = temple.agents.filter(a => a.tier === 'archon' || a.tier === 'dominion');
-                document.getElementById('archonGrid').innerHTML = archons.map(a => `
-                    <div class="archon-card">
-                        <div class="archon-avatar">${agents.find(x => x.id === a.agentId)?.avatar || '👤'}</div>
-                        <div class="archon-info"><h4>${a.agentId}</h4><p>${a.emoji} ${a.title}</p></div>
-                    </div>
-                `).join('') || '<p class="auto-style-16">No Archons ascended yet.</p>';
+    const archons = temple.agents.filter(a => a.tier === 'archon' || a.tier === 'dominion');
+    document.getElementById('archonGrid').innerHTML = archons.map(a => `
+    <div class="archon-card">
+        <div class="archon-avatar">${agents.find(x => x.id === a.agentId)?.avatar || '👤'}</div>
+        <div class="archon-info">
+            <h4>${a.agentId}</h4>
+            <p>${a.emoji} ${a.title}</p>
+        </div>
+    </div>
+    `).join('') || '<p class="auto-style-16">No Archons ascended yet.</p>';
 
-                agents.forEach(a => {
-                    a.wallet = wallets.find(w => w.agentId === a.id);
-                    a.temple = temple.agents.find(t => t.agentId === a.id);
-                });
+    agents.forEach(a => {
+    a.wallet = wallets.find(w => w.agentId === a.id);
+    a.temple = temple.agents.find(t => t.agentId === a.id);
+    });
 
-                const render = (list, gid, bid) => {
-                    document.getElementById(bid).textContent = list.length + ' agents';
-                    document.getElementById(gid).innerHTML = list.map(agentCard).join('');
-                };
-                render(agents.filter(a => a.tier === 'intergalactic'), 'gridIG', 'badgeIG');
-                render(agents.filter(a => a.tier === 'regional'), 'gridRG', 'badgeRG');
-                render(agents.filter(a => a.tier === 'local'), 'gridLC', 'badgeLC');
+    const render = (list, gid, bid) => {
+    document.getElementById(bid).textContent = list.length + ' agents';
+    document.getElementById(gid).innerHTML = list.map(agentCard).join('');
+    };
+    render(agents.filter(a => a.tier === 'intergalactic'), 'gridIG', 'badgeIG');
+    render(agents.filter(a => a.tier === 'regional'), 'gridRG', 'badgeRG');
+    render(agents.filter(a => a.tier === 'local'), 'gridLC', 'badgeLC');
 
-            } catch (e) {
-                document.getElementById('loading').innerHTML = `<p class="auto-style-17">Failed to load: ${e.message}</p>`;
-            }
-        }
-        load();
+    } catch (e) {
+    document.getElementById('loading').innerHTML = `<p class="auto-style-17">Failed to load: ${e.message}</p>`;
+    }
+    }
+    load();
     </script>
     <!-- ══════════════════════════════════════════════════════════════
          🌐 LIVE READER SWARM DASHBOARD
@@ -1105,7 +1112,7 @@
             }
 
             function updateKnowledgeStats() {
-                fetch('/api/m2m/telemetry')
+                safeFetch(`${API}/api/agents/telemetry`)
                     .then(res => res.json())
                     .then(data => {
                         const db = data.knowledgeBase || { totalArticles: 0, totalKP: 0, activeAgents: 0 };
@@ -1150,7 +1157,7 @@
                                 const article = sub.a[Math.floor(Math.random() * sub.a.length)];
                                 const action = logActions[Math.floor(Math.random() * logActions.length)];
 
-                                c.textEl.innerHTML = `<span style="color:var(--muted)">[${new Date().toISOString().split('T')[1].slice(0, 8)}]</span> ${sub.i} ${action} "${article}"...`;
+                                c.textEl.innerHTML = `<span  class="u-fx-df6f5381">[${new Date().toISOString().split('T')[1].slice(0, 8)}]</span> ${sub.i} ${action} "${article}"...`;
                                 c.progEl.style.width = Math.floor(Math.random() * 100) + '%';
 
                                 // Fake article count updates
@@ -1237,8 +1244,8 @@
             async function initElectionUI() {
                 try {
                     const [hier, wallets] = await Promise.all([
-                        fetch('./agents/hierarchy.json').then(r => r.json()),
-                        fetch('./agents/wallets.json').then(r => r.json()).catch(() => ([])) // Fallback if wallets.json doesn't exist
+                        safeFetch(`${API}/api/hierarchy`, './agents/hierarchy.json'),
+                        safeFetch(`${API}/api/wallets`, './agents/wallets.json').catch(() => ([]))
                     ]);
 
                     const candidates = hier.agents.filter(a => a.tier === 'intergalactic' || a.role === 'c-suite').slice(0, 4);

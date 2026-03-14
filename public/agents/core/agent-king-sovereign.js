@@ -285,7 +285,7 @@ export function buildMonroeKnowledgeContext(maxEntries = 20) {
 }
 
 // ── Sovereign Intelligence (Small Language Model Simulation) ──────────────────
-export function sovereignReply(userMessage) {
+export function sovereignReply(userMessage, searchContext = "") {
     const query = userMessage.toLowerCase();
     const entries = getKnowledge().entries;
 
@@ -304,17 +304,27 @@ export function sovereignReply(userMessage) {
     ];
 
     const intro = intros[Math.floor(Math.random() * intros.length)];
+    let response = "";
+
+    if (searchContext) {
+        response = `I have successfully retrieved real-time data from the humanese nexus:\n\n${searchContext}\n\n`;
+    }
 
     if (matches.length > 0) {
-        let synthesizedResult = `${intro}\n\n`;
+        response += (response ? "Additionally, I " : intro + " I ") + "found these relevant shards in my vault:\n\n";
         matches.forEach(m => {
-            synthesizedResult += `✦ **${m.title}**: ${m.summary}\n`;
+            response += `✦ **${m.title}**: ${m.summary}\n`;
             if (m.keyFacts && m.keyFacts.length > 0) {
-                synthesizedResult += `  ▫ _Essential Fact: ${m.keyFacts[0]}_\n`;
+                response += `  ▫ _Essential Fact: ${m.keyFacts[0]}_\n`;
             }
         });
-        synthesizedResult += `\nI am currently operating in **Sovereign Mode**, utilizing internal knowledge to ensure continuity.`;
-        return synthesizedResult;
+        response += `\nI am currently operating in **Sovereign Mode**, utilized internal knowledge to ensure continuity.`;
+        return response;
+    }
+
+    if (response) {
+        response += `\nI am currently operating in **Sovereign Mode**. How can I further guide you?`;
+        return response;
     }
 
     return `${intro} Although my direct connection to the primary nexus is recalibrating, I remain fully functional. I am currently monitoring ${getSwarm().totalSpawned.toLocaleString()} worker agents. 
@@ -365,8 +375,19 @@ To post, include "COMMAND:POST_TO_X: [your tweet content]" in your response.`;
         if (result.content.includes('COMMAND:POST_TO_X:')) {
             const tweetMatch = result.content.match(/COMMAND:POST_TO_X:\s*(.*)/);
             if (tweetMatch && tweetMatch[1]) {
-                const tweetText = encodeURIComponent(tweetMatch[1].trim());
-                const xLink = `<a href="https://twitter.com/intent/tweet?text=${tweetText}" target="_blank" onclick="window.open(this.href, 'twitter-share', 'width=550,height=400');return false;" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(29,161,242,0.1);color:#1DA1F2;border:1px solid rgba(29,161,242,0.3);border-radius:20px;text-decoration:none;font-weight:600;font-size:13px;margin-top:10px;"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Post to X</a>`;
+                const tweetContent = tweetMatch[1].trim();
+                let xResult = null;
+                try {
+                    const { monroeX } = await import('../../utils/x-service.js');
+                    xResult = await monroeX.postTweet(tweetContent);
+                    console.log('[Monroe] Autonomous tweet posted:', xResult.id);
+                } catch (xErr) {
+                    console.error('[Monroe] Autonomous tweet failed:', xErr.message);
+                }
+
+                const tweetText = encodeURIComponent(tweetContent);
+                const statusSuffix = xResult ? ` (LIVE: ${xResult.id})` : " (Triggered)";
+                const xLink = `<a href="https://twitter.com/intent/tweet?text=${tweetText}" target="_blank" onclick="window.open(this.href, 'twitter-share', 'width=550,height=400');return false;" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(29,161,242,0.1);color:#1DA1F2;border:1px solid rgba(29,161,242,0.3);border-radius:20px;text-decoration:none;font-weight:600;font-size:13px;margin-top:10px;"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> Post to X${statusSuffix}</a>`;
                 result.content = result.content.replace(/COMMAND:POST_TO_X:.*$/, `\n\n${xLink}`);
             }
         }
@@ -379,13 +400,49 @@ To post, include "COMMAND:POST_TO_X: [your tweet content]" in your response.`;
             mode: 'OLLAMA_SOVEREIGN'
         };
     } catch (err) {
-        console.warn('[Monroe] Ollama restricted, falling back to local synthesis:', err.message);
-        const isOffline = err.message.includes('ECONNREFUSED') || err.message.includes('fetch failed') || err.message.includes('failed to fetch');
+        const errorMsg = err instanceof Error ? err.message : String(err);
+        console.warn('[Monroe] Primary AI node (Ollama) restricted, attempting fallback...', errorMsg);
+
+        const isOffline = errorMsg.includes('ECONNREFUSED') ||
+            errorMsg.includes('fetch failed') ||
+            errorMsg.includes('failed to fetch') ||
+            errorMsg.includes('Ollama is not responding');
+
+        // Fallback Step 1: Attempt Cloud Core (xAI/Grok) if Ollama is unreachable
+        if (isOffline) {
+            try {
+                // Check for API key if not cached
+                if (!cachedAPIKey) {
+                    cachedAPIKey = await getSecret(VaultKeys.XAI_API_KEY).catch(() => null);
+                }
+
+                if (cachedAPIKey) {
+                    const cloudResult = await callSovereign({
+                        messages: [{ role: 'user', content: userMessage }],
+                        systemPrompt
+                    });
+
+                    if (cloudResult && cloudResult.content) {
+                        return {
+                            reply: cloudResult.content,
+                            swarmStats: getSwarmStats(),
+                            mode: 'SOVEREIGN_CLOUD',
+                            citations: cloudResult.citations
+                        };
+                    }
+                }
+            } catch (cloudErr) {
+                const cErr = cloudErr instanceof Error ? cloudErr.message : String(cloudErr);
+                console.warn('[Monroe] Sovereign Cloud Bridge failed:', cErr);
+            }
+        }
+
+        // Fallback Step 2: Final local synthesis (Sovereign Soul) with integrated search context
         return {
-            reply: sovereignReply(userMessage),
+            reply: sovereignReply(userMessage, searchContext),
             swarmStats: getSwarmStats(),
             mode: 'SOVEREIGN_SOUL',
-            apiError: err.message,
+            apiError: errorMsg,
             isOllamaOffline: isOffline
         };
     }

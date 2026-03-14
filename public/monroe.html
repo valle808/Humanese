@@ -10,7 +10,7 @@
     <link rel="icon" href="/favicon.png?v=mascot" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script>try { document.documentElement.setAttribute('data-theme', 'day') } catch (e) { }</script>
+    <script>try { document.documentElement.setAttribute('data-theme', 'night') } catch (e) { }</script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@600;700;800;900&display=swap"
         rel="stylesheet">
@@ -708,7 +708,7 @@
             <!-- Avatar centered -->
             <div class="monroe-identity pos-abs-center">
                 <div class="monroe-avatar" id="monroe-avatar-icon">
-                    <i data-lucide="bot" class="icon-md"></i>
+
                 </div>
             </div>
 
@@ -881,6 +881,8 @@
             return text
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/^(\d+\.|-|✦|▫)\s+(.*)/gm, '<div style="margin-left: 20px; margin-bottom: 4px;">$1 $2</div>')
+                .replace(/\n\n/g, '<div style="height: 12px;"></div>')
                 .replace(/\n/g, '<br>');
         }
 
@@ -893,11 +895,12 @@
 
             const cursor = document.createElement('span');
             cursor.className = 'monroe-cursor';
-            // Empty cursor, styled in CSS instead of containing '▋' for cleaner look
             div.appendChild(cursor);
 
             async function typeNodes(sourceEl, targetEl) {
-                for (const node of sourceEl.childNodes) {
+                targetEl.appendChild(cursor);
+                const children = Array.from(sourceEl.childNodes);
+                for (const node of children) {
                     if (node.nodeType === Node.TEXT_NODE) {
                         const textNode = document.createTextNode('');
                         targetEl.insertBefore(textNode, cursor);
@@ -909,9 +912,14 @@
                         }
                     } else if (node.nodeType === Node.ELEMENT_NODE) {
                         const newEl = document.createElement(node.nodeName);
-                        for (const attr of node.attributes) newEl.setAttribute(attr.name, attr.value);
+                        for (let i = 0; i < node.attributes.length; i++) {
+                            newEl.setAttribute(node.attributes[i].name, node.attributes[i].value);
+                        }
                         targetEl.insertBefore(newEl, cursor);
-                        if (node.childNodes.length > 0) await typeNodes(node, newEl);
+                        if (node.childNodes.length > 0) {
+                            await typeNodes(node, newEl);
+                            targetEl.appendChild(cursor);
+                        }
                     }
                 }
             }
@@ -944,6 +952,9 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: text, history, engine: 'ollama' })
                 });
+                if (!res.ok) {
+                    throw new Error(`API returned ${res.status}: ${res.statusText}`);
+                }
                 const data = await res.json();
                 removeThinking();
                 const reply = data.response || 'Monroe is recalibrating...';
@@ -951,8 +962,9 @@
                 await typeMessage(reply, 'bot', true);
             } catch (err) {
                 removeThinking();
-                await typeMessage('⚠️ Monroe is temporarily offline. Please check that the backend server is running on port 3000.', 'bot');
-                console.error('[Monroe Page]', err);
+                console.error('[Monroe] Error:', err);
+                const errMsg = `⚠️ Error: ${err.message || 'Unknown error'}. Check the console for details.`;
+                await typeMessage(errMsg, 'bot');
             } finally {
                 sendBtn.disabled = false;
             }

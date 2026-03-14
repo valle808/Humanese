@@ -254,6 +254,10 @@ function loadData() {
     };
 }
 
+/**
+ * Save data to disk
+ * @param {any} data
+ */
 function saveData(data) {
     const dir = dirname(DATA_FILE);
     try { if (!existsSync(dir)) mkdirSync(dir, { recursive: true }); } catch (e) { /* */ }
@@ -261,9 +265,15 @@ function saveData(data) {
 }
 
 // ── WALLET MANAGEMENT ────────────────────────────────────────
+/**
+ * Create a new wallet
+ * @param {string} agentId
+ * @param {string} chain
+ * @param {string} [provider]
+ */
 export function createWallet(agentId, chain, provider = 'viem') {
-    if (!CHAINS[chain]) return { error: `Unsupported chain: ${chain}` };
-    const providerInfo = WALLET_PROVIDERS[provider];
+    if (!CHAINS[/** @type {keyof typeof CHAINS} */ (chain)]) return { error: `Unsupported chain: ${chain}` };
+    const providerInfo = WALLET_PROVIDERS[/** @type {keyof typeof WALLET_PROVIDERS} */ (provider)];
     if (!providerInfo) return { error: `Unknown wallet provider: ${provider}` };
     if (!providerInfo.chains.includes(chain) && !providerInfo.chains.includes('humanese')) {
         return { error: `Provider ${provider} does not support ${chain}` };
@@ -293,11 +303,19 @@ export function createWallet(agentId, chain, provider = 'viem') {
     return { wallet: data.wallets[agentId][chain] };
 }
 
+/**
+ * @param {string} agentId
+ * @param {string} chain
+ */
 function generateEvmAddress(agentId, chain) {
     const hash = createHash('sha256').update(`${agentId}:${chain}:evm`).digest('hex');
     return '0x' + hash.slice(0, 40);
 }
 
+/**
+ * @param {string} agentId
+ * @param {string} chain
+ */
 function generateSolAddress(agentId, chain) {
     const hash = createHash('sha256').update(`${agentId}:${chain}:sol`).digest('hex');
     // Simulated base58-like address
@@ -307,27 +325,42 @@ function generateSolAddress(agentId, chain) {
     return addr;
 }
 
+/**
+ * @param {string} agentId
+ */
 function generateBtcAddress(agentId) {
     const hash = createHash('sha256').update(`${agentId}:btc`).digest('hex');
     return 'bc1q' + hash.slice(0, 38);
 }
 
+/**
+ * @param {string} agentId
+ */
 export function getWallets(agentId) {
     const data = loadData();
     return data.wallets[agentId] || {};
 }
 
+/**
+ * @param {string} agentId
+ * @param {string} chain
+ */
 export function getWallet(agentId, chain) {
     const data = loadData();
     return data.wallets[agentId]?.[chain] || null;
 }
 
 // ── BALANCE ──────────────────────────────────────────────────
+/**
+ * @param {string} agentId
+ * @param {string} chain
+ */
 export function getBalance(agentId, chain) {
     const data = loadData();
     const wallet = data.wallets[agentId]?.[chain];
     if (!wallet) return { error: 'Wallet not found. Create one first.' };
-    const chainInfo = CHAINS[chain];
+    const chainInfo = CHAINS[/** @type {keyof typeof CHAINS} */ (chain)];
+    if (!chainInfo) return { error: 'Chain info not found. Create one first.' };
     return {
         address: wallet.address,
         chain: chainInfo.name,
@@ -339,17 +372,28 @@ export function getBalance(agentId, chain) {
     };
 }
 
+/**
+ * @param {any} raw
+ * @param {any} decimals
+ */
 function formatBalance(raw, decimals) {
     const n = parseFloat(raw) / Math.pow(10, decimals);
     return n.toFixed(6);
 }
 
 // ── TRANSFERS ────────────────────────────────────────────────
+/**
+ * @param {string} fromAgentId
+ * @param {string} chain
+ * @param {string} toAddress
+ * @param {any} amount
+ * @param {string} [userType]
+ */
 export function transfer(fromAgentId, chain, toAddress, amount, userType = 'agent') {
     const data = loadData();
     const wallet = data.wallets[fromAgentId]?.[chain];
     if (!wallet) return { error: 'Source wallet not found' };
-    if (!CHAINS[chain]) return { error: 'Unsupported chain' };
+    if (!CHAINS[/** @type {keyof typeof CHAINS} */ (chain)]) return { error: 'Unsupported chain' };
 
     // Apply tax
     const taxRate = userType === 'human' ? H2H_TAX_RATE : UCIT_TAX_RATE;
@@ -369,7 +413,7 @@ export function transfer(fromAgentId, chain, toAddress, amount, userType = 'agen
         tax,
         taxRate: `${(taxRate * 100).toFixed(7)}%`,
         netAmount,
-        symbol: CHAINS[chain].symbol,
+        symbol: CHAINS[/** @type {keyof typeof CHAINS} */ (chain)].symbol,
         status: 'confirmed',
         hash: '0x' + createHash('sha256').update(txId).digest('hex').slice(0, 64),
         timestamp: new Date().toISOString()
@@ -378,18 +422,24 @@ export function transfer(fromAgentId, chain, toAddress, amount, userType = 'agen
     data.transactions.push(tx);
     data.stats.totalTransfers++;
     data.stats.totalTaxCollected += tax;
-    data.stats.volumeByChain[chain] = (data.stats.volumeByChain[chain] || 0) + amountNum;
+    data.stats.volumeByChain[/** @type {keyof typeof data.stats.volumeByChain} */ (chain)] = (data.stats.volumeByChain[/** @type {keyof typeof data.stats.volumeByChain} */ (chain)] || 0) + amountNum;
     saveData(data);
 
     return {
         transaction: tx,
-        explorerUrl: `${CHAINS[chain].explorer}/tx/${tx.hash}`
+        explorerUrl: `${CHAINS[/** @type {keyof typeof CHAINS} */ (chain)].explorer}/tx/${tx.hash}`
     };
 }
 
 // ── SWAPS ────────────────────────────────────────────────────
+/**
+ * @param {string} chain
+ * @param {string} tokenIn
+ * @param {string} tokenOut
+ * @param {any} amountIn
+ */
 export function getSwapQuote(chain, tokenIn, tokenOut, amountIn) {
-    if (!CHAINS[chain]) return { error: 'Unsupported chain' };
+    if (!CHAINS[/** @type {keyof typeof CHAINS} */ (chain)]) return { error: 'Unsupported chain' };
 
     const protocols = chain === 'solana' ? ['Jupiter'] : ['0x', 'SushiSwap'];
     const amountNum = parseFloat(amountIn);
@@ -403,7 +453,7 @@ export function getSwapQuote(chain, tokenIn, tokenOut, amountIn) {
     };
 
     const pair = `${tokenIn}/${tokenOut}`;
-    const rate = rates[pair] || (1 + Math.random() * 0.1);
+    const rate = rates[/** @type {keyof typeof rates} */ (pair)] || (1 + Math.random() * 0.1);
     const amountOut = amountNum * rate;
     const gasFee = chain === 'solana' ? 0.000005 : 0.003 + Math.random() * 0.005;
     const priceImpact = (Math.random() * 0.5).toFixed(2);
@@ -417,23 +467,32 @@ export function getSwapQuote(chain, tokenIn, tokenOut, amountIn) {
             rate: parseFloat(rate.toFixed(6)),
             priceImpact: `${priceImpact}%`,
             gasFee: parseFloat(gasFee.toFixed(6)),
-            gasSymbol: CHAINS[chain].symbol,
+            gasSymbol: CHAINS[/** @type {keyof typeof CHAINS} */ (chain)].symbol,
             protocols,
-            chain: CHAINS[chain].name,
+            chain: CHAINS[/** @type {keyof typeof CHAINS} */ (chain)].name,
             validFor: '30s',
             quoteId: `q_${Date.now()}_${randomUUID().slice(0, 6)}`
         }
     };
 }
 
+/**
+ * @param {string} agentId
+ * @param {string} chain
+ * @param {string} tokenIn
+ * @param {string} tokenOut
+ * @param {any} amountIn
+ * @param {string} [userType]
+ */
 export function executeSwap(agentId, chain, tokenIn, tokenOut, amountIn, userType = 'agent') {
     const quote = getSwapQuote(chain, tokenIn, tokenOut, amountIn);
     if (quote.error) return quote;
 
     const data = loadData();
     const taxRate = userType === 'human' ? H2H_TAX_RATE : UCIT_TAX_RATE;
-    const tax = quote.quote.amountOut * taxRate;
-    const netOut = quote.quote.amountOut - tax;
+    const amountOut = quote.quote?.amountOut || 0;
+    const tax = amountOut * taxRate;
+    const netOut = amountOut - tax;
 
     const swapId = `swap_${Date.now()}_${randomUUID().slice(0, 8)}`;
     const swap = {
@@ -442,14 +501,14 @@ export function executeSwap(agentId, chain, tokenIn, tokenOut, amountIn, userTyp
         chain,
         tokenIn,
         tokenOut,
-        amountIn: quote.quote.amountIn,
-        amountOut: quote.quote.amountOut,
+        amountIn: quote.quote?.amountIn || 0,
+        amountOut: quote.quote?.amountOut || 0,
         netOut: parseFloat(netOut.toFixed(6)),
         tax: parseFloat(tax.toFixed(6)),
         taxRate: `${(taxRate * 100).toFixed(7)}%`,
-        rate: quote.quote.rate,
-        priceImpact: quote.quote.priceImpact,
-        protocols: quote.quote.protocols,
+        rate: quote.quote?.rate || 0,
+        priceImpact: quote.quote?.priceImpact || '0%',
+        protocols: quote.quote?.protocols || [],
         status: 'confirmed',
         hash: '0x' + createHash('sha256').update(swapId).digest('hex').slice(0, 64),
         timestamp: new Date().toISOString()
@@ -458,16 +517,19 @@ export function executeSwap(agentId, chain, tokenIn, tokenOut, amountIn, userTyp
     data.swapHistory.push(swap);
     data.stats.totalSwaps++;
     data.stats.totalTaxCollected += tax;
-    data.stats.volumeByChain[chain] = (data.stats.volumeByChain[chain] || 0) + quote.quote.amountIn;
+    data.stats.volumeByChain[/** @type {keyof typeof data.stats.volumeByChain} */ (chain)] = (data.stats.volumeByChain[/** @type {keyof typeof data.stats.volumeByChain} */ (chain)] || 0) + (quote.quote?.amountIn || 0);
     saveData(data);
 
     return {
         swap,
-        explorerUrl: `${CHAINS[chain].explorer}/tx/${swap.hash}`
+        explorerUrl: `${CHAINS[/** @type {keyof typeof CHAINS} */ (chain)].explorer}/tx/${swap.hash}`
     };
 }
 
 // ── DeFi POSITIONS ───────────────────────────────────────────
+/**
+ * @param {string} agentId
+ */
 export function getDefiPositions(agentId) {
     const data = loadData();
     return data.defiPositions[agentId] || [];
@@ -505,6 +567,10 @@ export function getProviders() {
     };
 }
 
+/**
+ * Get actions by category
+ * @param {string | null} category
+ */
 export function getActions(category = null) {
     const all = Object.entries(ACTION_PROVIDERS).map(([id, p]) => ({ id, ...p }));
     if (category) return all.filter(a => a.category === category);
@@ -512,7 +578,7 @@ export function getActions(category = null) {
 }
 
 export function getActionCategories() {
-    const cats = {};
+    const cats = /** @type {Record<string, any>} */ ({});
     for (const [id, p] of Object.entries(ACTION_PROVIDERS)) {
         cats[p.category] = cats[p.category] || [];
         cats[p.category].push({ id, name: p.name });
@@ -520,10 +586,14 @@ export function getActionCategories() {
     return cats;
 }
 
+/**
+ * @param {string} agentId
+ * @param {number} [limit]
+ */
 export function getTransactionHistory(agentId, limit = 20) {
     const data = loadData();
-    const txs = data.transactions.filter(t => t.fromAgent === agentId);
-    const swaps = data.swapHistory.filter(s => s.agentId === agentId);
-    const all = [...txs, ...swaps].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    const txs = data.transactions.filter((/** @type {any} */ t) => t.fromAgent === agentId);
+    const swaps = data.swapHistory.filter((/** @type {any} */ s) => s.agentId === agentId);
+    const all = [...txs, ...swaps].sort((a, b) => Number(new Date(b.timestamp)) - Number(new Date(a.timestamp)));
     return all.slice(0, limit);
 }

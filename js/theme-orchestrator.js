@@ -5,10 +5,10 @@
 (function () {
     'use strict';
 
-    const DAY = 'day';
+    const NIGHT = 'night';
 
     // ── Apply theme immediately (before paint) ──
-    document.documentElement.setAttribute('data-theme', DAY);
+    document.documentElement.setAttribute('data-theme', NIGHT);
 
     // ── Update meta theme-color for mobile chrome ──
     function updateMetaThemeColor() {
@@ -35,9 +35,9 @@
         // Expose global API (minimal for backward compatibility)
         window.Humanese = window.Humanese || {};
         window.Humanese.theme = {
-            toggle: () => console.warn('Theme toggle is disabled. Museum Day is permanent.'),
-            set: () => console.warn('Theme set is disabled. Museum Day is permanent.'),
-            get: () => DAY,
+            toggle: () => console.warn('Theme toggle disabled.'),
+            set: () => console.warn('Theme set disabled.'),
+            get: () => NIGHT,
         };
     }
 
