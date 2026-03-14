@@ -14,13 +14,9 @@
 /* ── Global Layout Fix ── */
 @media (min-width: 901px) {
     body {
-        transition: padding-left 0.3s ease;
-        padding-left: 80px;
-        /* Default rail width */
-    }
-
-    body.sidebar-expanded {
-        padding-left: 260px;
+        /* Set base padding for horizontal fixed top-bar */
+        padding-top: 64px;
+        transition: padding-top 0.3s ease;
     }
 }
 
@@ -41,19 +37,21 @@
     overflow: hidden;
 }
 
-/* Desktop Styles */
+/* Desktop Styles (Horizontal Top Bar) */
 @media (min-width: 901px) {
     .mobile-menu-sidebar {
-        width: 80px;
+        width: 100vw;
+        height: 64px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         transform: none !important;
-    }
-
-    .mobile-menu-sidebar.active {
-        width: 260px;
+        border-right: none;
+        border-bottom: 1px solid var(--side-border);
     }
 }
 
-/* Mobile Styles */
+/* Mobile Styles (Slide-in Vertical Drawer) */
 @media (max-width: 900px) {
     .mobile-menu-sidebar {
         width: 280px;
@@ -65,16 +63,36 @@
     .mobile-menu-sidebar.active {
         transform: translateX(-280px);
     }
+
+    /* Stack links vertically on mobile */
+    .mobile-menu-links {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 20px 12px;
+    }
+
+    /* Restore link icons on mobile and restyle */
+    .link-icon {
+        display: inline-block;
+    }
+
+    .mobile-menu-link {
+        gap: 16px;
+        padding: 12px 16px;
+        font-size: 16px;
+    }
 }
 
 /* ── Brand / Logo ── */
 .mobile-menu-brand {
-    height: 80px;
+    height: 64px;
     display: flex;
     align-items: center;
     padding: 0 24px;
     gap: 16px;
-    border-bottom: 1px solid var(--side-border);
 }
 
 .brand-icon {
@@ -105,11 +123,13 @@
 .mobile-menu-links {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
-    padding: 20px 12px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    padding: 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
     /* Firefox */
     -ms-overflow-style: none;
@@ -124,18 +144,21 @@
 .mobile-menu-link {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
+    gap: 8px;
+    padding: 8px 16px;
     color: #999;
     text-decoration: none;
     border-radius: 12px;
     transition: all 0.2s;
     white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .mobile-menu-link:hover,
 .mobile-menu-link.active {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
+    /* Slightly more prominent hover state */
     color: #fff;
 }
 
@@ -145,8 +168,16 @@
     text-align: center;
 }
 
+/* Hide link icons on desktop for a cleaner, typographically focused aesthetic */
+@media (min-width: 901px) {
+    .link-icon {
+        display: none;
+    }
+}
+
 .link-text {
-    opacity: 0;
+    opacity: 1;
+    /* Always visible on desktop and mobile drawer */
     transition: opacity 0.2s;
 }
 
@@ -158,6 +189,27 @@
 .omega-link .link-icon {
     color: var(--omega-red);
     animation: omega-pulse-legacy 2s infinite;
+}
+
+@media (min-width: 901px) {
+
+    /* Desktop omega link text styling (since icon is hidden) */
+    .omega-link .link-text {
+        color: var(--omega-red);
+        animation: omega-text-pulse 2s infinite;
+    }
+}
+
+@keyframes omega-text-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px rgba(255, 77, 77, 0.3);
+    }
+
+    50% {
+        text-shadow: 0 0 12px rgba(255, 77, 77, 0.8);
+    }
 }
 
 @keyframes omega-pulse-legacy {
