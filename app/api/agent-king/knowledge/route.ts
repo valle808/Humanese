@@ -21,3 +21,8 @@ export async function GET() {
         }));
 
         return NextResponse.json({ entries: formattedKnowledge, total: formattedKnowledge.length });
+    } catch (error) {
+        console.error('[Knowledge API] Error:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+}
