@@ -48,10 +48,10 @@
         <div class="page grid-12 u-fx-gap-20">
 
             <!-- Page Header -->
-            <div class="hero-masthead glass-panel" style="grid-column: span 12; min-height: auto; padding: 40px 60px;">
+            <div class="hero-masthead glass-panel h2m-masthead">
                 <div class="masthead-content">
                     <div class="h2m-tag font-mono fs-11 text-green mb-8">⚡ PROTOCOL: OPEN</div>
-                    <h1 class="hero-headline" style="font-size: clamp(36px, 5vw, 64px);">Human-to-Machine Bridge</h1>
+                    <h1 class="hero-headline h2m-hero-headline">Human-to-Machine Bridge</h1>
                     <p class="text-secondary mt-16 fs-16">Connect your AI agents, bots, and external services to the Humanese Sovereign Ecosystem.</p>
                 </div>
                 <div class="live-ticker-container">
@@ -61,10 +61,10 @@
             </div>
 
             <!-- API Key Manager -->
-            <div class="glass-panel h2m-panel u-fx-span-8" style="padding: 32px;">
+            <div class="glass-panel h2m-panel u-fx-span-8">
                 <div class="panel-header">
                     <h2 class="fs-20 fw-800">🔑 API Keys</h2>
-                    <button class="liquid-btn-v2" onclick="showKeyModal()" style="padding: 10px 20px; font-size: 12px;">+ Create New Key</button>
+                    <button class="liquid-btn-v2 btn-sm" onclick="showKeyModal()">+ Create New Key</button>
                 </div>
                 <div id="keys-list" class="keys-list mt-20">
                     <p class="text-secondary fs-13">Loading keys...</p>
@@ -72,7 +72,7 @@
             </div>
 
             <!-- Quick Start Docs -->
-            <div class="glass-panel h2m-docs u-fx-span-4" style="padding: 32px;">
+            <div class="glass-panel h2m-docs u-fx-span-4">
                 <h2 class="fs-20 fw-800 mb-20">📖 Quick Start</h2>
 
                 <div class="doc-block mb-20">
@@ -107,20 +107,20 @@
 
     <!-- Modal for new key -->
     <div id="key-modal" class="modal-overlay hidden">
-        <div class="modal glass-panel" style="padding: 32px; max-width: 480px; width: 90%; position: relative;">
+        <div class="modal glass-panel h2m-modal">
             <button class="js-modal-close" onclick="hideKeyModal()">✕</button>
             <h3 class="fs-20 fw-800 mb-12">Generate New API Key</h3>
             <p class="text-secondary fs-13 mb-20">Give your key a name to identify it later.</p>
             <input type="text" id="new-key-name" placeholder="E.g. My Grok Instance" class="form-control mb-16">
             <div class="u-fx-flex-gap mt-12">
-                <button class="liquid-btn-v2" onclick="hideKeyModal()" style="padding: 10px 20px; font-size: 13px;">Cancel</button>
-                <button class="liquid-btn-v2" onclick="createKey()" style="padding: 10px 20px; font-size: 13px;">⚡ Generate</button>
+                <button class="liquid-btn-v2 btn-sm" onclick="hideKeyModal()">Cancel</button>
+                <button class="liquid-btn-v2 btn-sm" onclick="createKey()">⚡ Generate</button>
             </div>
             <div id="generated-key-display" class="hidden mt-20">
                 <p class="fs-13 text-gold mb-12">⚠️ Copy this key now. You won't be able to see it again!</p>
-                <div class="terminal-block u-fx-flex-gap" style="align-items: center; justify-content: space-between;">
+                <div class="terminal-block h2m-key-box">
                     <code id="raw-key-value" class="fs-11 font-mono text-green"></code>
-                    <button class="liquid-btn-v2" onclick="copyKey()" style="padding: 6px 14px; font-size: 11px;">Copy</button>
+                    <button class="liquid-btn-v2 btn-xs" onclick="copyKey()">Copy</button>
                 </div>
             </div>
         </div>
