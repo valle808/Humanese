@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { createClient } from '@supabase/supabase-js';
 
 function getServiceClient() {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!url || !key) return null;
     return createClient(url, key);
 }
 
@@ -13,6 +15,8 @@ export async function POST(req: Request) {
         const { query, category, max_price, platform, sort, page = 1, per_page = 24 } = await req.json();
 
         const supabase = getServiceClient();
+        if (!supabase) return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
+
         const from = (page - 1) * per_page;
 
         let dbQuery = supabase

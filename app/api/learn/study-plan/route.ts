@@ -2,10 +2,29 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import OpenAI from "openai";
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
-const openai = new OpenAI({ apiKey: process.env.OPENROUTER_API_KEY, baseURL: "https://openrouter.ai/api/v1" });
+export const dynamic = 'force-dynamic';
+
+const getSupabase = () => {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !key) return null;
+    return createClient(url, key);
+};
+
+const getOpenAI = () => {
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    if (!apiKey) return null;
+    return new OpenAI({ apiKey, baseURL: "https://openrouter.ai/api/v1" });
+};
 
 export async function POST(req: Request) {
+    const supabase = getSupabase();
+    const openai = getOpenAI();
+
+    if (!supabase || !openai) {
+        return NextResponse.json({ success: false, error: "Service configuration missing" }, { status: 503 });
+    }
+
     try {
         const { topic, userId, location, socialLife, localLaws } = await req.json();
 
@@ -28,7 +47,9 @@ export async function POST(req: Request) {
             response_format: { type: "json_object" }
         });
 
-        const planData = JSON.parse(completion.choices[0].message.content!);
+        const planContent = completion.choices[0].message.content;
+        if (!planContent) throw new Error("AI failed to generate a plan");
+        const planData = JSON.parse(planContent);
 
         // 2. Store in Supabase
         const { data: plan, error: pError } = await supabase
@@ -56,6 +77,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ success: true, planId: plan.id, planData });
     } catch (error: any) {
+        console.error('[Study Plan Error]', error);
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 }

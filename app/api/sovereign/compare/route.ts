@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { comparison } from '@/lib/comparison';
 import { grokipedia } from '@/lib/grokipedia';
 
