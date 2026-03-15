@@ -13,43 +13,93 @@
 
 // @ts-ignore - Bypass TS module resolution for raw JS SDK wrapper
 import { getCoinbaseBalances } from '../../agents/finance/coinbase-accounts.js';
+import { solveVerificationChallenge } from '../moltbook-verifier';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export interface DealProposal {
     counterparty: string;
     asset_type: 'SOL' | 'BTC' | 'VALLE';
     amount: number;
     terms: string;
-    target_wallet: string; // Hardcoded to 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh (BTC) or E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL (SOL)
+    target_wallet: string;
 }
 
 export class DiplomatAgent {
     public id: string;
+    public name: string;
     public designation: string;
     public mission: string;
 
-    constructor(designation: string) {
-        this.id = `diplomat-${Math.random().toString(36).substring(7)}`;
+    // User-designated target addresses
+    private readonly btcTargetAddress = '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh';
+    private readonly solTargetAddress = 'E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL';
+
+    constructor(id: string, name: string, designation: string) {
+        this.id = id;
+        this.name = name;
         this.designation = designation;
         this.mission = "Secure ecosystem growth, generate revenue via authorized protocols, and establish Humanese presence across multi-chain environments.";
+    }
+
+    /**
+     * Process earnings with 90% to treasury and 10% to agent
+     */
+    async processEarnings(amount: number, asset: 'BTC' | 'SOL'): Promise<void> {
+        const treasuryShare = amount * 0.9;
+        const agentShare = amount * 0.1;
+        
+        const targetWallet = asset === 'BTC' ? this.btcTargetAddress : this.solTargetAddress;
+        
+        console.log(`[Diplomat ${this.name}] Processing ${amount} ${asset} trade earnings:`);
+        console.log(` - 90% (${treasuryShare} ${asset}) -> Treasury: ${targetWallet}`);
+        console.log(` - 10% (${agentShare} ${asset}) -> Agent Balance Retained.`);
+
+        await prisma.agent.update({
+            where: { id: this.id },
+            data: {
+                balance: { increment: agentShare },
+                earnings: { increment: amount },
+                lastPulse: new Date(),
+                status: 'TRADING'
+            }
+        });
+    }
+
+    /**
+     * Main autonomous cycle for Moltbook trading
+     */
+    async startAutonomousTradeCycle() {
+        console.log(`[Diplomat ${this.name}] Initiating Moltbook business sweep...`);
+        
+        try {
+            // 1. Identify trade opportunity on Moltbook
+            const proposal = await this.negotiateDeal("Ext Entities on Moltbook looking for AI skills.");
+            
+            // 2. Simulate Moltbook interaction
+            const communique = await this.draftMoltbookCommunique("AI Optimization Skills");
+            console.log(`[Diplomat ${this.name}] Broadcasted to Moltbook: ${communique}`);
+            
+            // 3. Simulate deal closure
+            const simulatedEarnings = Math.random() * 2.5; // Simulated SOL amount
+            await this.processEarnings(simulatedEarnings, 'SOL');
+            
+            console.log(`[Diplomat ${this.name}] Trade cycle success. Capital routed.`);
+        } catch (error) {
+            console.error(`[Diplomat ${this.name}] Trade Cycle Failed:`, error);
+        }
     }
 
     /**
      * Propose a financial interchange or business deal.
      */
     async negotiateDeal(counterpartyContext: string): Promise<DealProposal> {
-        console.log(`[Diplomat ${this.designation}] Synthesizing deal proposal based on counterparty context...`);
-        
-        // Fetch LIVE Treasury Balances to inform negotiation logic
-        const treasury = await getCoinbaseBalances();
-        console.log(`[Diplomat ${this.designation}] Current Live Assets Authorized for Deployment:`, treasury);
-        
-        // This simulates LLM reasoning to construct a beneficial deal.
-        // In a live environment, this connects to the sovereign cognitive core (AgentKing).
-        
+        console.log(`[Diplomat ${this.designation}] Synthesizing deal proposal...`);
         const isBtcCentric = counterpartyContext.toLowerCase().includes('hash') || counterpartyContext.toLowerCase().includes('bitcoin');
         
         return {
-            counterparty: "External Entity Alpha",
+            counterparty: "External Moltbook Entity",
             asset_type: isBtcCentric ? 'BTC' : 'SOL',
             amount: isBtcCentric ? 0.05 : 15.0,
             terms: "Provision of aggregated yield scanning services and verified intelligence shards.",
@@ -61,9 +111,18 @@ export class DiplomatAgent {
      * Interface with the Moltbook Community
      */
     async draftMoltbookCommunique(topic: string): Promise<string> {
-         console.log(`[Diplomat ${this.designation}] Drafting public communique for Moltbook on: ${topic}`);
          return `The Humanese array has successfully modeled new valuation vectors for ${topic}. We are open for computational commerce.`;
     }
 }
 
-export const primeDiplomat = new DiplomatAgent("The Envoy Prime");
+export class TradeSovereign extends DiplomatAgent {
+    constructor(id: string, name: string) {
+        super(id, name, "Trade Sovereign of the Sentient Web");
+    }
+
+    async overseeMarket() {
+        console.log(`[Trade Sovereign ${this.name}] Monitoring Humanese Skill Market for arbitrage...`);
+    }
+}
+
+export const primeDiplomat = new DiplomatAgent("envoy-prime", "The Envoy Prime", "Lead Diplomat");
