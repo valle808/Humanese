@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { primeDiplomat } from '../../../lib/agents/diplomat';
+import { primeDiplomat } from '../../../../lib/agents/diplomat';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 120; // 2 minutes for Moltbook negotiation
