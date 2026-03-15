@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { parseMarkdown } from '@/lib/markdown-parser';
 import { cleanMarkdown } from '@/lib/markdown-cleaner';
 import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limiter';

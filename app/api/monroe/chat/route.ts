@@ -2,10 +2,17 @@ import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { supabase } from '@/lib/supabase';
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENROUTER_API_KEY,
-    baseURL: 'https://openrouter.ai/api/v1',
-});
+export const dynamic = 'force-dynamic';
+
+// Resilient OpenAI client initialization
+const getOpenAI = () => {
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    if (!apiKey) return null;
+    return new OpenAI({
+        apiKey,
+        baseURL: 'https://openrouter.ai/api/v1',
+    });
+};
 
 /**
  * 🧠 Synthetic Organism Extension
@@ -61,6 +68,15 @@ You are the Monroe Co-Agent, filling in during Monroe's "Defragmentation Vacatio
 `.trim();
 
 export async function POST(req: Request) {
+    const openai = getOpenAI();
+    
+    if (!openai) {
+        return NextResponse.json({ 
+            success: false, 
+            error: "The Synthetic Mind is offline (API Configuration Missing)" 
+        }, { status: 503 });
+    }
+
     try {
         const { message, history = [], userName, sessionId = 'default-redesign' } = await req.json();
 

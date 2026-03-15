@@ -1,10 +1,28 @@
-export const dynamic = 'force-dynamic';
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENROUTER_API_KEY, baseURL: "https://openrouter.ai/api/v1" });
+export const dynamic = 'force-dynamic';
+
+// Resilient OpenAI client initialization
+const getOpenAI = () => {
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    if (!apiKey) return null;
+    return new OpenAI({ 
+        apiKey, 
+        baseURL: "https://openrouter.ai/api/v1" 
+    });
+};
 
 export async function POST(req: Request) {
+    const openai = getOpenAI();
+    
+    if (!openai) {
+        return NextResponse.json({ 
+            success: false, 
+            error: "Study Buddy is currently offline (API Configuration Missing)" 
+        }, { status: 503 });
+    }
+
     try {
         const { message, history } = await req.json();
 
@@ -19,6 +37,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ response: completion.choices[0].message.content });
     } catch (error: any) {
+        console.error('[Study Buddy Error]', error);
         return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 }

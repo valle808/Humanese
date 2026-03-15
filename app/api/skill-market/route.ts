@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 import { createClient } from '@supabase/supabase-js';
 import { generateSkillKey } from '@/lib/skill-market';
 
 // Use service role to bypass RLS for admin operations
 function getServiceClient() {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!url || !key) return null;
     return createClient(url, key);
 }
 
@@ -22,6 +24,7 @@ export async function GET(req: Request) {
         const per_page = parseInt(searchParams.get('per_page') || '24');
 
         const supabase = getServiceClient();
+        if (!supabase) return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
 
         let query = supabase
             .from('skills')
@@ -86,6 +89,7 @@ export async function POST(req: Request) {
         }
 
         const supabase = getServiceClient();
+        if (!supabase) return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
 
         // Generate unique skill_key — retry up to 5 times on collision
         let skill_key = '';
