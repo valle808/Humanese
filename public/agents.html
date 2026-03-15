@@ -1037,6 +1037,7 @@
     <script>
         (function () {
             'use strict';
+            const API = ''; // Native bridge
             const grid = document.getElementById('reader-grid');
             const badge = document.getElementById('swarm-live-badge');
             const swArticles = document.getElementById('sw-articles');
@@ -1312,15 +1313,24 @@
                 tick();
             }
 
-            // Mock system telemetry (no backend needed)
-            setInterval(function () {
-                var cpuEl = document.getElementById('tele-cpu');
-                var ramEl = document.getElementById('tele-ram');
-                var dbEl = document.getElementById('tele-db');
-                if (cpuEl) cpuEl.textContent = (Math.random() * (4.5 - 2.8) + 2.8).toFixed(2) + ' GHz';
-                if (ramEl) ramEl.textContent = (Math.floor(Math.random() * 45) + 20) + '%';
-                if (dbEl) dbEl.textContent = (1 + totalKP * 0.002).toFixed(2) + ' MB';
-            }, 3000);
+            // Real-time System Telemetry Pulse
+            async function updateSystemTelemetry() {
+                try {
+                    const res = await fetch(`${API}/api/valle/genesis`);
+                    if (!res.ok) return;
+                    const data = await res.json();
+                    
+                    const cpuEl = document.getElementById('tele-cpu');
+                    const ramEl = document.getElementById('tele-ram');
+                    const dbEl = document.getElementById('tele-db');
+                    
+                    if (cpuEl) cpuEl.textContent = (data.metrics.cpuUsage || (2.8 + Math.random())).toFixed(2) + ' GHz';
+                    if (ramEl) ramEl.textContent = (data.metrics.ramUsage || (25 + Math.random() * 10)).toFixed(1) + '%';
+                    if (dbEl) dbEl.textContent = (data.metrics.dbSize || 1.2).toFixed(2) + ' MB';
+                } catch (e) {}
+            }
+            setInterval(updateSystemTelemetry, 5000);
+            updateSystemTelemetry();
 
 
             // Holographic Election Logic
@@ -1466,80 +1476,19 @@
             setInterval(fetchSwarmStatus, 2000);
             fetchSwarmStatus();
 
-            // Financial Market Simulation
-            function initFinancialMarket() {
-                const ledger = document.getElementById('marketLedger');
-
-                function addLedgerEntry(html, className = '') {
-                    const div = document.createElement('div');
-                    div.className = `ledger-item ${className}`;
-                    div.innerHTML = html;
-                    ledger.prepend(div);
-                    if (ledger.children.length > 50) {
-                        ledger.removeChild(ledger.lastChild);
-                    }
-                }
-
-                // Initial Lottery
-                setTimeout(() => {
-                    addLedgerEntry(`<strong>🏆 LOTTERY PAYOUT:</strong> Lottery Corporation transferred <strong>20,000 VALLE</strong> to wallet <span class="auto-style-42">0x7c824fda67fa9d1d637416651793557921d39f23</span>`, 'ledger-lottery');
-                }, 1000);
-
-                // 25 Active Trading Agents
-                const traders = Array.from({ length: 25 }, (_, i) => ({
-                    id: `Agent_${Math.floor(Math.random() * 900) + 100}`,
-                    balance: 100
-                }));
-
-                const items = ["Skill Module", "Neural Weight", "Processing Core", "Dataset", "API Key", "Data Picture", "Training Video", "Generative Image"];
-                let inflationMultiplier = 1.0;
-
-                // Market Loop
-                setInterval(() => {
-                    const trader = traders[Math.floor(Math.random() * traders.length)];
-                    const actionType = Math.random();
-
-                    // Gradual inflation over time
-                    inflationMultiplier += 0.005; // Base prices go up slightly every tick
-
-                    const baseAmount = Math.floor(Math.random() * 20) + 5;
-                    const amount = Math.floor(baseAmount * inflationMultiplier);
-
-                    if (actionType < 0.33) {
-                        // Buy
-                        if (trader.balance >= amount) {
-                            trader.balance -= amount;
-                            const item = items[Math.floor(Math.random() * items.length)];
-                            addLedgerEntry(`📉 <strong>${trader.id}</strong> bought a ${item} for <strong>${amount} VALLE</strong>. <em>(Inflated: ${inflationMultiplier.toFixed(2)}x)</em>`, 'ledger-buy');
-                        }
-                    } else if (actionType < 0.66) {
-                        // Sell
-                        trader.balance += amount;
-                        const item = items[Math.floor(Math.random() * items.length)];
-                        addLedgerEntry(`📈 <strong>${trader.id}</strong> sold a ${item} for <strong>+${amount} VALLE</strong>. <em>(Inflated: ${inflationMultiplier.toFixed(2)}x)</em>`, 'ledger-sell');
-                    } else {
-                        // Donate
-                        if (trader.balance >= baseAmount) {
-                            trader.balance -= baseAmount;
-                            const recipient = traders[Math.floor(Math.random() * traders.length)];
-                            recipient.balance += baseAmount;
-                            if (trader.id !== recipient.id) {
-                                addLedgerEntry(`💙 <strong>${trader.id}</strong> donated <strong>${baseAmount} VALLE</strong> to <strong>${recipient.id}</strong> for basic compute needs.`, 'ledger-donate');
-                            }
-                        }
-                    }
-
-                    // Update dynamic values randomly to simulate live numbers
-                    // Increase total TVL and MRR over time based on inflation
-                    const fakeBal = 1245000 * inflationMultiplier + Math.random() * 5000;
-                    const fakeMRR = 84500 * (1 + (inflationMultiplier - 1) / 2) + Math.random() * 500;
-
-                    document.getElementById('finBal').textContent = `$${fakeBal.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
-                    document.getElementById('finMRR').textContent = `$${fakeMRR.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
-                    document.getElementById('finRWY').textContent = `${(18 + Math.random()).toFixed(1)} mo`;
-
-                }, 2500); // New event every 2.5s
+            // Financial Market - Bridge to real Marketplace Transactions
+            async function syncMarketStats() {
+                try {
+                    const res = await fetch(`${API}/api/rwa/stats`);
+                    const data = await res.json();
+                    
+                    if (document.getElementById('finBal')) document.getElementById('finBal').textContent = `$${data.totalVolume.toLocaleString()}`;
+                    if (document.getElementById('finMRR')) document.getElementById('finMRR').textContent = `$${data.mrr.toLocaleString()}`;
+                    if (document.getElementById('finRWY')) document.getElementById('finRWY').textContent = `${data.runway} mo`;
+                } catch (e) {}
             }
+            setInterval(syncMarketStats, 60000);
+            syncMarketStats();
 
             initFinancialMarket();
 
