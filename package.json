@@ -8,7 +8,7 @@
     },
     "scripts": {
         "dev": "next dev",
-        "build": "prisma generate && tailwindcss -i ./app/globals.css -o ./app/compiled.css && next build",
+        "build": "prisma generate && tailwindcss -i ./app/globals.src.css -o ./app/theme.css && next build",
         "start": "next start",
         "build:static": "prisma generate && node --max-old-space-size=4096 scripts/build_public.js",
         "autoheal": "node watcher_agent.js",
