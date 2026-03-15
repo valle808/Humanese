@@ -419,3 +419,138 @@
 .bt-1 {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* ── H2M API DASHBOARD ── */
+.h2m-panel { padding: 32px; }
+
+.h2m-docs { padding: 32px; }
+
+.h2m-key-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: background 0.2s;
+}
+
+.h2m-key-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.h2m-key-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.h2m-key-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 4px;
+    opacity: 0.6;
+}
+
+.h2m-key-preview { opacity: 0.4; }
+
+.h2m-revoke-btn {
+    flex-shrink: 0;
+    background: rgba(255, 50, 50, 0.1);
+    border: 1px solid rgba(255, 50, 50, 0.3);
+    color: #ff6464;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.h2m-revoke-btn:hover {
+    background: rgba(255, 50, 50, 0.2);
+    border-color: rgba(255, 50, 50, 0.5);
+}
+
+.h2m-empty-msg {
+    padding: 24px;
+    text-align: center;
+    opacity: 0.5;
+    font-size: 13px;
+}
+
+.endpoint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.endpoint-item {
+    background: rgba(0, 255, 204, 0.05);
+    border-left: 2px solid var(--matrix-green);
+    padding: 6px 10px;
+    border-radius: 0 6px 6px 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--matrix-green);
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.endpoint-item:hover { opacity: 1; }
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Toast visibility state */
+.js-toast {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.js-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.h2m-tag { margin-bottom: 8px; }
+
+/* H2M Layout helpers */
+.h2m-masthead {
+    grid-column: span 12;
+    min-height: 0;
+    padding: 40px 60px;
+}
+
+.h2m-hero-headline { font-size: clamp(36px, 5vw, 64px); }
+
+.h2m-modal {
+    padding: 32px;
+    max-width: 480px;
+    width: 90%;
+    position: relative;
+}
+
+.h2m-key-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Button size variants */
+.btn-sm { padding: 10px 20px; font-size: 12px; }
+.btn-xs { padding: 6px 14px; font-size: 11px; }
+
