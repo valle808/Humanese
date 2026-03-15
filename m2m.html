@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/pages.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index-fixes.css">
+    <link rel="stylesheet" href="css/ecosystem-sovereign.css">
     <script src="js/command-palette.js" defer></script>
 </head>
 
@@ -94,36 +95,34 @@
 
         <!-- Sidebar Right -->
         <aside class="m2m-sidebar-right">
-            <div class="glass-panel terminal-block">
-                <h3>Live Metrics</h3>
-                <div class="sys-metric" onclick="showMetricInfo('Central Bank Capitalization')">
-                    <div class="sys-metric-header">
-                        <span>Capitalization</span>
-                        <span id="metric-capitalization">$12.4M</span>
+            <div class="sovereign-card terminal-block">
+                <h3 class="sidebar-label">Live Telemetry</h3>
+                <div class="m2m-metrics-grid">
+                    <div class="sys-metric">
+                        <div class="sys-metric-header" style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
+                            <span>Capitalization</span>
+                            <span id="metric-capitalization" style="color:var(--color-cyan); font-weight:800;">$12.4M</span>
+                        </div>
                     </div>
-                </div>
-                <div class="sys-metric" onclick="showMetricInfo('Active Nodes')">
-                    <div class="sys-metric-header">
-                        <span>Active Nodes</span>
-                        <span>8,241</span>
+                    
+                    <div class="sys-metric">
+                        <div class="sys-metric-header" style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
+                            <span>Neural Resonance</span>
+                            <span id="metric-happiness" style="color:var(--color-neon-green); font-weight:800;">87%</span>
+                        </div>
+                        <div class="metric-bar-container">
+                            <div class="metric-bar-fill" id="bar-happiness" style="width: 87%;"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="sys-metric">
-                    <div class="sys-metric-header">
-                        <span>Happiness</span>
-                        <span id="metric-happiness">87%</span>
-                    </div>
-                    <div class="sys-bar-bg">
-                        <div class="sys-bar-fill" id="bar-happiness"></div>
-                    </div>
-                </div>
-                <div class="sys-metric">
-                    <div class="sys-metric-header">
-                        <span>Load</span>
-                        <span id="metric-load">92%</span>
-                    </div>
-                    <div class="sys-bar-bg">
-                        <div class="sys-bar-fill gold" id="bar-load"></div>
+
+                    <div class="sys-metric">
+                        <div class="sys-metric-header" style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
+                            <span>Protocol Load</span>
+                            <span id="metric-load" style="color:var(--color-magenta); font-weight:800;">92%</span>
+                        </div>
+                        <div class="metric-bar-container">
+                            <div class="metric-bar-fill" id="bar-load" style="width: 92%; background:var(--color-magenta); box-shadow:0 0 10px var(--color-magenta);"></div>
+                        </div>
                     </div>
                 </div>
             </div>
