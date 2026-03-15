@@ -4,3 +4,5 @@ node_modules
 testfox-reports/
 .vercel
 .env*.local
+.env
+.next/
