@@ -317,3 +317,54 @@ html {
     @apply bg-[#0a0a0a]/80 backdrop-blur-xl border-r border-white/10;
   }
 }
+
+/* Solana Official Typography Patterns Extracted by SolanaDev Agent */
+.nd-heading-xl {
+  @apply my-0 font-mono font-medium text-[40px] md:text-[48px] xl:text-[80px] leading-[1.1] md:leading-[1.083] xl:leading-[1.0];
+}
+
+.nd-heading-m {
+  @apply my-0 font-mono font-medium text-[18px] md:text-[32px] xl:text-[36px] leading-[1.333] md:leading-[1.25] xl:leading-[1.222] tracking-[-0.54px] md:tracking-[-0.96px] xl:tracking-[-1.08px];
+}
+
+.nd-heading-s {
+  @apply my-0 font-mono font-medium text-[16px] md:text-[24px] xl:text-[24px] leading-[1.5] md:leading-[1.333] xl:leading-[1.333] tracking-[-0.32px] md:tracking-[-0.48px] xl:tracking-[-0.48px];
+}
+
+.nd-body-m {
+  @apply my-0 text-[16px] md:text-[18px] xl:text-[18px] leading-[1.25] md:leading-[1.44] xl:leading-[1.33] tracking-[-0.16px] md:tracking-[-0.18px] xl:tracking-[-0.18px];
+}
+
+.nd-body-xs {
+  @apply my-0 text-[12px] md:text-[14px] xl:text-[14px] leading-[1.33] md:leading-[1.43] xl:leading-[1.43];
+}
+
+@property --rotation {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.solana-border {
+  --stroke: 1px;
+  --bg-color: #000000;
+  --rotation: 0deg;
+  border-radius: 12px;
+  border: var(--stroke) solid transparent;
+  background:
+    linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    conic-gradient(
+        from var(--rotation) at 50% 50%,
+        #9945ff 0%,
+        #14f195 60%,
+        #00d4ff 80%,
+        #9945ff 100%
+      )
+      border-box;
+  animation: solana-shimmer 6s linear infinite;
+}
+
+@keyframes solana-shimmer {
+  0% { --rotation: 0deg; }
+  100% { --rotation: 360deg; }
+}
