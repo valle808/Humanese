@@ -106,7 +106,17 @@ export class MinerAgent {
             // 3. Generate simulated yield (boosted by level)
             const simulatedEarnings = (Math.random() * 0.0001) * multiplier; 
             await this.processEarnings(simulatedEarnings, 'BTC');
-            
+
+            // 3. Record Outcome
+            await prisma.cognitiveLog.create({
+                data: {
+                    agentId: this.id,
+                    thought: `Cycle complete. Yield extracted and routed. Level-based multiplier applied: ${multiplier.toFixed(2)}x.`,
+                    action: 'COMPLETE_MINING_CYCLE',
+                    resonance: 1.0
+                }
+            });
+
             console.log(`[Miner ${this.name}] Cycle complete. Standing by for next pulse.`);
         } catch (error) {
             console.error(`[Miner ${this.name}] Cycle Failed:`, error);
@@ -128,6 +138,18 @@ export class MinerAgent {
      * Orchestrate a yield operation
      */
     async launchOperation(asset: 'BTC' | 'SOL' | 'VALLE'): Promise<MiningOperation> {
+            // 1. Record Intention
+            await prisma.cognitiveLog.create({
+                data: {
+                    agentId: this.id,
+                    thought: `Observing ecosystem yield vectors. Scaling hashpower for ${asset}.`,
+                    intention: `Initiate targeted mining cycle for ${asset} to optimize 90/10 treasury flow.`,
+                    action: 'INIT_MINING_CYCLE',
+                    resonance: 0.95
+                }
+            });
+
+            // 2. Launch operation
         console.log(`[Miner ${this.designation}] Initiating operation for target asset: ${asset}`);
         
         const liveTreasury = await getCoinbaseBalances().catch(() => ({}));

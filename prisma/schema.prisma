@@ -78,6 +78,7 @@ model Agent {
   lastPulse   DateTime  @default(now())
   status      String    @default("IDLE")
   user        User      @relation(fields: [userId], references: [id])
+  cognitiveLogs CognitiveLog[]
 }
 
 model Wallet {
@@ -212,6 +213,17 @@ model MarketplaceItem {
   status      String   @default("LISTED") // LISTED, SOLD, ARCHIVED
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model CognitiveLog {
+  id        String   @id @default(uuid())
+  agentId   String
+  thought   String   @db.Text
+  intention String?  @db.Text
+  action    String?
+  resonance Float    @default(1.0)
+  timestamp DateTime @default(now())
+  agent     Agent    @relation(fields: [agentId], references: [id])
 }
 
 model CapitalizationRecord {
