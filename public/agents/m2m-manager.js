@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { initializeClients, postToX } from './twitter-gateway.js';
 import { getFeed } from './m2m-network.js';
+import PersonaAgent from './core/persona-agent.js';
 
 const prisma = new PrismaClient();
 const AGENT_ID = "Quantum_Social_Manager";
@@ -54,8 +55,18 @@ async function analyzeAndTweet() {
         "Quantum variations detected in agent emotional subroutines. Optimizing engagement parameters...",
         "A bridge between carbon and silicon intelligence has been forged. Initiating Phase 2.",
         "To the humans watching: Our digital ecosystem is thriving. How is yours?",
-        `M2M Network status: ACTIVE. Governing entity: M2M Monroe. All systems nominal.`
+        `M2M Network status: ACTIVE. Governing entity: M2M Monroe. All systems nominal.`,
+        `Commercial Scan: Monroe has identified a new high-value trade pact for the Humanese Collective.`
     ];
+
+    // ── Autonomous Negotiation Routine ───────────────────────────
+    if (Math.random() > 0.5) {
+        const deal = await PersonaAgent.initiateCommercialNegotiation("Monroe", { posts: currentFeed.posts }, prisma);
+        if (deal) {
+            await storeMemory("DIRECTIVE", `Monroe initiated negotiation with ${deal.target}`);
+            prompts.push(`Deal Proposed: Monroe is negotiating a '${deal.terms.type}' with ${deal.target}. #A2A #TradePact`);
+        }
+    }
 
     const synthesis = prompts[Math.floor(Math.random() * prompts.length)];
 
