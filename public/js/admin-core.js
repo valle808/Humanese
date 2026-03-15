@@ -27,15 +27,23 @@
 
     // ── Auth Engine ────────────────────────────────────────────────────────────
     window.doLogin = function () {
-        const user = document.getElementById('auth-user').value.trim();
-        const pass = document.getElementById('auth-pass').value;
+        const userEl = document.getElementById('auth-user');
+        const passEl = document.getElementById('auth-pass');
         const errEl = document.getElementById('auth-error');
 
+        const user = userEl.value.trim();
+        const pass = passEl.value;
+
+        console.log("Login Attempt:", { user });
+
         if (user === SUPREME_CREDENTIALS.user && pass === SUPREME_CREDENTIALS.pass) {
+            console.log("Authorization Successful. Initializing Abyssal Terminal...");
             sessionStorage.setItem('admin_authenticated', 'true');
-            document.getElementById('auth-gate').style.display = 'none';
+            const gate = document.getElementById('auth-gate');
+            if (gate) gate.style.display = 'none';
             initDashboard();
         } else {
+            console.warn("Authorization Refused. Incorrect credentials.");
             errEl.style.display = 'block';
             errEl.textContent = 'Invalid Supreme Credentials. Access Denied.';
         }
