@@ -25,6 +25,7 @@ import { exportToPDF } from '@/lib/pdf-exporter';
 import { copyAsMarkdown } from '@/lib/markdown-exporter';
 import { KnowledgeVault } from '@/components/KnowledgeVault';
 import { ValleCryptoOverview } from '@/components/ValleCryptoOverview';
+import { CoinbaseTelemetry } from '@/components/CoinbaseTelemetry';
 
 export default function Home() {
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
@@ -239,6 +240,7 @@ export default function Home() {
               </button>
               
               <ValleCryptoOverview />
+              <CoinbaseTelemetry />
             </div>
           </motion.div>
         </main>
