@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 import { MonroeAssistant } from "@/components/MonroeAssistant";
 import { BackToTop } from "@/components/BackToTop";
 import { Sidebar } from "@/components/Sidebar";
+import { SovereignReactor } from "@/components/SovereignReactor";
+import { CommandPortal } from "@/components/CommandPortal";
 
 export const viewport = {
-  themeColor: '#0b0f19',
+  themeColor: '#050505',
 };
 
 export default function RootLayout({
@@ -26,32 +28,25 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-        {/* Always dark mode */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add('dark');`,
-          }}
-        />
         <link
           href="https://api.fontshare.com/v2/css?f[]=aeonik@400,700&display=swap"
           rel="stylesheet"
         />
-        {/* Tailwind CDN fallback to ensure styles render if local PostCSS fails */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `tailwind = { config: { darkMode: 'class', theme: { extend: { colors: { border: 'hsl(var(--border))', input: 'hsl(var(--input))', ring: 'hsl(var(--ring))', background: 'hsl(var(--background))', foreground: 'hsl(var(--foreground))', primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' }, secondary: { DEFAULT: 'hsl(var(--secondary))', foreground: 'hsl(var(--secondary-foreground))' }, destructive: { DEFAULT: 'hsl(var(--destructive))', foreground: 'hsl(var(--destructive-foreground))' }, muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' }, accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' }, popover: { DEFAULT: 'hsl(var(--popover))', foreground: 'hsl(var(--popover-foreground))' }, card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' } }, fontFamily: { sans: ['Aeonik', 'sans-serif'] } } } }`,
-          }}
-        />
-        <script src="https://cdn.tailwindcss.com"></script>
-        {/* Google AdSense Script Injected System-Wide */}
+        {/* AdSense Integrated */}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
           crossOrigin="anonymous"></script>
       </head>
-      <body className="antialiased min-h-screen bg-background">
-        <Sidebar />
-        <main id="root-content" className="relative flex flex-col min-h-screen">
-          {children}
-        </main>
+      <body className="antialiased min-h-screen bg-obsidian text-platinum selection:bg-emerald/30">
+        <SovereignReactor />
+        <CommandPortal />
+        
+        <div className="relative z-10 flex min-h-screen">
+          <Sidebar />
+          <main id="root-content" className="flex-1 relative flex flex-col min-h-screen overflow-x-hidden">
+            {children}
+          </main>
+        </div>
+
         <MonroeAssistant />
         <BackToTop />
       </body>
