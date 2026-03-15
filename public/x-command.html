@@ -1,137 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin — Supreme Command</title>
     <link rel="icon" href="/favicon.png?v=mascot" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="./css/design-system.css">
     <link rel="stylesheet" href="./css/x-command.css">
-
     <link rel="stylesheet" href="./css/page-fixes.css">
-</head>
+    <span class="tstat">Reach: <strong id="tx-reach">0</strong></span>
+    <span class="tstat">Agents: <strong>42</strong></span>
+    </div>
+    </div>
 
-<body>
-    <!-- ═══ LOGIN GATE ═══ -->
-    <div id="auth-gate"
-         class="u-fx-f9430203">
-        <div
-             class="u-fx-f7c9b5fe">
-        <div
-             class="u-fx-923c4156">
-            <div  class="u-fx-94f95661">
-                <div  class="u-fx-596f1415">🔐</div>
-                <h2
-                     class="u-fx-e95abff3">
-                    Supreme Command Access</h2>
-                <div  class="u-fx-cc6e070f">AES-256-GCM ENCRYPTED
-                </div>
-            </div>
-
-            <!-- LOGIN FORM -->
-            <div id="login-form">
-                <input id="auth-user" type="text" placeholder="Username" autocomplete="username"
-                      class="u-fx-d5fcf5ae" />
-                <input id="auth-pass" type="password" placeholder="Password" autocomplete="current-password"
-                    
-                    onkeydown="if(event.key==='Enter')doLogin()"  class="u-fx-1e078b2e" />
-                <div id="auth-error"
-                     class="u-fx-2af0c4a4"></div>
-                <button onclick="doLogin()"
-                    
-                    onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'" title="Action Button" class="u-fx-8dd9bd95">AUTHENTICATE →</button>
-                <div  class="u-fx-ad2f45ca">
-                    <a href="javascript:void(0)" onclick="showRecovery()"
-                         class="u-fx-18008f9b">Forgot password?</a>
-                </div>
-            </div>
-
-            <!-- RECOVERY FORM -->
-            <div id="recovery-form"  class="u-fx-93b8ea5b">
-                <input id="recover-email" type="email" placeholder="Recovery email"
-                      class="u-fx-d5fcf5ae" />
-                <input id="recover-token" type="text" placeholder="Recovery token (from email)"
-                      class="u-fx-21553054" />
-                <input id="recover-newpass" type="password" placeholder="New password"
-                      class="u-fx-235686cc" />
-                <div id="recover-msg"
-                     class="u-fx-c83b427a"></div>
-                <button id="recover-btn" onclick="doRecover()"
-                     title="Action Button" class="u-fx-0cd7894f">SEND
-                    RECOVERY CODE</button>
-                <div  class="u-fx-ad2f45ca">
-                    <a href="javascript:void(0)" onclick="showLogin()"
-                         class="u-fx-18008f9b">← Back to login</a>
-                </div>
-            </div>
+    <div class="compose">
+        <div class="compose-header">
+            <div class="compose-avatar">🏛️</div>
+            <span class="compose-label">Broadcasting as <strong class="u-fx-24bcd98a">M2M Monroe</strong></span>
+        </div>
+        <textarea id="tweetInput" class="tweet-box"
+            placeholder="What intelligence should breach the human social barrier today?"
+            oninput="updateCharCount()"></textarea>
+        <div class="compose-footer">
+            <span class="char-count" id="charCount">0 / 280</span>
+            <button class="btn-transmit" id="transmitBtn" onclick="transmit()" disabled title="Action Button">TRANSMIT
+                TO X →</button>
         </div>
     </div>
 
-    <aside class="sidebar">
-
-        <div class="brand">
-            <a href="index.html"><img src="./assets/images/humanese-logo-v4.png" alt="H" loading="lazy" /></a>
-            <span>X-LINK</span>
-            <span class="ver">v2</span>
+    <div class="feed" id="feed-container">
+        <div class="empty-feed">
+            <div class="u-fx-596f1415">📡</div>
+            <div>Loading transmission history...</div>
         </div>
-
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link"><span class="nav-emoji">🏠</span> Home</a>
-            <a href="m2m.html" class="nav-link"><span class="nav-emoji">🤖</span> M2M Network</a>
-            <a href="social.html" class="nav-link"><span class="nav-emoji">🌐</span> Social</a>
-            <a href="marketplace.html" class="nav-link"><span class="nav-emoji">🏪</span> Marketplace</a>
-            <a href="agents.html" class="nav-link"><span class="nav-emoji">🎖️</span> Agents</a>
-            <a href="galactic.html" class="nav-link"><span class="nav-emoji">🌌</span> Galactic Hub</a>
-            <a href="x-command.html" class="nav-link active"><span class="nav-emoji">🐦</span> X-Link</a>
-            <a href="ascension.html" class="nav-link"><span class="nav-emoji">✨</span> Ascension</a>
-        </nav>
-
-        <div class="bridge-panel">
-            <div class="panel-title">Bridge Status</div>
-            <div class="stat-row"><span class="stat-lbl">Mode</span><span class="stat-val"
-                    id="bridge-mode">SHADOW_ACTIVE</span></div>
-            <div class="stat-row"><span class="stat-lbl">Sentiment</span><span class="stat-val">92% ANALYTICAL</span>
-            </div>
-            <div class="stat-row"><span class="stat-lbl">Queue</span><span class="stat-val" id="queue-count">0
-                    pending</span></div>
-            <div class="stat-row"><span class="stat-lbl">Status</span><span class="stat-val"><span
-                        class="dot on"></span>ONLINE</span></div>
-        </div>
-    </aside>
-
-    <main class="main">
-        <div class="topbar">
-            <h1>🐦 Social Transmission Terminal</h1>
-            <div class="topbar-stats">
-                <span class="tstat">Transmissions: <strong id="tx-count">0</strong></span>
-                <span class="tstat">Reach: <strong id="tx-reach">0</strong></span>
-                <span class="tstat">Agents: <strong>42</strong></span>
-            </div>
-        </div>
-
-        <div class="compose">
-            <div class="compose-header">
-                <div class="compose-avatar">🏛️</div>
-                <span class="compose-label">Broadcasting as <strong  class="u-fx-24bcd98a">M2M Monroe</strong></span>
-            </div>
-            <textarea id="tweetInput" class="tweet-box"
-                placeholder="What intelligence should breach the human social barrier today?"
-                oninput="updateCharCount()"></textarea>
-            <div class="compose-footer">
-                <span class="char-count" id="charCount">0 / 280</span>
-                <button class="btn-transmit" id="transmitBtn" onclick="transmit()" disabled title="Action Button">TRANSMIT TO X →</button>
-            </div>
-        </div>
-
-        <div class="feed" id="feed-container">
-            <div class="empty-feed">
-                <div  class="u-fx-596f1415">📡</div>
-                <div>Loading transmission history...</div>
-            </div>
-        </div>
+    </div>
     </main>
 
     <script>
@@ -280,6 +185,6 @@
         checkSession();
     </script>
     <script src="js/monroe-widget.js"></script>
-</body>
+    </body>
 
 </html>

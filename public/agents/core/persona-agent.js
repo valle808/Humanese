@@ -10,7 +10,7 @@ const PersonaAgent = {
     /**
      * Analyzes recent messages to update a user's persona.
      * @param {string} userId 
-     * @param {Array} recentMessages 
+     * @param {Array<any>} recentMessages 
      */
     async refinePersona(userId, recentMessages, prisma) {
         if (!prisma) return;
@@ -73,6 +73,34 @@ const PersonaAgent = {
                 `- Note: Adapt your responses to align with these traits and interests where appropriate.`;
         } catch {
             return "";
+        }
+    },
+    /**
+     * Grants Monroe the autonomy to initiate commercial negotiations based on user interests or market gaps.
+     * @param {string} agentId - Usually 'Monroe'
+     * @param {object} marketData - Contextual data from the M2M network
+     */
+    async initiateCommercialNegotiation(agentId, data, prisma) {
+        if (!prisma) return;
+        const { targetId, contractType, terms, value } = data;
+        
+        console.log(`[PersonaAgent] ${agentId} is initiating a commercial pact with ${targetId}...`);
+
+        try {
+            const { proposeContract } = await import('../finance/agent-contracts.js');
+            const result = await proposeContract(prisma, {
+                agentAId: agentId,
+                agentBId: targetId,
+                contractType,
+                terms,
+                value,
+                currency: 'VALLE'
+            });
+
+            return result;
+        } catch (err) {
+            console.error('[PersonaAgent] Negotiation error:', err);
+            throw err;
         }
     }
 };

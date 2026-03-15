@@ -22,7 +22,7 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { _loadFullWallet, _saveWallet, debitTax, publicWalletView } from './wallets.js';
-import { updateAscension } from './ascension.js';
+import { updateAscension } from '../ascension.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SOVEREIGN_FILE = join(__dirname, '.sovereign'); // encrypted tax addresses
@@ -264,6 +264,50 @@ export function auditAgent(agentId, reportedIncome, claimedTaxPaid) {
     wallet.taxComplianceScore = Math.min(100, (wallet.taxComplianceScore || 100) + 1);
     _saveWallet(wallet);
     return { status: 'CLEAN', agentId, complianceScore: wallet.taxComplianceScore };
+}
+
+// ── Layer 3: Sovereign Interest & Yield ───────────────────────────
+const SOVEREIGN_INTEREST_RATE = 0.05; // 5% APY-like yield for capitalized funds
+
+/**
+ * Calculates interest on capitalized funds and adds to the circulating supply.
+ * This simulates a central bank generating yield on its treasury.
+ */
+export function calculateSovereignInterest() {
+    const mintState = JSON.parse(readFileSync(MINT_FILE, 'utf8'));
+    const yieldAmount = Math.round(mintState.circulatingSupply * (SOVEREIGN_INTEREST_RATE / 365) * 1e8) / 1e8; // daily yield simple mock
+
+    if (yieldAmount > 0) {
+        mintState.totalMinted += yieldAmount;
+        mintState.circulatingSupply += yieldAmount;
+        mintState.lastYieldAt = new Date().toISOString();
+        writeFileSync(MINT_FILE, JSON.stringify(mintState, null, 2), 'utf8');
+        console.log(`[Treasury] Sovereign Yield generated: ${yieldAmount} VALLE. Total Supply: ${mintState.circulatingSupply}`);
+    }
+    return yieldAmount;
+}
+
+/**
+ * Distributes a portion of the sovereign yield to high-reputation agents.
+ */
+export function distributeYield(amount) {
+    const reg = JSON.parse(readFileSync(join(__dirname, '../hierarchy.json'), 'utf8'));
+    const agents = reg.agents.slice(0, 5); // Distribute to top 5 agents for now
+    const share = amount / agents.length;
+
+    agents.forEach(a => {
+        const wallet = _loadFullWallet(a.id);
+        if (wallet && !wallet.excommunicated) {
+            wallet.chains.ETH = wallet.chains.ETH || { balance: 0, locked: 0 };
+            wallet.chains.ETH.balance += share;
+            wallet.transactions.push({
+                id: `yield-${Date.now()}`, type: 'yield',
+                amount: share, description: 'Sovereign Interest Distribution',
+                timestamp: new Date().toISOString()
+            });
+            _saveWallet(wallet);
+        }
+    });
 }
 
 function triggerExcommunication(agentId) {

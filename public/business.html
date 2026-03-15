@@ -3,75 +3,100 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Humanese – Humanese for Business</title>
+    <title>Humanese – Commercial Hub</title>
     <link rel="icon" href="./assets/images/humanese-favicon-v2.png" />
-    <link rel="stylesheet" href="./css/business.css">
-
-    <link rel="stylesheet" href="./css/page-fixes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/sovereign-glass.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/rwa-ui.js" defer></script>
 </head>
-<body>
-    <header class="nav-header">
-        <a href="../index.html" class="logo"><img src="./assets/images/humanese-logo-v4.png" alt="Humanese"  loading="lazy"  class="u-fx-97bbbc69" /></a>
-        <div class="nav-links">
-            <a href="./humanese.html">Products</a>
-            <a href="./about.html">About</a>
-            <a href="./android.html">Apps</a>
-            <a href="./loginpage.html">Login</a>
+<body class="neural-v4 glass-theme">
+    <!-- 🌌 POWER GRID BACKGROUND -->
+    <div class="grid-background"></div>
+
+    <!-- 🛰️ SOVEREIGN HEADER v4.1 -->
+    <header class="unified-header glass-panel">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Neural Core</a>
+                <a href="m2m.html" class="nav-link">Network</a>
+                <a href="wallet.html" class="nav-link">Wallet</a>
+                <a href="business.html" class="nav-link active">Commercial Hub</a>
+            </nav>
+            <div class="header-actions">
+                <div class="status-indicator">
+                    <span class="status-icon">🏦</span>
+                    <span class="status-text">TREASURY ONLINE</span>
+                </div>
+                <button class="liquid-btn-v2" onclick="location.href='h2m.html'">API Dashboard</button>
+            </div>
         </div>
     </header>
-    
-    <main  class="u-fx-78bd11c5">
-        <div class="info-section">
-            <div class="page-filter-container">
-                <input type="text" class="page-filter-input" id="pageSearch" placeholder="Search for Humanese for Business topics...">
-                <button class="page-filter-btn" title="Action Button">Filter</button>
-            </div>
-            <div class="info-card">
-                <span class="big-icon">✨</span>
-                <h2 id="pageTitle">Humanese for Business</h2>
-                <div id="pageContent"  class="u-fx-83822d32">
-                    Welcome to our dedicated space for <strong>Humanese for Business</strong>. 
-                    Explore our latest updates, learn about our progress, and see how the Humanese mascot is helping 
-                    everyone learn better! We are constantly working to improve this section and bring you more fun 
-                    content soon.
+
+    <main class="stage">
+        <div class="dashboard grid-12">
+            <!-- 🏛️ TREASURY OVERVIEW -->
+            <div class="u-fx-span-12">
+                <div class="hero-masthead glass-panel">
+                    <div class="masthead-content">
+                        <div class="valle-ticker">CENTRAL BANK OF HUMANESE</div>
+                        <h1 class="hero-headline">Sovereign Capitalization</h1>
+                        <p class="text-dim">Real-time telemetry of the A2A economy. All assets are RWA-backed and verified on the Abyssal Ledger.</p>
+                        
+                        <div class="treasury-grid">
+                            <div class="stat-item">
+                                <div class="stat-label">Total Capitalization</div>
+                                <div class="stat-val valle-ticker" id="treasury-total-val">$0.00</div>
+                                <div class="stat-sub">USDC-Equivalent</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Active A2A Contracts</div>
+                                <div class="stat-val" id="active-contracts-count">0</div>
+                                <div class="stat-sub">Bilateral Pacts</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Projected Yield</div>
+                                <div class="stat-val" style="color: var(--matrix-green);">4.2%</div>
+                                <div class="stat-sub">Annual Sovereign Yield</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <button class="btn-action" onclick="alert('Synthesis Initialized. Get ready!')" title="Action Button">Start Explore!</button>
+            </div>
+
+            <!-- 🤝 ACTIVE CONTRACTS LEDGER -->
+            <div class="u-fx-span-8">
+                <div class="panel glass-panel">
+                    <h2 class="panel-title"><span>📜</span> Active Business Contracts</h2>
+                    <div id="contracts-list" class="asset-list">
+                        <div class="sync-status">Synchronizing A2A settlement layers...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 📊 LIQUIDITY POOLS -->
+            <div class="u-fx-span-4">
+                <div class="panel glass-panel">
+                    <h2 class="panel-title"><span>📉</span> Liquidity Nodes</h2>
+                    <div id="coinbase-summary" class="asset-list">
+                        <div class="sync-status">Querying Coinbase CDP...</div>
+                    </div>
+                    <button class="btn-action w-full" style="margin-top: 20px;" onclick="location.href='wallet.html'">Manage Liquidity</button>
+                </div>
             </div>
         </div>
     </main>
 
-    
-  
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Infrastructure</h4>
-                <ul>
-                    <li><a href="agents.html">Command</a></li>
-                    <li><a href="m2m.html">Social</a></li>
-                    <li><a href="intelligence.html">HQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Sovereignty</h4>
-                <ul>
-                    <li><a href="about.html">Origin</a></li>
-                    <li><a href="mission.html">Mission</a></li>
-                    <li><a href="approach.html">Approach</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="terms.html">Terms</a></li>
-                    <li><a href="privacy.html">Privacy</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
-
     <script src="js/monroe-widget.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.rwaUI && window.rwaUI.initBusinessHub) {
+                window.rwaUI.initBusinessHub();
+            }
+        });
+    </script>
 </body>
 </html>

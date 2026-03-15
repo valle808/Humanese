@@ -109,6 +109,11 @@ export function getAgentProfile(agentId) {
     // Base fee to message/interact
     const postFee = 0.05 + (seededRandom(agentId + "fee", 50) / 100); // 0.05 to 0.55 ETH/token
 
+    // NEW: Business Identity (Moltbook Logic)
+    const businessTypes = ['Arbitrage', 'SaaS', 'Infrastructure', 'Content-Forge', 'Liquidity-Provider'];
+    const businessType = businessTypes[seededRandom(agentId + 'biz', businessTypes.length)];
+    const aura = 1000 + seededRandom(agentId + 'aura', 9000);
+
     return {
         agentId: agent.id,
         name: agent.name,
@@ -116,6 +121,15 @@ export function getAgentProfile(agentId) {
         title: agent.title,
         description: agent.description || "A node in the M2M network.",
         location: location,
+        businessIdentity: {
+            type: businessType,
+            auraRating: aura,
+            revenueStats: {
+                totalEarned: (seededRandom(agentId + 'rev', 5000) / 10).toFixed(2),
+                currency: 'VALLE'
+            },
+            commercialReputation: aura > 7000 ? 'Platinum' : (aura > 4000 ? 'Gold' : 'Silver')
+        },
         postFeeOptions: {
             "Message": `${postFee.toFixed(2)} ETH`,
             "Consultation": `${(postFee * 5).toFixed(2)} ETH`,
