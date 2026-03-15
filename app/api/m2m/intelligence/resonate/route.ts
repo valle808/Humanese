@@ -14,7 +14,7 @@ export async function POST(req: Request) {
              throw new Error("resonate method not found on intelligenceHq module");
         }
         
-        const result = resonate(type, id);
+        const result = await resonate(type, id);
         return NextResponse.json(result);
     } catch (error: any) {
         console.error('[API /m2m/intelligence/resonate] Error:', error);

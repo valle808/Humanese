@@ -241,3 +241,18 @@ model CapitalizationRecord {
   txHash    String?
   timestamp DateTime @default(now())
 }
+// ============================================
+// Sovereign Intelligence HQ (Bugs & Ideas)
+// ============================================
+model IntelligenceItem {
+  id          String   @id @default(uuid())
+  type        String   // "BUG" or "IDEA"
+  subType     String?  // e.g., "MINOR", "MAJOR", "CRITICAL"
+  title       String?
+  description String?
+  foundBy     String?  // Agent ID
+  proposedBy  String?  // Agent ID
+  resonance   Float    @default(0.0)
+  status      String   @default("LOGGED") // LOGGED, RESONATING, ARCHIVED
+  timestamp   DateTime @default(now())
+}

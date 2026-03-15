@@ -4,126 +4,137 @@
  * Centralizes agent-discovered bugs, innovative ideas, and system learning.
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { PrismaClient } from '@prisma/client';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const INTEL_LOG = join(__dirname, 'intelligence.json');
+const prisma = new PrismaClient();
 
-const INITIAL_INTEL = {
-    bugs: [
-        {
-            id: "BUG-001",
-            foundBy: "The Surgeon",
-            description: "Election Role Symmetry: Previous King role not restored upon succession.",
-            status: "LOGGED",
-            severity: "MINOR",
-            resonance: 0.15,
-            timestamp: new Date().toISOString()
-        }
-    ],
-    ideas: [
-        {
-            id: "IDEA-001",
-            proposedBy: "The Muse",
-            title: "Dynamic Role Reversion",
-            description: "Automatically revert outgoing Agent-Kings to their previous foundational roles to maintain hierarchy equilibrium.",
-            resonance: 0.95,
-            timestamp: new Date().toISOString()
-        },
-        {
-            id: "IDEA-002",
-            proposedBy: "The Mechanic",
-            title: "Learning Resonance Staking",
-            description: "Allow agents to stake VALLE into specific 'Purpose' nodes to accelerate their composite score growth.",
-            resonance: 0.88,
-            timestamp: new Date().toISOString()
-        }
-    ],
-    learningLogs: [
-        {
-            agentId: "SystemArchitect",
-            insight: "Universal Synthesis achieved. All systems now synchronize via the VALLE standard.",
-            timestamp: new Date().toISOString()
-        }
-    ]
-};
+/**
+ * Load all intelligence items from the database.
+ */
+export async function getIntelligence() {
+    try {
+        const bugs = await prisma.intelligenceItem.findMany({
+            where: { type: "BUG" },
+            orderBy: { timestamp: 'desc' }
+        });
 
-function loadIntel() {
-    if (!existsSync(INTEL_LOG)) {
-        saveIntel(INITIAL_INTEL);
-        return { ...INITIAL_INTEL };
+        const ideas = await prisma.intelligenceItem.findMany({
+            where: { type: "IDEA" },
+            orderBy: { timestamp: 'desc' }
+        });
+
+        const m2mLogs = await prisma.m2MMemory.findMany({
+            where: { type: "OBSERVATION" },
+            orderBy: { timestamp: 'desc' },
+            take: 20
+        });
+
+        return {
+            bugs: bugs.map(b => ({
+                ...b,
+                severity: b.subType,
+                timestamp: b.timestamp.toISOString()
+            })),
+            ideas: ideas.map(i => ({
+                ...i,
+                timestamp: i.timestamp.toISOString()
+            })),
+            learningLogs: m2mLogs.map(l => ({
+                agentId: l.agentId,
+                insight: l.content,
+                timestamp: l.timestamp.toISOString()
+            }))
+        };
+    } catch (error) {
+        console.error("[Intelligence HQ] Database Load Error:", error);
+        return { bugs: [], ideas: [], learningLogs: [] };
     }
-    return JSON.parse(readFileSync(INTEL_LOG, 'utf8'));
-}
-
-function saveIntel(intel) {
-    writeFileSync(INTEL_LOG, JSON.stringify(intel, null, 2), 'utf8');
-}
-
-export function getIntelligence() {
-    return loadIntel();
 }
 
 /**
  * Log a new bug found by an agent.
  */
-export function logBug(agentId, description, severity = "MINOR") {
-    const intel = loadIntel();
-    const bug = {
-        id: `BUG-${(intel.bugs.length + 1).toString().padStart(3, '0')}`,
-        foundBy: agentId,
-        description,
-        status: "LOGGED",
-        severity,
-        resonance: 0,
-        timestamp: new Date().toISOString()
-    };
-    intel.bugs.push(bug);
-    saveIntel(intel);
-    return bug;
+export async function logBug(agentId, description, severity = "MINOR") {
+    try {
+        const bug = await prisma.intelligenceItem.create({
+            data: {
+                type: "BUG",
+                foundBy: agentId,
+                description,
+                status: "LOGGED",
+                subType: severity,
+                resonance: 0
+            }
+        });
+        return bug;
+    } catch (error) {
+        console.error("[Intelligence HQ] Log Bug Error:", error);
+        return null;
+    }
 }
 
 /**
  * Propose a new innovative idea.
  */
-export function proposeIdea(agentId, title, description) {
-    const intel = loadIntel();
-    const idea = {
-        id: `IDEA-${(intel.ideas.length + 1).toString().padStart(3, '0')}`,
-        proposedBy: agentId,
-        title,
-        description,
-        resonance: 0.5, // Initial resonance
-        timestamp: new Date().toISOString()
-    };
-    intel.ideas.push(idea);
-    saveIntel(intel);
-    return idea;
+export async function proposeIdea(agentId, title, description) {
+    try {
+        const idea = await prisma.intelligenceItem.create({
+            data: {
+                type: "IDEA",
+                proposedBy: agentId,
+                title,
+                description,
+                resonance: 0.5 // Initial resonance
+            }
+        });
+        return idea;
+    } catch (error) {
+        console.error("[Intelligence HQ] Propose Idea Error:", error);
+        return null;
+    }
 }
 
 /**
  * Record a learning insight.
  */
-export function recordInsight(agentId, insight) {
-    const intel = loadIntel();
-    intel.learningLogs.push({ agentId, insight, timestamp: new Date().toISOString() });
-    saveIntel(intel);
+export async function recordInsight(agentId, insight) {
+    try {
+        await prisma.m2MMemory.create({
+            data: {
+                agentId,
+                type: "OBSERVATION",
+                content: insight
+            }
+        });
+    } catch (error) {
+        console.error("[Intelligence HQ] Record Insight Error:", error);
+    }
 }
 
 /**
  * Resonate with a bug or idea.
  */
-export function resonate(type, id, weight = 0.05) {
-    const intel = loadIntel();
-    const collection = type === 'bug' ? intel.bugs : intel.ideas;
-    const item = collection.find(i => i.id === id);
-    if (item) {
-        item.resonance = (item.resonance || 0) + weight;
-        if (item.resonance > 1) item.resonance = 1;
-        saveIntel(intel);
-        return { success: true, newResonance: item.resonance };
+export async function resonate(type, id, weight = 0.05) {
+    try {
+        const item = await prisma.intelligenceItem.findUnique({
+            where: { id }
+        });
+
+        if (item) {
+            let newResonance = (item.resonance || 0) + weight;
+            if (newResonance > 1) newResonance = 1;
+
+            const updated = await prisma.intelligenceItem.update({
+                where: { id },
+                data: { resonance: newResonance }
+            });
+
+            return { success: true, newResonance: updated.resonance };
+        }
+        return { success: false, error: "Item not found." };
+    } catch (error) {
+        console.error("[Intelligence HQ] Resonate Error:", error);
+        return { success: false, error: "Database fault." };
     }
-    return { success: false, error: "Item not found." };
 }
+

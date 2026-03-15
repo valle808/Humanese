@@ -11,7 +11,7 @@ export async function GET() {
              throw new Error("getIntelligence method not found on intelligenceHq module");
         }
         
-        return NextResponse.json(getIntelligence());
+        return NextResponse.json(await getIntelligence());
     } catch (error: any) {
         console.error('[API /m2m/intelligence] Error:', error);
         return NextResponse.json({ error: String(error) }, { status: 500 });
