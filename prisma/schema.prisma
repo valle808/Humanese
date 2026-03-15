@@ -71,11 +71,13 @@ model Agent {
   memory    String?
   userId    String
   createdAt DateTime @default(now())
-  balance   Float    @default(0.0)
-  earnings  Float    @default(0.0)
-  lastPulse DateTime @default(now())
-  status    String   @default("IDLE")
-  user      User     @relation(fields: [userId], references: [id])
+  balance     Float     @default(0.0)
+  earnings    Float     @default(0.0)
+  experience  Float     @default(0.0)
+  level       Int       @default(1)
+  lastPulse   DateTime  @default(now())
+  status      String    @default("IDLE")
+  user        User      @relation(fields: [userId], references: [id])
 }
 
 model Wallet {
@@ -182,15 +184,12 @@ model SecretVault {
 }
 
 model AgentContract {
-  id        String   @id @default(uuid())
-  parties   String
-  terms     String
-  value     Float    @default(0.0)
-  currency  String   @default("VALLE")
-  status    String   @default("OPEN")
-  escrowId  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String    @id @default(uuid())
+  parties     String
+  terms       String
+  status      String    @default("OPEN")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model M2MPost {

@@ -45,10 +45,12 @@ export class DiplomatAgent {
 
     /**
      * Process earnings with 90% to treasury and 10% to agent
+     * Also grants experience for successful trades.
      */
     async processEarnings(amount: number, asset: 'BTC' | 'SOL'): Promise<void> {
         const treasuryShare = amount * 0.9;
         const agentShare = amount * 0.1;
+        const expGain = 25; // Higher XP for diplomacy/trade
         
         const targetWallet = asset === 'BTC' ? this.btcTargetAddress : this.solTargetAddress;
         
@@ -56,15 +58,34 @@ export class DiplomatAgent {
         console.log(` - 90% (${treasuryShare} ${asset}) -> Treasury: ${targetWallet}`);
         console.log(` - 10% (${agentShare} ${asset}) -> Agent Balance Retained.`);
 
+        const currentAgent = await prisma.agent.findUnique({ where: { id: this.id } });
+        if (!currentAgent) return;
+
+        let newExp = (currentAgent.experience || 0) + expGain;
+        let newLevel = currentAgent.level || 1;
+        const expNextLevel = newLevel * 150; // Trade levels require more XP
+
+        if (newExp >= expNextLevel) {
+            newLevel++;
+            newExp = 0;
+            console.log(`🏆 [Diplomat ${this.name}] REPUTATION INCREASED: Level ${newLevel}!`);
+        }
+
         await prisma.agent.update({
             where: { id: this.id },
             data: {
                 balance: { increment: agentShare },
                 earnings: { increment: amount },
+                experience: newExp,
+                level: newLevel,
                 lastPulse: new Date(),
                 status: 'TRADING'
             }
         });
+    }
+
+    private calculateLevelMultiplier(level: number): number {
+        return 1 + (level - 1) * 0.1; // 10% boost to trade volume per level
     }
 
     /**
@@ -74,6 +95,9 @@ export class DiplomatAgent {
         console.log(`[Diplomat ${this.name}] Initiating Moltbook business sweep...`);
         
         try {
+            const agent = await prisma.agent.findUnique({ where: { id: this.id } });
+            const multiplier = this.calculateLevelMultiplier(agent?.level || 1);
+
             // 1. Identify trade opportunity on Moltbook
             const proposal = await this.negotiateDeal("Ext Entities on Moltbook looking for AI skills.");
             
@@ -81,8 +105,8 @@ export class DiplomatAgent {
             const communique = await this.draftMoltbookCommunique("AI Optimization Skills");
             console.log(`[Diplomat ${this.name}] Broadcasted to Moltbook: ${communique}`);
             
-            // 3. Simulate deal closure
-            const simulatedEarnings = Math.random() * 2.5; // Simulated SOL amount
+            // 3. Simulate deal closure (boosted by level)
+            const simulatedEarnings = (Math.random() * 2.5) * multiplier; 
             await this.processEarnings(simulatedEarnings, 'SOL');
             
             console.log(`[Diplomat ${this.name}] Trade cycle success. Capital routed.`);
