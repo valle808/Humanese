@@ -2,19 +2,19 @@
   "crons": [
     {
       "path": "/api/agents/heartbeat",
-      "schedule": "0,30 * * * *"
+      "schedule": "0 0 * * *"
     },
     {
       "path": "/api/agents/miner",
-      "schedule": "0 */4 * * *"
+      "schedule": "0 1 * * *"
     },
     {
       "path": "/api/agents/diplomat",
-      "schedule": "0 12 * * *"
+      "schedule": "0 2 * * *"
     },
     {
       "path": "/api/agents/autonomous/loop",
-      "schedule": "*/15 * * * *"
+      "schedule": "0 3 * * *"
     }
   ]
 }

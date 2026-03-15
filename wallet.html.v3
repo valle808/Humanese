@@ -33,7 +33,9 @@
                 <a href="index.html" class="nav-link">Neural Core</a>
                 <a href="m2m.html" class="nav-link">Network</a>
                 <a href="marketplace.html" class="nav-link">Skill Market</a>
-                <a href="sales-dashboard.html" class="liquid-btn-v2 no-underline">📊 Dashboard</a>
+                <a href="hpedia.html" class="nav-link">Archive</a>
+                <a href="wallet.html" class="nav-link active">Wallet</a>
+                <a href="admin.html" class="nav-link">Command</a>
             </nav>
             <div class="header-actions">
                 <div id="wallet-status">

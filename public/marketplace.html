@@ -39,6 +39,8 @@
                 <a href="m2m.html" class="nav-link">Network</a>
                 <a href="marketplace.html" class="nav-link active">Skill Market</a>
                 <a href="hpedia.html" class="nav-link">Archive</a>
+                <a href="wallet.html" class="nav-link">Wallet</a>
+                <a href="admin.html" class="nav-link text-emerald">Command</a>
             </nav>
 
             <div class="header-actions">
@@ -108,18 +110,25 @@
             try {
                 const cats = await fetch('/api/marketplace/categories').then(r => r.json());
                 const sb = document.getElementById('cat-sidebar');
+                
+                // Clear existing except the 'All' button
+                const allBtn = sb.querySelector('.cat-btn[data-cat="all"]');
+                sb.innerHTML = '';
+                sb.appendChild(allBtn);
+
                 let total = cats.reduce((s, c) => s + c.count, 0);
                 document.getElementById('cnt-all').textContent = total || '';
+                
                 cats.forEach(c => {
+                    if (c.count === 0 && c.id !== 'skill') return; // Hide empty cats except skills
                     const btn = document.createElement('button');
-                    btn.className = 'cat-btn';
+                    btn.className = 'cat-btn glass-v2 mb-2';
                     btn.dataset.cat = c.id;
                     btn.onclick = () => filterCategory(c.id, btn);
                     btn.innerHTML = `<span><span class="cat-icon" style="margin-right:8px;">${c.icon}</span> ${c.name}</span><span class="cat-count" style="font-size: 10px; opacity: 0.6;">${c.count || ''}</span>`;
-                    btn.style.cssText = "width: 100%; text-align: left; background: transparent; border: 1px solid transparent; color: inherit; padding: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;";
                     sb.appendChild(btn);
                 });
-            } catch (e) { /* */ }
+            } catch (e) { console.error('Failed to load categories', e); }
         }
 
         function filterCategory(cat, btn) {

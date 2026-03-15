@@ -316,6 +316,23 @@ html {
   .glass-sidebar {
     @apply bg-[#0a0a0a]/80 backdrop-blur-xl border-r border-white/10;
   }
+
+  .glass-v2 {
+    @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.37)];
+  }
+
+  .sovereign-neon {
+    @apply shadow-[0_0_15px_rgba(16,255,149,0.2)];
+    text-shadow: 0 0 10px rgba(16, 255, 149, 0.4);
+  }
+
+  .text-platinum {
+    color: #e5e5e5;
+  }
+
+  .text-emerald {
+    color: #10ff95;
+  }
 }
 
 /* Solana Official Typography Patterns Extracted by SolanaDev Agent */
