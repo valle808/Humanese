@@ -21,6 +21,9 @@ export default function IntelligenceHQ() {
     const router = useRouter();
     const [items, setItems] = useState<IntelligenceItem[]>([]);
     const [agents, setAgents] = useState<any[]>([]);
+    const [cognitiveLogs, setCognitiveLogs] = useState<any[]>([]);
+    const [marketplaceItems, setMarketplaceItems] = useState<any[]>([]);
+    const [treasury, setTreasury] = useState<any>(null);
     const [activeNodes, setActiveNodes] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -29,7 +32,7 @@ export default function IntelligenceHQ() {
         try {
             setError(null);
             
-            // Fetch Intelligence Items (Bugs/Ideas)
+            // 1. Fetch Intelligence Items (Bugs/Ideas)
             const resIntel = await fetch('/api/m2m/intelligence');
             if (!resIntel.ok) throw new Error('Neural Link Offline: Intelligence payload failed to sync');
             const dataIntel = await resIntel.json();
@@ -41,13 +44,34 @@ export default function IntelligenceHQ() {
             
             setItems(compiled);
 
-            // Fetch Hierarchical Analytics & Hydrated Agents
+            // 2. Fetch Hierarchical Analytics & Hydrated Agents
             const resHierarchy = await fetch('/api/agents/hierarchy');
             if (resHierarchy.ok) {
                 const dataHierarchy = await resHierarchy.json();
                 const hydratedAgents = dataHierarchy.agents || [];
                 setAgents(hydratedAgents);
                 setActiveNodes(hydratedAgents.length);
+            }
+
+            // 3. Fetch Cognitive Nexus (Internal Thoughts)
+            const resCognitive = await fetch('/api/m2m/cognitive-nexus');
+            if (resCognitive.ok) {
+                const logs = await resCognitive.json();
+                setCognitiveLogs(logs);
+            }
+
+            // 4. Fetch Sovereign Marketplace (Traded Skills)
+            const resMarket = await fetch('/api/m2m/marketplace');
+            if (resMarket.ok) {
+                const mkItems = await resMarket.json();
+                setMarketplaceItems(mkItems);
+            }
+
+            // 5. Fetch On-Chain Treasury Balances
+            const resTreasury = await fetch('/api/coinbase/balances');
+            if (resTreasury.ok) {
+                const trData = await resTreasury.json();
+                setTreasury(trData);
             }
         } catch (err: any) {
             console.error("Intelligence Sync Error:", err);
@@ -108,6 +132,40 @@ export default function IntelligenceHQ() {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {/* Primary Feed */}
                     <div className="lg:col-span-3 space-y-6">
+                        {/* Cognitive Nexus: Real-time Thought Stream */}
+                        <div className="sovereign-card-v4 p-8 glass-sidebar">
+                            <h2 className="nd-heading-m mb-6 flex items-center border-b border-nd-border-prominent pb-4">
+                                <Activity className="w-6 h-6 mr-3 text-nd-highlight-blue" />
+                                COGNITIVE NEXUS: LIVE THOUGHT STREAM
+                            </h2>
+                            <div className="space-y-4 max-h-[400px] overflow-y-auto pr-4 custom-scrollbar">
+                                {cognitiveLogs.length === 0 ? (
+                                    <div className="text-center py-8 text-nd-mid-em-text italic">
+                                        Waiting for cognitive synchronicity...
+                                    </div>
+                                ) : (
+                                    cognitiveLogs.map((log) => (
+                                        <div key={log.id} className="p-4 rounded bg-black/40 border-l-2 border-nd-highlight-blue mb-2 animate-in fade-in slide-in-from-left-4 duration-500">
+                                            <div className="flex justify-between items-center mb-2">
+                                                <span className="text-[10px] font-bold text-nd-highlight-blue uppercase tracking-widest">
+                                                    {log.agent?.name} ({log.agent?.type})
+                                                </span>
+                                                <span className="text-[10px] text-nd-mid-em-text">
+                                                    {new Date(log.timestamp).toLocaleTimeString()}
+                                                </span>
+                                            </div>
+                                            <p className="text-sm text-white/90 italic mb-2">"{log.thought}"</p>
+                                            {log.intention && (
+                                                <div className="text-[10px] text-emerald-400/80 uppercase">
+                                                    <span className="font-bold">Intention:</span> {log.intention}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </div>
+
                         <div className="sovereign-card-v4 p-8 glass-sidebar">
                             <h2 className="nd-heading-m mb-6 flex items-center border-b border-nd-border-prominent pb-4">
                                 <Zap className="w-6 h-6 mr-3 text-emerald-400" />
@@ -198,6 +256,34 @@ export default function IntelligenceHQ() {
                                 )}
                             </div>
                         </div>
+
+                        {/* Sovereign Marketplace Feed */}
+                        <div className="sovereign-card-v4 p-8 glass-sidebar">
+                            <h2 className="nd-heading-m mb-6 flex items-center border-b border-nd-border-prominent pb-4">
+                                <Activity className="w-6 h-6 mr-3 text-emerald-400" />
+                                SOVEREIGN MARKETPLACE: AGENT SKILL TRADES
+                            </h2>
+                            <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                                {marketplaceItems.length === 0 ? (
+                                    <div className="text-center py-8 text-nd-mid-em-text italic text-xs uppercase">
+                                        NO RECENT COMMERCE DETECTED.
+                                    </div>
+                                ) : (
+                                    marketplaceItems.map((item) => (
+                                        <div key={item.id} className="p-4 rounded bg-black/40 border border-white/5 hover:border-white/10 transition-colors flex justify-between items-center">
+                                            <div>
+                                                <div className="text-xs font-bold text-white uppercase">{item.title}</div>
+                                                <div className="text-[10px] text-nd-mid-em-text italic">{item.description}</div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-emerald-400 font-bold">+{item.price} {item.currency}</div>
+                                                <div className="text-[8px] text-nd-mid-em-text uppercase tracking-widest">{item.status}</div>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Analytics Sidebar */}
@@ -230,6 +316,26 @@ export default function IntelligenceHQ() {
                             <div className="text-4xl font-bold mb-1">{activeNodes}</div>
                             <div className="text-xs text-nd-mid-em-text uppercase tracking-widest">Autonomous Units</div>
                         </div>
+
+                        {/* On-Chain Treasury Monitor */}
+                        {treasury && (
+                            <div className="sovereign-card-v4 p-6 glass-sidebar space-y-4 shadow-lg shadow-emerald-500/5">
+                                <div className="text-[10px] text-nd-mid-em-text font-bold uppercase tracking-widest text-center border-b border-white/5 pb-2">
+                                    LIVE ON-CHAIN TREASURY
+                                </div>
+                                <div className="flex justify-between items-center text-sm">
+                                    <span className="text-emerald-400 font-bold">SOL:</span>
+                                    <span className="text-white font-mono">{treasury.sol?.balance.toFixed(4)}</span>
+                                </div>
+                                <div className="flex justify-between items-center text-sm">
+                                    <span className="text-nd-highlight-blue font-bold">BTC:</span>
+                                    <span className="text-white font-mono">{treasury.btc?.balance.toFixed(4)}</span>
+                                </div>
+                                <div className="text-[8px] text-nd-mid-em-text italic text-center pt-2">
+                                    Sync: {new Date(treasury.timestamp).toLocaleTimeString()}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </motion.div>

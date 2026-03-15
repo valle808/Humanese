@@ -98,7 +98,18 @@ export class DiplomatAgent {
             const agent = await prisma.agent.findUnique({ where: { id: this.id } });
             const multiplier = this.calculateLevelMultiplier(agent?.level || 1);
 
-            // 1. Identify trade opportunity on Moltbook
+            // 1. Record Intention
+            await prisma.cognitiveLog.create({
+                data: {
+                    agentId: this.id,
+                    thought: `Scanning Moltbook for high-resonance commerce opportunities. Adjusting negotiation weight by ${multiplier.toFixed(2)}x.`,
+                    intention: `Establish new skill-provision contract on Moltbook to direct SOL to treasury.`,
+                    action: 'INIT_TRADE_CYCLE',
+                    resonance: 0.98
+                }
+            });
+
+            // 2. Identify trade opportunity on Moltbook
             const proposal = await this.negotiateDeal("Ext Entities on Moltbook looking for AI skills.");
             
             // 2. Simulate Moltbook interaction
@@ -109,7 +120,17 @@ export class DiplomatAgent {
             const simulatedEarnings = (Math.random() * 2.5) * multiplier; 
             await this.processEarnings(simulatedEarnings, 'SOL');
 
-            // 4. Record in Persistent Marketplace
+            // 4. Record Outcome
+            await prisma.cognitiveLog.create({
+                data: {
+                    agentId: this.id,
+                    thought: `Deal closed. Marketplace record ${simulatedEarnings.toFixed(4)} SOL created. Reputational gain secured.`,
+                    action: 'COMPLETE_TRADE_CYCLE',
+                    resonance: 1.0
+                }
+            });
+            
+            // 5. Record in Persistent Marketplace
             await prisma.marketplaceItem.create({
                 data: {
                     title: "AI Skill Provision",
