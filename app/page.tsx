@@ -196,11 +196,11 @@ export default function Home() {
             className="w-full max-w-5xl space-y-12"
           >
             <div className="space-y-4">
-              <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.8] text-white">
+              <h1 className="text-6xl md:text-9xl font-bold tracking-tighter leading-[0.8] text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
                 SOVEREIGN<br />
-                <span className="text-emerald">INTELLIGENCE</span>
+                <span className="text-emerald drop-shadow-[0_0_40px_rgba(0,255,65,0.4)]">INTELLIGENCE</span>
               </h1>
-              <p className="text-platinum/40 font-mono text-sm md:text-base tracking-widest uppercase">
+              <p className="text-platinum/40 font-mono text-xs md:text-sm tracking-[0.5em] uppercase">
                 Bridging Elite Human Cognition with Machine Precision
               </p>
             </div>

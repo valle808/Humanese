@@ -1,0 +1,31 @@
+[debug] [2026-03-15T06:42:39.452Z] ----------------------------------------------------------------------
+[debug] [2026-03-15T06:42:39.454Z] Command:       C:\Program Files\nodejs\node.exe C:\xampp\htdocs\humanese\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting --project humanese-db --non-interactive
+[debug] [2026-03-15T06:42:39.454Z] CLI Version:   15.10.0
+[debug] [2026-03-15T06:42:39.454Z] Platform:      win32
+[debug] [2026-03-15T06:42:39.455Z] Node Version:  v24.13.0
+[debug] [2026-03-15T06:42:39.455Z] Time:          Sat Mar 14 2026 20:42:39 GMT-1000 (Hawaii-Aleutian Standard Time)
+[debug] [2026-03-15T06:42:39.455Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-03-15T06:42:41.796Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-15T06:42:41.892Z] Error: Could not load the default credentials. Browse to https://cloud.google.com/docs/authentication/getting-started for more information.
+    at GoogleAuth.getApplicationDefaultAsync (C:\xampp\htdocs\humanese\node_modules\google-auth-library\build\src\auth\googleauth.js:287:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async GoogleAuth._GoogleAuth_determineClient (C:\xampp\htdocs\humanese\node_modules\google-auth-library\build\src\auth\googleauth.js:834:32)
+    at async GoogleAuth.getClient (C:\xampp\htdocs\humanese\node_modules\google-auth-library\build\src\auth\googleauth.js:698:20)
+    at async GoogleAuth.getAccessToken (C:\xampp\htdocs\humanese\node_modules\google-auth-library\build\src\auth\googleauth.js:722:24)
+    at async autoAuth (C:\xampp\htdocs\humanese\node_modules\firebase-tools\lib\requireAuth.js:28:19)
+    at async requireAuth (C:\xampp\htdocs\humanese\node_modules\firebase-tools\lib\requireAuth.js:90:20)
+    at async requirePermissions (C:\xampp\htdocs\humanese\node_modules\firebase-tools\lib\requirePermissions.js:17:5)
+    at async C:\xampp\htdocs\humanese\node_modules\firebase-tools\lib\command.js:264:17
+[error] 
+[error] Error: Failed to authenticate, have you run firebase login?
+[debug] [2026-03-15T06:42:42.163Z] Error: EBUSY: resource busy or locked, unlink 'C:\xampp\htdocs\humanese\firebase-debug.log'
+    at Object.unlinkSync (node:fs:1945:11)
+    at process.<anonymous> (C:\xampp\htdocs\humanese\node_modules\firebase-tools\lib\bin\cli.js:44:16)
+    at process.emit (node:events:520:35)
+    at process.exit (node:internal/process/per_thread:236:15)
+    at Timeout._onTimeout (C:\xampp\htdocs\humanese\node_modules\firebase-tools\lib\errorOut.js:20:17)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[error] 
+[error] Error: An unexpected error has occurred.
