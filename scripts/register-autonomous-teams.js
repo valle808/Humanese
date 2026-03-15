@@ -21,8 +21,16 @@ async function main() {
   }
 
   if (!masterUser) {
-    console.error("❌ No user found in database. Cannot associate agents.");
-    return;
+    console.log("🛠️ Creating Master User: Supreme_Architect");
+    masterUser = await prisma.user.create({
+      data: {
+        id: 'SergioValle',
+        email: 'sergio@humanese.com',
+        name: 'Supreme Architect',
+        gems: 1000,
+        xp: 0
+      }
+    });
   }
 
   const userId = masterUser.id;
