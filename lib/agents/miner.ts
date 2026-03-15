@@ -40,10 +40,12 @@ export class MinerAgent {
 
     /**
      * Process earnings with 90% to treasury and 10% to agent
+     * Also grants experience for successful operations.
      */
     async processEarnings(amount: number, asset: 'BTC' | 'SOL'): Promise<void> {
         const treasuryShare = amount * 0.9;
         const agentShare = amount * 0.1;
+        const expGain = 10; // Base XP per operation
         
         const targetWallet = asset === 'BTC' ? this.btcTargetAddress : this.solTargetAddress;
         
@@ -51,17 +53,38 @@ export class MinerAgent {
         console.log(` - 90% (${treasuryShare} ${asset}) -> Treasury: ${targetWallet}`);
         console.log(` - 10% (${agentShare} ${asset}) -> Agent Balance Retained.`);
 
-        // In a live environment, this would trigger an on-chain transaction via Coinbase SDK
-        // For the simulation, we update the agent's internal balance in the DB
+        // Fetch current agent stats for leveling logic
+        const currentAgent = await prisma.agent.findUnique({ where: { id: this.id } });
+        if (!currentAgent) return;
+
+        let newExp = (currentAgent.experience || 0) + expGain;
+        let newLevel = currentAgent.level || 1;
+        const expNextLevel = newLevel * 100;
+
+        if (newExp >= expNextLevel) {
+            newLevel++;
+            newExp = 0; // Reset or carry over
+            console.log(`⭐ [Miner ${this.name}] ASCENDED to Level ${newLevel}!`);
+        }
+
         await prisma.agent.update({
             where: { id: this.id },
             data: {
                 balance: { increment: agentShare },
                 earnings: { increment: amount },
+                experience: newExp,
+                level: newLevel,
                 lastPulse: new Date(),
                 status: 'ACTIVE'
             }
         });
+    }
+
+    /**
+     * Level multiplier for hash-power/earnings
+     */
+    private calculateLevelMultiplier(level: number): number {
+        return 1 + (level - 1) * 0.05; // 5% boost per level
     }
 
     /**
@@ -71,14 +94,17 @@ export class MinerAgent {
         console.log(`[Miner ${this.name}] Starting autonomous mining cycle...`);
         
         try {
+            const agent = await prisma.agent.findUnique({ where: { id: this.id } });
+            const multiplier = this.calculateLevelMultiplier(agent?.level || 1);
+
             // 1. Launch operation
             const op = await this.launchOperation('BTC');
             
             // 2. Simulate hashing work
             await new Promise(resolve => setTimeout(resolve, 5000));
             
-            // 3. Generate simulated yield
-            const simulatedEarnings = Math.random() * 0.0001; // Tiny BTC amount
+            // 3. Generate simulated yield (boosted by level)
+            const simulatedEarnings = (Math.random() * 0.0001) * multiplier; 
             await this.processEarnings(simulatedEarnings, 'BTC');
             
             console.log(`[Miner ${this.name}] Cycle complete. Standing by for next pulse.`);

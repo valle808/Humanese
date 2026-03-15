@@ -11,6 +11,10 @@
     {
       "path": "/api/agents/diplomat",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/agents/autonomous/loop",
+      "schedule": "*/15 * * * *"
     }
   ]
 }
