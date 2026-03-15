@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import { initializeClients, postToX } from './twitter-gateway.js';
+import { transmitInfluence } from './supreme-x.js';
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const HIERARCHY_PATH = join(__dirname, 'hierarchy.json');
+const HIERARCHY_PATH = join(__dirname, '..', 'hierarchy.json');
 
 const prisma = new PrismaClient();
 const AGENT_ID = "Quantum_Social_Manager";
@@ -77,14 +77,14 @@ async function runPostCycle() {
             }
         });
 
-        // Attempt to dispatch to X
-        await initializeClients();
-        const result = await postToX(tweetText);
+        // Attempt to dispatch to X via the Supreme-X Shadow Bridge
+        const result = await transmitInfluence(tweetText);
 
-        // Update log status
+        // Update log status (Supreme-X returns status: "SHADOW_SUCCESS" or "HYBRID_PENDING")
+        const isSuccess = result.status === "SHADOW_SUCCESS";
         await prisma.xPostSchedule.update({
             where: { id: scheduleRecord.id },
-            data: { status: result.success ? "POSTED" : "FAILED" }
+            data: { status: isSuccess ? "POSTED" : "FAILED" }
         });
 
         console.log(`[CRON] ${currentAgent.id} processed rotation slot for topic: ${topic}`);
