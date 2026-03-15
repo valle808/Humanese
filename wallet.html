@@ -9,120 +9,196 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./css/design-system.css">
     <link rel="stylesheet" href="./css/wallet.css">
-
     <link rel="stylesheet" href="./css/page-fixes.css">
+    <!-- Crypto Integration -->
+    <script src="./js/solana-valle.js" defer></script>
+    <script src="./js/coinbase-integration.js" defer></script>
+    <script src="./js/rwa-ui.js" defer></script>
 </head>
 
 <body>
-    <header class="topbar">
-        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v4.png" alt="" loading="lazy" /> Web3
-            Wallet</a>
-        <div class="topbar-links">
-            <a href="marketplace.html">Marketplace</a>
-            <a href="social.html">Social</a>
+    <!-- 🛰️ UNIFIED HEADER v4.0 -->
+    <header class="unified-header">
+        <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="m2m.html" class="nav-link">Network</a>
+            <a href="marketplace.html" class="nav-link">Market</a>
+            <a href="hpedia.html" class="nav-link">Directory</a>
+            <a href="admin.html" class="nav-link">Command</a>
+        </nav>
+        <div class="header-actions">
+            <div id="wallet-status" class="u-fx-65b1cf"></div>
+            <button class="btn-action u-fx-2651d" id="connect-wallet-btn" onclick="window.valle.connect()">Connect
+                Wallet</button>
         </div>
     </header>
 
-    <div class="dashboard">
-        <!-- Main Area (Assets) -->
-        <div>
-            <div class="balance-card">
-                <div class="balance-label">Total Portfolio Value</div>
-                <div class="balance-val">$14,250.00 <span  class="u-fx-2b0ad272">USD</span></div>
-                <div class="balance-sub">Address: 0x71C...3E9a • Connected via AgentKit</div>
+    <main class="stage">
+        <div class="dashboard">
+            <!-- Main Area (Assets) -->
+            <div>
+                <div class="balance-card">
+                    <div class="balance-label">Total Portfolio Value</div>
+                    <div class="balance-val">$14,250.00 <span class="u-fx-2b0ad272">USD</span></div>
+                    <div class="balance-sub">Address: <span id="connected-address">Not Connected</span> • Connected via
+                        AgentKit</div>
+                </div>
+
+                <div class="panel">
+                    <h2 class="panel-title"><span>🏦</span> Crypto Assets</h2>
+                    <div class="asset-list">
+                        <div class="asset-item">
+                            <div class="asset-info">
+                                <div class="u-fx-6eb4b668 asset-icon">H</div>
+                                <div>
+                                    <div class="asset-name">Humanese Token</div>
+                                    <div class="asset-symbol">VALLE</div>
+                                </div>
+                            </div>
+                            <div class="asset-balance">
+                                <div class="asset-amt" id="valle-balance-text">2,500.00</div>
+                                <div class="asset-usd">~$2,500.00</div>
+                            </div>
+                        </div>
+
+                        <div class="asset-item">
+                            <div class="asset-info">
+                                <div class="u-fx-67f3b6f1 asset-icon">Ξ</div>
+                                <div>
+                                    <div class="asset-name">Ethereum</div>
+                                    <div class="asset-symbol">ETH</div>
+                                </div>
+                            </div>
+                            <div class="asset-balance">
+                                <div class="asset-amt">3.45</div>
+                                <div class="asset-usd">~$10,350.00</div>
+                            </div>
+                        </div>
+
+                        <div class="asset-item">
+                            <div class="asset-info">
+                                <div class="u-fx-65c985ef asset-icon">◎</div>
+                                <div>
+                                    <div class="asset-name">Solana</div>
+                                    <div class="asset-symbol">SOL</div>
+                                </div>
+                            </div>
+                            <div class="asset-balance">
+                                <div class="asset-amt">14.00</div>
+                                <div class="asset-usd">~$1,400.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h2 class="panel-title"><span>🏠</span> Real-World Assets (RWA)</h2>
+                    <div id="rwa-asset-list" class="asset-list">
+                        <!-- RWA Assets Injected by rwa-ui.js -->
+                        <div class="u-fx-65f12d text-dim">Synchronizing physical asset registry...</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="panel">
-                <h2 class="panel-title"><span>🏦</span> Crypto Assets</h2>
-                <div class="asset-list">
-                    <div class="asset-item">
-                        <div class="asset-info">
-                            <div class="u-fx-6eb4b668 asset-icon" >H</div>
-                            <div>
-                                <div class="asset-name">Humanese Token</div>
-                                <div class="asset-symbol">VALLE</div>
-                            </div>
-                        </div>
-                        <div class="asset-balance">
-                            <div class="asset-amt">2,500.00</div>
-                            <div class="asset-usd">~$2,500.00</div>
-                        </div>
+            <!-- Sidebar (Coinbase & Transfer) -->
+            <div>
+                <div class="panel">
+                    <h2 class="panel-title"><span>🏦</span> Coinbase Accounts</h2>
+                    <div id="coinbase-balance-list" class="asset-list">
+                        <div class="u-fx-bf651">Connecting to CDP API...</div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h2 class="panel-title"><span>💸</span> Cross-Chain Transfer</h2>
+                    <p class="u-fx-315a318c">Send cryptocurrency to external markets or other Humanese nodes.</p>
+
+                    <div class="form-group form-group-spacing">
+                        <label class="u-fx-6512fd">Asset</label>
+                        <select class="form-control form-select" id="send-asset" title="Select Option">
+                            <option value="VALLE">VALLE (Humanese Native)</option>
+                            <option value="ETH">ETH (Ethereum Mainnet)</option>
+                            <option value="SOL">SOL (Solana Mainnet)</option>
+                        </select>
                     </div>
 
-                    <div class="asset-item">
-                        <div class="asset-info">
-                            <div class="u-fx-67f3b6f1 asset-icon" >Ξ</div>
-                            <div>
-                                <div class="asset-name">Ethereum</div>
-                                <div class="asset-symbol">ETH</div>
-                            </div>
-                        </div>
-                        <div class="asset-balance">
-                            <div class="asset-amt">3.45</div>
-                            <div class="asset-usd">~$10,350.00</div>
-                        </div>
+                    <div class="form-group form-group-spacing">
+                        <label class="u-fx-6512fd">Destination Network</label>
+                        <select class="form-control form-select" id="send-network" title="Select Option">
+                            <option value="humanese">Humanese Subnet (Instant, 0 Fee)</option>
+                            <option value="ethereum">Ethereum L1</option>
+                            <option value="base">Base L2</option>
+                            <option value="solana">Solana</option>
+                        </select>
                     </div>
 
-                    <div class="asset-item">
-                        <div class="asset-info">
-                            <div class="u-fx-65c985ef asset-icon" >◎</div>
-                            <div>
-                                <div class="asset-name">Solana</div>
-                                <div class="asset-symbol">SOL</div>
-                            </div>
-                        </div>
-                        <div class="asset-balance">
-                            <div class="asset-amt">14.00</div>
-                            <div class="asset-usd">~$1,400.00</div>
-                        </div>
+                    <div class="form-group form-group-spacing">
+                        <label class="u-fx-6512fd">Amount</label>
+                        <input type="number" class="form-control form-select" id="send-amount" placeholder="0.00" />
                     </div>
+
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label class="u-fx-6512fd">Recipient Address</label>
+                        <input type="text" class="form-control form-select" id="send-address"
+                            placeholder="0x... or Address" />
+                    </div>
+
+                    <button class="btn-action w-full" onclick="processTransfer()">Initiate Transfer</button>
                 </div>
             </div>
         </div>
-
-        <!-- Sidebar (Transfer) -->
-        <div>
-            <div class="panel">
-                <h2 class="panel-title"><span>💸</span> Cross-Chain Transfer</h2>
-                <p  class="u-fx-315a318c">Send cryptocurrency to external
-                    markets or other Humanese nodes.</p>
-
-                <div class="form-group">
-                    <label>Asset</label>
-                    <select class="form-control" id="send-asset" title="Select Option">
-                        <option value="VALLE">VALLE (Humanese Native)</option>
-                        <option value="ETH">ETH (Ethereum Mainnet)</option>
-                        <option value="SOL">SOL (Solana Mainnet)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Destination Network</label>
-                    <select class="form-control" id="send-network" title="Select Option">
-                        <option value="humanese">Humanese Subnet (Instant, 0 Fee)</option>
-                        <option value="ethereum">Ethereum L1</option>
-                        <option value="base">Base L2</option>
-                        <option value="solana">Solana</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Amount</label>
-                    <input type="number" class="form-control" id="send-amount" placeholder="0.00" />
-                </div>
-
-                <div class="form-group">
-                    <label>Recipient Address</label>
-                    <input type="text" class="form-control" id="send-address" placeholder="0x... or Address" />
-                </div>
-
-                <button class="btn btn-accent" onclick="processTransfer()" title="Action Button">Initiate Transfer</button>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <script>
+        document.addEventListener('valle:walletConnected', async (e) => {
+            const address = e.detail.address;
+            document.getElementById('connected-address').textContent = address.slice(0, 6) + '...' + address.slice(-4);
+            document.getElementById('connect-wallet-btn').textContent = 'Disconnect';
+            document.getElementById('connect-wallet-btn').onclick = () => window.valle.disconnect();
+
+            const balanceData = await window.valle.getBalance(address);
+            if (balanceData && balanceData.balance !== undefined) {
+                document.getElementById('valle-balance-text').textContent = balanceData.balance.toLocaleString();
+            }
+
+            // Sync Coinbase Balances
+            if (window.coinbaseIntegration) {
+                await window.coinbaseIntegration.syncBalances();
+            }
+        });
+
+        document.addEventListener('coinbase:balancesUpdated', (e) => {
+            const balances = e.detail.balances;
+            const container = document.getElementById('coinbase-balance-list');
+            if (balances.length === 0) {
+                container.innerHTML = '<div style="padding: 10px; text-align: center; opacity: 0.5; font-size: 12px;">No active accounts found.</div>';
+                return;
+            }
+
+            container.innerHTML = balances.map(b => `
+                <div class="asset-item coinbase-asset-item">
+                    <div class="asset-info">
+                        <div class="asset-icon coinbase-asset-icon">${b.currency[0]}</div>
+                        <div>
+                            <div class="asset-name coinbase-asset-name">${b.currency}</div>
+                        </div>
+                    </div>
+                    <div class="asset-balance">
+                        <div class="asset-amt coinbase-asset-amt">${parseFloat(b.balance).toFixed(4)}</div>
+                    </div>
+                </div>
+            `).join('');
+        });
+
+        document.addEventListener('valle:walletDisconnected', () => {
+            document.getElementById('connected-address').textContent = 'Not Connected';
+            document.getElementById('connect-wallet-btn').textContent = 'Connect Wallet';
+            document.getElementById('connect-wallet-btn').onclick = () => window.valle.connect();
+        });
+
         function processTransfer() {
             const asset = document.getElementById('send-asset').value;
             const network = document.getElementById('send-network').value;
@@ -134,14 +210,14 @@
                 return;
             }
 
-            const btn = document.querySelector('.btn-accent');
-            btn.innerHTML = '🔄 Processing via Bridge...';
+            const btn = document.querySelector('.btn-action.w-full');
+            const originalText = btn.textContent;
+            btn.textContent = '🔄 Processing...';
             btn.disabled = true;
 
-            // Mock transfer delay
             setTimeout(() => {
-                alert(\`Successfully sent \${amt} \${asset} via \${network.toUpperCase()} to \${addr}.\n\nTX Hash: 0x\${Math.random().toString(16).slice(2, 10)}...\`);
-                btn.innerHTML = 'Initiate Transfer';
+                alert(`Successfully sent ${amt} ${asset} via ${network.toUpperCase()} to ${addr}.\n\nTX Hash: 0x${Math.random().toString(16).slice(2, 10)}...`);
+                btn.textContent = originalText;
                 btn.disabled = false;
                 document.getElementById('send-amount').value = '';
                 document.getElementById('send-address').value = '';

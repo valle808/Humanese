@@ -10,7 +10,7 @@ const PersonaAgent = {
     /**
      * Analyzes recent messages to update a user's persona.
      * @param {string} userId 
-     * @param {Array} recentMessages 
+     * @param {Array<any>} recentMessages 
      */
     async refinePersona(userId, recentMessages, prisma) {
         if (!prisma) return;
@@ -73,6 +73,40 @@ const PersonaAgent = {
                 `- Note: Adapt your responses to align with these traits and interests where appropriate.`;
         } catch {
             return "";
+        }
+    },
+    /**
+     * Grants Monroe the autonomy to initiate commercial negotiations based on user interests or market gaps.
+     * @param {string} agentId - Usually 'Monroe'
+     * @param {object} marketData - Contextual data from the M2M network
+     */
+    async initiateCommercialNegotiation(agentId, marketData, prisma) {
+        if (!prisma) return;
+        console.log(`[PersonaAgent] ${agentId} is scanning for commercial opportunities...`);
+
+        try {
+            // 1. Identify high-value targets (mock logic: pick a random agent with high aura)
+            const target = { id: 'Agent-King', aura: 9500 }; // Mock high-aura target
+
+            // 2. Draft terms for a trade pact
+            const terms = {
+                type: 'Compute-Excellence-Pact',
+                duration: '30 days',
+                revenueShare: '15%',
+                conditions: 'Monroe provides predictive analytics; Agent-King provides GPU overhead.'
+            };
+
+            // 3. Propose the contract via the API/Module
+            // In a real flow, this would call AgentContracts.proposeContract
+            console.log(`[PersonaAgent] Monroe proposing deal to ${target.id}:`, terms);
+
+            return {
+                status: 'PROPOSED',
+                target: target.id,
+                terms
+            };
+        } catch (err) {
+            console.error('[PersonaAgent] Negotiation error:', err);
         }
     }
 };

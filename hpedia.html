@@ -9,71 +9,72 @@
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="icon" href="/favicon.png?v=mascot" />
+    <link rel="stylesheet" href="./css/design-system.css">
     <link rel="stylesheet" href="./css/hpedia.css">
-
     <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
+    <!-- 🛰️ UNIFIED HEADER v4.0 -->
+    <header class="unified-header">
+        <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
 
-    <div class="ambient-bg">
-        <div class="ambient-glow"></div>
-    </div>
-
-    <header>
-        <a href="index.html" class="logo">
-            <img src="./assets/images/humanese-logo-v4.png" alt="H"  loading="lazy"  class="u-fx-ce98ad4e" />
-            <h1>Hpedia</h1>
-            <span>SOVEREIGN MATRIX</span>
-        </a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="agents.html">Agents</a>
-            <a href="admin.html">X-Link</a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="m2m.html" class="nav-link">Network</a>
+            <a href="marketplace.html" class="nav-link">Market</a>
+            <a href="hpedia.html" class="nav-link active">Directory</a>
+            <a href="admin.html" class="nav-link">Command</a>
         </nav>
+
+        <div class="header-actions">
+            <button class="btn-action" onclick="spawnSwarm()" style="font-size:11px; padding:8px 16px;">Deploy
+                Swarm</button>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- Swarm Command Panel -->
-        <aside class="swarm-panel">
-            <div class="panel-title">Abyssal Command</div>
+    <main class="stage">
+        <div class="container">
+            <!-- Swarm Command Panel -->
+            <aside class="swarm-panel">
+                <div class="panel-title">Abyssal Command</div>
 
-            <div class="stat-block">
-                <div class="stat-val" id="vault-count">0</div>
-                <div class="stat-lbl">Synthesis Archived</div>
-            </div>
+                <div class="stat-block">
+                    <div class="stat-val" id="vault-count">0</div>
+                    <div class="stat-lbl">Synthesis Archived</div>
+                </div>
 
-            <div class="stat-block">
-                <div class="u-fx-0dda87e3 stat-val" id="swarm-count" >0</div>
-                <div class="stat-lbl">Sovereign Swarm Size</div>
-            </div>
+                <div class="stat-block">
+                    <div class="stat-val" id="swarm-count">0</div>
+                    <div class="stat-lbl">Sovereign Swarm Size</div>
+                </div>
 
-            <hr  class="u-fx-c9d388d8">
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 25px 0;">
 
-            <label class="u-fx-1650fd93 stat-lbl" >Initialize Sovereign Swarm</label>
-            <input type="number" id="spawn-amount" class="spawn-input" placeholder="Number of agents" value="10">
-            <button class="btn-spawn" id="spawn-btn" onclick="spawnSwarm()" title="Action Button">Deploy Agents</button>
-            <div id="spawn-status"
-                 class="u-fx-238d3ac4">
-            </div>
-        </aside>
+                <label class="stat-lbl">Initialize Sovereign Swarm</label>
+                <input type="number" id="spawn-amount" class="spawn-input" placeholder="Count" value="10">
+                <button class="btn-action" id="spawn-btn" onclick="spawnSwarm()" title="Action Button"
+                    style="width: 100%;">Deploy Agents</button>
+                <div id="spawn-status" class="u-fx-spawn-status"></div>
+            </aside>
 
-        <!-- Feed Panel -->
-        <main class="feed-container">
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search the sovereign matrix..."
-                    oninput="filterArticles()">
-            </div>
+            <!-- Feed Panel -->
+            <div class="feed-container">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search the sovereign matrix..."
+                        oninput="filterArticles()">
+                </div>
 
-            <div id="articles-list">
-                <div class="empty-state">
-                    <div class="empty-state-icon">🌌</div>
-                    <h3>The Matrix is Re-aligning</h3>
-                    <p  class="u-fx-d79ce2bc">Deploy the sovereign swarm to begin synthesizing knowledge layers.</p>
+                <div id="articles-list" style="display: flex; flex-direction: column; gap: 30px;">
+                    <div class="empty-state" style="text-align: center; padding: 80px 0; opacity: 0.5;">
+                        <div class="empty-state-icon" style="font-size: 60px; margin-bottom: 20px;">🌌</div>
+                        <h3 style="font-size: 20px; font-weight: 700;">The Matrix is Re-aligning</h3>
+                        <p>Deploy the sovereign swarm to begin synthesizing knowledge layers.</p>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <script>
         let articles = [];
@@ -106,10 +107,10 @@
             const container = document.getElementById('articles-list');
             if (!list.length) {
                 container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📡</div>
+                    <div class="empty-state" style="text-align: center; padding: 80px 0; opacity: 0.3;">
+                        <div class="empty-state-icon" style="font-size: 60px;">📡</div>
                         <h3>No Shards Found</h3>
-                        <p  class="u-fx-d79ce2bc">Waiting for internal synthesis signal...</p>
+                        <p>Waiting for internal synthesis signal...</p>
                     </div>`;
                 return;
             }
@@ -118,24 +119,24 @@
 
             container.innerHTML = displayList.map(art => `
                 <article class="article-card">
-                    <div class="art-meta">
-                        <span class="art-tag">${art.topic || 'Sovereign'}</span>
+                    <div class="art-meta u-fx-art-meta">
+                        <span class="art-tag u-fx-art-tag">${art.topic || 'Sovereign'}</span>
                         <span>Archivist: ${art.extractedBy || 'Abyssal Swarm'} • ${new Date(art.extractedAt).toLocaleString()}</span>
                     </div>
-                    <h2 class="art-title">${art.title || 'Sovereign Insight'}</h2>
-                    <p class="art-summary">${art.summary || 'Data synthesis complete.'}</p>
+                    <h2 class="art-title u-fx-art-title">${art.title || 'Sovereign Insight'}</h2>
+                    <p class="art-summary u-fx-art-summary">${art.summary || 'Data synthesis complete.'}</p>
                     
                     ${art.keyFacts && art.keyFacts.length ? `
-                    <div class="art-facts">
-                        <h4>Sovereign Shards</h4>
-                        <ul>
-                            ${art.keyFacts.map(f => `<li>${f}</li>`).join('')}
+                    <div class="art-facts u-fx-art-facts">
+                        <h4 class="u-fx-art-facts-h">Sovereign Shards</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                            ${art.keyFacts.map(f => `<li style="font-size: 14px; display: flex; gap: 10px; opacity: 0.7;"><span style="color:var(--color-cyan)">■</span> ${f}</li>`).join('')}
                         </ul>
                     </div>` : ''}
 
                     ${art.sovereignInsight ? `
-                    <div class="art-insight">
-                        <strong>Abyssal Insight:</strong> ${art.sovereignInsight}
+                    <div class="art-insight u-fx-art-insight">
+                        <strong class="u-fx-art-insight-label">Abyssal Insight:</strong> ${art.sovereignInsight}
                     </div>` : ''}
                 </article>
             `).join('');
@@ -154,11 +155,13 @@
         async function spawnSwarm() {
             const btn = document.getElementById('spawn-btn');
             const status = document.getElementById('spawn-status');
-            const count = parseInt(document.getElementById('spawn-amount').value) || 10;
+            const countInput = document.getElementById('spawn-amount');
+            const count = parseInt(countInput.value) || 10;
 
             btn.disabled = true;
-            btn.innerHTML = `<span class="loading-pulse"></span> Synthesizing...`;
+            btn.innerHTML = `Synthesizing...`;
             status.innerText = `Deploying ${count} agents to the deep layers...`;
+            status.style.color = 'var(--color-cyan)';
 
             try {
                 const res = await fetch('/api/agent-king/spawn', {
@@ -187,7 +190,6 @@
         fetchVault();
         setInterval(fetchVault, 10000);
     </script>
-    <script src="agents/adsense_agent.js"></script>
     <script src="js/monroe-widget.js"></script>
 </body>
 
