@@ -1,20 +1,8 @@
 {
     "version": 2,
-    "framework": null,
-    "buildCommand": "npm run build",
-    "outputDirectory": "public",
+    "framework": "nextjs",
     "cleanUrls": true,
     "trailingSlash": false,
-    "rewrites": [
-        {
-            "source": "/api/(.*)",
-            "destination": "/api"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/$1"
-        }
-    ],
     "headers": [
         {
             "source": "/assets/(.*)",
