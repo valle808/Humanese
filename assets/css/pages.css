@@ -321,6 +321,79 @@
     margin-bottom: 15px;
 }
 
+.receipt-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* ── PREMIUM UI ENHANCEMENTS ── */
+.sovereign-loader {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--cyber-blue);
+    border-right-color: var(--matrix-green);
+    animation: sovereign-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    margin: 40px auto;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+}
+
+.sovereign-loader::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-bottom-color: var(--amethyst);
+    animation: sovereign-spin 2s linear infinite reverse;
+}
+
+@keyframes sovereign-spin {
+    to { transform: rotate(360deg); }
+}
+
+.glass-pulse {
+    animation: glass-pulse 2s infinite ease-in-out;
+}
+
+@keyframes glass-pulse {
+    0% { background: rgba(255, 255, 255, 0.02); }
+    50% { background: rgba(255, 255, 255, 0.08); }
+    100% { background: rgba(255, 255, 255, 0.02); }
+}
+
+.neural-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.neural-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 100%
+    );
+    animation: neural-shimmer 4s infinite linear;
+}
+
+@keyframes neural-shimmer {
+    0% { transform: translate(-30%, -30%); }
+    100% { transform: translate(30%, 30%); }
+}
 .art-meta {
     display: flex;
     justify-content: space-between;
@@ -421,9 +494,13 @@
 }
 
 /* ── H2M API DASHBOARD ── */
-.h2m-panel { padding: 32px; }
+.h2m-panel {
+    padding: 32px;
+}
 
-.h2m-docs { padding: 32px; }
+.h2m-docs {
+    padding: 32px;
+}
 
 .h2m-key-item {
     display: flex;
@@ -455,7 +532,9 @@
     opacity: 0.6;
 }
 
-.h2m-key-preview { opacity: 0.4; }
+.h2m-key-preview {
+    opacity: 0.4;
+}
 
 .h2m-revoke-btn {
     flex-shrink: 0;
@@ -500,7 +579,9 @@
     transition: opacity 0.2s;
 }
 
-.endpoint-item:hover { opacity: 1; }
+.endpoint-item:hover {
+    opacity: 1;
+}
 
 .modal-overlay {
     position: fixed;
@@ -526,7 +607,9 @@
     transform: translateX(-50%) translateY(0);
 }
 
-.h2m-tag { margin-bottom: 8px; }
+.h2m-tag {
+    margin-bottom: 8px;
+}
 
 /* H2M Layout helpers */
 .h2m-masthead {
@@ -535,7 +618,9 @@
     padding: 40px 60px;
 }
 
-.h2m-hero-headline { font-size: clamp(36px, 5vw, 64px); }
+.h2m-hero-headline {
+    font-size: clamp(36px, 5vw, 64px);
+}
 
 .h2m-modal {
     padding: 32px;
@@ -551,6 +636,12 @@
 }
 
 /* Button size variants */
-.btn-sm { padding: 10px 20px; font-size: 12px; }
-.btn-xs { padding: 6px 14px; font-size: 11px; }
-
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 12px;
+}
+
+.btn-xs {
+    padding: 6px 14px;
+    font-size: 11px;
+}
