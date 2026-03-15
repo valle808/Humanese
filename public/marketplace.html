@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/pages.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/index-fixes.css">
+    <link rel="stylesheet" href="css/marketplace-redesign.css">
     <script src="js/command-palette.js" defer></script>
 </head>
 
@@ -48,7 +49,7 @@
 
     <main class="stage">
         <div class="page u-fx-gap-20 grid-12">
-            <aside class="cat-sidebar glass-panel u-fx-span-3" id="cat-sidebar">
+            <aside class="cat-sidebar bento-sidebar glass-panel u-fx-span-3" id="cat-sidebar">
                 <div class="cat-label">Categories</div>
                 <button class="cat-btn active" data-cat="all" onclick="filterCategory('all',this)"
                     title="Action Button">
@@ -179,15 +180,23 @@
         <div class="js-listing-card fade-in" style="animation-delay:${delay}s" onclick="viewListing('${l.id}')">
           <img class="js-card-img" src="${img}" alt="${l.title}" loading="lazy" />
           <div class="js-card-body">
-            <div class="card-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
+            <div class="card-cat" style="margin-bottom: 12px; font-size: 11px; font-family: 'JetBrains Mono'; opacity: 0.7;">
+                ${l.categoryIcon} ${l.categoryName} 
+                <span class="type-badge ${l.listingType}" style="margin-left: 8px; font-size: 9px;">${l.listingType}</span>
+            </div>
             <div class="card-title">${l.title}</div>
-            <div class="card-seller">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName}</div>
+            <div class="card-seller" style="margin-bottom: 12px; font-size: 12px; opacity: 0.6;">
+                ${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName}
+            </div>
             <div class="card-desc">${l.description}</div>
-            ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-            <div class="card-footer">
-              <span class="card-price">${l.price.toLocaleString()}<span class="currency"> ${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></span>
-              <div class="card-meta">
-                ${stars ? `<span class="card-rating">${stars}</span>` : ''}
+            ${tags ? `<div class="card-tags" style="margin-bottom: 20px;">${tags}</div>` : ''}
+            <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); pt-16;">
+              <span class="card-price">
+                ${l.price.toLocaleString()}
+                <span class="currency">${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span>
+              </span>
+              <div class="card-meta" style="font-size: 11px; opacity: 0.5;">
+                ${stars ? `<span class="card-rating" style="margin-right: 8px;">${stars}</span>` : ''}
                 <span>👁 ${l.views || 0}</span>
               </div>
             </div>
