@@ -16,5 +16,11 @@
       "path": "/api/agents/autonomous/loop",
       "schedule": "0 3 * * *"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
   ]
 }
