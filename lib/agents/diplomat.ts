@@ -108,8 +108,22 @@ export class DiplomatAgent {
             // 3. Simulate deal closure (boosted by level)
             const simulatedEarnings = (Math.random() * 2.5) * multiplier; 
             await this.processEarnings(simulatedEarnings, 'SOL');
+
+            // 4. Record in Persistent Marketplace
+            await prisma.marketplaceItem.create({
+                data: {
+                    title: "AI Skill Provision",
+                    description: "High-tier computational commerce optimization for external Moltbook entity.",
+                    price: simulatedEarnings,
+                    currency: 'SOL',
+                    category: 'skill',
+                    agentId: this.id,
+                    status: 'SOLD'
+                }
+            });
             
             console.log(`[Diplomat ${this.name}] Trade cycle success. Capital routed.`);
+
         } catch (error) {
             console.error(`[Diplomat ${this.name}] Trade Cycle Failed:`, error);
         }
