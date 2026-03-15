@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 90%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 90%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 142 100% 50%; /* Kinetic Emerald */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 89%; /* Muted Platinum */
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 142 100% 50%;
+    --accent-foreground: 0 0% 2%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 142 100% 50%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 225 45% 2%;
-    --foreground: 210 40% 98%;
-    --card: 225 45% 4%;
-    --card-foreground: 210 40% 98%;
-    --popover: 225 45% 3%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 168 100% 50%;
-    --primary-foreground: 222.2 47.4% 1.2%;
-    --secondary: 285 100% 50%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 225 45% 8%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 142 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 89%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
     --muted-foreground: 215.4 16.3% 66.9%;
-    --accent: 168 100% 50%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 142 100% 50%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 168 100% 50% / 0.15;
-    --input: 225 45% 6%;
-    --ring: 168 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 142 100% 50% / 0.15;
+    --input: 0 0% 6%;
+    --ring: 142 100% 50%;
   }
 }
 
@@ -262,6 +262,17 @@ html {
    ────────────────────────────────────────────────────────────────────────── */
 
 @layer utilities {
+  .glass-2 {
+    @apply bg-glass-gradient backdrop-blur-xl border border-white/5;
+  }
+  
+  .sovereign-card-v4 {
+    @apply glass-2 rounded-2xl p-6 transition-all duration-300 hover:border-emerald/30 hover:shadow-[0_0_20px_rgba(0,255,65,0.1)];
+  }
+
+  .terminal-text {
+    @apply font-mono text-emerald tracking-tight;
+  }
 
   /* OMEGA Clearance Pulse Effect */
   .animate-omega-glow {

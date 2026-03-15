@@ -37,14 +37,14 @@ export const Sidebar = () => {
     };
 
     const navItems = [
-        { icon: <Home size={22} />, label: 'Core Neural', href: '/' },
-        { icon: <Share2 size={22} />, label: 'M2M Network', href: '/m2m.html' },
-        { icon: <Users size={22} />, label: 'Swarm Mainframe', href: '/m2m-swarm.html' },
-        { icon: <Target size={22} />, label: 'Agent Directory', href: '/agents.html' },
+        { icon: <Home size={22} />, label: 'Neural Core', href: '/' },
+        { icon: <Activity size={22} />, label: 'Archive', href: '/hpedia' },
+        { icon: <Share2 size={22} />, label: 'M2M Network', href: '/m2m' },
+        { icon: <Target size={22} />, label: 'Skill Market', href: '/marketplace' },
         {
-            icon: <ShieldAlert size={22} className="text-red-500" />,
+            icon: <ShieldAlert size={22} className="text-emerald" />,
             label: 'Supreme Command',
-            href: '/admin.html',
+            href: '/admin',
             clearance: 'OMEGA'
         },
     ];
@@ -70,7 +70,7 @@ export const Sidebar = () => {
 
                 {/* Brand Logo Area */}
                 <div className="p-6 mb-8 flex items-center gap-4">
-                    <div className="min-w-[32px] w-8 h-8 bg-cyan-500 rounded-sm animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.5)] flex items-center justify-center font-bold text-black text-xs">
+                    <div className="min-w-[32px] w-8 h-8 bg-emerald rounded-sm shadow-[0_0_20px_rgba(0,255,65,0.4)] flex items-center justify-center font-bold text-black text-xs">
                         H
                     </div>
                     {isExpanded && (
@@ -83,25 +83,25 @@ export const Sidebar = () => {
                 {/* Navigation Links */}
                 <nav className="flex-1 px-4 space-y-2 overflow-y-auto custom-scrollbar">
                     {navItems.map((item, index) => {
-                        const isActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href.replace('.html', '')));
+                        const isActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
 
                         return (
                             <Link
                                 key={index}
                                 href={item.href}
                                 className={`flex items-center gap-4 p-3 rounded-lg transition-all group ${isActive
-                                        ? 'bg-white/10 text-white shadow-[inset_0_0_10px_rgba(255,255,255,0.05)]'
-                                        : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                                        ? 'bg-emerald/10 text-white shadow-[inset_0_0_10px_rgba(0,255,65,0.1)] border border-emerald/20'
+                                        : 'text-platinum/40 hover:bg-white/5 hover:text-white'
                                     }`}
                             >
-                                <div className={`min-w-[24px] transition-transform ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
+                                <div className={`min-w-[24px] transition-transform ${isActive ? 'scale-110 text-emerald' : 'group-hover:scale-110 group-hover:text-emerald'}`}>
                                     {item.icon}
                                 </div>
                                 {isExpanded && (
                                     <div className="flex flex-col menu-label-enter overflow-hidden">
                                         <span className="text-sm font-medium truncate">{item.label}</span>
                                         {item.clearance && (
-                                            <span className="text-[10px] text-red-500 font-bold uppercase tracking-tighter animate-omega-glow">
+                                            <span className="text-[10px] text-emerald font-bold uppercase tracking-tighter animate-omega-glow">
                                                 Clearance {item.clearance}
                                             </span>
                                         )}
@@ -114,23 +114,23 @@ export const Sidebar = () => {
 
                 {/* System Status / Monroe Footer */}
                 <div className="p-4 border-t border-white/5 bg-black/20">
-                    <div className="flex items-center gap-3 p-2 rounded-lg bg-white/5 mb-3 group cursor-pointer">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white">
+                    <div className="flex items-center gap-3 p-2 rounded-lg bg-white/5 mb-3 group cursor-pointer border border-white/5 hover:border-emerald/20 transition-all">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald to-obsidian border border-emerald flex items-center justify-center text-white">
                             <User size={16} />
                         </div>
                         {isExpanded && (
                             <div className="flex flex-col menu-label-enter overflow-hidden">
                                 <span className="text-xs font-bold text-white truncate">Nexus Monroe</span>
-                                <span className="text-[10px] text-cyan-400 truncate">V4.0 Sentinel</span>
+                                <span className="text-[10px] text-emerald truncate tracking-widest uppercase">V4.1 Sentinel</span>
                             </div>
                         )}
                     </div>
 
                     <div className="flex items-center gap-3 px-2">
-                        <Activity size={18} className="text-green-500 shrink-0" />
+                        <Activity size={18} className="text-emerald shrink-0" />
                         {isExpanded && (
-                            <div className="text-[10px] text-gray-500 menu-label-enter">
-                                <p className="whitespace-nowrap">UPTIME: 99.9%</p>
+                            <div className="text-[10px] text-platinum/20 font-mono menu-label-enter">
+                                <p className="whitespace-nowrap">UPTIME: 99.997%</p>
                                 <p className="whitespace-nowrap">NODES: 8,241 ACTIVE</p>
                             </div>
                         )}

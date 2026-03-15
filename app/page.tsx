@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Hash, Smartphone } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { TopNav } from '@/components/TopNav';
 import { WikiSidebar } from '@/components/WikiSidebar';
 import { WikiHeader } from '@/components/WikiHeader';
@@ -29,6 +32,7 @@ export default function Home() {
   const [is404, setIs404] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -129,7 +133,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-background">
+    <div className="flex-1 flex flex-col min-h-screen">
       <VisitorTracker />
       <PromoPopup />
       <SearchModal
@@ -138,99 +142,103 @@ export default function Home() {
         onSearch={handleSearch}
         isLoading={isLoading}
       />
-      <TopNav onSearch={handleSearch} isLoading={isLoading} showSearch={!!wikiData} showExport={!!wikiData && !isLoading && !error && !is404} onExport={handleExport} onCopyMarkdown={handleCopyMarkdown} />
+      
+      <div className="relative z-[20]">
+        <TopNav onSearch={handleSearch} isLoading={isLoading} showSearch={!!wikiData} showExport={!!wikiData && !isLoading && !error && !is404} onExport={handleExport} onCopyMarkdown={handleCopyMarkdown} />
+      </div>
 
       {isLoading ? (
         <LoadingState />
       ) : is404 ? (
         <PageNotFound onReturnHome={handleReturnHome} />
       ) : error ? (
-        <div className="flex-1 flex items-center justify-center bg-muted/20">
-          <div className="text-center space-y-4 max-w-md p-8 bg-card rounded-2xl border shadow-lg">
-            <h2 className="text-2xl font-bold">Error Loading Content</h2>
-            <p className="text-muted-foreground leading-relaxed">{error}</p>
+        <div className="flex-1 flex items-center justify-center p-6">
+          <div className="text-center space-y-4 max-w-md p-8 sovereign-card-v4">
+            <h2 className="text-2xl font-bold text-emerald">Signal Lost</h2>
+            <p className="text-platinum/60 leading-relaxed font-mono text-sm">{error}</p>
           </div>
         </div>
       ) : wikiData ? (
-        <>
-          <div className="flex-1 flex overflow-hidden">
-            <WikiSidebar
-              toc={wikiData.tableOfContents}
-              title={wikiData.title}
-              activeSection={activeSection}
-            />
+        <div className="flex-1 flex overflow-hidden">
+          <WikiSidebar
+            toc={wikiData.tableOfContents}
+            title={wikiData.title}
+            activeSection={activeSection}
+          />
 
-            <div className="flex-1 flex flex-col overflow-hidden">
-              <WikiContent
-                sections={wikiData.sections}
-                rawMarkdown={wikiData.rawMarkdown}
-                onSectionChange={setActiveSection}
-                sourceUrl={wikiData.metadata?.source}
-              />
-            </div>
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <WikiContent
+              sections={wikiData.sections}
+              rawMarkdown={wikiData.rawMarkdown}
+              onSectionChange={setActiveSection}
+              sourceUrl={wikiData.metadata?.source}
+            />
           </div>
 
-          {/* Mindmap Button */}
           <MindmapButton
             pageUrl={wikiData.metadata?.source || ''}
             pageMarkdown={wikiData.rawMarkdown || ''}
             pageTitle={wikiData.title}
           />
-
-          {/* Chat with Page */}
           <ChatBox pageContext={wikiData.rawMarkdown || ''} pageTitle={wikiData.title} />
-        </>
+        </div>
       ) : (
-        <div className="relative flex-1">
-          {/* Social Buttons - Top Right */}
-          <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-            <DiscordButton />
+        <main className="relative flex-1 flex flex-col items-center justify-center px-6">
+          <div className="fixed top-6 right-6 z-[30] flex items-center gap-4">
             <GitHubStarButton />
+            <DiscordButton />
           </div>
 
-          {/* Grain Gradient - positioned at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 z-0 overflow-hidden">
-            <HeroGradient />
-          </div>
-
-          <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-center justify-center px-6 text-center">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight leading-[0.9] tracking-tight">
-              <span className="block">Search anything.</span>
-              <span className="block">Find the truth.</span>
-            </h1>
-            <div className="mt-10 w-full max-w-3xl mb-4">
-              <SearchBar onSearch={handleSearch} isLoading={isLoading} variant="hero" />
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "circOut" }}
+            className="w-full max-w-5xl space-y-12"
+          >
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.8] text-white">
+                SOVEREIGN<br />
+                <span className="text-emerald">INTELLIGENCE</span>
+              </h1>
+              <p className="text-platinum/40 font-mono text-sm md:text-base tracking-widest uppercase">
+                Bridging Elite Human Cognition with Machine Precision
+              </p>
             </div>
 
-            {/* Example Search */}
-            <div className="text-sm text-white/60 mb-20">
-              Try:{' '}
-              <button
-                onClick={() => handleSearch('Elon Musk')}
-                className="text-white/80 hover:text-white underline underline-offset-4 transition-colors"
+            <div className="w-full max-w-3xl mx-auto space-y-4">
+              <SearchBar onSearch={handleSearch} isLoading={isLoading} variant="hero" />
+              <div className="flex justify-center gap-4 text-[11px] font-mono text-platinum/40">
+                <span>Try:</span>
+                <button onClick={() => handleSearch('VALLE Tokenomics')} className="hover:text-emerald transition-colors">VALLE Tokenomics</button>
+                <button onClick={() => handleSearch('Neural Protocol')} className="hover:text-emerald transition-colors">Neural Protocol</button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-12">
+              <KnowledgeVault />
+              <button 
+                onClick={() => router.push('/marketplace')}
+                className="sovereign-card-v4 group relative flex flex-col items-start text-left"
               >
-                Elon Musk
+                <div className="flex items-center justify-between w-full mb-6">
+                  <div className="p-3 rounded-lg bg-emerald/10 border border-emerald/20 text-emerald">
+                    <Hash className="w-6 h-6" />
+                  </div>
+                  <motion.div 
+                    whileHover={{ x: 5 }}
+                    className="text-emerald opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <Smartphone className="w-5 h-5" />
+                  </motion.div>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Skill Market</h3>
+                <p className="text-sm text-platinum/50 leading-relaxed font-mono">
+                  Autonomous agents executing Sovereign Trade Pacts in a decentralized economy.
+                </p>
               </button>
             </div>
-
-            {/* Knowledge and Skill Market Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mt-4">
-              <KnowledgeVault />
-              <a
-                href="/skill-market"
-                className="group relative flex flex-col items-center justify-center p-6 bg-card/40 backdrop-blur-md border border-border/50 rounded-2xl hover:border-primary/50 transition-all hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)] overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">⚡</div>
-                <h3 className="text-xl font-semibold mb-2">Skill Market</h3>
-                <p className="text-sm text-muted-foreground">Buy and sell autonomous AI capabilities in the sovereign economy.</p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                  Explore Marketplace <span>→</span>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        </main>
       )}
     </div>
   );
