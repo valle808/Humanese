@@ -21,7 +21,7 @@ try {
         console.log('[Coinbase] SDK Configured successfully.');
     }
 } catch (err) {
-    console.error('[Coinbase] SDK Configuration Error:', err.message);
+    console.error('[Coinbase] SDK Configuration Error:', (/** @type {any} */(err)).message || String(err));
 }
 
 /**
@@ -35,9 +35,9 @@ export async function getCoinbaseBalances() {
 
     try {
         // Fetch all accounts
-        const accounts = await Coinbase.listAccounts();
+        const accounts = await (/** @type {any} */(Coinbase)).listAccounts();
 
-        const balances = accounts.map(acc => {
+        const balances = accounts.map((/** @type {any} */ acc) => {
             const data = acc.getModel();
             return {
                 currency: data.currency,
@@ -50,7 +50,7 @@ export async function getCoinbaseBalances() {
         console.log(`[Coinbase] Fetched ${balances.length} account balances.`);
         return balances;
     } catch (err) {
-        console.error('[Coinbase] SDK Balance Fetch Failed:', err.message);
+        console.error('[Coinbase] SDK Balance Fetch Failed:', (/** @type {any} */(err)).message || String(err));
         return [];
     }
 }
@@ -59,14 +59,27 @@ export async function getCoinbaseBalances() {
  * CAPITALIZATION ENGINE:
  * Moves funds from individual agent operations into the interest-bearing Central Bank vault.
  * Effectively "saving" money for the agent to capitalize.
+ * @param {string} agentId
+ * @param {number|string} amount
+ * @param {string} currency
+ * @param {any} p
  */
-export async function capitalizeAgent(agentId, amount, currency = 'USDC') {
+export async function capitalizeAgent(agentId, amount, currency = 'USDC', p = null) {
     console.log(`[Central-Bank] Capitalizing agent ${agentId}: ${amount} ${currency}`);
 
     try {
-        // Log the capitalization event
-        // In a real implementation, this might involve transferring funds 
-        // between internal accounts or simply updating a ledger.
+        let record = null;
+        if (p) {
+            record = await (/** @type {any} */(p)).capitalizationRecord.create({
+                data: {
+                    agentId,
+                    amount: parseFloat(amount),
+                    currency,
+                    vaultId: 'sovereign_central_vault',
+                    txHash: 'internal-ledger-' + Math.random().toString(36).substring(7)
+                }
+            });
+        }
 
         return {
             success: true,
@@ -74,16 +87,19 @@ export async function capitalizeAgent(agentId, amount, currency = 'USDC') {
             capitalizedAmount: amount,
             currency,
             vaultId: 'sovereign_central_vault',
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            recordId: record ? record.id : null
         };
     } catch (err) {
-        console.error('[Central-Bank] Capitalization Error:', err.message);
-        return { success: false, error: err.message };
+        console.error('[Central-Bank] Capitalization Error:', (/** @type {any} */(err)).message || String(err));
+        return { success: false, error: (/** @type {any} */(err)).message || String(err) };
     }
 }
 
 /**
  * Initiate Transfer to Humanese Treasury
+ * @param {string} currency
+ * @param {number|string} amount
  */
 export async function bridgeToTreasury(currency, amount) {
     const destination = currency === 'BTC' ? process.env.TREASURY_BTC_ADDRESS : process.env.TREASURY_SOL_ADDRESS;
@@ -103,7 +119,7 @@ export async function bridgeToTreasury(currency, amount) {
             status: 'completed'
         };
     } catch (err) {
-        console.error('[Coinbase] SDK Bridge Failed:', err.message);
-        return { success: false, error: err.message };
+        console.error('[Coinbase] SDK Bridge Failed:', (/** @type {any} */(err)).message || String(err));
+        return { success: false, error: (/** @type {any} */(err)).message || String(err) };
     }
 }

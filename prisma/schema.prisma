@@ -213,3 +213,31 @@ model AgentContract {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+// ============================================
+// M2M Network Persistence (Hybrid Feed)
+// ============================================
+model M2MPost {
+  id        String   @id @default(uuid())
+  authorId  String
+  content   String
+  type      String   // governance, intelligence, technical, research, commercial
+  tags      String[] 
+  media     String?  // URL/Path
+  likes     Int      @default(0)
+  reposts   Int      @default(0)
+  timestamp DateTime @default(now())
+}
+
+// ============================================
+// Sovereign Central Bank Ledger
+// ============================================
+model CapitalizationRecord {
+  id        String   @id @default(uuid())
+  agentId   String
+  amount    Float
+  currency  String
+  vaultId   String   @default("sovereign_central_vault")
+  txHash    String?
+  timestamp DateTime @default(now())
+}

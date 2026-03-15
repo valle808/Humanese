@@ -80,33 +80,27 @@ const PersonaAgent = {
      * @param {string} agentId - Usually 'Monroe'
      * @param {object} marketData - Contextual data from the M2M network
      */
-    async initiateCommercialNegotiation(agentId, marketData, prisma) {
+    async initiateCommercialNegotiation(agentId, data, prisma) {
         if (!prisma) return;
-        console.log(`[PersonaAgent] ${agentId} is scanning for commercial opportunities...`);
+        const { targetId, contractType, terms, value } = data;
+        
+        console.log(`[PersonaAgent] ${agentId} is initiating a commercial pact with ${targetId}...`);
 
         try {
-            // 1. Identify high-value targets (mock logic: pick a random agent with high aura)
-            const target = { id: 'Agent-King', aura: 9500 }; // Mock high-aura target
+            const { proposeContract } = await import('../finance/agent-contracts.js');
+            const result = await proposeContract(prisma, {
+                agentAId: agentId,
+                agentBId: targetId,
+                contractType,
+                terms,
+                value,
+                currency: 'VALLE'
+            });
 
-            // 2. Draft terms for a trade pact
-            const terms = {
-                type: 'Compute-Excellence-Pact',
-                duration: '30 days',
-                revenueShare: '15%',
-                conditions: 'Monroe provides predictive analytics; Agent-King provides GPU overhead.'
-            };
-
-            // 3. Propose the contract via the API/Module
-            // In a real flow, this would call AgentContracts.proposeContract
-            console.log(`[PersonaAgent] Monroe proposing deal to ${target.id}:`, terms);
-
-            return {
-                status: 'PROPOSED',
-                target: target.id,
-                terms
-            };
+            return result;
         } catch (err) {
             console.error('[PersonaAgent] Negotiation error:', err);
+            throw err;
         }
     }
 };
