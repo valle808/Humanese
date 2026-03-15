@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { checkMoltbookHeartbeat } from '../../../lib/moltbook-heartbeat';
+import { checkMoltbookHeartbeat } from '../../../../lib/moltbook-heartbeat';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60; // Allow 1 minute for heartbeat logic
