@@ -30,45 +30,45 @@ export function ValleCryptoOverview() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="col-span-1 md:col-span-2 mt-6 overflow-hidden relative group p-1 rounded-xl bg-gradient-to-r from-emerald-500/20 via-neon-blue/20 to-purple-500/20"
+            className="col-span-1 md:col-span-2 mt-6 overflow-hidden relative group p-[1px] rounded-[13px] solana-border"
         >
-            <div className="bg-neural-950 p-6 rounded-lg w-full h-full relative z-10">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                    <Database className="w-24 h-24" />
+            <div className="bg-nd-bg p-6 rounded-xl w-full h-full relative z-10 text-nd-high-em-text">
+                <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                    <Database className="w-32 h-32" />
                 </div>
                 
-                <h3 className="text-xl font-bold font-mono text-white flex items-center mb-4">
-                    <Zap className="mr-2 w-5 h-5 text-emerald" /> 
+                <h3 className="nd-heading-m flex items-center mb-6">
+                    <Zap className="mr-3 w-6 h-6 text-nd-highlight-green" /> 
                     VALLE CRYPTO: SOVEREIGN GENESIS
                 </h3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-20">
-                    <div className="space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-20">
+                    <div className="space-y-4">
                         <div className="flex flex-col">
-                            <span className="text-xs uppercase tracking-widest text-platinum/40">Core Architecture</span>
-                            <span className="font-mono text-sm text-emerald">Base58Check + Double SHA256</span>
+                            <span className="nd-body-xs uppercase tracking-widest text-nd-mid-em-text mb-1">Core Architecture</span>
+                            <span className="font-mono text-nd-highlight-blue bg-nd-highlight-blue/10 px-2 py-1 rounded w-fit">Base58Check + Double SHA256</span>
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-xs uppercase tracking-widest text-platinum/40">Genesis Address (V-Prefixed)</span>
-                            <span className="font-mono text-sm text-neon-cyan break-all">{valleGenesis.address}</span>
+                            <span className="nd-body-xs uppercase tracking-widest text-nd-mid-em-text mb-1">Genesis Address (V-Prefixed)</span>
+                            <span className="font-mono text-nd-highlight-lime break-all">{valleGenesis.address}</span>
                         </div>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                         <div className="flex flex-col">
-                            <span className="text-xs uppercase tracking-widest text-platinum/40">Block Hash</span>
-                            <span className="font-mono text-xs text-platinum/70 break-all">{valleGenesis.hash}</span>
+                            <span className="nd-body-xs uppercase tracking-widest text-nd-mid-em-text mb-1">Block Hash</span>
+                            <span className="font-mono text-nd-mid-em-text break-all border border-nd-border-light p-2 rounded bg-white/5">{valleGenesis.hash}</span>
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-xs uppercase tracking-widest text-platinum/40">Timestamp</span>
-                            <span className="font-mono text-sm text-platinum/90">{valleGenesis.timestamp}</span>
+                            <span className="nd-body-xs uppercase tracking-widest text-nd-mid-em-text mb-1">Timestamp</span>
+                            <span className="font-mono text-nd-high-em-text">{valleGenesis.timestamp}</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-glass-white/10 flex justify-between items-center text-xs font-mono text-platinum/50 uppercase">
-                    <span className="flex items-center"><Activity className="w-3 h-3 mr-1 text-neon-green" /> Miner Orchestration Active (Target: 3CJreF7LD...)</span>
-                    <span>Diplomat Council: Moltbook Heartbeat Synced</span>
+                <div className="mt-8 pt-4 border-t border-nd-border-prominent flex flex-col md:flex-row justify-between items-start md:items-center nd-body-xs font-mono text-nd-mid-em-text uppercase gap-2">
+                    <span className="flex items-center"><Activity className="w-3 h-3 mr-2 text-nd-highlight-green animate-pulse" /> Miner Orchestration Active (Target: 3CJreF7LD...)</span>
+                    <span className="flex items-center border border-nd-border-light px-2 py-1 rounded">Diplomat Council: Moltbook Heartbeat Synced</span>
                 </div>
             </div>
         </motion.div>
