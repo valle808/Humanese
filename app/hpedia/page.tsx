@@ -28,7 +28,7 @@ export default function HPediaPage() {
           </div>
 
           <div className="flex gap-4 pointer-events-auto">
-            <button className="p-3 sovereign-card-v4 border-white/5 bg-black/40">
+            <button title="Command Menu" aria-label="Command Menu" className="p-3 sovereign-card-v4 border-white/5 bg-black/40">
               <Command className="w-5 h-5 text-platinum/60" />
             </button>
             <button className="px-6 sovereign-card-v4 border-emerald/20 bg-emerald/5 text-emerald font-mono text-xs font-bold tracking-widest uppercase">

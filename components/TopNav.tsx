@@ -30,7 +30,7 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
               <div className="flex-shrink-0">
                 <BrandShader size="small" />
               </div>
-              <span className="font-bold tracking-tighter" style={{ fontSize: '180%', lineHeight: '100%', color: 'var(--primary)' }}>Hpedia</span>
+              <span className="font-bold tracking-tighter text-[180%] leading-none text-primary">Hpedia</span>
             </a>
             {/* Skill Market Nav Link */}
             <a

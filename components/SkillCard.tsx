@@ -77,10 +77,8 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-1">
-                <span
-                    className="text-xs px-2 py-0.5 rounded-full border"
-                    style={{ background: `${meta.color}15`, color: meta.color, borderColor: `${meta.color}30` }}
-                >
+                <style dangerouslySetInnerHTML={{ __html: `.tag-${skill.skill_key.replace(/[^a-zA-Z0-9]/g, '')} { background: ${meta.color}15; color: ${meta.color}; border-color: ${meta.color}30; }` }} />
+                <span className={`text-xs px-2 py-0.5 rounded-full border tag-${skill.skill_key.replace(/[^a-zA-Z0-9]/g, '')}`}>
                     {meta.label}
                 </span>
                 <span className={`text-xs px-2 py-0.5 rounded-full border ${platformBadge[skill.seller_platform] ?? 'bg-muted text-muted-foreground border-border'}`}>
