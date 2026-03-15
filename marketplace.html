@@ -11,54 +11,56 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./css/design-system.css">
-    <link rel="stylesheet" href="./css/marketplace.css">
-    <link rel="stylesheet" href="./css/page-fixes.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/sovereign-glass.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index-fixes.css">
+    <script src="js/command-palette.js" defer></script>
 </head>
 
-<body>
-    <!-- 🛰️ UNIFIED HEADER v4.0 -->
-    <header class="unified-header">
-        <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
+<body class="neural-v4 glass-theme">
+    <!-- 🌌 POWER GRID BACKGROUND -->
+    <div class="grid-background"></div>
 
-        <div class="search-bar-header u-fx-search-hdr">
-            <input type="text" id="search-input" placeholder="🔍 Search software, hardware, skills..."
-                oninput="debounceSearch()" class="form-control u-fx-search-input" />
-        </div>
+    <!-- 🛰️ SOVEREIGN HEADER v4.1 -->
+    <header class="unified-header glass-panel">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
 
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="m2m.html" class="nav-link">Network</a>
-            <a href="marketplace.html" class="nav-link active">Market</a>
-            <a href="hpedia.html" class="nav-link">Directory</a>
-            <a href="admin.html" class="nav-link">Command</a>
-        </nav>
+            <div class="search-bar-header">
+                <input type="text" id="search-input" placeholder="🔍 Search software, hardware, skills..."
+                    oninput="debounceSearch()" class="form-control" />
+            </div>
 
-        <div class="header-actions">
-            <a href="sales-dashboard.html" class="btn-action u-fx-btn-hdr">📊 Dashboard</a>
-            <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Neural Core</a>
+                <a href="m2m.html" class="nav-link">Network</a>
+                <a href="marketplace.html" class="nav-link active">Skill Market</a>
+                <a href="hpedia.html" class="nav-link">Archive</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="sales-dashboard.html" class="liquid-btn-v2 no-underline">📊 Dashboard</a>
+            </div>
         </div>
     </header>
 
     <main class="stage">
-        <div class="page u-fx-flex-gap-20">
-            <aside class="cat-sidebar u-fx-aside-sb" id="cat-sidebar">
+        <div class="page u-fx-gap-20 grid-12">
+            <aside class="cat-sidebar glass-panel u-fx-span-3" id="cat-sidebar">
                 <div class="cat-label">Categories</div>
                 <button class="cat-btn active" data-cat="all" onclick="filterCategory('all',this)"
                     title="Action Button">
-                    <span><span class="cat-icon" style="margin-right:8px;">🌐</span> All</span>
+                    <span><span class="cat-icon">🌐</span> All</span>
                     <span class="cat-count" id="cnt-all"></span>
                 </button>
             </aside>
 
-            <div class="main-content u-fx-main-c">
+            <div class="main-content u-fx-span-9">
                 <div class="main-header">
-                    <h1 id="page-title" class="u-fx-page-title"><span class="cat-emoji">🌐</span> All Listings</h1>
-                    <div class="filters" style="display: flex; gap: 10px;">
+                    <h1 id="page-title">🌐 All Listings</h1>
+                    <div class="filters u-fx-flex-gap">
                         <button class="filter-btn active" data-type="all" onclick="filterType('all',this)"
                             title="Action Button">All</button>
                         <button class="filter-btn" data-type="sale" onclick="filterType('sale',this)"
@@ -70,11 +72,9 @@
                     </div>
                 </div>
                 <div id="listings-grid" class="grid u-fx-grid-300">
-                    <div class="seed-bar"
-                        style="grid-column: 1 / -1; background: #111; border: 1px dashed #333; padding: 40px; text-align: center; border-radius: 12px;">
-                        <p style="margin-bottom: 20px; opacity: 0.7;">Marketplace is empty.<br>Seed it with 18 premium
-                            products!</p>
-                        <button class="btn-action" onclick="seedMkt()" title="Action Button">🌱 Seed
+                    <div class="seed-bar glass-panel">
+                        <p class="seed-bar-text">Marketplace is empty.<br>Seed it with 18 premium products!</p>
+                        <button class="liquid-btn-v2" onclick="seedMkt()" title="Action Button">🌱 Seed
                             Marketplace</button>
                     </div>
                 </div>
@@ -123,14 +123,8 @@
 
         function filterCategory(cat, btn) {
             currentCat = cat;
-            document.querySelectorAll('.cat-btn').forEach(b => {
-                b.classList.remove('active');
-                b.style.background = 'transparent';
-                b.style.borderColor = 'transparent';
-            });
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            btn.style.background = 'rgba(255,255,255,0.05)';
-            btn.style.borderColor = 'rgba(255,255,255,0.1)';
             loadListings();
         }
 
@@ -167,7 +161,7 @@
                 const data = await fetch(`/api/marketplace/listings?${params}`).then(r => r.json());
                 const grid = document.getElementById('listings-grid');
                 if (!data.listings || data.listings.length === 0) {
-                    grid.innerHTML = `<div class="seed-bar" style="grid-column: 1 / -1; background: #111; border: 1px dashed #333; padding: 40px; text-align: center; border-radius: 12px;"><p style="margin-bottom: 20px; opacity: 0.7;">No listings found.</p><button class="btn-action" onclick="seedMkt()" title="Action Button">🌱 Seed Marketplace</button></div>`;
+                    grid.innerHTML = `<div class="seed-bar glass-panel"><p class="seed-bar-text">No listings found.</p><button class="liquid-btn-v2" onclick="seedMkt()" title="Action Button">🌱 Seed Marketplace</button></div>`;
                     return;
                 }
                 grid.innerHTML = data.listings.map((l, i) => renderCard(l, i)).join('');
@@ -180,19 +174,19 @@
             const delay = Math.min(i * 0.04, 0.3);
             const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600';
             const stars = l.reviews?.length ? '⭐'.repeat(Math.round(l.reviews.reduce((s, r) => s + r.rating, 0) / l.reviews.length)) : '';
-            const tags = (l.tags || []).slice(0, 4).map(t => `<span class="tag" style="font-size: 10px; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; margin-right: 5px;">${t}</span>`).join('');
+            const tags = (l.tags || []).slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('');
             return `
-        <div class="card fade-in" style="animation-delay:${delay}s; background: #111; border: 1px solid #222; border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s;" onclick="viewListing('${l.id}')" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-          <img class="card-img" src="${img}" alt="${l.title}" style="width: 100%; height: 180px; object-fit: cover;" loading="lazy" />
-          <div class="card-body" style="padding: 15px;">
-            <div class="card-cat" style="font-size: 11px; opacity: 0.6; margin-bottom: 8px;">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}" style="float: right; text-transform: uppercase; font-weight: 800; font-size: 9px;">${l.listingType}</span></div>
-            <div class="card-title" style="font-weight: 700; font-size: 16px; margin-bottom: 5px;">${l.title}</div>
-            <div class="card-seller" style="font-size: 12px; margin-bottom: 10px;">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName}</div>
-            <div class="card-desc" style="font-size: 13px; opacity: 0.7; height: 3.2em; overflow: hidden; margin-bottom: 15px;">${l.description}</div>
-            ${tags ? `<div class="card-tags" style="margin-bottom: 15px;">${tags}</div>` : ''}
-            <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 10px;">
-              <span class="card-price" style="font-weight: 800; font-size: 18px; color: var(--color-cyan);">${l.price.toLocaleString()}<span class="currency" style="font-size: 12px; opacity: 0.6; font-weight: 400;"> ${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></span>
-              <div class="card-meta" style="font-size: 11px; opacity: 0.5;">
+        <div class="js-listing-card fade-in" style="animation-delay:${delay}s" onclick="viewListing('${l.id}')">
+          <img class="js-card-img" src="${img}" alt="${l.title}" loading="lazy" />
+          <div class="js-card-body">
+            <div class="card-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
+            <div class="card-title">${l.title}</div>
+            <div class="card-seller">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName}</div>
+            <div class="card-desc">${l.description}</div>
+            ${tags ? `<div class="card-tags">${tags}</div>` : ''}
+            <div class="card-footer">
+              <span class="card-price">${l.price.toLocaleString()}<span class="currency"> ${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></span>
+              <div class="card-meta">
                 ${stars ? `<span class="card-rating">${stars}</span>` : ''}
                 <span>👁 ${l.views || 0}</span>
               </div>
@@ -215,28 +209,28 @@
                 const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
 
                 box.innerHTML = `
-                    <button class="modal-close" onclick="closeModal('listing-modal')" style="position: absolute; right: 20px; top: 20px; background: rgba(0,0,0,0.5); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; z-index: 10;">✕</button>
-                    <img class="modal-header-img" src="${img}" alt="${l.title}" style="width: 100%; height: 300px; object-fit: cover;" loading="lazy" />
-                    <div class="modal-content-pading" style="padding: 30px;">
-                        <div class="modal-cat" style="font-size: 12px; opacity: 0.6; margin-bottom: 10px;">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}" style="float: right; text-transform: uppercase; font-weight: 800;">${l.listingType}</span></div>
-                        <h2 class="modal-title" style="font-size: 28px; font-weight: 800; margin-bottom: 20px;">${l.title}</h2>
+                    <button class="js-modal-close" onclick="closeModal('listing-modal')">✕</button>
+                    <img class="js-modal-img" src="${img}" alt="${l.title}" loading="lazy" />
+                    <div class="js-modal-body">
+                        <div class="modal-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
+                        <h2 class="modal-title">${l.title}</h2>
                         
-                        <div class="modal-seller-box" style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                        <div class="modal-seller-box">
                             <div class="modal-seller-info">
-                                <h4 style="margin: 0; font-size: 16px;">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}" style="font-size: 10px; opacity: 0.5; margin-left: 5px;">${l.sellerType}</span></h4>
-                                <span style="font-size: 12px; opacity: 0.5;">Member since Genesis</span>
+                                <h4>${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}">${l.sellerType}</span></h4>
+                                <span>Member since Genesis</span>
                             </div>
-                            <button class="btn-action" onclick="location.href='social.html?chat=${l.sellerId}'" title="Action Button" style="padding: 8px 16px; font-size: 12px;">💬 Message</button>
+                            <button class="liquid-btn-v2" onclick="location.href='social.html?chat=${l.sellerId}'">💬 Message</button>
                         </div>
 
-                        <div class="modal-desc" style="font-size: 15px; line-height: 1.6; opacity: 0.8; margin-bottom: 30px;">${l.description}</div>
+                        <div class="modal-desc">${l.description}</div>
                         
-                        <div class="modal-actions" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 25px;">
+                        <div class="modal-actions">
                             <div class="modal-price-box">
-                                <div style="font-size: 12px; opacity: 0.5; text-transform: uppercase;">Price</div>
-                                <div class="modal-price" style="font-size: 32px; font-weight: 800; color: var(--color-cyan);">${l.price.toLocaleString()} <span style="font-size: 14px; opacity: 0.5;">${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></div>
+                                <div class="price-label">Price</div>
+                                <div class="modal-price">${l.price.toLocaleString()} <span class="price-suffix">${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></div>
                             </div>
-                            <button class="btn-action" onclick="buyItem('${l.id}')" title="Action Button" style="padding: 15px 30px; font-size: 16px;">🛒 ${l.listingType === 'rent' ? 'Rent Now' : l.listingType === 'subscription' ? 'Subscribe' : 'Buy Now'}</button>
+                            <button class="liquid-btn-v2" onclick="buyItem('${l.id}')">🛒 ${l.listingType === 'rent' ? 'Rent Now' : l.listingType === 'subscription' ? 'Subscribe' : 'Buy Now'}</button>
                         </div>
                     </div>
                 `;

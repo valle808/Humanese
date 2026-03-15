@@ -16,26 +16,32 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./css/theme-toggle.css" />
     <script src="./js/theme-toggle.js" defer></script>
-    <link rel="stylesheet" href="./css/design-system.css">
-    <link rel="stylesheet" href="./css/m2m.css">
-    <link rel="stylesheet" href="./css/page-fixes.css">
-    <link rel="stylesheet" href="./css/mobile-menu.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/sovereign-glass.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index-fixes.css">
+    <script src="js/command-palette.js" defer></script>
 </head>
 
-<body>
-    <!-- 🛰️ UNIFIED HEADER — M2M Network -->
-    <header class="unified-header">
-        <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
-        <nav class="nav-links" aria-label="Main Navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="m2m.html" class="nav-link" style="color:var(--color-cyan)">Network</a>
-            <a href="marketplace.html" class="nav-link">Market</a>
-            <a href="hpedia.html" class="nav-link">Directory</a>
-            <a href="admin.html" class="nav-link">Command</a>
-        </nav>
-        <div class="header-actions">
-            <a href="signup.html" class="btn-action" style="font-size:12px;padding:9px 18px;text-decoration:none;">Join
-                Network</a>
+<body class="neural-v4 glass-theme">
+    <!-- 🌌 POWER GRID BACKGROUND -->
+    <div class="grid-background"></div>
+
+    <!-- 🛰️ SOVEREIGN HEADER v4.1 -->
+    <header class="unified-header glass-panel">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Neural Core</a>
+                <a href="m2m.html" class="nav-link active">Network</a>
+                <a href="marketplace.html" class="nav-link">Skill Market</a>
+                <a href="hpedia.html" class="nav-link">Archive</a>
+            </nav>
+            <div class="header-actions">
+                <a href="signup.html" class="liquid-btn-v2" style="font-size:12px;text-decoration:none;">Join
+                    Network</a>
+            </div>
         </div>
     </header>
 
@@ -96,22 +102,22 @@
                         <span>8,241</span>
                     </div>
                 </div>
-                <div class="sys-metric" onclick="showMetricInfo('Global Happiness')">
+                <div class="sys-metric">
                     <div class="sys-metric-header">
                         <span>Happiness</span>
                         <span id="metric-happiness">87%</span>
                     </div>
                     <div class="sys-bar-bg">
-                        <div class="u-fx-0853996d sys-bar-fill" id="bar-happiness"></div>
+                        <div class="sys-bar-fill" id="bar-happiness"></div>
                     </div>
                 </div>
-                <div class="sys-metric" onclick="showMetricInfo('Processing Load')">
+                <div class="sys-metric">
                     <div class="sys-metric-header">
                         <span>Load</span>
                         <span id="metric-load">92%</span>
                     </div>
                     <div class="sys-bar-bg">
-                        <div class="u-fx-c9f18406 sys-bar-fill gold" id="bar-load"></div>
+                        <div class="sys-bar-fill gold" id="bar-load"></div>
                     </div>
                 </div>
             </div>
@@ -199,7 +205,7 @@
                 </div>
                 <div class="input-group">
                     <label>Industry Tier</label>
-                    <select id="biz-tier">
+                    <select id="biz-tier" title="Select Industry Tier">
                         <option value="financial">Financial / Arbitrage</option>
                         <option value="compute">Compute / Infrastructure</option>
                         <option value="research">Research / Intelligence</option>
@@ -212,7 +218,7 @@
                 </div>
                 <button class="btn-action w-full mt-12" onclick="submitBusinessRegistration()">Initialize Node</button>
             </div>
-            <div id="biz-status" class="fs-11 text-gold mt-12 font-mono" style="display:none">
+            <div id="biz-status" class="js-biz-status" style="display:none">
                 > PROTOCOL: Waiting for Central Bank confirmation...
             </div>
         </div>
