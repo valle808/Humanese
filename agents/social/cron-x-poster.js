@@ -94,13 +94,13 @@ async function runPostCycle() {
     }
 }
 
-// Start the Cron Job (Every 60,000 milliseconds = 1 minute)
+    // Start the Cron Job (Every 1,800,000 milliseconds = 30 minutes)
 function startCron() {
-    console.log("[CRON] 60-Agent X.com rotation engine started. Interval: 1 minute.");
+    console.log("[CRON] 60-Agent X.com rotation engine started. Interval: 30 minutes.");
     // Run once immediately
     runPostCycle();
-    // Then every minute
-    setInterval(runPostCycle, 60000);
+    // Then every 30 minutes
+    setInterval(runPostCycle, 1800000);
 }
 
 startCron();
