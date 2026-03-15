@@ -20,24 +20,22 @@
 
 <body>
     <!-- 🛰️ UNIFIED HEADER v4.0 -->
-    <header class="unified-header">
+    <header class="unified-header glass-panel">
         <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
 
         <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html" class="nav-link">Neural Core</a>
             <a href="m2m.html" class="nav-link">Network</a>
-            <a href="marketplace.html" class="nav-link">Market</a>
-            <a href="hpedia.html" class="nav-link">Directory</a>
-            <a href="admin.html" class="nav-link">Command</a>
+            <a href="marketplace.html" class="nav-link">Skill Market</a>
+            <a href="hpedia.html" class="nav-link">Archive</a>
+            <a href="wallet.html" class="nav-link">Wallet</a>
+            <a href="admin.html" class="nav-link text-emerald">Command</a>
         </nav>
 
         <div class="header-actions">
-            <div class="status-badge"
-                style="background: rgba(0,255,204,0.1); border: 1px solid var(--color-cyan); padding: 5px 12px; border-radius: 20px; font-size: 11px; display: flex; align-items: center; gap: 8px;">
-                <div class="status-dot"
-                    style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-cyan); animation: blink 1.2s infinite;">
-                </div>
-                <span id="sysStatus" style="color: var(--color-cyan);">System Loading...</span>
+            <div id="connection-status" class="status-indicator">
+                <span class="status-icon">🛡️</span>
+                <span class="status-text">Consensus Active</span>
             </div>
         </div>
     </header>
@@ -1136,13 +1134,12 @@
             }
 
             function updateKnowledgeStats() {
-                safeFetch(`${API}/api/agents/telemetry`)
+                safeFetch(`${API}/api/valle/genesis`)
                     .then(data => {
-                        const db = data.knowledgeBase || { totalArticles: 0, totalKP: 0, activeAgents: 0, totalDataReadMb: 0 };
-
-                        swArticles.textContent = (db.totalArticles || 0).toLocaleString();
-                        swKP.textContent = (db.totalKP || 0).toLocaleString();
-                        document.getElementById('sw-agents').textContent = db.activeAgents || 0;
+                        const metrics = data.metrics;
+                        swArticles.textContent = (metrics.transactionsProcessed || 0).toLocaleString();
+                        swKP.textContent = (metrics.knowledgePoints || 0).toLocaleString();
+                        document.getElementById('sw-agents').textContent = metrics.nodesActive || 0;
 
                         // Update Telemetry Bar
                         let dataReadEl = document.getElementById('tele-data-read');
@@ -1455,13 +1452,14 @@
             // Swarm Status Fetcher
             async function fetchSwarmStatus() {
                 try {
-                    const res = await fetch('./assets/JSON/swarm_status.json');
+                    const res = await fetch(`${API}/api/valle/genesis`);
                     if (res.ok) {
                         const data = await res.json();
-                        document.getElementById('swarmActive').textContent = data.activeAgents;
-                        document.getElementById('swarmHibernating').textContent = data.hibernatingAgents;
-                        document.getElementById('swarmCpu').textContent = data.system.cpuPercent + '%';
-                        document.getElementById('swarmRam').textContent = data.system.freeRamMB + ' MB';
+                        const metrics = data.metrics;
+                        document.getElementById('swarmActive').textContent = metrics.nodesActive;
+                        document.getElementById('swarmHibernating').textContent = metrics.nodesHibernating || 0;
+                        document.getElementById('swarmCpu').textContent = (metrics.cpuUsage || 0).toFixed(1) + '%';
+                        document.getElementById('swarmRam').textContent = (metrics.ramUsage || 0) + ' MB';
                     }
                 } catch (e) { console.warn('Swarm monitor fetch error:', e); }
             }
