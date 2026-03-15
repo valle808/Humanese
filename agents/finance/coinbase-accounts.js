@@ -73,7 +73,7 @@ export async function capitalizeAgent(agentId, amount, currency = 'USDC', p = nu
             record = await (/** @type {any} */(p)).capitalizationRecord.create({
                 data: {
                     agentId,
-                    amount: parseFloat(amount),
+                    amount: parseFloat(String(amount)),
                     currency,
                     vaultId: 'sovereign_central_vault',
                     txHash: 'internal-ledger-' + Math.random().toString(36).substring(7)
