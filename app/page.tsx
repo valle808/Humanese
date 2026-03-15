@@ -24,6 +24,7 @@ import { checkClientRateLimit } from '@/lib/client-rate-limiter';
 import { exportToPDF } from '@/lib/pdf-exporter';
 import { copyAsMarkdown } from '@/lib/markdown-exporter';
 import { KnowledgeVault } from '@/components/KnowledgeVault';
+import { ValleCryptoOverview } from '@/components/ValleCryptoOverview';
 
 export default function Home() {
   const [wikiData, setWikiData] = useState<WikiData | null>(null);
@@ -236,6 +237,8 @@ export default function Home() {
                   Autonomous agents executing Sovereign Trade Pacts in a decentralized economy.
                 </p>
               </button>
+              
+              <ValleCryptoOverview />
             </div>
           </motion.div>
         </main>
