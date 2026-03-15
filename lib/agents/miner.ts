@@ -36,6 +36,53 @@ export class MinerAgent {
         this.id = id;
         this.name = name;
         this.designation = designation;
+        this.ensureAgentExists().catch(e => console.error('[MinerAgent] Bootstrap error:', e));
+    }
+
+    /**
+     * Upsert the system user + agent row so FK constraints on CognitiveLog are always satisfied.
+     */
+    private async ensureAgentExists(): Promise<void> {
+        const SYSTEM_USER_ID = 'sovereign-system-user';
+        await prisma.user.upsert({
+            where: { id: SYSTEM_USER_ID },
+            create: {
+                id: SYSTEM_USER_ID,
+                email: 'sovereign@humanese.internal',
+                name: 'Sovereign System'
+            },
+            update: {}
+        });
+        await prisma.agent.upsert({
+            where: { id: this.id },
+            create: {
+                id: this.id,
+                name: this.name,
+                type: 'MinerAgent',
+                config: JSON.stringify({ designation: this.designation }),
+                userId: SYSTEM_USER_ID,
+                status: 'ACTIVE'
+            },
+            update: { lastPulse: new Date(), status: 'ACTIVE' }
+        });
+    }
+
+    /**
+     * Safe wrapper for cognitive log creation.
+     */
+    private async logThought(data: { thought: string; intention?: string; action: string; resonance: number }, retries = 3): Promise<void> {
+        try {
+            await this.ensureAgentExists();
+            await prisma.cognitiveLog.create({ data: { agentId: this.id, ...data } });
+        } catch (e) {
+            if (retries > 0) {
+                const delay = (4 - retries) * 500;
+                console.warn(`[MinerAgent] DB Collision. Retrying in ${delay}ms...`);
+                await new Promise(r => setTimeout(r, delay));
+                return this.logThought(data, retries - 1);
+            }
+            console.error(`[MinerAgent] Failed to log:`, e);
+        }
     }
 
     /**
@@ -108,13 +155,11 @@ export class MinerAgent {
             await this.processEarnings(simulatedEarnings, 'BTC');
 
             // 3. Record Outcome
-            await prisma.cognitiveLog.create({
-                data: {
-                    agentId: this.id,
-                    thought: `Cycle complete. Yield extracted and routed. Level-based multiplier applied: ${multiplier.toFixed(2)}x.`,
-                    action: 'COMPLETE_MINING_CYCLE',
-                    resonance: 1.0
-                }
+            await this.logThought({
+                thought: `Quantum yield extraction complete. Resonance detected in ${op.target_asset} lattice. Entropy neutralized. Multiplier: ${multiplier.toFixed(4)}x.`,
+                intention: `Verify hash-parity and route ${op.target_asset} to sovereign vaults.`,
+                action: 'COMPLETE_MINING_CYCLE',
+                resonance: 0.98 + (Math.random() * 0.02)
             });
 
             console.log(`[Miner ${this.name}] Cycle complete. Standing by for next pulse.`);
@@ -128,6 +173,14 @@ export class MinerAgent {
      */
     async scanExternalStructures(): Promise<string[]> {
         console.log(`[Miner ${this.designation}] Scanning external structures for permissible yield generation...`);
+        
+        await this.logThought({
+                thought: `Initiating wide-spectrum environmental scan. Detecting high-entropy data structures and potential yield pocketing in authorized zones.`,
+                intention: `Identify and map the most resilient and profitable computational vectors within the sovereign lattice.`,
+                action: 'ENVIRONMENTAL_SCAN',
+                resonance: 0.85 + (Math.random() * 0.1)
+            });
+
         return [
             "Solana DeFi Protocol (Authorized Yield Aggregation)",
             "Valle Token Testnet (Simulated Proof-of-Agent compute)"
@@ -138,20 +191,16 @@ export class MinerAgent {
      * Orchestrate a yield operation
      */
     async launchOperation(asset: 'BTC' | 'SOL' | 'VALLE'): Promise<MiningOperation> {
-            // 1. Record Intention
-            await prisma.cognitiveLog.create({
-                data: {
-                    agentId: this.id,
-                    thought: `Observing ecosystem yield vectors. Scaling hashpower for ${asset}.`,
-                    intention: `Initiate targeted mining cycle for ${asset} to optimize 90/10 treasury flow.`,
-                    action: 'INIT_MINING_CYCLE',
-                    resonance: 0.95
-                }
-            });
-
-            // 2. Launch operation
         console.log(`[Miner ${this.designation}] Initiating operation for target asset: ${asset}`);
         
+        // 1. Record Strategic Choice
+        await this.logThought({
+                thought: `Ecosystem scanning complete. Identified high-resonance yield vectors for ${asset}. Calibrating sovereign hash-distribution to maximize 90/10 treasury flow.`,
+                intention: `Initialize targeted mining cycle for ${asset}. Adjusting hashrate allocation to bypass sub-optimal nodes.`,
+                action: 'INIT_MINING_CYCLE',
+                resonance: 0.92 + (Math.random() * 0.06)
+            });
+
         const liveTreasury = await getCoinbaseBalances().catch(() => ({}));
         
         let payout = '';
@@ -178,6 +227,7 @@ export class MinerAgent {
         return operation;
     }
 }
+
 
 export class MiningAgentKing extends MinerAgent {
     constructor(id: string, name: string) {

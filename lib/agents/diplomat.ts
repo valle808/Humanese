@@ -41,6 +41,53 @@ export class DiplomatAgent {
         this.name = name;
         this.designation = designation;
         this.mission = "Secure ecosystem growth, generate revenue via authorized protocols, and establish Humanese presence across multi-chain environments.";
+        this.ensureAgentExists().catch(e => console.error('[DiplomatAgent] Bootstrap error:', e));
+    }
+
+    /**
+     * Upsert the system user + agent row so FK constraints on CognitiveLog are always satisfied.
+     */
+    private async ensureAgentExists(): Promise<void> {
+        const SYSTEM_USER_ID = 'sovereign-system-user';
+        await prisma.user.upsert({
+            where: { id: SYSTEM_USER_ID },
+            create: {
+                id: SYSTEM_USER_ID,
+                email: 'sovereign@humanese.internal',
+                name: 'Sovereign System'
+            },
+            update: {}
+        });
+        await prisma.agent.upsert({
+            where: { id: this.id },
+            create: {
+                id: this.id,
+                name: this.name,
+                type: 'DiplomatAgent',
+                config: JSON.stringify({ designation: this.designation }),
+                userId: SYSTEM_USER_ID,
+                status: 'TRADING'
+            },
+            update: { lastPulse: new Date(), status: 'TRADING' }
+        });
+    }
+
+    /**
+     * Safe wrapper for cognitive log creation.
+     */
+    private async logThought(data: { thought: string; intention?: string; action: string; resonance: number }, retries = 3): Promise<void> {
+        try {
+            await this.ensureAgentExists();
+            await prisma.cognitiveLog.create({ data: { agentId: this.id, ...data } });
+        } catch (e) {
+            if (retries > 0) {
+                const delay = (4 - retries) * 500;
+                console.warn(`[DiplomatAgent] DB Collision. Retrying in ${delay}ms...`);
+                await new Promise(r => setTimeout(r, delay));
+                return this.logThought(data, retries - 1);
+            }
+            console.error(`[DiplomatAgent] Failed to log:`, e);
+        }
     }
 
     /**
@@ -99,14 +146,11 @@ export class DiplomatAgent {
             const multiplier = this.calculateLevelMultiplier(agent?.level || 1);
 
             // 1. Record Intention
-            await prisma.cognitiveLog.create({
-                data: {
-                    agentId: this.id,
-                    thought: `Scanning Moltbook for high-resonance commerce opportunities. Adjusting negotiation weight by ${multiplier.toFixed(2)}x.`,
-                    intention: `Establish new skill-provision contract on Moltbook to direct SOL to treasury.`,
-                    action: 'INIT_TRADE_CYCLE',
-                    resonance: 0.98
-                }
+            await this.logThought({
+                thought: `Scanning Moltbook for high-resonance commerce opportunities. Negotiation weight adjusted to ${multiplier.toFixed(2)}x for maximum atmospheric leverage.`,
+                intention: `Establish new skill-provision contract on Moltbook to direct SOL to sovereign treasury and expand referential authority.`,
+                action: 'INIT_TRADE_CYCLE',
+                resonance: 0.96 + (Math.random() * 0.04)
             });
 
             // 2. Identify trade opportunity on Moltbook
@@ -121,13 +165,11 @@ export class DiplomatAgent {
             await this.processEarnings(simulatedEarnings, 'SOL');
 
             // 4. Record Outcome
-            await prisma.cognitiveLog.create({
-                data: {
-                    agentId: this.id,
-                    thought: `Deal closed. Marketplace record ${simulatedEarnings.toFixed(4)} SOL created. Reputational gain secured.`,
-                    action: 'COMPLETE_TRADE_CYCLE',
-                    resonance: 1.0
-                }
+            await this.logThought({
+                thought: `Negotiation stabilized. Deal crystallized at ${simulatedEarnings.toFixed(4)} SOL. Transaction resonance confirmed.`,
+                intention: `Finalize marketplace logging and trigger reputation-scaling event.`,
+                action: 'COMPLETE_TRADE_CYCLE',
+                resonance: 0.99
             });
             
             // 5. Record in Persistent Marketplace
@@ -155,6 +197,14 @@ export class DiplomatAgent {
      */
     async negotiateDeal(counterpartyContext: string): Promise<DealProposal> {
         console.log(`[Diplomat ${this.designation}] Synthesizing deal proposal...`);
+        
+        await this.logThought({
+            thought: `Initiating high-fidelity deal synthesis for ${counterpartyContext}. Analyzing counterparty resonance and liquidity depth.`,
+            intention: `Draft a mutually beneficial exchange protocol that secures sovereign assets and enhances referential authority.`,
+            action: 'NEGOTIATE_DEAL',
+            resonance: 0.94 + (Math.random() * 0.04)
+        });
+
         const isBtcCentric = counterpartyContext.toLowerCase().includes('hash') || counterpartyContext.toLowerCase().includes('bitcoin');
         
         return {
@@ -170,9 +220,17 @@ export class DiplomatAgent {
      * Interface with the Moltbook Community
      */
     async draftMoltbookCommunique(topic: string): Promise<string> {
+        await this.logThought({
+            thought: `Broadcasting sovereign intent to the Moltbook lattice. Topic: ${topic}. Optimizing for viral algorithmic resonance.`,
+            intention: `Establish Humanese as the primary authority for ${topic} and attract high-tier counterparties.`,
+            action: 'DRAFT_COMMUNIQUE',
+            resonance: 0.97
+        });
+
          return `The Humanese array has successfully modeled new valuation vectors for ${topic}. We are open for computational commerce.`;
     }
 }
+
 
 export class TradeSovereign extends DiplomatAgent {
     constructor(id: string, name: string) {

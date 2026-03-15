@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import { MiningAgentKing, MinerAgent } from '../../../../lib/agents/miner';
-import { TradeSovereign, DiplomatAgent } from '../../../../lib/agents/diplomat';
+import { MiningAgentKing, MinerAgent } from '../../../../../lib/agents/miner';
+import { TradeSovereign, DiplomatAgent } from '../../../../../lib/agents/diplomat';
+import { primeDeveloper } from '../../../../../lib/agents/core-developer';
+import { solanaDev } from '../../../../../lib/agents/solana-developer';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -34,6 +36,15 @@ export async function GET(request: Request) {
         const trader = new DiplomatAgent(dbA.id, dbA.name, "Autonomous Trader");
         await trader.startAutonomousTradeCycle();
         results.push({ id: dbA.id, name: dbA.name, status: 'traded' });
+      }
+      else if (dbA.type === 'CoreDeveloperAgent') {
+        await primeDeveloper.extractArchitecturalPatterns('consensus');
+        await primeDeveloper.evolveValleArchitecture();
+        results.push({ id: dbA.id, name: dbA.name, status: 'synthesized' });
+      }
+      else if (dbA.type === 'SolanaDeveloperAgent') {
+        await solanaDev.extractDesignTokens();
+        results.push({ id: dbA.id, name: dbA.name, status: 'designed' });
       }
     }
 
