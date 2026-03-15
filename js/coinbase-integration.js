@@ -128,6 +128,23 @@ window.coinbaseIntegration = {
     linkAddress: linkCoinbaseAddress,
     getAddress: getLinkedCoinbaseAddress,
     config: COINBASE_CONFIG,
+    /**
+     * Synchronize live balances from the CDP API
+     */
+    syncBalances: async function () {
+        try {
+            const res = await fetch('/api/coinbase/balances');
+            const data = await res.json();
+            if (data.success && data.balances) {
+                console.log('[Coinbase-Sync] Balances received:', data.balances);
+                document.dispatchEvent(new CustomEvent('coinbase:balancesUpdated', { detail: { balances: data.balances } }));
+                return data.balances;
+            }
+        } catch (err) {
+            console.error('[Coinbase-Sync] Failed:', err);
+        }
+        return [];
+    }
 };
 
 console.log('[Coinbase] Integration Module Loaded. Ready to link address.');

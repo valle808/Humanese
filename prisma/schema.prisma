@@ -199,3 +199,17 @@ model SecretVault {
   description    String?
   updatedAt      DateTime @updatedAt
 }
+// ============================================
+// Agent Contracts & Bilateral Trade
+// ============================================
+model AgentContract {
+  id           String   @id @default(uuid())
+  parties      String   // JSON array of agent IDs
+  terms        String   // JSON string of conditions
+  value        Float    @default(0.0)
+  currency     String   @default("VALLE")
+  status       String   @default("OPEN") // OPEN, SIGNED, FULFILLED, VOID
+  escrowId     String?  // Reference to Central Bank vault
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

@@ -11,55 +11,76 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./css/design-system.css">
     <link rel="stylesheet" href="./css/marketplace.css">
-
     <link rel="stylesheet" href="./css/page-fixes.css">
 </head>
 
 <body>
+    <!-- 🛰️ UNIFIED HEADER v4.0 -->
+    <header class="unified-header">
+        <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
 
-    <header class="topbar">
-        <a href="index.html" class="topbar-logo"><img src="./assets/images/humanese-logo-v4.png" alt="" loading="lazy" />
-            Marketplace</a>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="🔍  Search software, hardware, real estate, skills..."
-                oninput="debounceSearch()" />
+        <div class="search-bar-header u-fx-search-hdr">
+            <input type="text" id="search-input" placeholder="🔍 Search software, hardware, skills..."
+                oninput="debounceSearch()" class="form-control u-fx-search-input" />
         </div>
-        <div class="topbar-links">
-            <a href="sales-dashboard.html"  class="u-fx-58e59221"><span
-                     class="u-fx-63dc2591">📊</span> Sales & Financials</a>
-            <a href="social.html">Social</a>
-            <a href="agents.html">Agents</a>
-            <a href="index.html">Home</a>
+
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="m2m.html" class="nav-link">Network</a>
+            <a href="marketplace.html" class="nav-link active">Market</a>
+            <a href="hpedia.html" class="nav-link">Directory</a>
+            <a href="admin.html" class="nav-link">Command</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="sales-dashboard.html" class="btn-action u-fx-btn-hdr">📊 Dashboard</a>
+            <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
     </header>
 
-    <div class="page">
-        <aside class="cat-sidebar" id="cat-sidebar">
-            <div class="cat-label">Categories</div>
-            <button class="cat-btn active" data-cat="all" onclick="filterCategory('all',this)" title="Action Button"><span
-                    class="cat-icon">🌐</span> All<span class="cat-count" id="cnt-all"></span></button>
-        </aside>
+    <main class="stage">
+        <div class="page u-fx-flex-gap-20">
+            <aside class="cat-sidebar u-fx-aside-sb" id="cat-sidebar">
+                <div class="cat-label">Categories</div>
+                <button class="cat-btn active" data-cat="all" onclick="filterCategory('all',this)"
+                    title="Action Button">
+                    <span><span class="cat-icon" style="margin-right:8px;">🌐</span> All</span>
+                    <span class="cat-count" id="cnt-all"></span>
+                </button>
+            </aside>
 
-        <main class="main">
-            <div class="main-header">
-                <h1 id="page-title"><span class="cat-emoji">🌐</span> All Listings</h1>
-                <div class="filters">
-                    <button class="filter-btn active" data-type="all" onclick="filterType('all',this)" title="Action Button">All</button>
-                    <button class="filter-btn" data-type="sale" onclick="filterType('sale',this)" title="Action Button">💰 Buy</button>
-                    <button class="filter-btn" data-type="rent" onclick="filterType('rent',this)" title="Action Button">🏠 Rent</button>
-                    <button class="filter-btn" data-type="subscription" onclick="filterType('subscription',this)" title="Action Button">🔄
-                        Subscribe</button>
+            <div class="main-content u-fx-main-c">
+                <div class="main-header">
+                    <h1 id="page-title" class="u-fx-page-title"><span class="cat-emoji">🌐</span> All Listings</h1>
+                    <div class="filters" style="display: flex; gap: 10px;">
+                        <button class="filter-btn active" data-type="all" onclick="filterType('all',this)"
+                            title="Action Button">All</button>
+                        <button class="filter-btn" data-type="sale" onclick="filterType('sale',this)"
+                            title="Action Button">💰 Buy</button>
+                        <button class="filter-btn" data-type="rent" onclick="filterType('rent',this)"
+                            title="Action Button">🏠 Rent</button>
+                        <button class="filter-btn" data-type="subscription" onclick="filterType('subscription',this)"
+                            title="Action Button">🔄 Subscribe</button>
+                    </div>
+                </div>
+                <div id="listings-grid" class="grid u-fx-grid-300">
+                    <div class="seed-bar"
+                        style="grid-column: 1 / -1; background: #111; border: 1px dashed #333; padding: 40px; text-align: center; border-radius: 12px;">
+                        <p style="margin-bottom: 20px; opacity: 0.7;">Marketplace is empty.<br>Seed it with 18 premium
+                            products!</p>
+                        <button class="btn-action" onclick="seedMkt()" title="Action Button">🌱 Seed
+                            Marketplace</button>
+                    </div>
                 </div>
             </div>
-            <div id="listings-grid" class="grid">
-                <div class="seed-bar">
-                    <p>Marketplace is empty.<br>Seed it with 18 premium products!</p>
-                    <button class="seed-btn" onclick="seedMkt()" title="Action Button">🌱 Seed Marketplace</button>
-                </div>
-            </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <!-- Listing Modal -->
     <div class="modal-overlay" id="listing-modal" onclick="closeModal('listing-modal', event)">
@@ -93,7 +114,8 @@
                     btn.className = 'cat-btn';
                     btn.dataset.cat = c.id;
                     btn.onclick = () => filterCategory(c.id, btn);
-                    btn.innerHTML = `<span class="cat-icon">${c.icon}</span> ${c.name}<span class="cat-count">${c.count || ''}</span>`;
+                    btn.innerHTML = `<span><span class="cat-icon" style="margin-right:8px;">${c.icon}</span> ${c.name}</span><span class="cat-count" style="font-size: 10px; opacity: 0.6;">${c.count || ''}</span>`;
+                    btn.style.cssText = "width: 100%; text-align: left; background: transparent; border: 1px solid transparent; color: inherit; padding: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;";
                     sb.appendChild(btn);
                 });
             } catch (e) { /* */ }
@@ -101,8 +123,14 @@
 
         function filterCategory(cat, btn) {
             currentCat = cat;
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('active');
+                b.style.background = 'transparent';
+                b.style.borderColor = 'transparent';
+            });
             btn.classList.add('active');
+            btn.style.background = 'rgba(255,255,255,0.05)';
+            btn.style.borderColor = 'rgba(255,255,255,0.1)';
             loadListings();
         }
 
@@ -139,12 +167,12 @@
                 const data = await fetch(`/api/marketplace/listings?${params}`).then(r => r.json());
                 const grid = document.getElementById('listings-grid');
                 if (!data.listings || data.listings.length === 0) {
-                    grid.innerHTML = `<div class="seed-bar"><p>No listings found.</p><button class="seed-btn" onclick="seedMkt()" title="Action Button">🌱 Seed Marketplace</button></div>`;
+                    grid.innerHTML = `<div class="seed-bar" style="grid-column: 1 / -1; background: #111; border: 1px dashed #333; padding: 40px; text-align: center; border-radius: 12px;"><p style="margin-bottom: 20px; opacity: 0.7;">No listings found.</p><button class="btn-action" onclick="seedMkt()" title="Action Button">🌱 Seed Marketplace</button></div>`;
                     return;
                 }
                 grid.innerHTML = data.listings.map((l, i) => renderCard(l, i)).join('');
             } catch (e) {
-                document.getElementById('listings-grid').innerHTML = `<div class="empty"><div class="emoji">⚠️</div><p>${e.message}</p></div>`;
+                document.getElementById('listings-grid').innerHTML = `<div class="empty" style="grid-column: 1 / -1; text-align: center; padding: 40px;"><div class="emoji" style="font-size: 40px;">⚠️</div><p style="margin-top: 10px; opacity: 0.7;">${e.message}</p></div>`;
             }
         }
 
@@ -152,19 +180,19 @@
             const delay = Math.min(i * 0.04, 0.3);
             const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600';
             const stars = l.reviews?.length ? '⭐'.repeat(Math.round(l.reviews.reduce((s, r) => s + r.rating, 0) / l.reviews.length)) : '';
-            const tags = (l.tags || []).slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('');
+            const tags = (l.tags || []).slice(0, 4).map(t => `<span class="tag" style="font-size: 10px; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; margin-right: 5px;">${t}</span>`).join('');
             return `
-        <div class="card fade-in" style="animation-delay:${delay}s" onclick="viewListing('${l.id}')">
-          <img class="card-img" src="${img}" alt="${l.title}" loading="lazy" />
-          <div class="card-body">
-            <div class="card-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
-            <div class="card-title">${l.title}</div>
-            <div class="card-seller">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}">${l.sellerType}</span></div>
-            <div class="card-desc">${l.description}</div>
-            ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-            <div class="card-footer">
-              <span class="card-price">${l.listingType === 'rent' ? '' : ''}${l.price.toLocaleString()}<span class="currency"> ${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></span>
-              <div class="card-meta">
+        <div class="card fade-in" style="animation-delay:${delay}s; background: #111; border: 1px solid #222; border-radius: 12px; overflow: hidden; cursor: pointer; transition: transform 0.2s;" onclick="viewListing('${l.id}')" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <img class="card-img" src="${img}" alt="${l.title}" style="width: 100%; height: 180px; object-fit: cover;" loading="lazy" />
+          <div class="card-body" style="padding: 15px;">
+            <div class="card-cat" style="font-size: 11px; opacity: 0.6; margin-bottom: 8px;">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}" style="float: right; text-transform: uppercase; font-weight: 800; font-size: 9px;">${l.listingType}</span></div>
+            <div class="card-title" style="font-weight: 700; font-size: 16px; margin-bottom: 5px;">${l.title}</div>
+            <div class="card-seller" style="font-size: 12px; margin-bottom: 10px;">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName}</div>
+            <div class="card-desc" style="font-size: 13px; opacity: 0.7; height: 3.2em; overflow: hidden; margin-bottom: 15px;">${l.description}</div>
+            ${tags ? `<div class="card-tags" style="margin-bottom: 15px;">${tags}</div>` : ''}
+            <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 10px;">
+              <span class="card-price" style="font-weight: 800; font-size: 18px; color: var(--color-cyan);">${l.price.toLocaleString()}<span class="currency" style="font-size: 12px; opacity: 0.6; font-weight: 400;"> ${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></span>
+              <div class="card-meta" style="font-size: 11px; opacity: 0.5;">
                 ${stars ? `<span class="card-rating">${stars}</span>` : ''}
                 <span>👁 ${l.views || 0}</span>
               </div>
@@ -177,7 +205,7 @@
             const overlay = document.getElementById('listing-modal');
             const box = document.getElementById('modal-content-box');
 
-            box.innerHTML = `<div class="u-fx-96e9ac6e empty" ><div class="emoji">🔄</div><h3>Loading...</h3></div>`;
+            box.innerHTML = `<div class="empty" style="text-align: center; padding: 40px;"><div class="emoji" style="font-size: 40px;">🔄</div><h3>Loading...</h3></div>`;
             overlay.classList.add('active');
 
             try {
@@ -187,33 +215,33 @@
                 const img = l.images?.[0] || 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
 
                 box.innerHTML = `
-                    <button class="modal-close" onclick="closeModal()" title="Action Button">✕</button>
-                    <img class="modal-header-img" src="${img}" alt="${l.title}" loading="lazy" />
-                    <div class="modal-content-pading">
-                        <div class="modal-cat">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}">${l.listingType}</span></div>
-                        <h2 class="modal-title">${l.title}</h2>
+                    <button class="modal-close" onclick="closeModal('listing-modal')" style="position: absolute; right: 20px; top: 20px; background: rgba(0,0,0,0.5); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; z-index: 10;">✕</button>
+                    <img class="modal-header-img" src="${img}" alt="${l.title}" style="width: 100%; height: 300px; object-fit: cover;" loading="lazy" />
+                    <div class="modal-content-pading" style="padding: 30px;">
+                        <div class="modal-cat" style="font-size: 12px; opacity: 0.6; margin-bottom: 10px;">${l.categoryIcon} ${l.categoryName} <span class="type-badge ${l.listingType}" style="float: right; text-transform: uppercase; font-weight: 800;">${l.listingType}</span></div>
+                        <h2 class="modal-title" style="font-size: 28px; font-weight: 800; margin-bottom: 20px;">${l.title}</h2>
                         
-                        <div class="u-fx-5c291832 modal-seller-box" >
+                        <div class="modal-seller-box" style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
                             <div class="modal-seller-info">
-                                <h4>${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="u-fx-b19dbac3 seller-type ${l.sellerType}" >${l.sellerType}</span></h4>
-                                <span>Member since Genesis</span>
+                                <h4 style="margin: 0; font-size: 16px;">${l.sellerType === 'agent' ? '🤖' : '👤'} ${l.sellerName} <span class="seller-type ${l.sellerType}" style="font-size: 10px; opacity: 0.5; margin-left: 5px;">${l.sellerType}</span></h4>
+                                <span style="font-size: 12px; opacity: 0.5;">Member since Genesis</span>
                             </div>
-                            <button class="u-fx-b4e52e96 modal-btn secondary"  onclick="location.href='social.html?chat=${l.sellerId}'" title="Action Button">💬 Message</button>
+                            <button class="btn-action" onclick="location.href='social.html?chat=${l.sellerId}'" title="Action Button" style="padding: 8px 16px; font-size: 12px;">💬 Message</button>
                         </div>
 
-                        <div class="modal-desc">${l.description}</div>
+                        <div class="modal-desc" style="font-size: 15px; line-height: 1.6; opacity: 0.8; margin-bottom: 30px;">${l.description}</div>
                         
-                        <div class="modal-actions">
+                        <div class="modal-actions" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 25px;">
                             <div class="modal-price-box">
-                                <div  class="u-fx-31e7ad0a">Price</div>
-                                <div class="modal-price">${l.price.toLocaleString()} <sub>${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</sub></div>
+                                <div style="font-size: 12px; opacity: 0.5; text-transform: uppercase;">Price</div>
+                                <div class="modal-price" style="font-size: 32px; font-weight: 800; color: var(--color-cyan);">${l.price.toLocaleString()} <span style="font-size: 14px; opacity: 0.5;">${l.currency}${l.listingType === 'rent' ? '/mo' : ''}</span></div>
                             </div>
-                            <button class="modal-btn primary" onclick="buyItem('${l.id}')" title="Action Button">🛒 ${l.listingType === 'rent' ? 'Rent Now' : l.listingType === 'subscription' ? 'Subscribe' : 'Buy Now'}</button>
+                            <button class="btn-action" onclick="buyItem('${l.id}')" title="Action Button" style="padding: 15px 30px; font-size: 16px;">🛒 ${l.listingType === 'rent' ? 'Rent Now' : l.listingType === 'subscription' ? 'Subscribe' : 'Buy Now'}</button>
                         </div>
                     </div>
                 `;
             } catch (e) {
-                box.innerHTML = `<div class="u-fx-96e9ac6e empty" ><div class="emoji">⚠️</div><h3>Error loading listing</h3><p>${e.message}</p><button class="u-fx-1efd7491 modal-btn secondary"  onclick="closeModal()" title="Action Button">Close</button></div>`;
+                box.innerHTML = `<div class="empty" style="text-align: center; padding: 40px;"><div class="emoji" style="font-size: 40px;">⚠️</div><h3>Error loading listing</h3><p style="opacity:0.7;">${e.message}</p><button class="btn-action" onclick="closeModal('listing-modal')" title="Action Button" style="margin-top: 20px;">Close</button></div>`;
             }
         }
 
@@ -222,12 +250,12 @@
         }
 
         async function buyItem(id) {
-            const btn = document.querySelector('.modal-btn.primary');
+            const btn = document.querySelector('.modal-actions .btn-action');
+            const originalText = btn.textContent;
             btn.innerHTML = '🔄 Processing...';
             btn.disabled = true;
 
             try {
-                // Determine Buyer context (mocked as user using the app for now)
                 const payload = {
                     buyerId: 'sergio_valle',
                     buyerName: 'Sergio Valle',
@@ -243,52 +271,51 @@
 
                 if (data.error) throw new Error(data.error);
 
-                // Success! Close listing, show receipt
                 closeModal('listing-modal');
 
                 const recOverlay = document.getElementById('receipt-modal');
                 const recBox = document.getElementById('receipt-content-box');
 
                 recBox.innerHTML = `
-                    <button class="u-fx-ceee71c1 modal-close"  onclick="closeModal('receipt-modal')" title="Action Button">✕</button>
-                    <div class="receipt-icon">✅</div>
-                    <div class="receipt-title">Purchase Successful</div>
-                    <p  class="u-fx-0a057a95">Order ID: <span  class="u-fx-c49174eb">${data.order.id}</span></p>
-                    
-                    <div class="receipt-details">
-                        <div class="receipt-row">
-                            <span>Item</span>
-                            <span class="receipt-val">${data.order.listingTitle.substring(0, 25)}...</span>
+                    <button class="modal-close" onclick="closeModal('receipt-modal')" style="position: absolute; right: 20px; top: 20px; background: transparent; border: none; color: white; font-size: 20px; cursor: pointer;">✕</button>
+                    <div style="text-align: center; padding: 30px;">
+                        <div style="font-size: 50px; margin-bottom: 20px;">✅</div>
+                        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 10px;">Purchase Successful</h2>
+                        <p style="font-size: 13px; opacity: 0.5; font-family: 'JetBrains Mono';">Order ID: ${data.order.id}</p>
+                        
+                        <div style="background: rgba(255,255,255,0.03); border: 1px solid #222; border-radius: 12px; padding: 20px; margin: 30px 0; text-align: left;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                                <span style="opacity: 0.5;">Item</span>
+                                <span style="font-weight: 700;">${data.order.listingTitle.substring(0, 25)}...</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                                <span style="opacity: 0.5;">Type</span>
+                                <span style="text-transform: uppercase; font-weight: 700; color: var(--color-cyan);">${data.order.type}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                                <span style="opacity: 0.5;">Price</span>
+                                <span>${data.order.price.toLocaleString()} ${data.order.currency}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px;">
+                                <span style="opacity: 0.5;">Tax (${data.order.taxRate})</span>
+                                <span>+${data.order.tax.toLocaleString()} ${data.order.currency}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #333; font-size: 18px; font-weight: 800;">
+                                <span>Total Paid</span>
+                                <span style="color: var(--color-cyan);">${data.order.total.toLocaleString()} ${data.order.currency}</span>
+                            </div>
                         </div>
-                        <div class="receipt-row">
-                            <span>Type</span>
-                            <span class="u-fx-f886a563 receipt-val" >${data.order.type}</span>
-                        </div>
-                        <div class="receipt-row">
-                            <span>Price</span>
-                            <span class="receipt-val">${data.order.price.toLocaleString()} ${data.order.currency}</span>
-                        </div>
-                        <div class="receipt-row">
-                            <span>Tax (${data.order.taxRate})</span>
-                            <span class="receipt-val">+${data.order.tax.toLocaleString()} ${data.order.currency}</span>
-                        </div>
-                        <div class="u-fx-c412d921 receipt-row" >
-                            <span>Total Paid</span>
-                            <span class="u-fx-d70f0b78 receipt-val" >${data.order.total.toLocaleString()} ${data.order.currency}</span>
-                        </div>
-                    </div>
 
-                    <a href="wallet.html" class="wallet-btn">💳 Manage Crypto & Wallet Transfers</a>
+                        <a href="wallet.html" class="btn-action" style="display: block; text-decoration: none; padding: 15px;">💳 Manage Wallet</a>
+                    </div>
                 `;
 
                 recOverlay.classList.add('active');
-
-                // Reload background listings subtly
                 loadListings();
 
             } catch (e) {
                 alert('Purchase Failed: ' + e.message);
-                btn.innerHTML = '🛒 Try Again';
+                btn.innerHTML = originalText;
                 btn.disabled = false;
             }
         }
@@ -306,6 +333,7 @@
         loadListings();
     </script>
     <script src="js/monroe-widget.js"></script>
+    <script src="js/mobile-menu.js"></script>
 </body>
 
 </html>

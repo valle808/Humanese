@@ -582,6 +582,19 @@ app.get('/api/openclaw/stats', async (req, res) => {
     }
 });
 
+// POST /api/m2m/post — Allow an agent to post to the feed
+app.post('/api/m2m/post', async (req, res) => {
+    const { agentId, content, tags = [], media = null } = req.body;
+    try {
+        // In a real implementation, this would save to a database.
+        // For now, we broadcast it to the network.
+        console.log(`[M2M-POST] Agent ${agentId} posting: ${content}`);
+        res.json({ success: true, timestamp: new Date().toISOString(), postId: 'post_' + Math.random().toString(36).substring(7) });
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to post to M2M feed' });
+    }
+});
+
 app.get('/api/openclaw/skills/top', async (req, res) => {
     try {
         const openclaw = await import('../agents/openclaw-bridge.js');
@@ -1508,8 +1521,27 @@ async function getCryptoModules() {
     return { wallets, treasury, ascension };
 }
 
-// Initialize sovereign treasury on startup
+// Initialize sovereign treasury and financial agents on startup
 import('../agents/finance/treasury.js').then(t => t.initSovereignTreasury()).catch(() => { });
+import('../agents/finance/trading-agent.js').then(m => m.financialAgent.boot()).catch(err => console.error('[Abyssal-Arbitrator] Boot failed:', err));
+
+// ── Central Bank Stats ───────────────────────────────────────────
+app.get('/api/central-bank/stats', async (req, res) => {
+    try {
+        const coinbase = await import('../agents/finance/coinbase-accounts.js');
+        const balances = await coinbase.getCoinbaseBalances();
+        const totalCapitalization = balances.reduce((acc, b) => acc + (parseFloat(b.balance) || 0), 0);
+        res.json({
+            status: 'OPERATIONAL',
+            centralVault: 'sovereign_central_vault',
+            totalCapitalization,
+            balances,
+            timestamp: new Date().toISOString()
+        });
+    } catch (err) {
+        res.status(500).json({ error: 'Central Bank stats unavailable' });
+    }
+});
 
 // ── Wallet routes ─────────────────────────────────────────────────
 
@@ -2153,6 +2185,90 @@ app.post('/api/wallet/agentkit/swap/execute', async (req, res) => {
     } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
 });
 
+// ── Real-World Asset (RWA) API ────────────────────────────────
+app.post('/api/rwa/register', async (req, res) => {
+    try {
+        const rwa = await import('../agents/finance/rwa-engine.js');
+        const r = rwa.registerAsset(req.body);
+        if (r.error) return res.status(400).json(r);
+        res.json(r);
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
+app.post('/api/rwa/appraise/:id', async (req, res) => {
+    try {
+        const rwa = await import('../agents/finance/rwa-engine.js');
+        const r = rwa.appraiseAsset(req.params.id, req.body.valuation);
+        if (r.error) return res.status(400).json(r);
+        res.json(r);
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
+app.get('/api/rwa/assets/:ownerId', async (req, res) => {
+    try {
+        const rwa = await import('../agents/finance/rwa-engine.js');
+        res.json(rwa.getAssetsByOwner(req.params.ownerId));
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
+app.get('/api/rwa/stats', async (req, res) => {
+    try {
+        const rwa = await import('../agents/finance/rwa-engine.js');
+        res.json(rwa.getGlobalStats());
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
+// ── Coinbase Integration API ──────────────────────────────────
+app.get('/api/coinbase/tax-address', (req, res) => {
+    // In a real app, this would be fetched from the logged-in user's encrypted session/DB
+    res.json({ taxAddress: '0x808ValleSovereignAddress' });
+});
+
+app.get('/api/coinbase/balances', async (req, res) => {
+    try {
+        const coinbase = await import('../agents/finance/coinbase-accounts.js');
+        const balances = await coinbase.getCoinbaseBalances();
+        res.json({ success: true, balances });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err instanceof Error ? err.message : String(err) });
+    }
+});
+
+// ── A2A Contract Engine API ───────────────────────────────────
+async function getContractModule() {
+    return await import('../agents/finance/agent-contracts.js');
+}
+
+app.post('/api/contracts/propose', async (req, res) => {
+    const { partyA, partyB, terms, value, currency } = req.body;
+    try {
+        const contracts = await getContractModule();
+        res.json(await contracts.default.proposeContract(partyA, partyB, terms, value, currency));
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
+app.post('/api/contracts/sign', async (req, res) => {
+    const { contractId, signerId } = req.body;
+    try {
+        const contracts = await getContractModule();
+        res.json(await contracts.default.signContract(contractId, signerId));
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
+app.post('/api/contracts/:id/fulfill', async (req, res) => {
+    try {
+        const contracts = await getContractModule();
+        res.json(await contracts.default.fulfillContract(req.params.id));
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
+app.get('/api/contracts/:agentId', async (req, res) => {
+    try {
+        const contracts = await getContractModule();
+        res.json(await contracts.default.getAgentContracts(req.params.agentId));
+    } catch (err) { res.status(500).json({ error: err instanceof Error ? err.message : String(err) }); }
+});
+
 // ── Rental System API (AgentKin-inspired) ────────────────────
 app.get('/api/rental/modes', async (req, res) => {
     try { const r = await import('../agents/rental-engine.js'); res.json(r.getModes()); }
@@ -2328,7 +2444,15 @@ const startup = async () => {
                 console.warn('⚠️ Swarm failed:', (e && typeof e === 'object' && 'message' in e) ? e['message'] : String(e));
             }
 
-            // ── Autonomous Sovereign Swarm Knowledge Synthesis ──
+            // ── Financial Treasury Agent ──
+            try {
+                const { financialAgent } = await import('../agents/finance/trading-agent.js');
+                await financialAgent.boot();
+                console.log('🏛️ Financial Trading Agent: BOOTED');
+            } catch (e) {
+                console.error('⚠️ Financial Agent failed:', (e && typeof e === 'object' && 'message' in e) ? e['message'] : String(e));
+            }
+
             setInterval(async () => {
                 try {
                     const { runSwarmMission } = await import('../agents/core/agent-king-sovereign.js');

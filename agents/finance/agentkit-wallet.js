@@ -171,7 +171,7 @@ const WALLET_PROVIDERS = {
         id: 'humanese_native',
         name: 'Humanese Native (VALLE)',
         source: 'humanese',
-        chains: ['humanese'],
+        chains: ['humanese', 'bitcoin', 'ethereum', 'solana', 'base'],
         capabilities: ['balance', 'transfer', 'tax', 'stake'],
         description: 'Native VALLE token wallet — the sovereign Humanese ledger',
         requiresApiKey: false
@@ -249,6 +249,8 @@ function loadData() {
             totalTransfers: 0,
             totalSwaps: 0,
             totalTaxCollected: 0,
+            totalRwaValuation: 0, // In USD
+            totalYieldDistributed: 0, // In USD
             volumeByChain: {}
         }
     };
