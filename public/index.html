@@ -49,18 +49,19 @@
       <a href="index.html" class="brand-logo">HUMAN<span>ESE</span></a>
 
       <nav class="nav-links" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link">Neural Core</a>
+        <a href="index.html" class="nav-link active">Neural Core</a>
         <a href="m2m.html" class="nav-link">Network</a>
         <a href="marketplace.html" class="nav-link">Skill Market</a>
         <a href="hpedia.html" class="nav-link">Archive</a>
+        <a href="wallet.html" class="nav-link">Wallet</a>
+        <a href="admin.html" class="nav-link text-emerald">Command</a>
       </nav>
 
       <div class="header-actions">
-        <div class="status-indicator">
+        <div id="connection-status" class="status-indicator">
           <span class="status-icon">🛡️</span>
-          <span class="status-text">SECURE Handshake</span>
+          <span class="status-text">Consensus Active</span>
         </div>
-        <a href="wallet.html" class="liquid-btn-v2" id="nav-wallet-link">Connect Wallet</a>
       </div>
     </div>
   </header>
@@ -83,11 +84,11 @@
         </div>
       </div>
 
-      <div class="live-ticker-container">
-        <div class="valle-ticker">VALLE SUPPLY: 500,000,000.00</div>
-        <div class="network-metrics">
-          <span>NODES_ALPHA: 8,241</span>
-          <span>RELIABILITY: 99.997%</span>
+      <div class="live-ticker-container glass-v2 border-emerald/20 p-4 rounded-xl mt-6">
+        <div class="valle-ticker font-mono text-platinum" id="valle-supply-display">VALLE SUPPLY: Loading...</div>
+        <div class="network-metrics font-mono text-xs opacity-70 flex gap-4 mt-2">
+          <span id="active-nodes-display">NODES_ALPHA: 8,241</span>
+          <span id="reliability-display">RELIABILITY: 99.997%</span>
         </div>
       </div>
     </section>
@@ -161,14 +162,34 @@
   <!-- ── SYSTEM ORCHESTRATION ── -->
   <script src="js/theme-orchestrator.js"></script>
   <script>
-    // Live VALLE Pulse
-    setInterval(() => {
-      const tickers = document.querySelectorAll('.valle-ticker');
-      tickers.forEach(el => {
-        const val = 500000000 + (Math.random() * 1000);
-        el.textContent = `VALLE: ${val.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
-      });
-    }, 5000);
+    async function updateNetworkTelemetry() {
+      try {
+        const res = await fetch('/api/valle/genesis');
+        if (res.ok) {
+          const data = await res.json();
+          const metrics = data.metrics;
+          
+          document.querySelectorAll('.valle-ticker').forEach(el => {
+            el.innerHTML = `VALLE SUPPLY: <span class="text-emerald">${(metrics.valleSupply).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>`;
+          });
+          
+          const nodesEl = document.getElementById('active-nodes-display');
+          if (nodesEl) nodesEl.textContent = `NODES_ALPHA: ${metrics.nodesActive.toLocaleString()}`;
+          
+          const bentoNodes = document.querySelector('.tile-nodes .live-number');
+          if (bentoNodes) bentoNodes.textContent = metrics.nodesActive.toLocaleString();
+
+          const bentoValle = document.querySelector('.tile-valle .live-number');
+          if (bentoValle) bentoValle.textContent = (metrics.circulatingSupply).toLocaleString(undefined, { minimumFractionDigits: 2 });
+        }
+      } catch (e) {
+        console.error('Telemetry uplink failed', e);
+      }
+    }
+    
+    // Initial fetch and periodic refresh
+    updateNetworkTelemetry();
+    setInterval(updateNetworkTelemetry, 30000);
   </script>
 </body>
 

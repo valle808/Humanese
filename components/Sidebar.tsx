@@ -41,6 +41,7 @@ export const Sidebar = () => {
         { icon: <Activity size={22} />, label: 'Archive', href: '/hpedia' },
         { icon: <Share2 size={22} />, label: 'M2M Network', href: '/m2m' },
         { icon: <Target size={22} />, label: 'Skill Market', href: '/marketplace' },
+        { icon: <User size={22} />, label: 'Wallet', href: '/wallet' },
         {
             icon: <ShieldAlert size={22} className="text-emerald" />,
             label: 'Supreme Command',
