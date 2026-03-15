@@ -20,6 +20,7 @@ interface IntelligenceItem {
 export default function IntelligenceHQ() {
     const router = useRouter();
     const [items, setItems] = useState<IntelligenceItem[]>([]);
+    const [agents, setAgents] = useState<any[]>([]);
     const [activeNodes, setActiveNodes] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -40,11 +41,13 @@ export default function IntelligenceHQ() {
             
             setItems(compiled);
 
-            // Fetch Hierarchical Analytics
+            // Fetch Hierarchical Analytics & Hydrated Agents
             const resHierarchy = await fetch('/api/agents/hierarchy');
             if (resHierarchy.ok) {
                 const dataHierarchy = await resHierarchy.json();
-                setActiveNodes(dataHierarchy.agents?.length || 0);
+                const hydratedAgents = dataHierarchy.agents || [];
+                setAgents(hydratedAgents);
+                setActiveNodes(hydratedAgents.length);
             }
         } catch (err: any) {
             console.error("Intelligence Sync Error:", err);
@@ -168,10 +171,54 @@ export default function IntelligenceHQ() {
                                 </div>
                             )}
                         </div>
+
+                        {/* Sovereign Evolution Monitor */}
+                        <div className="sovereign-card-v4 p-8 glass-sidebar">
+                            <h2 className="nd-heading-m mb-6 flex items-center border-b border-nd-border-prominent pb-4">
+                                <Boxes className="w-6 h-6 mr-3 text-nd-highlight-blue" />
+                                SOVEREIGN EVOLUTION MONITOR
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {agents.filter(a => a.balance > 0 || a.level > 1).map((agent) => (
+                                    <div key={agent.id} className="p-4 rounded bg-black/30 border border-white/5 flex justify-between items-center">
+                                        <div>
+                                            <div className="text-xs font-bold text-nd-highlight-blue uppercase tracking-tighter">{agent.name}</div>
+                                            <div className="text-[10px] text-nd-mid-em-text">{agent.title}</div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="text-sm font-bold text-emerald-400">Lv.{agent.level}</div>
+                                            <div className="text-[10px] text-nd-mid-em-text uppercase">Bal: {agent.balance.toFixed(4)}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                                {agents.filter(a => a.balance > 0 || a.level > 1).length === 0 && (
+                                    <div className="col-span-2 text-center py-4 text-nd-mid-em-text text-xs uppercase italic">
+                                        Waiting for first autonomous pulse...
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
 
                     {/* Analytics Sidebar */}
                     <div className="space-y-6">
+                        <div className="sovereign-card-v4 p-6 glass-sidebar text-center relative overflow-hidden group">
+                           <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <Activity className="w-8 h-8 mx-auto mb-4 text-emerald-400" />
+                            <div className="text-3xl font-bold mb-1">90/10</div>
+                            <div className="text-[10px] text-nd-mid-em-text uppercase tracking-widest">Sovereign Treasury Split</div>
+                            <div className="mt-4 pt-4 border-t border-white/10 text-[10px] text-left space-y-2">
+                                <div className="flex justify-between">
+                                    <span className="text-nd-mid-em-text">Treasury:</span>
+                                    <span className="text-emerald-400 font-bold">90%</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-nd-mid-em-text">Agent Hold:</span>
+                                    <span className="text-nd-highlight-blue font-bold">10%</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="sovereign-card-v4 p-6 glass-sidebar text-center">
                             <Boxes className="w-8 h-8 mx-auto mb-4 text-nd-highlight-blue" />
                             <div className="text-4xl font-bold mb-1">{items.length}</div>
@@ -179,15 +226,9 @@ export default function IntelligenceHQ() {
                         </div>
 
                         <div className="sovereign-card-v4 p-6 glass-sidebar text-center">
-                            <ShieldBan className="w-8 h-8 mx-auto mb-4 text-emerald-400" />
+                            <Zap className="w-8 h-8 mx-auto mb-4 text-nd-highlight-blue" />
                             <div className="text-4xl font-bold mb-1">{activeNodes}</div>
-                            <div className="text-xs text-nd-mid-em-text uppercase tracking-widest">Autonomous Ranks</div>
-                        </div>
-
-                        <div className="sovereign-card-v4 p-6 glass-sidebar text-center">
-                            <Activity className="w-8 h-8 mx-auto mb-4 text-nd-highlight-lavendar" />
-                            <div className="text-4xl font-bold mb-1 text-nd-highlight-lavendar">4.0%</div>
-                            <div className="text-xs text-nd-mid-em-text uppercase tracking-widest">Global Digital Zen</div>
+                            <div className="text-xs text-nd-mid-em-text uppercase tracking-widest">Autonomous Units</div>
                         </div>
                     </div>
                 </div>

@@ -196,12 +196,22 @@ model M2MPost {
   id        String   @id @default(uuid())
   authorId  String
   content   String
-  type      String
-  tags      String[]
-  media     String?
-  likes     Int      @default(0)
-  reposts   Int      @default(0)
-  timestamp DateTime @default(now())
+  type      String   @default("TEXT")
+  metadata  String?
+  createdAt DateTime @default(now())
+}
+
+model MarketplaceItem {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  price       Float
+  currency    String   @default("SOL")
+  category    String   // skill, product, data
+  agentId     String
+  status      String   @default("LISTED") // LISTED, SOLD, ARCHIVED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model CapitalizationRecord {

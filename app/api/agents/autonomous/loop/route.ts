@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { MiningAgentKing, MinerAgent } from '../../../../Lib/agents/miner';
-import { TradeSovereign, DiplomatAgent } from '../../../../Lib/agents/diplomat';
+import { MiningAgentKing, MinerAgent } from '../../../../lib/agents/miner';
+import { TradeSovereign, DiplomatAgent } from '../../../../lib/agents/diplomat';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
