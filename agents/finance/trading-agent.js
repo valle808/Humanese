@@ -55,7 +55,7 @@ export class FinancialTradingAgent {
             // 2. Monitor Coinbase Account (Linked via CDP)
             const cbBalances = await getCoinbaseBalances();
             if (cbBalances.length > 0) {
-                console.log(`[${this.name}] Coinbase Live Balances:`, cbBalances.map(b => `${b.balance} ${b.currency}`).join(', '));
+                console.log(`[${this.name}] Coinbase Live Balances:`, cbBalances.map((/** @type {any} */ b) => `${b.balance} ${b.currency}`).join(', '));
 
                 // Automatic Bridging Logic: If BTC or SOL found on Coinbase, move it to Humanese Treasury
                 for (const acc of cbBalances) {
@@ -71,15 +71,20 @@ export class FinancialTradingAgent {
             if (parseFloat(solBalance.balance) > 0 && parseFloat(btcBalance.balance) === 0) {
                 console.log(`[${this.name}] Action: Detected high SOL concentration. Preparing rebalance quote...`);
                 const quote = wallet.getSwapQuote('solana', 'SOL', 'USDC', parseFloat(solBalance.balance) * 0.1);
-                console.log(`[${this.name}] Rebalance Quote: ${quote.quote.amountOut} USDC for ${quote.quote.amountIn} SOL`);
+                if (quote && quote.quote) {
+                    console.log(`[${this.name}] Rebalance Quote: ${quote.quote.amountOut} USDC for ${quote.quote.amountIn} SOL`);
+                }
             }
 
             // 4. Automated Treasury Sweep (Capitalization)
             // Sweep excess $VALLE or USDC from sub-agents into the Coinbase Central Bank
             // This mock logic simulates capitalization of operational profits
             const operationalThreshold = 500; // USDC
-            if (parseFloat(cbBalances.find(b => b.currency === 'USDC')?.balance || 0) > operationalThreshold) {
-                const excess = parseFloat(cbBalances.find(b => b.currency === 'USDC').balance) - operationalThreshold;
+            const usdcBalanceObj = cbBalances.find((/** @type {any} */ b) => b.currency === 'USDC');
+            const usdcBalance = parseFloat(usdcBalanceObj?.balance || '0');
+            
+            if (usdcBalance > operationalThreshold) {
+                const excess = usdcBalance - operationalThreshold;
                 console.log(`[${this.name}] System Surplus Detected: ${excess} USDC. Capitalizing to Central Bank...`);
                 await capitalizeAgent(this.id, excess, 'USDC');
             }
@@ -116,6 +121,9 @@ export class FinancialTradingAgent {
         }
     }
 
+    /**
+     * @param {any} data
+     */
     broadcastToNetwork(data) {
         // Mock M2M broadcast
         console.log(`[M2M-BROADCAST] [${this.id}] ${JSON.stringify(data)}`);

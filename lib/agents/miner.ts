@@ -5,10 +5,12 @@
  * native tokens within authorized ecosystems.
  * 
  * NOTE: As per Phase 15 strategy, literal CPU/GPU Bitcoin mining on free 
- * cloud tiers is prohibited and mathematically unfeasible. This agent
- * focuses on Solana yield optimization, authorized pooling, and 
+ * focusing on Solana yield optimization, authorized pooling, and 
  * theoretical Valle Token mining abstractions.
  */
+
+// @ts-ignore - Bypass TS module resolution for raw JS SDK wrapper
+import { getCoinbaseBalances } from '../../agents/finance/coinbase-accounts.js';
 
 export interface MiningOperation {
     target_asset: 'BTC' | 'SOL' | 'VALLE';
@@ -47,7 +49,11 @@ export class MinerAgent {
      * Orchestrate a yield operation
      */
     async launchOperation(asset: 'BTC' | 'SOL' | 'VALLE'): Promise<MiningOperation> {
-        console.log(`[Miner ${this.designation}] Initiating operation for asset: ${asset}`);
+        console.log(`[Miner ${this.designation}] Initiating operation for target asset: ${asset}`);
+        
+        // Calibrate mining strategy against live Treasury holding values
+        const liveTreasury = await getCoinbaseBalances();
+        console.log(`[Miner ${this.designation}] Treasury Calibrated. Current Holdings parsed for yield vectoring.`, liveTreasury);
         
         let payout = '';
         let status: MiningOperation['status'] = 'hashing';

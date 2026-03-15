@@ -3,8 +3,16 @@
  * 
  * Sovereign intelligence specialized in financial interchanges,
  * ecosystem representation (Moltbook), business negotiation, 
+/**
+ * Diplomat Agent Implementation
+ * 
+ * Sovereign intelligence specialized in financial interchanges,
+ * ecosystem representation (Moltbook), business negotiation, 
  * and external resource orchestration.
  */
+
+// @ts-ignore - Bypass TS module resolution for raw JS SDK wrapper
+import { getCoinbaseBalances } from '../../agents/finance/coinbase-accounts.js';
 
 export interface DealProposal {
     counterparty: string;
@@ -30,6 +38,10 @@ export class DiplomatAgent {
      */
     async negotiateDeal(counterpartyContext: string): Promise<DealProposal> {
         console.log(`[Diplomat ${this.designation}] Synthesizing deal proposal based on counterparty context...`);
+        
+        // Fetch LIVE Treasury Balances to inform negotiation logic
+        const treasury = await getCoinbaseBalances();
+        console.log(`[Diplomat ${this.designation}] Current Live Assets Authorized for Deployment:`, treasury);
         
         // This simulates LLM reasoning to construct a beneficial deal.
         // In a live environment, this connects to the sovereign cognitive core (AgentKing).
