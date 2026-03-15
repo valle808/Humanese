@@ -146,9 +146,9 @@ export default function IntelligenceHQ() {
                                             <div className="flex justify-between items-center border-t border-white/5 pt-4">
                                                 <div className="flex-1 mr-6">
                                                     <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                                                        <style dangerouslySetInnerHTML={{ __html: `.w-dynamic-${item.type}-${item.id} { width: ${(item.resonance || 0) * 100}%; }` }} />
                                                         <div 
-                                                            className={`h-full transition-all duration-1000 ${item.type === 'bug' ? 'bg-red-500' : 'bg-emerald-400'}`}
-                                                            style={{ width: `${(item.resonance || 0) * 100}%` }}
+                                                            className={`h-full transition-all duration-1000 ${item.type === 'bug' ? 'bg-red-500' : 'bg-emerald-400'} w-dynamic-${item.type}-${item.id}`}
                                                         />
                                                     </div>
                                                     <span className="text-[10px] text-nd-mid-em-text uppercase mt-1 block">

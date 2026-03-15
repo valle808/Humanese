@@ -8,7 +8,6 @@
   width: 256px;
   overflow-y: auto;
   padding: 0 16px;
-  scrollbar-width: none;
   top: var(--web-ui_topbar-top, 0);
   -webkit-user-select: none;
   user-select: none;
