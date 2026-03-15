@@ -30,7 +30,7 @@ function createRwaItemEl(asset) {
     el.className = 'asset-item';
     el.innerHTML = `
         <div class="asset-info">
-            <div class="asset-icon" style="background: rgba(0, 255, 204, 0.1); color: #00ffcc; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; font-size: 20px;">
+            <div class="js-asset-icon">
                 ${asset.categoryIcon}
             </div>
             <div>
@@ -38,9 +38,9 @@ function createRwaItemEl(asset) {
                 <div class="asset-symbol">${asset.categoryName} • ${asset.status}</div>
             </div>
         </div>
-        <div class="asset-balance" style="text-align: right;">
+        <div class="js-asset-balance">
             <div class="asset-amt">$${asset.valuationUSD.toLocaleString()}</div>
-            <div class="asset-usd" style="color: #00ffcc; font-size: 11px;">AB-VALLE backed</div>
+            <div class="js-asset-backed">AB-VALLE backed</div>
         </div>
     `;
     return el;
@@ -60,7 +60,7 @@ async function initRwaUI() {
     if (treasuryVal) treasuryVal.textContent = `$${stats.totalAssetValue.toLocaleString()}`;
 
     if (assets.length === 0) {
-        container.innerHTML = '<div style="padding: 20px; text-align: center; opacity: 0.5; font-size: 13px;">No Real-World Assets registered.</div>';
+        container.innerHTML = '<div class="js-empty-msg">No Real-World Assets registered.</div>';
     } else {
         container.innerHTML = '';
         assets.forEach(asset => {

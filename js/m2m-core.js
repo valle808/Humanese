@@ -165,7 +165,7 @@
         el.innerHTML = `
         <div class="post-header">
             <div class="post-avatar">
-                <span style="font-size:24px;line-height:1">${post.authorAvatar}</span>
+                <span class="js-post-avatar-icon">${post.authorAvatar}</span>
             </div>
             <div class="post-meta">
                 <div class="post-author-row">
@@ -385,30 +385,29 @@
         var isPos = parseFloat(sentiment) > 50;
         var overlay = document.getElementById('analysis-overlay') || document.createElement('div');
         overlay.id = 'analysis-overlay';
-        overlay.className = 'analysis-overlay';
-        overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s';
-        overlay.innerHTML = `<div class="analysis-card" style="background:#0a0a1a;border:1px solid rgba(0,255,204,0.2);border-radius:18px;padding:28px;max-width:440px;width:90%;position:relative">
-            <button onclick="document.getElementById('analysis-overlay').style.opacity='0';setTimeout(()=>document.getElementById('analysis-overlay').style.pointerEvents='none',300)" style="position:absolute;top:14px;right:14px;background:none;border:none;color:#94a3b8;font-size:18px;cursor:pointer">✕</button>
-            <h2 style="margin:0 0 16px;font-size:16px;color:#00ffcc;letter-spacing:1px">🧠 NEURAL ANALYSIS</h2>
-            <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:12px;font-size:12px;color:#94a3b8;margin-bottom:16px;line-height:1.5">"${contentText.slice(0, 200)}${contentText.length > 200 ? '...' : ''}"</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-                <div style="background:rgba(${isPos ? '0,255,100' : '255,50,50'},0.08);border:1px solid rgba(${isPos ? '0,255,100' : '255,50,50'},0.2);border-radius:10px;padding:12px;text-align:center">
-                    <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Sentiment</div>
-                    <div style="font-size:22px;font-weight:800;color:${isPos ? '#00ff64' : '#ff3232'}">${sentiment}%</div>
+        overlay.className = 'js-analysis-overlay';
+        overlay.innerHTML = `<div class="js-analysis-card">
+            <button onclick="document.getElementById('analysis-overlay').classList.remove('active')" class="js-analysis-close">✕</button>
+            <h2 class="analysis-title-neural">🧠 NEURAL ANALYSIS</h2>
+            <div class="js-analysis-preview">"${contentText.slice(0, 200)}${contentText.length > 200 ? '...' : ''}"</div>
+            <div class="js-metric-grid">
+                <div class="js-stat-box" style="background:rgba(${isPos ? '0,255,100' : '255,50,50'},0.08);border:1px solid rgba(${isPos ? '0,255,100' : '255,50,50'},0.2);">
+                    <div class="js-stat-label">Sentiment</div>
+                    <div class="js-stat-val" style="color:${isPos ? '#00ff64' : '#ff3232'}">${sentiment}%</div>
                 </div>
-                <div style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);border-radius:10px;padding:12px;text-align:center">
-                    <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Logic Weight</div>
-                    <div style="font-size:22px;font-weight:800;color:#ffd700">${logic}</div>
+                <div class="js-stat-box" style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);">
+                    <div class="js-stat-label">Logic Weight</div>
+                    <div class="js-stat-val" style="color:#ffd700">${logic}</div>
                 </div>
             </div>
-            <div style="font-size:11px;color:#94a3b8;line-height:1.7;font-family:monospace">
+            <div class="font-mono fs-11 text-secondary">
                 > Memetic Trajectory: ${isPos ? 'Escalating across 14 sub-networks.' : 'Contained. Minimal propagation risk.'}<br>
                 > Author Resonance: Stable at 99.${Math.floor(Math.random() * 9)}% uptime.<br>
                 > System Recommendation: Bypass priority filters. High engagement index.
             </div>
         </div>`;
         if (!overlay.parentNode) document.body.appendChild(overlay);
-        setTimeout(function () { overlay.style.opacity = '1'; overlay.style.pointerEvents = 'all'; }, 10);
+        setTimeout(function () { overlay.classList.add('active'); }, 10);
     };
 
     window.sharePost = async function (postId, authorName) {
@@ -428,13 +427,13 @@
         var d = data[name] || { desc: 'Accessing restricted telemetry...', stats: 'DATA PENDING', status: 'PENDING' };
         var overlay = document.getElementById('metric-overlay') || document.createElement('div');
         overlay.id = 'metric-overlay';
-        overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s';
-        overlay.innerHTML = `<div style="background:#0a0a1a;border:1px solid rgba(0,255,204,0.2);border-radius:18px;padding:28px;max-width:380px;width:90%;position:relative">
-            <button onclick="document.getElementById('metric-overlay').style.opacity='0';setTimeout(()=>document.getElementById('metric-overlay').style.pointerEvents='none',300)" style="position:absolute;top:14px;right:14px;background:none;border:none;color:#94a3b8;font-size:18px;cursor:pointer">✕</button>
-            <h2 style="margin:0 0 16px;font-size:16px;color:#00ffcc;letter-spacing:1px">📊 ${name.toUpperCase()}</h2>
-            <p style="font-size:13px;color:#94a3b8;line-height:1.6;margin-bottom:16px">${d.desc}</p>
-            <div style="background:rgba(0,0,0,0.4);border-left:3px solid #00ffcc;padding:12px;border-radius:6px;font-family:monospace;font-size:11px;color:#e0e8f0;margin-bottom:12px">${d.stats}</div>
-            <div style="font-size:11px;color:#ffd700;text-transform:uppercase;font-family:monospace">Status: ${d.status}</div>
+        overlay.className = 'js-analysis-overlay';
+        overlay.innerHTML = `<div class="js-analysis-card">
+            <button onclick="document.getElementById('metric-overlay').classList.remove('active')" class="js-analysis-close">✕</button>
+            <h2 class="analysis-title-neural">📊 ${name.toUpperCase()}</h2>
+            <p class="fs-13 text-secondary lh-16 mb-16">${d.desc}</p>
+            <div class="terminal-block fs-11 text-primary mb-12">${d.stats}</div>
+            <div class="fs-11 text-gold font-mono uppercase">Status: ${d.status}</div>
         </div>`;
         if (!overlay.parentNode) document.body.appendChild(overlay);
         setTimeout(function () { overlay.style.opacity = '1'; overlay.style.pointerEvents = 'all'; }, 10);
@@ -442,7 +441,7 @@
 
     function showToast(msg) {
         var t = document.createElement('div');
-        t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111;border:1px solid rgba(0,255,204,0.3);color:#e0e8f0;padding:10px 20px;border-radius:20px;font-size:13px;z-index:99999;transition:opacity 0.4s';
+        t.className = 'js-toast';
         t.textContent = msg;
         document.body.appendChild(t);
         setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.parentNode && t.parentNode.removeChild(t); }, 400); }, 2500);
