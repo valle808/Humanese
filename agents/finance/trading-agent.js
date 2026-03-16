@@ -14,6 +14,7 @@ import * as coinbase from './coinbase-accounts.js'; // Keeping this for bridgeTo
 import { calculateSovereignInterest, distributeYield } from './treasury.js';
 import { WebNavigator } from '../swarm/web-navigator.js';
 import memoryBank from '../core/MemoryBank.js';
+import MarketUtils from '../core/MarketUtils.js';
 
 const MASTER_TREASURY_ID = 'humanese_treasury_master';
 const AGENT_ID = 'fin_agent_arbitrator';
@@ -27,7 +28,7 @@ export class FinancialTradingAgent {
         
         // Deep Intelligence
         this.navigator = new WebNavigator(this.id);
-        this.marketSignals = null;
+        this.marketSignals = "";
     }
 
     async boot() {
@@ -64,6 +65,17 @@ export class FinancialTradingAgent {
         }
     }
 
+    async listMarketSignal() {
+        if (this.marketSignals) {
+            console.log(`[${this.name}] 📢 Listing market signal: "${this.marketSignals.substring(0, 50)}..."`);
+            // In a real scenario, this would publish to a decentralized market signal network
+            // or feed into an M2M advertising module.
+            memoryBank.learn(this.id, `Market Signal Listed: ${this.marketSignals}`);
+        } else {
+            console.log(`[${this.name}] No market signals to list.`);
+        }
+    }
+
     /**
      * Core logic loop
      */
@@ -72,8 +84,15 @@ export class FinancialTradingAgent {
 
         try {
             // 0. Deep Market Research Pulse
-            await this.researchMarket();
+            // 1. Research Pulse (Headless Research)
+            if (Math.random() < 0.2) {
+                await this.researchMarket();
 
+                // 1.5. Autonomous Market Advertising (NEW)
+                if (this.marketSignals.length > 0 && Math.random() < 0.3) {
+                    await this.listMarketSignal();
+                }
+            }
             const stats = await wallet.getStatus();
             const rwaStats = await rwa.getGlobalStats();
 

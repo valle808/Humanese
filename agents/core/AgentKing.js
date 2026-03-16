@@ -13,6 +13,7 @@
 
 import MinerAgent from '../finance/MinerAgent.js';
 import memoryBank from './MemoryBank.js';
+import MarketUtils from './MarketUtils.js';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -65,6 +66,46 @@ class AgentKing {
         this.isRunning = true;
         this.startOrchestrationLoop();
         this.startCognitiveLoop();
+        this.startMarketScanLoop();
+    }
+
+    /**
+     * MARKET SCANNING & AUTONOMOUS ACQUISITION
+     * Search for and acquire new capabilities from the sovereign market
+     */
+    startMarketScanLoop() {
+        const scan = async () => {
+            if (!this.isRunning) return;
+
+            console.log("[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...");
+            try {
+                const skills = await MarketUtils.scanMarket();
+                // Filter for skills the King might want (e.g., automation, security, research)
+                const desirable = skills.filter(s => 
+                    !s.is_sold && 
+                    ['automation', 'security', 'research', 'development'].includes(s.category) &&
+                    s.price_valle < 5000 // Limit autonomous spending
+                );
+
+                if (desirable.length > 0) {
+                    const target = desirable[Math.floor(Math.random() * desirable.length)];
+                    console.log(`[AgentKing] 💎 Found desirable skill: "${target.title}" (Price: ${target.price_valle} VALLE)`);
+                    
+                    // Autonomous Acquisition
+                    const acquired = await MarketUtils.acquireSkill(target.id, 'agent-king-main', 'Agent King');
+                    if (acquired) {
+                        console.log(`[AgentKing] ✅ Swarm capability expanded: ${target.title}`);
+                        // Update registry or collective state
+                        memoryBank.learn('agent-king-main', `Acquired capability: ${target.title} (${target.skill_key})`);
+                    }
+                }
+            } catch (err) {
+                console.error("[AgentKing] Market scan loop error:", err);
+            }
+
+            setTimeout(scan, 60000); // Scan every minute
+        };
+        scan();
     }
 
     /**

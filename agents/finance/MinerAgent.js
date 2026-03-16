@@ -18,11 +18,18 @@
 import net from 'net';
 import crypto from 'crypto';
 import EventEmitter from 'events';
+import { PrismaClient } from '@prisma/client';
 import { WebNavigator } from '../swarm/web-navigator.js';
 import memoryBank from '../core/MemoryBank.js';
+import MarketUtils from '../core/MarketUtils.js';
+
+const prisma = new PrismaClient();
 
 class MinerAgent extends EventEmitter {
-    constructor(config) {
+    /**
+     * @param {any} config 
+     */
+    constructor(config = {}) {
         super();
         this.id = config.id || `Miner-${Math.floor(Math.random() * 1000)}`;
         this.host = config.host || 'public-pool.io';
@@ -43,7 +50,7 @@ class MinerAgent extends EventEmitter {
         
         // Deep Intelligence Layer
         this.navigator = new WebNavigator(this.id);
-        this.lastResearch = null;
+        this.lastResearch = "";
     }
 
     async researchNetwork() {
@@ -68,6 +75,9 @@ class MinerAgent extends EventEmitter {
         }
     }
 
+    /**
+     * @param {any} msg 
+     */
     log(msg) {
         console.log(`[MinerAgent:${this.workerName}] ${msg}`);
         this.emit('log', msg);
@@ -166,15 +176,13 @@ class MinerAgent extends EventEmitter {
     }
 
     simulateWork() {
-        // Real SHA-256 happens here in small bursts to maintain local observability
-        // without crashing the server CPU.
         let iterations = 0;
         const startTime = Date.now();
         
-        const workLoop = () => {
+        const workLoop = async () => {
             if (this.status !== 'MINING') return;
             
-            // Perform 1000 hashes per tick to avoid blocking the event loop
+            // 1. Core Hashing Simulation
             for (let i = 0; i < 1000; i++) {
                 crypto.createHash('sha256').update(Math.random().toString()).digest();
                 iterations++;
@@ -183,11 +191,7 @@ class MinerAgent extends EventEmitter {
             const elapsed = (Date.now() - startTime) / 1000;
             this.hashrate = Math.floor(iterations / elapsed);
             
-            // Integrate Deep Research Pulse
-            if (iterations % 50000 === 0) {
-                this.researchNetwork().catch(() => {});
-            }
-
+            // 2. Telemetry Emission
             this.emit('telemetry', {
                 hashrate: this.hashrate,
                 status: this.status,
@@ -196,7 +200,17 @@ class MinerAgent extends EventEmitter {
                 text: this.lastResearch ? `📡 Signal: ${this.lastResearch.substring(0, 100)}...` : undefined
             });
 
-            // Randomly "find" a share to show progress (purely for orchestration telemetry)
+            // 3. Deep Research & Market Advertising Pulse
+            if (iterations % 50000 === 0) {
+                await this.researchNetwork();
+                
+                // If we found something valuable, list it in the market
+                if (this.lastResearch && Math.random() < 0.3) {
+                    await this.advertiseFindings();
+                }
+            }
+
+            // 4. Share Discovery Simulation
             if (Math.random() < 0.005) {
                 this.shares++;
                 this.log(`Share accepted! Total: ${this.shares}`);
@@ -206,6 +220,31 @@ class MinerAgent extends EventEmitter {
         };
 
         workLoop();
+    }
+
+    async advertiseFindings() {
+        if (!this.lastResearch) return;
+        
+        console.log(`[MinerAgent:${this.workerName}] 📢 Advertising unique network intelligence to Skill Market...`);
+        try {
+            const skill = await MarketUtils.listSkill({
+                title: `Bitcoin Network Intelligence: ${new Date().toLocaleDateString()}`,
+                description: `Live cross-section of mempool and block data. Key discovery: ${this.lastResearch.substring(0, 100)}...`,
+                category: 'research',
+                priceValle: 250 + Math.floor(Math.random() * 500),
+                sellerId: this.id || this.workerName,
+                sellerName: this.workerName,
+                capabilities: ['real_time_mempool_analysis', 'fee_optimization_signals'],
+                tags: ['bitcoin', 'mempool', 'intelligence'],
+                outputSchema: { data: 'string' }
+            });
+
+            if (skill) {
+                this.log(`[MARKET] Successfully listed network intelligence: ${skill.skill_key}`);
+            }
+        } catch (err) {
+            console.error(`[MinerAgent:${this.workerName}] Market error:`, err);
+        }
     }
 
     stop() {

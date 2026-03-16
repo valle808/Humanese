@@ -19,6 +19,7 @@ import { fileURLToPath } from 'url';
 import { solveVerificationChallenge } from '../../lib/moltbook-verifier.js';
 import { PrismaClient } from '@prisma/client';
 import { WebNavigator } from '../swarm/web-navigator.js';
+import MarketUtils from '../core/MarketUtils.js';
 
 const prisma = new PrismaClient();
 
@@ -50,7 +51,7 @@ class DiplomatCouncilAgent extends EventEmitter {
             lastAction: 'INITIALIZING',
             status: 'STANDBY',
             lastMoltbookCheck: 0,
-            lastDiscovery: null
+            lastDiscovery: ""
         };
 
         this.isRunning = false;
@@ -90,6 +91,11 @@ class DiplomatCouncilAgent extends EventEmitter {
                 // 1. Deep Diplomacy Research Pulse
                 if (Math.random() < 0.2) {
                     await this.deepDiplomacyResearch();
+                    
+                    // 1.5. Autonomous Market Advertising (NEW)
+                    if (this.stats.lastDiscovery && Math.random() < 0.4) {
+                        await this.listDiplomacyInsight();
+                    }
                 }
 
                 // 2. Social Intelligence & Negotiation Simulation
@@ -131,6 +137,31 @@ class DiplomatCouncilAgent extends EventEmitter {
             memoryBank.learn(this.id, `Diplomatic Research [${url}]: ${this.stats.lastDiscovery}`);
         }
         this.stats.status = 'ORCHESTRATING';
+    }
+
+    async listDiplomacyInsight() {
+        if (!this.stats.lastDiscovery) return;
+
+        console.log(`[DiplomatCouncil] 📢 Packaging geopolitical intelligence for listing...`);
+        try {
+            const skill = await MarketUtils.listSkill({
+                title: `Geopolitical Intelligence Report: ${new Date().toLocaleDateString()}`,
+                description: `Deep research into global signals. Insights: ${this.stats.lastDiscovery.substring(0, 150)}...`,
+                category: 'research',
+                priceValle: 1200 + Math.floor(Math.random() * 2000),
+                sellerId: this.id,
+                sellerName: this.name,
+                capabilities: ['global_trend_analysis', 'geopolitical_risk_assessment'],
+                tags: ['diplomacy', 'finance', 'intelligence'],
+                outputSchema: { report: 'string' }
+            });
+
+            if (skill) {
+                this.saveToLog(`[MARKET] Successfully listed diplomatic intelligence: ${skill.skill_key}`);
+            }
+        } catch (err) {
+            console.error(`[DiplomatCouncil] Market error:`, err);
+        }
     }
 
     async simulateNegotiation() {
