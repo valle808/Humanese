@@ -161,7 +161,7 @@ export default function HPediaPage() {
               </motion.div>
             ) : (
               <motion.div 
-                key={selectedArticle.id}
+                key={selectedArticle?.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -170,11 +170,11 @@ export default function HPediaPage() {
                 {/* Article Header Meta */}
                 <div className="flex items-center gap-4 mb-8">
                    <div className="px-3 py-1 bg-emerald/10 border border-emerald/20 rounded-full text-[10px] font-mono text-emerald uppercase tracking-widest">
-                     {selectedArticle.category}
+                     {selectedArticle?.category}
                    </div>
                    <div className="flex items-center gap-2 text-platinum/40 text-[10px] font-mono uppercase tracking-widest">
                      <Clock size={12} />
-                     {selectedArticle.readTime}
+                     {selectedArticle?.readTime}
                    </div>
                    <div className="flex items-center gap-2 text-emerald/60 text-[10px] font-mono uppercase tracking-widest">
                      <Activity size={12} />
@@ -183,22 +183,22 @@ export default function HPediaPage() {
                 </div>
 
                 <h1 className="text-6xl font-black text-white tracking-tighter mb-4 leading-[0.9]">
-                  {selectedArticle.title}
+                  {selectedArticle?.title}
                 </h1>
                 <p className="text-xl text-platinum/40 font-mono tracking-tight mb-12">
-                  {selectedArticle.subtitle}
+                  {selectedArticle?.subtitle}
                 </p>
 
                 <div className="flex items-center gap-4 mb-12 border-y border-white/5 py-6">
                   <div className="w-10 h-10 rounded-full bg-emerald/20 flex items-center justify-center text-emerald text-xl">
-                    {selectedArticle.author.avatar}
+                    {selectedArticle?.author?.avatar}
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs text-white font-bold">{selectedArticle.author.name}</span>
+                    <span className="text-xs text-white font-bold">{selectedArticle?.author?.name}</span>
                     <span className="text-[10px] text-platinum/40 font-mono uppercase">Neural Intelligence Node</span>
                   </div>
                   <div className="ml-auto text-platinum/20 text-[10px] font-mono uppercase tracking-widest">
-                    Published: {selectedArticle.publishedAt}
+                    Published: {selectedArticle?.publishedAt}
                   </div>
                 </div>
 
@@ -208,11 +208,11 @@ export default function HPediaPage() {
                     prose-h2:text-white prose-h2:text-3xl prose-h2:font-black prose-h2:tracking-tighter prose-h2:mt-12
                     prose-p:text-platinum/60 prose-p:leading-relaxed prose-p:text-lg
                     prose-li:text-platinum/60 prose-blockquote:border-emerald prose-blockquote:bg-emerald/5 prose-blockquote:p-6 prose-blockquote:rounded-xl prose-blockquote:font-mono prose-blockquote:text-sm"
-                  dangerouslySetInnerHTML={{ __html: selectedArticle.body }}
+                  dangerouslySetInnerHTML={{ __html: selectedArticle?.body || '' }}
                 />
 
                 <footer className="mt-20 pt-12 border-t border-white/10 flex flex-wrap gap-3">
-                   {selectedArticle.tags.map(tag => (
+                   {selectedArticle?.tags?.map(tag => (
                      <span key={tag} className="px-4 py-2 bg-white/5 rounded-lg text-[10px] font-mono text-platinum/40 uppercase tracking-widest hover:text-emerald transition-colors cursor-pointer">
                        #{tag}
                      </span>
@@ -236,7 +236,7 @@ export default function HPediaPage() {
                 <div className="space-y-4">
                    <div className="flex justify-between border-b border-white/5 pb-2">
                       <span className="text-[10px] font-mono text-platinum/30 uppercase">Node ID</span>
-                      <span className="text-[10px] font-mono text-white uppercase">{selectedArticle.id}</span>
+                      <span className="text-[10px] font-mono text-white uppercase">{selectedArticle?.id}</span>
                    </div>
                    <div className="flex justify-between border-b border-white/5 pb-2">
                       <span className="text-[10px] font-mono text-platinum/30 uppercase">Integrity</span>

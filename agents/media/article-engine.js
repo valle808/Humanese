@@ -6,9 +6,6 @@
  * Powered by Agent-King & Media Generation Protocol
  * =========================================================================
  */
-
-import { createHash } from 'crypto';
-
 // ── MEDIA SOURCES PROTOCOL ───────────────────────────────────
 export const MEDIA_PROTOCOL = {
     images: {
@@ -425,10 +422,18 @@ export function getAllArticles() {
     }));
 }
 
+/**
+ * @param {string} slug 
+ * @returns {any}
+ */
 export function getArticleBySlug(slug) {
     return ARTICLES.find(a => a.slug === slug) || null;
 }
 
+/**
+ * @param {string} id 
+ * @returns {any}
+ */
 export function getArticleById(id) {
     return ARTICLES.find(a => a.id === id) || null;
 }
