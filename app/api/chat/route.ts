@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-        'X-Title': 'DeepGrok',
+        'X-Title': 'Humanese Intelligence',
       },
       body: JSON.stringify({
         model: 'meta-llama/llama-3.2-3b-instruct:free',

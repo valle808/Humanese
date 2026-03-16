@@ -39,8 +39,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Construct Grokipedia URL if topic is provided
-    const targetUrl = url || `https://grokipedia.com/page/${encodeURIComponent(topic.replace(/\s+/g, '_'))}`;
+    // Construct target URL if topic is provided (Default to Humanese Hive logic)
+    const targetUrl = url || `https://humanese.io/hive/${encodeURIComponent(topic.replace(/\s+/g, '_'))}`;
 
     // Check cache first
     const cachedPage = await getCachedPage(targetUrl);

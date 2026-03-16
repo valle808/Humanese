@@ -96,7 +96,7 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
           </div>
         `}
         nodeColor={(node: any) => node.color}
-        linkColor={() => 'rgba(0, 255, 65, 0.4)'}
+        linkColor={() => 'rgba(0, 255, 65, 0.8)'}
         linkWidth={2}
         linkDirectionalParticles={2}
         linkDirectionalParticleSpeed={0.005}
@@ -113,7 +113,7 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
             transparent: true,
             opacity: 0.9,
             emissive: new THREE.Color(validColor),
-            emissiveIntensity: 0.6,
+            emissiveIntensity: 2.0,
           });
           return new THREE.Mesh(geometry, material);
         }}
