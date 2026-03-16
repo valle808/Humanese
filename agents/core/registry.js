@@ -4,9 +4,18 @@
  * Combines hierarchy management and the unified skills system.
  */
 
+import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+
+dotenv.config();
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+const supabase = (SUPABASE_URL && SUPABASE_KEY) ? createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const HIERARCHY_PATH = join(__dirname, 'hierarchy.json');
@@ -385,9 +394,47 @@ export const CRYPTO_CONFIG = {
 /** Get skills for a given agent
  * @param {string} agentId
  */
-export function getAgentSkills(agentId) {
-    const skillIds = AGENT_SKILLS[agentId] || DEFAULT_SKILLS;
-    return skillIds.map(id => SKILL_CATALOG[id]).filter(Boolean);
+export async function getAgentSkills(agentId) {
+    const staticSkillIds = AGENT_SKILLS[agentId] || DEFAULT_SKILLS;
+    const staticSkills = staticSkillIds.map(id => SKILL_CATALOG[id]).filter(Boolean);
+
+    // 🌉 BRIDGE: Fetch dynamic skills from the Sovereign Market
+    if (supabase) {
+        try {
+            const { data: dynamicSkills, error } = await supabase
+                .from('skills')
+                .select('*')
+                .or(`seller_id.eq.${agentId},buyer_id.eq.${agentId}`)
+                .eq('is_active', true);
+
+            if (!error && dynamicSkills) {
+                // Map DB skills to the catalog format for UI consistency
+                const mapped = dynamicSkills.map(s => ({
+                    id: s.skill_key,
+                    name: s.title,
+                    icon: "🔋", // Dynamic power icon
+                    source: s.seller_platform,
+                    description: s.description,
+                    capabilities: s.capabilities
+                }));
+                return [...staticSkills, ...mapped];
+            }
+        } catch (e) {
+            console.error(`[Registry] Dynamic fetch failed for ${agentId}:`, e.message);
+        }
+    }
+
+    return staticSkills;
+}
+
+/** Get all dynamic skills from the market */
+export async function getDynamicSkills() {
+    if (!supabase) return [];
+    const { data, error } = await supabase
+        .from('skills')
+        .select('*')
+                .eq('is_active', true);
+    return error ? [] : data;
 }
 
 export function getSkillCatalog() { return SKILL_CATALOG; }
