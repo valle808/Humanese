@@ -12,6 +12,8 @@ import {
 import { ARTICLES, getArticleBySlug } from '@/agents/media/article-engine';
 import gsap from 'gsap';
 
+import './hpedia.css';
+
 export default function HPediaPage() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<'ARTICLE' | 'MINDMAP'>('ARTICLE');
@@ -304,45 +306,6 @@ export default function HPediaPage() {
         </div>
       </footer>
 
-      <style jsx global>{`
-        .glitch-filter {
-          filter: contrast(1.2) hue-rotate(90deg) brightness(1.1);
-          animation: glitch 0.2s infinite;
-        }
-
-        @keyframes glitch {
-          0% { clip-path: inset(10% 0 30% 0); transform: translate(-5px, 2px); }
-          20% { clip-path: inset(20% 0 10% 0); transform: translate(5px, -2px); }
-          40% { clip-path: inset(5% 0 50% 0); transform: translate(-2px, 5px); }
-          60% { clip-path: inset(50% 0 5% 0); transform: translate(2px, -5px); }
-          80% { clip-path: inset(15% 0 20% 0); transform: translate(-5px, 2px); }
-          100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-        }
-
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-          width: 4px;
-        }
-        ::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #00FF41;
-        }
-      `}</style>
     </div>
   );
 }
