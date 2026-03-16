@@ -1,0 +1,30 @@
+[
+  {
+    "id": "DIR-1773656491911",
+    "timestamp": "2026-03-16T10:21:31.911Z",
+    "type": "PRIORITIZE_MINING",
+    "reason": "Relevant hash-layer innovations detected in global stream.",
+    "executed": false
+  },
+  {
+    "id": "DIR-1773656431904",
+    "timestamp": "2026-03-16T10:20:31.904Z",
+    "type": "PRIORITIZE_MINING",
+    "reason": "Relevant hash-layer innovations detected in global stream.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773656371896",
+    "timestamp": "2026-03-16T10:19:31.896Z",
+    "type": "PRIORITIZE_MINING",
+    "reason": "Relevant hash-layer innovations detected in global stream.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773656311891",
+    "timestamp": "2026-03-16T10:18:31.891Z",
+    "type": "MAINTAIN_CURRENT_OPERATIONS",
+    "reason": "Equilibrium detected in the lattice.",
+    "executed": true
+  }
+]
