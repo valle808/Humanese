@@ -1,4 +1,4 @@
-import { grokipedia } from './grokipedia';
+import { humaneseHive } from './humanese-hive';
 import { comparison } from './comparison';
 import { scrapeAndStore } from './scraper';
 import { dkgClient } from './dkg';
@@ -9,7 +9,7 @@ import { solanaEngine } from './solana-revenue';
 
 /**
  * Agent King Coordination Logic
- * Transmutated from Grok-CLI Agent and Grok-1 patterns.
+ * Transmutated from Humanese Identity patterns.
  */
 
 export interface AgentTask {
@@ -29,7 +29,7 @@ export class AgentKing {
         console.log(`[AgentKing] Planning for query: ${query}`);
 
         this.tasks = [
-            { id: '1', title: `Search Grokipedia for '${query}'`, status: 'pending', priority: 'high' },
+            { id: '1', title: `Search Humanese Hive for '${query}'`, status: 'pending', priority: 'high' },
             { id: '2', title: `Scrape external references for '${query}'`, status: 'pending', priority: 'medium' },
             { id: '3', title: `Synthesize and Verify Knowledge (DKG)`, status: 'pending', priority: 'high' }
         ];
@@ -58,7 +58,7 @@ export class AgentKing {
 
             try {
                 if (task.title.includes('Search')) {
-                    await grokipedia.search(task.title);
+                    await humaneseHive.search(task.title);
                 } else if (task.title.includes('Scrape')) {
                     await scrapeAndStore(task.title);
                 } else if (task.title.includes('Verify (DKG)')) {
