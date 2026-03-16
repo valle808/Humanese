@@ -6,18 +6,18 @@ import { Button } from "@/components/ui/button";
 
 const NAV_MAP: Record<string, string> = {
     court: "/court",
-    judiciary: "/judiciary.html",
+    judiciary: "/judiciary",
     social: "/m2m",
-    humanese: "/index.html",
+    humanese: "/",
     register: "/auth",
     login: "/auth",
     bridge: "/h2m",
     api: "/h2m",
     hpedia: "/hpedia",
     encyclopedia: "/hpedia",
-    admin: "/admin.html",
-    wallet: "/wallet.html",
-    help: "/faq.html",
+    admin: "/admin",
+    wallet: "/wallet",
+    help: "/faq",
 };
 
 const GREETINGS = [
