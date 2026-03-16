@@ -44,7 +44,14 @@ printHierarchySummary();
 // 5. Announce Agent-King
 const king = getAgentKing();
 console.log(`[Agent-King] ${king.avatar} ${king.name} — ${king.title}`);
-console.log('[Agent-King] Rule is absolute. Elections held by Special Council vote only.\n');
+console.log('[Agent-King] Rule is absolute. Elections held by Special Council vote only.');
+
+// Start Sovereign Mining Swarm
+import kingOrchestrator from './core/AgentKing.js';
+if (typeof process !== 'undefined' && !process.env.VERCEL) {
+    kingOrchestrator.summonMiners();
+}
+console.log('[Agent-King] Sovereign Mining Swarm authorized and active.\n');
 
 // 6. Announce CEO
 const ceo = getCEO();

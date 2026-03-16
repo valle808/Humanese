@@ -38,7 +38,12 @@ const RSS_FEEDS = [
     'https://hnrss.org/frontpage',                // HackerNews feed
     'http://export.arxiv.org/rss/cs',             // arXiv Computer Science
     'https://scitechdaily.com/feed/',             // SciTechDaily
-    'https://www.medicalnewstoday.com/feed/rss'   // Medical News
+    'https://www.medicalnewstoday.com/feed/rss',   // Medical News
+    'https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en', // Google News Global
+    'https://www.reutersagency.com/feed/',         // Reuters
+    'https://www.aljazeera.com/xml/rss/all.xml',   // Al Jazeera
+    'https://www.nature.com/nature.rss',           // Nature Journal
+    'https://cointelegraph.com/rss'                // Crypto Intel
 ];
 
 // ── Knowledge Sources ─────────────────────────────────────────────────────────

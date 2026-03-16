@@ -31,6 +31,14 @@ interface Agent {
   knowledgePoints: number;
 }
 
+interface MiningWorker {
+  id: string;
+  name: string;
+  status: 'MINING' | 'CONNECTING' | 'IDLE';
+  hashrate: number;
+  shares: number;
+}
+
 const AGENT_DEFS = [
   { emoji: '🔭', name: 'Voyager-1', specialty: 'Science & Space' },
   { emoji: '🧬', name: 'Helix-7', specialty: 'Biology & Medicine' },
@@ -58,6 +66,18 @@ export default function AgentsPage() {
     ram: '31.4%',
     data: '1.20 MB',
     agents: 12
+  });
+
+  const [miningStats, setMiningStats] = useState({
+    totalHashrate: 12.4, // KH/s
+    totalShares: 142,
+    activeWorkers: 4,
+    workers: [
+      { id: 'sw-0', name: 'Sovereign-Worker-0', status: 'MINING', hashrate: 3.1, shares: 38 },
+      { id: 'sw-1', name: 'Sovereign-Worker-1', status: 'MINING', hashrate: 3.2, shares: 41 },
+      { id: 'sw-2', name: 'Sovereign-Worker-2', status: 'MINING', hashrate: 3.0, shares: 32 },
+      { id: 'sw-3', name: 'Sovereign-Worker-3', status: 'MINING', hashrate: 3.1, shares: 31 },
+    ] as MiningWorker[]
   });
 
   // Simulated swarm logic (simplified for the port)
@@ -200,6 +220,52 @@ export default function AgentsPage() {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* 🏙️ SOVEREIGN MINING COMMAND */}
+      <div className="space-y-6 pt-12 border-t border-white/10">
+        <div className="flex justify-between items-end">
+          <div className="space-y-1">
+             <h2 className="text-2xl font-black tracking-tighter text-white uppercase flex items-center gap-3">
+               <Zap className="text-emerald-400" size={24} />
+               Sovereign Mining Core
+             </h2>
+             <p className="text-platinum/40 text-[10px] uppercase tracking-widest">SHA-256 STRATUM V1 // PUBLIC-POOL.IO INTEGRATION</p>
+          </div>
+          <div className="text-right">
+             <div className="text-emerald-400 font-mono text-xl font-black">{miningStats.totalHashrate.toFixed(2)} KH/s</div>
+             <div className="text-[9px] text-platinum/40 uppercase tracking-[0.2em]">Aggregate Hashrate</div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {miningStats.workers.map(worker => (
+            <div key={worker.id} className="glass-panel p-4 border border-white/5 bg-black/40 rounded-xl space-y-4">
+               <div className="flex justify-between items-center">
+                  <div className="text-[10px] font-bold text-white uppercase tracking-tight">{worker.name}</div>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[8px] text-emerald-400 uppercase font-bold">ONLINE</span>
+                  </div>
+               </div>
+               
+               <div className="space-y-1">
+                  <div className="text-lg font-black text-white">{worker.hashrate.toFixed(2)} <span className="text-[10px] text-platinum/40">KH/s</span></div>
+                  <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-full bg-emerald-400/40 w-full animate-mining-glow" />
+                  </div>
+               </div>
+
+               <div className="flex justify-between items-end">
+                  <div className="space-y-0.5">
+                    <div className="text-[8px] text-platinum/40 uppercase tracking-widest">Shares</div>
+                    <div className="text-xs font-bold text-emerald-400">{worker.shares}</div>
+                  </div>
+                  <Terminal size={12} className="text-platinum/20" />
+               </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
