@@ -96,7 +96,7 @@ export default function HPediaPage() {
           </div>
 
           <div className="flex gap-4 pointer-events-auto">
-            <div className="flex items-center gap-6 px-6 py-3 sovereign-card-v4 border-white/5 bg-black/40 mr-4">
+            <div className="flex items-center gap-6 px-6 py-3 sovereign-card-v4 border-white/5 bg-black/40 mr-4 pointer-events-auto">
               <div className="flex flex-col items-end">
                 <span className="text-[9px] text-platinum/30 uppercase font-mono tracking-widest">BTC / USD</span>
                 <span className="text-sm font-bold text-emerald tracking-tighter">
@@ -238,8 +238,8 @@ export default function HPediaPage() {
           </div>
 
           {/* Right Sidebar: Security Logs & Live Feeds */}
-          <div className="w-80 flex flex-col gap-6">
-             <div className="pointer-events-auto p-6 glass-panel border-white/5 bg-black/40 flex-1">
+          <div className="w-80 flex flex-col gap-6 pointer-events-auto">
+             <div className="p-6 glass-panel border-white/5 bg-black/40 flex-1">
                 <div className="flex items-center justify-between mb-4">
                    <div className="flex items-center gap-2">
                       <Lock className="w-3 h-3 text-platinum/40" />
@@ -256,7 +256,7 @@ export default function HPediaPage() {
                 </div>
              </div>
 
-             <div className="pointer-events-auto p-6 glass-panel border-white/5 bg-black/40">
+             <div className="p-6 glass-panel border-white/5 bg-black/40">
                 <div className="flex items-center gap-2 mb-4">
                    <Github className="w-3 h-3 text-platinum/40" />
                    <span className="text-[10px] font-mono font-bold text-platinum/60 tracking-widest uppercase">GitHub Pulse</span>
