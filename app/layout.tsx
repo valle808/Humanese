@@ -1,4 +1,5 @@
 import './globals.css';
+import { Sidebar } from '@/components/Sidebar';
 
 export default function RootLayout({
   children,
@@ -6,8 +7,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="bg-black">{children}</body>
+    <html lang="en" className="dark">
+      <body className="bg-black text-white font-mono selection:bg-cyan-500/30">
+        <Sidebar />
+        <div className="relative min-h-screen">
+          {children}
+        </div>
+      </body>
     </html>
-  )
+  );
 }

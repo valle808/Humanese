@@ -28,32 +28,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="neural-v4 glass-theme min-h-screen bg-black text-cyan-400 font-mono">
-      {/* 🏙️ GRID BACKGROUND */}
-      <div className="fixed inset-0 pointer-events-none opacity-20" 
+    <div className="neural-v4 glass-theme min-h-screen text-cyan-400 font-mono">
+      {/* 🏙️ GRID BACKGROUND - Reduced opacity as it's redundant with layout layer if added there, but keeping a subtle one for depth */}
+      <div className="fixed inset-0 pointer-events-none opacity-10" 
            style={{ backgroundImage: 'linear-gradient(#00f2ff1a 1px, transparent 1px), linear-gradient(90deg, #00f2ff1a 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
       </div>
 
-      {/* 🛰️ SOVEREIGN HEADER */}
-      <header className="sticky top-0 z-50 p-6 glass-panel border-b border-cyan-900/50 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <a href="/" className="text-2xl font-bold tracking-tighter text-white">HUMAN<span className="text-cyan-400">ESE</span></a>
-          <nav className="hidden md:flex gap-8 text-sm uppercase tracking-widest">
-            <a href="/" className="hover:text-white transition-colors">Neural Core</a>
-            <a href="/m2m" className="hover:text-white transition-colors">Network</a>
-            <a href="/marketplace" className="hover:text-white transition-colors">Skill Market</a>
-            <a href="/hpedia" className="hover:text-white transition-colors">Archive</a>
-            <a href="/wallet" className="hover:text-white transition-colors">Wallet</a>
-          </nav>
-          <div className="flex items-center gap-4">
-            <div className="hidden lg:flex items-center gap-2 text-[10px] text-cyan-500 border border-cyan-800 px-3 py-1 rounded-full">
-              <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
-              SECURE HANDSHAKE
-            </div>
-            <a href="/wallet" className="bg-cyan-500 text-black px-6 py-2 rounded-sm font-bold shadow-[0_0_20px_rgba(0,242,255,0.3)] hover:scale-105 transition-transform uppercase text-xs">Connect</a>
-          </div>
-        </div>
-      </header>
+      {/* 🛰️ SOVEREIGN HEADER - REMOVED (Moved to RootLayout/Sidebar) */}
 
       {/* ── MAIN STAGE ── */}
       <main className="relative z-10 p-6 max-w-7xl mx-auto space-y-12 py-12">

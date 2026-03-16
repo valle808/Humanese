@@ -1,5 +1,20 @@
 'use client';
 
+const NAV_MAP: Record<string, string> = {
+    court: "/court",
+    judiciary: "/judiciary",
+    social: "/m2m",
+    humanese: "/",
+    register: "/auth",
+    login: "/auth",
+    bridge: "/h2m",
+    api: "/h2m",
+    hpedia: "/hpedia",
+    encyclopedia: "/hpedia",
+    admin: "/admin",
+    wallet: "/wallet",
+    help: "/faq",
+};
 import React, { useState, useEffect } from 'react';
 import {
     Home,
@@ -20,20 +35,31 @@ export const Sidebar = () => {
     const [isMounted, setIsMounted] = useState(false);
     const pathname = usePathname();
 
-    // Load preference from local storage
+    // Load preference from local storage and apply body padding
     useEffect(() => {
         const savedState = localStorage.getItem('sovereign_sidebar_expanded');
+        const expanded = savedState === 'true';
         if (savedState !== null) {
-            setIsExpanded(savedState === 'true');
+            setIsExpanded(expanded);
         }
         setIsMounted(true);
+        
+        // Initial padding
+        if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+            document.body.style.paddingLeft = expanded ? '16rem' : '5rem';
+            document.body.style.transition = 'padding-left 0.3s ease-in-out';
+        }
     }, []);
 
-    // Save preference to local storage
+    // Save preference and update body padding
     const toggleSidebar = () => {
         const newState = !isExpanded;
         setIsExpanded(newState);
         localStorage.setItem('sovereign_sidebar_expanded', String(newState));
+        
+        if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+            document.body.style.paddingLeft = newState ? '16rem' : '5rem';
+        }
     };
 
     const navItems = [
