@@ -29,9 +29,8 @@ export default function Home() {
 
   return (
     <div className="neural-v4 glass-theme min-h-screen text-cyan-400 font-mono">
-      {/* 🏙️ GRID BACKGROUND - Reduced opacity as it's redundant with layout layer if added there, but keeping a subtle one for depth */}
-      <div className="fixed inset-0 pointer-events-none opacity-10" 
-           style={{ backgroundImage: 'linear-gradient(#00f2ff1a 1px, transparent 1px), linear-gradient(90deg, #00f2ff1a 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
+      {/* 🏙️ GRID BACKGROUND */}
+      <div className="fixed inset-0 pointer-events-none opacity-10 neural-grid">
       </div>
 
       {/* 🛰️ SOVEREIGN HEADER - REMOVED (Moved to RootLayout/Sidebar) */}

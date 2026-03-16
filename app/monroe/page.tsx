@@ -147,6 +147,7 @@ export default function MonroePage() {
                 />
                 <button 
                   onClick={handleSend}
+                  aria-label="Send message"
                   className="h-10 w-10 bg-white text-black rounded-xl flex items-center justify-center hover:scale-105 transition-transform"
                 >
                   <Terminal size={18} />

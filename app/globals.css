@@ -332,6 +332,13 @@ html {
   .text-emerald {
     color: #10ff95;
   }
+
+  /* 🌌 NEURAL GRID BACKGROUND */
+  .neural-grid {
+    background-image: linear-gradient(#00f2ff1a 1px, transparent 1px), 
+                      linear-gradient(90deg, #00f2ff1a 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
 }
 
 /* Solana Official Typography Patterns Extracted by SolanaDev Agent */
