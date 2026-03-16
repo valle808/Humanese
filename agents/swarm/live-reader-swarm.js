@@ -24,6 +24,7 @@ import os from 'os';
 import { fileURLToPath } from 'url';
 import { PrismaClient } from '@prisma/client';
 import { downloadMediaArtifact } from '../media/media-downloader.js';
+import memoryBank from '../core/MemoryBank.js';
 
 const prisma = new PrismaClient();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -378,6 +379,10 @@ async function tickAgent(agentId) {
                 totalChars: agent.textBuffer.length
             }
         });
+
+        // 🧠 TEACH THE COLLECTIVE: Push discovery to MemoryBank
+        memoryBank.learn(agentId, `${article.title}: ${article.extract.substring(0, 100)}`);
+        
         return;
     }
 

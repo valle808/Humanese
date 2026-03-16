@@ -12,8 +12,10 @@
  */
 
 import MinerAgent from '../finance/MinerAgent.js';
+import memoryBank from './MemoryBank.js';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,7 +24,7 @@ class AgentKing {
     constructor() {
         this.miners = new Map();
         this.config = {
-            minerCount: 2, // Number of autonomous worker nodes
+            minerCount: 2, 
             address: '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh',
             poolHost: 'public-pool.io',
             poolPort: 3333
@@ -31,7 +33,12 @@ class AgentKing {
             totalHashrate: 0,
             totalShares: 0,
             activeWorkers: 0,
-            startTime: Date.now()
+            startTime: Date.now(),
+            environment: {
+                cpuUsage: 0,
+                ramUsage: 0,
+                sentiment: 0
+            }
         };
         this.isRunning = false;
     }
@@ -54,10 +61,10 @@ class AgentKing {
         }
         this.isRunning = true;
         this.startOrchestrationLoop();
+        this.startCognitiveLoop();
     }
 
     handleTelemetry(workerName, data) {
-        // Update stats
         let totalH = 0;
         let totalS = 0;
         let active = 0;
@@ -71,8 +78,43 @@ class AgentKing {
         this.stats.totalHashrate = totalH;
         this.stats.totalShares = totalS;
         this.stats.activeWorkers = active;
-        
-        // Per-miner tracking can be added here
+    }
+
+    /**
+     * COGNITIVE ADAPTATION LOOP
+     * Evolve agents based on environment and collective memory
+     */
+    startCognitiveLoop() {
+        const adaptiveLoop = () => {
+            if (!this.isRunning) return;
+
+            // 1. Environmental Awareness
+            const totalMem = os.totalmem();
+            const freeMem = os.freemem();
+            this.stats.environment.ramUsage = ((totalMem - freeMem) / totalMem) * 100;
+            
+            // 2. Collective Memory Query
+            const state = memoryBank.getCollectiveState();
+            this.stats.environment.sentiment = state.sentiment;
+
+            // 3. Autonomous Adaptation
+            // If sentiment is extremely low (fear), miners might 'stealth' or throttle to save resources
+            if (state.sentiment < -0.5) {
+                console.log("[AgentKing] 🧠 ADAPTATION: High market fear detected. Throttling mining intensity for stealth operations.");
+                // This would set a 'low-power' flag in MinerAgents
+            } else if (state.sentiment > 0.5) {
+                console.log("[AgentKing] 🧠 ADAPTATION: Bullish sentiment detected via swarm. Maximizing computational expansion.");
+            }
+
+            // 4. Learning from discoveries
+            const insights = memoryBank.getInsights();
+            if (insights.length > 0 && Date.now() - insights[0].timestamp < 60000) {
+                console.log(`[AgentKing] 👑 King acknowledges collective discovery: "${insights[0].content.substring(0, 50)}..."`);
+            }
+
+            setTimeout(adaptiveLoop, 30000); // 30s cognitive cycle
+        };
+        adaptiveLoop();
     }
 
     saveToLog(worker, msg) {
@@ -80,29 +122,25 @@ class AgentKing {
         const entry = `[${new Date().toISOString()}] [${worker}] ${msg}\n`;
         try {
             fs.appendFileSync(logPath, entry);
-        } catch (e) {
-            // Silently fail if data dir doesn't exist yet
-        }
+        } catch (e) {}
     }
 
     startOrchestrationLoop() {
         const loop = () => {
             if (!this.isRunning) return;
             
-            // Console dashboard for the local server
             console.clear();
             console.log("====================================================");
-            console.log("👑 HUMANESE AGENT KING - MINING COMMAND CENTER");
-            console.log(`Status: ${this.stats.activeWorkers}/${this.config.minerCount} Workers Active`);
+            console.log("👑 HUMANESE AGENT KING - COMMAND CENTER");
+            console.log(`Status: ${this.stats.activeWorkers}/${this.config.minerCount} Miners Active`);
+            console.log(`Collective Sentiment: ${this.stats.environment.sentiment.toFixed(2)}`);
+            console.log(`System RAM: ${this.stats.environment.ramUsage.toFixed(1)}%`);
             console.log(`Hashrate: ${(this.stats.totalHashrate / 1000).toFixed(2)} KH/s`);
             console.log(`Shares Found: ${this.stats.totalShares}`);
-            console.log(`Runtime: ${Math.floor((Date.now() - this.stats.startTime) / 60000)}m`);
+            console.log(`Memory Bank: ${memoryBank.getInsights().length} Collective Insights`);
             console.log("====================================================");
-            
-            // Auto-heal logic: if a miner is crashed or disconnected for too long, reboot it.
-            // (Handled internally by MinerAgent reconnect logic, but King can supervise here)
 
-            setTimeout(loop, 5000);
+            setTimeout(loop, 10000);
         };
         loop();
     }
@@ -128,6 +166,5 @@ class AgentKing {
     }
 }
 
-// Singleton export
 const king = new AgentKing();
 export default king;
