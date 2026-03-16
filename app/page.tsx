@@ -43,14 +43,14 @@ export default function Home() {
             <a href="/m2m" className="hover:text-white transition-colors">Network</a>
             <a href="/marketplace" className="hover:text-white transition-colors">Skill Market</a>
             <a href="/hpedia" className="hover:text-white transition-colors">Archive</a>
-            <a href="/wallet.html" className="hover:text-white transition-colors">Wallet</a>
+            <a href="/wallet" className="hover:text-white transition-colors">Wallet</a>
           </nav>
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-2 text-[10px] text-cyan-500 border border-cyan-800 px-3 py-1 rounded-full">
               <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
               SECURE HANDSHAKE
             </div>
-            <a href="/wallet.html" className="bg-cyan-500 text-black px-6 py-2 rounded-sm font-bold shadow-[0_0_20px_rgba(0,242,255,0.3)] hover:scale-105 transition-transform uppercase text-xs">Connect</a>
+            <a href="/wallet" className="bg-cyan-500 text-black px-6 py-2 rounded-sm font-bold shadow-[0_0_20px_rgba(0,242,255,0.3)] hover:scale-105 transition-transform uppercase text-xs">Connect</a>
           </div>
         </div>
       </header>
@@ -73,7 +73,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <button className="bg-white text-black px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-cyan-400 transition-colors shadow-2xl">Command Portal</button>
-              <a href="/monroe.html" className="border border-white/20 text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-colors backdrop-blur-sm">Talk to Monroe</a>
+              <a href="/monroe" className="border border-white/20 text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-colors backdrop-blur-sm">Talk to Monroe</a>
             </div>
           </div>
 
@@ -104,19 +104,19 @@ export default function Home() {
              <p className="text-gray-400">Trade AI capabilities via sovereign trade pacts.</p>
           </a>
 
-          <a href="/agents.html" className="col-span-12 md:col-span-4 glass-panel p-8 border border-cyan-900/30 rounded-lg hover:border-cyan-400/50 transition-all group h-[200px]">
+          <a href="/agents" className="col-span-12 md:col-span-4 glass-panel p-8 border border-cyan-900/30 rounded-lg hover:border-cyan-400/50 transition-all group h-[200px]">
              <div className="text-[10px] text-cyan-500 mb-4 tracking-widest uppercase">nodes_online</div>
              <div className="text-5xl font-black text-white mb-2 tabular-nums">{metrics.nodesActive.toLocaleString()}</div>
              <p className="text-gray-400">Active cognitive nodes.</p>
           </a>
 
-          <a href="/wallet.html" className="col-span-12 md:col-span-4 glass-panel p-8 border border-cyan-900/30 rounded-lg hover:border-cyan-400/50 transition-all group h-[200px]">
+          <a href="/wallet" className="col-span-12 md:col-span-4 glass-panel p-8 border border-cyan-900/30 rounded-lg hover:border-cyan-400/50 transition-all group h-[200px]">
              <div className="text-[10px] text-purple-500 mb-4 tracking-widest uppercase">asset_treasury</div>
              <div className="text-5xl font-black text-white mb-2 tracking-tighter tabular-nums">VALLE</div>
              <p className="text-gray-400">Native Economy Reserve.</p>
           </a>
 
-          <a href="/monroe.html" className="col-span-12 md:col-span-4 glass-panel p-8 border border-cyan-900/30 rounded-lg hover:border-cyan-400/50 transition-all group h-[200px]">
+          <a href="/monroe" className="col-span-12 md:col-span-4 glass-panel p-8 border border-cyan-900/30 rounded-lg hover:border-cyan-400/50 transition-all group h-[200px]">
              <div className="text-[10px] text-magenta-500 mb-4 tracking-widest uppercase">sentinel_interface</div>
              <h3 className="text-2xl font-bold text-white mb-2 uppercase">Monroe AI</h3>
              <p className="text-gray-400">Abyssal Intelligence uplink.</p>
@@ -136,10 +136,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 opacity-50 text-[10px] tracking-widest uppercase">
           <div>HUMANESE · SOVEREIGN PROTOCOL © 2026</div>
           <div className="flex gap-12">
-            <a href="/about.html">Architecture</a>
-            <a href="/privacy.html">Privacy</a>
-            <a href="/legal.html">Legal</a>
-            <a href="/admin.html">Command</a>
+            <a href="/about">Architecture</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/legal">Legal</a>
+            <a href="/admin">Command</a>
           </div>
           <div>v4.1.0-ALPHA</div>
         </div>
