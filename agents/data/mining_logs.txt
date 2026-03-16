@@ -3918,3 +3918,113 @@
 [2026-03-16T10:59:27.661Z] [Sovereign-Worker-1] Share accepted! Total: 247
 [2026-03-16T10:59:27.674Z] [Sovereign-Worker-1] Share accepted! Total: 248
 [2026-03-16T10:59:29.690Z] [Sovereign-Worker-0] Share accepted! Total: 241
+[2026-03-16T13:34:10.908Z] [Sovereign-Worker-0] Connected to pool public-pool.io:3333
+[2026-03-16T13:34:10.908Z] [Sovereign-Worker-0] Subscribing to mining jobs...
+[2026-03-16T13:34:10.909Z] [Sovereign-Worker-1] Connected to pool public-pool.io:3333
+[2026-03-16T13:34:10.910Z] [Sovereign-Worker-1] Subscribing to mining jobs...
+[2026-03-16T13:34:11.047Z] [Sovereign-Worker-0] Subscribed. ExtraNonce1: 8764badb
+[2026-03-16T13:34:11.047Z] [Sovereign-Worker-0] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-0...
+[2026-03-16T13:34:11.047Z] [Sovereign-Worker-1] Subscribed. ExtraNonce1: 9ea67ea3
+[2026-03-16T13:34:11.048Z] [Sovereign-Worker-1] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-1...
+[2026-03-16T13:34:11.186Z] [Sovereign-Worker-0] Authorization successful.
+[2026-03-16T13:34:11.187Z] [Sovereign-Worker-1] Authorization successful.
+[2026-03-16T13:34:11.376Z] [Sovereign-Worker-1] Difficulty set to 100000
+[2026-03-16T13:34:11.377Z] [Sovereign-Worker-1] Received new job: 9615d83
+[2026-03-16T13:34:11.385Z] [Sovereign-Worker-0] Difficulty set to 100000
+[2026-03-16T13:34:11.385Z] [Sovereign-Worker-0] Received new job: 93ab792
+[2026-03-16T13:38:42.733Z] [Sovereign-Worker-0] Connected to pool public-pool.io:3333
+[2026-03-16T13:38:42.734Z] [Sovereign-Worker-0] Subscribing to mining jobs...
+[2026-03-16T13:38:42.734Z] [Sovereign-Worker-1] Connected to pool public-pool.io:3333
+[2026-03-16T13:38:42.735Z] [Sovereign-Worker-1] Subscribing to mining jobs...
+[2026-03-16T13:38:42.873Z] [Sovereign-Worker-0] Subscribed. ExtraNonce1: 4838e116
+[2026-03-16T13:38:42.873Z] [Sovereign-Worker-0] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-0...
+[2026-03-16T13:38:42.874Z] [Sovereign-Worker-1] Subscribed. ExtraNonce1: 1ea741f4
+[2026-03-16T13:38:42.875Z] [Sovereign-Worker-1] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-1...
+[2026-03-16T13:38:43.014Z] [Sovereign-Worker-1] Authorization successful.
+[2026-03-16T13:38:43.015Z] [Sovereign-Worker-0] Authorization successful.
+[2026-03-16T13:38:43.197Z] [Sovereign-Worker-1] Difficulty set to 100000
+[2026-03-16T13:38:43.198Z] [Sovereign-Worker-1] Received new job: 9772df8
+[2026-03-16T13:38:43.217Z] [Sovereign-Worker-0] Difficulty set to 100000
+[2026-03-16T13:38:43.218Z] [Sovereign-Worker-0] Received new job: 966ec2d
+[2026-03-16T13:38:49.459Z] [Sovereign-Worker-1] Received new job: 9774226
+[2026-03-16T13:38:49.711Z] [Sovereign-Worker-1] Share accepted! Total: 1
+[2026-03-16T13:38:50.048Z] [Sovereign-Worker-0] Received new job: 967002a
+[2026-03-16T13:38:56.402Z] [Sovereign-Worker-0] Share accepted! Total: 1
+[2026-03-16T19:39:20.010Z] [Sovereign-Worker-0] Difficulty set to 16384
+[2026-03-16T19:39:20.012Z] [Sovereign-Worker-0] Received new job: 9930df7
+[2026-03-16T19:39:20.047Z] [Sovereign-Worker-0] Received new job: 9932221
+[2026-03-16T19:39:20.071Z] [Sovereign-Worker-0] Difficulty set to 2048
+[2026-03-16T19:39:20.071Z] [Sovereign-Worker-0] Received new job: 99322ca
+[2026-03-16T19:39:20.099Z] [Sovereign-Worker-0] Received new job: 99336d4
+[2026-03-16T19:39:20.113Z] [Sovereign-Worker-0] Difficulty set to 256
+[2026-03-16T19:39:20.114Z] [Sovereign-Worker-0] Received new job: 9933792
+[2026-03-16T19:39:20.134Z] [Sovereign-Worker-0] Received new job: 9934b7b
+[2026-03-16T19:39:20.155Z] [Sovereign-Worker-0] Difficulty set to 32
+[2026-03-16T19:39:20.156Z] [Sovereign-Worker-0] Received new job: 9934c55
+[2026-03-16T19:39:20.187Z] [Sovereign-Worker-0] Received new job: 9936049
+[2026-03-16T19:39:20.227Z] [Sovereign-Worker-0] Difficulty set to 4
+[2026-03-16T19:39:20.228Z] [Sovereign-Worker-0] Received new job: 9936145
+[2026-03-16T19:39:20.264Z] [Sovereign-Worker-0] Received new job: 993751a
+[2026-03-16T19:39:20.278Z] [Sovereign-Worker-0] Difficulty set to 0.64
+[2026-03-16T19:39:20.279Z] [Sovereign-Worker-0] Received new job: 9937621
+[2026-03-16T19:39:20.305Z] [Sovereign-Worker-0] Received new job: 99389e4
+[2026-03-16T19:39:20.322Z] [Sovereign-Worker-0] Difficulty set to 0.08
+[2026-03-16T19:39:20.324Z] [Sovereign-Worker-0] Received new job: 9938af8
+[2026-03-16T19:39:20.336Z] [Sovereign-Worker-0] Received new job: 9939ea7
+[2026-03-16T19:39:20.354Z] [Sovereign-Worker-0] Difficulty set to 0.01
+[2026-03-16T19:39:20.354Z] [Sovereign-Worker-0] Received new job: 9939fcd
+[2026-03-16T19:39:20.377Z] [Sovereign-Worker-0] Received new job: 993b34b
+[2026-03-16T19:39:20.390Z] [Sovereign-Worker-0] Difficulty set to 0.0016
+[2026-03-16T19:39:20.390Z] [Sovereign-Worker-0] Received new job: 993b4a3
+[2026-03-16T19:39:20.403Z] [Sovereign-Worker-0] Received new job: 993c81b
+[2026-03-16T19:39:20.416Z] [Sovereign-Worker-0] Difficulty set to 0.001
+[2026-03-16T19:39:20.416Z] [Sovereign-Worker-0] Received new job: 993c999
+[2026-03-16T19:39:20.430Z] [Sovereign-Worker-0] Received new job: 993dcf3
+[2026-03-16T19:39:20.443Z] [Sovereign-Worker-0] Received new job: 993f182
+[2026-03-16T19:39:20.454Z] [Sovereign-Worker-0] Received new job: 994064f
+[2026-03-16T19:39:20.463Z] [Sovereign-Worker-0] Received new job: 9941b0c
+[2026-03-16T19:39:20.475Z] [Sovereign-Worker-0] Received new job: 9942fc6
+[2026-03-16T19:39:20.485Z] [Sovereign-Worker-0] Received new job: 994448f
+[2026-03-16T19:39:20.495Z] [Sovereign-Worker-0] Received new job: 9945950
+[2026-03-16T19:39:20.507Z] [Sovereign-Worker-0] Received new job: 9946e0b
+[2026-03-16T19:39:20.520Z] [Sovereign-Worker-0] Received new job: 99482b1
+[2026-03-16T19:39:20.530Z] [Sovereign-Worker-0] Received new job: 994976d
+[2026-03-16T19:39:20.540Z] [Sovereign-Worker-0] Received new job: 994ac35
+[2026-03-16T19:39:20.546Z] [Sovereign-Worker-0] Received new job: 994c103
+[2026-03-16T19:39:20.554Z] [Sovereign-Worker-0] Received new job: 994d5cb
+[2026-03-16T19:39:20.559Z] [Sovereign-Worker-0] Received new job: 994eaa0
+[2026-03-16T19:39:20.568Z] [Sovereign-Worker-0] Received new job: 994ff6a
+[2026-03-16T19:39:20.576Z] [Sovereign-Worker-0] Received new job: 9951435
+[2026-03-16T19:39:20.586Z] [Sovereign-Worker-0] Received new job: 99528f8
+[2026-03-16T19:39:20.596Z] [Sovereign-Worker-0] Received new job: 9953dbc
+[2026-03-16T19:39:20.604Z] [Sovereign-Worker-0] Received new job: 995527f
+[2026-03-16T19:39:20.612Z] [Sovereign-Worker-0] Received new job: 995674f
+[2026-03-16T19:39:20.622Z] [Sovereign-Worker-0] Received new job: 9957c0d
+[2026-03-16T19:39:20.630Z] [Sovereign-Worker-0] Received new job: 99590c8
+[2026-03-16T19:39:20.641Z] [Sovereign-Worker-0] Received new job: 995a573
+[2026-03-16T19:39:20.649Z] [Sovereign-Worker-0] Received new job: 995ba15
+[2026-03-16T19:39:20.658Z] [Sovereign-Worker-0] Received new job: 995ceae
+[2026-03-16T19:39:20.666Z] [Sovereign-Worker-0] Received new job: 995e35f
+[2026-03-16T19:39:20.676Z] [Sovereign-Worker-0] Received new job: 995f801
+[2026-03-16T19:39:20.705Z] [Sovereign-Worker-0] Received new job: 9960ca9
+[2026-03-16T19:39:20.717Z] [Sovereign-Worker-0] Received new job: 9962149
+[2026-03-16T19:39:20.747Z] [Sovereign-Worker-0] Received new job: 99635f0
+[2026-03-16T19:39:20.755Z] [Sovereign-Worker-0] Received new job: 9964a8f
+[2026-03-16T19:39:20.764Z] [Sovereign-Worker-0] Received new job: 9965f35
+[2026-03-16T19:39:20.773Z] [Sovereign-Worker-0] Received new job: 99673dc
+[2026-03-16T19:39:20.786Z] [Sovereign-Worker-0] Received new job: 9968895
+[2026-03-16T19:39:20.799Z] [Sovereign-Worker-0] Failed to parse response: {"id":null,"method":"mining.notify","params":["9969d42","0c49afb5d63b97b8945d843f984289d0a93316050000510c0000000000000000","02000000010000000000000000000000000000000000000000000000000000000000000000ffffffff1703525b0e5075626c69632d506f6f6c","ffffffff021a7
+[2026-03-16T20:26:01.874Z] [Sovereign-Worker-1] Connected to pool public-pool.io:3333
+[2026-03-16T20:26:01.876Z] [Sovereign-Worker-1] Subscribing to mining jobs...
+[2026-03-16T20:26:01.877Z] [Sovereign-Worker-0] Connected to pool public-pool.io:3333
+[2026-03-16T20:26:01.878Z] [Sovereign-Worker-0] Subscribing to mining jobs...
+[2026-03-16T20:26:02.017Z] [Sovereign-Worker-1] Subscribed. ExtraNonce1: 363f805a
+[2026-03-16T20:26:02.018Z] [Sovereign-Worker-1] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-1...
+[2026-03-16T20:26:02.021Z] [Sovereign-Worker-0] Subscribed. ExtraNonce1: d0d5cbea
+[2026-03-16T20:26:02.022Z] [Sovereign-Worker-0] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-0...
+[2026-03-16T20:26:02.159Z] [Sovereign-Worker-1] Authorization successful.
+[2026-03-16T20:26:02.165Z] [Sovereign-Worker-0] Authorization successful.
+[2026-03-16T20:26:02.353Z] [Sovereign-Worker-1] Difficulty set to 100000
+[2026-03-16T20:26:02.354Z] [Sovereign-Worker-1] Received new job: 999926b
+[2026-03-16T20:26:02.367Z] [Sovereign-Worker-0] Difficulty set to 100000
+[2026-03-16T20:26:02.368Z] [Sovereign-Worker-0] Received new job: 98846d2

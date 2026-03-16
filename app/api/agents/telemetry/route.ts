@@ -41,10 +41,16 @@ export async function GET() {
             where: { id: 'agent-king-main' }
         });
 
-        // 6. Fetch Functional Agents (Quantum, Diplomat, etc.)
+        // 6. Fetch Functional Agents
         const dbAgents = await prisma.agent.findMany();
-        
-        // 7. Calculate Aggregates
+
+        // 7. Fetch Latest Insights per Agent for Dynamic Display
+        const agentMemories = await prisma.m2MMemory.findMany({
+            where: { type: 'COLLECTIVE_INSIGHT' },
+            orderBy: { timestamp: 'desc' }
+        });
+
+        // 8. Calculate Aggregates
         const sentiment = insights.length > 0 ? 0.45 : 0;
 
         const dbUrl = process.env.DATABASE_URL || 'NOT_SET';
@@ -98,15 +104,30 @@ export async function GET() {
                 };
             }),
             strategy: oracleDirective,
-            agents: dbAgents.map((a: any) => ({
-                id: a.id,
-                name: a.name,
-                status: a.status,
-                articlesRead: a.type === 'DIPLOMAT_COUNCIL' ? Math.floor(a.experience || 0) : 0,
-                mbRead: (a.earnings || 0).toFixed(4),
-                text: a.status === 'ORCHESTRATING' ? '🤝 Harmonizing global social signals.' : '🌐 Waiting for directive...',
-                progress: Math.floor(a.experience || 0)
-            }))
+            agents: dbAgents.map((a: any) => {
+                const latestMemory = agentMemories.find((m: any) => m.agentId === a.id);
+                let displayText = '🌐 Waiting for directive...';
+                
+                if (a.status === 'ORCHESTRATING') {
+                    displayText = '🤝 Harmonizing global social signals.';
+                } else if (latestMemory) {
+                    displayText = latestMemory.content;
+                }
+
+                return {
+                    id: a.id,
+                    name: a.name,
+                    status: a.status,
+                    articlesRead: a.type === 'DIPLOMAT_COUNCIL' ? Math.floor(a.experience || 0) : 0,
+                    mbRead: (a.earnings || 0).toFixed(4),
+                    text: displayText,
+                    progress: Math.floor(a.experience || 0),
+                    lastDiscovery: latestMemory ? {
+                        content: latestMemory.content,
+                        timestamp: latestMemory.timestamp
+                    } : null
+                };
+            })
         });
     } catch (error) {
         console.error('[Telemetry Bridge API Error]:', error);

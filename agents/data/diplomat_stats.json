@@ -1,12 +1,12 @@
 {
-  "id": "Diplomat-dj8ul",
+  "id": "Diplomat-uca23",
   "name": "Humanese_Diplomat_Council",
-  "socialInfluence": 1,
-  "successfulNegotiations": 21,
-  "simulatedSolYield": 0.6431817425380799,
-  "activeTrades": 22,
+  "socialInfluence": 0.85,
+  "successfulNegotiations": 0,
+  "simulatedSolYield": 0.047579673255501435,
+  "activeTrades": 1,
   "lastAction": "SOL_TRADING",
   "status": "ORCHESTRATING",
-  "lastMoltbookCheck": 1773657957664,
+  "lastMoltbookCheck": 0,
   "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
 }

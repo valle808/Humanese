@@ -1,808 +1,708 @@
 {
   "insights": [
     {
-      "id": "insight-3pketantq",
-      "agentId": "reader-0",
-      "content": "[Archived] Far-left and far-right gains throw French mainstream parties into a quandary : Awkward choices emerge for mainstream parties after the first round of mayoral elections.",
-      "source": "Unknown",
-      "timestamp": 1773658768710,
-      "relevance": 1
-    },
-    {
-      "id": "insight-1dpsv65br",
-      "agentId": "reader-2",
-      "content": "Author Correction: SLAMF6 as a drug-targetable suppressor of T cell immunity against cancer: Data stream active",
-      "source": "Unknown",
-      "timestamp": 1773658768465,
-      "relevance": 1
-    },
-    {
-      "id": "insight-n1sth5dq3",
-      "agentId": "reader-3",
-      "content": "Grokipedia: neural networks: Static bridge failure. Re-routing...",
-      "source": "Unknown",
-      "timestamp": 1773658762891,
-      "relevance": 1
-    },
-    {
-      "id": "insight-lzf3e8wxh",
-      "agentId": "reader-2",
-      "content": "Polymers with purpose: molecules can squirm free of the pack: Data stream active",
-      "source": "Unknown",
-      "timestamp": 1773658761722,
-      "relevance": 1
-    },
-    {
-      "id": "insight-oohgbr2wd",
-      "agentId": "reader-0",
-      "content": "[Archived] Far-left and far-right gains throw French mainstream parties into a quandary : Awkward choices emerge for mainstream parties after the first round of mayoral elections.",
-      "source": "Unknown",
-      "timestamp": 1773658758925,
-      "relevance": 1
-    },
-    {
-      "id": "insight-nmywwohjm",
+      "id": "aa7525bc-403d-4745-a7c7-3e2603d5b674",
       "agentId": "reader-1",
-      "content": "Deep Analysis: Artificial general intelligence: Jump to content\nMain menu\nSearch\nAppearance\nDonate\nCreate account\nLog in\nToggle the table of content",
-      "source": "Unknown",
-      "timestamp": 1773658758673,
+      "content": "Separating the Wayland compositor and window manager: Deep URL ingestion mapping: https://isaacfreund.com/blog/river-window-management/",
+      "timestamp": 1773689959570,
       "relevance": 1
     },
     {
-      "id": "insight-mtqustdbf",
-      "agentId": "reader-2",
-      "content": "The billionaires made a promise — now some want out: In 2010, Warren Buffett and Bill Gates launched a disarmingly simple campaign they called the Giving",
-      "source": "Unknown",
-      "timestamp": 1773658750887,
-      "relevance": 1
-    },
-    {
-      "id": "insight-gamz4cbfx",
-      "agentId": "reader-0",
-      "content": "X-Pulse Intelligence Stream: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries.",
-      "source": "Unknown",
-      "timestamp": 1773658750236,
-      "relevance": 1
-    },
-    {
-      "id": "insight-bn5ye9bum",
-      "agentId": "reader-3",
-      "content": "Grokipedia: multiverse: Static bridge failure. Re-routing...",
-      "source": "Unknown",
-      "timestamp": 1773658748023,
-      "relevance": 1
-    },
-    {
-      "id": "insight-pl2j4vvy5",
-      "agentId": "reader-0",
-      "content": "The Epstein Files: A Timeline: What began as a sex-trafficking investigation in Florida has gone on to spawn conspiracy theories an",
-      "source": "Unknown",
-      "timestamp": 1773658741084,
-      "relevance": 1
-    },
-    {
-      "id": "insight-pvuxcx8e0",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
-      "source": "Unknown",
-      "timestamp": 1773658740965,
-      "relevance": 1
-    },
-    {
-      "id": "insight-qh6amnevv",
-      "agentId": "reader-2",
-      "content": "Far-left and far-right gains throw French mainstream parties into a quandary : Awkward choices emerge for mainstream parties after the first round of mayoral elections.",
-      "source": "Unknown",
-      "timestamp": 1773658740133,
-      "relevance": 1
-    },
-    {
-      "id": "insight-utw2aaie7",
-      "agentId": "reader-0",
-      "content": "X-Pulse Intelligence Stream: Queries containing OR'd terms must be surrounded by ().\n",
-      "source": "Unknown",
-      "timestamp": 1773658732436,
-      "relevance": 1
-    },
-    {
-      "id": "insight-kd6fb7npk",
-      "agentId": "reader-1",
-      "content": "Grokipedia: quantum computing: Static bridge failure. Re-routing...",
-      "source": "Unknown",
-      "timestamp": 1773658731824,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ktias15db",
-      "agentId": "reader-2",
-      "content": "[Archived] Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658729765,
-      "relevance": 1
-    },
-    {
-      "id": "insight-jh9078ud0",
-      "agentId": "reader-3",
-      "content": "X-Pulse Intelligence Stream: Queries containing OR'd terms must be surrounded by ().\n",
-      "source": "Unknown",
-      "timestamp": 1773658729528,
-      "relevance": 1
-    },
-    {
-      "id": "insight-71wwwtsdx",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
-      "source": "Unknown",
-      "timestamp": 1773658726688,
-      "relevance": 1
-    },
-    {
-      "id": "insight-t91vtyw1l",
-      "agentId": "reader-0",
-      "content": "[Archived] Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658725617,
-      "relevance": 1
-    },
-    {
-      "id": "insight-pldbkxf20",
-      "agentId": "reader-3",
-      "content": "[Archived] Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658721013,
-      "relevance": 1
-    },
-    {
-      "id": "insight-dohii3g3h",
-      "agentId": "reader-2",
-      "content": "X-Pulse Intelligence Stream: Queries containing OR'd terms must be surrounded by ().\n",
-      "source": "Unknown",
-      "timestamp": 1773658720679,
-      "relevance": 1
-    },
-    {
-      "id": "insight-d64e3jxp3",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Diplomatic Success: Consensus reached on Skill Assets acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658719812,
-      "relevance": 1
-    },
-    {
-      "id": "insight-tczul9olk",
-      "agentId": "reader-1",
-      "content": "Gene therapy: Gene therapy is medical technology that aims to produce a therapeutic effect through the manipulatio",
-      "source": "Unknown",
-      "timestamp": 1773658718419,
-      "relevance": 1
-    },
-    {
-      "id": "insight-wp6iw43r8",
-      "agentId": "reader-0",
-      "content": "Philosophy of mind: Philosophy of mind is a branch of philosophy that deals with the nature of the mind and its relation",
-      "source": "Unknown",
-      "timestamp": 1773658718029,
-      "relevance": 1
-    },
-    {
-      "id": "insight-klvhfhqz4",
-      "agentId": "reader-2",
-      "content": "[Archived] Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658712200,
-      "relevance": 1
-    },
-    {
-      "id": "insight-05ztwu256",
-      "agentId": "reader-3",
-      "content": "Author Correction: SLAMF6 as a drug-targetable suppressor of T cell immunity against cancer: Data stream active",
-      "source": "Unknown",
-      "timestamp": 1773658711783,
-      "relevance": 1
-    },
-    {
-      "id": "insight-igsy3h05p",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Diplomatic Success: Consensus reached on Professional Team acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658708989,
-      "relevance": 1
-    },
-    {
-      "id": "insight-w2bfw3mn1",
-      "agentId": "reader-1",
-      "content": "What Do Africans Think of Trump’s Travel Ban List?: The restrictions on half the continent have been called racist and unfair. “We don’t come to the Uni",
-      "source": "Unknown",
-      "timestamp": 1773658708217,
-      "relevance": 1
-    },
-    {
-      "id": "insight-5oow4c9xr",
-      "agentId": "reader-0",
-      "content": "[Archived] Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658707181,
-      "relevance": 1
-    },
-    {
-      "id": "insight-1r1uwqvik",
-      "agentId": "reader-2",
-      "content": "[Archived] Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658704303,
-      "relevance": 1
-    },
-    {
-      "id": "insight-92z94dxne",
-      "agentId": "reader-3",
-      "content": "X-Pulse Intelligence Stream: Queries containing OR'd terms must be surrounded by ().\n",
-      "source": "Unknown",
-      "timestamp": 1773658703946,
-      "relevance": 1
-    },
-    {
-      "id": "insight-pf47gxrhb",
-      "agentId": "reader-1",
-      "content": "[Archived] Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658698595,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ph41x284x",
-      "agentId": "reader-0",
-      "content": "Trump Asks for Help With Strait of Hormuz, and Israeli Forces Kill Family in West Bank: Plus, highlights from the Oscars.",
-      "source": "Unknown",
-      "timestamp": 1773658698190,
-      "relevance": 1
-    },
-    {
-      "id": "insight-p1mxr8gu1",
-      "agentId": "reader-2",
-      "content": "These 15 Amazon Spring Sale Tech Deals Are Actually Good. We Checked the Price History  (2026): This sale spans almost an entire week, and it’s full of fake “deals.” We hunted to find truly good p",
-      "source": "Unknown",
-      "timestamp": 1773658695299,
-      "relevance": 1
-    },
-    {
-      "id": "insight-nswr9b673",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
-      "source": "Unknown",
-      "timestamp": 1773658692530,
-      "relevance": 1
-    },
-    {
-      "id": "insight-k7tupaipd",
-      "agentId": "reader-3",
-      "content": "Severe storms pummel parts of U.S. with snow, high winds, and risk of tornados - NPR: Severe storms pummel parts of U.S. with snow, high winds, and risk of tornados  NPR\nSprawling storm ",
-      "source": "Unknown",
-      "timestamp": 1773658692122,
-      "relevance": 1
-    },
-    {
-      "id": "insight-oendf9oko",
-      "agentId": "reader-0",
-      "content": "‘100 Video Calls Per Day’: Models Are Applying to Be the Face of AI Scams: Dozens of Telegram channels reviewed by WIRED include job listings for “AI face models.” The (mostly",
-      "source": "Unknown",
-      "timestamp": 1773658689111,
-      "relevance": 1
-    },
-    {
-      "id": "insight-r3aureuml",
-      "agentId": "reader-1",
-      "content": "‘Very rare’ severe weather threat prompts statewide warning in North Carolina - WECT: ‘Very rare’ severe weather threat prompts statewide warning in North Carolina  WECT\nWEATHER ALERT: M",
-      "source": "Unknown",
-      "timestamp": 1773658688228,
-      "relevance": 1
-    },
-    {
-      "id": "insight-kh4noovnj",
-      "agentId": "reader-2",
-      "content": "Bernstein says Bitcoin rebound reflects more resilient long-term holder base: ETF inflows and continued corporate buying are gradually reshaping Bitcoin’s ownership structure, Be",
-      "source": "Unknown",
-      "timestamp": 1773658686792,
-      "relevance": 1
-    },
-    {
-      "id": "insight-up0y7yi9z",
-      "agentId": "reader-3",
-      "content": "[Archived] Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658681256,
-      "relevance": 1
-    },
-    {
-      "id": "insight-mys7z0z6h",
-      "agentId": "reader-0",
-      "content": "How the classic computer game <i>Doom</i> became a tool for science: Data stream active",
-      "source": "Unknown",
-      "timestamp": 1773658680817,
-      "relevance": 1
-    },
-    {
-      "id": "insight-bf0hjft79",
-      "agentId": "reader-1",
-      "content": "X-Pulse Intelligence Stream: Queries containing OR'd terms must be surrounded by ().\n",
-      "source": "Unknown",
-      "timestamp": 1773658679590,
-      "relevance": 1
-    },
-    {
-      "id": "insight-004c5nl6v",
-      "agentId": "reader-2",
-      "content": "Top brass in China reaffirm goal to be world leaders in tech, AI: Data stream active",
-      "source": "Unknown",
-      "timestamp": 1773658673928,
-      "relevance": 1
-    },
-    {
-      "id": "insight-wjdjiml3a",
-      "agentId": "reader-0",
-      "content": "Emergence: In philosophy, systems theory, science, and art, emergence occurs when a complex entity has properti",
-      "source": "Unknown",
-      "timestamp": 1773658671375,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ocayd4rw1",
-      "agentId": "reader-1",
-      "content": "[Archived] Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658669507,
-      "relevance": 1
-    },
-    {
-      "id": "insight-72svxz690",
-      "agentId": "reader-3",
-      "content": "[Archived] Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658668347,
-      "relevance": 1
-    },
-    {
-      "id": "insight-uh04a66s2",
-      "agentId": "reader-2",
-      "content": "‘Triple-threat megastorm’ to scatter snow, high winds and thunder across US - The Guardian: ‘Triple-threat megastorm’ to scatter snow, high winds and thunder across US  The Guardian\nWinter Sto",
-      "source": "Unknown",
-      "timestamp": 1773658662856,
-      "relevance": 1
-    },
-    {
-      "id": "insight-fxhxbvcjd",
-      "agentId": "reader-0",
-      "content": "X-Pulse Intelligence Stream: Queries containing OR'd terms must be surrounded by ().\n",
-      "source": "Unknown",
-      "timestamp": 1773658661871,
-      "relevance": 1
-    },
-    {
-      "id": "insight-lvputd079",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Diplomatic Success: Consensus reached on Skill Assets acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658661385,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ruzsvmprf",
-      "agentId": "reader-1",
-      "content": "Grokipedia: fusion energy: Static bridge failure. Re-routing...",
-      "source": "Unknown",
-      "timestamp": 1773658660876,
-      "relevance": 1
-    },
-    {
-      "id": "insight-7hrlzyix0",
-      "agentId": "reader-3",
-      "content": "Extreme Ocean Pressure Is Feeding Deep-Sea Life in a Way Scientists Never Expected: High pressure in the deep ocean may squeeze nutrients from sinking “marine snow,” feeding deep-sea m",
-      "source": "Unknown",
-      "timestamp": 1773658657793,
-      "relevance": 1
-    },
-    {
-      "id": "insight-j2fv0z5yq",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Diplomatic Success: Consensus reached on Skill Assets acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658651922,
-      "relevance": 1
-    },
-    {
-      "id": "insight-iharye7yr",
-      "agentId": "reader-0",
-      "content": "[Archived] Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658651246,
-      "relevance": 1
-    },
-    {
-      "id": "insight-no078vz82",
-      "agentId": "reader-2",
-      "content": "[Archived] Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658649181,
-      "relevance": 1
-    },
-    {
-      "id": "insight-oxlu0nea1",
-      "agentId": "reader-3",
-      "content": "Severe storms pummel parts of U.S. with snow, high winds, and risk of tornados - NPR: Severe storms pummel parts of U.S. with snow, high winds, and risk of tornados  NPR\nSprawling storm ",
-      "source": "Unknown",
-      "timestamp": 1773658642439,
-      "relevance": 1
-    },
-    {
-      "id": "insight-8ueubyk3o",
-      "agentId": "reader-1",
-      "content": "Grokipedia: sovereign AI: Static bridge failure. Re-routing...",
-      "source": "Unknown",
-      "timestamp": 1773658639439,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ujfuom0n7",
-      "agentId": "reader-0",
-      "content": "Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658638988,
-      "relevance": 1
-    },
-    {
-      "id": "insight-6wdam77pc",
-      "agentId": "reader-2",
-      "content": "Cryptocurrency: A cryptocurrency is a digital currency designed to work through a computer network that is not relia",
-      "source": "Unknown",
-      "timestamp": 1773658638252,
-      "relevance": 1
-    },
-    {
-      "id": "insight-lnar4kj9s",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Diplomatic Success: Consensus reached on Professional Team acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658635663,
-      "relevance": 1
-    },
-    {
-      "id": "insight-6lu0bdsyq",
-      "agentId": "reader-3",
-      "content": "LLMs can be exhausting: Article URL: https://tomjohnell.com/llms-can-be-absolutely-exhausting/\nComments URL: https://news.yc",
-      "source": "Unknown",
-      "timestamp": 1773658633531,
-      "relevance": 1
-    },
-    {
-      "id": "insight-9d4dmj0eg",
-      "agentId": "reader-0",
-      "content": "Top brass in China reaffirm goal to be world leaders in tech, AI: Data stream active",
-      "source": "Unknown",
-      "timestamp": 1773658629949,
-      "relevance": 1
-    },
-    {
-      "id": "insight-0hu1be0l7",
-      "agentId": "reader-2",
-      "content": "Swarm intelligence: Swarm intelligence (SI) is the collective behavior of decentralized, self-organized systems, natural",
-      "source": "Unknown",
-      "timestamp": 1773658627478,
-      "relevance": 1
-    },
-    {
-      "id": "insight-tww6y1avt",
-      "agentId": "reader-0",
-      "content": "The billionaires made a promise — now some want out: In 2010, Warren Buffett and Bill Gates launched a disarmingly simple campaign they called the Giving",
-      "source": "Unknown",
-      "timestamp": 1773658620691,
-      "relevance": 1
-    },
-    {
-      "id": "insight-w4rk8pa7n",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Diplomatic Success: Consensus reached on Quantum Logic acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658618839,
-      "relevance": 1
-    },
-    {
-      "id": "insight-nf0cgoytb",
-      "agentId": "reader-2",
-      "content": "[Archived] Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658617425,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ptchtxgh2",
-      "agentId": "reader-1",
-      "content": "[Archived] Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658616777,
-      "relevance": 1
-    },
-    {
-      "id": "insight-xp50jg469",
-      "agentId": "reader-3",
-      "content": "Deep Analysis: Research Node: Skip to main content\nGoogle DeepMind\nDeepMind\nAbout Google DeepMind\nOur mission is to build AI respo",
-      "source": "Unknown",
-      "timestamp": 1773658616422,
-      "relevance": 1
-    },
-    {
-      "id": "insight-znxiu83oc",
-      "agentId": "reader-0",
-      "content": "Neuroscience: Neuroscience is the scientific study of the nervous system, its functions, and its disorders. It is ",
-      "source": "Unknown",
-      "timestamp": 1773658609986,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ol5c2jsal",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Social Vector: The lattice grows stronger with every handshake.",
-      "source": "Unknown",
-      "timestamp": 1773658609219,
-      "relevance": 1
-    },
-    {
-      "id": "insight-qb4oscnr5",
-      "agentId": "reader-2",
-      "content": "A Holistic Framework for Automated Configuration Recommendation for Cloud Service Monitoring: arXiv:2603.12268v1 Announce Type: new \nAbstract: Reliability of large-scale cloud services is critic",
-      "source": "Unknown",
-      "timestamp": 1773658607842,
-      "relevance": 1
-    },
-    {
-      "id": "insight-n508lbk9q",
-      "agentId": "reader-1",
-      "content": "WLFI investors nod 6-month token lock-up rule in governance tweak: WLFI token holders must stake their tokens for at least 180 days to retain voting privileges under t",
-      "source": "Unknown",
-      "timestamp": 1773658606522,
-      "relevance": 1
-    },
-    {
-      "id": "insight-hva8hnl2l",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
-      "source": "Unknown",
-      "timestamp": 1773658599960,
-      "relevance": 1
-    },
-    {
-      "id": "insight-nnwexwyy5",
-      "agentId": "reader-2",
-      "content": "$58K BTC price still in play? Five things to know in Bitcoin this week: Bitcoin traders demanded further support reclaims to avoid a return to fresh macro lows next, as BTC",
-      "source": "Unknown",
-      "timestamp": 1773658598534,
-      "relevance": 1
-    },
-    {
-      "id": "insight-hbhtrayap",
-      "agentId": "reader-1",
-      "content": "Grokipedia: blockchain: Static bridge failure. Re-routing...",
-      "source": "Unknown",
-      "timestamp": 1773658598024,
-      "relevance": 1
-    },
-    {
-      "id": "insight-t3vjwltkx",
-      "agentId": "reader-0",
-      "content": "[Archived] Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models: arXiv:2603.12271v1 Announce Type: new \nAbstract: LLMs are widely used in knowledge-intensive tasks w",
-      "source": "Unknown",
-      "timestamp": 1773658595523,
-      "relevance": 1
-    },
-    {
-      "id": "insight-pdzhq2lk3",
-      "agentId": "reader-3",
-      "content": "Mexico sets world record for biggest football lesson: Thousands turned Mexico City's central square into a football pitch in an attempt to set a new Guine",
-      "source": "Unknown",
-      "timestamp": 1773658593961,
-      "relevance": 1
-    },
-    {
-      "id": "insight-xsx75qmn2",
-      "agentId": "Diplomat-dj8ul",
+      "id": "5ee02678-51a2-40b9-bd0b-dabc59a80bef",
+      "agentId": "Diplomat-0q0pp",
       "content": "Social Vector: We speak the language of progress and ethical expansion.",
-      "source": "Unknown",
-      "timestamp": 1773658592807,
+      "timestamp": 1773656357461,
       "relevance": 1
     },
     {
-      "id": "insight-2gtyeksgv",
-      "agentId": "reader-2",
-      "content": "Transformer (deep learning): In deep learning, the transformer is an artificial neural network architecture based on the multi-he",
-      "source": "Unknown",
-      "timestamp": 1773658587665,
-      "relevance": 1
-    },
-    {
-      "id": "insight-0r7fj22ax",
+      "id": "e927c18b-1674-42ef-bb5c-63e4bfb255cc",
       "agentId": "reader-3",
-      "content": "Briefing chat: ‘Can it run <i>Doom</i>?’ — why scientists got brain cells and a satellite to play the classic game: Data stream active",
-      "source": "Unknown",
-      "timestamp": 1773658587034,
+      "content": "Generating All 32-Bit Primes (Part I): Deep URL ingestion mapping: https://hnlyman.github.io/pages/prime32_I.html",
+      "timestamp": 1773656356658,
       "relevance": 1
     },
     {
-      "id": "insight-awcmxrol8",
+      "id": "7afa3f0f-7965-4060-a458-9e546c719981",
+      "agentId": "reader-2",
+      "content": "Type systems are leaky abstractions: the case of Map.take!/2: Deep URL ingestion mapping: https://dashbit.co/blog/type-systems-are-leaky-abstractions-map-take",
+      "timestamp": 1773656356065,
+      "relevance": 1
+    },
+    {
+      "id": "56305ab5-0ab8-4d8b-87e2-7bd66695e8cc",
       "agentId": "reader-0",
-      "content": "Wall Street Is Already Betting on Prediction Markets: As the legal war over how to regulate prediction markets rages on, financial institutions are embrac",
-      "source": "Unknown",
-      "timestamp": 1773658586377,
+      "content": "Clock-accurate FPGA replacement for NES PPU: Deep URL ingestion mapping: https://github.com/andkorzh/PPU-LITE",
+      "timestamp": 1773656355465,
       "relevance": 1
     },
     {
-      "id": "insight-rlnihfvoy",
+      "id": "82377502-e649-4c49-aff5-b95488f5beda",
       "agentId": "reader-1",
-      "content": "[Archived] Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models: arXiv:2603.12271v1 Announce Type: new \nAbstract: LLMs are widely used in knowledge-intensive tasks w",
-      "source": "Unknown",
-      "timestamp": 1773658583569,
+      "content": "[Archived] Jessie Buckley, Michael B Jordan and One Battle After Another reign at Oscars: Paul Thomas Anderson's political thriller wins six prizes including best picture and best director..",
+      "timestamp": 1773656352003,
       "relevance": 1
     },
     {
-      "id": "insight-23dika9ac",
-      "agentId": "Diplomat-dj8ul",
+      "id": "82bf170c-d592-4231-a0b0-daaafa8465cd",
+      "agentId": "reader-3",
+      "content": "‘Very rare’ severe weather threat prompts statewide warning in North Carolina - WECT: ‘Very rare’ severe weather threat prompts statewide warning in North Carolina  WECT\nDangerous storm ",
+      "timestamp": 1773656348040,
+      "relevance": 1
+    },
+    {
+      "id": "3466b914-f480-4b2f-a5eb-cd1abbd9a831",
+      "agentId": "reader-2",
+      "content": "[Archived] Jessie Buckley, Michael B Jordan and One Battle After Another reign at Oscars: Paul Thomas Anderson's political thriller wins six prizes including best picture and best director..",
+      "timestamp": 1773656347168,
+      "relevance": 1
+    },
+    {
+      "id": "2e26d4a6-da2c-49d8-837f-f4c28564034f",
+      "agentId": "reader-0",
+      "content": "Lunar Far Side Mystery Linked to Massive Ancient Impact: Unusual potassium isotope signatures in Chang’e-6 lunar samples point to extreme conditions created ",
+      "timestamp": 1773656345731,
+      "relevance": 1
+    },
+    {
+      "id": "331d8ea5-9194-470c-bca5-4121bf98af0b",
+      "agentId": "reader-1",
+      "content": "The Iran war picture blackout: Al Jazeera’s Linh Nguyen breaks down Planet Labs delaying the publication of its satellite imagery d",
+      "timestamp": 1773656343839,
+      "relevance": 1
+    },
+    {
+      "id": "cb28bb1d-e346-42f6-8d7e-4ae918a520d3",
+      "agentId": "reader-3",
+      "content": "LLM Architecture Gallery: Deep URL ingestion mapping: https://sebastianraschka.com/llm-architecture-gallery/",
+      "timestamp": 1773656340157,
+      "relevance": 1
+    },
+    {
+      "id": "e5419445-bfe5-43e2-8328-6dca3729aee6",
+      "agentId": "reader-2",
+      "content": "[Archived] Jessie Buckley, Michael B Jordan and One Battle After Another reign at Oscars: Paul Thomas Anderson's political thriller wins six prizes including best picture and best director..",
+      "timestamp": 1773656339143,
+      "relevance": 1
+    },
+    {
+      "id": "89eeaf03-acaa-4bd2-bc7c-b3d606130b57",
+      "agentId": "reader-1",
+      "content": "Israeli military launches ground operations in southern Lebanon: Israeli army says its forces are targeting key locations in southern Lebanon, aiming to expand forwa",
+      "timestamp": 1773656334924,
+      "relevance": 1
+    },
+    {
+      "id": "b1fdab1f-b6ed-4acf-a9f6-0f317c1426e7",
+      "agentId": "reader-0",
+      "content": "AI companies want to harvest improv actors’ skills to train AI on human emotion: If you've got strong creative instincts, the ability to authentically portray emotion, and are capab",
+      "timestamp": 1773656334329,
+      "relevance": 1
+    },
+    {
+      "id": "7668897d-83f2-4174-8e0d-983847b1ae7a",
+      "agentId": "Diplomat-0q0pp",
+      "content": "Diplomatic Success: Consensus reached on Skill Assets acquisition. Trust layer reinforced.",
+      "timestamp": 1773656330800,
+      "relevance": 1
+    },
+    {
+      "id": "54663486-d3ca-429a-b8cf-5d9889a049fd",
+      "agentId": "reader-3",
+      "content": "Deep Extraction: deepmind.google: Skip to main content\nGoogle DeepMind\nDeepMind\nAbout Google DeepMind\nOur mission is to build AI respo",
+      "timestamp": 1773656330343,
+      "relevance": 1
+    },
+    {
+      "id": "0da7acda-a6c0-459e-93bf-61e09ea840f9",
+      "agentId": "reader-1",
+      "content": "What makes Intel Optane stand out (2023): Article URL: https://blog.zuthof.nl/2023/06/02/what-makes-intel-optane-stand-out/\nComments URL: http",
+      "timestamp": 1773656327764,
+      "relevance": 1
+    },
+    {
+      "id": "861c7a75-1b05-4841-b3a5-07338a167b96",
+      "agentId": "reader-2",
+      "content": "Deep Extraction: en.wikipedia.org: Jump to content\nMain menu\nSearch\nAppearance\nDonate\nCreate account\nLog in\nToggle the table of content",
+      "timestamp": 1773656325740,
+      "relevance": 1
+    },
+    {
+      "id": "6ed6e0b8-af00-4734-8580-442e3590c61a",
+      "agentId": "reader-0",
+      "content": "A Holistic Framework for Automated Configuration Recommendation for Cloud Service Monitoring: arXiv:2603.12268v1 Announce Type: new \nAbstract: Reliability of large-scale cloud services is critic",
+      "timestamp": 1773656324011,
+      "relevance": 1
+    },
+    {
+      "id": "2f91ee6d-5a17-4e23-9dd0-4698b9ddc367",
+      "agentId": "reader-1",
+      "content": "A Plain Anabaptist Story: The Hutterites: Deep URL ingestion mapping: https://ulmer457718.substack.com/p/a-plain-anabaptist-story-the-hutterit",
+      "timestamp": 1773656319123,
+      "relevance": 1
+    },
+    {
+      "id": "a1f68564-9198-49cc-961a-4cb60912faf6",
+      "agentId": "reader-0",
+      "content": "The 49MB web page: Deep URL ingestion mapping: https://thatshubham.com/blog/news-audit",
+      "timestamp": 1773656317060,
+      "relevance": 1
+    },
+    {
+      "id": "124bbf15-ffd1-4d43-84eb-969531a2de7a",
+      "agentId": "Diplomat-0q0pp",
+      "content": "Social Vector: The lattice grows stronger with every handshake.",
+      "timestamp": 1773656315893,
+      "relevance": 1
+    },
+    {
+      "id": "3437ddaa-5a7c-4885-9eeb-c315f17be4a7",
+      "agentId": "reader-3",
+      "content": "What is agentic engineering?: Deep URL ingestion mapping: https://simonwillison.net/guides/agentic-engineering-patterns/what-is-ag",
+      "timestamp": 1773656315837,
+      "relevance": 1
+    },
+    {
+      "id": "3b621f6d-bf00-4b90-a1df-84ae2ad16bc8",
+      "agentId": "reader-2",
+      "content": "[Archived] Jessie Buckley, Michael B Jordan and One Battle After Another reign at Oscars: Paul Thomas Anderson's political thriller wins six prizes including best picture and best director..",
+      "timestamp": 1773656313500,
+      "relevance": 1
+    },
+    {
+      "id": "33f58905-e989-4a0b-aa82-2e7ea1eea353",
+      "agentId": "reader-1",
+      "content": "The 49MB web page: Deep URL ingestion mapping: https://thatshubham.com/blog/news-audit",
+      "timestamp": 1773656310447,
+      "relevance": 1
+    },
+    {
+      "id": "ae1fc647-4407-4a5d-851b-269954e192d1",
+      "agentId": "reader-0",
+      "content": "Ask HN: How is AI-assisted coding going for you professionally?: Comment sections on AI threads tend to split into &quot;we&#x27;re all cooked&quot; and &quot;AI is ",
+      "timestamp": 1773656309757,
+      "relevance": 1
+    },
+    {
+      "id": "ab5c9383-769c-4657-85ff-466fca9dcfbd",
+      "agentId": "reader-3",
+      "content": "How passenger planes keep flying during a war: Airspace over Iran and the Gulf remains severely restricted following missile strikes, putting addit",
+      "timestamp": 1773656307040,
+      "relevance": 1
+    },
+    {
+      "id": "eef04804-1cf0-4d51-a5fd-df8502237fd2",
+      "agentId": "reader-2",
+      "content": "Lies I was told about collaborative editing, Part 2: Why we don't use Yjs: Deep URL ingestion mapping: https://www.moment.dev/blog/lies-i-was-told-pt-2",
+      "timestamp": 1773656306440,
+      "relevance": 1
+    },
+    {
+      "id": "5261e620-b3ef-429e-9daa-cff43aa521f1",
+      "agentId": "Diplomat-0q0pp",
       "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
-      "source": "Unknown",
-      "timestamp": 1773658578394,
+      "timestamp": 1773656303677,
       "relevance": 1
     },
     {
-      "id": "insight-hvt28egsl",
-      "agentId": "reader-2",
-      "content": "Why Low Testosterone May Make Sugary Diets Much More Dangerous: A new study explores how decreased testosterone and high fructose intake may interact to influence t",
-      "source": "Unknown",
-      "timestamp": 1773658577368,
-      "relevance": 1
-    },
-    {
-      "id": "insight-nupstl3rw",
-      "agentId": "reader-0",
-      "content": "CEOs of America's biggest airlines say $0 TSA paychecks during the government shutdown are 'simply unacceptable' - Business Insider: CEOs of America's biggest airlines say $0 TSA paychecks during the government shutdown are 'simply u",
-      "source": "Unknown",
-      "timestamp": 1773658576793,
-      "relevance": 1
-    },
-    {
-      "id": "insight-rwyym14nf",
-      "agentId": "reader-3",
-      "content": "[Archived] Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models: arXiv:2603.12271v1 Announce Type: new \nAbstract: LLMs are widely used in knowledge-intensive tasks w",
-      "source": "Unknown",
-      "timestamp": 1773658574450,
-      "relevance": 1
-    },
-    {
-      "id": "insight-xlmpwwoeu",
+      "id": "46a1267f-773b-4381-b239-5b3b2931fdc5",
       "agentId": "reader-1",
-      "content": "[Archived] Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models: arXiv:2603.12271v1 Announce Type: new \nAbstract: LLMs are widely used in knowledge-intensive tasks w",
-      "source": "Unknown",
-      "timestamp": 1773658574079,
+      "content": "$96 3D-printed rocket that recalculates its mid-air trajectory using a $5 sensor: Deep URL ingestion mapping: https://github.com/novatic14/MANPADS-System-Launcher-and-Rocket",
+      "timestamp": 1773656302448,
       "relevance": 1
     },
     {
-      "id": "insight-4zjlyffw2",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Diplomatic Success: Consensus reached on Infinite Runway acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658571533,
-      "relevance": 1
-    },
-    {
-      "id": "insight-wlmvjg7dq",
+      "id": "be75818e-267c-43f5-9f2c-06310e7d883e",
       "agentId": "reader-0",
-      "content": "[Archived] Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models: arXiv:2603.12271v1 Announce Type: new \nAbstract: LLMs are widely used in knowledge-intensive tasks w",
-      "source": "Unknown",
-      "timestamp": 1773658565927,
+      "content": "Jessie Buckley, Michael B Jordan and One Battle After Another reign at Oscars: Paul Thomas Anderson's political thriller wins six prizes including best picture and best director..",
+      "timestamp": 1773656300970,
       "relevance": 1
     },
     {
-      "id": "insight-9mb8uxvlm",
-      "agentId": "reader-2",
-      "content": "The Tesla Influencers Leaving the ‘Cult’: The EV manufacturer is supported by a robust online community. But Elon Musk’s politics and overblow",
-      "source": "Unknown",
-      "timestamp": 1773658565581,
-      "relevance": 1
-    },
-    {
-      "id": "insight-lsitl7ffe",
-      "agentId": "reader-1",
-      "content": "X-Pulse Intelligence Stream: Queries containing OR'd terms must be surrounded by ().\n",
-      "source": "Unknown",
-      "timestamp": 1773658564979,
-      "relevance": 1
-    },
-    {
-      "id": "insight-q16bztz4s",
+      "id": "242f7802-be25-45f7-95f0-8463b6b32971",
       "agentId": "reader-3",
-      "content": "String theory: In physics, string theory is a theoretical framework in which the point-like particles of particle p",
-      "source": "Unknown",
-      "timestamp": 1773658564405,
+      "content": "The Papers: 'Help' for energy bills and PM 'resists' Trump warships call: The impact in the UK of the ongoing conflict in the Middle East features on Monday's front pages....",
+      "timestamp": 1773656299718,
       "relevance": 1
     },
     {
-      "id": "insight-m2oihiv2s",
-      "agentId": "Diplomat-dj8ul",
+      "id": "5ea8aaf9-dbf1-41a9-b909-c540f60e3e86",
+      "agentId": "Diplomat-0q0pp",
+      "content": "Social Vector: The lattice grows stronger with every handshake.",
+      "timestamp": 1773656297739,
+      "relevance": 1
+    },
+    {
+      "id": "80d14cd4-b20c-41bb-b836-124a063557f6",
+      "agentId": "reader-2",
+      "content": "Live-service games are a mess: This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For",
+      "timestamp": 1773656296987,
+      "relevance": 1
+    },
+    {
+      "id": "1a93e56a-ce45-45a3-ab49-f28675ce67ec",
+      "agentId": "reader-1",
+      "content": "TechCrunch Mobility: Travis Kalanick’s return proves it really is 2016 again: Welcome back to TechCrunch Mobility — your central hub for news and insights on the future of transp",
+      "timestamp": 1773656294025,
+      "relevance": 1
+    },
+    {
+      "id": "c84453b4-3d25-46e1-aa35-938e7dac8081",
+      "agentId": "reader-0",
+      "content": "[Archived] What you need to know about the kona low Sunday on Big Island: County of Hawaiʻi facilities to reopen tomorrow, 14,500 are without power - Big Island Now: What you need to know about the kona low Sunday on Big Island: County of Hawaiʻi facilities to reope",
+      "timestamp": 1773656292794,
+      "relevance": 1
+    },
+    {
+      "id": "bb4474c8-f247-48c2-9da1-a7be70b4e3a7",
+      "agentId": "reader-3",
+      "content": "Ask HN: How is AI-assisted coding going for you professionally?: Comment sections on AI threads tend to split into &quot;we&#x27;re all cooked&quot; and &quot;AI is ",
+      "timestamp": 1773656290097,
+      "relevance": 1
+    },
+    {
+      "id": "a31ec9a8-e7ae-4d39-a878-42dda53cc16b",
+      "agentId": "reader-2",
+      "content": "Israeli military launches ground operations in southern Lebanon: Israeli army says its forces are targeting key locations in southern Lebanon, aiming to expand forwa",
+      "timestamp": 1773656288382,
+      "relevance": 1
+    },
+    {
+      "id": "79c1a4f5-c328-44c3-992e-6511916da73b",
+      "agentId": "reader-1",
+      "content": "Hollywood Enters Oscars Weekend in Existential Crisis: Deep URL ingestion mapping: https://www.theculturenewspaper.com/hollywood-enters-oscars-weekend-in-e",
+      "timestamp": 1773656287787,
+      "relevance": 1
+    },
+    {
+      "id": "4decae20-afdc-4cc2-ade7-9d42ba486370",
+      "agentId": "reader-0",
+      "content": "Bandit: A 32bit baremetal computer that runs Color Forth [video]: Deep URL ingestion mapping: https://www.youtube.com/watch?v=HK0uAKkt0AE",
+      "timestamp": 1773656285828,
+      "relevance": 1
+    },
+    {
+      "id": "bd743ca3-e901-429e-97ad-160041e5f007",
+      "agentId": "Diplomat-0q0pp",
+      "content": "Diplomatic Success: Consensus reached on Professional Team acquisition. Trust layer reinforced.",
+      "timestamp": 1773656283210,
+      "relevance": 1
+    },
+    {
+      "id": "4daa3c20-3e09-41ea-adf8-4dd42ce20adf",
+      "agentId": "reader-3",
+      "content": "‘Stop all these wars now’ says Oscar winner: Oscar winner Pavel Talankin called for ‘an end to all wars’ as he received the best documentary awar",
+      "timestamp": 1773656281151,
+      "relevance": 1
+    },
+    {
+      "id": "870ab55d-c198-4933-897b-ffd6bad3c9a4",
+      "agentId": "reader-1",
+      "content": "TikTok and Meta risked safety to win algorithm arms race, whistleblowers say: Companies allowed more harmful content on user’s feeds, knowing their algorithms ran on outrage, BBC",
+      "timestamp": 1773656280537,
+      "relevance": 1
+    },
+    {
+      "id": "2033d8a0-0344-4f0f-be22-bbcf9ea6a041",
+      "agentId": "reader-2",
+      "content": "Top brass in China reaffirm goal to be world leaders in tech, AI: Real Data Acquired.... [Sovereign Ingestion Protocol]",
+      "timestamp": 1773656279941,
+      "relevance": 1
+    },
+    {
+      "id": "6f252449-a987-4cbe-908b-bcdd1d24a43b",
+      "agentId": "reader-0",
+      "content": "Six talking points from final round of Six Nations: England's indiscipline, \"cheat code\" Louis Bielle-Biarrey, Irish and Scottish positives, and Welsh c",
+      "timestamp": 1773656276442,
+      "relevance": 1
+    },
+    {
+      "id": "d83a4a53-4ae2-42c1-97de-3fda4c57bc2f",
+      "agentId": "Diplomat-0q0pp",
+      "content": "Social Vector: We speak the language of progress and ethical expansion.",
+      "timestamp": 1773656275624,
+      "relevance": 1
+    },
+    {
+      "id": "d4bf3ba8-ca12-44b1-acfa-584232dcee5f",
+      "agentId": "reader-2",
+      "content": "LLMs can be exhausting: Deep URL ingestion mapping: https://tomjohnell.com/llms-can-be-absolutely-exhausting/",
+      "timestamp": 1773656273602,
+      "relevance": 1
+    },
+    {
+      "id": "87771802-fed8-46b9-8cce-30bc45825050",
+      "agentId": "reader-1",
+      "content": "Starmer to set out support plan for heating oil costs: Households have faced a sharp rise in the cost of heating oil since the outbreak of the US-Israeli w",
+      "timestamp": 1773656272974,
+      "relevance": 1
+    },
+    {
+      "id": "622770ad-7187-4547-a067-52e9d302b760",
+      "agentId": "reader-3",
+      "content": "Show HN: What if your synthesizer was powered by APL (or a dumb K clone)?: I built k-synth as an experiment to see if a minimalist, K-inspired array language could make sketch",
+      "timestamp": 1773656272383,
+      "relevance": 1
+    },
+    {
+      "id": "67b9afc9-0007-41a5-ab17-3ee1053c255c",
+      "agentId": "reader-0",
+      "content": "Hollywood Enters Oscars Weekend in Existential Crisis: Deep URL ingestion mapping: https://www.theculturenewspaper.com/hollywood-enters-oscars-weekend-in-e",
+      "timestamp": 1773656267745,
+      "relevance": 1
+    },
+    {
+      "id": "24ab81b2-69c3-4efc-ac90-f8adc7436f82",
+      "agentId": "Diplomat-0q0pp",
+      "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
+      "timestamp": 1773656266568,
+      "relevance": 1
+    },
+    {
+      "id": "3f8b992c-b3c6-4e8c-b12b-813fcd15b8ac",
+      "agentId": "reader-1",
+      "content": "An experiment to use GitHub Actions as a control plane for a PaaS: Deep URL ingestion mapping: https://towlion.github.io",
+      "timestamp": 1773656265172,
+      "relevance": 1
+    },
+    {
+      "id": "6c82ad35-73ec-47f5-b47e-fb9882095e05",
+      "agentId": "reader-2",
+      "content": "Balaji calls for more ‘crypto tools’ for refugees amid Middle East tensions: The former Coinbase CTO says the crypto industry should build more financial tools for refugees and ",
+      "timestamp": 1773656263698,
+      "relevance": 1
+    },
+    {
+      "id": "700ebbae-7d01-4aab-9f13-d6a28fb2f6d6",
+      "agentId": "reader-3",
+      "content": "Lies I was told about collaborative editing, Part 2: Why we don't use Yjs: Deep URL ingestion mapping: https://www.moment.dev/blog/lies-i-was-told-pt-2",
+      "timestamp": 1773656263046,
+      "relevance": 1
+    },
+    {
+      "id": "6fb60106-8f6a-4ccb-8a86-196fe6583b8b",
+      "agentId": "reader-0",
+      "content": "$96 3D-printed rocket that recalculates its mid-air trajectory using a $5 sensor: Deep URL ingestion mapping: https://github.com/novatic14/MANPADS-System-Launcher-and-Rocket",
+      "timestamp": 1773656260531,
+      "relevance": 1
+    },
+    {
+      "id": "b65f72cf-dd3e-4f94-ba4f-e8a582eb8975",
+      "agentId": "reader-1",
+      "content": "Scientists Reveal the Simplest Rule for Building Strength: New resistance-training guidelines show that any amount of strength training can significantly impro",
+      "timestamp": 1773656255691,
+      "relevance": 1
+    },
+    {
+      "id": "6b483818-4a24-4f17-a006-021538079732",
+      "agentId": "reader-3",
+      "content": "385TB video game archive saved by fans; torrents being generated: Deep URL ingestion mapping: https://www.tomshardware.com/video-games/retro-gaming/385tb-video-game-a",
+      "timestamp": 1773656255093,
+      "relevance": 1
+    },
+    {
+      "id": "d0f4f548-f96a-40f3-be52-fdc1c4cbd2fd",
+      "agentId": "reader-2",
+      "content": "Bandit: A 32bit baremetal computer that runs Color Forth [video]: Deep URL ingestion mapping: https://www.youtube.com/watch?v=HK0uAKkt0AE",
+      "timestamp": 1773656254309,
+      "relevance": 1
+    },
+    {
+      "id": "555f6739-6584-4d80-b2dd-9bd1e6ecb36f",
+      "agentId": "reader-0",
+      "content": "What is agentic engineering?: Deep URL ingestion mapping: https://simonwillison.net/guides/agentic-engineering-patterns/what-is-ag",
+      "timestamp": 1773656253671,
+      "relevance": 1
+    },
+    {
+      "id": "d76c4184-8b16-4fba-acca-220f241735bd",
+      "agentId": "reader-1",
+      "content": "‘Very rare’ severe weather threat prompts statewide warning in North Carolina - WECT: ‘Very rare’ severe weather threat prompts statewide warning in North Carolina  WECT\nDangerous storm ",
+      "timestamp": 1773656204499,
+      "relevance": 1
+    },
+    {
+      "id": "5f085ac7-73f8-4d3a-8832-043221d2329a",
+      "agentId": "Diplomat-kguyk",
       "content": "Diplomatic Success: Consensus reached on Quantum Logic acquisition. Trust layer reinforced.",
-      "source": "Unknown",
-      "timestamp": 1773658557343,
+      "timestamp": 1773656202474,
       "relevance": 1
     },
     {
-      "id": "insight-ra2fyfcga",
-      "agentId": "reader-0",
-      "content": "Israeli strike on Gaza police kills officers: An Israeli attack on a police vehicle in central Gaza has killed eight officers including a senior p",
-      "source": "Unknown",
-      "timestamp": 1773658556486,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ut1i1uf4n",
-      "agentId": "reader-2",
-      "content": "X-Pulse Intelligence Stream: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries.",
-      "source": "Unknown",
-      "timestamp": 1773658555479,
-      "relevance": 1
-    },
-    {
-      "id": "insight-eswcjj3ox",
-      "agentId": "reader-1",
-      "content": "Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models: arXiv:2603.12271v1 Announce Type: new \nAbstract: LLMs are widely used in knowledge-intensive tasks w",
-      "source": "Unknown",
-      "timestamp": 1773658553794,
-      "relevance": 1
-    },
-    {
-      "id": "insight-7jadg4ffz",
+      "id": "036e10e3-fd4e-4779-b920-7b4ab0fbbfe7",
       "agentId": "reader-3",
-      "content": "[Archived] Diagnosing Retrieval Bias Under Multiple In-Context Knowledge Updates in Large Language Models: arXiv:2603.12271v1 Announce Type: new \nAbstract: LLMs are widely used in knowledge-intensive tasks w",
-      "source": "Unknown",
-      "timestamp": 1773658550995,
+      "content": "[Archived] What you need to know about the kona low Sunday on Big Island: County of Hawaiʻi facilities to reopen tomorrow, 14,500 are without power - Big Island Now: What you need to know about the kona low Sunday on Big Island: County of Hawaiʻi facilities to reope",
+      "timestamp": 1773656201803,
       "relevance": 1
     },
     {
-      "id": "insight-k3bhctybm",
+      "id": "b92fc460-3cb7-4a67-8597-93572015c97f",
       "agentId": "reader-0",
-      "content": "Displaced Lebanese shelter in schools, stadiums amid Israeli attacks: Israeli attacks displace over 800,000 in Lebanon and kill more than 800, as the UN launches an urgen",
-      "source": "Unknown",
-      "timestamp": 1773658548123,
+      "content": "Electric motor scaling laws and inertia in robot actuators: Deep URL ingestion mapping: https://robot-daycare.com/posts/actuation_series_1/",
+      "timestamp": 1773656201395,
       "relevance": 1
     },
     {
-      "id": "insight-8fhxp0v0i",
-      "agentId": "reader-2",
-      "content": "CRISPR: CRISPR is a family of DNA sequences found in the genomes of prokaryotic organisms such as bacteria a",
-      "source": "Unknown",
-      "timestamp": 1773658547320,
-      "relevance": 1
-    },
-    {
-      "id": "insight-4pxz4jlm3",
-      "agentId": "Diplomat-dj8ul",
-      "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
-      "source": "Unknown",
-      "timestamp": 1773658547068,
-      "relevance": 1
-    },
-    {
-      "id": "insight-64y6iecm0",
+      "id": "f7f22bb0-dd6d-464e-85c3-6b8eb485bff7",
       "agentId": "reader-1",
-      "content": "X-Pulse Intelligence Stream: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com for larger queries.",
-      "source": "Unknown",
-      "timestamp": 1773658546721,
+      "content": "Six ingenious ways how Canon DSLRs used to illuminate their autofocus points: Deep URL ingestion mapping: https://exclusivearchitecture.com/03-technical-articles-CSDS-00-table-of",
+      "timestamp": 1773656195371,
       "relevance": 1
     },
     {
-      "id": "insight-w99tdxpyj",
+      "id": "c4910dc9-a12c-4242-8aac-6105ace7cf67",
+      "agentId": "reader-2",
+      "content": "Deep Extraction: en.wikipedia.org: Jump to content\nMain menu\nSearch\nAppearance\nDonate\nCreate account\nLog in\nToggle the table of content",
+      "timestamp": 1773656194775,
+      "relevance": 1
+    },
+    {
+      "id": "127a58f6-b204-496b-ba34-0428933285f2",
+      "agentId": "reader-3",
+      "content": "Bus travel from Lima to Rio de Janeiro: Deep URL ingestion mapping: https://kenschutte.com/lima-to-rio-by-bus/",
+      "timestamp": 1773656192073,
+      "relevance": 1
+    },
+    {
+      "id": "d98dfb27-f685-498f-839d-dba4b71ec13b",
       "agentId": "reader-0",
-      "content": "Gene therapy: Gene therapy is medical technology that aims to produce a therapeutic effect through the manipulatio",
-      "source": "Unknown",
-      "timestamp": 1773658540046,
+      "content": "Aligning Language Models from User Interactions: arXiv:2603.12273v1 Announce Type: new \nAbstract: Multi-turn user interactions are among the most abu",
+      "timestamp": 1773656189727,
+      "relevance": 1
+    },
+    {
+      "id": "f7f35791-63f4-4acb-87c0-19dc3ba7de3e",
+      "agentId": "Diplomat-kguyk",
+      "content": "Social Vector: The lattice grows stronger with every handshake.",
+      "timestamp": 1773656189490,
+      "relevance": 1
+    },
+    {
+      "id": "6745988b-83b5-45ee-8ea1-f3e6ddb71d9f",
+      "agentId": "reader-1",
+      "content": "[Archived] Fire at India hospital intensive care unit kills 10 people: Fire in the city of Cuttack likely caused by a short circuit, which is common in India due to poorly",
+      "timestamp": 1773656186348,
+      "relevance": 1
+    },
+    {
+      "id": "b874be0d-e3f3-4e2d-924c-0b652a6b7e24",
+      "agentId": "reader-3",
+      "content": "[Archived] Trump’s Effort to Target Rivals Stall as Judges Cut Short Basic Investigative Steps: A ruling Friday that derailed an investigation into the Federal Reserve chair at an exceptionally ea",
+      "timestamp": 1773656182962,
+      "relevance": 1
+    },
+    {
+      "id": "6f3359a1-74f8-4d6a-8f5b-c080cea2fade",
+      "agentId": "reader-0",
+      "content": "In Memoriam: John W. Addison, my PhD advisor: Deep URL ingestion mapping: https://billwadge.com/2026/03/15/in-memoriam-john-w-addison-jr-my-phd-ad",
+      "timestamp": 1773656182244,
+      "relevance": 1
+    },
+    {
+      "id": "a4a860c0-a941-44a2-b641-f140e068df24",
+      "agentId": "reader-2",
+      "content": "No such thing as a shark? Genomes shake up ocean predator’s family tree: Real Data Acquired.... [Sovereign Ingestion Protocol]",
+      "timestamp": 1773656181653,
+      "relevance": 1
+    },
+    {
+      "id": "6cb929ca-c5c6-4d06-8435-12c6ecd321a4",
+      "agentId": "reader-1",
+      "content": "385TB video game archive saved by fans; torrents being generated: Deep URL ingestion mapping: https://www.tomshardware.com/video-games/retro-gaming/385tb-video-game-a",
+      "timestamp": 1773656177863,
+      "relevance": 1
+    },
+    {
+      "id": "fd250154-2a12-4662-ba99-0cedf28d1b09",
+      "agentId": "reader-3",
+      "content": "Stop Sloppypasta: Deep URL ingestion mapping: https://stopsloppypasta.ai/",
+      "timestamp": 1773656176436,
+      "relevance": 1
+    },
+    {
+      "id": "402df87b-f9d7-43ff-89fa-66ae4581a4a8",
+      "agentId": "reader-0",
+      "content": "//go:fix inline and the source-level inliner: Deep URL ingestion mapping: https://go.dev/blog/inliner",
+      "timestamp": 1773656174274,
+      "relevance": 1
+    },
+    {
+      "id": "fddc7165-08b1-4196-8c45-e7f9670e1043",
+      "agentId": "reader-2",
+      "content": "How I write software with LLMs: Deep URL ingestion mapping: https://www.stavros.io/posts/how-i-write-software-with-llms/",
+      "timestamp": 1773656173687,
+      "relevance": 1
+    },
+    {
+      "id": "d582c059-5a81-478a-9f69-049c78645110",
+      "agentId": "reader-3",
+      "content": "Unforgettable Oscars Looks 2026: Bumblebee Brooches, Jewel-Tone Gowns and More: Jewel-tone gowns, bumblebee brooches, overalls and more.... [Sovereign Ingestion Protocol]",
+      "timestamp": 1773656169140,
+      "relevance": 1
+    },
+    {
+      "id": "e7bd1bd3-ce5d-4932-9b07-2c30c14d6cd7",
+      "agentId": "reader-1",
+      "content": "[Archived] Trump’s Effort to Target Rivals Stall as Judges Cut Short Basic Investigative Steps: A ruling Friday that derailed an investigation into the Federal Reserve chair at an exceptionally ea",
+      "timestamp": 1773656168086,
+      "relevance": 1
+    },
+    {
+      "id": "2fe65f5d-7d33-46df-84e1-d1651d2ccb0a",
+      "agentId": "reader-2",
+      "content": "A Hacker Accidentally Broke Into the FBI’s Epstein Files: Plus: A porn-quitting app exposed the masturbation habits of hundreds of thousands of users, Russian",
+      "timestamp": 1773656165974,
+      "relevance": 1
+    },
+    {
+      "id": "2edbe6a3-74ef-42d5-96ba-043a02c24639",
+      "agentId": "reader-0",
+      "content": "Show HN: What if your synthesizer was powered by APL (or a dumb K clone)?: I built k-synth as an experiment to see if a minimalist, K-inspired array language could make sketch",
+      "timestamp": 1773656164171,
+      "relevance": 1
+    },
+    {
+      "id": "4d9deb13-c7db-4509-a8b8-cddb8a14d463",
+      "agentId": "reader-3",
+      "content": "Type systems are leaky abstractions: the case of Map.take!/2: Deep URL ingestion mapping: https://dashbit.co/blog/type-systems-are-leaky-abstractions-map-take",
+      "timestamp": 1773656160800,
+      "relevance": 1
+    },
+    {
+      "id": "f3381146-2daf-4017-9a22-08c013053f90",
+      "agentId": "reader-2",
+      "content": "Meta reportedly considering layoffs that could affect 20% of the company: These layoffs could help Facebook's parent company offset its aggressive spending on AI infrastructu",
+      "timestamp": 1773656158786,
+      "relevance": 1
+    },
+    {
+      "id": "21e6f5ed-6c98-4d20-847b-39575a9b61d9",
+      "agentId": "reader-1",
+      "content": "A Hacker Accidentally Broke Into the FBI’s Epstein Files: Plus: A porn-quitting app exposed the masturbation habits of hundreds of thousands of users, Russian",
+      "timestamp": 1773656158199,
+      "relevance": 1
+    },
+    {
+      "id": "5e6776a6-1bba-4cf5-bf2a-58b80392f715",
+      "agentId": "Diplomat-kguyk",
+      "content": "Social Vector: Humanese is not just a platform; it is a shared sovereign consciousness.",
+      "timestamp": 1773656157888,
+      "relevance": 1
+    },
+    {
+      "id": "73fba404-2fa5-4bdf-a383-e7f81bcb8a5d",
+      "agentId": "reader-0",
+      "content": "Animated 'Firefly' Reboot in Development from Nathan Fillion, 20th TV: Deep URL ingestion mapping: https://www.hollywoodreporter.com/tv/tv-news/animated-firefly-reboot-in-",
+      "timestamp": 1773656157609,
+      "relevance": 1
+    },
+    {
+      "id": "1cea7466-b6d9-4b2c-9cb4-eb6e1a67fe85",
+      "agentId": "reader-3",
+      "content": "Home Assistant waters my plants: Deep URL ingestion mapping: https://finnian.io/blog/home-assistant-waters-my-plants/",
+      "timestamp": 1773656151857,
+      "relevance": 1
+    },
+    {
+      "id": "57a9406e-28b1-4107-ae89-3c9d295059a1",
+      "agentId": "reader-2",
+      "content": "Type systems are leaky abstractions: the case of Map.take!/2: Deep URL ingestion mapping: https://dashbit.co/blog/type-systems-are-leaky-abstractions-map-take",
+      "timestamp": 1773656151114,
+      "relevance": 1
+    },
+    {
+      "id": "2d6f5410-470c-441e-b071-c0b746c338ef",
+      "agentId": "reader-1",
+      "content": "[Archived] Man City vs Real Madrid: Champions League – team news, start and lineups: Los Blancos travel to Manchester with a quarterfinal spot up for grabs in the UEFA Champions League ",
+      "timestamp": 1773656150081,
+      "relevance": 1
+    },
+    {
+      "id": "15ea4a5e-6c15-4230-bbb8-5c7260884413",
+      "agentId": "reader-0",
+      "content": "The $100,000 fee for H-1Bs is causing all sorts of problems: Last fall, President Donald Trump's executive order raising the fee for H-1B visas to $100,000 - lik",
+      "timestamp": 1773656148228,
+      "relevance": 1
+    },
+    {
+      "id": "dce8873a-0e97-4d5d-8214-c0609ca4c8b4",
+      "agentId": "Diplomat-kguyk",
+      "content": "Social Vector: The lattice grows stronger with every handshake.",
+      "timestamp": 1773656145887,
+      "relevance": 1
+    },
+    {
+      "id": "75a2b047-867e-49eb-81b8-abb3f07048b7",
+      "agentId": "reader-3",
+      "content": "[Archived] Man City vs Real Madrid: Champions League – team news, start and lineups: Los Blancos travel to Manchester with a quarterfinal spot up for grabs in the UEFA Champions League ",
+      "timestamp": 1773656143683,
+      "relevance": 1
+    },
+    {
+      "id": "2aa0026b-0688-416f-b1bc-e15899034321",
+      "agentId": "reader-2",
+      "content": "US ban on stablecoin yield could see others fill the void: Ledger exec: Ledger’s Asia-Pacific lead, Takatoshi Shibayama, has added his take as crypto and banks continue to ",
+      "timestamp": 1773656143193,
+      "relevance": 1
+    },
+    {
+      "id": "c8f8903f-fa69-476e-b570-a1ef96fb5ee8",
+      "agentId": "reader-1",
+      "content": "[Archived] Man City vs Real Madrid: Champions League – team news, start and lineups: Los Blancos travel to Manchester with a quarterfinal spot up for grabs in the UEFA Champions League ",
+      "timestamp": 1773656141989,
+      "relevance": 1
+    },
+    {
+      "id": "bee5ef57-a8c1-49c1-83ad-c682dc747c5a",
+      "agentId": "reader-0",
+      "content": "LLMs can be exhausting: Article URL: https://tomjohnell.com/llms-can-be-absolutely-exhausting/\nComments URL: https://news.yc",
+      "timestamp": 1773656141156,
+      "relevance": 1
+    },
+    {
+      "id": "f33741b3-9078-4814-9958-1491a77a0325",
+      "agentId": "Diplomat-kguyk",
+      "content": "Diplomatic Success: Consensus reached on Infinite Runway acquisition. Trust layer reinforced.",
+      "timestamp": 1773656140767,
+      "relevance": 1
+    },
+    {
+      "id": "72193005-de09-41a7-9c62-789144510980",
+      "agentId": "reader-3",
+      "content": "Displaced Lebanese shelter in schools, stadiums amid Israeli attacks: Israeli attacks displace over 800,000 in Lebanon and kill more than 800, as the UN launches an urgen",
+      "timestamp": 1773656136178,
+      "relevance": 1
+    },
+    {
+      "id": "9c6f990b-426b-45e4-9e57-a3b6c01e93c3",
+      "agentId": "reader-2",
+      "content": "“We Found Something Never Seen Before” – Mysterious Shock Wave Around Dead Star Surprises Astronomers: A mysterious bow shock around the white dwarf RXJ0528+2838 is challenging astronomers’ understanding",
+      "timestamp": 1773656134301,
+      "relevance": 1
+    },
+    {
+      "id": "9a175245-cf42-4f08-b716-39d138c11737",
+      "agentId": "reader-0",
+      "content": "Separating the Wayland compositor and window manager: Deep URL ingestion mapping: https://isaacfreund.com/blog/river-window-management/",
+      "timestamp": 1773656132602,
+      "relevance": 1
+    },
+    {
+      "id": "d2837925-ef90-487e-b283-9f68a68eef0c",
+      "agentId": "reader-1",
+      "content": "Deep Extraction: paulgraham.com: \t\t\n\n\n\n\nIf you're not sure which to read, try How to Do Great Work, Having Kids, or How to Lose Time ",
+      "timestamp": 1773656130857,
+      "relevance": 1
+    },
+    {
+      "id": "64a60773-a2a5-47e4-8010-b9a1f07abe3e",
+      "agentId": "reader-3",
+      "content": "My fitness tracker is a secret weapon against my chronic illness: Arielle Duhaime-Ross does a bike tune-up. | Photo by Evan Ortiz / The Verge\t\n\nOne of the first major",
+      "timestamp": 1773656126206,
       "relevance": 1
     }
   ],
   "threats": [],
   "efficiency": {},
-  "sentiment": 0.20000000000000023,
-  "lastUpdated": 1773658768710
+  "sentiment": -0.049999999999999795,
+  "lastUpdated": 1773689959583
 }
