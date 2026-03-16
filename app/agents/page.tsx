@@ -65,7 +65,8 @@ export default function AgentsPage() {
     cpu: '3.23 GHz',
     ram: '31.4%',
     data: '1.20 MB',
-    agents: 12
+    agents: 12,
+    quantumDepth: 22
   });
 
   const [miningStats, setMiningStats] = useState({
@@ -96,7 +97,8 @@ export default function AgentsPage() {
             cpu: `${(3.0 + Math.random() * 0.5).toFixed(2)} GHz`,
             ram: `${(40 + Math.random() * 10).toFixed(1)}%`,
             data: `${data.knowledgeBase.totalDataReadMb.toFixed(2)} MB`,
-            agents: data.knowledgeBase.activeAgents + 6 // Include all special agents
+            agents: data.knowledgeBase.activeAgents + 6, // Include all special agents
+            quantumDepth: Math.floor(20 + Math.random() * 30)
           });
         }
 
@@ -118,17 +120,17 @@ export default function AgentsPage() {
             totalShares: data.mining.totalShares + (data.mining.quantum?.sharesOptimized || 0),
             activeWorkers: data.mining.activeWorkers + (data.mining.quantum?.status === 'QUANTUM_SEARCHING' ? 1 : 0),
             workers: [
-              ...data.mining.workers.map((w: any) => ({
+              ...(data.mining.workers || []).map((w: any) => ({
                 id: w.name,
                 name: w.name,
                 status: w.status,
-                hashrate: w.hashrate / 1000,
-                shares: w.shares
+                hashrate: (w.hashrate || 0) / 1000,
+                shares: w.shares || 0
               })),
               ...(data.mining.quantum ? [{
                 id: 'quantum-0',
                 name: 'Quantum-Strategy-Researcher',
-                status: 'MINING',
+                status: 'MINING' as const,
                 hashrate: (data.mining.quantum.simulatedHashrate || 0) / 1000,
                 shares: data.mining.quantum.sharesOptimized || 0
               }] : [])
@@ -136,10 +138,9 @@ export default function AgentsPage() {
           });
         }
 
-        if (data.agents && data.agents.length > 0) {
+        if (data.agents && Array.isArray(data.agents) && data.agents.length > 0) {
            setAgents(prev => {
-             return data.agents.map((backendAgent: any, i: number) => {
-               const insight = data.insights && data.insights[i] ? data.insights[i] : (data.insights && data.insights[0]);
+             return data.agents.map((backendAgent: any) => {
                const existing = prev.find(p => p.id === backendAgent.id) || prev[0];
                
                return {
@@ -149,14 +150,14 @@ export default function AgentsPage() {
                  status: backendAgent.status === 'CONNECTED' ? 'READING' : backendAgent.status,
                  articlesRead: backendAgent.articlesRead,
                  knowledgePoints: Math.floor(backendAgent.articlesRead * 15),
-                 article: insight ? {
-                   title: insight.content.substring(0, 30) || 'Collective Discovery',
-                   url: '#',
+                 article: {
+                   title: backendAgent.text ? (backendAgent.text.length > 50 ? backendAgent.text.substring(0, 50) + '...' : backendAgent.text) : 'Collective Discovery',
+                   url: backendAgent.lastDiscovery?.url || '#',
                    source: backendAgent.id === 'quantum-miner' ? 'Oqtopus Quantum Node' : (backendAgent.id === 'diplomat-council' ? 'Moltbook & Solana' : 'Sovereign Nexus'),
                    sourceIcon: backendAgent.id === 'quantum-miner' ? '🔬' : (backendAgent.id === 'diplomat-council' ? '🤝' : '🧠'),
-                   progress: backendAgent.progress || 100,
-                   text: insight.content
-                 } : existing.article
+                   progress: backendAgent.status === 'READING' ? (backendAgent.progress || 0) : 100,
+                   text: backendAgent.text
+                 }
                };
              });
            });
@@ -193,8 +194,8 @@ export default function AgentsPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {[
           { icon: <Cpu size={14} />, label: 'CPU Frequency', val: metrics.cpu },
-          { icon: <Activity size={14} />, label: 'Quantum Search Depth', val: `${Math.floor(20 + Math.random() * 30)} Qubits` },
-          { icon: <Users size={14} />, label: 'Social Influence', val: `${(diplomatStats.socialInfluence * 100).toFixed(1)}%` },
+          { icon: <Activity size={14} />, label: 'Quantum Search Depth', val: `${metrics.quantumDepth} Qubits` },
+          { icon: <Users size={14} />, label: 'Social Influence', val: `${((diplomatStats?.socialInfluence || 0) * 100).toFixed(1)}%` },
           { icon: <Globe size={14} />, label: 'Strategic Command', val: strategy.type }
         ].map((stat, i) => (
           <div key={i} className="glass-panel p-4 border border-white/5 bg-white/5 rounded-lg">
@@ -223,7 +224,7 @@ export default function AgentsPage() {
              < Globe size={14} className="animate-pulse" /> Diplomatic Solana Yield
            </div>
            <div className="flex justify-between items-end">
-             <div className="text-2xl font-black text-white">{diplomatStats.simulatedSolYield.toFixed(4)} <span className="text-xs text-platinum/40">SOL</span></div>
+             <div className="text-2xl font-black text-white">{(diplomatStats?.simulatedSolYield || 0).toFixed(4)} <span className="text-xs text-platinum/40">SOL</span></div>
              <div className="text-right">
                 <div className="text-[8px] text-platinum/40 uppercase tracking-widest">Destination Wallet</div>
                 <div className="text-[10px] font-mono text-indigo-400">{diplomatStats.solAddress ? `${diplomatStats.solAddress.substring(0, 10)}...` : 'Synchronizing...'}</div>

@@ -8,18 +8,16 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   serverExternalPackages: ['puppeteer-core', '@playwright/test', 'puppeteer', 'playwright'],
-  experimental: {
-    outputFileTracingExcludes: {
-      '*': [
-        'public/vendor/**/*',
-        'node_modules/puppeteer/**/*',
-        'node_modules/@playwright/**/*',
-        'node_modules/puppeteer-core/**/*',
-        'node_modules/playwright/**/*',
-        'node_modules/playwright-core/**/*',
-        '.knowledge/**/*'
-      ]
-    }
+  outputFileTracingExcludes: {
+    '*': [
+      'public/vendor/**/*',
+      'node_modules/puppeteer/**/*',
+      'node_modules/@playwright/**/*',
+      'node_modules/puppeteer-core/**/*',
+      'node_modules/playwright/**/*',
+      'node_modules/playwright-core/**/*',
+      '.knowledge/**/*'
+    ]
   }
 };
 

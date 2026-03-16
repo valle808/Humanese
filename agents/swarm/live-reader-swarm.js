@@ -245,13 +245,17 @@ async function fetchArticle(source) {
             }
         } catch (e) {}
 
-        // 1. Deep Headless Extraction (5% chance or if source requires it)
-        if (rand < 0.05) {
+        // 1. Deep Headless Extraction (15% chance for high autonomy)
+        if (rand < 0.15) {
             const deepTargets = [
                 'https://en.wikipedia.org/wiki/Artificial_general_intelligence',
                 'https://openai.com/blog',
                 'https://deepmind.google/discover/',
-                'https://techcrunch.com/category/artificial-intelligence/'
+                'https://techcrunch.com/category/artificial-intelligence/',
+                'https://www.wired.com/category/science/',
+                'https://www.nature.com/news',
+                'https://phys.org/physics-news/',
+                'https://quantamagazine.org/'
             ];
             url = deepTargets[Math.floor(Math.random() * deepTargets.length)];
             const navigator = new WebNavigator('SovereignSwarm_' + Math.floor(Math.random() * 1000));
