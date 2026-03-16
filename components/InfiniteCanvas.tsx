@@ -1,119 +1,103 @@
 'use client';
 
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Text, Float, MeshDistortMaterial, PerspectiveCamera } from '@react-three/drei';
+import { Points, PointMaterial, PerspectiveCamera, Stars } from '@react-three/drei';
 import * as THREE from 'three';
+import gsap from 'gsap';
 
-interface KnowledgeNodeProps {
-  position: [number, number, number];
-  title: string;
-  onSelect: (title: string) => void;
-  active: boolean;
+interface PointCloudProps {
+  volatility: number;
 }
 
-function KnowledgeNode({ position, title, onSelect, active }: KnowledgeNodeProps) {
-  const mesh = useRef<THREE.Mesh>(null!);
-  const [hovered, setHover] = useState(false);
+function PointCloud({ volatility }: PointCloudProps) {
+  const points = useRef<THREE.Points>(null!);
+  
+  const particleCount = 15000;
+  const positions = useMemo(() => {
+    const pos = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      // Create a sphere (The Marble)
+      const phi = Math.acos(-1 + (2 * i) / particleCount);
+      const theta = Math.sqrt(particleCount * Math.PI) * phi;
+      
+      const radius = 5;
+      pos[i * 3] = Math.cos(theta) * Math.sin(phi) * radius;
+      pos[i * 3 + 1] = Math.sin(theta) * Math.sin(phi) * radius;
+      pos[i * 3 + 2] = Math.cos(phi) * radius;
+    }
+    return pos;
+  }, []);
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
-    mesh.current.position.y = position[1] + Math.sin(time + position[0]) * 0.2;
-    if (active) {
-      mesh.current.rotation.y += 0.05;
+    if (points.current) {
+      points.current.rotation.y = time * 0.05;
+      points.current.rotation.z = time * 0.02;
+      
+      // Dynamic noise displacement simulation via rotation and scale
+      const pulse = 1 + Math.sin(time * volatility) * 0.05;
+      points.current.scale.set(pulse, pulse, pulse);
     }
   });
 
   return (
-    <group position={position}>
-      <mesh
-        ref={mesh}
-        onPointerOver={() => setHover(true)}
-        onPointerOut={() => setHover(false)}
-        onClick={() => onSelect(title)}
-      >
-        <sphereGeometry args={[active ? 0.7 : 0.5, 32, 32]} />
-        <MeshDistortMaterial
-          color={hovered || active ? "#00FF41" : "#1A1A1A"}
-          speed={hovered || active ? 5 : 1}
-          distort={active ? 0.5 : 0.3}
-          radius={1}
-          emissive={hovered || active ? "#00FF41" : "#000"}
-          emissiveIntensity={(hovered || active) ? 0.5 : 0}
-        />
-      </mesh>
-      <Text
-        position={[0, -1, 0]}
-        fontSize={0.25}
-        color={active ? "#00FF41" : "white"}
-        font="https://fonts.gstatic.com/s/robotomono/v12/L0tkDFI8S0CD14_9dIEoJ_97.woff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {title.toUpperCase()}
-      </Text>
-    </group>
+    <Points ref={points} positions={positions} stride={3}>
+      <PointMaterial
+        transparent
+        color="#00FF41"
+        size={0.02}
+        sizeAttenuation={true}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </Points>
   );
 }
 
-function Connections({ nodes }: { nodes: any[] }) {
-  const lineGeometry = useMemo(() => {
-    const points = [];
-    for (let i = 0; i < nodes.length - 1; i++) {
-      points.push(new THREE.Vector3(...nodes[i].position));
-      points.push(new THREE.Vector3(...nodes[i + 1].position));
+function CameraController({ trigger }: { trigger: number }) {
+  const { camera } = useThree();
+  
+  useEffect(() => {
+    if (trigger > 0) {
+      // Glitch fly-through effect
+      gsap.to(camera.position, {
+        z: 2,
+        duration: 1.5,
+        ease: "power4.inOut",
+        onComplete: () => {
+          gsap.to(camera.position, {
+            z: 10,
+            duration: 2,
+            ease: "expo.out"
+          });
+        }
+      });
     }
-    // Connect last node to first to close the loop
-    points.push(new THREE.Vector3(...nodes[nodes.length-1].position));
-    points.push(new THREE.Vector3(...nodes[0].position));
-    return new THREE.BufferGeometry().setFromPoints(points);
-  }, [nodes]);
+  }, [trigger, camera]);
 
-  return (
-    <lineSegments geometry={lineGeometry}>
-      <lineBasicMaterial color="#00FF41" opacity={0.2} transparent />
-    </lineSegments>
-  );
+  return null;
 }
 
 interface InfiniteCanvasProps {
   refreshKey?: number;
-  selectedNode?: string;
-  onNodeSelect?: (title: string) => void;
+  volatility?: number;
 }
 
-export function InfiniteCanvas({ refreshKey = 0, selectedNode, onNodeSelect }: InfiniteCanvasProps) {
-  const nodes = useMemo(() => [
-    { position: [-5, 2, -2], title: "Neural Protocol" },
-    { position: [0, 0, 0], title: "Sovereign Mainframe" },
-    { position: [5, -3, -5], title: "VALLE Tokenomics" },
-    { position: [-2, -4, 2], title: "Swarm Intelligence" },
-    { position: [4, 4, -3], title: "M2M Pacts" },
-  ], [refreshKey]);
-
+export function InfiniteCanvas({ refreshKey = 0, volatility = 0.997 }: InfiniteCanvasProps) {
   return (
-    <div className="w-full h-full bg-obsidian">
-      <Canvas shadows dpr={[1, 2]} key={refreshKey}>
+    <div className="w-full h-full bg-[#050505]">
+      <Canvas dpr={[1, 2]}>
         <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+        <CameraController trigger={refreshKey} />
         <color attach="background" args={['#050505']} />
-        <fog attach="fog" args={['#050505', 5, 25]} />
         
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={2} color="#00FF41" />
-        <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={2} color="#00FF41" />
+        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-          {nodes.map((node, i) => (
-            <KnowledgeNode 
-              key={`${i}-${refreshKey}`} 
-              position={node.position as [number, number, number]} 
-              title={node.title} 
-              active={selectedNode === node.title}
-              onSelect={(title) => onNodeSelect?.(title)}
-            />
-          ))}
-          <Connections nodes={nodes as any} />
-        </Float>
+        <ambientLight intensity={0.5} />
+        <PointCloud volatility={volatility} />
+        
+        <fog attach="fog" args={['#050505', 5, 20]} />
       </Canvas>
     </div>
   );
