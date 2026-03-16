@@ -1,6 +1,14 @@
 {
   "insights": [
     {
+      "id": "insight-1ssssssss",
+      "agentId": "test-miner-autonomy",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.15 - 713 sat/vB\n‎0.024 BTC\n3,535 transactions\nIn ~10 minutes\n \n~0 sat/vB\n0.14 - 0.15 sat/vB\n‎0.001 BTC\n5,448 transactions\nIn ~21 minutes\n \n~0 sat/vB\n0.13 - 0.14 sat/vB\n‎0.001 BTC\n2,702 transactions\nIn ~32 minutes\n \n~0 sat/vB\n0.13 - 0.14 sat/vB\n‎0.001 BTC\n269 transactions\nIn ~43 minutes\n \n~0 sat/vB\n0.13 - 0.14 sat/vB\n‎0.001 BTC\n85 transactions\nIn ~54 minutes\n \n~0 sat/vB\n0.13 - 0.14 sat/vB\n‎0.001 BTC\n117 transactions\nIn ~64 minutes\n \n~0 sat/vB\n0.13 - 0.13 sat/vB\n‎0.001 BTC\n11",
+      "source": "Unknown",
+      "timestamp": 1773695220584,
+      "relevance": 1
+    },
+    {
       "id": "aa7525bc-403d-4745-a7c7-3e2603d5b674",
       "agentId": "reader-1",
       "content": "Separating the Wayland compositor and window manager: Deep URL ingestion mapping: https://isaacfreund.com/blog/river-window-management/",
@@ -692,17 +700,10 @@
       "content": "Deep Extraction: paulgraham.com: \t\t\n\n\n\n\nIf you're not sure which to read, try How to Do Great Work, Having Kids, or How to Lose Time ",
       "timestamp": 1773656130857,
       "relevance": 1
-    },
-    {
-      "id": "64a60773-a2a5-47e4-8010-b9a1f07abe3e",
-      "agentId": "reader-3",
-      "content": "My fitness tracker is a secret weapon against my chronic illness: Arielle Duhaime-Ross does a bike tune-up. | Photo by Evan Ortiz / The Verge\t\n\nOne of the first major",
-      "timestamp": 1773656126206,
-      "relevance": 1
     }
   ],
   "threats": [],
   "efficiency": {},
   "sentiment": -0.049999999999999795,
-  "lastUpdated": 1773689959583
+  "lastUpdated": 1773695220584
 }

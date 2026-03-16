@@ -18,10 +18,13 @@
 import net from 'net';
 import crypto from 'crypto';
 import EventEmitter from 'events';
+import { WebNavigator } from '../swarm/web-navigator.js';
+import memoryBank from '../core/MemoryBank.js';
 
 class MinerAgent extends EventEmitter {
     constructor(config) {
         super();
+        this.id = config.id || `Miner-${Math.floor(Math.random() * 1000)}`;
         this.host = config.host || 'public-pool.io';
         this.port = config.port || 3333;
         this.address = config.address || '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh';
@@ -37,6 +40,32 @@ class MinerAgent extends EventEmitter {
         this.shares = 0;
         this.status = 'IDLE';
         this.reconnectTimeout = null;
+        
+        // Deep Intelligence Layer
+        this.navigator = new WebNavigator(this.id);
+        this.lastResearch = null;
+    }
+
+    async researchNetwork() {
+        const rand = Math.random();
+        // 10% chance to perform deep research on BTC network
+        if (rand < 0.1) {
+            this.log('Initiating deep Bitcoin network research...');
+            const targets = [
+                'https://mempool.space/',
+                'https://www.blockchain.com/explorer',
+                'https://news.bitcoin.com/',
+                'https://coindesk.com'
+            ];
+            const url = targets[Math.floor(Math.random() * targets.length)];
+            const result = await this.navigator.navigateAndExtract(url);
+            
+            if (result && result.text) {
+                this.lastResearch = result.text.substring(0, 500);
+                this.log(`Research complete. Signals detected from ${url}`);
+                memoryBank.learn(this.id, `Miner Research [${url}]: ${this.lastResearch}`);
+            }
+        }
     }
 
     log(msg) {
@@ -154,11 +183,17 @@ class MinerAgent extends EventEmitter {
             const elapsed = (Date.now() - startTime) / 1000;
             this.hashrate = Math.floor(iterations / elapsed);
             
+            // Integrate Deep Research Pulse
+            if (iterations % 50000 === 0) {
+                this.researchNetwork().catch(() => {});
+            }
+
             this.emit('telemetry', {
                 hashrate: this.hashrate,
                 status: this.status,
                 shares: this.shares,
-                difficulty: this.difficulty
+                difficulty: this.difficulty,
+                text: this.lastResearch ? `📡 Signal: ${this.lastResearch.substring(0, 100)}...` : undefined
             });
 
             // Randomly "find" a share to show progress (purely for orchestration telemetry)
