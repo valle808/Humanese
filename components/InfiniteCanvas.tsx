@@ -4,7 +4,6 @@ import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Text, Float, MeshDistortMaterial, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
-import { motion } from 'framer-motion-3d';
 
 interface KnowledgeNodeProps {
   position: [number, number, number];
