@@ -39,13 +39,14 @@ export async function scrapeAndStore(topic: string, url?: string) {
         let stored = null;
         if (supabase) {
             const { data: storedData, error } = await supabase
-                .from("cached_pages")
+                .from("SovereignKnowledge")
                 .upsert({
-                    url: fetchUrl,
+                    sourceUrl: fetchUrl,
                     title,
-                    markdown,
-                    metadata: data.data?.metadata,
-                    cached_at: new Date().toISOString()
+                    content: markdown,
+                    sourceName: "Grokipedia",
+                    agentId: "autonomous-scraper",
+                    ingestedAt: new Date().toISOString()
                 })
                 .select();
 

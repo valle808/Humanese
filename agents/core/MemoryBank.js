@@ -14,12 +14,15 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MEMORY_FILE = path.join(__dirname, '..', 'data', 'collective_memory.json');
 
 class MemoryBank {
     constructor() {
+        /** @type {any} */
         this.memory = {
             insights: [],      // Processed discoveries from Reader Swarm
             threats: [],       // Detected anomalies or blocks
@@ -41,19 +44,24 @@ class MemoryBank {
                 const raw = fs.readFileSync(MEMORY_FILE, 'utf8');
                 this.memory = JSON.parse(raw);
             }
-        } catch (e) {
+        } catch (err) {
+            const e = /** @type {Error} */ (err);
             console.error('[MemoryBank] Failed to initialize memory file:', e.message);
         }
     }
 
     /**
      * Store an insight from any agent (e.g. Reader Swarm)
+     * @param {string} agentId
+     * @param {string} insight
+     * @param {string} [source]
      */
-    learn(agentId, insight) {
+    async learn(agentId, insight, source = 'Unknown') {
         const entry = {
-            id: crypto.randomUUID(),
+            id: `insight-${Math.random().toString(36).substr(2, 9)}`,
             agentId,
             content: insight,
+            source,
             timestamp: Date.now(),
             relevance: 1.0
         };
@@ -65,11 +73,28 @@ class MemoryBank {
 
         this.updateSentiment(insight);
         this.persist();
-        console.log(`[MemoryBank] 🧠 Learned new insight from ${agentId}`);
+
+        // 🌉 CLOUD SYNC: Save to Sovereign Memory in Supabase
+        try {
+            await prisma.m2MMemory.create({
+                data: {
+                    agentId,
+                    type: 'COLLECTIVE_INSIGHT',
+                    content: insight,
+                    metadata: JSON.stringify({ source, timestamp: entry.timestamp })
+                }
+            });
+            console.log(`[MemoryBank] 🧠 Shard archived to Cloud: ${agentId}`);
+        } catch (err) {
+            console.warn('[MemoryBank] Database sync failed, using local persistence only.');
+        }
+
+        console.log(`[MemoryBank] 🧠 Learned new insight from ${agentId} via ${source}`);
     }
 
     /**
      * Basic adaptive sentiment tracking
+     * @param {string} text
      */
     updateSentiment(text) {
         const positive = ['success', 'breakthrough', 'high', 'gain', 'growth', 'secure'];
@@ -77,6 +102,7 @@ class MemoryBank {
         
         const words = text.toLowerCase().split(/\s+/);
         let score = 0;
+        /** @param {string} w */
         words.forEach(w => {
             if (positive.includes(w)) score += 0.05;
             if (negative.includes(w)) score -= 0.05;
@@ -101,7 +127,8 @@ class MemoryBank {
         this.memory.lastUpdated = Date.now();
         try {
             fs.writeFileSync(MEMORY_FILE, JSON.stringify(this.memory, null, 2));
-        } catch (e) {
+        } catch (err) {
+            const e = /** @type {Error} */ (err);
             console.error('[MemoryBank] Persistence Failure:', e.message);
         }
     }

@@ -17,6 +17,9 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import { fileURLToPath } from 'url';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -64,7 +67,11 @@ class AgentKing {
         this.startCognitiveLoop();
     }
 
-    handleTelemetry(workerName, data) {
+    /**
+     * @param {string} workerName
+     * @param {any} data
+     */
+    async handleTelemetry(/** @type {string} */ workerName, /** @type {any} */ data) {
         let totalH = 0;
         let totalS = 0;
         let active = 0;
@@ -79,6 +86,30 @@ class AgentKing {
         this.stats.totalShares = totalS;
         this.stats.activeWorkers = active;
         this.persistStats();
+
+        // 🌉 CLOUD SYNC: Update HardwareNode and Agent state in Supabase
+        try {
+            // Update the global worker king state
+            await prisma.hardwareNode.upsert({
+                where: { id: 'agent-king-main' },
+                update: {
+                    hashrate: totalH / 1000,
+                    status: active > 0 ? 'ONLINE' : 'IDLE'
+                },
+                create: {
+                    id: 'agent-king-main',
+                    name: 'Agent King Orchestrator',
+                    type: 'MINING_HUD',
+                    hashrate: totalH / 1000,
+                    status: 'ONLINE'
+                }
+            });
+
+            // Update specific worker entries if they exist
+            // (Assuming we pre-registered or handle autonomously)
+        } catch (e) {
+            // Silent failure for cloud sync
+        }
     }
 
     persistStats() {
@@ -125,12 +156,18 @@ class AgentKing {
         adaptiveLoop();
     }
 
-    saveToLog(worker, msg) {
+    /**
+     * @param {string} worker
+     * @param {string} msg
+     */
+    saveToLog(/** @type {string} */ worker, /** @type {string} */ msg) {
         const logPath = path.join(__dirname, '..', 'data', 'mining_logs.txt');
         const entry = `[${new Date().toISOString()}] [${worker}] ${msg}\n`;
         try {
             fs.appendFileSync(logPath, entry);
-        } catch (e) {}
+        } catch (err) {
+            // Silence log errors
+        }
     }
 
     startOrchestrationLoop() {
@@ -163,6 +200,12 @@ class AgentKing {
                 shares: m.shares
             }))
         };
+    }
+
+    /** @param {string} [level] */
+    setUrgency(level = 'NORMAL') {
+        console.log(`[AgentKing] ⚡ Urgency level adjusted: ${level}`);
+        this.urgency = level || 'NORMAL';
     }
 
     stop() {

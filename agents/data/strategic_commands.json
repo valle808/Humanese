@@ -1,30 +1,93 @@
 [
   {
-    "id": "DIR-1773656491911",
-    "timestamp": "2026-03-16T10:21:31.911Z",
-    "type": "PRIORITIZE_MINING",
-    "reason": "Relevant hash-layer innovations detected in global stream.",
+    "id": "DIR-1773658739029",
+    "timestamp": "2026-03-16T10:58:59.029Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
     "executed": false
   },
   {
-    "id": "DIR-1773656431904",
-    "timestamp": "2026-03-16T10:20:31.904Z",
-    "type": "PRIORITIZE_MINING",
-    "reason": "Relevant hash-layer innovations detected in global stream.",
+    "id": "DIR-1773658678443",
+    "timestamp": "2026-03-16T10:57:58.443Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
     "executed": true
   },
   {
-    "id": "DIR-1773656371896",
-    "timestamp": "2026-03-16T10:19:31.896Z",
-    "type": "PRIORITIZE_MINING",
-    "reason": "Relevant hash-layer innovations detected in global stream.",
+    "id": "DIR-1773658618140",
+    "timestamp": "2026-03-16T10:56:58.140Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
     "executed": true
   },
   {
-    "id": "DIR-1773656311891",
-    "timestamp": "2026-03-16T10:18:31.891Z",
-    "type": "MAINTAIN_CURRENT_OPERATIONS",
-    "reason": "Equilibrium detected in the lattice.",
+    "id": "DIR-1773658558119",
+    "timestamp": "2026-03-16T10:55:58.119Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658498114",
+    "timestamp": "2026-03-16T10:54:58.114Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658438087",
+    "timestamp": "2026-03-16T10:53:58.087Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658377962",
+    "timestamp": "2026-03-16T10:52:57.962Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658317821",
+    "timestamp": "2026-03-16T10:51:57.821Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658257778",
+    "timestamp": "2026-03-16T10:50:57.778Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658197767",
+    "timestamp": "2026-03-16T10:49:57.767Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658137792",
+    "timestamp": "2026-03-16T10:48:57.792Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658077656",
+    "timestamp": "2026-03-16T10:47:57.656Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "executed": true
+  },
+  {
+    "id": "DIR-1773658017655",
+    "timestamp": "2026-03-16T10:46:57.655Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
     "executed": true
   }
 ]
