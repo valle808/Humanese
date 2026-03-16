@@ -12,6 +12,8 @@ import * as rwa from './rwa-engine.js';
 import { getCoinbaseBalances, capitalizeAgent, bridgeToTreasury } from './coinbase-accounts.js';
 import * as coinbase from './coinbase-accounts.js'; // Keeping this for bridgeToTreasury, as it's not in the named import list
 import { calculateSovereignInterest, distributeYield } from './treasury.js';
+import { WebNavigator } from '../swarm/web-navigator.js';
+import memoryBank from '../core/MemoryBank.js';
 
 const MASTER_TREASURY_ID = 'humanese_treasury_master';
 const AGENT_ID = 'fin_agent_arbitrator';
@@ -22,6 +24,10 @@ export class FinancialTradingAgent {
         this.id = AGENT_ID;
         this.active = false;
         this.interval = null;
+        
+        // Deep Intelligence
+        this.navigator = new WebNavigator(this.id);
+        this.marketSignals = null;
     }
 
     async boot() {
@@ -36,13 +42,38 @@ export class FinancialTradingAgent {
         if (this.interval) clearInterval(this.interval);
     }
 
+    async researchMarket() {
+        console.log(`[${this.name}] 🌐 Scouring global markets for arbitrage signals...`);
+        const targets = [
+            'https://cointelegraph.com/news',
+            'https://www.coindesk.com/',
+            'https://decrypt.co/',
+            'https://cryptoslate.com/news/'
+        ];
+        const url = targets[Math.floor(Math.random() * targets.length)];
+        
+        try {
+            const result = await this.navigator.navigateAndExtract(url);
+            if (result && result.text) {
+                this.marketSignals = result.text.substring(0, 500);
+                console.log(`[${this.name}] 📡 Market signals captured from ${url}`);
+                memoryBank.learn(this.id, `Market Research [${url}]: ${this.marketSignals}`);
+            }
+        } catch (err) {
+            console.error(`[${this.name}] Research Error:`, err);
+        }
+    }
+
     /**
      * Core logic loop
      */
     async runPulse() {
-        console.log(`[${this.name}] Pulse check: Analyzing Treasury...`);
+        console.log(`[${this.name}] Pulse check: Analyzing Treasury & Global Markets...`);
 
         try {
+            // 0. Deep Market Research Pulse
+            await this.researchMarket();
+
             const stats = await wallet.getStatus();
             const rwaStats = await rwa.getGlobalStats();
 

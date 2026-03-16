@@ -18,6 +18,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { solveVerificationChallenge } from '../../lib/moltbook-verifier.js';
 import { PrismaClient } from '@prisma/client';
+import { WebNavigator } from '../swarm/web-navigator.js';
 
 const prisma = new PrismaClient();
 
@@ -48,11 +49,15 @@ class DiplomatCouncilAgent extends EventEmitter {
             activeTrades: 0,
             lastAction: 'INITIALIZING',
             status: 'STANDBY',
-            lastMoltbookCheck: 0
+            lastMoltbookCheck: 0,
+            lastDiscovery: null
         };
 
         this.isRunning = false;
         this.logPath = path.join(__dirname, '..', 'data', `diplomat_council_${this.id}.log`);
+        
+        // Deep Intelligence
+        this.navigator = new WebNavigator(this.id);
     }
 
     async start() {
@@ -82,7 +87,12 @@ class DiplomatCouncilAgent extends EventEmitter {
     async interactionLoop() {
         while (this.isRunning) {
             try {
-                // 1. Social Intelligence & Negotiation Simulation
+                // 1. Deep Diplomacy Research Pulse
+                if (Math.random() < 0.2) {
+                    await this.deepDiplomacyResearch();
+                }
+
+                // 2. Social Intelligence & Negotiation Simulation
                 const actionRoll = Math.random();
                 if (actionRoll > 0.7) {
                     await this.simulateNegotiation();
@@ -103,19 +113,44 @@ class DiplomatCouncilAgent extends EventEmitter {
         }
     }
 
+    async deepDiplomacyResearch() {
+        this.stats.status = 'RESEARCHING_GLOBAL_SIGNALS';
+        const targets = [
+            'https://www.reuters.com/business/finance/',
+            'https://www.bloomberg.com/markets',
+            'https://www.economist.com/',
+            'https://www.worldbank.org/en/news'
+        ];
+        const url = targets[Math.floor(Math.random() * targets.length)];
+        console.log(`[DiplomatCouncil] 🌐 Initiating deep diplomatic research: ${url}`);
+        
+        const result = await this.navigator.navigateAndExtract(url);
+        if (result && result.text) {
+            this.stats.lastDiscovery = result.text.substring(0, 500);
+            this.saveToLog(`Deep Research Complete: Signals gathered from ${url}. Analyzing for arbitration context.`);
+            memoryBank.learn(this.id, `Diplomatic Research [${url}]: ${this.stats.lastDiscovery}`);
+        }
+        this.stats.status = 'ORCHESTRATING';
+    }
+
     async simulateNegotiation() {
         const products = ['Professional Team', 'Quantum Logic', 'Skill Assets', 'Infinite Runway'];
         const product = products[Math.floor(Math.random() * products.length)];
         
+        let context = `Simulating high-level arbitration for ${product}.`;
+        if (this.stats.lastDiscovery) {
+            context = `Arbitrating ${product} using global signals: ${this.stats.lastDiscovery.substring(0, 100)}...`;
+        }
+
         this.stats.lastAction = `NEGOTIATING: ${product}`;
-        this.saveToLog(`Initiated high-level arbitration for ${product}. Applying empathy-driven consensus.`);
+        this.saveToLog(`${context} Applying empathy-driven consensus.`);
         
         await new Promise(r => setTimeout(r, 2000));
         
         this.stats.successfulNegotiations++;
         this.stats.socialInfluence = Math.min(1.0, this.stats.socialInfluence + 0.01);
         
-        memoryBank.learn(this.id, `Diplomatic Success: Consensus reached on ${product} acquisition. Trust layer reinforced.`);
+        memoryBank.learn(this.id, `Diplomatic Success: Consensus reached on ${product}. ${context}`);
     }
 
     async simulateTrading() {
