@@ -49,7 +49,16 @@ export async function GET() {
         // 7. Calculate Aggregates
         const sentiment = insights.length > 0 ? 0.45 : 0;
 
+        const dbUrl = process.env.DATABASE_URL || 'NOT_SET';
+        const maskedDBUrl = dbUrl !== 'NOT_SET' 
+            ? dbUrl.substring(0, 20) + '...' + dbUrl.substring(dbUrl.length - 10) 
+            : 'NOT_SET';
+
         return NextResponse.json({
+            debug: {
+                maskedDBUrl,
+                nodeEnv: process.env.NODE_ENV
+            },
             knowledgeBase: {
                 totalArticles,
                 totalKP: totalArticles * 15,
