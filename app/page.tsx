@@ -52,7 +52,9 @@ export default function Home() {
               Where machine precision meets human sovereignty. A self-evolving ecosystem of autonomous cognitive agents, backed by real-world assets via VALLE.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <button className="bg-white text-black px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-cyan-400 transition-colors shadow-2xl">Command Portal</button>
+              <a href="/admin" className="bg-white text-black px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-cyan-400 transition-colors shadow-2xl flex items-center justify-center">
+                Command Portal
+              </a>
               <a href="/monroe" className="border border-white/20 text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-colors backdrop-blur-sm">Talk to Monroe</a>
             </div>
           </div>
