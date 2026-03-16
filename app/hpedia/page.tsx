@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { InfiniteCanvas } from '@/components/InfiniteCanvas';
-import { MatrixMindmap } from '@/components/MatrixMindmap';
+import dynamic from 'next/dynamic';
+
+const InfiniteCanvas = dynamic(() => import('@/components/InfiniteCanvas').then(mod => mod.InfiniteCanvas), { ssr: false });
+const MatrixMindmap = dynamic(() => import('@/components/MatrixMindmap').then(mod => mod.MatrixMindmap), { ssr: false });
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Command, Terminal, Shield, Cpu, X, TrendingUp, 
@@ -180,7 +182,7 @@ export default function HPediaPage() {
                    </div>
                    <div className="flex items-center gap-2 text-emerald/60 text-[10px] font-mono uppercase tracking-widest">
                      <Activity size={12} />
-                     Fact-checked by Grok 5m ago
+                     Verified by Humanese Hive 5m ago
                    </div>
                 </div>
 
@@ -260,9 +262,9 @@ export default function HPediaPage() {
                    </div>
                    <div className="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse" />
                 </div>
-                <div className="flex-1 space-y-2 font-mono text-[9px] text-platinum/20 overflow-hidden">
+                <div className="flex-1 space-y-2 font-mono text-[9px] text-platinum/80 overflow-hidden">
                    {securityLogs.map((log, i) => (
-                      <div key={i} className="py-1 border-l border-white/10 pl-3 leading-tight opacity-40 hover:opacity-100 transition-opacity">
+                      <div key={i} className="py-1 border-l border-white/20 pl-3 leading-tight opacity-90 hover:opacity-100 transition-opacity">
                          {log}
                       </div>
                    ))}
@@ -277,11 +279,11 @@ export default function HPediaPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                    <div className="p-3 bg-white/5 border border-white/5 rounded-xl">
-                      <div className="text-[8px] text-platinum/30 uppercase mb-1">SDS NODES</div>
+                      <div className="text-[8px] text-platinum/60 uppercase mb-1">SDS NODES</div>
                       <div className="text-sm font-bold text-white">8,241</div>
                    </div>
                    <div className="p-3 bg-white/5 border border-white/5 rounded-xl">
-                      <div className="text-[8px] text-platinum/30 uppercase mb-1">M2M LATENCY</div>
+                      <div className="text-[8px] text-platinum/60 uppercase mb-1">M2M LATENCY</div>
                       <div className="text-sm font-bold text-white">14MS</div>
                    </div>
                 </div>
@@ -293,7 +295,7 @@ export default function HPediaPage() {
       </main>
 
       {/* Global Bottom Ticker */}
-      <footer className="h-10 border-t border-white/5 flex items-center bg-black pointer-events-none overflow-hidden opacity-40">
+      <footer className="h-10 border-t border-white/5 flex items-center bg-black pointer-events-none overflow-hidden opacity-60">
         <div className="flex gap-16 whitespace-nowrap animate-marquee">
           {[1, 2].map(i => (
             <div key={i} className="flex gap-16 items-center">

@@ -101,14 +101,18 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
         linkDirectionalParticles={2}
         linkDirectionalParticleSpeed={0.005}
         nodeThreeObject={(node: any) => {
-          const color = node.color || '#FFFFFF';
+          const colorStr = node.color || '#00FF41';
           const size = (node.val || 10) / 6;
           const geometry = new THREE.SphereGeometry(size);
+          
+          // Debug safety: Ensure color is a valid string
+          const validColor = typeof colorStr === 'string' ? colorStr : '#00FF41';
+          
           const material = new THREE.MeshPhongMaterial({
-            color: new THREE.Color(color),
+            color: new THREE.Color(validColor),
             transparent: true,
             opacity: 0.9,
-            emissive: new THREE.Color(color),
+            emissive: new THREE.Color(validColor),
             emissiveIntensity: 0.6,
           });
           return new THREE.Mesh(geometry, material);
