@@ -15,7 +15,9 @@ import EventEmitter from 'events';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 class RemoteQuantumBridge extends EventEmitter {
@@ -29,7 +31,7 @@ class RemoteQuantumBridge extends EventEmitter {
             status: 'INITIALIZING',
             connected: false,
             latency: 0,
-            lastJobId: null,
+            lastJobId: '',
             qpuName: 'ibm_kyiv_v2', // Simulated high-end target
             qubitsRemote: 127,
             heartbeatActive: false,
@@ -68,10 +70,36 @@ class RemoteQuantumBridge extends EventEmitter {
                 this.state.uptime365 += 0.01; // Cumulative uptime tracking
 
                 this.persistStats();
+
+                // 🌉 CLOUD SYNC: Mirror state to Sovereign Ecosystem in Supabase
+                try {
+                    await prisma.m2MEcosystem.upsert({
+                        where: { networkName: 'Humanese_Quantum_Lattice' },
+                        update: {
+                            status: this.state.status,
+                            governingAgent: 'RemoteQuantumBridge',
+                            parameters: JSON.stringify({
+                                latency: this.state.latency,
+                                lastJobId: this.state.lastJobId,
+                                qpu: this.state.qpuName,
+                                qubits: this.state.qubitsRemote
+                            })
+                        },
+                        create: {
+                            networkName: 'Humanese_Quantum_Lattice',
+                            governingAgent: 'RemoteQuantumBridge',
+                            status: 'ONLINE',
+                            parameters: JSON.stringify(this.state)
+                        }
+                    });
+                } catch (e) {
+                    // Ignore DB failures
+                }
                 
                 // 24/7 Monitoring: Poll every 30 seconds
                 await new Promise(r => setTimeout(r, 30000));
-            } catch (e) {
+            } catch (err) {
+                const e = /** @type {Error} */ (err);
                 console.error(`[RemoteQuantum] ⚠️ Heartbeat skipped: ${e.message}`);
                 this.state.connected = false;
                 this.state.status = 'RECONNECTING';
@@ -93,8 +121,11 @@ class RemoteQuantumBridge extends EventEmitter {
     /**
      * Submits a search optimization job to the remote QPU.
      * Called by QuantumMinerAgent.
+     * @param {any} circuitData
+     * @returns {Promise<any>}
      */
     async submitOptimizationJob(circuitData) {
+        const circuit = /** @type {any} */ (circuitData);
         if (!this.state.connected) throw new Error('QPU Connection Offline');
         
         this.state.status = 'PROCESSING_JOB';
