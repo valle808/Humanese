@@ -78,6 +78,14 @@ class AgentKing {
         this.stats.totalHashrate = totalH;
         this.stats.totalShares = totalS;
         this.stats.activeWorkers = active;
+        this.persistStats();
+    }
+
+    persistStats() {
+        try {
+            const statsPath = path.join(__dirname, '..', 'data', 'king_stats.json');
+            fs.writeFileSync(statsPath, JSON.stringify(this.getTelemetry(), null, 2));
+        } catch (e) {}
     }
 
     /**

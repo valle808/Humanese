@@ -569,3 +569,16 @@ export function getSwarmStatus() {
         }
     };
 }
+/**
+ * SOVEREIGN INTERFACE
+ */
+export function start() {
+    if (isRunning) return;
+    console.log('[Swarm] 🌐 Initializing Sovereign Reader Lattice...');
+    startSwarm(); 
+}
+
+export default {
+    start,
+    getTelemetry: getSwarmStatus
+};

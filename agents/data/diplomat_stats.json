@@ -1,0 +1,11 @@
+{
+  "id": "Diplomat-a8txi",
+  "name": "Humanese_Diplomat_Council",
+  "socialInfluence": 0.87,
+  "successfulNegotiations": 2,
+  "simulatedSolYield": 0.009477382686837676,
+  "activeTrades": 1,
+  "lastAction": "NEGOTIATING: Skill Assets",
+  "status": "ORCHESTRATING",
+  "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
+}
