@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '../../../../lib/prisma';
 import fs from 'fs';
 import path from 'path';
 
@@ -8,35 +8,27 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     try {
         // 1. Fetch Global Architecture Stats
-        const totalArticles = await prisma.sovereignKnowledge.count().catch(() => 0);
-        const activeAgentsCount = await prisma.agent.count({ where: { status: { not: 'OFFLINE' } } }).catch(() => 0);
+        const totalArticles = await prisma.sovereignKnowledge.count();
+        const activeAgentsCount = await prisma.agent.count({ where: { status: { not: 'OFFLINE' } } });
         
         // 2. Fetch Centralized Quantum State (from ecosystem)
         const quantumEcosystem = await prisma.m2MEcosystem.findUnique({
             where: { networkName: 'Humanese_Quantum_Lattice' }
-        }).catch(() => null);
+        });
 
         let quantumParams: any = {};
         if (quantumEcosystem?.parameters) {
-            try {
-                quantumParams = JSON.parse(quantumEcosystem.parameters);
-            } catch (e) {
-                console.warn('Failed to parse quantum params');
-            }
+            quantumParams = JSON.parse(quantumEcosystem.parameters);
         }
 
         // 3. Fetch Orchestration Directives
         const oracleEcosystem = await prisma.m2MEcosystem.findUnique({
             where: { networkName: 'Humanese_Sovereign_Orchestra' }
-        }).catch(() => null);
+        });
 
         let oracleDirective = { type: 'NONE', reason: 'Synchronizing matrix...' };
         if (oracleEcosystem?.parameters) {
-            try {
-                oracleDirective = JSON.parse(oracleEcosystem.parameters);
-            } catch (e) {
-                console.warn('Failed to parse oracle params');
-            }
+            oracleDirective = JSON.parse(oracleEcosystem.parameters);
         }
 
         // 4. Fetch Collective Memory (Insights)
@@ -44,15 +36,15 @@ export async function GET() {
             where: { type: 'COLLECTIVE_INSIGHT' },
             orderBy: { timestamp: 'desc' },
             take: 5
-        }).catch(() => []);
+        });
 
         // 5. Fetch Global Infrastructure (Hardware Nodes)
         const kingNode = await prisma.hardwareNode.findUnique({
             where: { id: 'agent-king-main' }
-        }).catch(() => null);
+        });
 
         // 6. Fetch Functional Agents (Quantum, Diplomat, etc.)
-        const dbAgents = await prisma.agent.findMany().catch(() => []);
+        const dbAgents = await prisma.agent.findMany();
         
         // 7. Calculate Aggregates
         const sentiment = insights.length > 0 ? 0.45 : 0;
@@ -83,8 +75,8 @@ export async function GET() {
                 lastJobId: quantumParams.lastJobId || null,
                 qpu: quantumParams.qpu || 'ibm_kyiv_v2'
             },
-            diplomat: dbAgents.find(a => a.type === 'DIPLOMAT_COUNCIL') || { status: 'OFFLINE', earnings: 0, experience: 0 },
-            insights: insights.map(i => {
+            diplomat: dbAgents.find((a: any) => a.type === 'DIPLOMAT_COUNCIL') || { status: 'OFFLINE', earnings: 0, experience: 0 },
+            insights: insights.map((i: any) => {
                 let meta = {};
                 if (i.metadata) {
                     try {
@@ -99,7 +91,7 @@ export async function GET() {
                 };
             }),
             strategy: oracleDirective,
-            agents: dbAgents.map(a => ({
+            agents: dbAgents.map((a: any) => ({
                 id: a.id,
                 name: a.name,
                 status: a.status,
@@ -113,7 +105,8 @@ export async function GET() {
         console.error('[Telemetry Bridge API Error]:', error);
         return NextResponse.json({ 
             error: 'Sovereign Telemetry Offline', 
-            details: error instanceof Error ? error.message : String(error) 
+            details: error instanceof Error ? error.message : String(error),
+            stack: error instanceof Error ? error.stack : undefined
         }, { status: 500 });
     }
 }
