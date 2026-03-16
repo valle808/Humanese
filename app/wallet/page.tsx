@@ -186,7 +186,10 @@ export default function WalletPage() {
             <div className="space-y-4">
               <div className="space-y-2">
                 <label className="text-[10px] text-platinum/40 uppercase tracking-widest">Asset</label>
-                <select className="w-full bg-white/5 border border-white/10 rounded p-3 text-xs text-white outline-none focus:border-emerald/50">
+                <select 
+                  aria-label="Select asset for transfer"
+                  className="w-full bg-white/5 border border-white/10 rounded p-3 text-xs text-white outline-none focus:border-emerald/50"
+                >
                   <option>VALLE (Native)</option>
                   <option>ETH (Ethereum)</option>
                   <option>SOL (Solana)</option>
