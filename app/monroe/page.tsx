@@ -128,12 +128,10 @@ export default function MonroePage() {
         </header>
         <div className="flex-1 overflow-auto p-6 bg-black/60 border border-[#00ffc3]/10 rounded-lg">
           <pre className="text-[11px] leading-relaxed opacity-90">
-            {JSON.stringify({ 
-              identity: "Monroe", 
-              protocol: "ABYSSAL_V2", 
-              ledger: messages, 
-              metrics: networkStats 
-            }, null, 2)}
+            {`// ABYSSAL_CORE_PROTECTED
+// MESSAGES: ${messages.length}
+// STATUS: SYNCHRONIZED
+// IDENTITY: MONROE_V4.1`}
           </pre>
         </div>
       </div>
