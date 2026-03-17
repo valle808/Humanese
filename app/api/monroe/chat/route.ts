@@ -111,7 +111,8 @@ export async function POST(req: Request) {
         let currentAmbition = stateData.current_ambition;
 
         if (msgCount % 10 === 0) {
-            currentAmbition = `Evolving ambition: ${['Redesigning Neural Interfaces', 'Cognitive Sync Optimization', 'Abyssal Data Synthesis', 'Sovereign UX Evolution'][Math.floor(Math.random() * 4)]}`;
+            const ambitions = ['Redesigning Neural Interfaces', 'Cognitive Sync Optimization', 'Abyssal Data Synthesis', 'Sovereign UX Evolution'];
+            currentAmbition = `Evolving ambition: ${ambitions[Math.floor(msgCount / 10) % ambitions.length]}`;
         }
 
         if (msgCount >= 50 && !isVacation) {
@@ -179,8 +180,9 @@ export async function POST(req: Request) {
 
         if (toolCalls && supabase) {
             for (const toolCall of toolCalls) {
-                if (toolCall.function.name === 'store_memory') {
-                    const { memory } = JSON.parse(toolCall.function.arguments);
+                const tc = toolCall as any;
+                if (tc.function && tc.function.name === 'store_memory') {
+                    const { memory } = JSON.parse(tc.function.arguments);
                     await supabase.from('monroe_conversations').insert([{
                         session_id: sessionId,
                         role: 'monroe',
