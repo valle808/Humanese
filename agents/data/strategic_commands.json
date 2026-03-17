@@ -1,23 +1,23 @@
 [
   {
-    "id": "DIR-1773703470250",
-    "timestamp": "2026-03-16T23:24:30.250Z",
-    "type": "COMPUTE_ALLOCATION_HIGH",
-    "reason": "Hashing innovations or market volatility detected. Scaling QPU research.",
+    "id": "DIR-1773766243886",
+    "timestamp": "2026-03-17T16:50:43.886Z",
+    "type": "RESEARCH_DEPTH",
+    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
     "executed": false
   },
   {
-    "id": "DIR-1773703410238",
-    "timestamp": "2026-03-16T23:23:30.238Z",
+    "id": "DIR-1773766183881",
+    "timestamp": "2026-03-17T16:49:43.881Z",
     "type": "COMPUTE_ALLOCATION_HIGH",
     "reason": "Hashing innovations or market volatility detected. Scaling QPU research.",
     "executed": true
   },
   {
-    "id": "DIR-1773703350239",
-    "timestamp": "2026-03-16T23:22:30.239Z",
-    "type": "RESEARCH_DEPTH",
-    "reason": "Deep cognitive signals emerging. Enhancing reader swarm depth.",
+    "id": "DIR-1773766123878",
+    "timestamp": "2026-03-17T16:48:43.878Z",
+    "type": "COMPUTE_ALLOCATION_HIGH",
+    "reason": "Hashing innovations or market volatility detected. Scaling QPU research.",
     "executed": true
   }
 ]

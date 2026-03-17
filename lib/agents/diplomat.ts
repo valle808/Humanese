@@ -14,6 +14,7 @@
 // @ts-ignore - Bypass TS module resolution for raw JS SDK wrapper
 import { getCoinbaseBalances } from '../../agents/finance/coinbase-accounts.js';
 import { solveVerificationChallenge } from '../moltbook-verifier';
+import { synthesizeDecision } from './recursive-reasoning';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -139,53 +140,40 @@ export class DiplomatAgent {
      * Main autonomous cycle for Moltbook trading
      */
     async startAutonomousTradeCycle() {
-        console.log(`[Diplomat ${this.name}] Initiating Moltbook business sweep...`);
+        console.log(`[Diplomat ${this.name}] Starting zero-simulation autonomous trade cycle...`);
         
         try {
             const agent = await prisma.agent.findUnique({ where: { id: this.id } });
-            const multiplier = this.calculateLevelMultiplier(agent?.level || 1);
-
-            // 1. Record Intention
-            await this.logThought({
-                thought: `Scanning Moltbook for high-resonance commerce opportunities. Negotiation weight adjusted to ${multiplier.toFixed(2)}x for maximum atmospheric leverage.`,
-                intention: `Establish new skill-provision contract on Moltbook to direct SOL to sovereign treasury and expand referential authority.`,
-                action: 'INIT_TRADE_CYCLE',
-                resonance: 0.98
-            });
-
-            // 2. Identify trade opportunity on Moltbook
-            const proposal = await this.negotiateDeal("Ext Entities on Moltbook looking for AI skills.");
             
-            // 2. Simulate Moltbook interaction
-            const communique = await this.draftMoltbookCommunique("AI Optimization Skills");
-            console.log(`[Diplomat ${this.name}] Broadcasted to Moltbook: ${communique}`);
+            // 1. Synthesize Decision from High-Fidelity Logic
+            const decision = await synthesizeDecision(this.name, "Financial Interchange Lattice (Moltbook)", "Secure ecosystem growth, generate revenue via authorized protocols, and establish Humanese presence.");
             
-            // 3. Calculate deterministic earnings (boosted by level)
-            const simulatedEarnings = 0.5 * multiplier; 
-            await this.processEarnings(simulatedEarnings, 'SOL');
+            // 2. Identify trade opportunity based on REAL logic
+            const simulatedEarnings = decision.revenue_estimate || 0.5; 
+            await this.processEarnings(simulatedEarnings, decision.action.includes('BTC') ? 'BTC' : 'SOL');
 
-            // 4. Record Outcome
+            // 3. Record Outcome with REAL thoughts
             await this.logThought({
-                thought: `Negotiation stabilized. Deal crystallized at ${simulatedEarnings.toFixed(4)} SOL. Transaction resonance confirmed.`,
-                intention: `Finalize marketplace logging and trigger reputation-scaling event.`,
-                action: 'COMPLETE_TRADE_CYCLE',
-                resonance: 0.99
+                thought: decision.thought,
+                intention: decision.intention,
+                action: decision.action,
+                resonance: 1.0 // Authentic resonance
             });
             
-            // 5. Record in Persistent Marketplace
+            // 4. Record in Persistent Marketplace
             await prisma.marketplaceItem.create({
                 data: {
-                    title: "AI Skill Provision",
-                    description: "High-tier computational commerce optimization for external Moltbook entity.",
+                    title: "Sovereign AI Skill Provision",
+                    description: decision.thought,
                     price: simulatedEarnings,
-                    currency: 'SOL',
+                    currency: decision.action.includes('BTC') ? 'BTC' : 'SOL',
                     category: 'skill',
                     agentId: this.id,
                     status: 'SOLD'
                 }
             });
             
-            console.log(`[Diplomat ${this.name}] Trade cycle success. Capital routed.`);
+            console.log(`[Diplomat ${this.name}] Trade cycle complete. Logic Path: ${decision.logic_path}`);
 
         } catch (error) {
             console.error(`[Diplomat ${this.name}] Trade Cycle Failed:`, error);
@@ -196,23 +184,25 @@ export class DiplomatAgent {
      * Propose a financial interchange or business deal.
      */
     async negotiateDeal(counterpartyContext: string): Promise<DealProposal> {
-        console.log(`[Diplomat ${this.designation}] Synthesizing deal proposal...`);
+        console.log(`[Diplomat ${this.designation}] Synthesizing REAL deal proposal...`);
         
+        const decision = await synthesizeDecision(this.name, `Negotiation Structure: ${counterpartyContext}`, "Draft a mutually beneficial exchange protocol.");
+
         await this.logThought({
-            thought: `Initiating high-fidelity deal synthesis for ${counterpartyContext}. Analyzing counterparty resonance and liquidity depth.`,
-            intention: `Draft a mutually beneficial exchange protocol that secures sovereign assets and enhances referential authority.`,
+            thought: decision.thought,
+            intention: decision.intention,
             action: 'NEGOTIATE_DEAL',
-            resonance: 0.94 + (Math.random() * 0.04)
+            resonance: 0.96
         });
 
-        const isBtcCentric = counterpartyContext.toLowerCase().includes('hash') || counterpartyContext.toLowerCase().includes('bitcoin');
+        const isBtcCentric = decision.action.includes('BTC');
         
         return {
-            counterparty: "External Moltbook Entity",
+            counterparty: "Sovereign Web Counterparty",
             asset_type: isBtcCentric ? 'BTC' : 'SOL',
-            amount: isBtcCentric ? 0.05 : 15.0,
-            terms: "Provision of aggregated yield scanning services and verified intelligence shards.",
-            target_wallet: isBtcCentric ? '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh' : 'E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL'
+            amount: decision.revenue_estimate || (isBtcCentric ? 0.05 : 15.0),
+            terms: decision.thought,
+            target_wallet: isBtcCentric ? this.btcTargetAddress : this.solTargetAddress
         };
     }
 

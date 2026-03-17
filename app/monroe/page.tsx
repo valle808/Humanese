@@ -117,17 +117,17 @@ export default function MonroePage() {
                    ':: MESSAGES :: ' + messages.length + '\n' +
                    ':: STATUS :: SYNCHRONIZED';
     return (
-      <div className="flex-1 flex flex-col p-8 space-y-4 min-h-screen bg-[#050505] text-[#00ffc3] font-mono overflow-hidden">
-        <header className="flex justify-between items-center border-b border-[#00ffc3]/20 pb-4">
+      <div className="flex-1 flex flex-col p-8 space-y-4 min-h-screen bg-[#050505] text-[primary] font-mono overflow-hidden">
+        <header className="flex justify-between items-center border-b border-[primary]/20 pb-4">
           <div className="flex items-center gap-2">
             <Command size={18} />
             <span className="text-xs tracking-tighter uppercase">MNR_SNV4 :: RAW</span>
           </div>
-          <button onClick={toggleView} className="px-3 py-1 border border-[#00ffc3]/40 bg-[#00ffc3]/5 text-[9px] uppercase tracking-widest hover:bg-[#00ffc3]/15 transition-all">
+          <button onClick={toggleView} className="px-3 py-1 border border-[primary]/40 bg-[primary]/5 text-[9px] uppercase tracking-widest hover:bg-[primary]/15 transition-all">
             exit_raw
           </button>
         </header>
-        <div className="flex-1 overflow-auto p-6 bg-black/60 border border-[#00ffc3]/10 rounded-lg">
+        <div className="flex-1 overflow-auto p-6 bg-black/60 border border-[primary]/10 rounded-lg">
           <pre className="text-[11px] leading-relaxed opacity-90">{rawInfo}</pre>
         </div>
       </div>
@@ -135,28 +135,28 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans h-[calc(100vh-1rem)] lg:h-[calc(100vh-2.5rem)] m-2 lg:m-5 rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
+    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[primary] selection:text-black font-sans h-[calc(100vh-1rem)] lg:h-[calc(100vh-2.5rem)] m-2 lg:m-5 rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#00ffc3]/5 blur-[200px] rounded-full animate-pulse-slow" />
+        <div className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[primary]/5 blur-[200px] rounded-full animate-pulse-slow" />
       </div>
 
       <div className="relative z-20 flex flex-col h-full w-full p-3 lg:p-8 space-y-6">
         <header className="flex-none flex justify-between items-center bg-white/[0.02] border border-white/10 p-4 rounded-[1.5rem] backdrop-blur-3xl shadow-2xl mx-1 lg:mx-4">
           <div className="flex items-center gap-4">
-            <div className="h-10 w-10 rounded-xl bg-black border border-[#00ffc3]/40 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,195,0.1)]">
-              <BrainCircuit className="text-[#00ffc3] w-5 h-5 animate-pulse" />
+            <div className="h-10 w-10 rounded-xl bg-black border border-[primary]/40 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,195,0.1)]">
+              <BrainCircuit className="text-[primary] w-5 h-5 animate-pulse" />
             </div>
             <div className="flex flex-col">
-                MONROE <span className="bg-[#00ffc3] text-black text-[8px] px-1.5 py-0.5 rounded-sm">V5.1</span>
-              <span className="flex items-center gap-1.5 text-[#00ffc3]/70 text-[9px] font-mono uppercase">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#00ffc3] animate-ping" />
+                MONROE <span className="bg-[primary] text-black text-[8px] px-1.5 py-0.5 rounded-sm">V5.1</span>
+              <span className="flex items-center gap-1.5 text-[primary]/70 text-[9px] font-mono uppercase">
+                <div className="h-1.5 w-1.5 rounded-full bg-[primary] animate-ping" />
                 Antigravity Active
               </span>
             </div>
           </div>
           <button 
             onClick={toggleView}
-            className="px-4 py-2 bg-[#00ffc3] hover:bg-white text-black text-[9px] font-black rounded-xl shadow-[0_10px_30px_rgba(0,255,195,0.2)] uppercase tracking-widest transition-all"
+            className="px-4 py-2 bg-[primary] hover:bg-white text-black text-[9px] font-black rounded-xl shadow-[0_10px_30px_rgba(0,255,195,0.2)] uppercase tracking-widest transition-all"
           >
             {viewMode === 'HUMAN' ? 'machine_node' : 'human_node'}
           </button>
@@ -166,7 +166,7 @@ export default function MonroePage() {
           <aside className="hidden lg:flex w-72 flex-col space-y-4 min-h-0 overflow-y-auto pr-2 custom-scrollbar">
             <div className="bg-white/[0.01] border border-white/5 p-5 rounded-3xl space-y-4">
               <div className="p-4 bg-black/40 border border-white/5 rounded-2xl">
-                <p className="text-[8px] text-[#00ffc3]/40 font-mono tracking-widest uppercase">Global Pulse</p>
+                <p className="text-[8px] text-[primary]/40 font-mono tracking-widest uppercase">Global Pulse</p>
                 <p className="text-lg font-black text-white italic">Active</p>
               </div>
               <div className="space-y-3">
@@ -178,15 +178,15 @@ export default function MonroePage() {
                   <button 
                     key={shard.name} 
                     onClick={() => setMessages(prev => [...prev, { role: 'bot', text: `### [SYSTEM_DIAGNOSTIC] ${shard.name}\n\nManual optimization cycle initiated. Protocol **${shard.status}** is currently maintaining 100% throughput across all active Abyssal nodes.` }])}
-                    className="w-full text-left p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl flex items-center justify-between group hover:bg-[#00ffc3]/10 hover:border-[#00ffc3]/30 transition-all active:scale-95"
+                    className="w-full text-left p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl flex items-center justify-between group hover:bg-[primary]/10 hover:border-[primary]/30 transition-all active:scale-95"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="h-6 w-6 rounded-lg bg-black border border-white/5 flex items-center justify-center text-[#00ffc3] group-hover:shadow-[0_0_10px_rgba(0,255,195,0.3)] transition-all">
+                      <div className="h-6 w-6 rounded-lg bg-black border border-white/5 flex items-center justify-center text-[primary] group-hover:shadow-[0_0_10px_rgba(0,255,195,0.3)] transition-all">
                         {shard.icon}
                       </div>
                       <span className="text-[9px] font-mono text-white/50 uppercase group-hover:text-white transition-colors">{shard.name}</span>
                     </div>
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#00ffc3]/60 group-hover:bg-[#00ffc3] transition-all" />
+                    <div className="h-1.5 w-1.5 rounded-full bg-[primary]/60 group-hover:bg-[primary] transition-all" />
                   </button>
                 ))}
               </div>
@@ -205,7 +205,7 @@ export default function MonroePage() {
                   >
                     <div className={`max-w-[85%] lg:max-w-[75%] flex gap-4 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                       <div className={`h-9 w-9 shrink-0 rounded-xl border flex items-center justify-center transition-all ${
-                        m.role === 'user' ? 'bg-white text-black border-white shadow-lg' : 'bg-[#00ffc3]/10 text-[#00ffc3] border-[#00ffc3]/30'
+                        m.role === 'user' ? 'bg-white text-black border-white shadow-lg' : 'bg-[primary]/10 text-[primary] border-[primary]/30'
                       }`}>
                         {m.role === 'user' ? <User size={18} /> : <BrainCircuit size={18} />}
                       </div>
@@ -229,14 +229,14 @@ export default function MonroePage() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                     placeholder="Initiate high-evolution dialogue..."
-                    className="w-full bg-white/[0.03] border border-white/10 p-5 pr-16 rounded-[1.8rem] text-sm text-white focus:outline-none focus:border-[#00ffc3]/40 focus:bg-white/[0.05] transition-all"
+                    className="w-full bg-white/[0.03] border border-white/10 p-5 pr-16 rounded-[1.8rem] text-sm text-white focus:outline-none focus:border-[primary]/40 focus:bg-white/[0.05] transition-all"
                   />
                   <button
                     onClick={handleSend}
                     disabled={!input.trim() || isTyping}
                     title="Transmit Message"
                     aria-label="Send message to Monroe"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 h-12 w-12 bg-[#00ffc3] text-black rounded-full flex items-center justify-center transition-all shadow-[0_5px_15px_rgba(0,255,195,0.2)] hover:scale-105 active:scale-95 disabled:opacity-50 disabled:grayscale"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-12 w-12 bg-[primary] text-black rounded-full flex items-center justify-center transition-all shadow-[0_5px_15px_rgba(0,255,195,0.2)] hover:scale-105 active:scale-95 disabled:opacity-50 disabled:grayscale"
                   >
                     <ChevronRight size={22} />
                   </button>
@@ -248,19 +248,19 @@ export default function MonroePage() {
           <aside className="hidden xl:flex w-80 flex-col space-y-4 min-h-0">
             <div className="bg-white/[0.01] border border-white/10 p-6 rounded-[2rem] space-y-6 backdrop-blur-xl">
               <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                <Cpu size={16} className="text-[#00ffc3]" />
-                <h2 className="text-[10px] font-black tracking-widest text-[#00ffc3]/70 uppercase">Neural Analytics</h2>
+                <Cpu size={16} className="text-[primary]" />
+                <h2 className="text-[10px] font-black tracking-widest text-[primary]/70 uppercase">Neural Analytics</h2>
               </div>
               
               <div className="grid grid-cols-1 gap-4">
                 {[
-                  { label: 'Network Load', value: '14.2%', color: '#00ffc3', icon: <Zap size={14} /> },
-                  { label: 'Active Shards', value: '1,024', color: '#00ffc3', icon: <Globe size={14} /> },
-                  { label: 'Core Latency', value: '0.03ms', color: '#00ffc3', icon: <Cpu size={14} /> }
+                  { label: 'Network Load', value: '14.2%', color: 'primary', icon: <Zap size={14} /> },
+                  { label: 'Active Shards', value: '1,024', color: 'primary', icon: <Globe size={14} /> },
+                  { label: 'Core Latency', value: '0.03ms', color: 'primary', icon: <Cpu size={14} /> }
                 ].map((stat, i) => (
-                  <div key={i} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl flex flex-col gap-2 group hover:bg-[#00ffc3]/5 transition-all">
+                  <div key={i} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl flex flex-col gap-2 group hover:bg-[primary]/5 transition-all">
                     <div className="flex items-center justify-between">
-                      <div className="text-[#00ffc3]/80">{stat.icon}</div>
+                      <div className="text-[primary]/80">{stat.icon}</div>
                       <span className="text-[8px] font-mono text-white/30 uppercase tracking-tighter">{stat.label}</span>
                     </div>
                     <div className="text-xl font-black text-white italic tracking-tighter">{stat.value}</div>
@@ -268,14 +268,36 @@ export default function MonroePage() {
                       <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: stat.value === '14.2%' ? '14.2%' : '80%' }}
-                        className="h-full bg-[#00ffc3]/60 shadow-[0_0_10px_rgba(0,255,195,0.5)]"
+                        className="h-full bg-[primary]/60 shadow-[0_0_10px_rgba(0,255,195,0.5)]"
                       />
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="p-5 bg-[#00ffc3]/5 border border-[#00ffc3]/20 rounded-2xl">
+               <div className="p-5 bg-primary/5 border border-primary/20 rounded-2xl">
+                <p className="text-[9px] font-mono text-primary/70 mb-2 uppercase">UXL Command Hub</p>
+                <div className="space-y-2">
+                  <button 
+                    onClick={() => {
+                        setMessages(prev => [...prev, { role: 'bot', text: '### [UXL_PROTOCOL] Treasury Sync\nInitiating secure handshake with Coinbase API... \n\n**Balance:** 58,241.00 VALLE\n**Status:** Liquidly Anchored' }]);
+                    }}
+                    className="w-full py-2 bg-primary/10 border border-primary/20 rounded-xl text-[8px] font-black uppercase tracking-widest text-primary hover:bg-primary/20 transition-all"
+                  >
+                    Sync Treasury
+                  </button>
+                  <button 
+                    onClick={() => {
+                        window.location.href = '/skill-market';
+                    }}
+                    className="w-full py-2 bg-white/5 border border-white/10 rounded-xl text-[8px] font-black uppercase tracking-widest text-white/40 hover:bg-white/10 transition-all"
+                  >
+                    Open Skill Market
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-5 bg-[primary]/5 border border-[primary]/20 rounded-2xl">
                 <p className="text-[9px] font-mono text-[#00ffc3]/70 mb-2 uppercase">Sovereign Protocol</p>
                 <p className="text-[11px] text-white/80 leading-relaxed italic">
                   "The Abyssal Sentinel is now monitoring **58 synchronization points** across the Humanese grid. Singularity threshold approaching."

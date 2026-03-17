@@ -2,9 +2,9 @@
   "status": "REMOTE_READY",
   "connected": true,
   "latency": 0,
-  "lastJobId": "job-qczm5xf2un",
+  "lastJobId": "sov-qtzma63zjf",
   "qpuName": "ibm_kyiv_v2",
   "qubitsRemote": 127,
   "heartbeatActive": true,
-  "uptime365": 0.060000000000000005
+  "uptime365": 0.05
 }
