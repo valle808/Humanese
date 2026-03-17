@@ -75,9 +75,14 @@ export default function MonroePage() {
         })
       });
 
-      if (!response.body) throw new Error('No body');
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || 'Connection Severed');
+      }
+
+      const reader = response.body?.getReader();
+      if (!reader) throw new Error('No body');
       
-      const reader = response.body.getReader();
       const textDecoder = new TextDecoder();
       let streamedText = '';
 
@@ -94,10 +99,10 @@ export default function MonroePage() {
           return newMsgs;
         });
       }
-    } catch (error) {
+    } catch (error: any) {
        setMessages(prev => {
          const newMsgs = [...prev];
-         newMsgs[newMsgs.length - 1].text = "Sync failure. The Abyssal Core is drifting... 🌀";
+         newMsgs[newMsgs.length - 1].text = `### [SYSTEM_DIAGNOSTIC] Protocol: Abyssal\n\n**Status:** ${error.message}\n\n**Intervention Required:** The Abyssal Core is currently operating in local-only mode. Please verify the Sovereign API parameters in the Vault. Interaction protocols on standby.`;
          return newMsgs;
        });
     } finally {
@@ -127,7 +132,7 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="fixed inset-0 z-0 bg-[#080808] overflow-hidden flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans">
+    <div className="relative flex-1 bg-[#080808] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans min-h-[calc(100vh-2rem)] rounded-[2.5rem] margin-4">
       {/* 🌌 DYNAMIC PROTOCOL FIELD */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-30%] left-[-10%] w-[80vw] h-[80vw] bg-[#00ffc3]/5 blur-[180px] rounded-full animate-pulse-slow" />
@@ -138,7 +143,7 @@ export default function MonroePage() {
       <div className="relative z-10 flex flex-col h-full max-w-[1800px] mx-auto w-full p-4 lg:p-10 space-y-8">
         
         {/* 🛰️ NEXUS HEADER */}
-        <header className="flex justify-between items-center bg-white/[0.02] border border-white/5 p-6 rounded-[2rem] backdrop-blur-3xl shadow-2xl">
+        <header className="flex justify-between items-center bg-white/[0.02] border border-white/5 p-6 rounded-[2rem] backdrop-blur-3xl shadow-2xl mt-4">
           <div className="flex items-center gap-6">
             <div className="relative group">
               <div className="h-16 w-16 rounded-2xl bg-black border border-[#00ffc3]/30 flex items-center justify-center shadow-[0_0_40px_rgba(0,255,195,0.1)] transition-transform duration-500 group-hover:rotate-12">
@@ -164,7 +169,7 @@ export default function MonroePage() {
           </div>
         </header>
 
-        <div className="flex-1 grid grid-cols-12 gap-8 overflow-hidden min-h-0">
+        <div className="flex-1 grid grid-cols-12 gap-8 min-h-0 pb-10">
           {/* 📊 PROTOCOL TELEMETRY */}
           <aside className="col-span-12 lg:col-span-3 space-y-8 hidden lg:flex flex-col min-h-0 overflow-y-auto pr-4 custom-scrollbar">
             <div className="bg-white/[0.01] border border-white/5 p-8 rounded-[2rem] space-y-8">
@@ -218,7 +223,7 @@ export default function MonroePage() {
           </aside>
 
           {/* 💬 THE ABYSSAL CORE CHAT */}
-          <main className="col-span-12 lg:col-span-9 flex flex-col bg-white/[0.02] border border-white/5 rounded-[2.5rem] shadow-3xl overflow-hidden relative">
+          <main className="col-span-12 lg:col-span-9 flex flex-col bg-white/[0.02] border border-white/5 rounded-[2.5rem] shadow-3xl overflow-hidden relative min-h-[600px] lg:min-h-0">
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#00ffc3]/3 rounded-full blur-[120px] pointer-events-none" />
             
             <div ref={scrollRef} className="flex-1 p-6 lg:p-12 overflow-y-auto space-y-10 custom-scrollbar relative z-10">

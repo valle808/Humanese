@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         const { message, history } = await req.json();
 
         const completion = await openai.chat.completions.create({
-            model: "google/gemini-2.0-flash-001",
+            model: "meta-llama/llama-3.1-70b-instruct",
             messages: [
                 { role: "system", content: "You are the Study Buddy in the Sovereign Knowledge Matrix. You help students plan, execute, and study advanced topics. Be encouraging but precise." },
                 ...history.map((h: any) => ({ role: h.role === 'user' ? 'user' : 'assistant', content: h.content })),

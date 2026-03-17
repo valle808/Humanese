@@ -143,7 +143,7 @@ export async function POST(req: Request) {
 
         // 3. Initiate Streaming Completion
         const stream = await openai.chat.completions.create({
-            model: 'google/gemini-2.0-flash-001',
+            model: 'meta-llama/llama-3.1-405b-instruct',
             messages: [
                 {
                     role: 'system',
