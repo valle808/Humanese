@@ -140,9 +140,12 @@ export const Sidebar = () => {
                 </nav>
 
                 {/* System Status / Monroe Footer */}
-                <div className="p-4 border-t border-white/5 bg-black/20">
-                    <div className="flex items-center gap-3 p-2 rounded-lg bg-white/5 mb-3 group cursor-pointer border border-white/5 hover:border-emerald/20 transition-all">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald to-obsidian border border-emerald flex items-center justify-center text-white">
+                <div className="p-4 border-t border-white/5 bg-black/20 space-y-3">
+                    <Link
+                        href="/monroe"
+                        className="flex items-center gap-3 p-2 rounded-lg bg-white/5 group cursor-pointer border border-white/5 hover:border-emerald/20 transition-all w-full text-left"
+                    >
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald to-obsidian border border-emerald flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                             <User size={16} />
                         </div>
                         {isExpanded && (
@@ -151,17 +154,20 @@ export const Sidebar = () => {
                                 <span className="text-[10px] text-emerald truncate tracking-widest uppercase">V4.1 Sentinel</span>
                             </div>
                         )}
-                    </div>
+                    </Link>
 
-                    <div className="flex items-center gap-3 px-2">
-                        <Activity size={18} className="text-emerald shrink-0" />
+                    <button
+                        onClick={() => window.location.href = '/admin'}
+                        className="flex items-center gap-3 px-2 w-full text-left group hover:text-emerald transition-colors"
+                    >
+                        <Activity size={18} className="text-emerald shrink-0 group-hover:animate-pulse" />
                         {isExpanded && (
-                            <div className="text-[10px] text-platinum/20 font-mono menu-label-enter">
+                            <div className="text-[10px] text-platinum/20 font-mono menu-label-enter group-hover:text-platinum/60">
                                 <p className="whitespace-nowrap">UPTIME: 99.997%</p>
                                 <p className="whitespace-nowrap">NODES: 8,241 ACTIVE</p>
                             </div>
                         )}
-                    </div>
+                    </button>
                 </div>
             </div>
 

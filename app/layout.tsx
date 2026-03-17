@@ -12,7 +12,7 @@ export default function RootLayout({
       <body className="bg-black text-white font-mono selection:bg-cyan-500/30">
         <Sidebar />
         <CommandPortal />
-        <div className="relative min-h-screen">
+        <div className="relative min-h-screen flex flex-col">
           {children}
         </div>
       </body>
