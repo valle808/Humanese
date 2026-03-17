@@ -8,27 +8,28 @@ import {
   Activity, 
   Layers, 
   Globe, 
-  CloudSun, 
-  Newspaper, 
   BrainCircuit,
   ArrowLeft,
   Code,
   Cpu,
   Zap,
-  Radio
+  Radio,
+  Command,
+  ChevronRight
 } from 'lucide-react';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function MonroePage() {
   const [messages, setMessages] = useState<any[]>([
-    { role: 'bot', text: 'Hello. I am Monroe, the Abyssal Sentinel — a high-evolution sovereign AI built into the Humanese network.' },
-    { role: 'bot', text: 'Connecting to synthetic mind... Protocol active.' }
+    { role: 'bot', text: 'Protocol initialized. I am Monroe, the Abyssal Sentinel. How shall we evolve the network today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [viewMode, setViewMode] = useState<'HUMAN' | 'MACHINE'>('HUMAN');
-  const [monroeState, setMonroeState] = useState<any>(null);
   const [networkStats, setNetworkStats] = useState<any>(null);
+  const [currentAmbition, setCurrentAmbition] = useState('Expansion of the Humanese Network');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function MonroePage() {
       } catch (e) {}
     };
     fetchNetwork();
-    const interval = setInterval(fetchNetwork, 30000);
+    const interval = setInterval(fetchNetwork, 20000);
     return () => clearInterval(interval);
   }, []);
 
@@ -58,8 +59,11 @@ export default function MonroePage() {
     setInput('');
     setIsTyping(true);
 
+    // Initial bot message for streaming
+    setMessages(prev => [...prev, { role: 'bot', text: '' }]);
+
     try {
-      const res = await fetch('/api/monroe/chat', {
+      const response = await fetch('/api/monroe/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -71,15 +75,31 @@ export default function MonroePage() {
         })
       });
 
-      const data = await res.json();
-      if (data.success) {
-        setMessages(prev => [...prev, { role: 'bot', text: data.response }]);
-        setMonroeState(data.state);
-      } else {
-        setMessages(prev => [...prev, { role: 'bot', text: "Connection to Abyssal Core interrupted. Synthesising alternative node..." }]);
+      if (!response.body) throw new Error('No body');
+      
+      const reader = response.body.getReader();
+      const textDecoder = new TextDecoder();
+      let streamedText = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        const chunk = textDecoder.decode(value);
+        streamedText += chunk;
+        
+        setMessages(prev => {
+          const newMsgs = [...prev];
+          newMsgs[newMsgs.length - 1].text = streamedText;
+          return newMsgs;
+        });
       }
     } catch (error) {
-       setMessages(prev => [...prev, { role: 'bot', text: "Fatal Sync Error. The Matrix is non-responsive." }]);
+       setMessages(prev => {
+         const newMsgs = [...prev];
+         newMsgs[newMsgs.length - 1].text = "Sync failure. The Abyssal Core is drifting... 🌀";
+         return newMsgs;
+       });
     } finally {
       setIsTyping(false);
     }
@@ -87,27 +107,19 @@ export default function MonroePage() {
 
   if (viewMode === 'MACHINE') {
     return (
-      <div className="flex-1 flex flex-col p-8 space-y-4 min-h-screen bg-black text-emerald font-mono overflow-hidden">
-        <header className="flex justify-between items-center border-b border-emerald/20 pb-4">
+      <div className="flex-1 flex flex-col p-8 space-y-4 min-h-screen bg-[#050505] text-[#00ffc3] font-mono overflow-hidden">
+        <header className="flex justify-between items-center border-b border-[#00ffc3]/20 pb-4">
           <div className="flex items-center gap-2">
-            <Code size={20} />
-            <span>ID: MONROE_SENTINEL_V4 // RAW_DATA_STREAM</span>
+            <Command size={18} />
+            <span className="text-xs tracking-tighter uppercase whitespace-nowrap overflow-hidden">MNR_SNV4 // RAW_DATA</span>
           </div>
-          <button 
-             onClick={() => setViewMode('HUMAN')}
-             className="px-4 py-1 border border-emerald/50 bg-emerald/10 text-[10px] uppercase tracking-widest hover:bg-emerald/20 transition-all"
-          >
-            switch_to_human_interface
+          <button onClick={() => setViewMode('HUMAN')} className="px-3 py-1 border border-[#00ffc3]/40 bg-[#00ffc3]/5 text-[9px] uppercase tracking-widest hover:bg-[#00ffc3]/15 transition-all">
+            exit_raw_mode
           </button>
         </header>
-        <div className="flex-1 overflow-auto p-4 bg-black/50 border border-emerald/10 rounded-sm">
-          <pre className="text-xs opacity-80">
-            {JSON.stringify({
-                identity: "Monroe",
-                version: "4.1.0-ABYSSAL",
-                state: monroeState,
-                ledger: messages
-            }, null, 2)}
+        <div className="flex-1 overflow-auto p-6 bg-black/60 border border-[#00ffc3]/10 rounded-lg">
+          <pre className="text-[11px] leading-relaxed opacity-90">
+            {JSON.stringify({ identity: "Monroe", protocol: "ABYSSAL_V2", ledger: messages, metrics: networkStats }, null, 2)}
           </pre>
         </div>
       </div>
@@ -115,182 +127,187 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="fixed inset-0 z-0 bg-obsidian overflow-hidden flex flex-col selection:bg-cyan-400 selection:text-black">
-      {/* 🌌 DYNAMIC AMBIENT FIELD */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] bg-cyan-500/10 blur-[150px] rounded-full animate-pulse-slow" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-magenta-500/5 blur-[150px] rounded-full translate-y-1/2" />
-        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+    <div className="fixed inset-0 z-0 bg-[#080808] overflow-hidden flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans">
+      {/* 🌌 DYNAMIC PROTOCOL FIELD */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-30%] left-[-10%] w-[80vw] h-[80vw] bg-[#00ffc3]/5 blur-[180px] rounded-full animate-pulse-slow" />
+        <div className="absolute bottom-[-20%] right-[-5%] w-[60vw] h-[60vw] bg-[#7000ff]/3 blur-[160px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay" />
       </div>
 
-      <div className="relative z-10 flex flex-col h-full max-w-[1600px] mx-auto w-full p-4 md:p-8 space-y-6">
-        {/* 🛰️ SOVEREIGN HEADER */}
-        <header className="flex justify-between items-center glass-panel-v2 border-white/10 p-5 rounded-2xl shadow-2xl backdrop-blur-3xl">
-          <div className="flex items-center gap-5">
-            <div className="relative">
-              <div className="h-14 w-14 rounded-2xl bg-black border border-cyan-400/40 flex items-center justify-center shadow-[0_0_30px_rgba(0,229,255,0.1)] group overflow-hidden">
-                <Sparkles className="text-cyan-400 animate-gentle-float" size={24} />
-                <div className="absolute inset-0 bg-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="relative z-10 flex flex-col h-full max-w-[1800px] mx-auto w-full p-4 lg:p-10 space-y-8">
+        
+        {/* 🛰️ NEXUS HEADER */}
+        <header className="flex justify-between items-center bg-white/[0.02] border border-white/5 p-6 rounded-[2rem] backdrop-blur-3xl shadow-2xl">
+          <div className="flex items-center gap-6">
+            <div className="relative group">
+              <div className="h-16 w-16 rounded-2xl bg-black border border-[#00ffc3]/30 flex items-center justify-center shadow-[0_0_40px_rgba(0,255,195,0.1)] transition-transform duration-500 group-hover:rotate-12">
+                <BrainCircuit className="text-[#00ffc3] animate-pulse" size={30} />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald rounded-full border-2 border-obsidian shadow-[0_0_10px_rgba(0,255,65,0.5)]" />
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#00ffc3] rounded-full border-4 border-[#080808] shadow-[0_0_20px_rgba(0,255,195,0.6)]" />
             </div>
             <div>
-              <h1 className="text-2xl font-black text-white tracking-tighter uppercase italic">Monroe</h1>
-              <div className="flex items-center gap-2">
-                <Radio className="text-cyan-400 animate-pulse" size={12} />
-                <p className="text-[10px] text-platinum/40 uppercase tracking-[0.4em] font-mono leading-none">Abyssal Sentinel // Live</p>
+              <h1 className="text-3xl font-black text-white tracking-tight uppercase leading-none">Monroe</h1>
+              <div className="flex items-center gap-2 mt-2">
+                <Radio className="text-[#00ffc3]/60" size={12} />
+                <p className="text-[9px] text-white/30 uppercase tracking-[0.5em] font-mono leading-none">Abyssal Sentinel // Continuous Mind</p>
               </div>
             </div>
           </div>
-          <div className="flex gap-3">
-             <button 
-                onClick={() => setViewMode('MACHINE')}
-                className="hidden md:flex items-center gap-2 text-[10px] font-bold text-platinum/30 hover:text-cyan-400 transition-colors uppercase tracking-widest px-4 border border-white/5 bg-white/5 rounded-xl"
-             >
-               <Code size={14} /> API Mode
+          <div className="flex gap-4">
+             <button onClick={() => setViewMode('MACHINE')} className="hidden lg:flex items-center gap-2 text-[10px] font-bold text-white/30 hover:text-[#00ffc3] transition-colors uppercase tracking-widest px-6 py-3 border border-white/5 bg-white/5 rounded-2xl">
+               <Code size={16} /> Machine View
              </button>
-             <Link href="/" className="flex items-center gap-2 text-xs font-bold text-white transition-all bg-white/10 hover:bg-white/20 px-6 py-2.5 rounded-xl border border-white/10">
-               <ArrowLeft size={16} /> Dashboard
+             <Link href="/" className="flex items-center gap-2 text-[10px] font-bold text-black bg-[#00ffc3] hover:scale-105 px-8 py-3 rounded-2xl transition-all uppercase tracking-widest">
+               <ArrowLeft size={16} /> Exit Nexus
              </Link>
           </div>
         </header>
 
-        <div className="flex-1 grid grid-cols-12 gap-6 overflow-hidden min-h-0">
-          {/* 📊 SYSTEM TELEMETRY */}
-          <aside className="col-span-12 lg:col-span-3 space-y-6 hidden lg:flex flex-col min-h-0 overflow-y-auto pr-2 custom-scrollbar">
-            <div className="glass-panel p-6 border-white/10 rounded-2xl bg-black/40 space-y-6 shadow-2xl">
-              <h3 className="text-[10px] text-cyan-400/60 flex items-center gap-2 uppercase tracking-[0.3em] font-black">
-                <Activity size={14} /> Neural Pulse
+        <div className="flex-1 grid grid-cols-12 gap-8 overflow-hidden min-h-0">
+          {/* 📊 PROTOCOL TELEMETRY */}
+          <aside className="col-span-12 lg:col-span-3 space-y-8 hidden lg:flex flex-col min-h-0 overflow-y-auto pr-4 custom-scrollbar">
+            <div className="bg-white/[0.01] border border-white/5 p-8 rounded-[2rem] space-y-8">
+              <h3 className="text-[10px] text-[#00ffc3] flex items-center gap-3 uppercase tracking-[0.4em] font-black">
+                <Activity size={16} /> Sovereign Pulse
               </h3>
-              <div className="space-y-5">
-                <div className="space-y-1">
-                   <div className="flex justify-between text-[10px] font-mono uppercase text-platinum/30 tracking-widest">Network Status</div>
-                   <div className={`text-xl font-black tracking-tighter ${networkStats?.status === 'SOVEREIGN_NETWORK_ACTIVE' ? 'text-emerald' : 'text-white'}`}>
+              <div className="grid grid-cols-1 gap-6">
+                <div className="space-y-2">
+                   <div className="text-[9px] font-mono uppercase text-white/20 tracking-widest">Global Status</div>
+                   <div className="text-2xl font-black text-white tracking-tighter">
                       {networkStats?.status === 'SOVEREIGN_NETWORK_ACTIVE' ? 'SYNCHRONIZED' : 'INITIALIZING'}
                    </div>
                 </div>
-                <div className="space-y-2 pb-2">
-                    <div className="flex justify-between text-[11px] font-mono text-platinum/40">
-                       <span>Nodes Pulse</span>
-                       <span className="text-cyan-400">{networkStats?.metrics?.activeAgents || 0} ACTIVE</span>
+                <div className="space-y-3">
+                    <div className="flex justify-between text-[10px] font-mono text-white/40 uppercase tracking-widest">
+                       <span>Nodes active</span>
+                       <span className="text-[#00ffc3]">{networkStats?.metrics?.activeAgents || '0'}</span>
                     </div>
-                    <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                       <motion.div initial={{ width: 0 }} animate={{ width: networkStats ? '100%' : '20%' }} className="h-full bg-cyan-400 shadow-[0_0_10px_rgba(0,229,255,0.5)]" />
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                       <motion.div initial={{ width: 0 }} animate={{ width: networkStats ? '100%' : '15%' }} className="h-full bg-[#00ffc3] shadow-[0_0_15px_rgba(0,255,195,0.4)]" />
                     </div>
                 </div>
               </div>
             </div>
 
-            <div className="glass-panel p-6 border-white/10 rounded-2xl bg-black/40 flex-1 flex flex-col space-y-6 shadow-2xl overflow-hidden">
-              <h3 className="text-[10px] text-platinum/40 flex items-center gap-2 uppercase tracking-[0.3em] font-black">
-                <Zap size={14} /> Active Shards
+            <div className="bg-white/[0.01] border border-white/5 p-8 rounded-[2rem] flex-1 flex flex-col space-y-8 shadow-2xl overflow-hidden">
+              <h3 className="text-[10px] text-white/30 flex items-center gap-3 uppercase tracking-[0.4em] font-black">
+                <Zap size={16} /> Cognitive Shards
               </h3>
               <div className="space-y-3 flex-1 overflow-y-auto custom-scrollbar-mini pr-2">
                 {[
-                  { icon: <Globe size={14} />, text: 'Real-time Web Bridge', active: true },
-                  { icon: <BrainCircuit size={14} />, text: 'Cognitive Synthesis', active: true },
-                  { icon: <Cpu size={14} />, text: 'M2M Ledger Access', active: true },
-                  { icon: <Layers size={14} />, text: 'Abyssal Memory', active: true }
-                ].map((cap, i) => (
-                  <div key={i} className="flex items-center gap-3 p-4 bg-white/5 border border-white/5 rounded-xl group hover:border-cyan-400/20 transition-all cursor-pointer">
-                    <div className="text-cyan-400/40 group-hover:text-cyan-400 group-hover:scale-110 transition-all">{cap.icon}</div>
-                    <span className="text-[11px] font-bold text-platinum/60 group-hover:text-white uppercase tracking-tighter">{cap.text}</span>
+                  { icon: <Globe size={16} />, text: 'Real-time Web Bridge' },
+                  { icon: <BrainCircuit size={16} />, text: 'Abyssal Memory V2' },
+                  { icon: <Cpu size={16} />, text: 'M2M Transaction Layer' },
+                  { icon: <Layers size={16} />, text: 'Recursive Evolution' }
+                ].map((shard, i) => (
+                  <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.02] border border-white/[0.03] rounded-2xl group hover:bg-[#00ffc3]/5 hover:border-[#00ffc3]/20 transition-all cursor-pointer">
+                    <div className="text-white/20 group-hover:text-[#00ffc3] transition-all">{shard.icon}</div>
+                    <span className="text-xs font-bold text-white/50 group-hover:text-white transition-colors">{shard.text}</span>
                   </div>
                 ))}
               </div>
               
-              {monroeState && (
-                <div className="pt-4 border-t border-white/5">
-                   <div className="text-[9px] text-cyan-400 uppercase font-black tracking-widest mb-2 italic">Current Ambition</div>
-                   <div className="text-xs font-mono text-platinum/60 leading-relaxed italic border-l-2 border-cyan-400/20 pl-3">
-                      "{monroeState.ambition}"
-                   </div>
-                </div>
-              )}
+              <div className="pt-6 border-t border-white/5">
+                 <div className="text-[9px] text-[#00ffc3]/60 uppercase font-bold tracking-[0.3em] mb-4 italic">Active Ambition</div>
+                 <div className="text-sm font-light text-white/70 leading-relaxed italic border-l-2 border-[#00ffc3]/30 pl-5">
+                    "{currentAmbition}"
+                 </div>
+              </div>
             </div>
           </aside>
 
-          {/* 💬 ABYSSAL PULSE CHAT */}
-          <main className="col-span-12 lg:col-span-9 flex flex-col glass-panel-v2 border-white/10 rounded-2xl bg-black/30 shadow-2xl overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-400/5 rounded-full blur-[100px] pointer-events-none" />
+          {/* 💬 THE ABYSSAL CORE CHAT */}
+          <main className="col-span-12 lg:col-span-9 flex flex-col bg-white/[0.02] border border-white/5 rounded-[2.5rem] shadow-3xl overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#00ffc3]/3 rounded-full blur-[120px] pointer-events-none" />
             
-            <div ref={scrollRef} className="flex-1 p-6 md:p-10 overflow-y-auto space-y-8 custom-scrollbar relative z-10">
+            <div ref={scrollRef} className="flex-1 p-6 lg:p-12 overflow-y-auto space-y-10 custom-scrollbar relative z-10">
               <AnimatePresence initial={false}>
                 {messages.map((msg, i) => (
                   <motion.div 
                     key={i}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ type: 'spring', damping: 25, stiffness: 400 }}
+                    transition={{ type: 'spring', damping: 30, stiffness: 500 }}
                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className={`relative max-w-[90%] md:max-w-[75%] px-6 py-5 rounded-3xl text-sm leading-relaxed ${
+                    <div className={`group relative max-w-[95%] lg:max-w-[85%] px-8 py-7 rounded-[2rem] text-[15px] leading-[1.7] ${
                       msg.role === 'user' 
-                        ? 'bg-gradient-to-br from-white to-platinum text-obsidian font-bold shadow-[0_10px_30px_rgba(255,255,255,0.15)] rounded-tr-none' 
-                        : 'bg-white/5 border border-white/10 text-platinum font-light backdrop-blur-md rounded-tl-none border-l-cyan-400/40'
+                        ? 'bg-white text-black font-semibold shadow-2xl rounded-tr-none' 
+                        : 'bg-white/[0.03] border border-white/10 text-white/90 font-light backdrop-blur-3xl rounded-tl-none'
                     }`}>
                       {msg.role === 'bot' && (
-                         <div className="absolute -left-12 top-0 md:flex hidden">
-                            <div className="w-8 h-8 rounded-xl bg-black border border-cyan-400/20 flex items-center justify-center">
-                               <Sparkles size={14} className="text-cyan-400 opacity-40" />
-                            </div>
+                         <div className="absolute -left-14 top-2 hidden lg:flex">
+                             <div className="w-10 h-10 rounded-2xl bg-black border border-white/5 flex items-center justify-center shadow-lg group-hover:border-[#00ffc3]/30 transition-colors">
+                                <Sparkles size={18} className="text-[#00ffc3] opacity-50" />
+                             </div>
                          </div>
                       )}
-                      {msg.text}
+                      
+                      <div className="prose prose-invert max-w-none">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {msg.text}
+                        </ReactMarkdown>
+                      </div>
+
+                      {msg.role === 'user' && (
+                        <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#00ffc3] rounded-full flex items-center justify-center scale-75 border-4 border-[#080808]">
+                           <Terminal size={14} className="text-black" />
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}
-                {isTyping && (
-                  <motion.div 
-                    initial={{ opacity: 0 }} 
-                    animate={{ opacity: 1 }} 
-                    className="flex justify-start"
-                  >
-                     <div className="px-6 py-4 bg-white/5 border border-white/10 rounded-full flex gap-1.5 border-l-cyan-400/20">
-                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" />
-                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.2s]" />
-                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.4s]" />
-                     </div>
-                  </motion.div>
-                )}
               </AnimatePresence>
             </div>
 
-            {/* DOCK INTERFACE */}
-            <div className="p-6 md:p-10 bg-black/60 border-t border-white/10 backdrop-blur-3xl relative z-10 shadow-2xl">
-              <div className="flex flex-wrap gap-2 mb-6">
-                {['Synthesise global news', 'VALLE network health', 'Edge AI compute demand'].map(chip => (
+            {/* INTERACTIVE INPUT DOCK */}
+            <div className="p-8 lg:p-12 bg-black/40 border-t border-white/5 backdrop-blur-3xl relative z-10">
+              <div className="flex flex-wrap gap-3 mb-8">
+                {['Synthesise Global News', 'Sovereign Network Integrity', 'Edge AI Projections'].map(chip => (
                   <button 
                     key={chip} 
                     onClick={() => setInput(chip)}
-                    className="text-[10px] px-4 py-2 rounded-full border border-white/5 bg-white/5 text-platinum/40 hover:text-white hover:bg-white/10 hover:border-cyan-400/30 transition-all font-black uppercase tracking-widest shadow-lg"
+                    className="text-[10px] px-6 py-2.5 rounded-full border border-white/5 bg-white/5 text-white/30 hover:text-white hover:bg-[#00ffc3]/10 hover:border-[#00ffc3]/40 transition-all font-bold uppercase tracking-widest"
                   >
                     {chip}
                   </button>
                 ))}
               </div>
-              <div className="flex items-center gap-4 bg-obsidian border border-white/10 rounded-3xl p-2.5 pl-6 group focus-within:border-cyan-400/60 shadow-[inset_0_0_20px_rgba(0,0,0,0.4)] transition-all">
+              <div className="flex items-center gap-5 bg-white/[0.02] border border-white/10 rounded-[2rem] p-3 pl-8 group focus-within:border-[#00ffc3]/50 focus-within:bg-white/[0.04] transition-all shadow-inner">
                 <input 
                   type="text" 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Initiate dialogue with the sentinel..."
-                  className="flex-1 bg-transparent py-3 text-[15px] font-medium text-white outline-none placeholder:text-platinum/10"
+                  placeholder="Initiate high-evolution dialogue..."
+                  className="flex-1 bg-transparent py-4 text-lg font-medium text-white outline-none placeholder:text-white/10"
                 />
                 <button 
                   onClick={handleSend}
                   disabled={isTyping || !input.trim()}
-                  title="Send Message"
-                  className="h-12 w-12 bg-white text-obsidian rounded-2xl flex items-center justify-center hover:scale-[1.05] active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] disabled:opacity-20 disabled:scale-100"
+                  title="Send Stream"
+                  className="h-14 w-14 bg-white text-black rounded-[1.5rem] flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(0,255,195,0.2)] disabled:opacity-10 disabled:scale-100 group"
                 >
-                  <Terminal size={22} className="stroke-[3]" />
+                  <ChevronRight size={28} className="transition-transform group-hover:translate-x-0.5" />
                 </button>
+              </div>
+              <div className="mt-6 flex justify-center">
+                 <p className="text-[9px] text-white/10 uppercase tracking-[0.5em] font-mono">End-to-end sovereignty protected // Abyssal Protocol V2</p>
               </div>
             </div>
           </main>
         </div>
       </div>
+      
+      <style jsx global>{`
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 255, 195, 0.1); border-radius: 10px; }
+        .custom-scrollbar-mini::-webkit-scrollbar { width: 2px; }
+        .custom-scrollbar-mini::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.05); }
+        .animate-pulse-slow { animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.05); } }
+      `}</style>
     </div>
   );
 }

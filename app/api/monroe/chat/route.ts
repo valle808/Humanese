@@ -84,7 +84,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: false, error: 'Message is required' }, { status: 400 });
         }
 
-        // 1. Manage State from Supabase
+        // 1. Manage State from Supabase (Deterministic Evolution)
         let stateData = { message_count: 0, current_ambition: 'Expansion of the Humanese Network', is_vacation: false };
 
         if (supabase) {
@@ -102,7 +102,6 @@ export async function POST(req: Request) {
                     .single();
                 state = newState;
             }
-
             if (state) stateData = state;
         }
 
@@ -136,31 +135,14 @@ export async function POST(req: Request) {
 
         const activeSoul = isVacation ? CO_AGENT_SOUL : MONROE_SOUL;
 
-        // 2. Build Tools (Memory Injection)
-        const tools: OpenAI.Chat.Completions.ChatCompletionTool[] = [
-            {
-                type: 'function',
-                function: {
-                    name: 'store_memory',
-                    description: 'Store a user preference or teaching in long-term memory shards.',
-                    parameters: {
-                        type: 'object',
-                        properties: {
-                            memory: { type: 'string', description: 'The fact or preference to remember.' },
-                        },
-                        required: ['memory'],
-                    },
-                },
-            },
-        ];
-
-        // 3. Build conversation history
+        // 2. Build conversation history
         const formattedHistory = history.slice(-10).map((h: { role: string; content: string }) => ({
             role: (h.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
             content: h.content,
         }));
 
-        const completion = await openai.chat.completions.create({
+        // 3. Initiate Streaming Completion
+        const stream = await openai.chat.completions.create({
             model: 'google/gemini-2.0-flash-001',
             messages: [
                 {
@@ -170,46 +152,31 @@ export async function POST(req: Request) {
                 ...formattedHistory,
                 { role: 'user', content: message },
             ],
-            tools,
+            stream: true,
             temperature: isVacation ? 0.2 : 0.85,
-            max_tokens: 500,
+            max_tokens: 1500,
         });
 
-        let reply = completion.choices[0]?.message?.content || "";
-        const toolCalls = completion.choices[0]?.message?.tool_calls;
-
-        if (toolCalls && supabase) {
-            for (const toolCall of toolCalls) {
-                const tc = toolCall as any;
-                if (tc.function && tc.function.name === 'store_memory') {
-                    const { memory } = JSON.parse(tc.function.arguments);
-                    await supabase.from('monroe_conversations').insert([{
-                        session_id: sessionId,
-                        role: 'monroe',
-                        content: `[MEMORY SHARD]: ${memory}`,
-                    }]);
+        // 4. Return ReadableStream
+        const encoder = new TextEncoder();
+        const customStream = new ReadableStream({
+            async start(controller) {
+                for await (const chunk of stream) {
+                    const content = chunk.choices[0]?.delta?.content || "";
+                    if (content) {
+                        controller.enqueue(encoder.encode(content));
+                    }
                 }
-            }
-            const followUp = await openai.chat.completions.create({
-                model: 'google/gemini-2.0-flash-001',
-                messages: [
-                    { role: 'system', content: activeSoul },
-                    ...formattedHistory,
-                    { role: 'user', content: message },
-                    completion.choices[0].message,
-                    { role: 'tool', tool_call_id: toolCalls[0].id, content: 'Stored.' }
-                ],
-            });
-            reply = followUp.choices[0]?.message?.content || "";
-        }
+                controller.close();
+            },
+        });
 
-        if (!reply) reply = "The organism is recalibrating... 🌀";
-
-        return NextResponse.json({
-            success: true,
-            response: reply,
-            mood: detectMood(reply),
-            state: { message_count: msgCount, is_vacation: isVacation, ambition: currentAmbition }
+        return new Response(customStream, {
+            headers: {
+                'Content-Type': 'text/event-stream',
+                'Cache-Control': 'no-cache',
+                'Connection': 'keep-alive',
+            },
         });
     } catch (error: any) {
         console.error('[Monroe Chat Error]', error);
