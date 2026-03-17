@@ -1,0 +1,25 @@
+{
+  "vault": [
+    {
+      "id": "DATABASE_URL",
+      "value": "post...it=1",
+      "description": "Supabase Postgres Connection String"
+    }
+  ],
+  "wallets": [
+    {
+      "id": "SOVEREIGN_TREASURY",
+      "address": "bc1qdf6dfd6d5c29cbbf3cfcfa153158708f34b340",
+      "network": "VALLE_NATIVE",
+      "liveBalance": 0
+    }
+  ],
+  "coinbase": [
+    {}
+  ],
+  "summary": {
+    "totalEth": 0,
+    "totalSol": 0,
+    "totalValle": 0
+  }
+}

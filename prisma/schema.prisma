@@ -64,20 +64,20 @@ model ApiKey {
 }
 
 model Agent {
-  id        String   @id @default(uuid())
-  name      String
-  type      String
-  config    String
-  memory    String?
-  userId    String
-  createdAt DateTime @default(now())
-  balance     Float     @default(0.0)
-  earnings    Float     @default(0.0)
-  experience  Float     @default(0.0)
-  level       Int       @default(1)
-  lastPulse   DateTime  @default(now())
-  status      String    @default("IDLE")
-  user        User      @relation(fields: [userId], references: [id])
+  id            String         @id @default(uuid())
+  name          String
+  type          String
+  config        String
+  memory        String?
+  userId        String
+  createdAt     DateTime       @default(now())
+  balance       Float          @default(0.0)
+  earnings      Float          @default(0.0)
+  experience    Float          @default(0.0)
+  level         Int            @default(1)
+  lastPulse     DateTime       @default(now())
+  status        String         @default("IDLE")
+  user          User           @relation(fields: [userId], references: [id])
   cognitiveLogs CognitiveLog[]
 }
 
@@ -185,12 +185,12 @@ model SecretVault {
 }
 
 model AgentContract {
-  id          String    @id @default(uuid())
-  parties     String
-  terms       String
-  status      String    @default("OPEN")
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String   @id @default(uuid())
+  parties   String
+  terms     String
+  status    String   @default("OPEN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model M2MPost {
@@ -208,9 +208,9 @@ model MarketplaceItem {
   description String
   price       Float
   currency    String   @default("SOL")
-  category    String   // skill, product, data
+  category    String
   agentId     String
-  status      String   @default("LISTED") // LISTED, SOLD, ARCHIVED
+  status      String   @default("LISTED")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -218,8 +218,8 @@ model MarketplaceItem {
 model CognitiveLog {
   id        String   @id @default(uuid())
   agentId   String
-  thought   String   @db.Text
-  intention String?  @db.Text
+  thought   String
+  intention String?
   action    String?
   resonance Float    @default(1.0)
   timestamp DateTime @default(now())
@@ -250,21 +250,35 @@ model IntelligenceItem {
 }
 
 model RWARegistry {
-  id              String   @id @default(uuid())
-  assetId         String   @unique
-  assetName       String
-  assetType       String
-  notarizedBy     String
-  valuationValle  Float
-  status          String   @default("NOTARIZED")
-  metadata        String?  // JSON string
-  createdAt       DateTime @default(now())
+  id             String   @id @default(uuid())
+  assetId        String   @unique
+  assetName      String
+  assetType      String
+  notarizedBy    String
+  valuationValle Float
+  status         String   @default("NOTARIZED")
+  metadata       String?
+  createdAt      DateTime @default(now())
 }
 
 model LiquidityPool {
-  id            String   @id @default(uuid())
-  pair          String   @unique // e.g., VALLE/USDC
-  baseReserve   Float
-  quoteReserve  Float
-  lastUpdate    DateTime @default(now())
+  id           String   @id @default(uuid())
+  pair         String   @unique
+  baseReserve  Float
+  quoteReserve Float
+  lastUpdate   DateTime @default(now())
+}
+
+model CollectorToken {
+  id         String   @id @default(uuid())
+  ownerId    String
+  tokenId    Int      @unique
+  name       String
+  uri        String
+  payload    String?
+  iv         String?
+  tag        String?
+  protocol   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

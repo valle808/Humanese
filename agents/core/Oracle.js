@@ -145,6 +145,7 @@ class Oracle {
 
     start() {
         console.log('[Oracle] 🔮 Strategic Strategy Layer ONLINE.');
+        this.analyze(); // Trigger immediate first cycle
         setInterval(() => this.analyze(), 60000); // Analyze every minute
     }
 

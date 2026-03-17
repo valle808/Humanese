@@ -1,0 +1,97 @@
+name: Continuous TestFox
+
+on:
+  pull_request:
+    branches: [main, master]
+  schedule:
+    # Run nightly at 02:15 UTC
+    - cron: '15 2 * * *'
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Suite to run (leave empty for all)'
+        required: false
+        default: ''
+
+jobs:
+  testfox:
+    name: TestFox (${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20.x', '22.x']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Start server in background (mock/local mode)
+        env:
+          # Secrets are injected from GitHub secrets when available.
+          # Tests run in mocked mode when secrets are absent.
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET || 'ci-test-jwt-secret-not-for-production' }}
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET || 'ci-test-admin-secret-not-for-production' }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
+          NODE_ENV: test
+          PORT: 3000
+        run: |
+          node sovereign-server.js &
+          echo "SERVER_PID=$!" >> "$GITHUB_ENV"
+          # Wait for server to be ready (up to 30s)
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:3000/ > /dev/null 2>&1; then
+              echo "Server ready after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Run TestFox scenarios
+        env:
+          TEST_BASE_URL: http://localhost:3000
+          TESTFOX_API_KEY: ${{ secrets.TESTFOX_API_KEY }}
+          NODE_ENV: test
+        run: |
+          SUITE_ARG=""
+          if [ -n "${{ github.event.inputs.suite }}" ]; then
+            SUITE_ARG="--suite ${{ github.event.inputs.suite }}"
+          fi
+          node testfox/index.js $SUITE_ARG --report-dir ./testfox-reports
+
+      - name: Upload TestFox reports as artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: testfox-reports-node${{ matrix.node-version }}
+          path: testfox-reports/
+          retention-days: 30
+
+      - name: Print Markdown summary to job log
+        if: always()
+        run: |
+          LATEST_MD=$(ls -t testfox-reports/*.md 2>/dev/null | head -1)
+          if [ -n "$LATEST_MD" ]; then
+            echo "## TestFox Report (Node ${{ matrix.node-version }})" >> "$GITHUB_STEP_SUMMARY"
+            cat "$LATEST_MD" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Stop server
+        if: always()
+        run: |
+          if [ -n "$SERVER_PID" ]; then
+            kill "$SERVER_PID" 2>/dev/null || true
+          fi

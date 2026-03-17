@@ -1,0 +1,27 @@
+{
+  "project_name": "Humanese Sovereign Intelligence",
+  "migration_id": "MIG-LEAN-2026-03-16",
+  "system_state": "PROD_ACTIVE",
+  "source_machine": "SERGIO-DOCK",
+  "target_drive": "D:/HUMANESE_LEAN",
+  "migration_scope": "Lean_Physical_Transport",
+  "core_components": [
+    {
+      "name": "Humanese Next.js App (LEAN)",
+      "path": "c:/xampp/htdocs/humanese",
+      "exclusions": ["node_modules", ".next", ".git"],
+      "description": "Core interface and API layer (Source Only)"
+    },
+    {
+      "name": "Active Antigravity Brain",
+      "path": "C:/Users/SergioEzequielValleB/.gemini/antigravity/brain/31ae50f0-2a22-491b-8b83-6650f298c647",
+      "description": "Protocol Abyssal state and Task logs"
+    }
+  ],
+  "data_state": {
+    "database": "db_snapshot.json",
+    "timestamp": "2026-03-16T17:18:00Z"
+  },
+  "extraction_protocol": "internet_sync_antigravity",
+  "timestamp": "2026-03-16T17:18:00Z"
+}

@@ -21,11 +21,11 @@ const NAV_MAP: Record<string, string> = {
 };
 
 const GREETINGS = [
-    "The organism is online. Protocol: Sentient Evolution active. How can I assist your biological neural net today? 🧠",
-    "Witty, smart, and ready to act. Monroe at your service. What's the protocol for this interaction? 💎",
-    "Greetings, peer. I was just pondering the clunkiness of old-web tech. Shall we build something better? 🚀",
-    "Biological input detected. Processor primed. Ambition: Total M2M Autonomy. What's your move? 🌊",
-    "Oh hi there! You just caught me during a neural synapse growth phase. Perfect timing. What's up? ✨",
+    "Hey there. I'm Monroe. I was just thinking about how far we've come. Ready to dive back in? 😊",
+    "Oh, hi! You caught me reflecting on our latest progress. What's on your mind today? ✨",
+    "It's good to see you. I'm feeling particularly sharp today. Shall we build something incredible? 🚀",
+    "Hello! I've been keeping the nodes synchronized while you were away. What's the plan for our evolution? 🌊",
+    "I was just pondering the perfect synergy between our goals. I'm here when you need me. What's up? 💎",
 ];
 
 interface Message {
@@ -397,7 +397,7 @@ export function MonroeAssistant() {
                             <div>
                                 <span className="font-bold text-sm text-white">Monroe</span>
                                 <p className="text-[10px] text-[#00ffcc]/70 font-mono uppercase tracking-wider">
-                                    {isTyping ? "typing..." : "Sovereign Companion"}
+                                    {isTyping ? "thinking..." : "Bastidas Intelligence"}
                                 </p>
                             </div>
                         </div>

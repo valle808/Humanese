@@ -70,12 +70,13 @@ export default function WalletPage() {
     if (!transferAmount || !destination) return;
     setIsProcessing(true);
     try {
-      const res = await fetch('/api/valle/transfer', {
+      const res = await fetch('/api/trading/ops', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
               amount: parseFloat(transferAmount),
-              asset: transferAsset,
+              assetId: transferAsset,
+              action: 'TRANSFER',
               to: destination
           })
       });

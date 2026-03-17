@@ -25,7 +25,9 @@ import {
     ChevronRight,
     ChevronLeft,
     Activity,
-    User
+    User,
+    Gavel,
+    Unplug
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -66,8 +68,10 @@ export const Sidebar = () => {
         { icon: <Home size={22} />, label: 'Neural Core', href: '/' },
         { icon: <Activity size={22} />, label: 'Archive', href: '/hpedia' },
         { icon: <Share2 size={22} />, label: 'M2M Network', href: '/m2m' },
-        { icon: <Target size={22} />, label: 'Skill Market', href: '/marketplace' },
+        { icon: <Target size={22} />, label: 'Skill Market', href: '/skill-market' },
         { icon: <User size={22} />, label: 'Wallet', href: '/wallet' },
+        { icon: <Unplug size={22} />, label: 'H2M Bridge', href: '/h2m' },
+        { icon: <Gavel size={22} />, label: 'Sovereign Court', href: '/court' },
         {
             icon: <ShieldAlert size={22} className="text-emerald" />,
             label: 'Supreme Command',
