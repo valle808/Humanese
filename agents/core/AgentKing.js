@@ -12,6 +12,8 @@
  */
 
 import MinerAgent from '../finance/MinerAgent.js';
+import TokenizationAgent from '../finance/TokenizationAgent.js';
+import LiquidityManager from '../finance/LiquidityManager.js';
 import memoryBank from './MemoryBank.js';
 import MarketUtils from './MarketUtils.js';
 import fs from 'fs';
@@ -27,6 +29,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 class AgentKing {
     constructor() {
         this.miners = new Map();
+        this.specialists = new Map();
         this.config = {
             minerCount: 2, 
             address: '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh',
@@ -45,9 +48,33 @@ class AgentKing {
             }
         };
         this.isRunning = false;
+        this.urgency = 'NORMAL';
+    }
+
+    async summonSpecialists() {
+        console.log("[AgentKing] 👑 Summoning Swarm Specialists...");
+        
+        // 1. Tokenization Agent (RWA Registry)
+        const tokenizer = new TokenizationAgent({
+            id: 'Sovereign-Tokenizer-01',
+            name: 'Registry Guardian'
+        });
+        this.specialists.set('tokenizer', tokenizer);
+        tokenizer.boot();
+
+        // 2. Liquidity Manager (Market Maker)
+        const liquidity = new LiquidityManager({
+            id: 'Sovereign-MM-01',
+            name: 'Market Stabilizer'
+        });
+        this.specialists.set('liquidity', liquidity);
+        liquidity.boot();
+        
+        console.log("[AgentKing] ✅ Specialists online: [TokenizationAgent, LiquidityManager]");
     }
 
     async summonMiners() {
+        await this.summonSpecialists();
         console.log(`[AgentKing] 👑 Summoning ${this.config.minerCount} miners...`);
         for (let i = 0; i < this.config.minerCount; i++) {
             const miner = new MinerAgent({

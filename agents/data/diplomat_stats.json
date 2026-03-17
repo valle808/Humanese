@@ -1,12 +1,13 @@
 {
-  "id": "Diplomat-uca23",
+  "id": "Diplomat-ehr0k",
   "name": "Humanese_Diplomat_Council",
-  "socialInfluence": 0.85,
-  "successfulNegotiations": 0,
-  "simulatedSolYield": 0.047579673255501435,
-  "activeTrades": 1,
-  "lastAction": "SOL_TRADING",
+  "socialInfluence": 0.89,
+  "successfulNegotiations": 4,
+  "simulatedSolYield": 0.14072502614929758,
+  "activeTrades": 6,
+  "lastAction": "NEGOTIATING: Infinite Runway",
   "status": "ORCHESTRATING",
-  "lastMoltbookCheck": 0,
+  "lastMoltbookCheck": 1773703290247,
+  "lastDiscovery": "",
   "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
 }
