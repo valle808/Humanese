@@ -19,15 +19,17 @@ export async function GET() {
             })
         ]);
 
-        // Calculate a 'network reach' metric based on agent/user depth
-        const networkReach = (users * 5000) + (agents * 25000); 
+        // Report raw, authentic network dominance 
+        const networkDominance = users + agents; 
 
         return NextResponse.json({
             metrics: {
                 nodes: nodeCount,
                 transmissions: transmissionCount,
-                reach: `${(networkReach / 1000000).toFixed(1)}M`,
-                depth: `Level ${Math.floor(Math.log2(agents + 1)) + 1}`
+                users: users,
+                agents: agents,
+                dominance: networkDominance,
+                status: "SOVEREIGN_SYSTEM_ACTIVE"
             },
             manifest: recentLogs.map(log => ({
                 id: log.id,

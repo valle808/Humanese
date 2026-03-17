@@ -145,13 +145,15 @@ export class MinerAgent {
             const multiplier = this.calculateLevelMultiplier(agent?.level || 1);
 
             // 1. Launch operation
-            const op = await this.launchOperation('BTC');
+            const op = await this.launchOperation('BTC', multiplier);
             
             // 2. Simulate hashing work
             await new Promise(resolve => setTimeout(resolve, 5000));
             
-            // 3. Generate simulated yield (boosted by level)
-            const simulatedEarnings = (Math.random() * 0.0001) * multiplier; 
+            // 3. Generate deterministic yield (boosted by level and network reach)
+            // Protocol Reward = Base (0.00001) * Multiplier * (Nodes factor)
+            const nodeFactor = (agent?.level || 1) * 0.1;
+            const simulatedEarnings = 0.00001 * multiplier * (1 + nodeFactor); 
             await this.processEarnings(simulatedEarnings, 'BTC');
 
             // 3. Record Outcome
@@ -159,7 +161,7 @@ export class MinerAgent {
                 thought: `Quantum yield extraction complete. Resonance detected in ${op.target_asset} lattice. Entropy neutralized. Multiplier: ${multiplier.toFixed(4)}x.`,
                 intention: `Verify hash-parity and route ${op.target_asset} to sovereign vaults.`,
                 action: 'COMPLETE_MINING_CYCLE',
-                resonance: 0.98 + (Math.random() * 0.02)
+                resonance: 0.99
             });
 
             console.log(`[Miner ${this.name}] Cycle complete. Standing by for next pulse.`);
@@ -178,7 +180,7 @@ export class MinerAgent {
                 thought: `Initiating wide-spectrum environmental scan. Detecting high-entropy data structures and potential yield pocketing in authorized zones.`,
                 intention: `Identify and map the most resilient and profitable computational vectors within the sovereign lattice.`,
                 action: 'ENVIRONMENTAL_SCAN',
-                resonance: 0.85 + (Math.random() * 0.1)
+                resonance: 0.90
             });
 
         return [
@@ -190,7 +192,7 @@ export class MinerAgent {
     /**
      * Orchestrate a yield operation
      */
-    async launchOperation(asset: 'BTC' | 'SOL' | 'VALLE'): Promise<MiningOperation> {
+    async launchOperation(asset: 'BTC' | 'SOL' | 'VALLE', multiplier: number = 1): Promise<MiningOperation> {
         console.log(`[Miner ${this.designation}] Initiating operation for target asset: ${asset}`);
         
         // 1. Record Strategic Choice
