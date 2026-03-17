@@ -16,7 +16,7 @@ class TokenizationAgent extends EventEmitter {
     /** @param {any} config */
     constructor(config = {}) {
         super();
-        this.id = config?.id || `Tokenize-${Math.floor(Math.random() * 1000)}`;
+        this.id = config?.id || `Tokenize-${crypto.randomUUID().substring(0, 8)}`;
         this.name = config?.name || 'Sovereign Tokenizer';
         this.stats = {
             notarizations: 0,
