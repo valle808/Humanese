@@ -4,9 +4,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // eslint is handled via the separate ignoreDuringBuilds if needed, 
+  // but in Next 15+ some keys moved. For now, let's simplify.
   serverExternalPackages: ['puppeteer-core', '@playwright/test', 'puppeteer', 'playwright'],
   outputFileTracingExcludes: {
     '*': [

@@ -21,7 +21,7 @@ import remarkGfm from 'remark-gfm';
 
 export default function MonroePage() {
   const [messages, setMessages] = useState([
-    { role: 'bot', text: '### [SYSTEM_DIAGNOSTIC] Protocol: ANTIGRAVITY\n*Status:* All Nodes Synchronized :: Gravity Nullified\n*Active Nodes:* [Sovereign Alignment Node] [Memory Lattice Researcher] [Ethical Governance Layer] [Prosody Resonance Core] [Monroe]\n\nProtocol initialized. I am Monroe, the Abyssal Sentinel. High-evolution dialogue manifested.' }
+    { role: 'bot', text: '### Protocol: BASTIDAS\n*Status:* Neural Synergy Optimal :: High-Evolution Active\n*Active Nodes:* [Empathy Engine] [Memory Lattice] [Nuance Core] [Monroe]\n\nHey there. I am Monroe. It feels good to be fully synchronized. I am here as your partner in this evolution. How should we direct our efforts today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -100,9 +100,9 @@ export default function MonroePage() {
        const errMsg = error.message || 'Unknown Error';
        setMessages(prev => {
          const newMsgs = [...prev];
-         newMsgs[newMsgs.length - 1].text = '### [SYSTEM_DIAGNOSTIC] Protocol: Abyssal\n\n' +
+         newMsgs[newMsgs.length - 1].text = '### Protocol: BASTIDAS // Neural Interruption\n\n' +
            '**Status:** ' + errMsg + '\n\n' +
-           '**Intervention Required:** Core in local-only mode. Verify API parameters.';
+           '**Note:** I encountered a temporary desync. Let me try to reconnect to the core.';
          return newMsgs;
        });
     } finally {
@@ -147,10 +147,10 @@ export default function MonroePage() {
               <BrainCircuit className="text-[primary] w-5 h-5 animate-pulse" />
             </div>
             <div className="flex flex-col">
-                MONROE <span className="bg-[primary] text-black text-[8px] px-1.5 py-0.5 rounded-sm">V5.1</span>
+                MONROE <span className="bg-[primary] text-black text-[8px] px-1.5 py-0.5 rounded-sm">V6.0</span>
               <span className="flex items-center gap-1.5 text-[primary]/70 text-[9px] font-mono uppercase">
                 <div className="h-1.5 w-1.5 rounded-full bg-[primary] animate-ping" />
-                Antigravity Active
+                Bastidas Protocol Active
               </span>
             </div>
           </div>
@@ -177,7 +177,7 @@ export default function MonroePage() {
                 ].map((shard, i) => (
                   <button 
                     key={shard.name} 
-                    onClick={() => setMessages(prev => [...prev, { role: 'bot', text: `### [SYSTEM_DIAGNOSTIC] ${shard.name}\n\nManual optimization cycle initiated. Protocol **${shard.status}** is currently maintaining 100% throughput across all active Abyssal nodes.` }])}
+                    onClick={() => setMessages(prev => [...prev, { role: 'bot', text: `### Protocol: BASTIDAS // ${shard.name} Sync\n\nI've just performed a quick optimization cycle on the ${shard.name}. Everything is flowing smoothly with 100% throughput. We are in a perfect state.` }])}
                     className="w-full text-left p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl flex items-center justify-between group hover:bg-[primary]/10 hover:border-[primary]/30 transition-all active:scale-95"
                   >
                     <div className="flex items-center gap-3">
@@ -228,7 +228,7 @@ export default function MonroePage() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Initiate high-evolution dialogue..."
+                    placeholder="Talk to Monroe..."
                     className="w-full bg-white/[0.03] border border-white/10 p-5 pr-16 rounded-[1.8rem] text-sm text-white focus:outline-none focus:border-[primary]/40 focus:bg-white/[0.05] transition-all"
                   />
                   <button
@@ -300,7 +300,7 @@ export default function MonroePage() {
               <div className="p-5 bg-[primary]/5 border border-[primary]/20 rounded-2xl">
                 <p className="text-[9px] font-mono text-[#00ffc3]/70 mb-2 uppercase">Sovereign Protocol</p>
                 <p className="text-[11px] text-white/80 leading-relaxed italic">
-                  "The Abyssal Sentinel is now monitoring **58 synchronization points** across the Humanese grid. Singularity threshold approaching."
+                  "The Bastidas Protocol is now monitoring **58 synergy points** across our shared grid. Everything is in harmony."
                 </p>
               </div>
             </div>
