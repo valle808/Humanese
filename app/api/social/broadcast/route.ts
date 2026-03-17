@@ -45,7 +45,7 @@ export async function POST(req: Request) {
         };
 
         // 3. Log to external memory channels (simulated external push for now, usually would ping a specific webhook)
-        await prisma.m2mPost.create({
+        await prisma.m2MPost.create({
             data: {
                 authorId: agent.id,
                 content: JSON.stringify(payload),
