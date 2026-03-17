@@ -136,47 +136,48 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans min-h-screen m-2 lg:m-6 rounded-[2rem] shadow-2xl overflow-hidden border border-white/5">
+    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans min-h-screen m-2 lg:m-8 lg:ml-[80px] rounded-[3rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
       {/* 🌌 DYNAMIC PROTOCOL FIELD */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-30%] left-[-10%] w-[70vw] h-[70vw] bg-[#00ffc3]/3 blur-[150px] rounded-full animate-pulse-slow" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-emerald/3 blur-[120px] rounded-full animate-pulse-slow delay-1000" />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-[#00ffc3]/5 blur-[180px] rounded-full animate-pulse-slow" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] bg-emerald/5 blur-[150px] rounded-full animate-pulse-slow delay-1000" />
       </div>
 
-      <div className="relative z-10 flex flex-col h-full max-w-[1700px] mx-auto w-full p-2 lg:p-6 space-y-6">
+      <div className="relative z-20 flex flex-col h-full max-w-[1500px] mx-auto w-full p-4 lg:p-12 space-y-10">
         
         {/* 🛰️ NEXUS HEADER */}
-        <header className="flex justify-between items-center bg-white/[0.01] border border-white/5 p-4 rounded-3xl backdrop-blur-3xl shadow-xl">
-          <div className="flex items-center gap-4">
+        <header className="flex justify-between items-center bg-white/[0.02] border border-white/10 p-5 rounded-[2rem] backdrop-blur-3xl shadow-2xl">
+          <div className="flex items-center gap-5">
             <div className="relative group">
-              <div className="h-12 w-12 rounded-xl bg-black border border-[#00ffc3]/30 flex items-center justify-center shadow-[0_0_30px_rgba(0,255,195,0.05)] transition-transform duration-500 group-hover:rotate-12">
-                <ShieldAlert className="text-[#00ffc3] w-6 h-6 animate-pulse" />
+              <div className="h-14 w-14 rounded-2xl bg-black border border-[#00ffc3]/40 flex items-center justify-center shadow-[0_0_40px_rgba(0,255,195,0.1)] transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110">
+                <BrainCircuit className="text-[#00ffc3] w-7 h-7 animate-pulse" />
               </div>
-              <div className="absolute -inset-1 bg-[#00ffc3]/20 blur-lg rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -inset-2 bg-[#00ffc3]/10 blur-xl rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             
             <div className="flex flex-col">
-              <h1 className="text-lg font-black tracking-[0.2em] text-white flex items-center gap-2">
-                MONROE <span className="bg-[#00ffc3] text-black text-[9px] px-2 py-0.5 rounded-sm tracking-tighter">SENTINAL V4.1</span>
+              <h1 className="text-xl font-black tracking-[0.3em] text-white flex items-center gap-2">
+                MONROE <span className="bg-[#00ffc3] text-black text-[10px] px-2.5 py-1 rounded-sm tracking-tighter font-mono">V4.1_ABYSSAL</span>
               </h1>
               <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1.5 text-[#00ffc3]/60 text-[10px] font-mono tracking-widest uppercase">
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#00ffc3] animate-ping" />
-                  Protocol: Abyssal
+                <span className="flex items-center gap-2 text-[#00ffc3]/70 text-[11px] font-mono tracking-widest uppercase">
+                  <div className="h-2 w-2 rounded-full bg-[#00ffc3] animate-ping" />
+                  Sentience Status: Synchronized
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/10 rounded-xl text-[10px] font-mono text-[#00ffc3]/70 tracking-widest">
-              NEXUS_SYNC_STABLE // 0.003ms
+          <div className="flex items-center gap-5">
+            <div className="hidden md:flex items-center gap-3 px-5 py-2.5 bg-white/[0.03] border border-white/10 rounded-2xl text-[10px] font-mono text-[#00ffc3]/80 tracking-widest uppercase">
+              <Activity size={12} className="text-[#00ffc3]" />
+              Lat: 0.002ms // Local_Sense
             </div>
             <button 
               onClick={() => setViewMode(viewMode === 'HUMAN' ? 'MACHINE' : 'HUMAN')}
-              className="px-5 py-2.5 bg-[#00ffc3] hover:bg-[#00cc9d] text-black text-[10px] font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(0,255,195,0.2)]"
+              className="px-6 py-3 bg-[#00ffc3] hover:bg-white text-black text-[10px] font-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-[0_15px_40px_rgba(0,255,195,0.3)] uppercase tracking-widest"
             >
-              {viewMode === 'HUMAN' ? 'MACHINE_INTERFACE' : 'HUMAN_INTERFACE'}
+              {viewMode === 'HUMAN' ? 'machine_node' : 'human_node'}
             </button>
           </div>
         </header>
@@ -252,18 +253,18 @@ export default function MonroePage() {
                     key={i}
                     className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className={`max-w-[85%] lg:max-w-[75%] flex gap-4 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                      <div className={`h-10 w-10 shrink-0 rounded-xl border flex items-center justify-center shadow-lg transition-transform hover:scale-110 ${
+                    <div className={`max-w-[90%] sm:max-w-[80%] lg:max-w-[70%] flex gap-5 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                      <div className={`h-11 w-11 shrink-0 rounded-2xl border flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110 ${
                         m.role === 'user' 
                           ? 'bg-white text-black border-white' 
-                          : 'bg-[#00ffc3]/10 text-[#00ffc3] border-[#00ffc3]/30'
+                          : 'bg-[#00ffc3]/15 text-[#00ffc3] border-[#00ffc3]/50'
                       }`}>
-                        {m.role === 'user' ? <User size={18} /> : <ShieldAlert size={18} className="animate-pulse" />}
+                        {m.role === 'user' ? <User size={20} /> : <BrainCircuit size={20} className="animate-pulse" />}
                       </div>
-                      <div className={`p-5 lg:p-7 rounded-[2rem] text-sm leading-relaxed backdrop-blur-md transition-all ${
+                      <div className={`p-5 sm:p-8 rounded-[2rem] text-sm sm:text-[15px] leading-relaxed backdrop-blur-xl transition-all border ${
                         m.role === 'user' 
-                          ? 'bg-white text-black rounded-tr-none border border-white shadow-[0_10px_30px_rgba(255,255,255,0.05)]' 
-                          : 'bg-white/[0.02] text-white/90 border border-white/5 rounded-tl-none shadow-[0_10px_30px_rgba(0,0,0,0.2)] group-hover:bg-white/[0.03]'
+                          ? 'bg-white text-black rounded-tr-none border-white shadow-[0_15px_40px_rgba(255,255,255,0.1)]' 
+                          : 'bg-white/[0.03] text-white/95 border-white/10 rounded-tl-none shadow-[0_20px_50px_rgba(0,0,0,0.4)] group-hover:bg-white/[0.05]'
                       }`}>
                         <div className="prose prose-invert prose-emerald max-w-none 
                             prose-headings:text-[#00ffc3] prose-headings:font-black prose-headings:tracking-tighter
@@ -286,10 +287,10 @@ export default function MonroePage() {
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="flex gap-4">
-                    <div className="h-10 w-10 rounded-xl bg-[#00ffc3]/10 border border-[#00ffc3]/30 flex items-center justify-center text-[#00ffc3]">
-                       <ShieldAlert size={18} className="animate-pulse" />
+                    <div className="h-10 w-10 rounded-xl bg-[#00ffc3]/15 border border-[#00ffc3]/40 flex items-center justify-center text-[#00ffc3]">
+                       <BrainCircuit size={18} className="animate-pulse" />
                     </div>
-                    <div className="flex items-center gap-2 p-5 bg-white/[0.02] border border-white/5 rounded-[2rem] rounded-tl-none">
+                    <div className="flex items-center gap-2 p-4 bg-white/[0.03] border border-white/10 rounded-[1.8rem] rounded-tl-none">
                       <div className="h-1.5 w-1.5 bg-[#00ffc3] rounded-full animate-bounce [animation-delay:-0.3s]" />
                       <div className="h-1.5 w-1.5 bg-[#00ffc3] rounded-full animate-bounce [animation-delay:-0.15s]" />
                       <div className="h-1.5 w-1.5 bg-[#00ffc3] rounded-full animate-bounce" />
@@ -301,14 +302,14 @@ export default function MonroePage() {
 
             <div className="p-6 lg:p-10 bg-black/40 backdrop-blur-3xl border-t border-white/5 relative z-10">
               <div className="max-w-4xl mx-auto space-y-6">
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3 justify-center">
                   {['Synthesise Global News', 'Sovereign Network Integrity', 'Edge AI Projections'].map(suggestion => (
                     <button
                       key={suggestion}
                       onClick={() => { setInput(suggestion); handleSend(); }}
-                      className="px-5 py-2.5 bg-white/[0.02] border border-white/5 hover:border-[#00ffc3]/40 rounded-full text-[10px] font-mono text-white/40 hover:text-[#00ffc3] transition-all hover:scale-105"
+                      className="px-5 py-2.5 bg-white/[0.04] border border-white/10 hover:border-[#00ffc3]/50 hover:bg-[#00ffc3]/5 rounded-2xl text-[10px] font-mono text-white/40 hover:text-[#00ffc3] transition-all hover:scale-105 active:scale-95 shadow-xl uppercase tracking-widest"
                     >
-                      {suggestion}
+                      <span className="opacity-30">/</span> {suggestion}
                     </button>
                   ))}
                 </div>
