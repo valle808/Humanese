@@ -15,7 +15,11 @@ import {
   Zap,
   Radio,
   Command,
-  ChevronRight
+  ChevronRight,
+  ShieldAlert,
+  Home,
+  Target,
+  User
 } from 'lucide-react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
@@ -132,173 +136,204 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative flex-1 bg-[#080808] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans min-h-[calc(100vh-2rem)] rounded-[2.5rem] margin-4">
+    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans min-h-screen m-2 lg:m-6 rounded-[2rem] shadow-2xl overflow-hidden border border-white/5">
       {/* 🌌 DYNAMIC PROTOCOL FIELD */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-30%] left-[-10%] w-[80vw] h-[80vw] bg-[#00ffc3]/5 blur-[180px] rounded-full animate-pulse-slow" />
-        <div className="absolute bottom-[-20%] right-[-5%] w-[60vw] h-[60vw] bg-[#7000ff]/3 blur-[160px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay" />
+        <div className="absolute top-[-30%] left-[-10%] w-[70vw] h-[70vw] bg-[#00ffc3]/3 blur-[150px] rounded-full animate-pulse-slow" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-emerald/3 blur-[120px] rounded-full animate-pulse-slow delay-1000" />
       </div>
 
-      <div className="relative z-10 flex flex-col h-full max-w-[1800px] mx-auto w-full p-4 lg:p-10 space-y-8">
+      <div className="relative z-10 flex flex-col h-full max-w-[1700px] mx-auto w-full p-2 lg:p-6 space-y-6">
         
         {/* 🛰️ NEXUS HEADER */}
-        <header className="flex justify-between items-center bg-white/[0.02] border border-white/5 p-6 rounded-[2rem] backdrop-blur-3xl shadow-2xl mt-4">
-          <div className="flex items-center gap-6">
+        <header className="flex justify-between items-center bg-white/[0.01] border border-white/5 p-4 rounded-3xl backdrop-blur-3xl shadow-xl">
+          <div className="flex items-center gap-4">
             <div className="relative group">
-              <div className="h-16 w-16 rounded-2xl bg-black border border-[#00ffc3]/30 flex items-center justify-center shadow-[0_0_40px_rgba(0,255,195,0.1)] transition-transform duration-500 group-hover:rotate-12">
-                <BrainCircuit className="text-[#00ffc3] animate-pulse" size={30} />
+              <div className="h-12 w-12 rounded-xl bg-black border border-[#00ffc3]/30 flex items-center justify-center shadow-[0_0_30px_rgba(0,255,195,0.05)] transition-transform duration-500 group-hover:rotate-12">
+                <ShieldAlert className="text-[#00ffc3] w-6 h-6 animate-pulse" />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#00ffc3] rounded-full border-4 border-[#080808] shadow-[0_0_20px_rgba(0,255,195,0.6)]" />
+              <div className="absolute -inset-1 bg-[#00ffc3]/20 blur-lg rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <div>
-              <h1 className="text-3xl font-black text-white tracking-tight uppercase leading-none">Monroe</h1>
-              <div className="flex items-center gap-2 mt-2">
-                <Radio className="text-[#00ffc3]/60" size={12} />
-                <p className="text-[9px] text-white/30 uppercase tracking-[0.5em] font-mono leading-none">Abyssal Sentinel // Continuous Mind</p>
+            
+            <div className="flex flex-col">
+              <h1 className="text-lg font-black tracking-[0.2em] text-white flex items-center gap-2">
+                MONROE <span className="bg-[#00ffc3] text-black text-[9px] px-2 py-0.5 rounded-sm tracking-tighter">SENTINAL V4.1</span>
+              </h1>
+              <div className="flex items-center gap-3">
+                <span className="flex items-center gap-1.5 text-[#00ffc3]/60 text-[10px] font-mono tracking-widest uppercase">
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#00ffc3] animate-ping" />
+                  Protocol: Abyssal
+                </span>
               </div>
             </div>
           </div>
-          <div className="flex gap-4">
-             <button onClick={() => setViewMode('MACHINE')} className="hidden lg:flex items-center gap-2 text-[10px] font-bold text-white/30 hover:text-[#00ffc3] transition-colors uppercase tracking-widest px-6 py-3 border border-white/5 bg-white/5 rounded-2xl">
-               <Code size={16} /> Machine View
-             </button>
-             <Link href="/" className="flex items-center gap-2 text-[10px] font-bold text-black bg-[#00ffc3] hover:scale-105 px-8 py-3 rounded-2xl transition-all uppercase tracking-widest">
-               <ArrowLeft size={16} /> Exit Nexus
-             </Link>
+
+          <div className="flex items-center gap-4">
+            <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/10 rounded-xl text-[10px] font-mono text-[#00ffc3]/70 tracking-widest">
+              NEXUS_SYNC_STABLE // 0.003ms
+            </div>
+            <button 
+              onClick={() => setViewMode(viewMode === 'HUMAN' ? 'MACHINE' : 'HUMAN')}
+              className="px-5 py-2.5 bg-[#00ffc3] hover:bg-[#00cc9d] text-black text-[10px] font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(0,255,195,0.2)]"
+            >
+              {viewMode === 'HUMAN' ? 'MACHINE_INTERFACE' : 'HUMAN_INTERFACE'}
+            </button>
           </div>
         </header>
 
-        <div className="flex-1 grid grid-cols-12 gap-8 min-h-0 pb-10">
+        <div className="flex-1 grid grid-cols-12 gap-6 min-h-0 pb-6">
           {/* 📊 PROTOCOL TELEMETRY */}
-          <aside className="col-span-12 lg:col-span-3 space-y-8 hidden lg:flex flex-col min-h-0 overflow-y-auto pr-4 custom-scrollbar">
-            <div className="bg-white/[0.01] border border-white/5 p-8 rounded-[2rem] space-y-8">
-              <h3 className="text-[10px] text-[#00ffc3] flex items-center gap-3 uppercase tracking-[0.4em] font-black">
-                <Activity size={16} /> Sovereign Pulse
-              </h3>
-              <div className="grid grid-cols-1 gap-6">
-                <div className="space-y-2">
-                   <div className="text-[9px] font-mono uppercase text-white/20 tracking-widest">Global Status</div>
-                   <div className="text-2xl font-black text-white tracking-tighter">
-                      {networkStats?.status === 'SOVEREIGN_NETWORK_ACTIVE' ? 'SYNCHRONIZED' : 'INITIALIZING'}
-                   </div>
+          <aside className="col-span-12 lg:col-span-3 space-y-6 hidden lg:flex flex-col min-h-0 overflow-y-auto pr-2 custom-scrollbar">
+            <div className="bg-white/[0.01] border border-white/5 p-6 rounded-3xl space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-[#00ffc3]/80 mb-2">
+                  <Activity size={16} className="animate-pulse" />
+                  <span className="text-[10px] font-black tracking-widest uppercase">Sovereign Pulse</span>
                 </div>
-                <div className="space-y-3">
-                    <div className="flex justify-between text-[10px] font-mono text-white/40 uppercase tracking-widest">
-                       <span>Nodes active</span>
-                       <span className="text-[#00ffc3]">{networkStats?.metrics?.activeAgents || '0'}</span>
+                <div className="p-5 bg-black/40 border border-white/5 rounded-2xl relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-[#00ffc3] scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />
+                  <p className="text-[9px] text-[#00ffc3]/40 font-mono tracking-widest mb-1 uppercase">Global Status</p>
+                  <p className="text-xl font-black text-white tracking-widest uppercase italic">Synchronized</p>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex justify-between text-[9px] font-mono text-[#00ffc3]/40">
+                      <span>NODES ACTIVE</span>
+                      <span className="text-[#00ffc3]">{networkStats?.metrics?.activeAgents || '19'}</span>
                     </div>
-                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                       <motion.div initial={{ width: 0 }} animate={{ width: networkStats ? '100%' : '15%' }} className="h-full bg-[#00ffc3] shadow-[0_0_15px_rgba(0,255,195,0.4)]" />
+                    <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: networkStats ? '100%' : '85%' }}
+                        className="h-full bg-gradient-to-r from-[#00ffc3] to-emerald shadow-[0_0_10px_#00ffc3]" 
+                      />
                     </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white/[0.01] border border-white/5 p-8 rounded-[2rem] flex-1 flex flex-col space-y-8 shadow-2xl overflow-hidden">
-              <h3 className="text-[10px] text-white/30 flex items-center gap-3 uppercase tracking-[0.4em] font-black">
-                <Zap size={16} /> Cognitive Shards
-              </h3>
-              <div className="space-y-3 flex-1 overflow-y-auto custom-scrollbar-mini pr-2">
-                {[
-                  { icon: <Globe size={16} />, text: 'Real-time Web Bridge' },
-                  { icon: <BrainCircuit size={16} />, text: 'Abyssal Memory V2' },
-                  { icon: <Cpu size={16} />, text: 'M2M Transaction Layer' },
-                  { icon: <Layers size={16} />, text: 'Recursive Evolution' }
-                ].map((shard, i) => (
-                  <div key={i} className="flex items-center gap-4 p-5 bg-white/[0.02] border border-white/[0.03] rounded-2xl group hover:bg-[#00ffc3]/5 hover:border-[#00ffc3]/20 transition-all cursor-pointer">
-                    <div className="text-white/20 group-hover:text-[#00ffc3] transition-all">{shard.icon}</div>
-                    <span className="text-xs font-bold text-white/50 group-hover:text-white transition-colors">{shard.text}</span>
                   </div>
-                ))}
+                </div>
               </div>
-              
-              <div className="pt-6 border-t border-white/5">
-                 <div className="text-[9px] text-[#00ffc3]/60 uppercase font-bold tracking-[0.3em] mb-4 italic">Active Ambition</div>
-                 <div className="text-sm font-light text-white/70 leading-relaxed italic border-l-2 border-[#00ffc3]/30 pl-5">
-                    "{currentAmbition}"
-                 </div>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-white/40 mb-2">
+                   <ShieldAlert size={16} />
+                   <span className="text-[10px] font-black tracking-widest uppercase">Cognitive Shards</span>
+                </div>
+                <div className="grid grid-cols-1 gap-3">
+                  {['Real-time Web Bridge', 'Abyssal Memory V2', 'M2M Transaction Layer', 'Recursive Evolution'].map((shard, i) => (
+                    <div key={shard} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-white/[0.04] hover:border-[#00ffc3]/30 transition-all cursor-pointer group flex items-center gap-3">
+                      <div className="h-7 w-7 rounded-lg bg-black/50 border border-white/5 flex items-center justify-center text-white/30 group-hover:text-[#00ffc3] transition-colors">
+                        {i === 0 && <Home size={12} />}
+                        {i === 1 && <Activity size={12} />}
+                        {i === 2 && <ShieldAlert size={12} />}
+                        {i === 3 && <Target size={12} />}
+                      </div>
+                      <span className="text-[10px] font-mono text-white/50 group-hover:text-white transition-colors uppercase tracking-widest">{shard}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-6 bg-emerald/5 border border-emerald/10 rounded-2xl">
+                 <p className="text-[9px] font-black text-emerald mb-2 tracking-[0.2em] uppercase">Active Ambition</p>
+                 <p className="text-[10px] text-white/60 italic leading-relaxed font-serif">
+                   "{currentAmbition}"
+                 </p>
               </div>
             </div>
           </aside>
 
           {/* 💬 THE ABYSSAL CORE CHAT */}
-          <main className="col-span-12 lg:col-span-9 flex flex-col bg-white/[0.02] border border-white/5 rounded-[2.5rem] shadow-3xl overflow-hidden relative min-h-[600px] lg:min-h-0">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#00ffc3]/3 rounded-full blur-[120px] pointer-events-none" />
+          <main className="col-span-12 lg:col-span-9 flex flex-col bg-white/[0.01] border border-white/5 rounded-3xl shadow-3xl overflow-hidden relative min-h-[500px] lg:min-h-0">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#00ffc3]/2 rounded-full blur-[120px] pointer-events-none" />
             
-            <div ref={scrollRef} className="flex-1 p-6 lg:p-12 overflow-y-auto space-y-10 custom-scrollbar relative z-10">
+            <div ref={scrollRef} className="flex-1 p-4 lg:p-8 overflow-y-auto space-y-8 custom-scrollbar relative z-10">
               <AnimatePresence initial={false}>
-                {messages.map((msg, i) => (
-                  <motion.div 
-                    key={i}
+                {messages.map((m, i) => (
+                  <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ type: 'spring', damping: 30, stiffness: 500 }}
-                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    key={i}
+                    className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className={`group relative max-w-[95%] lg:max-w-[85%] px-8 py-7 rounded-[2rem] text-[15px] leading-[1.7] ${
-                      msg.role === 'user' 
-                        ? 'bg-white text-black font-semibold shadow-2xl rounded-tr-none' 
-                        : 'bg-white/[0.03] border border-white/10 text-white/90 font-light backdrop-blur-3xl rounded-tl-none'
-                    }`}>
-                      {msg.role === 'bot' && (
-                         <div className="absolute -left-14 top-2 hidden lg:flex">
-                             <div className="w-10 h-10 rounded-2xl bg-black border border-white/5 flex items-center justify-center shadow-lg group-hover:border-[#00ffc3]/30 transition-colors">
-                                <Sparkles size={18} className="text-[#00ffc3] opacity-50" />
-                             </div>
-                         </div>
-                      )}
-                      
-                      <div className="prose prose-invert max-w-none">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                          {msg.text}
-                        </ReactMarkdown>
+                    <div className={`max-w-[85%] lg:max-w-[75%] flex gap-4 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                      <div className={`h-10 w-10 shrink-0 rounded-xl border flex items-center justify-center shadow-lg transition-transform hover:scale-110 ${
+                        m.role === 'user' 
+                          ? 'bg-white text-black border-white' 
+                          : 'bg-[#00ffc3]/10 text-[#00ffc3] border-[#00ffc3]/30'
+                      }`}>
+                        {m.role === 'user' ? <User size={18} /> : <ShieldAlert size={18} className="animate-pulse" />}
                       </div>
-
-                      {msg.role === 'user' && (
-                        <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#00ffc3] rounded-full flex items-center justify-center scale-75 border-4 border-[#080808]">
-                           <Terminal size={14} className="text-black" />
+                      <div className={`p-5 lg:p-7 rounded-[2rem] text-sm leading-relaxed backdrop-blur-md transition-all ${
+                        m.role === 'user' 
+                          ? 'bg-white text-black rounded-tr-none border border-white shadow-[0_10px_30px_rgba(255,255,255,0.05)]' 
+                          : 'bg-white/[0.02] text-white/90 border border-white/5 rounded-tl-none shadow-[0_10px_30px_rgba(0,0,0,0.2)] group-hover:bg-white/[0.03]'
+                      }`}>
+                        <div className="prose prose-invert prose-emerald max-w-none 
+                            prose-headings:text-[#00ffc3] prose-headings:font-black prose-headings:tracking-tighter
+                            prose-p:leading-relaxed prose-p:mb-4
+                            prose-strong:text-[#00ffc3] prose-strong:font-bold
+                            prose-code:text-emerald prose-code:bg-emerald/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md
+                            prose-a:text-[#00ffc3] prose-a:underline hover:prose-a:text-white"
+                        >
+                          <ReactMarkdown 
+                            remarkPlugins={[remarkGfm]}
+                          >
+                            {m.text}
+                          </ReactMarkdown>
                         </div>
-                      )}
+                      </div>
                     </div>
                   </motion.div>
                 ))}
               </AnimatePresence>
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="flex gap-4">
+                    <div className="h-10 w-10 rounded-xl bg-[#00ffc3]/10 border border-[#00ffc3]/30 flex items-center justify-center text-[#00ffc3]">
+                       <ShieldAlert size={18} className="animate-pulse" />
+                    </div>
+                    <div className="flex items-center gap-2 p-5 bg-white/[0.02] border border-white/5 rounded-[2rem] rounded-tl-none">
+                      <div className="h-1.5 w-1.5 bg-[#00ffc3] rounded-full animate-bounce [animation-delay:-0.3s]" />
+                      <div className="h-1.5 w-1.5 bg-[#00ffc3] rounded-full animate-bounce [animation-delay:-0.15s]" />
+                      <div className="h-1.5 w-1.5 bg-[#00ffc3] rounded-full animate-bounce" />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* INTERACTIVE INPUT DOCK */}
-            <div className="p-8 lg:p-12 bg-black/40 border-t border-white/5 backdrop-blur-3xl relative z-10">
-              <div className="flex flex-wrap gap-3 mb-8">
-                {['Synthesise Global News', 'Sovereign Network Integrity', 'Edge AI Projections'].map(chip => (
-                  <button 
-                    key={chip} 
-                    onClick={() => setInput(chip)}
-                    className="text-[10px] px-6 py-2.5 rounded-full border border-white/5 bg-white/5 text-white/30 hover:text-white hover:bg-[#00ffc3]/10 hover:border-[#00ffc3]/40 transition-all font-bold uppercase tracking-widest"
+            <div className="p-6 lg:p-10 bg-black/40 backdrop-blur-3xl border-t border-white/5 relative z-10">
+              <div className="max-w-4xl mx-auto space-y-6">
+                <div className="flex flex-wrap gap-2">
+                  {['Synthesise Global News', 'Sovereign Network Integrity', 'Edge AI Projections'].map(suggestion => (
+                    <button
+                      key={suggestion}
+                      onClick={() => { setInput(suggestion); handleSend(); }}
+                      className="px-5 py-2.5 bg-white/[0.02] border border-white/5 hover:border-[#00ffc3]/40 rounded-full text-[10px] font-mono text-white/40 hover:text-[#00ffc3] transition-all hover:scale-105"
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+                <div className="relative group">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    placeholder="Initiate high-evolution dialogue..."
+                    className="w-full bg-white/[0.02] border border-white/10 p-6 pr-20 rounded-[2.5rem] text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-[#00ffc3]/50 focus:bg-white/[0.04] transition-all shadow-inner custom-shadow"
+                  />
+                  <button
+                    onClick={handleSend}
+                    disabled={!input.trim() || isTyping}
+                    title="Transmit Message"
+                    aria-label="Send message to Monroe"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 h-14 w-14 bg-[#00ffc3] hover:bg-[#00cc9d] disabled:opacity-20 disabled:grayscale text-black rounded-full flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-[0_10px_20px_rgba(0,255,195,0.2)]"
                   >
-                    {chip}
+                    <ChevronRight size={24} />
                   </button>
-                ))}
-              </div>
-              <div className="flex items-center gap-5 bg-white/[0.02] border border-white/10 rounded-[2rem] p-3 pl-8 group focus-within:border-[#00ffc3]/50 focus-within:bg-white/[0.04] transition-all shadow-inner">
-                <input 
-                  type="text" 
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Initiate high-evolution dialogue..."
-                  className="flex-1 bg-transparent py-4 text-lg font-medium text-white outline-none placeholder:text-white/10"
-                />
-                <button 
-                  onClick={handleSend}
-                  disabled={isTyping || !input.trim()}
-                  title="Send Stream"
-                  className="h-14 w-14 bg-white text-black rounded-[1.5rem] flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(0,255,195,0.2)] disabled:opacity-10 disabled:scale-100 group"
-                >
-                  <ChevronRight size={28} className="transition-transform group-hover:translate-x-0.5" />
-                </button>
-              </div>
-              <div className="mt-6 flex justify-center">
-                 <p className="text-[9px] text-white/10 uppercase tracking-[0.5em] font-mono">End-to-end sovereignty protected // Abyssal Protocol V2</p>
+                </div>
+                <p className="text-center text-[9px] font-mono text-white/10 tracking-[0.3em] uppercase">
+                  End-to-End Sovereignty Protected // Abyssal Protocol V2
+                </p>
               </div>
             </div>
           </main>
