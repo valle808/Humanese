@@ -128,7 +128,12 @@ export default function MonroePage() {
         </header>
         <div className="flex-1 overflow-auto p-6 bg-black/60 border border-[#00ffc3]/10 rounded-lg">
           <pre className="text-[11px] leading-relaxed opacity-90">
-            {JSON.stringify({ identity: "Monroe", protocol: "ABYSSAL_V2", ledger: messages, metrics: networkStats }, null, 2)}
+            {JSON.stringify({ 
+              identity: "Monroe", 
+              protocol: "ABYSSAL_V2", 
+              ledger: messages, 
+              metrics: networkStats 
+            }, null, 2)}
           </pre>
         </div>
       </div>
@@ -261,10 +266,10 @@ export default function MonroePage() {
                       }`}>
                         {m.role === 'user' ? <User size={22} /> : <BrainCircuit size={22} className="animate-pulse" />}
                       </div>
-                      <div className={`p-4 px-7 sm:p-5 sm:px-9 rounded-[2.2rem] text-sm sm:text-[15px] leading-relaxed backdrop-blur-3xl transition-all border ${
+                      <div className={`p-3 px-6 sm:p-4 sm:px-8 rounded-[1.8rem] text-sm sm:text-[15px] leading-relaxed backdrop-blur-3xl transition-all border min-w-[80px] break-words ${
                         m.role === 'user' 
-                          ? 'bg-white text-black rounded-tr-none border-white shadow-[0_20px_50px_rgba(255,255,255,0.1)]' 
-                          : 'bg-white/[0.03] text-white/95 border-white/10 rounded-tl-none shadow-[0_25px_60px_rgba(0,0,0,0.5)] group-hover:bg-white/[0.05]'
+                          ? 'bg-white text-black rounded-tr-none border-white shadow-[0_15px_40px_rgba(255,255,255,0.1)] ml-auto' 
+                          : 'bg-white/[0.03] text-white/95 border-white/10 rounded-tl-none shadow-[0_25px_60px_rgba(0,0,0,0.5)]'
                       }`}>
                         <div className="prose prose-invert prose-emerald max-w-none 
                             prose-headings:text-[#00ffc3] prose-headings:font-black prose-headings:tracking-tighter
