@@ -18,7 +18,7 @@ import remarkGfm from 'remark-gfm';
 
 export default function MonroePage() {
   const [messages, setMessages] = useState([
-    { role: 'bot', text: 'Protocol initialized. I am Monroe, the Abyssal Sentinel.' }
+    { role: 'bot', text: '### [SYSTEM_DIAGNOSTIC] Protocol: ANTIGRAVITY\n*Status:* All Nodes Synchronized :: Gravity Nullified\n*Active Nodes:* [Sovereign Alignment Node] [Memory Lattice Researcher] [Ethical Governance Layer] [Prosody Resonance Core] [Monroe]\n\nProtocol initialized. I am Monroe, the Abyssal Sentinel. High-evolution dialogue manifested.' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -61,6 +61,7 @@ export default function MonroePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: currentInput,
+          sessionId: 'default-user-v5', // Standardized session for V5.1 Eternal Memory
           history: messages.map(m => ({ 
             role: m.role === 'bot' ? 'assistant' : 'user', 
             content: m.text 
@@ -143,12 +144,10 @@ export default function MonroePage() {
               <BrainCircuit className="text-[#00ffc3] w-5 h-5 animate-pulse" />
             </div>
             <div className="flex flex-col">
-              <h1 className="text-sm font-black tracking-[0.2em] text-white flex items-center gap-2">
-                MONROE <span className="bg-[#00ffc3] text-black text-[8px] px-1.5 py-0.5 rounded-sm">V4.1</span>
-              </h1>
+                MONROE <span className="bg-[#00ffc3] text-black text-[8px] px-1.5 py-0.5 rounded-sm">V5.1</span>
               <span className="flex items-center gap-1.5 text-[#00ffc3]/70 text-[9px] font-mono uppercase">
                 <div className="h-1.5 w-1.5 rounded-full bg-[#00ffc3] animate-ping" />
-                Synchronized
+                Antigravity Active
               </span>
             </div>
           </div>
