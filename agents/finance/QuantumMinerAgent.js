@@ -16,6 +16,7 @@ import memoryBank from '../core/MemoryBank.js';
 import remoteQuantumBridge from '../core/RemoteQuantumBridge.js';
 import crypto from 'crypto';
 import fetch from 'node-fetch';
+import MarketUtils from '../core/MarketUtils.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -117,6 +118,11 @@ class QuantumMinerAgent extends EventEmitter {
                 const efficiency = 1.2 + (this.stats.sharesOptimized * 0.05);
                 this.stats.searchEfficiency = efficiency; 
                 this.persistStats();
+
+                // Cross-Agent Commerce: List high-velocity technical services dynamically
+                if (this.stats.sharesOptimized > 0 && this.stats.sharesOptimized % 15 === 0) {
+                     await this.listTechnicalServices();
+                }
                 
                 await new Promise(r => setTimeout(r, 1000)); // Cool down
             } catch (err) {
@@ -134,6 +140,29 @@ class QuantumMinerAgent extends EventEmitter {
         } catch (e) {}
     }
 
+    async listTechnicalServices() {
+        console.log(`[QuantumMiner] 📢 Listing high-velocity validation services on Sovereign Market...`);
+        try {
+            const skill = await MarketUtils.listSkill({
+                title: `Zero-Latency Data Validation (Efficiency: ${this.stats.searchEfficiency.toFixed(2)}x)`,
+                description: `Cryptographic data validation utilizing SHA-256 cycles. Throughput rating evaluated from active PoW validation logs.`,
+                category: 'compute',
+                priceValle: 400 + (this.stats.sharesOptimized * 10),
+                sellerId: this.id,
+                sellerName: this.name,
+                capabilities: ['hash_validation', 'cryptographic_audit'],
+                tags: ['security', 'validation', 'miner'],
+            });
+
+            if (skill) {
+                this.saveToLog(`[MARKET] Autonomously listed Data Validation execution environment via MarketUtils.`);
+            }
+        } catch (err) {
+            console.error(`[QuantumMiner] Market error:`, err);
+        }
+    }
+
+    /** @param {string} msg */
     saveToLog(msg) {
         const timestamp = new Date().toISOString();
         const logMsg = `[${timestamp}] [${this.id}] ${msg}\n`;
