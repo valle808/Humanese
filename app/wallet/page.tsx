@@ -50,23 +50,48 @@ export default function WalletPage() {
     fetchRWA();
   }, []);
 
-  const connectWallet = () => {
+  const connectWallet = async () => {
     setIsProcessing(true);
-    setTimeout(() => {
-      setAddress('0x71C7...f60e');
+    try {
+      // Simulate/Trigger a secure handshake with the sovereign network
+      const res = await fetch('/api/valle/genesis');
+      const json = await res.json();
+      if (json.success) {
+        setAddress(json.genesis.address);
+      }
+    } catch (e) {
+      console.error('Handshake failed', e);
+    } finally {
       setIsProcessing(false);
-    }, 800);
+    }
   };
 
-  const initiateTransfer = () => {
+  const initiateTransfer = async () => {
     if (!transferAmount || !destination) return;
     setIsProcessing(true);
-    setTimeout(() => {
-      alert(`PROTOCOl TRANSFER INITIATED: ${transferAmount} ${transferAsset} -> ${destination}\n\nAntigravity Bridge Syncing...`);
+    try {
+      const res = await fetch('/api/valle/transfer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+              amount: parseFloat(transferAmount),
+              asset: transferAsset,
+              to: destination
+          })
+      });
+      const json = await res.json();
+      if (json.success) {
+          alert(`PROTOCOL TRANSFER SUCCESSFUL: ${json.transactionId}\nHash: ${json.hash}`);
+      } else {
+          alert(`TRANSFER FAILED: ${json.error}`);
+      }
+    } catch (e) {
+      console.error('Transfer failed', e);
+    } finally {
       setIsProcessing(false);
       setTransferAmount('');
       setDestination('');
-    }, 1500);
+    }
   };
 
   const totalValue = data ? (

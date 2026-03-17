@@ -111,13 +111,14 @@ export class ValleCryptoEngine {
             };
         } catch (error) {
             console.error('[Valle Engine] Failed to fetch network metrics', error);
-            // Fallback to sensible defaults instead of random simulation
+            // Base values for the network if DB query fails. 
+            // We use absolute 0 for variables and 500M for fixed supply.
             return {
                 valleSupply: 500000000.00,
-                circulatingSupply: 124500.00,
-                nodesActive: 8241,
-                reliability: 99.997,
-                transactionCount: 142
+                circulatingSupply: 0.00,
+                nodesActive: 0,
+                reliability: 100.00,
+                transactionCount: 0
             };
         }
     }

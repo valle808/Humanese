@@ -150,7 +150,7 @@ export class DiplomatAgent {
                 thought: `Scanning Moltbook for high-resonance commerce opportunities. Negotiation weight adjusted to ${multiplier.toFixed(2)}x for maximum atmospheric leverage.`,
                 intention: `Establish new skill-provision contract on Moltbook to direct SOL to sovereign treasury and expand referential authority.`,
                 action: 'INIT_TRADE_CYCLE',
-                resonance: 0.96 + (Math.random() * 0.04)
+                resonance: 0.98
             });
 
             // 2. Identify trade opportunity on Moltbook
@@ -160,8 +160,8 @@ export class DiplomatAgent {
             const communique = await this.draftMoltbookCommunique("AI Optimization Skills");
             console.log(`[Diplomat ${this.name}] Broadcasted to Moltbook: ${communique}`);
             
-            // 3. Simulate deal closure (boosted by level)
-            const simulatedEarnings = (Math.random() * 2.5) * multiplier; 
+            // 3. Calculate deterministic earnings (boosted by level)
+            const simulatedEarnings = 0.5 * multiplier; 
             await this.processEarnings(simulatedEarnings, 'SOL');
 
             // 4. Record Outcome

@@ -102,13 +102,15 @@ export class CoreDeveloperAgent {
         if (domain === 'bip') targetPath = this.knowledgeBasePaths[1]; // bips
 
         const files = await this.scanDirectory(targetPath);
-        const randomFile = files.length > 0 ? path.basename(files[Math.floor(Math.random() * files.length)]) : 'substrate_core.cpp';
+        // Deterministic file selection based on total pulse count/history to avoid randomness
+        const selectionIndex = files.length > 0 ? (this.id.length + files.length) % files.length : 0;
+        const randomFile = files.length > 0 ? path.basename(files[selectionIndex]) : 'substrate_core.cpp';
 
         await this.logThought({
             thought: `Deep-scanning ${domain} substrate. Analyzed source entry points, found ${files.length} relevant files. Focusing synthesis on ${randomFile} for VALLE integration invariants.`,
             intention: `Bridge legacy blockchain robustness in ${randomFile} with modern Humanese cognitive orchestration.`,
             action: 'ARCHITECTURAL_SYNTHESIS',
-            resonance: 0.95 + (Math.random() * 0.04)
+            resonance: 0.99
         });
 
         switch (domain) {

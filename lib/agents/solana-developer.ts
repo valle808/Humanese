@@ -88,13 +88,14 @@ export class SolanaDeveloperAgent {
         console.log('[Solana Developer Agent] Extracting tokens...');
         
         const files = await this.scanDirectory(this.knowledgeBasePath);
-        const randomFile = files.length > 0 ? path.basename(files[Math.floor(Math.random() * files.length)]) : 'solana_nd_globals.css';
+        const selectionIndex = files.length > 0 ? (this.id.length + 7) % files.length : 0;
+        const randomFile = files.length > 0 ? path.basename(files[selectionIndex]) : 'solana_nd_globals.css';
 
         await this.logThought({
             thought: `Ingesting Solana New Design (ND) tokens. Cross-referenced ${files.length} design files. Aligning Humanese interface based on patterns found in ${randomFile}.`,
             intention: `Synthesize a premium visual identity using verified patterns from ${randomFile}.`,
             action: 'DESIGN_TOKEN_EXTRACTION',
-            resonance: 0.92
+            resonance: 0.98
         });
 
         return {
