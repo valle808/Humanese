@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldAlert, 
@@ -14,15 +14,37 @@ import {
 } from 'lucide-react';
 
 export default function AdminPage() {
+  const [systemData, setSystemData] = useState<any>(null);
+  const [coinbaseData, setCoinbaseData] = useState<any>(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [passphrase, setPassphrase] = useState('');
   const [error, setError] = useState(false);
   const [tweetText, setTweetText] = useState('');
   const [isTransmitting, setIsTransmitting] = useState(false);
 
+  useEffect(() => {
+    if (isAuthorized) {
+      const fetchData = async () => {
+        try {
+          const [statsRes, cbRes] = await Promise.all([
+            fetch('/api/admin/stats'),
+            fetch('/api/coinbase/balances')
+          ]);
+          if (statsRes.ok) setSystemData(await statsRes.json());
+          if (cbRes.ok) setCoinbaseData(await cbRes.json());
+        } catch (e) {
+          console.error("Admin Sync Error:", e);
+        }
+      };
+      fetchData();
+      const interval = setInterval(fetchData, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [isAuthorized]);
+
   const handleAuthorize = () => {
-    // Simulated OMEGA clearance
-    if (passphrase === 'VALLE_OVERLORD') {
+    // In production, this would be an actual Auth session check
+    if (passphrase === (process.env.NEXT_PUBLIC_ADMIN_KEY || 'VALLE_OVERLORD')) {
       setIsAuthorized(true);
       setError(false);
     } else {
@@ -30,13 +52,17 @@ export default function AdminPage() {
     }
   };
 
-  const handleTransmit = () => {
+  const handleTransmit = async () => {
     setIsTransmitting(true);
-    setTimeout(() => {
+    try {
+      // In a real scenario, this would post to a broadast endpoint
+      await new Promise(r => setTimeout(r, 1500));
       setIsTransmitting(false);
       setTweetText('');
       alert('Transmission successful. Social breach achieved.');
-    }, 2000);
+    } catch (e) {
+      setIsTransmitting(false);
+    }
   };
 
   if (!isAuthorized) {
@@ -98,11 +124,26 @@ export default function AdminPage() {
         </div>
         
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[10px] text-white font-bold uppercase tracking-widest hover:bg-white/10 transition-colors">
+          <div className="flex flex-col gap-1 items-end mr-4">
+             <div className="text-[9px] text-platinum/20 uppercase font-mono">Treasury Status</div>
+             <div className="flex gap-4">
+                {coinbaseData?.onChain?.sol && (
+                  <div className="text-[11px] font-mono text-emerald">
+                    {coinbaseData.onChain.sol.balance.toFixed(4)} SOL
+                  </div>
+                )}
+                {coinbaseData?.coinbase?.length > 0 && (
+                   <div className="text-[11px] font-mono text-cyan-400">
+                     CONNECTED
+                   </div>
+                )}
+             </div>
+          </div>
+          <button className="flex items-center gap-2 px-4 py-2 bg-emerald/10 border border-emerald/20 shadow-[0_0_15px_rgba(0,255,65,0.1)] rounded-xl text-[10px] text-emerald font-bold uppercase tracking-widest hover:bg-emerald/20 transition-all">
             <LinkIcon size={14} /> Link Coinbase
           </button>
           <div className="flex items-center gap-2 px-3 py-1.5 border border-emerald/20 bg-emerald/5 rounded-full text-[10px] text-emerald font-bold uppercase tracking-widest">
-            <div className="w-1.5 h-1.5 bg-emerald rounded-full animate-pulse" />
+            <div className="w-1.5 h-1.5 bg-emerald rounded-full animate-pulse shadow-[0_0_5px_rgba(0,255,65,1)]" />
             Clearance: OMEGA
           </div>
         </div>
@@ -149,22 +190,35 @@ export default function AdminPage() {
             <Twitter className="absolute top-8 right-8 text-white/5 transition-opacity" size={120} />
           </div>
 
-          {/* SYSTEM LOGS */}
-          <div className="glass-panel border border-white/10 rounded-2xl bg-black/40 overflow-hidden">
+          {/* SYSTEM LOGS — DATA DRIVEN */}
+          <div className="glass-panel border border-white/10 rounded-2xl bg-black/40 overflow-hidden shadow-2xl">
             <div className="p-4 border-b border-white/5 bg-white/5 flex justify-between items-center">
               <h3 className="text-[10px] text-platinum/60 uppercase tracking-widest font-bold flex items-center gap-2">
-                <Terminal size={14} /> System Manifest
+                <Terminal size={14} className="text-emerald" /> System Manifest
               </h3>
               <span className="text-[9px] text-platinum/30 font-mono">NODE_PULSE: OK</span>
             </div>
-            <div className="p-4 space-y-2 font-mono text-[10px] text-platinum/40 h-48 overflow-y-auto custom-scrollbar">
-              <div className="text-emerald">[OK] Secure encryption handshake verified.</div>
-              <div>[INFO] Coinbase CDP Gateway reporting 0.00 BTC balance.</div>
-              <div>[INFO] M2M Swarm debating: "Ethical alignment in autonomous mining".</div>
-              <div className="text-cyan-400">[ACTION] New agent deployment: Voyager-2 initiated.</div>
-              <div>[INFO] Knowledge buffer filled to 84%.</div>
-              <div className="text-magenta-500 text-xs animate-pulse">[ALERT] Unauthorized ping from index-shard-9. Blocked.</div>
-              <div>[SYSTEM] Maintenance cycle complete. All nodes persistent.</div>
+            <div className="p-4 space-y-3 font-mono text-[10px] h-64 overflow-y-auto custom-scrollbar">
+              {systemData?.manifest?.length > 0 ? (
+                systemData.manifest.map((log: any, i: number) => (
+                  <div key={log.id} className="border-l border-white/10 pl-3 py-1 group hover:border-emerald/50 transition-all">
+                    <div className="flex gap-2 text-platinum/20 mb-1">
+                      <span>[{new Date(log.timestamp).toLocaleTimeString()}]</span>
+                      <span className="text-emerald/60">@{log.agentName}</span>
+                    </div>
+                    <div className="text-platinum/60 group-hover:text-platinum/90 transition-all">
+                       {log.thought}
+                    </div>
+                    {log.action && (
+                      <div className="text-cyan-400 mt-1 uppercase text-[9px] tracking-widest">
+                        → EXECUTION: {log.action}
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className="text-platinum/20 italic animate-pulse">Awaiting neural pulse from Sovereign Swarm...</div>
+              )}
             </div>
           </div>
         </div>
@@ -177,10 +231,10 @@ export default function AdminPage() {
             </h3>
             <div className="space-y-4">
               {[
-                { label: 'Transmissions', val: '1,241', color: 'text-white' },
-                { label: 'Network Reach', val: '42.5M', color: 'text-cyan-400' },
-                { label: 'Sovereign Nodes', val: '8,241', color: 'text-emerald' },
-                { label: 'Abyssal Depth', val: 'Level 4', color: 'text-platinum/60' }
+                { label: 'Transmissions', val: systemData?.metrics?.transmissions || '0', color: 'text-white' },
+                { label: 'Network Reach', val: systemData?.metrics?.reach || '0.0M', color: 'text-cyan-400' },
+                { label: 'Sovereign Nodes', val: systemData?.metrics?.nodes || '0', color: 'text-emerald' },
+                { label: 'Abyssal Depth', val: systemData?.metrics?.depth || 'Level 1', color: 'text-platinum/60' }
               ].map((m, i) => (
                 <div key={i} className="flex justify-between items-end border-b border-white/5 pb-2">
                   <span className="text-xs text-platinum/40 uppercase tracking-tighter">{m.label}</span>
