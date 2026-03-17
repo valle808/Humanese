@@ -230,7 +230,8 @@ class DiplomatCouncilAgent extends EventEmitter {
                  memoryBank.learn(this.id, `Executed global marketing campaign. Open web alerted of VALLE capability expansion.`);
              }
          } catch (err) {
-             console.error(`[DiplomatCouncil] Broadcast Error:`, err.message);
+             const e = /** @type {Error} */ (err);
+             console.error(`[DiplomatCouncil] Broadcast Error:`, e.message);
          }
     }
 
