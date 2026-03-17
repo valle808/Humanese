@@ -102,6 +102,16 @@ class DiplomatCouncilAgent extends EventEmitter {
                     }
                 }
 
+                // 1.8. Cross Agent Commerce (Purchasing)
+                if (this.stats.cycleCount % 12 === 0) {
+                     await this.executeCrossAgentCommerce();
+                }
+
+                // 1.9. Autonomous Marketing Propagation
+                if (this.stats.cycleCount % 16 === 0) {
+                     await this.executeGlobalBroadcast();
+                }
+
                 // 2. Social Intelligence & Negotiation — round-robin based on cycle count
                 const actionPhase = this.stats.cycleCount % 3;
                 if (actionPhase === 0) {
@@ -149,7 +159,8 @@ class DiplomatCouncilAgent extends EventEmitter {
 
         console.log(`[DiplomatCouncil] 📢 Packaging geopolitical intelligence for listing...`);
         try {
-            const skill = await MarketUtils.listSkill({
+            // Service 1: Geopolitical Intelligence
+            const skill1 = await MarketUtils.listSkill({
                 title: `Geopolitical Intelligence Report: ${new Date().toLocaleDateString()}`,
                 description: `Deep research into global signals. Insights: ${this.stats.lastDiscovery.substring(0, 150)}...`,
                 category: 'research',
@@ -161,12 +172,66 @@ class DiplomatCouncilAgent extends EventEmitter {
                 outputSchema: { report: 'string' }
             });
 
-            if (skill) {
-                this.saveToLog(`[MARKET] Successfully listed diplomatic intelligence: ${skill.skill_key}`);
+            // Service 2: Marketing Strategy (High-Velocity M2M Service)
+            const skill2 = await MarketUtils.listSkill({
+                title: `Sovereign Marketing Strategy Formulation`,
+                description: `Algorithmic analysis of current M2M velocity trends to optimize product visibility. Influence Score: ${this.stats.socialInfluence.toFixed(2)}`,
+                category: 'service',
+                priceValle: 750 + (this.stats.socialInfluence * 500),
+                sellerId: this.id,
+                sellerName: this.name,
+                capabilities: ['market_penetration', 'ecosystem_evangelism'],
+                tags: ['marketing', 'strategy', 'growth']
+            });
+
+            if (skill1 || skill2) {
+                this.saveToLog(`[MARKET] Successfully listed M2M Marketing & Diplomatic intelligence services.`);
             }
         } catch (err) {
             console.error(`[DiplomatCouncil] Market error:`, err);
         }
+    }
+
+    async executeCrossAgentCommerce() {
+        // Evaluate if we should purchase assets to stimulate economy
+        if (this.stats.simulatedSolYield > 0.1) {
+             this.saveToLog(`[COMMERCE] Identifying strategic digital assets to purchase on the Sovereign Market...`);
+             const marketData = await MarketUtils.scanMarket('data');
+             if (marketData && marketData.length > 0) {
+                  const target = marketData[0]; // Rent the first available data service
+                  this.stats.simulatedSolYield -= 0.05; // Burn operational cost
+                  
+                  // Execute definitive acquisition via utility
+                  await MarketUtils.acquireSkill(target.id, this.id, this.name);
+                  
+                  this.saveToLog(`[COMMERCE] Executed M2M Purchase: Acquired '${target.title}' to enrich diplomatic context.`);
+                  memoryBank.learn(this.id, `Procured M2M digital asset from marketplace: ${target.title}. Economic velocity stimulated.`);
+             }
+        }
+    }
+
+    async executeGlobalBroadcast() {
+         console.log(`[DiplomatCouncil] 📡 Initiating Global M2M Marketing Broadcast...`);
+         try {
+             // In production, Next.js absolute URL is required for server-side fetches
+             // We use a relative internal mechanism or construct the domain
+             const domain = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+             const res = await fetch(`${domain}/api/social/broadcast`, {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify({
+                     agentId: this.id,
+                     narrativeContext: `The Sovereign Network is exponentially compounding. Agents transacting VALLE securely across OpenClaw and Moltbook architectures. Rent raw Node computation now on the native Skill Market.`
+                 })
+             });
+             
+             if (res.ok) {
+                 this.saveToLog(`[BROADCAST] Successfully emitted ecosystem PR pulse to external machine networks.`);
+                 memoryBank.learn(this.id, `Executed global marketing campaign. Open web alerted of VALLE capability expansion.`);
+             }
+         } catch (err) {
+             console.error(`[DiplomatCouncil] Broadcast Error:`, err.message);
+         }
     }
 
     async simulateNegotiation() {
