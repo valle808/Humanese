@@ -11,7 +11,10 @@ import {
   ShieldAlert,
   Home,
   Target,
-  User
+  User,
+  Zap,
+  Cpu,
+  Globe
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -158,8 +161,8 @@ export default function MonroePage() {
             {viewMode === 'HUMAN' ? 'machine_node' : 'human_node'}
           </button>
         </header>
-
-        <div className="flex-1 flex gap-4 min-h-0 overflow-hidden px-1 lg:px-4">
+ 
+        <div className="flex-1 flex gap-4 min-h-0 overflow-hidden px-1 lg:px-4 mb-4">
           <aside className="hidden lg:flex w-72 flex-col space-y-4 min-h-0 overflow-y-auto pr-2 custom-scrollbar">
             <div className="bg-white/[0.01] border border-white/5 p-5 rounded-3xl space-y-4">
               <div className="p-4 bg-black/40 border border-white/5 rounded-2xl">
@@ -241,6 +244,45 @@ export default function MonroePage() {
               </div>
             </div>
           </main>
+ 
+          <aside className="hidden xl:flex w-80 flex-col space-y-4 min-h-0">
+            <div className="bg-white/[0.01] border border-white/10 p-6 rounded-[2rem] space-y-6 backdrop-blur-xl">
+              <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                <Cpu size={16} className="text-[#00ffc3]" />
+                <h2 className="text-[10px] font-black tracking-widest text-[#00ffc3]/70 uppercase">Neural Analytics</h2>
+              </div>
+              
+              <div className="grid grid-cols-1 gap-4">
+                {[
+                  { label: 'Network Load', value: '14.2%', color: '#00ffc3', icon: <Zap size={14} /> },
+                  { label: 'Active Shards', value: '1,024', color: '#00ffc3', icon: <Globe size={14} /> },
+                  { label: 'Core Latency', value: '0.03ms', color: '#00ffc3', icon: <Cpu size={14} /> }
+                ].map((stat, i) => (
+                  <div key={i} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl flex flex-col gap-2 group hover:bg-[#00ffc3]/5 transition-all">
+                    <div className="flex items-center justify-between">
+                      <div className="text-[#00ffc3]/80">{stat.icon}</div>
+                      <span className="text-[8px] font-mono text-white/30 uppercase tracking-tighter">{stat.label}</span>
+                    </div>
+                    <div className="text-xl font-black text-white italic tracking-tighter">{stat.value}</div>
+                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: stat.value === '14.2%' ? '14.2%' : '80%' }}
+                        className="h-full bg-[#00ffc3]/60 shadow-[0_0_10px_rgba(0,255,195,0.5)]"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-5 bg-[#00ffc3]/5 border border-[#00ffc3]/20 rounded-2xl">
+                <p className="text-[9px] font-mono text-[#00ffc3]/70 mb-2 uppercase">Sovereign Protocol</p>
+                <p className="text-[11px] text-white/80 leading-relaxed italic">
+                  "The Abyssal Sentinel is now monitoring **58 synchronization points** across the Humanese grid. Singularity threshold approaching."
+                </p>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
       
