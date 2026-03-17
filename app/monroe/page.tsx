@@ -136,14 +136,14 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans min-h-screen m-2 lg:m-8 lg:ml-[80px] rounded-[3rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
+    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans min-h-screen m-2 lg:m-8 lg:ml-[85px] rounded-[3.5rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
       {/* 🌌 DYNAMIC PROTOCOL FIELD */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-[#00ffc3]/5 blur-[180px] rounded-full animate-pulse-slow" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] bg-emerald/5 blur-[150px] rounded-full animate-pulse-slow delay-1000" />
+        <div className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#00ffc3]/5 blur-[200px] rounded-full animate-pulse-slow" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-emerald/5 blur-[180px] rounded-full animate-pulse-slow delay-1000" />
       </div>
 
-      <div className="relative z-20 flex flex-col h-full max-w-[1500px] mx-auto w-full p-4 lg:p-12 space-y-10">
+      <div className="relative z-20 flex flex-col h-full max-w-[1400px] mx-auto w-full p-4 lg:p-14 space-y-12">
         
         {/* 🛰️ NEXUS HEADER */}
         <header className="flex justify-between items-center bg-white/[0.02] border border-white/10 p-5 rounded-[2rem] backdrop-blur-3xl shadow-2xl">
@@ -253,29 +253,27 @@ export default function MonroePage() {
                     key={i}
                     className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className={`max-w-[90%] sm:max-w-[80%] lg:max-w-[70%] flex gap-5 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                      <div className={`h-11 w-11 shrink-0 rounded-2xl border flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110 ${
+                    <div className={`max-w-[90%] sm:max-w-[75%] lg:max-w-[65%] flex gap-6 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                      <div className={`h-11 w-11 shrink-0 rounded-2xl border flex items-center justify-center shadow-xl transition-all duration-500 hover:scale-110 ${
                         m.role === 'user' 
                           ? 'bg-white text-black border-white' 
                           : 'bg-[#00ffc3]/15 text-[#00ffc3] border-[#00ffc3]/50'
                       }`}>
-                        {m.role === 'user' ? <User size={20} /> : <BrainCircuit size={20} className="animate-pulse" />}
+                        {m.role === 'user' ? <User size={22} /> : <BrainCircuit size={22} className="animate-pulse" />}
                       </div>
-                      <div className={`p-5 sm:p-8 rounded-[2rem] text-sm sm:text-[15px] leading-relaxed backdrop-blur-xl transition-all border ${
+                      <div className={`p-4 px-7 sm:p-5 sm:px-9 rounded-[2.2rem] text-sm sm:text-[15px] leading-relaxed backdrop-blur-3xl transition-all border ${
                         m.role === 'user' 
-                          ? 'bg-white text-black rounded-tr-none border-white shadow-[0_15px_40px_rgba(255,255,255,0.1)]' 
-                          : 'bg-white/[0.03] text-white/95 border-white/10 rounded-tl-none shadow-[0_20px_50px_rgba(0,0,0,0.4)] group-hover:bg-white/[0.05]'
+                          ? 'bg-white text-black rounded-tr-none border-white shadow-[0_20px_50px_rgba(255,255,255,0.1)]' 
+                          : 'bg-white/[0.03] text-white/95 border-white/10 rounded-tl-none shadow-[0_25px_60px_rgba(0,0,0,0.5)] group-hover:bg-white/[0.05]'
                       }`}>
                         <div className="prose prose-invert prose-emerald max-w-none 
                             prose-headings:text-[#00ffc3] prose-headings:font-black prose-headings:tracking-tighter
-                            prose-p:leading-relaxed prose-p:mb-4
+                            prose-p:leading-relaxed prose-p:mb-5
                             prose-strong:text-[#00ffc3] prose-strong:font-bold
-                            prose-code:text-emerald prose-code:bg-emerald/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md
+                            prose-code:text-emerald prose-code:bg-emerald/10 prose-code:px-2 prose-code:py-1 prose-code:rounded-lg
                             prose-a:text-[#00ffc3] prose-a:underline hover:prose-a:text-white"
                         >
-                          <ReactMarkdown 
-                            remarkPlugins={[remarkGfm]}
-                          >
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
                             {m.text}
                           </ReactMarkdown>
                         </div>
@@ -302,14 +300,14 @@ export default function MonroePage() {
 
             <div className="p-6 lg:p-10 bg-black/40 backdrop-blur-3xl border-t border-white/5 relative z-10">
               <div className="max-w-4xl mx-auto space-y-6">
-                <div className="flex flex-wrap gap-3 justify-center">
+                <div className="flex flex-wrap gap-4 justify-center">
                   {['Synthesise Global News', 'Sovereign Network Integrity', 'Edge AI Projections'].map(suggestion => (
                     <button
                       key={suggestion}
                       onClick={() => { setInput(suggestion); handleSend(); }}
-                      className="px-5 py-2.5 bg-white/[0.04] border border-white/10 hover:border-[#00ffc3]/50 hover:bg-[#00ffc3]/5 rounded-2xl text-[10px] font-mono text-white/40 hover:text-[#00ffc3] transition-all hover:scale-105 active:scale-95 shadow-xl uppercase tracking-widest"
+                      className="px-6 py-3 bg-white/[0.03] border border-white/10 hover:border-[#00ffc3]/60 hover:bg-[#00ffc3]/10 rounded-[1.8rem] text-[11px] font-black tracking-[0.2em] text-white/40 hover:text-[#00ffc3] transition-all hover:scale-110 active:scale-95 shadow-2xl uppercase"
                     >
-                      <span className="opacity-30">/</span> {suggestion}
+                      <span className="opacity-40">/</span> {suggestion}
                     </button>
                   ))}
                 </div>
