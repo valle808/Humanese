@@ -1,0 +1,32 @@
+{
+  "project_name": "Humanese Sovereign Intelligence",
+  "migration_id": "MIG-2026-03-16",
+  "system_state": "PROD_ACTIVE",
+  "source_machine": "SERGIO-DOCK",
+  "target_drive": "D:/HUMANESE",
+  "core_components": [
+    {
+      "name": "Humanese Next.js App",
+      "path": "c:/xampp/htdocs/humanese",
+      "description": "Core interface and API layer"
+    },
+    {
+      "name": "Antigravity Brain",
+      "path": "C:/Users/SergioEzequielValleB/.gemini/antigravity/brain",
+      "description": "Conversation logs and task artifacts"
+    },
+    {
+      "name": "Agent Knowledge Base",
+      "path": "C:/Users/SergioEzequielValleB/.gemini/antigravity/knowledge",
+      "description": "Distilled knowledge items and research"
+    }
+  ],
+  "dependencies": {
+    "node": "v20+",
+    "database": "Prisma/Supabase",
+    "cloud": "Vercel",
+    "realtime": "Firebase"
+  },
+  "extraction_protocol": "Start Migration from Media",
+  "timestamp": "2026-03-16T16:20:00Z"
+}
