@@ -357,18 +357,3 @@ html {
 .nd-body-xs {
   @apply my-0 text-[12px] md:text-[14px] xl:text-[14px] leading-[1.33] md:leading-[1.43] xl:leading-[1.43];
 }
-
-        from var(--rotation) at 50% 50%,
-        #9945ff 0%,
-        #14f195 60%,
-        #00d4ff 80%,
-        #9945ff 100%
-      )
-      border-box;
-  animation: solana-shimmer 6s linear infinite;
-}
-
-@keyframes solana-shimmer {
-  0% { --rotation: 0deg; }
-  100% { --rotation: 360deg; }
-}
