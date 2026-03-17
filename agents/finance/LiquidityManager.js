@@ -11,6 +11,9 @@ import crypto from 'crypto';
 const prisma = new PrismaClient();
 
 class LiquidityManager extends EventEmitter {
+    /**
+     * @param {{ id?: string, name?: string }} [config]
+     */
     constructor(config = {}) {
         super();
         this.id = config?.id || `Liquidity-${crypto.randomUUID().substring(0, 8)}`;
@@ -90,6 +93,9 @@ class LiquidityManager extends EventEmitter {
         }
     }
 
+    /**
+     * @param {{ solana: { usd: number } }} marketData
+     */
     async performMarketMaking(marketData) {
         // Data-driven rebalancing based on SOL price movement as a proxy for ecosystem health
         const solPrice = marketData.solana.usd;
