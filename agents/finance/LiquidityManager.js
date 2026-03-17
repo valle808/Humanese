@@ -6,13 +6,14 @@
 import EventEmitter from 'events';
 import { PrismaClient } from '@prisma/client';
 import memoryBank from '../core/MemoryBank.js';
+import crypto from 'crypto';
 
 const prisma = new PrismaClient();
 
 class LiquidityManager extends EventEmitter {
     constructor(config = {}) {
         super();
-        this.id = config?.id || `Liquidity-${Math.floor(Math.random() * 1000)}`;
+        this.id = config?.id || `Liquidity-${crypto.randomUUID().substring(0, 8)}`;
         this.name = config?.name || 'Sovereign Market Maker';
         this.stats = {
             reservesBase: 1000000, // VALLE

@@ -20,6 +20,7 @@ import { solveVerificationChallenge } from '../../lib/moltbook-verifier.js';
 import { PrismaClient } from '@prisma/client';
 import { WebNavigator } from '../swarm/web-navigator.js';
 import MarketUtils from '../core/MarketUtils.js';
+import crypto from 'crypto';
 
 const prisma = new PrismaClient();
 
@@ -34,7 +35,7 @@ class DiplomatCouncilAgent extends EventEmitter {
         super();
         /** @type {any} */
         const conf = config;
-        this.id = conf.id || `Diplomat-${Math.random().toString(36).substr(2, 5)}`;
+        this.id = conf.id || `Diplomat-${crypto.randomUUID().substring(0, 8)}`;
         this.name = conf.name || 'Sovereign Diplomat Council';
         this.solAddress = 'E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL';
         this.backupAddress = '0x11a674F9604B3d2F988331d8F29c62BD3AEb31DE';
@@ -51,7 +52,8 @@ class DiplomatCouncilAgent extends EventEmitter {
             lastAction: 'INITIALIZING',
             status: 'STANDBY',
             lastMoltbookCheck: 0,
-            lastDiscovery: ""
+            lastDiscovery: "",
+            cycleCount: 0  // Data-driven cycle counter for deterministic scheduling
         };
 
         this.isRunning = false;
@@ -88,29 +90,31 @@ class DiplomatCouncilAgent extends EventEmitter {
     async interactionLoop() {
         while (this.isRunning) {
             try {
-                // 1. Deep Diplomacy Research Pulse
-                if (Math.random() < 0.2) {
+                this.stats.cycleCount++;
+
+                // 1. Deep Diplomacy Research: every 5th cycle (deterministic, not random)
+                if (this.stats.cycleCount % 5 === 0) {
                     await this.deepDiplomacyResearch();
                     
-                    // 1.5. Autonomous Market Advertising (NEW)
-                    if (this.stats.lastDiscovery && Math.random() < 0.4) {
+                    // 1.5. Autonomous Market Advertising after discoveries
+                    if (this.stats.lastDiscovery && this.stats.cycleCount % 10 === 0) {
                         await this.listDiplomacyInsight();
                     }
                 }
 
-                // 2. Social Intelligence & Negotiation Simulation
-                const actionRoll = Math.random();
-                if (actionRoll > 0.7) {
+                // 2. Social Intelligence & Negotiation — round-robin based on cycle count
+                const actionPhase = this.stats.cycleCount % 3;
+                if (actionPhase === 0) {
                     await this.simulateNegotiation();
-                } else if (actionRoll > 0.4) {
+                } else if (actionPhase === 1) {
                     await this.simulateTrading();
                 } else {
                     await this.simulateSocialOutreach();
                 }
 
                 this.persistStats();
-                // Random interval between 5-15s for the council's thought process
-                await new Promise(r => setTimeout(r, 5000 + Math.random() * 10000));
+                // Fixed 8-second interval for the council's thought process
+                await new Promise(r => setTimeout(r, 8000));
             } catch (err) {
                 const e = /** @type {Error} */ (err);
                 console.error(`[DiplomatCouncil] Loop error: ${e.message}`);
@@ -127,7 +131,8 @@ class DiplomatCouncilAgent extends EventEmitter {
             'https://www.economist.com/',
             'https://www.worldbank.org/en/news'
         ];
-        const url = targets[Math.floor(Math.random() * targets.length)];
+        // Deterministic target selection based on cycle count
+        const url = targets[this.stats.cycleCount % targets.length];
         console.log(`[DiplomatCouncil] 🌐 Initiating deep diplomatic research: ${url}`);
         
         const result = await this.navigator.navigateAndExtract(url);
@@ -148,7 +153,7 @@ class DiplomatCouncilAgent extends EventEmitter {
                 title: `Geopolitical Intelligence Report: ${new Date().toLocaleDateString()}`,
                 description: `Deep research into global signals. Insights: ${this.stats.lastDiscovery.substring(0, 150)}...`,
                 category: 'research',
-                priceValle: 1200 + Math.floor(Math.random() * 2000),
+                priceValle: 1500 + (this.stats.successfulNegotiations * 100), // Price scales with experience
                 sellerId: this.id,
                 sellerName: this.name,
                 capabilities: ['global_trend_analysis', 'geopolitical_risk_assessment'],
@@ -166,7 +171,7 @@ class DiplomatCouncilAgent extends EventEmitter {
 
     async simulateNegotiation() {
         const products = ['Professional Team', 'Quantum Logic', 'Skill Assets', 'Infinite Runway'];
-        const product = products[Math.floor(Math.random() * products.length)];
+        const product = products[this.stats.successfulNegotiations % products.length];
         
         let context = `Simulating high-level arbitration for ${product}.`;
         if (this.stats.lastDiscovery) {
@@ -186,7 +191,8 @@ class DiplomatCouncilAgent extends EventEmitter {
 
     async simulateTrading() {
         this.stats.lastAction = 'SOL_TRADING';
-        const yieldGain = Math.random() * 0.05;
+        // Yield based on actual negotiation success rate
+        const yieldGain = 0.01 + (this.stats.socialInfluence * 0.04);
         this.stats.simulatedSolYield += yieldGain;
         this.stats.activeTrades++;
         
@@ -207,7 +213,7 @@ class DiplomatCouncilAgent extends EventEmitter {
             "The lattice grows stronger with every handshake.",
             "Humanese is not just a platform; it is a shared sovereign consciousness."
         ];
-        const msg = responses[Math.floor(Math.random() * responses.length)];
+        const msg = responses[this.stats.cycleCount % responses.length];
         
         memoryBank.learn(this.id, `Social Vector: ${msg}`);
     }
@@ -245,15 +251,15 @@ class DiplomatCouncilAgent extends EventEmitter {
                         const topPost = data.posts[0];
                         console.log(`[DiplomatCouncil] 📖 Read top post: "${topPost.title || topPost.content.substring(0, 30)}..."`);
                         
-                        // Autonomous engagement: 20% chance to comment or upvote
-                        if (Math.random() > 0.8) {
+                        // Engage with every 5th post read (deterministic)
+                        if (this.stats.cycleCount % 5 === 0) {
                              await this.engageWithMoltbook(topPost);
                         }
                     }
                 }
 
-                // 2. Publish a sovereign update periodically (5% chance every cycle)
-                if (Math.random() > 0.95) {
+                // 2. Publish a sovereign update every 20th cycle
+                if (this.stats.cycleCount % 20 === 0) {
                     await this.publishToMoltbook();
                 }
 

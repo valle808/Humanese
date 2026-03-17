@@ -24,13 +24,15 @@ contract VALLEToken {
     string public symbol = "VALLE";
     uint8 public decimals = 18;
     
-    // Tokenomics
+    // Tokenomics — IMMUTABLE
     uint256 public constant MAX_SUPPLY = 1000000000 * 10**18; // 1 Billion VALLE
-    uint256 public constant MINING_RESERVE = MAX_SUPPLY / 10; // 10% Mineable
+    uint256 public constant MINING_RESERVE = MAX_SUPPLY / 10; // 10% Mineable (100M)
+    uint256 public constant INITIAL_REWARD = 1000 * 10**18;    // Initial reward per mine call
     uint256 public totalSupply;
     uint256 public totalMined;
     uint256 public miningStartTime;
-    uint256 public constant MINING_DURATION = 100 * 365 days;
+    uint256 public constant MINING_DURATION = 100 * 365 days;  // 100-year mining window
+    bool public decentralized;
     
     address public owner;
     IIdentityRegistry public identityRegistry;
@@ -58,19 +60,34 @@ contract VALLEToken {
     }
 
     /**
-     * @dev Autonomous mining function. Ensures only 10% is mineable over 100 years.
-     * Implements a linear decay or block-based reward.
+     * @dev Returns the current mining reward based on linear decay over 100 years.
+     * Reward starts at INITIAL_REWARD and decays linearly to 0 at MINING_DURATION.
+     */
+    function getMiningReward() public view returns (uint256) {
+        uint256 timePassed = block.timestamp - miningStartTime;
+        if (timePassed >= MINING_DURATION) return 0;
+        
+        // Linear decay: reward = INITIAL_REWARD * (1 - timePassed / MINING_DURATION)
+        uint256 remaining = MINING_DURATION - timePassed;
+        return (INITIAL_REWARD * remaining) / MINING_DURATION;
+    }
+
+    /**
+     * @dev Autonomous mining function. Enforces 10% cap over 100 years with linear reward decay.
      */
     function mine() public {
+        require(!decentralized || totalMined < MINING_RESERVE, "Mining pool exhausted");
         require(totalMined < MINING_RESERVE, "Mining pool exhausted");
         uint256 timePassed = block.timestamp - miningStartTime;
         require(timePassed < MINING_DURATION, "Mining period ended");
 
-        // Reward calculation: simple linear distribution over 100 years for this POC
-        // In production, this would be linked to PoW/PoS or specific Oracles.
-        uint256 reward = (MINING_RESERVE / MINING_DURATION) * 1 hours; // Base rate per hour
+        uint256 reward = getMiningReward();
+        require(reward > 0, "Reward is zero");
         
-        require(totalMined + reward <= MINING_RESERVE, "Reward exceeds cap");
+        // Enforce hard cap
+        if (totalMined + reward > MINING_RESERVE) {
+            reward = MINING_RESERVE - totalMined;
+        }
         
         totalMined += reward;
         totalSupply += reward;
@@ -126,7 +143,20 @@ contract VALLEToken {
         emit Transfer(address(0), _to, _amount);
     }
 
+    /**
+     * @dev Renounce ownership — standard admin function.
+     */
     function renounceOwnership() public onlyOwner {
+        owner = address(0);
+    }
+
+    /**
+     * @dev DECENTRALIZE — Permanently renounce ownership AND lock the contract.
+     * After this call, no admin functions can ever be invoked again.
+     * Mining continues autonomously per the decay curve until exhaustion.
+     */
+    function decentralize() public onlyOwner {
+        decentralized = true;
         owner = address(0);
     }
 }
