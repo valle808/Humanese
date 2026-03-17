@@ -4028,3 +4028,165 @@
 [2026-03-16T20:26:02.354Z] [Sovereign-Worker-1] Received new job: 999926b
 [2026-03-16T20:26:02.367Z] [Sovereign-Worker-0] Difficulty set to 100000
 [2026-03-16T20:26:02.368Z] [Sovereign-Worker-0] Received new job: 98846d2
+[2026-03-16T23:01:36.294Z] [Sovereign-Worker-0] Connected to pool public-pool.io:3333
+[2026-03-16T23:01:36.295Z] [Sovereign-Worker-0] Subscribing to mining jobs...
+[2026-03-16T23:01:36.296Z] [Sovereign-Worker-1] Connected to pool public-pool.io:3333
+[2026-03-16T23:01:36.296Z] [Sovereign-Worker-1] Subscribing to mining jobs...
+[2026-03-16T23:01:36.434Z] [Sovereign-Worker-0] Subscribed. ExtraNonce1: 53ce13fb
+[2026-03-16T23:01:36.435Z] [Sovereign-Worker-0] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-0...
+[2026-03-16T23:01:36.435Z] [Sovereign-Worker-1] Subscribed. ExtraNonce1: 6c79671f
+[2026-03-16T23:01:36.436Z] [Sovereign-Worker-1] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-1...
+[2026-03-16T23:01:36.575Z] [Sovereign-Worker-0] Authorization successful.
+[2026-03-16T23:01:36.575Z] [Sovereign-Worker-1] Authorization successful.
+[2026-03-16T23:01:36.766Z] [Sovereign-Worker-1] Difficulty set to 100000
+[2026-03-16T23:01:36.766Z] [Sovereign-Worker-1] Received new job: 980acbc
+[2026-03-16T23:01:36.773Z] [Sovereign-Worker-0] Difficulty set to 100000
+[2026-03-16T23:01:36.773Z] [Sovereign-Worker-0] Received new job: 99096d3
+[2026-03-16T23:01:37.417Z] [Sovereign-Worker-1] Share accepted! Total: 1
+[2026-03-16T23:01:49.774Z] [Sovereign-Worker-1] Share accepted! Total: 2
+[2026-03-16T23:02:08.514Z] [Sovereign-Worker-0] Share accepted! Total: 1
+[2026-03-16T23:02:11.436Z] [Sovereign-Worker-0] Share accepted! Total: 2
+[2026-03-16T23:02:12.330Z] [Sovereign-Worker-1] Share accepted! Total: 3
+[2026-03-16T23:02:16.996Z] [Sovereign-Worker-1] Received new job: 980c005
+[2026-03-16T23:02:17.094Z] [Sovereign-Worker-0] Received new job: 990ab1f
+[2026-03-16T23:02:21.651Z] [Sovereign-Worker-1] Share accepted! Total: 4
+[2026-03-16T23:02:21.924Z] [Sovereign-Worker-1] Share accepted! Total: 5
+[2026-03-16T23:02:23.700Z] [Sovereign-Worker-1] Share accepted! Total: 6
+[2026-03-16T23:02:24.374Z] [Sovereign-Worker-0] Share accepted! Total: 3
+[2026-03-16T23:02:25.656Z] [Sovereign-Worker-1] Share accepted! Total: 7
+[2026-03-16T23:02:33.016Z] [Sovereign-Worker-1] Share accepted! Total: 8
+[2026-03-16T23:02:39.204Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:02:45.766Z] [Sovereign-Worker-1] Share accepted! Total: 9
+[2026-03-16T23:02:47.091Z] [Sovereign-Worker-0] Research complete. Signals detected from https://www.blockchain.com/explorer
+[2026-03-16T23:02:49.205Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:02:50.659Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:02:53.607Z] [Sovereign-Worker-0] Share accepted! Total: 4
+[2026-03-16T23:02:56.664Z] [Sovereign-Worker-1] Research complete. Signals detected from https://www.blockchain.com/explorer
+[2026-03-16T23:02:57.941Z] [Sovereign-Worker-0] Share accepted! Total: 5
+[2026-03-16T23:02:58.908Z] [Sovereign-Worker-0] Share accepted! Total: 6
+[2026-03-16T23:03:01.902Z] [Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[2026-03-16T23:03:07.280Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:03:08.930Z] [Sovereign-Worker-0] Share accepted! Total: 7
+[2026-03-16T23:03:12.346Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:03:17.149Z] [Sovereign-Worker-0] Received new job: 990bf81
+[2026-03-16T23:03:17.602Z] [Sovereign-Worker-1] Received new job: 980d35b
+[2026-03-16T23:17:32.589Z] [Sovereign-Worker-1] Connected to pool public-pool.io:3333
+[2026-03-16T23:17:32.590Z] [Sovereign-Worker-1] Subscribing to mining jobs...
+[2026-03-16T23:17:32.591Z] [Sovereign-Worker-0] Connected to pool public-pool.io:3333
+[2026-03-16T23:17:32.591Z] [Sovereign-Worker-0] Subscribing to mining jobs...
+[2026-03-16T23:17:32.729Z] [Sovereign-Worker-1] Subscribed. ExtraNonce1: 0827b131
+[2026-03-16T23:17:32.729Z] [Sovereign-Worker-1] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-1...
+[2026-03-16T23:17:32.730Z] [Sovereign-Worker-0] Subscribed. ExtraNonce1: c8facd9e
+[2026-03-16T23:17:32.730Z] [Sovereign-Worker-0] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-0...
+[2026-03-16T23:17:32.868Z] [Sovereign-Worker-1] Authorization successful.
+[2026-03-16T23:17:32.921Z] [Sovereign-Worker-0] Authorization successful.
+[2026-03-16T23:17:33.059Z] [Sovereign-Worker-1] Difficulty set to 100000
+[2026-03-16T23:17:33.174Z] [Sovereign-Worker-1] Received new job: 57ec689
+[2026-03-16T23:17:33.210Z] [Sovereign-Worker-0] Difficulty set to 100000
+[2026-03-16T23:17:33.211Z] [Sovereign-Worker-0] Received new job: 96b7e2f
+[2026-03-16T23:17:37.980Z] [Sovereign-Worker-0] Share accepted! Total: 1
+[2026-03-16T23:17:42.060Z] [Sovereign-Worker-0] Share accepted! Total: 2
+[2026-03-16T23:17:43.240Z] [Sovereign-Worker-0] Share accepted! Total: 3
+[2026-03-16T23:17:45.406Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:17:51.422Z] [Sovereign-Worker-1] Research complete. Signals detected from https://www.blockchain.com/explorer
+[2026-03-16T23:17:55.112Z] [Sovereign-Worker-0] Share accepted! Total: 4
+[2026-03-16T23:18:02.280Z] [Sovereign-Worker-1] Received new job: 57ed98c
+[2026-03-16T23:18:02.497Z] [Sovereign-Worker-0] Received new job: 96b9272
+[2026-03-16T23:18:04.748Z] [Sovereign-Worker-0] Share accepted! Total: 5
+[2026-03-16T23:18:11.094Z] [Sovereign-Worker-1] Share accepted! Total: 1
+[2026-03-16T23:18:14.815Z] [Sovereign-Worker-1] Share accepted! Total: 2
+[2026-03-16T23:18:16.133Z] [Sovereign-Worker-1] Share accepted! Total: 3
+[2026-03-16T23:18:25.909Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:18:27.835Z] [Sovereign-Worker-0] Share accepted! Total: 6
+[2026-03-16T23:18:47.817Z] [Sovereign-Worker-1] Share accepted! Total: 4
+[2026-03-16T23:18:50.710Z] [Sovereign-Worker-1] Research complete. Signals detected from https://coindesk.com
+[2026-03-16T23:19:01.473Z] [Sovereign-Worker-0] Share accepted! Total: 7
+[2026-03-16T23:19:02.698Z] [Sovereign-Worker-1] Received new job: 57eeca2
+[2026-03-16T23:19:03.484Z] [Sovereign-Worker-0] Received new job: 96ba6eb
+[2026-03-16T23:19:04.121Z] [Sovereign-Worker-1] Share accepted! Total: 5
+[2026-03-16T23:19:08.950Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:19:09.261Z] [Sovereign-Worker-0] Share accepted! Total: 8
+[2026-03-16T23:19:12.540Z] [Sovereign-Worker-1] Research complete. Signals detected from https://www.blockchain.com/explorer
+[2026-03-16T23:19:25.806Z] [Sovereign-Worker-1] Share accepted! Total: 6
+[2026-03-16T23:19:32.099Z] [Sovereign-Worker-0] Share accepted! Total: 9
+[2026-03-16T23:19:33.115Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:19:35.817Z] [Sovereign-Worker-1] Share accepted! Total: 7
+[2026-03-16T23:19:36.800Z] [Sovereign-Worker-0] Share accepted! Total: 10
+[2026-03-16T23:19:38.053Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:19:50.576Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:19:58.564Z] [Sovereign-Worker-1] Share accepted! Total: 8
+[2026-03-16T23:20:00.078Z] [Sovereign-Worker-0] Research complete. Signals detected from https://coindesk.com
+[2026-03-16T23:20:01.420Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:20:02.005Z] [Sovereign-Worker-1] Received new job: 57effbe
+[2026-03-16T23:20:03.451Z] [Sovereign-Worker-0] Received new job: 96bbb62
+[2026-03-16T23:20:06.029Z] [Sovereign-Worker-1] Share accepted! Total: 9
+[2026-03-16T23:20:06.618Z] [Sovereign-Worker-0] Share accepted! Total: 11
+[2026-03-16T23:20:08.320Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:20:08.567Z] [Sovereign-Worker-0] Share accepted! Total: 12
+[2026-03-16T23:20:10.802Z] [Sovereign-Worker-0] Share accepted! Total: 13
+[2026-03-16T23:21:30.437Z] [Sovereign-Worker-0] Connected to pool public-pool.io:3333
+[2026-03-16T23:21:30.437Z] [Sovereign-Worker-0] Subscribing to mining jobs...
+[2026-03-16T23:21:30.438Z] [Sovereign-Worker-1] Connected to pool public-pool.io:3333
+[2026-03-16T23:21:30.439Z] [Sovereign-Worker-1] Subscribing to mining jobs...
+[2026-03-16T23:21:30.577Z] [Sovereign-Worker-0] Subscribed. ExtraNonce1: 33a54103
+[2026-03-16T23:21:30.581Z] [Sovereign-Worker-0] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-0...
+[2026-03-16T23:21:30.582Z] [Sovereign-Worker-1] Subscribed. ExtraNonce1: 75e74a3c
+[2026-03-16T23:21:30.582Z] [Sovereign-Worker-1] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-1...
+[2026-03-16T23:21:30.719Z] [Sovereign-Worker-1] Authorization successful.
+[2026-03-16T23:21:30.723Z] [Sovereign-Worker-0] Authorization successful.
+[2026-03-16T23:21:30.901Z] [Sovereign-Worker-1] Difficulty set to 100000
+[2026-03-16T23:21:30.902Z] [Sovereign-Worker-1] Received new job: 9d427a9
+[2026-03-16T23:21:30.923Z] [Sovereign-Worker-0] Difficulty set to 100000
+[2026-03-16T23:21:30.923Z] [Sovereign-Worker-0] Received new job: 9976fde
+[2026-03-16T23:21:41.369Z] [Sovereign-Worker-1] Share accepted! Total: 1
+[2026-03-16T23:21:54.703Z] [Sovereign-Worker-0] Share accepted! Total: 1
+[2026-03-16T23:21:58.497Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:22:02.504Z] [Sovereign-Worker-1] Received new job: 9d43c14
+[2026-03-16T23:22:03.211Z] [Sovereign-Worker-0] Received new job: 9978420
+[2026-03-16T23:22:04.821Z] [Sovereign-Worker-0] Research complete. Signals detected from https://www.blockchain.com/explorer
+[2026-03-16T23:22:15.940Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:22:17.325Z] [Sovereign-Worker-1] Share accepted! Total: 2
+[2026-03-16T23:22:23.521Z] [Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[2026-03-16T23:22:30.630Z] [Sovereign-Worker-0] Share accepted! Total: 2
+[2026-03-16T23:22:32.286Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:22:33.629Z] [Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[2026-03-16T23:22:34.220Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:22:34.818Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:22:36.118Z] [Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[2026-03-16T23:22:36.653Z] [Sovereign-Worker-1] Share accepted! Total: 3
+[2026-03-16T23:22:37.903Z] [Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[2026-03-16T23:22:48.716Z] [Sovereign-Worker-0] Share accepted! Total: 3
+[2026-03-16T23:22:49.041Z] [Sovereign-Worker-0] Share accepted! Total: 4
+[2026-03-16T23:22:54.425Z] [Sovereign-Worker-1] Share accepted! Total: 4
+[2026-03-16T23:22:59.602Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:23:02.641Z] [Sovereign-Worker-1] Received new job: 9d450a4
+[2026-03-16T23:23:02.660Z] [Sovereign-Worker-0] Received new job: 9979868
+[2026-03-16T23:23:03.630Z] [Sovereign-Worker-1] Share accepted! Total: 5
+[2026-03-16T23:23:07.398Z] [Sovereign-Worker-0] Share accepted! Total: 5
+[2026-03-16T23:23:07.957Z] [Sovereign-Worker-0] Share accepted! Total: 6
+[2026-03-16T23:23:16.105Z] [Sovereign-Worker-0] Share accepted! Total: 7
+[2026-03-16T23:23:22.238Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:23:22.998Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:23:31.361Z] [Sovereign-Worker-0] Received new job: 997ac98
+[2026-03-16T23:23:31.395Z] [Sovereign-Worker-1] Received new job: 9d464fa
+[2026-03-16T23:23:37.153Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:23:38.806Z] [Sovereign-Worker-0] Share accepted! Total: 8
+[2026-03-16T23:23:38.808Z] [Sovereign-Worker-1] Share accepted! Total: 6
+[2026-03-16T23:23:43.687Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:23:50.733Z] [Sovereign-Worker-0] Share accepted! Total: 9
+[2026-03-16T23:23:53.057Z] [Sovereign-Worker-0] Share accepted! Total: 10
+[2026-03-16T23:23:54.192Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:23:56.049Z] [Sovereign-Worker-0] Share accepted! Total: 11
+[2026-03-16T23:24:04.582Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:24:05.682Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:24:09.983Z] [Sovereign-Worker-0] Share accepted! Total: 12
+[2026-03-16T23:24:14.466Z] [Sovereign-Worker-1] Research complete. Signals detected from https://www.blockchain.com/explorer
+[2026-03-16T23:24:15.930Z] [Sovereign-Worker-0] Share accepted! Total: 13
+[2026-03-16T23:24:16.477Z] [Sovereign-Worker-0] Share accepted! Total: 14
+[2026-03-16T23:24:16.695Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:24:17.475Z] [Sovereign-Worker-0] Research complete. Signals detected from https://news.bitcoin.com/
+[2026-03-16T23:24:19.181Z] [Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[2026-03-16T23:24:19.845Z] [Sovereign-Worker-0] Share accepted! Total: 15
+[2026-03-16T23:24:22.453Z] [Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[2026-03-16T23:24:26.277Z] [Sovereign-Worker-0] Share accepted! Total: 16
+[2026-03-16T23:24:32.094Z] [Sovereign-Worker-1] Share accepted! Total: 7

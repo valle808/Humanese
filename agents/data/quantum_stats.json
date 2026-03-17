@@ -1,10 +1,10 @@
 {
-  "id": "Quantum-xcrj5",
+  "id": "Quantum-py8gv",
   "name": "Sovereign-Quantum-Research-Agent",
-  "qubitsSimulated": 60,
-  "gatesProcessed": 6000,
-  "searchEfficiency": "7.75",
-  "simulatedHashrate": 986,
+  "qubitsSimulated": 0,
+  "gatesProcessed": 0,
+  "searchEfficiency": 1.2,
+  "simulatedHashrate": 0,
   "sharesOptimized": 0,
-  "status": "LOCAL_SIMULATION"
+  "status": "REAL_TIME_MINING"
 }

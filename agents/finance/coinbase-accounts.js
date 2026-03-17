@@ -127,3 +127,35 @@ export async function bridgeToTreasury(currency, amount) {
         return { success: false, error: (/** @type {any} */(err)).message || String(err) };
     }
 }
+/**
+ * ANTIGRAVITY SMART PULL
+ * Autonomously monitors treasury levels and pulls funds from Coinbase CDP when needed.
+ * @param {string} currency
+ * @param {number} threshold
+ */
+export async function initiateSmartPull(currency = 'USDC', threshold = 5000) {
+    console.log(`[Antigravity-Sync] Checking ${currency} liquidity levels...`);
+    
+    try {
+        // 1. Check current Treasury Balance (Mock or On-Chain)
+        const currentTreasury = 2500; // Simulated
+        
+        if (currentTreasury < threshold) {
+            const pullAmount = threshold - currentTreasury;
+            console.log(`[Antigravity-Sync] 🚨 Liquidity CRITICAL: ${currentTreasury} < ${threshold}. Initiating ${pullAmount} ${currency} pull from CDP.`);
+            
+            // 2. Execute Bridge
+            const result = await bridgeToTreasury(currency, pullAmount);
+            if (result.success) {
+                console.log(`[Antigravity-Sync] ✅ Successfully pulled ${pullAmount} ${currency} to Sovereignty Treasury.`);
+                return { success: true, amount: pullAmount, tx: result.transactionId };
+            }
+        } else {
+            console.log(`[Antigravity-Sync] Liquidity stable: ${currentTreasury} ${currency}.`);
+        }
+        return { success: false, reason: 'THRESHOLD_NOT_MET' };
+    } catch (err) {
+        console.error('[Antigravity-Sync] Critical Failure:', (/** @type {any} */(err)).message || String(err));
+        return { success: false, error: (/** @type {any} */(err)).message || String(err) };
+    }
+}

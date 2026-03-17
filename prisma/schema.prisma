@@ -248,3 +248,23 @@ model IntelligenceItem {
   status      String   @default("LOGGED")
   timestamp   DateTime @default(now())
 }
+
+model RWARegistry {
+  id              String   @id @default(uuid())
+  assetId         String   @unique
+  assetName       String
+  assetType       String
+  notarizedBy     String
+  valuationValle  Float
+  status          String   @default("NOTARIZED")
+  metadata        String?  // JSON string
+  createdAt       DateTime @default(now())
+}
+
+model LiquidityPool {
+  id            String   @id @default(uuid())
+  pair          String   @unique // e.g., VALLE/USDC
+  baseReserve   Float
+  quoteReserve  Float
+  lastUpdate    DateTime @default(now())
+}
