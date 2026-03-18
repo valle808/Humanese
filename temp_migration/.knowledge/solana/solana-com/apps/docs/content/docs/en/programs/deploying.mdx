@@ -1,0 +1,452 @@
+---
+title: Deploying Programs
+description:
+  Complete guide to building, deploying, and managing Solana programs using the
+  Solana CLI.
+---
+
+This section walks through the basic process of deploying a Solana program using
+the Solana CLI.
+
+## CLI Command Reference
+
+| Task                               | Command                                                                                       |
+| ---------------------------------- | --------------------------------------------------------------------------------------------- |
+| Build program                      | `cargo build-sbf`                                                                             |
+| Deploy new program                 | `solana program deploy <path_to_program.so>`                                                  |
+| Update existing program            | `solana program deploy <path_to_program.so>` (same as deploy)                                 |
+| Show program info                  | `solana program show <program-id>`                                                            |
+| Transfer program authority         | `solana program set-upgrade-authority <program-id> --new-upgrade-authority <path_to_keypair>` |
+| Make program immutable             | `solana program set-upgrade-authority <program-id> --final`                                   |
+| Close program                      | `solana program close <program-id> --bypass-warning`                                          |
+| Check wallet balance               | `solana balance`                                                                              |
+| Request airdrop (devnet/localhost) | `solana airdrop 2`                                                                            |
+
+## Key Concepts
+
+Before diving in, let's clarify some terminology:
+
+- **Program ID**: The on-chain address of your program. Users interact with your
+  program by referencing the Program ID.
+- **Program Account**: The on-chain account that stores your program's metadata.
+  The program account's address is the Program ID. The program account also
+  stores the address of the ProgramData Account.
+- **ProgramData Account**: The on-chain account that stores your program's
+  deployed executable code.
+- **Program Authority**: The account that has permission to update or close the
+  program. By default, this is your CLI wallet.
+
+## Prerequisites
+
+<Steps>
+
+<Step>
+
+### Install the Solana CLI
+
+First, [install the Solana CLI](/docs/intro/installation).
+
+</Step>
+
+<Step>
+
+### Set Up Wallet
+
+After installation, create a local keypair wallet. The address of this wallet is
+set as the default program authority when deploying programs:
+
+```terminal
+$ solana-keygen new
+```
+
+This creates a keypair at `~/.config/solana/id.json` by default.
+
+</Step>
+
+<Step>
+
+### Configure Cluster
+
+Choose which Solana cluster to deploy to. Use the `solana config get` command to
+check your current configuration:
+
+```terminal
+$ solana config get
+Config File: ~/.config/solana/cli/config.yml
+RPC URL: http://localhost:8899
+WebSocket URL: ws://localhost:8900/ (computed)
+Keypair Path: ~/.config/solana/id.json
+Commitment: confirmed
+```
+
+Switch between clusters as needed:
+
+```terminal
+$ solana config set --url mainnet-beta
+$ solana config set --url devnet
+$ solana config set --url localhost
+$ solana config set --url testnet
+$ solana config set --url "https://your-rpc-url.com"
+```
+
+</Step>
+
+<Step>
+
+### Fund Wallet
+
+You'll need SOL to pay for program deployments. The amount depends on your
+program size.
+
+For devnet or localhost, fund your wallet using the `solana airdrop` command:
+
+```terminal
+$ solana airdrop 2
+Requesting airdrop of 2 SOL
+Signature: 5zQKxvRdgJDA8fRGPdKfGxRLnLpwmNnMXGYxfBqFSUPqc5BTmFPrTG8vnC4HvKDVY8zQ8aQxZxcEE7WFpGhZGVAA
+2 SOL
+```
+
+Check your wallet balance:
+
+```terminal
+$ solana balance
+2 SOL
+```
+
+</Step>
+
+</Steps>
+
+## Basic Operations
+
+### Build Program
+
+To build a program, use the `cargo build-sbf` command:
+
+```terminal
+$ cargo build-sbf
+```
+
+<ScrollyCoding>
+
+## !!steps Example Program
+
+Here is a minimal Solana program that prints "Hello, Solana!" to the program
+logs.
+
+<CodePlaceholder title="src/lib.rs" />
+
+```rs !! title="src/lib.rs"
+use solana_program::{
+    account_info::AccountInfo, entrypoint, entrypoint::ProgramResult, msg, pubkey::Pubkey,
+};
+
+entrypoint!(process_instruction);
+
+pub fn process_instruction(
+    _program_id: &Pubkey,
+    _accounts: &[AccountInfo],
+    _instruction_data: &[u8],
+) -> ProgramResult {
+    msg!("Hello, Solana!");
+    Ok(())
+}
+```
+
+```toml !! title="Cargo.toml"
+[package]
+name = "hello_world"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "2.2.0"
+```
+
+## !!steps Build Output
+
+Build your program using the `cargo build-sbf` command:
+
+```terminal
+$ cargo build-sbf
+```
+
+This creates two important files in `target/deploy/`:
+
+1. `hello_world-keypair.json`: A keypair file whose public key will be used as
+   your Program ID
+2. `hello_world.so`: The compiled program executable
+
+```json !! title="target/deploy/hello_world-keypair.json"
+[
+  203, 253, 43, 62, 165, 111, 94, 222, 105, 225, 218, 85, 143, 9, 114, 96, 243,
+  181, 114, 89, 72, 230, 124, 85, 59, 165, 198, 23, 240, 212, 23, 154, 229, 241,
+  153, 61, 153, 105, 79, 204, 193, 163, 33, 65, 82, 183, 49, 240, 224, 137, 248,
+  24, 128, 25, 192, 197, 118, 235, 239, 67, 85, 156, 219, 231
+]
+```
+
+```txt !! title="target/deploy/hello_world.so"
+[binary executable file]
+```
+
+</ScrollyCoding>
+
+### Check Program Size and Cost
+
+Deploying a program requires SOL to be allocated to the program account based on
+the size of the program. Larger programs cost more SOL to deploy.
+
+Check your program's size:
+
+```terminal
+$ wc -c < ./target/deploy/hello_world.so
+18504
+```
+
+Calculate the required SOL for this size (bytes):
+
+```terminal
+$ solana rent 18504
+Rent-exempt minimum: 0.12967872 SOL
+```
+
+<Callout type="info">
+  You'll need slightly more SOL than shown to cover deployment transaction fees.
+</Callout>
+
+### Deploy Program
+
+Use the `solana program deploy` command to deploy your program:
+
+```terminal
+$ solana program deploy ./target/deploy/hello_world.so
+Program Id: 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE
+Signature: 2BYwsqRP7ZwBNQvJp3S8bphTJ4zKW5JBPVMqCTE5KyLkP8xHzAyUEeC4LdTgjJdGBKHWNCkRF8Mf1T1WkLFyEu8W
+```
+
+The **Program Id** shown is your program's permanent address on the network.
+
+<Callout>
+
+To deploy with a specific Program ID (instead of the auto-generated one), use:
+
+```terminal
+$ solana program deploy ./target/deploy/hello_world.so --program-id ./custom-keypair.json
+```
+
+You can generate new keypairs using the `solana-keygen` command:
+
+```terminal
+$ solana-keygen new -o ./custom-keypair.json
+```
+
+</Callout>
+
+### Update Program
+
+Update your program using the same `solana program deploy` command:
+
+1. Make changes to your program code
+2. Rebuild your program: `cargo build-sbf`
+3. Deploy the update:
+
+```terminal
+$ solana program deploy ./target/deploy/hello_world.so
+Program Id: 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE
+Signature: 3zKnXDfEm1R8hVcEmTnNFYUaFjVVbLJrKdFj5hBMXoBRfz8xGyDhCYgKr9YY5KxKYPEUQQVfwEPNz9hQGvYhLNBJ
+```
+
+<Callout type="info">
+
+If your updated program requires more space (bytes) than currently allocated,
+the deployment will automatically extend the program account. This happens when
+your new program is larger than the previous version. The program account needs
+additional bytes to store the new program. The CLI will calculate the required
+SOL and deduct it from your wallet automatically.
+
+You can also manually extend a program to allocate more bytes:
+
+```terminal
+$ solana program extend 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE 1000
+Extended Program Id 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE by 1000 bytes
+```
+
+</Callout>
+
+## Program Management
+
+Once your program is deployed, there are several common commands to manage the
+program account.
+
+### View Program Metadata
+
+To check your program metadata, use the `solana program show` command:
+
+```terminal
+$ solana program show 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE
+```
+
+<WithNotes>
+
+Example output:
+
+```txt
+$ solana program show 7283x8k8fyBcfaFLyPsxbd2VV1AMmZFP7FNoyTXVKJw7
+# !tooltip[/Program Id/] program-id
+Program Id: 7283x8k8fyBcfaFLyPsxbd2VV1AMmZFP7FNoyTXVKJw7
+# !tooltip[/Owner/] owner
+Owner: BPFLoaderUpgradeab1e11111111111111111111111
+# !tooltip[/ProgramData Address/] program-data-address
+ProgramData Address: Gqn7YQVCP8NtYV1qkEqR4Udhj8EJ3fkikvS7HskCNQ7c
+# !tooltip[/Authority/] authority
+Authority: 5kh6HxYZiAebF8HWLsUWod2EaQQ6iWHpHYCz8UcmFbM1
+# !tooltip[/Last Deployed In Slot/] last-deployed-in-slot
+Last Deployed In Slot: 6573
+# !tooltip[/Data Length/] data-length
+Data Length: 18504 (0x4848) bytes
+# !tooltip[/Balance/] balance
+Balance: 0.12999192 SOL
+```
+
+### !program-id
+
+The Program ID is the on-chain address of your program account. Users and other
+programs invoke your program by referencing this ID in their transactions.
+
+### !owner
+
+The Owner identifies which loader was used to deploy this program. For most
+programs, this will be the BPF Upgradeable Loader.
+
+### !program-data-address
+
+The ProgramData Address points to the separate account that stores your
+program's executable code.
+
+### !authority
+
+The Authority is the account that has permission to upgrade or close this
+program. Only the authority can deploy updates or close the program to reclaim
+the program's allocated SOL.
+
+### !last-deployed-in-slot
+
+The Last Deployed In Slot indicates when this program was last updated.
+
+### !data-length
+
+The Data Length shows the total bytes allocated to this program. This space can
+accommodate future updates that may be larger than the current program size.
+
+### !balance
+
+The Balance displays the SOL allocated to the program account to store its data.
+
+</WithNotes>
+
+### Transfer Program Authority
+
+To transfer the program authority to a different account, use the
+`solana program set-upgrade-authority` command:
+
+```terminal
+$ solana program set-upgrade-authority 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE --new-upgrade-authority ./new-authority-keypair.json
+```
+
+<Callout type="warn">
+  After transferring the program authority, you can no longer update the program
+  unless you have access to the new authority keypair.
+</Callout>
+
+### Make Your Program Immutable
+
+To make your program immutable, use the `solana program set-upgrade-authority`
+command with the `--final` flag to remove the program authority:
+
+```terminal
+$ solana program set-upgrade-authority 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE --final
+Account Type: Program
+Authority: none
+```
+
+<Callout type="warn">
+  Once a program is immutable, it can never be updated or closed.
+</Callout>
+
+### Close Your Program
+
+To close your program and reclaim the SOL allocated to the program account, use
+the `solana program close` command:
+
+```terminal
+$ solana program close 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE --bypass-warning
+Closed Program Id 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE, 0.12999192 SOL reclaimed
+```
+
+<Callout type="warn">
+  Once closed, the Program ID can not be reused. You cannot deploy a new program
+  to the same address.
+</Callout>
+
+## Utility Commands
+
+### List All Programs
+
+View all programs where your current wallet is the authority:
+
+```terminal
+$ solana program show --programs
+```
+
+Example output:
+
+```txt
+Program Id                                       | Slot       | Authority                                      | Balance
+-------------------------------------------------|------------|------------------------------------------------|-------------
+7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE     | 249885434  | 5kh6HxYZiAebF8HWLsUWod2EaQQ6iWHpHYCz8UcmFbM1   | 0.12999192
+3KSGCk4m5hqJkTjPHBXUCPcqMwJnK3VmkqEsFUKKGJPK     | 249883212  | 5kh6HxYZiAebF8HWLsUWod2EaQQ6iWHpHYCz8UcmFbM1   | 0.28654328
+```
+
+### Download a Deployed Program
+
+To download a deployed program, use the `solana program dump` command:
+
+```terminal
+$ solana program dump 7NxQjW8H8hVcqBKgXbVDWqGQCovHbqDW9p1SJJwUyTpE ./downloaded_program.so
+Wrote program to ./downloaded_program.so
+```
+
+## Advanced Options
+
+### Deployment Flags
+
+When the Solana network is congested, use these flags to help with program
+deployment.
+
+Example Usage:
+
+```terminal
+$ solana program deploy ./target/deploy/hello_world.so \
+    --with-compute-unit-price 10000 \
+    --max-sign-attempts 10 \
+    --use-rpc
+```
+
+Options explained:
+
+- **`--with-compute-unit-price`**: Set priority fee in micro-lamports (0.000001
+  SOL) per compute unit. Check
+  [Helius Priority Fee API](https://docs.helius.dev/guides/priority-fee-api) for
+  current rates. A priority fee is an additional fee that paid to the current
+  leader to prioritize your transaction.
+- **`--max-sign-attempts`**: Number of times to retry with a new blockhash if
+  transactions expire. (Default: 5)
+- **`--use-rpc`**: Send transactions to the configured RPC. This flag requires a
+  [stake-weighted](/developers/guides/advanced/stake-weighted-qos) RPC
+  connection from providers such as [Triton](https://triton.one/) or
+  [Helius](https://www.helius.dev/).

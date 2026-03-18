@@ -1,0 +1,11 @@
+// Diatype
+@import "../fonts/fonts.css";
+
+// Solana variables
+@import "solana-variables";
+
+// Solana core & page-specific styles
+@import "solana";
+
+// Solana-lib
+@import "~@solana-foundation/solana-lib/dist/styles.css";

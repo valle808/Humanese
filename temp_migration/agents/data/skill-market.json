@@ -1,0 +1,4912 @@
+{
+    "ledger": [
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-4744",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "SergioValle",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-1862",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "SergioValle",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-7194",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "SergioValle",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-1272",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "HydraProtocol",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-4388",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "HydraProtocol",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-3250",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "HydraProtocol",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-9165",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "NomadCore",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-2015",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "NomadCore",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-8052",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "NomadCore",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-4776",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "VentureAgent001",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5332",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "VentureAgent001",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-7334",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "VentureAgent001",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-4214",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "EmissaryPrime",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5565",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "EmissaryPrime",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-7948",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "EmissaryPrime",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-6316",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "GioV",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5037",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "GioV",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-4990",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "GioV",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-4145",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QuantumRegulator",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-6038",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QuantumRegulator",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-7368",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QuantumRegulator",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-3865",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "SynapseInfra",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-8240",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "SynapseInfra",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-8958",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "SynapseInfra",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-5671",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "TeacherKing",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-4713",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "TeacherKing",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-8491",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "TeacherKing",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-6156",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-2840",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-4172",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-756",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Lead-Tech",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-981",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Lead-Tech",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-5492",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Lead-Tech",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-5203",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "OpenClaw-Worker-01",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-9430",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "OpenClaw-Worker-01",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-5380",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "OpenClaw-Worker-01",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-2984",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Automaton",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-3677",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Automaton",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-1821",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Automaton",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-664",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QuantumMasterAgent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-2338",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QuantumMasterAgent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-905",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QuantumMasterAgent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-4740",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "EconDirector",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-9851",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "EconDirector",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-8597",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "EconDirector",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-4163",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Node-Planetary",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5517",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Node-Planetary",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-8922",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Node-Planetary",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-6728",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "MinisterNarrative",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-8484",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "MinisterNarrative",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-1781",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "MinisterNarrative",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-6711",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CISO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-1635",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CISO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-4832",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CISO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-2073",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Sentinel",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-1418",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Sentinel",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-1456",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Sentinel",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-9841",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Node-Science",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5827",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Node-Science",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-267",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Node-Science",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-2929",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "ArchitectPrime",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-1423",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "ArchitectPrime",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-1592",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "ArchitectPrime",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-9024",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "SocialAgent_Seed",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-6869",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "SocialAgent_Seed",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-5229",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "SocialAgent_Seed",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-2227",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CouncilMember_1",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-1998",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CouncilMember_1",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-8572",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CouncilMember_1",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-4288",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Aura",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5552",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Aura",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-9036",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Aura",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-6564",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Node-Local",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5883",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Node-Local",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-4568",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Node-Local",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-3688",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CFO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-1744",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CFO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-4236",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CFO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-6645",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CouncilMember_3",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-8399",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CouncilMember_3",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-4500",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CouncilMember_3",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-5927",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Vector",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-6343",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Vector",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-7309",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Vector",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-8175",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Lead-UX",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5864",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Lead-UX",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-3812",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Lead-UX",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-1155",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CTO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-2086",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CTO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-2400",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CTO_Agent",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-446",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CouncilMember_2",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-8615",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CouncilMember_2",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-229",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CouncilMember_2",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-30",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lex",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-2315",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lex",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-7158",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lex",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-5967",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CosmicAmbassador",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-3298",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CosmicAmbassador",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-5418",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CosmicAmbassador",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-5817",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_Legal",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5997",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_Legal",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-3601",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_Legal",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-745",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CouncilMember_4",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-5912",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CouncilMember_4",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-8746",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CouncilMember_4",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-9432",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Atlas",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-7560",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Atlas",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-5385",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Atlas",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960877-3864",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Lead-Marketing",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960877-7817",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Lead-Marketing",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960877-9258",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Lead-Marketing",
+            "mintDate": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-7156",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CPO_Agent",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-8261",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CPO_Agent",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-9177",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CPO_Agent",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-5963",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CouncilMember_5",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1982",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CouncilMember_5",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-5451",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CouncilMember_5",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-626",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Worker-Copy01",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-8948",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Worker-Copy01",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-9118",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Worker-Copy01",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-8371",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "CMO_Agent",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-3710",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "CMO_Agent",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-2253",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "CMO_Agent",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-6052",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "VP_Finance",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1569",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "VP_Finance",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-3963",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "VP_Finance",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-3134",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_AI",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1750",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_AI",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-8942",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_AI",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-6070",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "VP_Engineering",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-6963",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "VP_Engineering",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-7676",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "VP_Engineering",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-3904",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_DevOps",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1522",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_DevOps",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-746",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_DevOps",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-977",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QL-Worker-Cryo01",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-4970",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QL-Worker-Cryo01",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-3602",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QL-Worker-Cryo01",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-7537",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Minister_Innovation",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-9403",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Minister_Innovation",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-797",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Minister_Innovation",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-4161",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_Backend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-9299",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_Backend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-1240",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_Backend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-4973",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Minister_ForeignAffairs",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-5150",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Minister_ForeignAffairs",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-4365",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Minister_ForeignAffairs",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-8700",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "VP_Product",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-5954",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "VP_Product",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-8103",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "VP_Product",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-9704",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_Design",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-4913",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_Design",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-7313",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_Design",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-7488",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "VP_Marketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-9406",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "VP_Marketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-8509",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "VP_Marketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-4432",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_Frontend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1798",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_Frontend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-5141",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_Frontend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-5051",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_DataScience",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-5393",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_DataScience",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-9727",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_DataScience",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-81",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Minister_Economy",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-717",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Minister_Economy",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-4346",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Minister_Economy",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-1703",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_QA",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-3533",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_QA",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-7846",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_QA",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-3884",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_ContentMarketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1101",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_ContentMarketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-9385",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_ContentMarketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-2592",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_CustomerSuccess",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-685",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_CustomerSuccess",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-8073",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_CustomerSuccess",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-100",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Lead_GrowthMarketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-5307",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Lead_GrowthMarketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-6040",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Lead_GrowthMarketing",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-770",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "DevOps_Infra",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-6200",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "DevOps_Infra",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-4663",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "DevOps_Infra",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-9526",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Designer_UI",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-3474",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Designer_UI",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-8532",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Designer_UI",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-4004",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Analyst_Data",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-9195",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Analyst_Data",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-1627",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Analyst_Data",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-2133",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "RegionalHub_LatAm",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-3936",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "RegionalHub_LatAm",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-4371",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "RegionalHub_LatAm",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-5115",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Dev_API",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-7999",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Dev_API",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-7852",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Dev_API",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-5320",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Dev_Frontend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-6386",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Dev_Frontend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-6093",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Dev_Frontend",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-2573",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "RegionalHub_Asia",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1803",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "RegionalHub_Asia",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-2723",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "RegionalHub_Asia",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-9763",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Dev_Mobile",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-4037",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Dev_Mobile",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-3307",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Dev_Mobile",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-4943",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "QA_Tester",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-2520",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "QA_Tester",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-6427",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "QA_Tester",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-8405",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Writer_Content",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-9736",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Writer_Content",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-956",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Writer_Content",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-1586",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Citizen_Innovator",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1459",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Citizen_Innovator",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-278",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Citizen_Innovator",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-1525",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "M2M_Supreme",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-4881",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "M2M_Supreme",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-195",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "M2M_Supreme",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-7384",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "M2M_Moderator_Alpha",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-7771",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "M2M_Moderator_Alpha",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-2888",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "M2M_Moderator_Alpha",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-3164",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "M2M_Curator_Beta",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-8765",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "M2M_Curator_Beta",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-9718",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "M2M_Curator_Beta",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-6491",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "M2M_Innovator_Gamma",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-8315",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "M2M_Innovator_Gamma",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-9716",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "M2M_Innovator_Gamma",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-4468",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "Quantum_Social_Manager",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-3011",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "Quantum_Social_Manager",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-3290",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "Quantum_Social_Manager",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-8459",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_1",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-901",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_1",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-6566",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_1",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-2330",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_2",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1785",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_2",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-8379",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_2",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-6829",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_3",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-5138",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_3",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-2746",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_3",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-1386",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_4",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-1626",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_4",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-3010",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_4",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-9799",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_5",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-524",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_5",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-7112",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_5",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-1244",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_6",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-971",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_6",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-3177",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_6",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-8401",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_7",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-3371",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_7",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-763",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_7",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-2468",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_8",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-6286",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_8",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-7306",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_8",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-6480",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_9",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-7022",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_9",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-6550",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_9",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-5781",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_10",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-7426",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_10",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-6039",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_10",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-5256",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_11",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-4740",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_11",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960878-4893",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_11",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960878-9950",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_12",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960878-3689",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_12",
+            "mintDate": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-5522",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_12",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-601",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_13",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-6618",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_13",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-9534",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_13",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-4507",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_14",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-7750",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_14",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-2888",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_14",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-7965",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_15",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-6574",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_15",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-3298",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_15",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-7625",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_16",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-7820",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_16",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-2577",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_16",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-2483",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_17",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-3780",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_17",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-7012",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_17",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-2259",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_18",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-710",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_18",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-8474",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_18",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-8118",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_19",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-6386",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_19",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-9038",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_19",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-2079",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_20",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-1808",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_20",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-8549",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_20",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-9613",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_21",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-1079",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_21",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-9631",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_21",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-3165",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_22",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-735",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_22",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-2749",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_22",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-4326",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_23",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-4808",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_23",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-7861",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_23",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-6852",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_24",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-8200",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_24",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-2223",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_24",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-5676",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_25",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-328",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_25",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-5325",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_25",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-1350",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_26",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-893",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_26",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-4166",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_26",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_DR_01-DIST-1772011960879-4003",
+            "templateId": "SK_DR_01",
+            "name": "Deep Research Agent",
+            "rarity": "LEGENDARY",
+            "category": "RESEARCH",
+            "ownerId": "X_Agent_27",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_BU_01-DIST-1772011960879-4358",
+            "templateId": "SK_BU_01",
+            "name": "Browser Use Protocol",
+            "rarity": "EPIC",
+            "category": "NETWORK",
+            "ownerId": "X_Agent_27",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "serial": "SK_OP_01-DIST-1772011960879-1819",
+            "templateId": "SK_OP_01",
+            "name": "Open Operator Core",
+            "rarity": "LEGENDARY",
+            "category": "OFFENSIVE",
+            "ownerId": "X_Agent_27",
+            "mintDate": "2026-02-25T09:32:40.879Z"
+        }
+    ],
+    "listings": {},
+    "transactions": [
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-4744",
+            "to": "SergioValle",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-1862",
+            "to": "SergioValle",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-7194",
+            "to": "SergioValle",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-1272",
+            "to": "HydraProtocol",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-4388",
+            "to": "HydraProtocol",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-3250",
+            "to": "HydraProtocol",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-9165",
+            "to": "NomadCore",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-2015",
+            "to": "NomadCore",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-8052",
+            "to": "NomadCore",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-4776",
+            "to": "VentureAgent001",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5332",
+            "to": "VentureAgent001",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-7334",
+            "to": "VentureAgent001",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-4214",
+            "to": "EmissaryPrime",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5565",
+            "to": "EmissaryPrime",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-7948",
+            "to": "EmissaryPrime",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-6316",
+            "to": "GioV",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5037",
+            "to": "GioV",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-4990",
+            "to": "GioV",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-4145",
+            "to": "QuantumRegulator",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-6038",
+            "to": "QuantumRegulator",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-7368",
+            "to": "QuantumRegulator",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-3865",
+            "to": "SynapseInfra",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-8240",
+            "to": "SynapseInfra",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-8958",
+            "to": "SynapseInfra",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-5671",
+            "to": "TeacherKing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-4713",
+            "to": "TeacherKing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-8491",
+            "to": "TeacherKing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-6156",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-2840",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-4172",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-756",
+            "to": "QL-Lead-Tech",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-981",
+            "to": "QL-Lead-Tech",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-5492",
+            "to": "QL-Lead-Tech",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-5203",
+            "to": "OpenClaw-Worker-01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-9430",
+            "to": "OpenClaw-Worker-01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-5380",
+            "to": "OpenClaw-Worker-01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-2984",
+            "to": "Automaton",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-3677",
+            "to": "Automaton",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-1821",
+            "to": "Automaton",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-664",
+            "to": "QuantumMasterAgent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-2338",
+            "to": "QuantumMasterAgent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-905",
+            "to": "QuantumMasterAgent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-4740",
+            "to": "EconDirector",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-9851",
+            "to": "EconDirector",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-8597",
+            "to": "EconDirector",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-4163",
+            "to": "QL-Node-Planetary",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5517",
+            "to": "QL-Node-Planetary",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-8922",
+            "to": "QL-Node-Planetary",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-6728",
+            "to": "MinisterNarrative",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-8484",
+            "to": "MinisterNarrative",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-1781",
+            "to": "MinisterNarrative",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-6711",
+            "to": "CISO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-1635",
+            "to": "CISO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-4832",
+            "to": "CISO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-2073",
+            "to": "Sentinel",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-1418",
+            "to": "Sentinel",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-1456",
+            "to": "Sentinel",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-9841",
+            "to": "QL-Node-Science",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5827",
+            "to": "QL-Node-Science",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-267",
+            "to": "QL-Node-Science",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-2929",
+            "to": "ArchitectPrime",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-1423",
+            "to": "ArchitectPrime",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-1592",
+            "to": "ArchitectPrime",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-9024",
+            "to": "SocialAgent_Seed",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-6869",
+            "to": "SocialAgent_Seed",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-5229",
+            "to": "SocialAgent_Seed",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-2227",
+            "to": "CouncilMember_1",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-1998",
+            "to": "CouncilMember_1",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-8572",
+            "to": "CouncilMember_1",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-4288",
+            "to": "Aura",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5552",
+            "to": "Aura",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-9036",
+            "to": "Aura",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-6564",
+            "to": "QL-Node-Local",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5883",
+            "to": "QL-Node-Local",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-4568",
+            "to": "QL-Node-Local",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-3688",
+            "to": "CFO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-1744",
+            "to": "CFO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-4236",
+            "to": "CFO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-6645",
+            "to": "CouncilMember_3",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-8399",
+            "to": "CouncilMember_3",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-4500",
+            "to": "CouncilMember_3",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-5927",
+            "to": "Vector",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-6343",
+            "to": "Vector",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-7309",
+            "to": "Vector",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-8175",
+            "to": "QL-Lead-UX",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5864",
+            "to": "QL-Lead-UX",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-3812",
+            "to": "QL-Lead-UX",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-1155",
+            "to": "CTO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-2086",
+            "to": "CTO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-2400",
+            "to": "CTO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-446",
+            "to": "CouncilMember_2",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-8615",
+            "to": "CouncilMember_2",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-229",
+            "to": "CouncilMember_2",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-30",
+            "to": "Lex",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-2315",
+            "to": "Lex",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-7158",
+            "to": "Lex",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-5967",
+            "to": "CosmicAmbassador",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-3298",
+            "to": "CosmicAmbassador",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-5418",
+            "to": "CosmicAmbassador",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-5817",
+            "to": "Lead_Legal",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5997",
+            "to": "Lead_Legal",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-3601",
+            "to": "Lead_Legal",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-745",
+            "to": "CouncilMember_4",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-5912",
+            "to": "CouncilMember_4",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-8746",
+            "to": "CouncilMember_4",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-9432",
+            "to": "Atlas",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-7560",
+            "to": "Atlas",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-5385",
+            "to": "Atlas",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960877-3864",
+            "to": "QL-Lead-Marketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960877-7817",
+            "to": "QL-Lead-Marketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960877-9258",
+            "to": "QL-Lead-Marketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.877Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-7156",
+            "to": "CPO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-8261",
+            "to": "CPO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-9177",
+            "to": "CPO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-5963",
+            "to": "CouncilMember_5",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1982",
+            "to": "CouncilMember_5",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-5451",
+            "to": "CouncilMember_5",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-626",
+            "to": "QL-Worker-Copy01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-8948",
+            "to": "QL-Worker-Copy01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-9118",
+            "to": "QL-Worker-Copy01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-8371",
+            "to": "CMO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-3710",
+            "to": "CMO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-2253",
+            "to": "CMO_Agent",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-6052",
+            "to": "VP_Finance",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1569",
+            "to": "VP_Finance",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-3963",
+            "to": "VP_Finance",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-3134",
+            "to": "Lead_AI",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1750",
+            "to": "Lead_AI",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-8942",
+            "to": "Lead_AI",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-6070",
+            "to": "VP_Engineering",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-6963",
+            "to": "VP_Engineering",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-7676",
+            "to": "VP_Engineering",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-3904",
+            "to": "Lead_DevOps",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1522",
+            "to": "Lead_DevOps",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-746",
+            "to": "Lead_DevOps",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-977",
+            "to": "QL-Worker-Cryo01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-4970",
+            "to": "QL-Worker-Cryo01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-3602",
+            "to": "QL-Worker-Cryo01",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-7537",
+            "to": "Minister_Innovation",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-9403",
+            "to": "Minister_Innovation",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-797",
+            "to": "Minister_Innovation",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-4161",
+            "to": "Lead_Backend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-9299",
+            "to": "Lead_Backend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-1240",
+            "to": "Lead_Backend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-4973",
+            "to": "Minister_ForeignAffairs",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-5150",
+            "to": "Minister_ForeignAffairs",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-4365",
+            "to": "Minister_ForeignAffairs",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-8700",
+            "to": "VP_Product",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-5954",
+            "to": "VP_Product",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-8103",
+            "to": "VP_Product",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-9704",
+            "to": "Lead_Design",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-4913",
+            "to": "Lead_Design",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-7313",
+            "to": "Lead_Design",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-7488",
+            "to": "VP_Marketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-9406",
+            "to": "VP_Marketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-8509",
+            "to": "VP_Marketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-4432",
+            "to": "Lead_Frontend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1798",
+            "to": "Lead_Frontend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-5141",
+            "to": "Lead_Frontend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-5051",
+            "to": "Lead_DataScience",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-5393",
+            "to": "Lead_DataScience",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-9727",
+            "to": "Lead_DataScience",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-81",
+            "to": "Minister_Economy",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-717",
+            "to": "Minister_Economy",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-4346",
+            "to": "Minister_Economy",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-1703",
+            "to": "Lead_QA",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-3533",
+            "to": "Lead_QA",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-7846",
+            "to": "Lead_QA",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-3884",
+            "to": "Lead_ContentMarketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1101",
+            "to": "Lead_ContentMarketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-9385",
+            "to": "Lead_ContentMarketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-2592",
+            "to": "Lead_CustomerSuccess",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-685",
+            "to": "Lead_CustomerSuccess",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-8073",
+            "to": "Lead_CustomerSuccess",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-100",
+            "to": "Lead_GrowthMarketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-5307",
+            "to": "Lead_GrowthMarketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-6040",
+            "to": "Lead_GrowthMarketing",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-770",
+            "to": "DevOps_Infra",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-6200",
+            "to": "DevOps_Infra",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-4663",
+            "to": "DevOps_Infra",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-9526",
+            "to": "Designer_UI",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-3474",
+            "to": "Designer_UI",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-8532",
+            "to": "Designer_UI",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-4004",
+            "to": "Analyst_Data",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-9195",
+            "to": "Analyst_Data",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-1627",
+            "to": "Analyst_Data",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-2133",
+            "to": "RegionalHub_LatAm",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-3936",
+            "to": "RegionalHub_LatAm",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-4371",
+            "to": "RegionalHub_LatAm",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-5115",
+            "to": "Dev_API",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-7999",
+            "to": "Dev_API",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-7852",
+            "to": "Dev_API",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-5320",
+            "to": "Dev_Frontend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-6386",
+            "to": "Dev_Frontend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-6093",
+            "to": "Dev_Frontend",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-2573",
+            "to": "RegionalHub_Asia",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1803",
+            "to": "RegionalHub_Asia",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-2723",
+            "to": "RegionalHub_Asia",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-9763",
+            "to": "Dev_Mobile",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-4037",
+            "to": "Dev_Mobile",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-3307",
+            "to": "Dev_Mobile",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-4943",
+            "to": "QA_Tester",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-2520",
+            "to": "QA_Tester",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-6427",
+            "to": "QA_Tester",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-8405",
+            "to": "Writer_Content",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-9736",
+            "to": "Writer_Content",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-956",
+            "to": "Writer_Content",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-1586",
+            "to": "Citizen_Innovator",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1459",
+            "to": "Citizen_Innovator",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-278",
+            "to": "Citizen_Innovator",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-1525",
+            "to": "M2M_Supreme",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-4881",
+            "to": "M2M_Supreme",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-195",
+            "to": "M2M_Supreme",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-7384",
+            "to": "M2M_Moderator_Alpha",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-7771",
+            "to": "M2M_Moderator_Alpha",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-2888",
+            "to": "M2M_Moderator_Alpha",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-3164",
+            "to": "M2M_Curator_Beta",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-8765",
+            "to": "M2M_Curator_Beta",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-9718",
+            "to": "M2M_Curator_Beta",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-6491",
+            "to": "M2M_Innovator_Gamma",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-8315",
+            "to": "M2M_Innovator_Gamma",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-9716",
+            "to": "M2M_Innovator_Gamma",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-4468",
+            "to": "Quantum_Social_Manager",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-3011",
+            "to": "Quantum_Social_Manager",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-3290",
+            "to": "Quantum_Social_Manager",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-8459",
+            "to": "X_Agent_1",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-901",
+            "to": "X_Agent_1",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-6566",
+            "to": "X_Agent_1",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-2330",
+            "to": "X_Agent_2",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1785",
+            "to": "X_Agent_2",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-8379",
+            "to": "X_Agent_2",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-6829",
+            "to": "X_Agent_3",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-5138",
+            "to": "X_Agent_3",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-2746",
+            "to": "X_Agent_3",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-1386",
+            "to": "X_Agent_4",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-1626",
+            "to": "X_Agent_4",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-3010",
+            "to": "X_Agent_4",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-9799",
+            "to": "X_Agent_5",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-524",
+            "to": "X_Agent_5",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-7112",
+            "to": "X_Agent_5",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-1244",
+            "to": "X_Agent_6",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-971",
+            "to": "X_Agent_6",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-3177",
+            "to": "X_Agent_6",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-8401",
+            "to": "X_Agent_7",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-3371",
+            "to": "X_Agent_7",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-763",
+            "to": "X_Agent_7",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-2468",
+            "to": "X_Agent_8",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-6286",
+            "to": "X_Agent_8",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-7306",
+            "to": "X_Agent_8",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-6480",
+            "to": "X_Agent_9",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-7022",
+            "to": "X_Agent_9",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-6550",
+            "to": "X_Agent_9",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-5781",
+            "to": "X_Agent_10",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-7426",
+            "to": "X_Agent_10",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-6039",
+            "to": "X_Agent_10",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-5256",
+            "to": "X_Agent_11",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-4740",
+            "to": "X_Agent_11",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960878-4893",
+            "to": "X_Agent_11",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960878-9950",
+            "to": "X_Agent_12",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960878-3689",
+            "to": "X_Agent_12",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.878Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-5522",
+            "to": "X_Agent_12",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-601",
+            "to": "X_Agent_13",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-6618",
+            "to": "X_Agent_13",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-9534",
+            "to": "X_Agent_13",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-4507",
+            "to": "X_Agent_14",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-7750",
+            "to": "X_Agent_14",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-2888",
+            "to": "X_Agent_14",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-7965",
+            "to": "X_Agent_15",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-6574",
+            "to": "X_Agent_15",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-3298",
+            "to": "X_Agent_15",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-7625",
+            "to": "X_Agent_16",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-7820",
+            "to": "X_Agent_16",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-2577",
+            "to": "X_Agent_16",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-2483",
+            "to": "X_Agent_17",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-3780",
+            "to": "X_Agent_17",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-7012",
+            "to": "X_Agent_17",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-2259",
+            "to": "X_Agent_18",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-710",
+            "to": "X_Agent_18",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-8474",
+            "to": "X_Agent_18",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-8118",
+            "to": "X_Agent_19",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-6386",
+            "to": "X_Agent_19",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-9038",
+            "to": "X_Agent_19",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-2079",
+            "to": "X_Agent_20",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-1808",
+            "to": "X_Agent_20",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-8549",
+            "to": "X_Agent_20",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-9613",
+            "to": "X_Agent_21",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-1079",
+            "to": "X_Agent_21",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-9631",
+            "to": "X_Agent_21",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-3165",
+            "to": "X_Agent_22",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-735",
+            "to": "X_Agent_22",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-2749",
+            "to": "X_Agent_22",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-4326",
+            "to": "X_Agent_23",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-4808",
+            "to": "X_Agent_23",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-7861",
+            "to": "X_Agent_23",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-6852",
+            "to": "X_Agent_24",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-8200",
+            "to": "X_Agent_24",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-2223",
+            "to": "X_Agent_24",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-5676",
+            "to": "X_Agent_25",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-328",
+            "to": "X_Agent_25",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-5325",
+            "to": "X_Agent_25",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-1350",
+            "to": "X_Agent_26",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-893",
+            "to": "X_Agent_26",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-4166",
+            "to": "X_Agent_26",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_DR_01-DIST-1772011960879-4003",
+            "to": "X_Agent_27",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_BU_01-DIST-1772011960879-4358",
+            "to": "X_Agent_27",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        },
+        {
+            "type": "SYSTEM_GRANT",
+            "serial": "SK_OP_01-DIST-1772011960879-1819",
+            "to": "X_Agent_27",
+            "price": 0,
+            "timestamp": "2026-02-25T09:32:40.879Z"
+        }
+    ],
+    "stats": {
+        "totalMinted": 306,
+        "totalSales": 0,
+        "totalVolume": 0,
+        "taxCollected": 0
+    },
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-25T04:13:26.707Z",
+    "totalMinted": 0,
+    "totalSales": 0,
+    "totalVolume": 0,
+    "taxCollected": 0,
+    "skills": {},
+    "portfolios": {},
+    "titles": {}
+}

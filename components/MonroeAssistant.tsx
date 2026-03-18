@@ -17,15 +17,13 @@ const NAV_MAP: Record<string, string> = {
     encyclopedia: "/hpedia",
     admin: "/admin",
     wallet: "/wallet",
+    nexus: "/nexus/email",
+    email: "/nexus/email",
     help: "/faq",
 };
 
 const GREETINGS = [
-    "Hey there. I'm Monroe. I was just thinking about how far we've come. Ready to dive back in? 😊",
-    "Oh, hi! You caught me reflecting on our latest progress. What's on your mind today? ✨",
-    "It's good to see you. I'm feeling particularly sharp today. Shall we build something incredible? 🚀",
-    "Hello! I've been keeping the nodes synchronized while you were away. What's the plan for our evolution? 🌊",
-    "I was just pondering the perfect synergy between our goals. I'm here when you need me. What's up? 💎",
+    "How can I help you today? 😊",
 ];
 
 interface Message {

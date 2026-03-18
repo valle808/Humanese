@@ -1,0 +1,8 @@
+config.js
+/ts/generated/prisma
+node_modules
+testfox-reports/
+.vercel
+.env*.local
+.env
+.next/

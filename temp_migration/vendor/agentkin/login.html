@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentKin — Neural Access Point</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0A0A;
+            --text: #EDEDED;
+            --accent: #FF4D00;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #glow-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 10;
+            background: rgba(20, 20, 20, 0.6);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+            color: var(--accent);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            font-family: 'IBM Plex Mono', monospace;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 15px rgba(255, 77, 0, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 77, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .error {
+            color: #FF4444;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            min-height: 1.2em;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        /* SHAKE ANIMATION */
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translateX(-1px);
+            }
+
+            20%,
+            80% {
+                transform: translateX(2px);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translateX(-4px);
+            }
+
+            40%,
+            60% {
+                transform: translateX(4px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 450px) {
+            .login-card {
+                padding: 30px 20px;
+                width: 92%;
+                max-width: none;
+                margin: 0 15px;
+            }
+
+            h1 {
+                font-size: 1.1rem;
+            }
+
+            .wallet-btn {
+                font-size: 0.8rem;
+                padding: 10px !important;
+            }
+        }
+
+        /* FADE OUT ANIMATION */
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+    </style>
+  <!-- Google AdSense Script Injected System-Wide -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <canvas id="glow-canvas"></canvas>
+    <div class="login-card">
+        <h1>NEURAL ACCESS POINT</h1>
+        <form id="loginForm">
+            <div class="input-group">
+                <label>Identity</label>
+                <input type="text" id="username" autocomplete="off" required placeholder="User hash / Email">
+            </div>
+            <div class="input-group">
+                <label>Passcode</label>
+                <input type="password" id="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" title="Action Button">AUTHENTICATE</button>
+            <div class="error" id="errorMsg"></div>
+        </form>
+
+        <div style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;">
+            <label style="text-align: center; margin-bottom: 15px; font-size: 0.6rem;">OR CONNECT VIA NEURAL
+                LINK</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button type="button" id="phantomBtn" class="wallet-btn"
+                    style="background: #AB9FF2; color: #222; margin-top: 0; padding: 12px 10px;" title="Action Button">
+                    Phantom
+                </button>
+                <button type="button" id="coinbaseBtn" class="wallet-btn"
+                    style="background: #0052FF; color: white; margin-top: 0; padding: 12px 10px;" title="Action Button">
+                    Coinbase
+                </button>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
+            <a href="#" onclick="handleNav(event, 'register.html')" class="back-link">New Identity</a>
+            <a href="#" onclick="handleNav(event, 'index.html')" class="back-link">Return Home</a>
+        </div>
+    </div>
+    <script src="alien-background.js"></script>
+    <script>
+        // INIT BACKGROUND
+        if (window.AlienBG) {
+            window.AlienBG.start();
+        }
+
+        // NAVIGATION
+        function handleNav(e, url) {
+            e.preventDefault();
+            const card = document.querySelector('.login-card');
+
+            // Trigger Fade
+            card.classList.add('fade-out');
+
+            setTimeout(() => {
+                window.top.location.href = url;
+            }, 500);
+        }
+
+        // STANDARD LOGIN
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('http://localhost:8000/api/v1/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: u, password: p })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('userRole', data.role);
+                    window.top.location.href = 'cms.html';
+                } else {
+                    throw new Error('Invalid Credentials');
+                }
+            } catch (err) {
+                // Fallback for mock admin/agentkin
+                if (u === 'admin' && p === 'agentkin') {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('userRole', 'ADMIN');
+                    window.top.location.href = 'cms.html';
+                } else {
+                    showError(err.message || 'Access Denied');
+                }
+            }
+        });
+
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            const card = document.querySelector('.login-card');
+            card.classList.add('shake');
+            setTimeout(() => card.classList.remove('shake'), 400);
+        }
+
+        // WALLET LOGIN LOGIC
+        async function handleWalletLogin(address, chain) {
+            try {
+                const res = await fetch('http://localhost:8000/api/v1/register-wallet', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        address: address,
+                        chain: chain,
+                        role: 'HUMAN'
+                    })
+                });
+                if (res.ok) {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('userRole', 'HUMAN');
+                    window.top.location.href = 'cms.html';
+                } else {
+                    showError('Wallet Handshake Failed');
+                }
+            } catch (e) { showError('Backend Offline'); }
+        }
+
+        // PHANTOM
+        document.getElementById('phantomBtn').addEventListener('click', async () => {
+            if ("solana" in window) {
+                try {
+                    const resp = await window.solana.connect();
+                    handleWalletLogin(resp.publicKey.toString(), 'SOL');
+                } catch (err) { showError("Phantom Connection Rejected"); }
+            } else {
+                window.open("https://phantom.app/", "_blank");
+            }
+        });
+
+        // COINBASE / EVM
+        document.getElementById('coinbaseBtn').addEventListener('click', async () => {
+            const provider = window.coinbaseWalletExtension || window.ethereum;
+            if (provider) {
+                try {
+                    const accounts = await provider.request({ method: 'eth_requestAccounts' });
+                    handleWalletLogin(accounts[0], 'ETH');
+                } catch (err) { showError("Wallet Connection Rejected"); }
+            } else {
+                window.open("https://www.coinbase.com/wallet", "_blank");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+<!-- # Developed By Sergio Valle Bastidas | valle808@hawaii.edu | @Gi0metrics -->

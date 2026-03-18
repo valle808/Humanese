@@ -1,0 +1,149 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+
+class AlienBackgroundMobile extends StatefulWidget {
+  const AlienBackgroundMobile({super.key});
+
+  @override
+  State<AlienBackgroundMobile> createState() => _AlienBackgroundMobileState();
+}
+
+class _AlienBackgroundMobileState extends State<AlienBackgroundMobile>
+    with SingleTickerProviderStateMixin {
+  late Ticker _ticker;
+  final List<Particle> _particles = [];
+  final Random _rnd = Random();
+  final int _nodeCount = 40; // Optimize for mobile
+  final double _connectionDistance = 100.0;
+  Size _size = Size.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    _ticker = createTicker(_tick)..start();
+  }
+
+  void _initParticles(Size size) {
+    _particles.clear();
+    for (int i = 0; i < _nodeCount; i++) {
+      _particles.push(Particle(
+        x: _rnd.nextDouble() * size.width,
+        y: _rnd.nextDouble() * size.height,
+        vx: (_rnd.nextDouble() - 0.5) * 1.0,
+        vy: (_rnd.nextDouble() - 0.5) * 1.0,
+        size: _rnd.nextDouble() * 2 + 1,
+      ));
+    }
+  }
+
+  void _tick(Duration elapsed) {
+    if (!mounted) return;
+    setState(() {
+      for (var p in _particles) {
+        p.update(_size);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _ticker.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      if (_size != constraints.biggest) {
+        _size = constraints.biggest;
+        _initParticles(_size);
+      }
+      return CustomPaint(
+        painter: AlienPainter(particles: _particles, connectionDist: _connectionDistance),
+        size: Size.infinite,
+      );
+    });
+  }
+}
+
+class Particle {
+  double x;
+  double y;
+  double vx;
+  double vy;
+  double size;
+
+  Particle({
+      required this.x, 
+      required this.y, 
+      required this.vx, 
+      required this.vy, 
+      required this.size
+  });
+
+  void update(Size bounds) {
+    x += vx;
+    y += vy;
+
+    if (x < 0 || x > bounds.width) vx *= -1;
+    if (y < 0 || y > bounds.height) vy *= -1;
+  }
+}
+
+class AlienPainter extends CustomPainter {
+  final List<Particle> particles;
+  final double connectionDist;
+
+  AlienPainter({required this.particles, required this.connectionDist});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Background gradient
+    final Rect rect = Offset.zero & size;
+    const Gradient gradient = RadialGradient(
+      center: Alignment.center,
+      radius: 1.0,
+      colors: [Color(0xFF0A1A0A), Colors.black],
+    );
+    canvas.drawRect(
+      rect,
+      Paint()..shader = gradient.createShader(rect),
+    );
+
+    final Paint particlePaint = Paint()..color = const Color(0xB300FF00); // Green with opacity
+    final Paint linePaint = Paint()
+      ..strokeWidth = 0.5
+      ..style = PaintingStyle.stroke;
+
+    // Draw Particles & Connections
+    for (int i = 0; i < particles.length; i++) {
+      final p1 = particles[i];
+      canvas.drawCircle(Offset(p1.x, p1.y), p1.size, particlePaint);
+
+      for (int j = i + 1; j < particles.length; j++) {
+        final p2 = particles[j];
+        final double dx = p1.x - p2.x;
+        final double dy = p1.y - p2.y;
+        final double dist = sqrt(dx * dx + dy * dy);
+
+        if (dist < connectionDist) {
+          final double opacity = 1.0 - (dist / connectionDist);
+          linePaint.color = Color.fromRGBO(0, 255, 0, opacity);
+          canvas.drawLine(Offset(p1.x, p1.y), Offset(p2.x, p2.y), linePaint);
+        }
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant AlienPainter oldDelegate) => true;
+}
+
+// Extension to match List functionality
+extension ListExt<E> on List<E> {
+    void push(E element) => add(element);
+}
+
+// Developed By Sergio Valle Bastidas | valle808@hawaii.edu | @Gi0metrics
+

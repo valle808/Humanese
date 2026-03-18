@@ -13,6 +13,8 @@ const NAV_MAP: Record<string, string> = {
     encyclopedia: "/hpedia",
     admin: "/admin",
     wallet: "/wallet",
+    nexus: "/nexus/email",
+    email: "/nexus/email",
     help: "/faq",
 };
 import React, { useState, useEffect } from 'react';
@@ -27,7 +29,8 @@ import {
     Activity,
     User,
     Gavel,
-    Unplug
+    Unplug,
+    Mail
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -78,6 +81,7 @@ export const Sidebar = () => {
             href: '/admin',
             clearance: 'OMEGA'
         },
+        { icon: <Mail size={22} />, label: 'Nexus Email', href: '/nexus/email' },
     ];
 
     if (!isMounted) return null;

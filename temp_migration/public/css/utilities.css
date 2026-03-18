@@ -1,0 +1,61 @@
+/* Humanese Utility Classes — Systematic Refactoring */
+
+.u-animation-delay-0 {
+    animation-delay: 0s !important;
+}
+
+.u-animation-delay-5 {
+    animation-delay: 5s !important;
+}
+
+.u-animation-delay-10 {
+    animation-delay: 10s !important;
+}
+
+.u-display-none {
+    display: none !important;
+}
+
+.u-margin-bottom-12 {
+    margin-bottom: 12px !important;
+}
+
+.u-opacity-9 {
+    opacity: 0.9 !important;
+}
+
+.u-opacity-1 {
+    opacity: 1 !important;
+}
+
+.u-flex {
+    display: flex !important;
+}
+
+.u-flex-column {
+    display: flex;
+    flex-direction: column !important;
+}
+
+.u-gap-8 {
+    gap: 8px !important;
+}
+
+.u-align-center {
+    align-items: center !important;
+}
+
+.u-text-center {
+    text-align: center !important;
+}
+
+
+
+.u-text-x {
+    color: var(--x) !important;
+}
+
+.u-emoji-large {
+    font-size: 2rem !important;
+    margin-bottom: 8px !important;
+}

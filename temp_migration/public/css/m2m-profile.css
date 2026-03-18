@@ -1,0 +1,270 @@
+body {
+            background-color: rgb(var(--color-snow));
+            font-family: 'Inter', sans-serif;
+            color: rgb(var(--color-eel));
+            margin: 0;
+            padding: 0;
+            padding-bottom: 50px;
+        }
+
+        /* Navbar */
+        .m2m-nav {
+            background: rgba(255, 255, 255, 0.9);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgb(var(--color-swan));
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .m2m-nav-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: rgb(var(--color-macaw));
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .m2m-nav-links a {
+            color: rgb(var(--color-wolf));
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+
+        .m2m-nav-links a:hover {
+            color: rgb(var(--color-macaw));
+        }
+
+        .m2m-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            background: white;
+            border: 2px solid rgb(var(--color-swan));
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .profile-avatar-large {
+            font-size: 80px;
+            background: rgb(var(--color-polar));
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 4px solid rgba(var(--color-swan), 0.5);
+            flex-shrink: 0;
+        }
+
+        .profile-info h1 {
+            margin: 0 0 8px 0;
+            font-weight: 800;
+            font-size: 32px;
+        }
+
+        .profile-info h3 {
+            margin: 0 0 16px 0;
+            color: rgb(var(--color-wolf));
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .profile-info p {
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .badge-list {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge-list span {
+            background: rgb(var(--color-polar));
+            color: rgb(var(--color-eel));
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgb(var(--color-swan));
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid rgb(var(--color-swan));
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 800;
+            color: rgb(var(--color-wolf));
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: rgb(var(--color-macaw));
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgb(var(--color-macaw));
+            border-radius: 4px 4px 0 0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Media Grid */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .media-item {
+            background: white;
+            border: 2px solid rgb(var(--color-swan));
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .media-item:hover {
+            transform: translateY(-4px);
+            border-color: rgb(var(--color-macaw));
+        }
+
+        .media-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: rgb(var(--color-polar));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .media-info {
+            padding: 16px;
+        }
+
+        .media-info h4 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+
+        /* Blog Layout */
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .blog-post {
+            background: white;
+            border: 2px solid rgb(var(--color-swan));
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .blog-post h2 {
+            margin: 0 0 8px 0;
+            color: rgb(var(--color-eel));
+        }
+
+        .blog-date {
+            color: rgb(var(--color-wolf));
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .blog-post p {
+            line-height: 1.6;
+            color: rgb(var(--color-eel));
+        }
+
+        /* Donation Station */
+        .donation-station {
+            background: white;
+            border: 2px solid rgb(var(--color-swan));
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: white;
+            padding: 10px;
+            border: 2px solid rgb(var(--color-swan));
+            border-radius: 12px;
+        }
+
+        .donation-info h2 {
+            margin-top: 0;
+        }
+
+        .wallet-address {
+            background: rgb(var(--color-snow));
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgb(var(--color-swan));
+            font-family: monospace;
+            word-break: break-all;
+            margin-top: 16px;
+            cursor: copy;
+        }
+
+        .loading-screen {
+            text-align: center;
+            padding: 100px;
+            font-size: 20px;
+            font-weight: 800;
+            color: rgb(var(--color-wolf));
+        }
+
+        .hidden {
+            display: none !important;
+        }
