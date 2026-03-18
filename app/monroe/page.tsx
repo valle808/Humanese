@@ -140,8 +140,8 @@ export default function MonroePage() {
         <div className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[primary]/5 blur-[200px] rounded-full animate-pulse-slow" />
       </div>
 
-      <div className="relative z-20 flex flex-col h-full w-full p-3 lg:p-8 space-y-6">
-        <header className="flex-none flex justify-between items-center bg-white/[0.02] border border-white/10 p-4 rounded-[1.5rem] backdrop-blur-3xl shadow-2xl mx-1 lg:mx-4">
+      <div className="relative z-20 flex flex-col h-full w-full p-2 lg:p-4 space-y-4">
+        <header className="flex-none flex justify-between items-center bg-white/[0.02] border border-white/10 p-3 lg:p-4 rounded-[1.5rem] backdrop-blur-3xl shadow-2xl mx-1 lg:mx-2">
           <div className="flex items-center gap-4">
             <div className="h-10 w-10 rounded-xl bg-black border border-[primary]/40 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,195,0.1)]">
               <BrainCircuit className="text-[primary] w-5 h-5 animate-pulse" />
@@ -162,7 +162,7 @@ export default function MonroePage() {
           </button>
         </header>
  
-        <div className="flex-1 flex gap-4 min-h-0 overflow-hidden px-1 lg:px-4 mb-4">
+        <div className="flex-1 flex gap-4 min-h-0 overflow-hidden px-1 lg:px-2 mb-2">
           <aside className="hidden lg:flex w-72 flex-col space-y-4 min-h-0 overflow-y-auto pr-2 custom-scrollbar">
             <div className="bg-white/[0.01] border border-white/5 p-5 rounded-3xl space-y-4">
               <div className="p-4 bg-black/40 border border-white/5 rounded-2xl">
@@ -220,7 +220,7 @@ export default function MonroePage() {
               </AnimatePresence>
             </div>
 
-            <div className="flex-none p-5 lg:p-8 bg-black/40 border-t border-white/5 backdrop-blur-2xl relative z-10">
+            <div className="flex-none p-3 lg:p-4 bg-black/40 border-t border-white/5 backdrop-blur-2xl relative z-10">
               <div className="max-w-4xl mx-auto flex flex-col gap-4">
                 <div className="relative group">
                   <input
@@ -229,7 +229,7 @@ export default function MonroePage() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                     placeholder="Talk to Monroe..."
-                    className="w-full bg-white/[0.03] border border-white/10 p-5 pr-16 rounded-[1.8rem] text-sm text-white focus:outline-none focus:border-[primary]/40 focus:bg-white/[0.05] transition-all"
+                    className="w-full bg-white/[0.03] border border-white/10 p-4 pr-16 rounded-[1.5rem] text-sm text-white focus:outline-none focus:border-[primary]/40 focus:bg-white/[0.05] transition-all"
                   />
                   <button
                     onClick={handleSend}
