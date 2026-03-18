@@ -1,0 +1,50 @@
+name: node_js
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  Format:
+    name: Test formatting...
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.1
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "22"
+      - name: Set fs.inotify
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+      - name: Installing dependencies
+        run: pnpm install
+      - name: formatting
+        run: pnpm format:check
+  stage:
+    name: Test linting...
+    needs: Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.1
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "22"
+      - name: Set fs.inotify
+        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+      - name: Installing dependencies & lint
+        run: |
+          pnpm install
+          pnpm lint

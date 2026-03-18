@@ -1,0 +1,280 @@
+/* ═══════════════════════════════════════════════════════════════════
+   HUMANESE THEME ORCHESTRATOR
+   Neural Night  ×  Museum Day
+   WCAG AAA compliant · Liquid transitions · Elevated Brutalism
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── FONT LOADING FOR SOVEREIGN MATRIX (Space Grotesk & JetBrains Mono) ── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════
+   NEURAL NIGHT (default — dark obsidian)
+   Design: Deep basalt, jewel glows, monospace data stats
+══════════════════════════════════════════════════════════ */
+:root,
+[data-theme="night"] {
+    /* Canvas (Neural Night / Sovereign Matrix) */
+    --bg-primary: #050505;
+    --bg-secondary: #0a0a0a;
+    --bg-surface: rgba(10, 10, 10, 0.75);
+    --bg-surface-2: rgba(15, 15, 15, 0.85);
+    --bg-nav: rgba(5, 5, 5, 0.92);
+
+    /* Text — Sovereign High Contrast */
+    --text-main: #F5F5F5;
+    --text-dim: #E0E0E0;
+    --text-muted: #A3A3A3;
+
+    /* Borders */
+    --border: rgba(255, 255, 255, 0.15);
+    --border-hover: rgba(0, 255, 65, 0.6);
+    --border-width: 1px;
+
+    /* Sovereign Action Accents */
+    --matrix-green: #00FF41;
+    --cyber-blue: #00D1FF;
+    --accent-glow: #00FF41;
+    --accent-glow-2: #00D1FF;
+    --accent-glow-rgb: 0, 255, 65;
+
+    /* Sovereign Glass */
+    --glass-blur: 24px;
+    --glass-bg: rgba(5, 5, 5, 0.65);
+
+    /* Typography mode */
+    --heading-font: 'Space Grotesk', 'Inter', sans-serif;
+    --stat-font: 'JetBrains Mono', monospace;
+
+    /* Shadows — Neon Glows */
+    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 0 20px rgba(0, 255, 65, 0.2);
+
+    /* Transitions */
+    --theme-tr: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Tile top accent */
+    --tile-accent-h: 3px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   GLOBAL TRANSITIONS
+══════════════════════════════════════════════════════════ */
+html {
+    background-color: var(--bg-primary);
+}
+
+body,
+nav,
+header,
+footer,
+main,
+section,
+article,
+.tile,
+.eco-card,
+.matrix-card,
+.crypto-pill,
+.stat-item,
+.hero,
+.bento-matrix,
+.nav-neural,
+.neural-footer,
+.cta-strip,
+.monroe-tile-chat,
+.mtile-msg,
+.landing-card,
+.agent-card {
+    transition: var(--theme-tr);
+}
+
+/* ══════════════════════════════════════════════════════════
+   GLOBAL SEMANTIC VARIABLE BINDINGS
+══════════════════════════════════════════════════════════ */
+body {
+    background: var(--bg-primary);
+    color: var(--text-main);
+}
+
+h1,
+h2,
+h3,
+.tile-hero-headline,
+.hero-headline,
+.tile-title,
+.nav-wordmark {
+    font-family: var(--heading-font);
+    color: var(--text-main);
+    transition: var(--theme-tr), font-family 0.5s;
+}
+
+.live-number,
+.stat-val,
+.tile-label,
+.overline,
+.nav-badge,
+.tile-version,
+.live-chip,
+.crypto-price,
+.crypto-chg,
+.stat-lbl {
+    font-family: var(--stat-font);
+}
+
+.tile-desc,
+.hero-sub,
+.tile-hero-sub,
+p,
+.nav-pill-links a,
+.stat-lbl,
+.footer-links a,
+figcaption {
+    color: var(--text-dim);
+    transition: var(--theme-tr);
+}
+
+/* ── NAV ── */
+.nav-neural {
+    background: var(--bg-nav);
+    border-bottom: var(--border-width) solid var(--border);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+    box-shadow: 0 1px 0 rgba(26, 18, 16, 0.1), var(--shadow-card);
+}
+
+/* ── TILES / BENTO CARDS ── */
+.tile {
+    background: var(--glass-bg);
+    border: var(--border-width) solid var(--border);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--shadow-card);
+}
+
+.tile:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-hover);
+}
+
+.tile::after {
+    height: var(--tile-accent-h) !important;
+}
+
+/* ── ECO CARDS / STAT ITEMS ── */
+.eco-card,
+.matrix-card,
+.crypto-pill,
+.stat-item {
+    background: var(--bg-surface);
+    border: var(--border-width) solid var(--border);
+    color: var(--text-main);
+    box-shadow: var(--shadow-card);
+}
+
+.eco-card:hover,
+.matrix-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* Agent page status text — ALWAYS high contrast */
+.agent-status,
+.reader-node-status,
+.dir-name,
+.dir-stat,
+[class*="status"],
+[class*="articles"],
+[class*="bytes"],
+.rc-status,
+.art-count,
+.kp-val,
+.mb-val {
+    font-family: var(--stat-font);
+    transition: var(--theme-tr);
+    color: #2c2f33 !important;
+    /* Deep Graphite permanent */
+}
+
+/* Reader Card — Glass-morphism */
+.reader-card,
+.agent-card,
+.card {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 252, 248, 0.65);
+    border: var(--border-width) solid var(--border);
+}
+
+/* ── BUTTONS ── */
+.liquid-btn.btn-outline {
+    border-color: var(--border-hover);
+    color: var(--text-main);
+    background: rgba(26, 18, 16, 0.06);
+}
+
+/* ── CTA STRIP ── */
+.cta-strip {
+    background: var(--bg-surface-2);
+    border: var(--border-width) solid var(--border);
+}
+
+.cta-strip-text h3 {
+    color: var(--text-main);
+}
+
+.cta-strip-text p {
+    color: var(--text-dim);
+}
+
+/* ── FOOTER ── */
+.neural-footer {
+    border-top: var(--border-width) solid var(--border);
+}
+
+.neural-footer a,
+.footer-links a {
+    color: var(--text-dim);
+}
+
+/* ── MONROE TILE ── */
+.mtile-msg.bot {
+    background: rgba(var(--accent-glow-rgb), 0.10);
+    border-color: rgba(var(--accent-glow-rgb), 0.22);
+    color: var(--text-main);
+}
+
+.mtile-msg.user {
+    color: var(--text-dim);
+}
+
+.monroe-tile-input {
+    background: var(--bg-surface);
+    border-color: var(--border);
+}
+
+.monroe-tile-input span {
+    color: var(--text-muted);
+}
+
+/* Extra Museumcore polish */
+.overline,
+.annotation,
+.tile-version,
+.tile-label {
+    color: #c0392b;
+}
+
+.live-chip {
+    background: rgba(13, 122, 95, 0.10);
+    border-color: rgba(13, 122, 95, 0.30);
+    color: #0a5c3a;
+}
+
+.blob {
+    opacity: 0.06;
+}
+
+.grain::after {
+    opacity: 0.15;
+}

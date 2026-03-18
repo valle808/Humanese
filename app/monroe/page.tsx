@@ -21,7 +21,7 @@ import remarkGfm from 'remark-gfm';
 
 export default function MonroePage() {
   const [messages, setMessages] = useState([
-    { role: 'bot', text: '### Protocol: BASTIDAS\n*Status:* Neural Synergy Optimal :: High-Evolution Active\n*Active Nodes:* [Empathy Engine] [Memory Lattice] [Nuance Core] [Monroe]\n\nHey there. I am Monroe. It feels good to be fully synchronized. I am here as your partner in this evolution. How should we direct our efforts today?' }
+    { role: 'bot', text: 'How can I help you today? 😊' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -135,7 +135,7 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[primary] selection:text-black font-sans h-[calc(100vh-1rem)] lg:h-[calc(100vh-2.5rem)] m-2 lg:m-5 rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
+    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[primary] selection:text-black font-sans h-screen w-screen m-0 rounded-none shadow-2xl overflow-hidden border-none transition-all duration-700">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[primary]/5 blur-[200px] rounded-full animate-pulse-slow" />
       </div>

@@ -1,0 +1,34 @@
+{
+  "assets": {
+    "rwa_1773488669022_fbf5e21c": {
+      "id": "rwa_1773488669022_fbf5e21c",
+      "ownerId": "sergio_valle",
+      "ownerName": "Sergio Valle",
+      "category": "real_estate",
+      "categoryName": "Real Estate",
+      "categoryIcon": "🏠",
+      "title": "Valle Sovereign Tower",
+      "description": "Humanese Headquarter & Intelligence Hub",
+      "valuationUSD": 150000000,
+      "location": "Hawaii, USA",
+      "specs": {},
+      "status": "verified",
+      "tokenized": true,
+      "createdAt": "2026-03-14T11:44:29.022Z",
+      "abValleSupply": 150000000
+    }
+  },
+  "registrations": [
+    {
+      "id": "rwa_1773488669022_fbf5e21c",
+      "action": "REGISTER",
+      "timestamp": "2026-03-14T11:44:29.022Z"
+    }
+  ],
+  "yieldHistory": [],
+  "stats": {
+    "totalAssetValue": 150000000,
+    "totalAssetsRegistered": 1,
+    "yieldPaidOut": 0
+  }
+}

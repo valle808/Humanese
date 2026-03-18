@@ -1,0 +1,34 @@
+{
+  "wallets": {
+    "humanese_treasury_master": {
+      "solana": {
+        "address": "JkKxGnFTJZw1s7gQ9SC94x4Ae1vbu1Tv11z88W9YcMDr",
+        "chain": "solana",
+        "provider": "humanese_native",
+        "providerName": "Humanese Native (VALLE)",
+        "balance": "0",
+        "createdAt": "2026-03-14T11:52:12.172Z"
+      },
+      "bitcoin": {
+        "address": "bc1qdf6dfd6d5c29cbbf3cfcfa153158708f34b340",
+        "chain": "bitcoin",
+        "provider": "humanese_native",
+        "providerName": "Humanese Native (VALLE)",
+        "balance": "0",
+        "createdAt": "2026-03-14T11:52:12.170Z"
+      }
+    }
+  },
+  "transactions": [],
+  "swapHistory": [],
+  "defiPositions": {},
+  "stats": {
+    "totalWallets": 5,
+    "totalTransfers": 0,
+    "totalSwaps": 0,
+    "totalTaxCollected": 0,
+    "totalRwaValuation": 0,
+    "totalYieldDistributed": 0,
+    "volumeByChain": {}
+  }
+}

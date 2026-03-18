@@ -1,0 +1,21 @@
+{
+    "name": "AgentKin Neural Workspace",
+    "short_name": "AgentKin v2",
+    "start_url": "./index.html?source=pwa",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "description": "AgentKin — Decentralized AI Workspace",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

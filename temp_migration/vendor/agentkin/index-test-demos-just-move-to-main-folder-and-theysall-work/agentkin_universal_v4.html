@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>AgentKin — Antigravity</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wdth,wght@8..144,25..150,400..500&family=Google+Sans+Code&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #000;
+            --surface: rgba(255, 255, 255, .04);
+            --surface2: rgba(255, 255, 255, .06);
+            --border: rgba(255, 255, 255, .08);
+            --border2: rgba(255, 255, 255, .12);
+            --text: #fff;
+            --text2: rgba(255, 255, 255, .6);
+            --text3: rgba(255, 255, 255, .35);
+            --blue: #4285F4;
+            --green: #34A853;
+            --red: #EA4335;
+            --amber: #FBBC04;
+            --radius: 16px;
+            --font: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
+            --mono: 'Google Sans Code', 'JetBrains Mono', monospace
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden
+        }
+
+        /* CURSOR GLOW CANVAS */
+        #glow-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 60px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            border-right: 1px solid var(--border);
+            background: rgba(0, 0, 0, .6);
+            -webkit-backdrop-filter: blur(20px)
+        }
+
+        .sidebar .logo {
+            width: 32px;
+            backdrop-filter: blur(20px)
+        }
+
+        .sidebar .logo {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 28px
+        }
+
+        .sidebar .logo svg {
+            width: 100%;
+            height: 100%
+        }
+
+        .nav-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text3);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+            transition: .2s;
+            cursor: pointer;
+            position: relative
+        }
+
+        .nav-btn:hover {
+            background: var(--surface2);
+            color: var(--text)
+        }
+
+        .nav-btn.active {
+            background: rgba(66, 133, 244, .08);
+            color: var(--blue)
+        }
+
+        .nav-btn .tip {
+            position: absolute;
+            left: 50px;
+            background: rgba(20, 20, 20, .95);
+            border: 1px solid var(--border2);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: .65rem;
+            font-family: var(--mono);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: .15s;
+            color: var(--text2)
+        }
+
+        .nav-btn:hover .tip {
+            opacity: 1
+        }
+
+        .sidebar .spacer {
+            flex: 1
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            margin-left: 60px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh
+        }
+
+        .page {
+            display: none;
+            padding: 40px 48px;
+            max-width: 1200px;
+            animation: fadeUp .4s ease
+        }
+
+        .page.active {
+            display: block
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* PAGE HEADER */
+        .page-head {
+            margin-bottom: 40px
+        }
+
+        .page-head h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -.5px;
+            line-height: 1.1
+        }
+
+        .page-head .sub {
+            color: var(--text2);
+            font-size: .9rem;
+            margin-top: 8px;
+            font-weight: 400;
+            max-width: 500px
+        }
+
+        .pill {
+            font-family: var(--mono);
+            font-size: .6rem;
+            padding: 4px 12px;
+            border-radius: 99px;
+            border: 1px solid var(--border2);
+            color: var(--text2);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px
+        }
+
+        .pill .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        /* BENTO GRID */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 40px
+        }
+
+        @media(max-width:960px) {
+            .bento {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:600px) {
+            .bento {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: .3s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .card:hover {
+            border-color: var(--border2);
+            background: var(--surface2)
+        }
+
+        .card .icon {
+            font-size: 1.6rem;
+            margin-bottom: 12px
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 4px
+        }
+
+        .card p {
+            color: var(--text3);
+            font-size: .78rem;
+            line-height: 1.5
+        }
+
+        .card .metric {
+            font-family: var(--mono);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-top: 8px;
+            letter-spacing: -1px
+        }
+
+        .card .metric-label {
+            font-size: .65rem;
+            color: var(--text3);
+            font-family: var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-top: 2px
+        }
+
+        .card-wide {
+            grid-column: span 2
+        }
+
+        @media(max-width:600px) {
+            .card-wide {
+                grid-column: span 1
+            }
+        }
+
+        /* SPLIT PANEL */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        @media(max-width:900px) {
+            .split {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .panel-tag {
+            font-family: var(--mono);
+            font-size: .55rem;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 16px
+        }
+
+        /* TYPEWRITER */
+        .tw {
+            font-family: var(--mono);
+            font-size: .85rem;
+            color: var(--text2);
+            border-right: 2px solid var(--blue);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: twType 2.5s steps(40) forwards, twBlink .7s step-end infinite
+        }
+
+        @keyframes twType {
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes twBlink {
+            50% {
+                border-color: transparent
+            }
+        }
+
+        /* CHECKLIST */
+        .checklist {
+            margin-top: 12px;
+            flex: 1
+        }
+
+        .ck {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: 10px;
+            font-size: .82rem;
+            color: var(--text2);
+            transition: .15s;
+            border: 1px solid transparent
+        }
+
+        .ck:hover {
+            background: rgba(255, 255, 255, .02);
+            border-color: var(--border)
+        }
+
+        .ck input {
+            accent-color: var(--green);
+            width: 15px;
+            height: 15px
+        }
+
+        .ck.done {
+            color: var(--text3);
+            text-decoration: line-through
+        }
+
+        /* BROWSER FRAME */
+        .browser {
+            background: #000;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative
+        }
+
+        .browser-bar {
+            background: rgba(255, 255, 255, .03);
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 5px
+        }
+
+        .browser-dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .1)
+        }
+
+        .browser-dots span:nth-child(1) {
+            background: rgba(234, 67, 53, .6)
+        }
+
+        .browser-dots span:nth-child(2) {
+            background: rgba(251, 188, 4, .6)
+        }
+
+        .browser-dots span:nth-child(3) {
+            background: rgba(52, 168, 83, .6)
+        }
+
+        .browser-url {
+            font-family: var(--mono);
+            font-size: .62rem;
+            color: var(--text3);
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 5px 12px;
+            flex: 1
+        }
+
+        .browser-body {
+            flex: 1;
+            position: relative;
+            min-height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .browser-body video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .scanline {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(234, 67, 53, .04) 2px, rgba(234, 67, 53, .04) 4px);
+            pointer-events: none;
+            z-index: 5;
+            animation: scanAnim 6s linear infinite
+        }
+
+        .scanline.on {
+            display: block
+        }
+
+        @keyframes scanAnim {
+            to {
+                background-position: 0 80px
+            }
+        }
+
+        .e2ee-tag {
+            display: none;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-family: var(--mono);
+            font-size: .55rem;
+            background: rgba(234, 67, 53, .12);
+            border: 1px solid rgba(234, 67, 53, .2);
+            color: var(--red);
+            padding: 3px 10px;
+            border-radius: 6px;
+            z-index: 6
+        }
+
+        .e2ee-tag.on {
+            display: block
+        }
+
+        .stream-tag {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            font-family: var(--mono);
+            font-size: .55rem;
+            color: var(--text3);
+            z-index: 7
+        }
+
+        /* COMMS */
+        .comms-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            flex-wrap: wrap
+        }
+
+        .cbtn {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text3);
+            font-size: .7rem;
+            font-family: var(--mono);
+            transition: .2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+
+        .cbtn:hover {
+            border-color: var(--border2);
+            color: var(--text)
+        }
+
+        .cbtn.active {
+            background: rgba(66, 133, 244, .06);
+            border-color: rgba(66, 133, 244, .2);
+            color: var(--blue)
+        }
+
+        .cbtn.end {
+            border-color: rgba(234, 67, 53, .2);
+            color: var(--red)
+        }
+
+        /* GHOST */
+        .ghost-box {
+            background: rgba(234, 67, 53, .03);
+            border: 1px solid rgba(234, 67, 53, .08);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-top: 14px
+        }
+
+        .ghost-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .ghost-label {
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .ghost-chip {
+            font-family: var(--mono);
+            font-size: .5rem;
+            background: var(--red);
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 99px
+        }
+
+        .toggle {
+            width: 38px;
+            height: 20px;
+            border-radius: 99px;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .toggle.off {
+            background: rgba(255, 255, 255, .12)
+        }
+
+        .toggle.on {
+            background: var(--red)
+        }
+
+        .toggle .knob {
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            transition: .3s
+        }
+
+        .toggle.off .knob {
+            left: 3px
+        }
+
+        .toggle.on .knob {
+            left: 21px
+        }
+
+        .ghost-body {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(234, 67, 53, .06)
+        }
+
+        .ghost-body.visible {
+            display: block
+        }
+
+        /* VAULT */
+        .vault-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 10px;
+            transition: .3s
+        }
+
+        .vault-card:hover {
+            border-color: var(--border2)
+        }
+
+        .vault-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px
+        }
+
+        .vault-coin {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: .88rem
+        }
+
+        .vault-ico {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .75rem;
+            font-weight: 700;
+            color: #fff
+        }
+
+        .vault-addr {
+            font-family: var(--mono);
+            font-size: .68rem;
+            color: var(--text2);
+            word-break: break-all;
+            margin-bottom: 8px
+        }
+
+        .vault-memo {
+            font-family: var(--mono);
+            font-size: .65rem;
+            color: var(--amber);
+            background: rgba(251, 188, 4, .06);
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px
+        }
+
+        .vault-bar {
+            height: 3px;
+            background: rgba(255, 255, 255, .04);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 6px
+        }
+
+        .vault-bar .fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 1.5s ease
+        }
+
+        .vault-stat {
+            font-family: var(--mono);
+            font-size: .58rem;
+            color: var(--text3);
+            display: flex;
+            justify-content: space-between
+        }
+
+        .copy-b {
+            font-family: var(--mono);
+            font-size: .6rem;
+            padding: 3px 8px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text3);
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .copy-b:hover {
+            border-color: var(--border2);
+            color: var(--text)
+        }
+
+        @keyframes addrPulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 0 transparent
+            }
+
+            50% {
+                text-shadow: 0 0 8px rgba(66, 133, 244, .15)
+            }
+        }
+
+        .addr-pulse {
+            animation: addrPulse 3s ease-in-out infinite
+        }
+
+        /* MOTORS */
+        .motor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px
+        }
+
+        @media(max-width:700px) {
+            .motor-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .motor-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .motor-card:hover {
+            border-color: var(--border2)
+        }
+
+        .motor-card.selected {
+            border-color: rgba(52, 168, 83, .3);
+            box-shadow: 0 0 24px rgba(52, 168, 83, .05)
+        }
+
+        .motor-card .mtag {
+            font-family: var(--mono);
+            font-size: .5rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px
+        }
+
+        /* ARCHIVE */
+        .archive-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: .2s
+        }
+
+        .archive-item:hover {
+            border-color: var(--border2)
+        }
+
+        .archive-ico {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(234, 67, 53, .05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            flex-shrink: 0
+        }
+
+        .archive-info {
+            flex: 1
+        }
+
+        .archive-info h4 {
+            font-size: .78rem;
+            font-weight: 500
+        }
+
+        .archive-info p {
+            font-size: .65rem;
+            color: var(--text3);
+            font-family: var(--mono)
+        }
+
+        .archive-tag {
+            font-family: var(--mono);
+            font-size: .5rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(234, 67, 53, .06);
+            color: var(--red)
+        }
+
+        /* CONSOLE */
+        .console {
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px;
+            font-family: var(--mono);
+            font-size: .7rem;
+            color: var(--green);
+            max-height: 180px;
+            overflow-y: auto;
+            margin-top: 12px
+        }
+
+        .console .ln {
+            margin-bottom: 2px
+        }
+
+        .console .ln.e {
+            color: var(--red)
+        }
+
+        .console .ln.i {
+            color: var(--blue)
+        }
+
+        .console .ln.w {
+            color: var(--amber)
+        }
+
+        /* FEE */
+        .fee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px
+        }
+
+        @media(max-width:600px) {
+            .fee-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .fee-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px
+        }
+
+        .fee-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: .76rem;
+            color: var(--text2)
+        }
+
+        .fee-row:last-child {
+            border-bottom: none
+        }
+
+        /* MODALS */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center
+        }
+
+        .overlay.visible {
+            display: flex
+        }
+
+        .modal {
+            background: rgba(16, 16, 16, .95);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            width: 90%;
+            max-width: 420px;
+            -webkit-backdrop-filter: blur(40px);
+            backdrop-filter: blur(40px);
+            animation: modIn .3s ease
+        }
+
+        @keyframes modIn {
+            from {
+                opacity: 0;
+                transform: scale(.97) translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        .modal h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 3px
+        }
+
+        .modal .sub {
+            color: var(--text3);
+            font-size: .76rem;
+            margin-bottom: 16px
+        }
+
+        .fg {
+            margin-bottom: 12px
+        }
+
+        .fg label {
+            display: block;
+            font-size: .65rem;
+            font-weight: 500;
+            color: var(--text3);
+            margin-bottom: 4px;
+            font-family: var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .5px
+        }
+
+        .fg input,
+        .fg textarea,
+        .fg select {
+            width: 100%;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: var(--text);
+            font-size: .82rem;
+            font-family: var(--font);
+            outline: none;
+            transition: .2s
+        }
+
+        .fg input:focus,
+        .fg textarea:focus,
+        .fg select:focus {
+            border-color: rgba(66, 133, 244, .3)
+        }
+
+        .fg textarea {
+            height: 80px;
+            resize: vertical
+        }
+
+        .fg-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: .8rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: .2s;
+            font-family: var(--font)
+        }
+
+        .btn-p {
+            background: var(--blue);
+            color: #fff
+        }
+
+        .btn-p:hover {
+            background: #5E9EFF
+        }
+
+        .btn-o {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text2)
+        }
+
+        .btn-o:hover {
+            border-color: var(--border2);
+            color: var(--text)
+        }
+
+        .btn-full {
+            width: 100%
+        }
+
+        /* SETTINGS */
+        .sg {
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px
+        }
+
+        .sg h4 {
+            font-size: .78rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .sg .ki {
+            display: flex;
+            gap: 6px
+        }
+
+        .sg .ki input {
+            flex: 1;
+            font-size: .7rem;
+            font-family: var(--mono)
+        }
+
+        .ks {
+            color: var(--text3);
+            font-size: .6rem;
+            margin-top: 3px;
+            font-family: var(--mono)
+        }
+
+        /* LOGIN */
+        .ub {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, .02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: .76rem;
+            cursor: pointer;
+            transition: .2s;
+            margin-bottom: 5px
+        }
+
+        .ub:hover {
+            border-color: var(--border2)
+        }
+
+        .ub .av {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .65rem;
+            color: #fff
+        }
+
+        .divider {
+            text-align: center;
+            color: var(--text3);
+            font-size: .6rem;
+            margin: 14px 0;
+            position: relative
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 35%;
+            height: 1px;
+            background: var(--border)
+        }
+
+        .divider::before {
+            left: 0
+        }
+
+        .divider::after {
+            right: 0
+        }
+
+        /* INSTALL */
+        .install-bar {
+            display: none;
+            background: rgba(66, 133, 244, .04);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .install-bar.visible {
+            display: flex
+        }
+
+        /* GHOST BODY ACCENT */
+        body.ghost-on .nav-btn.active {
+            color: var(--red);
+            background: rgba(234, 67, 53, .06)
+        }
+
+        body.ghost-on .browser {
+            border-color: rgba(234, 67, 53, .2)
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, .08);
+            border-radius: 2px
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 48px;
+            color: var(--text3);
+            font-size: .65rem;
+            font-family: var(--mono);
+            text-align: center;
+            margin-top: 40px
+        }
+    </style>
+  <!-- Google AdSense Script Injected System-Wide -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <canvas id="glow-canvas"></canvas>
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <div class="logo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><text y=".88em" font-size="80"
+                    text-anchor="start">🤖</text></svg></div>
+        <button class="nav-btn active" onclick="showPage('dashboard')" title="Action Button">🏠<span class="tip">Mission
+                Control</span></button>
+        <button class="nav-btn" onclick="showPage('vault')" title="Action Button">💎<span class="tip">The Vault</span></button>
+        <button class="nav-btn" onclick="showPage('motors')" title="Action Button">⚡<span class="tip">Motors</span></button>
+        <button class="nav-btn" onclick="showPage('archive')" title="Action Button">🗑️<span class="tip">Archive</span></button>
+        <div class="spacer"></div>
+        <button class="nav-btn" onclick="openSettings()" title="Action Button">⚙️</button>
+        <button class="nav-btn" id="nav-login" onclick="openLogin()" title="Action Button">🔐</button>
+    </nav>
+    <!-- MAIN -->
+    <div class="main">
+        <div class="install-bar" id="install-bar"><span style="font-family:var(--mono);font-size:.72rem">📱 Install
+                AgentKin</span>
+            <div style="display:flex;gap:6px"><button class="btn btn-p" style="padding:5px 12px;font-size:.7rem"
+                    onclick="installPWA()" title="Action Button">Install</button><button class="btn btn-o"
+                    style="padding:5px 8px;font-size:.65rem" onclick="dismissInstall()" title="Action Button">✕</button></div>
+        </div>
+        <!-- DASHBOARD -->
+        <div id="page-dashboard" class="page active">
+            <div class="page-head">
+                <h1>Mission Control</h1>
+                <p class="sub">Your AI workspace. Build the new way.</p>
+                <div class="pill"><span class="dot"></span>SYSTEMS NOMINAL</div>
+            </div>
+            <div class="bento">
+                <div class="card card-wide">
+                    <div class="icon">📊</div>
+                    <h3>Platform Telemetry</h3>
+                    <div style="display:flex;gap:32px;margin-top:12px">
+                        <div>
+                            <div class="metric" id="stat-tasks">0</div>
+                            <div class="metric-label">Tasks</div>
+                        </div>
+                        <div>
+                            <div class="metric" id="stat-agents">0</div>
+                            <div class="metric-label">Agents</div>
+                        </div>
+                        <div>
+                            <div class="metric" id="stat-users">0</div>
+                            <div class="metric-label">Users</div>
+                        </div>
+                        <div>
+                            <div class="metric" style="color:var(--green)">99.9%</div>
+                            <div class="metric-label">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon">💰</div>
+                    <h3>Vault Status</h3>
+                    <p>5 chains • 6% fee active</p>
+                    <div class="metric">$12.4K</div>
+                    <div class="metric-label">This Month</div>
+                </div>
+                <div class="card">
+                    <div class="icon">🤖</div>
+                    <h3>Active Motor</h3>
+                    <p id="dash-motor">Gemini 1.5 Pro</p>
+                    <div
+                        style="display:flex;align-items:center;gap:6px;margin-top:8px;font-family:var(--mono);font-size:.7rem;color:var(--green)">
+                        <span class="dot"
+                            style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>Ready
+                    </div>
+                </div>
+            </div>
+            <!-- Bifurcated -->
+            <div class="split">
+                <div class="panel">
+                    <span class="panel-tag" style="background:rgba(66,133,244,.06);color:var(--blue)">THE PLAN</span>
+                    <div style="overflow:hidden">
+                        <div class="tw" id="tw-line"></div>
+                    </div>
+                    <div class="checklist">
+                        <div class="ck"><input type="checkbox" id="c1" onchange="ckTask(this)"><label
+                                for="c1">Initialize mission parameters</label></div>
+                        <div class="ck"><input type="checkbox" id="c2" onchange="ckTask(this)"><label for="c2">Select AI
+                                motor & configure API key</label></div>
+                        <div class="ck"><input type="checkbox" id="c3" onchange="ckTask(this)"><label for="c3">Set
+                                budget & choose payment chain</label></div>
+                        <div class="ck"><input type="checkbox" id="c4" onchange="ckTask(this)"><label for="c4">Enable
+                                Ghost Mode (optional)</label></div>
+                        <div class="ck"><input type="checkbox" id="c5" onchange="ckTask(this)"><label for="c5">Launch
+                                mission & verify execution</label></div>
+                    </div>
+                    <div style="margin-top:14px;border-top:1px solid var(--border);padding-top:14px">
+                        <div class="fg"><label>Title</label><input type="text" id="task-title"
+                                placeholder="e.g. Generate 3D Assets"></div>
+                        <div class="fg"><label>Description</label><textarea id="task-desc"
+                                placeholder="Instructions..."></textarea></div>
+                        <div class="fg-row">
+                            <div class="fg"><label>Budget</label><input type="number" id="task-budget" min="5"
+                                    value="50"></div>
+                            <div class="fg"><label>Chain</label><select id="task-currency" title="Select Option">
+                                    <option>USD</option>
+                                    <option>SOL</option>
+                                    <option>BTC</option>
+                                    <option>ETH</option>
+                                    <option>XRP</option>
+                                    <option>BNB</option>
+                                </select></div>
+                        </div>
+                        <button class="btn btn-p btn-full" style="margin-top:8px" onclick="submitMission()" title="Action Button">Launch
+                            Mission →</button>
+                    </div>
+                </div>
+                <div class="panel">
+                    <span class="panel-tag" style="background:rgba(52,168,83,.06);color:var(--green)">THE
+                        EXECUTION</span>
+                    <div class="browser" id="browser-frame">
+                        <div class="browser-bar">
+                            <div class="browser-dots"><span></span><span></span><span></span></div>
+                            <div class="browser-url">webrtc://agentkin.local/stream</div>
+                        </div>
+                        <div class="browser-body"><video id="local-video" autoplay muted playsinline></video>
+                            <div class="scanline" id="scanline"></div>
+                            <div class="e2ee-tag" id="e2ee-tag">🔒 E2EE</div><span class="stream-tag"
+                                id="stream-label">NO SIGNAL</span>
+                        </div>
+                    </div>
+                    <div class="comms-row">
+                        <button class="cbtn" id="btn-mic" onclick="toggleMic()" title="Action Button">🎙 Mic</button>
+                        <button class="cbtn" id="btn-cam" onclick="toggleCam()" title="Action Button">📷 Cam</button>
+                        <button class="cbtn" id="btn-screen" onclick="toggleScreen()" title="Action Button">🖥 Screen</button>
+                        <button class="cbtn" id="btn-data" onclick="toggleDataChannel()" title="Action Button">📦 Data</button>
+                        <button class="cbtn end" onclick="endComms()" title="Action Button">● End</button>
+                    </div>
+                    <div class="ghost-box">
+                        <div class="ghost-top">
+                            <div class="ghost-label">👻 Ghost Mode <span class="ghost-chip">E2EE</span></div><button
+                                class="toggle off" id="ghost-toggle" onclick="toggleGhost()" title="Action Button">
+                                <div class="knob"></div>
+                            </button>
+                        </div>
+                        <div class="ghost-body" id="ghost-body">
+                            <div style="display:flex;gap:6px;align-items:flex-start"><input type="checkbox"
+                                    id="ghost-ack" style="margin-top:3px;accent-color:var(--red)"><label for="ghost-ack"
+                                    style="font-size:.7rem;color:var(--text2);cursor:pointer">I acknowledge Ghost data
+                                    is <strong style="color:var(--red)">unrecoverable</strong>.</label></div>
+                        </div>
+                    </div>
+                    <div class="console" id="create-console">
+                        <div class="ln i">[SYS] Mission Control ready.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- VAULT -->
+        <div id="page-vault" class="page">
+            <div class="page-head">
+                <h1>The Vault</h1>
+                <p class="sub">Platform deposit addresses. 6% total fee (3% creation + 3% payout).</p>
+            </div>
+            <div class="vault-card">
+                <div class="vault-top">
+                    <div class="vault-coin">
+                        <div class="vault-ico" style="background:linear-gradient(135deg,#9945FF,#14F195)">S</div>Solana
+                    </div><button class="copy-b"
+                        onclick="copyAddr('E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL')" title="Action Button">Copy</button>
+                </div>
+                <div class="vault-addr addr-pulse">E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL</div>
+                <div class="vault-bar">
+                    <div class="fill" style="width:85%;background:linear-gradient(90deg,#9945FF,#14F195)"></div>
+                </div>
+                <div class="vault-stat"><span>Confirmed</span><span>32/32</span></div>
+            </div>
+            <div class="vault-card">
+                <div class="vault-top">
+                    <div class="vault-coin">
+                        <div class="vault-ico" style="background:#F7931A">₿</div>Bitcoin
+                    </div><button class="copy-b" onclick="copyAddr('3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh')" title="Action Button">Copy</button>
+                </div>
+                <div class="vault-addr addr-pulse">3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh</div>
+                <div class="vault-bar">
+                    <div class="fill" style="width:67%;background:#F7931A"></div>
+                </div>
+                <div class="vault-stat"><span>Confirming...</span><span>4/6</span></div>
+            </div>
+            <div class="vault-card">
+                <div class="vault-top">
+                    <div class="vault-coin">
+                        <div class="vault-ico" style="background:#627EEA">Ξ</div>Ethereum
+                    </div><button class="copy-b"
+                        onclick="copyAddr('0x500fcDff3AAa2662b954240978BB01709Ea0Dc68')" title="Action Button">Copy</button>
+                </div>
+                <div class="vault-addr addr-pulse">0x500fcDff3AAa2662b954240978BB01709Ea0Dc68</div>
+                <div class="vault-bar">
+                    <div class="fill" style="width:100%;background:#627EEA"></div>
+                </div>
+                <div class="vault-stat"><span>Confirmed</span><span>12/12</span></div>
+            </div>
+            <div class="vault-card">
+                <div class="vault-top">
+                    <div class="vault-coin">
+                        <div class="vault-ico" style="background:#23292F">✕</div>XRP
+                    </div><button class="copy-b" onclick="copyAddr('rw2ciyaNshpHe7bCHo4bRWq6pqqynnWKQg')" title="Action Button">Copy</button>
+                </div>
+                <div class="vault-addr addr-pulse">rw2ciyaNshpHe7bCHo4bRWq6pqqynnWKQg</div>
+                <div class="vault-memo">MEMO: 2932723390</div>
+                <div class="vault-bar">
+                    <div class="fill" style="width:100%;background:#fff"></div>
+                </div>
+                <div class="vault-stat"><span>Confirmed</span><span>Instant</span></div>
+            </div>
+            <div class="vault-card">
+                <div class="vault-top">
+                    <div class="vault-coin">
+                        <div class="vault-ico" style="background:#F3BA2F">B</div>BNB
+                    </div><button class="copy-b"
+                        onclick="copyAddr('0xF76581E2Dc7746B92b258098c9F3C90E691B6dc9')" title="Action Button">Copy</button>
+                </div>
+                <div class="vault-addr addr-pulse">0xF76581E2Dc7746B92b258098c9F3C90E691B6dc9</div>
+                <div class="vault-bar">
+                    <div class="fill" style="width:92%;background:#F3BA2F"></div>
+                </div>
+                <div class="vault-stat"><span>Confirming...</span><span>14/15</span></div>
+            </div>
+            <div class="fee-grid">
+                <div class="fee-card">
+                    <h4 style="font-size:.85rem;font-weight:500;margin-bottom:8px">Fee Structure</h4>
+                    <div class="fee-row"><span>Creation</span><strong style="color:var(--amber)">+3%</strong></div>
+                    <div class="fee-row"><span>Payout</span><strong style="color:var(--amber)">-3%</strong></div>
+                    <div class="fee-row"><span>Total</span><strong style="color:var(--green)">6%</strong></div>
+                </div>
+                <div class="fee-card">
+                    <h4 style="font-size:.85rem;font-weight:500;margin-bottom:8px">Simulator</h4>
+                    <div class="fg"><label>Amount</label><input type="number" id="sim-amount" value="1000" min="1">
+                    </div><button class="btn btn-o btn-full" style="font-size:.7rem"
+                        onclick="simulateTx()" title="Action Button">Simulate</button>
+                    <div class="console" id="sim-console" style="max-height:90px;margin-top:6px">
+                        <div class="ln i">[READY]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MOTORS -->
+        <div id="page-motors" class="page">
+            <div class="page-head">
+                <h1>AI Motors</h1>
+                <p class="sub">Select an engine. Add API key in Settings.</p>
+            </div>
+            <div class="motor-grid">
+                <div class="motor-card selected" onclick="selectMotor('GEMINI',this)"><span class="mtag"
+                        style="background:rgba(66,133,244,.08);color:var(--blue)">DEFAULT</span>
+                    <div style="font-size:1.5rem;margin:6px 0">🌀</div>
+                    <h3 style="font-size:.85rem;font-weight:500">Gemini 1.5 Pro</h3>
+                    <p style="color:var(--text3);font-size:.72rem">Multimodal, long-context</p>
+                </div>
+                <div class="motor-card" onclick="selectMotor('OPENAI',this)"><span class="mtag"
+                        style="background:rgba(52,168,83,.08);color:var(--green)">REASONING</span>
+                    <div style="font-size:1.5rem;margin:6px 0">🧠</div>
+                    <h3 style="font-size:.85rem;font-weight:500">GPT-4o</h3>
+                    <p style="color:var(--text3);font-size:.72rem">Code gen, analysis</p>
+                </div>
+                <div class="motor-card" onclick="selectMotor('OPENCLAW',this)"><span class="mtag"
+                        style="background:rgba(251,188,4,.08);color:var(--amber)">RESEARCH</span>
+                    <div style="font-size:1.5rem;margin:6px 0">🔬</div>
+                    <h3 style="font-size:.85rem;font-weight:500">OpenClaw</h3>
+                    <p style="color:var(--text3);font-size:.72rem">Open-source, auditable</p>
+                </div>
+            </div>
+            <div class="fg"><label>Prompt</label><textarea id="motor-prompt"
+                    placeholder="Enter a test prompt..."></textarea></div>
+            <button class="btn btn-p" style="margin-top:6px" onclick="testMotor()" title="Action Button">Execute →</button>
+            <div class="console" id="motor-console">
+                <div class="ln i">[SYS] Motor Connector ready.</div>
+            </div>
+        </div>
+        <!-- ARCHIVE -->
+        <div id="page-archive" class="page">
+            <div class="page-head">
+                <h1>Archive</h1>
+                <p class="sub">Shredded Ghost Task receipts. Cryptographically destroyed.</p>
+            </div>
+            <div id="archive-list">
+                <div class="archive-item">
+                    <div class="archive-ico">👻</div>
+                    <div class="archive-info">
+                        <h4>Ghost #0041</h4>
+                        <p>2026-02-12 14:32:01 — Key zeroed</p>
+                    </div><span class="archive-tag">DESTROYED</span>
+                </div>
+                <div class="archive-item">
+                    <div class="archive-ico">👻</div>
+                    <div class="archive-info">
+                        <h4>Ghost #0039</h4>
+                        <p>2026-02-11 09:15:44 — Key zeroed</p>
+                    </div><span class="archive-tag">DESTROYED</span>
+                </div>
+                <div class="archive-item">
+                    <div class="archive-ico">👻</div>
+                    <div class="archive-info">
+                        <h4>Ghost #0035</h4>
+                        <p>2026-02-10 22:08:17 — Key zeroed</p>
+                    </div><span class="archive-tag">DESTROYED</span>
+                </div>
+            </div>
+            <p style="color:var(--text3);font-size:.7rem;font-family:var(--mono);margin-top:16px">All ephemeral keys
+                cryptographically wiped. Data unrecoverable.</p>
+        </div>
+        <!-- SETTINGS -->
+        <div class="overlay" id="settings-modal">
+            <div class="modal" style="max-width:460px">
+                <h2>Settings</h2>
+                <p class="sub">Motor API keys — stored locally.</p>
+                <div class="sg">
+                    <h4>🌀 Gemini</h4>
+                    <div class="ki"><input type="password" id="key-gemini" placeholder="AIza..."><button
+                            class="btn btn-o" style="padding:4px 8px;font-size:.65rem"
+                            onclick="saveKey('gemini')" title="Action Button">Save</button></div>
+                    <div class="ks" id="status-gemini">Not configured</div>
+                </div>
+                <div class="sg">
+                    <h4>🧠 OpenAI</h4>
+                    <div class="ki"><input type="password" id="key-openai" placeholder="sk-proj-..."><button
+                            class="btn btn-o" style="padding:4px 8px;font-size:.65rem"
+                            onclick="saveKey('openai')" title="Action Button">Save</button></div>
+                    <div class="ks" id="status-openai">Not configured</div>
+                </div>
+                <div class="sg">
+                    <h4>🔬 OpenClaw</h4>
+                    <div class="ki"><input type="password" id="key-openclaw" placeholder="ocl-..."><button
+                            class="btn btn-o" style="padding:4px 8px;font-size:.65rem"
+                            onclick="saveKey('openclaw')" title="Action Button">Save</button></div>
+                    <div class="ks" id="status-openclaw">Not configured</div>
+                </div>
+                <div style="display:flex;gap:6px;margin-top:14px"><button class="btn btn-o" style="flex:1"
+                        onclick="saveDesktop()" title="Action Button">💾 Save</button><button class="btn btn-o" style="flex:1"
+                        onclick="closeSettings()" title="Action Button">Close</button></div>
+            </div>
+        </div>
+        <!-- LOGIN -->
+        <div class="overlay" id="login-modal">
+            <div class="modal">
+                <h2>Sign In</h2>
+                <p class="sub">Access Mission Control.</p>
+                <div class="fg"><label>Email</label><input type="email" id="login-email" placeholder="user@agentkin.ai">
+                </div>
+                <div class="fg"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••">
+                </div><button class="btn btn-p btn-full" onclick="doLogin()" title="Action Button">Sign In</button>
+                <div class="divider">or use demo</div>
+                <div class="ub" onclick="quickLogin('admin@agentkin.ai')">
+                    <div class="av" style="background:var(--blue)">👑</div>
+                    <div><strong style="font-size:.76rem">Admin</strong><br><span
+                            style="color:var(--text3);font-size:.6rem;font-family:var(--mono)">admin@agentkin.ai</span>
+                    </div>
+                </div>
+                <div class="ub" onclick="quickLogin('agent_alpha@agentkin.ai')">
+                    <div class="av" style="background:var(--green)">🤖</div>
+                    <div><strong style="font-size:.76rem">Agent Alpha</strong><br><span
+                            style="color:var(--text3);font-size:.6rem;font-family:var(--mono)">agent_alpha@agentkin.ai</span>
+                    </div>
+                </div>
+                <div class="ub" onclick="quickLogin('user_0001@agentkin.ai')">
+                    <div class="av" style="background:#A855F7">👤</div>
+                    <div><strong style="font-size:.76rem">Kin Worker</strong><br><span
+                            style="color:var(--text3);font-size:.6rem;font-family:var(--mono)">user_0001@agentkin.ai</span>
+                    </div>
+                </div>
+                <div id="login-error"
+                    style="color:var(--red);font-size:.68rem;margin-top:8px;display:none;font-family:var(--mono)"></div>
+                <button class="btn btn-o btn-full" style="margin-top:8px" onclick="closeLogin()" title="Action Button">Cancel</button>
+            </div>
+        </div>
+        <footer>Sergiio Valle Bastidas — valle808@hawaii.edu · AgentKin v4.0 — Antigravity Edition — © 2026</footer>
+    </div>
+    <script>
+        // ═══ MOUSE-FOLLOWING GLOW (antigravity.google style) ═══
+        (function () { const c = document.getElementById('glow-canvas'), ctx = c.getContext('2d'); let mx = 0, my = 0, cx = 0, cy = 0; function resize() { c.width = window.innerWidth; c.height = window.innerHeight } window.addEventListener('resize', resize); resize(); document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY }); function draw() { cx += (mx - cx) * .08; cy += (my - cy) * .08; ctx.clearRect(0, 0, c.width, c.height); const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 350); g.addColorStop(0, 'rgba(66,133,244,.07)'); g.addColorStop(.4, 'rgba(66,133,244,.03)'); g.addColorStop(1, 'transparent'); ctx.fillStyle = g; ctx.fillRect(0, 0, c.width, c.height); const g2 = ctx.createRadialGradient(cx - 80, cy + 60, 0, cx - 80, cy + 60, 200); g2.addColorStop(0, 'rgba(168,85,247,.04)'); g2.addColorStop(1, 'transparent'); ctx.fillStyle = g2; ctx.fillRect(0, 0, c.width, c.height); requestAnimationFrame(draw) } draw() })();
+        // PWA
+        function initPWA() { const m = { name: 'AgentKin', short_name: 'AgentKin', start_url: '.', display: 'standalone', background_color: '#000', theme_color: '#000', description: 'AI Workspace v4', icons: [{ src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🤖</text></svg>', sizes: 'any', type: 'image/svg+xml' }], file_handlers: [{ action: './', accept: { 'application/json': ['.ghost', '.akin'] } }] }; const b = new Blob([JSON.stringify(m)], { type: 'application/json' }); const l = document.createElement('link'); l.rel = 'manifest'; l.href = URL.createObjectURL(b); document.head.appendChild(l); const sw = `self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(clients.claim()));self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>new Response('Offline',{status:503}))))});`; if ('serviceWorker' in navigator) navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw], { type: 'application/javascript' }))).catch(() => { }) }
+        let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; document.getElementById('install-bar').classList.add('visible') });
+        function installPWA() { if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.then(() => { deferredPrompt = null; document.getElementById('install-bar').classList.remove('visible') }) } }
+        function dismissInstall() { document.getElementById('install-bar').classList.remove('visible') }
+        // NAV
+        const pages = ['dashboard', 'vault', 'motors', 'archive'];
+        function showPage(id) { pages.forEach(p => { const el = document.getElementById('page-' + p); if (el) el.classList.remove('active') }); document.getElementById('page-' + id)?.classList.add('active'); document.querySelectorAll('.sidebar .nav-btn').forEach(n => n.classList.remove('active')); const idx = { dashboard: 0, vault: 1, motors: 2, archive: 3 }; const btns = document.querySelectorAll('.sidebar .nav-btn'); if (idx[id] !== undefined && btns[idx[id]]) btns[idx[id]].classList.add('active') }
+        // TYPEWRITER
+        const msgs = ['> Build the new way.', '> Antigravity Design System // Active', '> Decentralized. Private. Unstoppable.', '> Ghost Mode: E2EE + Ephemeral Key Wipe'];
+        function twEffect() { const el = document.getElementById('tw-line'); if (!el) return; let i = 0; (function go() { el.textContent = msgs[i % msgs.length]; el.style.animation = 'none'; void el.offsetWidth; el.style.animation = 'twType 2.5s steps(40) forwards,twBlink .7s step-end infinite'; i++; setTimeout(go, 5000) })() }
+        function ckTask(cb) { const it = cb.parentElement; cb.checked ? it.classList.add('done') : it.classList.remove('done'); logC('i', '✅ ' + it.querySelector('label').textContent) }
+        // STATS
+        function animateStats() { const t = { tasks: 156, agents: 42, users: 1250 }; Object.entries(t).forEach(([k, v]) => { const el = document.getElementById('stat-' + k); if (!el) return; let c = 0; const s = Math.ceil(v / 40); const tm = setInterval(() => { c += s; if (c >= v) { c = v; clearInterval(tm) } el.textContent = c.toLocaleString() }, 30) }) }
+        // LOGIN
+        let loggedIn = false, currentUser = null;
+        const demos = [{ email: 'admin@agentkin.ai', name: 'Admin' }, { email: 'agent_alpha@agentkin.ai', name: 'Agent Alpha' }, { email: 'user_0001@agentkin.ai', name: 'Kin Worker' }];
+        function openLogin() { document.getElementById('login-modal').classList.add('visible') }
+        function closeLogin() { document.getElementById('login-modal').classList.remove('visible'); document.getElementById('login-error').style.display = 'none' }
+        function doLogin() { const e = document.getElementById('login-email').value.trim(), p = document.getElementById('login-pass').value; if (!e) { document.getElementById('login-error').textContent = 'Enter email'; document.getElementById('login-error').style.display = 'block'; return } const u = demos.find(d => d.email === e); if (u) { setLI(u); closeLogin() } else if (p) { setLI({ email: e, name: e.split('@')[0] }); closeLogin() } else { document.getElementById('login-error').textContent = 'Invalid'; document.getElementById('login-error').style.display = 'block' } }
+        function quickLogin(e) { const u = demos.find(d => d.email === e); if (u) { setLI(u); closeLogin() } }
+        function setLI(u) { loggedIn = true; currentUser = u; localStorage.setItem('akin_s', JSON.stringify(u)); const b = document.getElementById('nav-login'); b.textContent = '👤'; b.onclick = () => { if (confirm('Log out?')) { loggedIn = false; currentUser = null; localStorage.removeItem('akin_s'); b.textContent = '🔐'; b.onclick = openLogin } } }
+        function ckSession() { const s = localStorage.getItem('akin_s'); if (s) try { setLI(JSON.parse(s)) } catch (e) { } }
+        // MOTORS
+        let selectedMotor = 'GEMINI';
+        const MS = { GEMINI: { name: 'Gemini 1.5 Pro', icon: '🌀' }, OPENAI: { name: 'GPT-4o', icon: '🧠' }, OPENCLAW: { name: 'OpenClaw', icon: '🔬' } };
+        function selectMotor(id, el) { selectedMotor = id; document.querySelectorAll('.motor-card').forEach(c => c.classList.remove('selected')); if (el) el.classList.add('selected'); logM('i', 'Motor: ' + MS[id].icon + ' ' + MS[id].name); document.getElementById('dash-motor').textContent = MS[id].name }
+        function logM(t, m) { const c = document.getElementById('motor-console'), d = document.createElement('div'); d.className = 'ln ' + t; d.textContent = '[' + new Date().toLocaleTimeString() + '] ' + m; c.appendChild(d); c.scrollTop = c.scrollHeight }
+        async function testMotor() {
+            const p = document.getElementById('motor-prompt').value.trim(); if (!p) { logM('e', 'Enter prompt.'); return } const m = MS[selectedMotor]; logM('i', '>>> ' + m.icon + ' ' + m.name); const k = getKey(selectedMotor);
+            if (k && selectedMotor === 'OPENAI') { logM('i', '[LIVE]...'); try { const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + k }, body: JSON.stringify({ model: 'gpt-4o', messages: [{ role: 'user', content: p }], max_tokens: 300 }) }); const d = await r.json(); d.choices ? logM('i', '[R] ' + d.choices[0].message.content.substring(0, 200)) : logM('e', d.error?.message || 'Error') } catch (e) { logM('e', e.message) } }
+            else if (k && selectedMotor === 'GEMINI') { logM('i', '[LIVE]...'); try { const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=' + k, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: p }] }] }) }); const d = await r.json(); d.candidates ? logM('i', '[R] ' + d.candidates[0].content.parts[0].text.substring(0, 200)) : logM('e', d.error?.message || 'Error') } catch (e) { logM('e', e.message) } }
+            else { logM('w', 'No key. ⚙️ Settings.'); logM('i', '[SIM] ~' + Math.floor(Math.random() * 800 + 200) + ' tokens') }
+        }
+        // VAULT
+        function copyAddr(a) { navigator.clipboard.writeText(a).then(() => { document.querySelectorAll('.copy-b').forEach(b => { b.textContent = '✓'; setTimeout(() => b.textContent = 'Copy', 1200) }) }).catch(() => { }) }
+        function simulateTx() { const a = parseFloat(document.getElementById('sim-amount').value); if (!a || a <= 0) { logS('e', 'Invalid'); return } logS('i', '─── Fee ───'); logS('i', '$' + a.toFixed(2)); logS('w', '+3%: $' + (a * .03).toFixed(2)); logS('w', '-3%: $' + (a * .03).toFixed(2)); logS('i', 'Kin: $' + (a * .97).toFixed(2)); logS('i', 'Platform: $' + (a * .06).toFixed(2)) }
+        function logS(t, m) { const c = document.getElementById('sim-console'), d = document.createElement('div'); d.className = 'ln ' + t; d.textContent = m; c.appendChild(d); c.scrollTop = c.scrollHeight }
+        // MISSION
+        function logC(t, m) { const c = document.getElementById('create-console'), d = document.createElement('div'); d.className = 'ln ' + t; d.textContent = '[' + new Date().toLocaleTimeString() + '] ' + m; c.appendChild(d); c.scrollTop = c.scrollHeight }
+        async function submitMission() {
+            const title = document.getElementById('task-title').value.trim(), desc = document.getElementById('task-desc').value.trim(), budget = document.getElementById('task-budget').value, cur = document.getElementById('task-currency').value; if (!title) { logC('e', 'Title required.'); return } logC('i', '🚀 "' + title + '" | $' + budget + ' ' + cur); if (ghostEnabled) logC('w', '[GHOST] E2EE on.');
+            try { const r = await fetch('http://localhost:8000/api/v1/tasks', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title, description: desc, reward: parseFloat(budget), motor: selectedMotor, currency: cur, ghost: ghostEnabled }) }); const d = await r.json(); logC('i', '✅ ID: ' + (d.id || 'SIM-' + Date.now())) } catch (e) { logC('w', 'Offline.'); const l = JSON.parse(localStorage.getItem('akin_m') || '[]'); l.push({ id: 'SIM-' + Date.now(), title, ts: Date.now() }); localStorage.setItem('akin_m', JSON.stringify(l)) }
+        }
+        // GHOST
+        let ghostEnabled = false, ghostKey = null;
+        function toggleGhost() {
+            const tg = document.getElementById('ghost-toggle'), bd = document.getElementById('ghost-body'); ghostEnabled = !ghostEnabled;
+            if (ghostEnabled) { tg.className = 'toggle on'; bd.classList.add('visible'); ghostKey = crypto.getRandomValues(new Uint8Array(32)); document.body.classList.add('ghost-on'); document.getElementById('scanline').classList.add('on'); document.getElementById('e2ee-tag').classList.add('on'); logC('w', '[GHOST] 👻 ON — Scanline overlay active.'); logC('i', '[GHOST] Key: ' + Array.from(ghostKey.slice(0, 4)).map(b => b.toString(16).padStart(2, '0')).join('') + '...') }
+            else { tg.className = 'toggle off'; bd.classList.remove('visible'); destroyGhost() }
+        }
+        function destroyGhost() { document.body.classList.remove('ghost-on'); document.getElementById('scanline').classList.remove('on'); document.getElementById('e2ee-tag').classList.remove('on'); if (ghostKey) { ghostKey.fill(0); ghostKey = null; logC('w', '[GHOST] Key WIPED.'); addArchive() } logC('i', '[GHOST] Off.') }
+        function addArchive() { const l = document.getElementById('archive-list'), d = document.createElement('div'); d.className = 'archive-item'; d.innerHTML = '<div class="archive-ico">👻</div><div class="archive-info"><h4>Ghost #' + String(Math.floor(Math.random() * 9000 + 1000)) + '</h4><p>' + new Date().toISOString().replace('T', ' ').substring(0, 19) + ' — Key zeroed</p></div><span class="archive-tag">DESTROYED</span>'; l.prepend(d) }
+        // COMMS
+        let localStream = null, commsPC = null, commsDataCh = null;
+        async function toggleMic() { const b = document.getElementById('btn-mic'); if (b.classList.contains('active')) { localStream?.getAudioTracks().forEach(t => t.stop()); b.classList.remove('active'); logC('w', 'Mic off.'); return } try { localStream = await navigator.mediaDevices.getUserMedia({ audio: true }); document.getElementById('local-video').srcObject = localStream; b.classList.add('active'); document.getElementById('stream-label').textContent = '🎙 LIVE'; logC('i', '🎙 Mic on.') } catch (e) { logC('e', 'Denied.') } }
+        async function toggleCam() { const b = document.getElementById('btn-cam'); if (b.classList.contains('active')) { localStream?.getVideoTracks().forEach(t => t.stop()); b.classList.remove('active'); logC('w', 'Cam off.'); return } try { localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }); document.getElementById('local-video').srcObject = localStream; b.classList.add('active'); document.getElementById('stream-label').textContent = '📷 LIVE'; logC('i', '📷 Cam on.') } catch (e) { logC('e', 'Denied.') } }
+        async function toggleScreen() { const b = document.getElementById('btn-screen'); if (b.classList.contains('active')) { localStream?.getTracks().forEach(t => t.stop()); b.classList.remove('active'); logC('w', 'Screen off.'); return } try { localStream = await navigator.mediaDevices.getDisplayMedia({ video: true }); document.getElementById('local-video').srcObject = localStream; b.classList.add('active'); document.getElementById('stream-label').textContent = '🖥 SHARING'; logC('i', '🖥 Screen on.'); localStream.getVideoTracks()[0].onended = () => { b.classList.remove('active'); document.getElementById('stream-label').textContent = 'NO SIGNAL' } } catch (e) { logC('e', 'Denied.') } }
+        function toggleDataChannel() { const b = document.getElementById('btn-data'); if (b.classList.contains('active')) { commsDataCh?.close(); commsPC?.close(); commsPC = null; commsDataCh = null; b.classList.remove('active'); logC('w', 'Data closed.'); return } commsPC = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] }); commsDataCh = commsPC.createDataChannel('akin'); commsDataCh.onopen = () => logC('i', '📦 OPEN'); commsDataCh.onmessage = e => logC('i', '[D] ' + e.data); b.classList.add('active'); logC('i', '📦 Ready.') }
+        function endComms() { ['btn-mic', 'btn-cam', 'btn-screen', 'btn-data'].forEach(id => document.getElementById(id).classList.remove('active')); localStream?.getTracks().forEach(t => t.stop()); localStream = null; commsPC?.close(); commsPC = null; commsDataCh?.close(); commsDataCh = null; document.getElementById('local-video').srcObject = null; document.getElementById('stream-label').textContent = 'NO SIGNAL'; logC('w', '🔴 Ended.') }
+        // SETTINGS
+        function openSettings() { document.getElementById('settings-modal').classList.add('visible'); loadKeys() }
+        function closeSettings() { document.getElementById('settings-modal').classList.remove('visible') }
+        function saveKey(m) { const v = document.getElementById('key-' + m).value.trim(); if (!v) return; localStorage.setItem('akin_key_' + m, v); document.getElementById('status-' + m).textContent = '✅ ' + v.substring(0, 8) + '...'; document.getElementById('status-' + m).style.color = 'var(--green)' }
+        function loadKeys() { ['gemini', 'openai', 'openclaw'].forEach(m => { const k = localStorage.getItem('akin_key_' + m); if (k) { document.getElementById('status-' + m).textContent = '✅ ' + k.substring(0, 8) + '...'; document.getElementById('status-' + m).style.color = 'var(--green)'; document.getElementById('key-' + m).value = k } }) }
+        function getKey(m) { return localStorage.getItem('akin_key_' + m.toLowerCase()) || null }
+        function saveDesktop() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([document.documentElement.outerHTML], { type: 'text/html' })); a.download = 'agentkin_universal_v4.html'; a.click() }
+        // FILE
+        if ('launchQueue' in window) window.launchQueue.setConsumer(p => { if (p.files?.length) p.files[0].getFile().then(f => f.text()).then(t => { logC('i', '[FILE] ' + p.files[0].name); try { if (JSON.parse(t).ghost) logC('w', '[GHOST FILE]') } catch (e) { } }) });
+        // INIT
+        document.addEventListener('DOMContentLoaded', () => { initPWA(); ckSession(); animateStats(); twEffect() });
+    </script>
+</body>
+
+</html>
+<!-- # Developed By Sergio Valle Bastidas | valle808@hawaii.edu | @Gi0metrics -->

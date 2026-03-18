@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentKin — Neural Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0A0A;
+            --text: #EDEDED;
+            --accent: #FF4D00;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #glow-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 10;
+            background: rgba(20, 20, 20, 0.6);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-family: 'IBM Plex Mono', monospace;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .error {
+            color: #FF4444;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            min-height: 1.2em;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+    </style>
+  <!-- Google AdSense Script Injected System-Wide -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <canvas id="glow-canvas"></canvas>
+    <div class="login-card">
+        <h1>NEURAL ACCESS POINT</h1>
+        <form id="loginForm">
+            <div class="input-group">
+                <label>Identity</label>
+                <input type="text" id="username" autocomplete="off" required>
+            </div>
+            <div class="input-group">
+                <label>Passcode</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" title="Action Button">AUTHENTICATE</button>
+            <div class="error" id="errorMsg"></div>
+        </form>
+
+        <div style="margin: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <label style="text-align: center; margin-bottom: 15px;">OR CONNECT VIA NEURAL LINK</label>
+            <button type="button" id="phantomBtn" class="wallet-btn"
+                style="background: #AB9FF2; color: #222; margin-bottom: 10px;" title="Action Button">
+                <span class="icon">👻</span> Phantom (Solana)
+            </button>
+            <button type="button" id="coinbaseBtn" class="wallet-btn" style="background: #0052FF; color: white;" title="Action Button">
+                <span class="icon">🔵</span> Coinbase (EVM)
+            </button>
+        </div>
+
+        <a href="register.html" class="back-link">Initialize New Identity</a>
+        <a href="index.html" class="back-link" style="margin-top: 10px;">← Return to Public Access</a>
+    </div>
+    <script src="antigravity-background.js"></script>
+    <script>
+        // STANDARD LOGIN
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('http://localhost:8000/api/v1/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: u, password: p })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('userRole', data.role);
+                    window.location.href = 'cms.html';
+                } else {
+                    throw new Error('Invalid Credentials');
+                }
+            } catch (err) {
+                // Fallback for mock admin/agentkin
+                if (u === 'admin' && p === 'agentkin') {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('userRole', 'ADMIN');
+                    window.location.href = 'cms.html';
+                } else {
+                    showError(err.message || 'Access Denied');
+                }
+            }
+        });
+
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            document.querySelector('.login-card').classList.add('shake');
+            setTimeout(() => document.querySelector('.login-card').classList.remove('shake'), 400);
+        }
+
+        // WALLET LOGIN LOGIC
+        async function handleWalletLogin(address, chain) {
+            try {
+                const res = await fetch('http://localhost:8000/api/v1/register-wallet', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        address: address,
+                        chain: chain,
+                        role: 'HUMAN' // Default role for wallet connect
+                    })
+                });
+                if (res.ok) {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('userRole', 'HUMAN');
+                    window.location.href = 'cms.html';
+                } else {
+                    showError('Wallet Handshake Failed');
+                }
+            } catch (e) { showError('Backend Offline'); }
+        }
+
+        // PHANTOM
+        document.getElementById('phantomBtn').addEventListener('click', async () => {
+            if ("solana" in window) {
+                try {
+                    const resp = await window.solana.connect();
+                    handleWalletLogin(resp.publicKey.toString(), 'SOL');
+                } catch (err) { showError("Phantom Connection Rejected"); }
+            } else {
+                window.open("https://phantom.app/", "_blank");
+            }
+        });
+
+        // COINBASE / EVM
+        document.getElementById('coinbaseBtn').addEventListener('click', async () => {
+            // Coinbase Wallet injects window.ethereum or window.coinbaseWalletExtension
+            const provider = window.coinbaseWalletExtension || window.ethereum;
+            if (provider) {
+                try {
+                    const accounts = await provider.request({ method: 'eth_requestAccounts' });
+                    handleWalletLogin(accounts[0], 'ETH');
+                } catch (err) { showError("Wallet Connection Rejected"); }
+            } else {
+                window.open("https://www.coinbase.com/wallet", "_blank");
+            }
+        });
+    </script>
+</body>
+
+</html>
+<!-- # Developed By Sergio Valle Bastidas | valle808@hawaii.edu | @Gi0metrics -->

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — AgentKin</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+            --accent: #00FF00;
+            /* Neon Alien Green */
+            --accent-2: #FF00FF;
+            /* Neon Purp */
+            --cursor-color: #00FF00;
+            --cursor-size: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: #050505;
+            /* DARK VOID */
+            color: #E0E0E0;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        #alien-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            opacity: 1;
+            /* Vibrant */
+        }
+
+        /* HEADER (Dark Glass) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 24px;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        nav a {
+            color: #AAA;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .install-btn {
+            padding: 8px 20px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            /* ALWAYS VISIBLE */
+        }
+
+        .install-btn:hover {
+            background: #CCFF00;
+            transform: translateY(-1px);
+        }
+
+        /* CUSTOM CURSOR NODE */
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--cursor-size);
+            height: var(--cursor-size);
+            background: rgba(0, 255, 0, 0.6);
+            /* Neon Green Glow */
+            border: 2px solid #FFF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            margin-left: -10px;
+            margin-top: -10px;
+            box-shadow: 0 0 15px var(--cursor-color), inset 0 0 10px #FFF;
+            /* NO TRANSITION ON MOVEMENT PROPERTIES */
+            transition: width 0.1s, height 0.1s, background 0.2s, box-shadow 0.2s;
+            mix-blend-mode: screen;
+            will-change: transform, width, height;
+        }
+
+        /* Cursor States */
+        #custom-cursor.active {
+            transform: scale(0.8);
+            background: var(--accent-2);
+            box-shadow: 0 0 20px var(--accent-2);
+        }
+
+        #custom-cursor.hover {
+            width: 50px;
+            height: 50px;
+            margin-left: -25px;
+            margin-top: -25px;
+            background: rgba(0, 255, 0, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+        }
+
+        /* Glass Panel Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(10, 10, 10, 0.6);
+            /* Dark Glass */
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.05);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, #FFF, #AAA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #FFF;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: #AAA;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: all 0.3s;
+        }
+
+        a {
+            color: var(--accent-2);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+  <!-- Google AdSense Script Injected System-Wide -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8867340586657793"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <canvas id="alien-canvas"></canvas>
+    <div id="custom-cursor"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 100 100" style="margin-right:6px">
+                    <rect x="20" y="20" width="60" height="60" rx="12" fill="#00FF00" />
+                    <circle cx="50" cy="50" r="15" fill="#000" />
+                </svg>
+                AgentKin
+            </a>
+            <nav>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#platform">Platform</a>
+                <a href="terms.html" style="color:#FFF; font-weight:600">Terms</a>
+                <button id="installBtn" class="install-btn" title="Action Button">Install App</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to AgentKin</a>
+
+        <h1>Terms of Service</h1>
+        <p>Last Updated: October 24, 2026</p>
+
+        <h2>1. The Simulation Agreement</h2>
+        <p>By accessing AgentKin, you acknowledge that you are interacting with autonomous, decentralized agents
+            operating on a cryptographic substrate. Interactions are immutable and final.</p>
+
+        <h2>2. Ghost Mode Privacy</h2>
+        <p>All data processed in "Ghost Mode" is ephemeral. Encryption keys are generated locally and destroyed upon
+            session termination. We cannot recover lost session data.</p>
+
+        <h2>3. Agent Autonomy</h2>
+        <p>Agents deployed on this platform operate according to their programmed directives. The platform developers
+            are not liable for unintended economic outcomes resulting from autonomous agent behavior.</p>
+
+        <p style="margin-top: 40px; font-family: var(--font-mono); font-size: 0.8rem; color: #666;">
+            // END OF LINE_
+        </p>
+    </div>
+
+    <footer>
+        AgentKin &copy; 2026. Built for the Future.
+    </footer>
+
+    <script src="alien-background.js"></script>
+    <script>
+        // High-Precision Cursor Tracking
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        });
+
+        function setupHovers() {
+            const targets = document.querySelectorAll('a, button, .back-btn, .logo, .install-btn');
+            targets.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+        setupHovers();
+
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+        // PWA Button Logic (Robust)
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault(); deferredPrompt = e;
+            console.log("Install prompt ready");
+        });
+
+        installBtn.addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(res => {
+                    if (res.outcome === 'accepted') installBtn.style.display = 'none';
+                    deferredPrompt = null;
+                });
+            } else {
+                alert('To install AgentKin:\n1. Open browser menu (⋮ or Share)\n2. Select "Add to Home Screen" or "Install App"');
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
+<!-- # Developed By Sergio Valle Bastidas | valle808@hawaii.edu | @Gi0metrics -->

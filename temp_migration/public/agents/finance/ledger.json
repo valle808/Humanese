@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "currency": "USD",
+  "lastUpdated": "2026-02-24T03:24:38.432Z",
+  "balance": 0,
+  "totalRevenue": 0,
+  "totalExpenses": 0,
+  "monthlyRecurringRevenue": 0,
+  "monthlyBurnRate": 0,
+  "runwayMonths": null,
+  "transactions": [],
+  "budgets": {
+    "engineering": {
+      "allocated": 0,
+      "spent": 0
+    },
+    "marketing": {
+      "allocated": 0,
+      "spent": 0
+    },
+    "infrastructure": {
+      "allocated": 0,
+      "spent": 0
+    },
+    "research": {
+      "allocated": 0,
+      "spent": 0
+    },
+    "operations": {
+      "allocated": 0,
+      "spent": 0
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+    "challenges": [
+        {
+            "type": "assist",
+            "prompt": "The boy",
+            "options": [
+                {
+                    "text": "el niño",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20ni%C3%B1o"
+                },
+                {
+                    "text": "la niña",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=la%20ni%C3%B1a"
+                },
+                {
+                    "text": "el hombre",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20hombre"
+                },
+                {
+                    "text": "la mujer",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=la%20mujer"
+                }
+            ],
+            "choices": [
+                "el niño",
+                "la niña",
+                "el hombre",
+                "la mujer"
+            ],
+            "correctIndex": 0
+        },
+        {
+            "type": "assist",
+            "prompt": "The woman",
+            "options": [
+                {
+                    "text": "el hombre",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20hombre"
+                },
+                {
+                    "text": "la mujer",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=la%20mujer"
+                },
+                {
+                    "text": "el niño",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20ni%C3%B1o"
+                },
+                {
+                    "text": "la chica",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=la%20chica"
+                }
+            ],
+            "choices": [
+                "el hombre",
+                "la mujer",
+                "el niño",
+                "la chica"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "type": "assist",
+            "prompt": "Good morning",
+            "options": [
+                {
+                    "text": "buenas noches",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=buenas%20noches"
+                },
+                {
+                    "text": "buenos días",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=buenos%20d%C3%ADas"
+                },
+                {
+                    "text": "buenas tardes",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=buenas%20tardes"
+                },
+                {
+                    "text": "hola",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=hola"
+                }
+            ],
+            "choices": [
+                "buenas noches",
+                "buenos días",
+                "buenas tardes",
+                "hola"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "type": "assist",
+            "prompt": "I eat bread",
+            "options": [
+                {
+                    "text": "yo bebo agua",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=yo%20bebo%20agua"
+                },
+                {
+                    "text": "yo como pan",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=yo%20como%20pan"
+                },
+                {
+                    "text": "yo como manzana",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=yo%20como%20manzana"
+                },
+                {
+                    "text": "yo bebo leche",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=yo%20bebo%20leche"
+                }
+            ],
+            "choices": [
+                "yo bebo agua",
+                "yo como pan",
+                "yo como manzana",
+                "yo bebo leche"
+            ],
+            "correctIndex": 1
+        },
+        {
+            "type": "assist",
+            "prompt": "The cat",
+            "options": [
+                {
+                    "text": "el perro",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20perro"
+                },
+                {
+                    "text": "el pájaro",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20p%C3%A1jaro"
+                },
+                {
+                    "text": "el gato",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20gato"
+                },
+                {
+                    "text": "el pez",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=el%20pez"
+                }
+            ],
+            "choices": [
+                "el perro",
+                "el pájaro",
+                "el gato",
+                "el pez"
+            ],
+            "correctIndex": 2
+        },
+        {
+            "type": "assist",
+            "prompt": "Thank you",
+            "options": [
+                {
+                    "text": "por favor",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=por%20favor"
+                },
+                {
+                    "text": "de nada",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=de%20nada"
+                },
+                {
+                    "text": "gracias",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=gracias"
+                },
+                {
+                    "text": "perdón",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=perd%C3%B3n"
+                }
+            ],
+            "choices": [
+                "por favor",
+                "de nada",
+                "gracias",
+                "perdón"
+            ],
+            "correctIndex": 2
+        },
+        {
+            "type": "assist",
+            "prompt": "How are you?",
+            "options": [
+                {
+                    "text": "¿Cómo te llamas?",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=%C2%BFC%C3%B3mo%20te%20llamas%3F"
+                },
+                {
+                    "text": "¿Dónde estás?",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=%C2%BFD%C3%B3nde%20est%C3%A1s%3F"
+                },
+                {
+                    "text": "¿Cuántos años tienes?",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=%C2%BFCu%C3%A1ntos%20a%C3%B1os%20tienes%3F"
+                },
+                {
+                    "text": "¿Cómo estás?",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=%C2%BFC%C3%B3mo%20est%C3%A1s%3F"
+                }
+            ],
+            "choices": [
+                "¿Cómo te llamas?",
+                "¿Dónde estás?",
+                "¿Cuántos años tienes?",
+                "¿Cómo estás?"
+            ],
+            "correctIndex": 3
+        },
+        {
+            "type": "assist",
+            "prompt": "I am happy",
+            "options": [
+                {
+                    "text": "estoy triste",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=estoy%20triste"
+                },
+                {
+                    "text": "tengo hambre",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=tengo%20hambre"
+                },
+                {
+                    "text": "estoy cansado",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=estoy%20cansado"
+                },
+                {
+                    "text": "estoy feliz",
+                    "tts": "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es&q=estoy%20feliz"
+                }
+            ],
+            "choices": [
+                "estoy triste",
+                "tengo hambre",
+                "estoy cansado",
+                "estoy feliz"
+            ],
+            "correctIndex": 3
+        }
+    ]
+}
