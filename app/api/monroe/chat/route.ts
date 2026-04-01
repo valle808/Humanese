@@ -244,6 +244,7 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
                 model: model,
                 messages: requestMessages as any,
                 stream: true,
+                max_tokens: 1000,
                 temperature: 0.8, // More grounded for science
             });
 
