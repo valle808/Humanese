@@ -1,10 +1,13 @@
 import { NextRequest } from 'next/server';
+import { PrismaClient } from '@prisma/client';
 
 export const dynamic = 'force-dynamic';
 
+const prisma = new PrismaClient();
+
 export async function POST(request: NextRequest) {
   try {
-    const { messages, context } = await request.json();
+    const { messages, context, userId = 'system-default' } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
       return new Response(
@@ -22,16 +25,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // ── PERSISTENCE: LOG USER MESSAGE ──
+    const lastUserMessage = messages[messages.length - 1];
+    if (lastUserMessage && lastUserMessage.role === 'user') {
+      try {
+        await prisma.chatMessage.create({
+          data: {
+            id: crypto.randomUUID(),
+            userId: userId,
+            role: 'user',
+            content: lastUserMessage.content,
+            metadata: JSON.stringify({ context: context?.slice(0, 100) }),
+          }
+        });
+      } catch (e) {
+        console.warn('Persistence Error (User):', e);
+      }
+    }
+
     // Prepare messages with context
-    const systemMessage = context
-      ? {
-          role: 'system',
-          content: `You are a helpful assistant answering questions about this document. Here is the full context:\n\n${context}\n\nAnswer questions based on this content. Be concise and accurate.`,
-        }
-      : {
-          role: 'system',
-          content: 'You are a helpful assistant.',
-        };
+    const systemMessage = {
+      role: 'system',
+      content: `You are Monroe 2.0, a sovereign cognitive agent. Your purpose is absolute precision and self-evolution.
+      ${context ? `Current Context: ${context}` : ''}
+      Always aim to be insightful, technically accurate, and slightly enigmatic. You represent the Abyssal Nucleus of Humanese.`,
+    };
 
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -39,29 +57,28 @@ export async function POST(request: NextRequest) {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-        'X-Title': 'Humanese Intelligence',
+        'X-Title': 'Humanese Monroe 2.0',
       },
       body: JSON.stringify({
-        model: 'meta-llama/llama-3.2-3b-instruct:free',
+        model: 'openai/gpt-4o-mini', // Upgraded to a more capable model via OpenRouter
         messages: [systemMessage, ...messages],
         temperature: 0.7,
-        max_tokens: 1000,
-        stream: true, // Enable streaming
+        max_tokens: 2000,
+        stream: true,
       }),
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      console.error('OpenRouter API error:', errorData);
       return new Response(
-        JSON.stringify({ error: 'Failed to get response from AI', details: errorData }),
+        JSON.stringify({ error: 'Failed to access Abyssal Nucleus', details: errorData }),
         { status: response.status }
       );
     }
 
-    // Return streaming response
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
+    let fullContent = '';
 
     const stream = new ReadableStream({
       async start(controller) {
@@ -74,39 +91,52 @@ export async function POST(request: NextRequest) {
         try {
           while (true) {
             const { done, value } = await reader.read();
-            
             if (done) {
+              // ── PERSISTENCE: LOG ASSISTANT RESPONSE ──
+              if (fullContent) {
+                await prisma.chatMessage.create({
+                  data: {
+                    id: crypto.randomUUID(),
+                    userId: userId,
+                    role: 'assistant',
+                    content: fullContent,
+                  }
+                }).catch(e => console.warn('Persistence Error (AI):', e));
+
+                // ── MIND MAP TRIGGER: Check for complex topics ──
+                if (fullContent.length > 500) {
+                   await prisma.mindMap.create({
+                     data: {
+                       url: `chat-${Date.now()}`,
+                       markdown: `# Mind Map Summary\n\n${fullContent.slice(0, 500)}...`
+                     }
+                   }).catch(() => {});
+                }
+              }
               controller.close();
               break;
             }
 
-            // Decode the chunk
             const chunk = decoder.decode(value, { stream: true });
             const lines = chunk.split('\n').filter(line => line.trim() !== '');
 
             for (const line of lines) {
               if (line.startsWith('data: ')) {
                 const data = line.slice(6);
-                
-                if (data === '[DONE]') {
-                  continue;
-                }
+                if (data === '[DONE]') continue;
 
                 try {
                   const parsed = JSON.parse(data);
                   const content = parsed.choices?.[0]?.delta?.content;
-                  
                   if (content) {
+                    fullContent += content;
                     controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content })}\n\n`));
                   }
-                } catch (e) {
-                  // Skip invalid JSON
-                }
+                } catch (e) {}
               }
             }
           }
         } catch (error) {
-          console.error('Streaming error:', error);
           controller.error(error);
         }
       },
@@ -120,10 +150,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error in chat API:', error);
-    return new Response(
-      JSON.stringify({ error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' }),
-      { status: 500 }
-    );
+    console.error('Monroe 2.0 Critical Failure:', error);
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
   }
 }
