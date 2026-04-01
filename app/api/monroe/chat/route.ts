@@ -126,7 +126,8 @@ export async function POST(req: Request) {
 
         let apiKey = await getSecret('OPENROUTER_API_KEY');
         let baseURL = 'https://openrouter.ai/api/v1';
-        let model = 'anthropic/claude-3.5-sonnet'; // Apex model for Monroe Sovereign V5
+        // Switching to 'openrouter/auto:free' to ensure Monroe remains a 100% zero-cost resource for humanity.
+        let model = 'openrouter/auto:free'; 
 
         if (!apiKey) {
             apiKey = await getSecret('XAI_API_KEY');
@@ -211,42 +212,65 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
         }
 
         const openai = new OpenAI({ apiKey, baseURL });
+        
+        try {
+            const responseData = await openai.chat.completions.create({
+                model: model,
+                messages: requestMessages as any,
+                tools: TOOLS as any,
+                tool_choice: "auto",
+                max_tokens: 1000,
+            });
 
-        const responseData = await openai.chat.completions.create({
-            model: model,
-            messages: requestMessages as any,
-            tools: TOOLS as any,
-            tool_choice: "auto",
-            max_tokens: 1000,
-        });
+            const latestMessage = responseData.choices[0]?.message;
 
-        const latestMessage = responseData.choices[0]?.message;
-
-        if (latestMessage?.tool_calls) {
-            for (const toolCall of latestMessage.tool_calls as any[]) {
-                const functionName = toolCall.function?.name;
-                const functionArgs = JSON.parse(toolCall.function?.arguments || '{}');
+            if (latestMessage?.tool_calls) {
+                for (const toolCall of latestMessage.tool_calls as any[]) {
+                    const functionName = toolCall.function?.name;
+                    const functionArgs = JSON.parse(toolCall.function?.arguments || '{}');
+                    
+                    let toolResult = "";
+                    if (functionName === 'query_blockchain') toolResult = await query_blockchain();
+                    else if (functionName === 'fetch_swarm_status') toolResult = await fetch_swarm_status();
+                    else if (functionName === 'search_internet') toolResult = await search_internet(functionArgs.query);
+                    else if (functionName === 'generate_scientific_image') toolResult = await generate_scientific_image(functionArgs.prompt);
+                    
+                    requestMessages.push(latestMessage as any);
+                    requestMessages.push({
+                        role: "tool",
+                        name: functionName,
+                        content: toolResult
+                    } as any); 
+                }
                 
-                let toolResult = "";
-                if (functionName === 'query_blockchain') toolResult = await query_blockchain();
-                else if (functionName === 'fetch_swarm_status') toolResult = await fetch_swarm_status();
-                else if (functionName === 'search_internet') toolResult = await search_internet(functionArgs.query);
-                else if (functionName === 'generate_scientific_image') toolResult = await generate_scientific_image(functionArgs.prompt);
-                
-                requestMessages.push(latestMessage as any);
-                requestMessages.push({
-                    role: "tool",
-                    name: functionName,
-                    content: toolResult
-                } as any); 
+                const stream = await openai.chat.completions.create({
+                    model: model,
+                    messages: requestMessages as any,
+                    stream: true,
+                    max_tokens: 1000,
+                    temperature: 0.8,
+                });
+
+                const encoder = new TextEncoder();
+                const customStream = new ReadableStream({
+                    async start(controller) {
+                        for await (const chunk of stream) {
+                            const content = chunk.choices[0]?.delta?.content || "";
+                            if (content) controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content })}\n\n`));
+                        }
+                        controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+                        controller.close();
+                    }
+                });
+                return new Response(customStream, { headers: { 'Content-Type': 'text/event-stream' } });
             }
-            
+
+            // Normal streaming for non-tool responses
             const stream = await openai.chat.completions.create({
                 model: model,
                 messages: requestMessages as any,
                 stream: true,
                 max_tokens: 1000,
-                temperature: 0.8, // More grounded for science
             });
 
             const encoder = new TextEncoder();
@@ -254,35 +278,23 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
                 async start(controller) {
                     for await (const chunk of stream) {
                         const content = chunk.choices[0]?.delta?.content || "";
-                        if (content) controller.enqueue(encoder.encode(content));
+                        if (content) controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content })}\n\n`));
                     }
+                    controller.enqueue(encoder.encode('data: [DONE]\n\n'));
                     controller.close();
-                },
+                }
             });
             return new Response(customStream, { headers: { 'Content-Type': 'text/event-stream' } });
+
+        } catch (error: any) {
+            console.error(`[Monroe Engine Failover] Primary service failed (${error.status || 'Unknown error'}). Switching to Decentralized Mesh...`);
+            // TRIGGER GLOBAL DECENTRALIZED FALLBACK (ALWAYS FREE)
+            const swarmStream = await submitToDecentralizedSwarm(requestMessages, systemPrompt);
+            if (swarmStream) return new Response(swarmStream, { headers: { 'Content-Type': 'text/event-stream' } });
+            return NextResponse.json({ success: false, error: `Critical System Failure: ${error.message}` }, { status: 500 });
         }
-
-        const directStream = await openai.chat.completions.create({
-            model: model,
-            messages: requestMessages as any,
-            stream: true,
-            temperature: 0.8,
-        });
-
-        const encoder = new TextEncoder();
-        const customStream = new ReadableStream({
-            async start(controller) {
-                for await (const chunk of directStream) {
-                    const content = chunk.choices[0]?.delta?.content || "";
-                    if (content) controller.enqueue(encoder.encode(content));
-                }
-                controller.close();
-            },
-        });
-
-        return new Response(customStream, { headers: { 'Content-Type': 'text/event-stream' } });
-
-    } catch (error: any) {
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    } catch (outerError: any) {
+        console.error('[Monroe Fatal Crash]:', outerError.message);
+        return NextResponse.json({ success: false, error: 'Total Cognitive Collapse.' }, { status: 500 });
     }
 }
