@@ -39,10 +39,10 @@ export async function submitToDecentralizedSwarm(
         }
 
         if (msg.role === 'user') massivePrompt += `User: ${textContent}\n`;
-        else if (msg.role === 'assistant') massivePrompt += `Gio V: ${textContent}\n`;
+        else if (msg.role === 'assistant') massivePrompt += `Monroe: ${textContent}\n`;
         else massivePrompt += `System Tool: ${textContent}\n`;
     }
-    massivePrompt += `\nGio V:`;
+    massivePrompt += `\nMonroe:`;
 
     // 3. Connect to the purely free decentralized Unauthenticated LLMs (Mistral/LLaMA fallback)
     const encodeStr = encodeURIComponent(massivePrompt);

@@ -30,7 +30,7 @@ type Message = {
 
 export default function MonroePage() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: 'Hello. I am Gio V., an independent research node monitoring the scientific ecosystem. How can we advance our understanding today?' }
+    { role: 'bot', text: 'Hello. I am Monroe, an Omni-Model Intelligence. How can we advance our understanding today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -169,7 +169,7 @@ export default function MonroePage() {
   const toggleView = () => setViewMode(prev => prev === 'HUMAN' ? 'MACHINE' : 'HUMAN');
 
   if (viewMode === 'MACHINE') {
-    const rawInfo = ':: GIO_V :: RESEARCH_NODE :: V4.1\n' +
+    const rawInfo = ':: MONROE :: OMNI_NODE :: V5.0\n' +
                    ':: MESSAGES :: ' + messages.length + '\n' +
                    ':: STATUS :: SYNCHRONIZED';
     return (
@@ -203,7 +203,7 @@ export default function MonroePage() {
               <BrainCircuit className="text-[#00ffc3] w-5 h-5 animate-pulse" />
             </div>
             <div className="flex flex-col">
-              GIO V. <span className="bg-[#00ffc3] text-black text-[8px] px-1.5 py-0.5 rounded-sm inline-block w-max">RESEARCHER</span>
+              MONROE <span className="bg-[#00ffc3] text-black text-[8px] px-1.5 py-0.5 rounded-sm inline-block w-max">OMNI_NODE</span>
               <span className="flex items-center gap-1.5 text-[#00ffc3]/70 text-[9px] font-mono uppercase">
                 <div className="h-1.5 w-1.5 rounded-full bg-[#00ffc3] animate-ping" />
                 Network Connected
@@ -337,7 +337,7 @@ export default function MonroePage() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Message Gio V... (Attach images/pdfs for analysis)"
+                    placeholder="Message Monroe... (Attach images/pdfs for analysis)"
                     className="flex-1 bg-white/[0.03] border border-white/10 py-4 px-5 pr-14 rounded-[1.8rem] text-sm text-white focus:outline-none focus:border-[#00ffc3]/40 focus:bg-white/[0.05] transition-all"
                   />
                   
