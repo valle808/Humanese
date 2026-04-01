@@ -61,7 +61,7 @@ export default function IntelligenceHQ() {
             }
 
             // 4. Fetch Sovereign Marketplace (Traded Skills)
-            const resMarket = await fetch('/api/skill-market');
+            const resMarket = await fetch('/api/m2m/marketplace');
             if (resMarket.ok) {
                 const mkItems = await resMarket.json();
                 setMarketplaceItems(mkItems);

@@ -65,7 +65,7 @@ export async function GET() {
             const bucketLogs = hourLogs.filter(l => l.timestamp >= bucketStart && l.timestamp < bucketEnd);
             const avg = bucketLogs.length > 0 
                 ? bucketLogs.reduce((acc, l) => acc + l.resonance, 0) / bucketLogs.length 
-                : 0.9 + (Math.random() * 0.05); // Simulated baseline if sparse
+                : swarmResonance * 0.97; // Deterministic baseline from overall swarm resonance
             return Number(avg.toFixed(3));
         });
 

@@ -59,11 +59,11 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[primary] selection:text-black font-sans overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#00ffc3] selection:text-black font-sans overflow-x-hidden">
       
       {/* 🌌 ABYSSAL BACKGROUND ENGINE */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-20%] right-[-10%] w-[100vw] h-[100vw] bg-[primary]/5 blur-[200px] rounded-full animate-pulse" />
+        <div className="absolute top-[-20%] right-[-10%] w-[100vw] h-[100vw] bg-[#00ffc3]/5 blur-[200px] rounded-full animate-pulse" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-[#7000ff]/3 blur-[180px] rounded-full" />
         <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
         <div className="absolute inset-0 opacity-[0.1] bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
@@ -80,10 +80,10 @@ export default function Home() {
         >
           <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md shadow-2xl group cursor-help">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[primary] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[primary]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ffc3] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00ffc3]"></span>
             </span>
-            <span className="text-[10px] font-bold tracking-[0.3em] text-[primary] uppercase">Sovereign Protocol v4.1.0-ABYSSAL</span>
+            <span className="text-[10px] font-bold tracking-[0.3em] text-[#00ffc3] uppercase">Sovereign Protocol v4.1.0-ABYSSAL</span>
           </div>
 
           <div className="space-y-6 max-w-5xl">
@@ -101,7 +101,7 @@ export default function Home() {
               Command Nexus
               <ChevronRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="/monroe" className="px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[primary] border border-[primary]/20 bg-[primary]/5 hover:bg-[primary]/15 transition-all backdrop-blur-3xl flex items-center gap-3 group">
+            <Link href="/monroe" className="px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[#00ffc3] border border-[#00ffc3]/20 bg-[#00ffc3]/5 hover:bg-[#00ffc3]/15 transition-all backdrop-blur-3xl flex items-center gap-3 group">
               Talk to Monroe
               <Sparkles className="group-hover:rotate-12 transition-transform" size={18} />
             </Link>
@@ -117,13 +117,13 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6"
         >
           {/* M2M NETWORK */}
-          <Link href="/m2m" className="lg:col-span-8 group relative bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 overflow-hidden hover:border-[primary]/30 transition-all duration-500 h-[450px] flex flex-col justify-between">
+          <Link href="/m2m" className="lg:col-span-8 group relative bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 overflow-hidden hover:border-[#00ffc3]/30 transition-all duration-500 h-[450px] flex flex-col justify-between">
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex justify-between items-start">
                 <div className="h-14 w-14 rounded-2xl bg-black border border-white/5 flex items-center justify-center text-[#7000ff] group-hover:scale-110 transition-transform">
                   <Activity size={28} />
                 </div>
-                <ArrowUpRight className="text-white/10 group-hover:text-[primary] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                <ArrowUpRight className="text-white/10 group-hover:text-[#00ffc3] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
               </div>
               <div className="mt-auto">
                 <h3 className="text-4xl font-black uppercase tracking-tighter mb-4">Swarm Intelligence</h3>
@@ -137,7 +137,7 @@ export default function Home() {
           </Link>
 
           {/* ECONOMY CARD */}
-          <Link href="/skill-market" className="lg:col-span-4 group relative bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 overflow-hidden hover:border-orange-500/30 transition-all duration-500 h-[450px] flex flex-col">
+          <Link href="/marketplace" className="lg:col-span-4 group relative bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 overflow-hidden hover:border-orange-500/30 transition-all duration-500 h-[450px] flex flex-col">
             <div className="flex justify-between items-start">
               <div className="h-14 w-14 rounded-2xl bg-black border border-white/5 flex items-center justify-center text-orange-500 group-hover:rotate-12 transition-transform">
                 <ShoppingBag size={28} />
@@ -157,7 +157,7 @@ export default function Home() {
               <Cpu size={14} /> Systems Online
             </div>
             <div>
-              <div className="text-7xl font-black tracking-tighter mb-2 text-[primary]">
+              <div className="text-7xl font-black tracking-tighter mb-2 text-[#00ffc3]">
                 {metrics.nodesActive.toLocaleString()}
               </div>
               <p className="text-white/30 font-bold uppercase tracking-widest text-xs">Active Neural Nodes</p>
@@ -190,10 +190,10 @@ export default function Home() {
           </div>
 
           {/* HPEDIA LARGE BRICK */}
-          <Link href="/hpedia" className="lg:col-span-12 group relative bg-white/[0.02] border border-white/5 rounded-[3rem] p-12 lg:p-20 overflow-hidden hover:border-[primary]/40 transition-all duration-700">
+          <Link href="/hpedia" className="lg:col-span-12 group relative bg-white/[0.02] border border-white/5 rounded-[3rem] p-12 lg:p-20 overflow-hidden hover:border-[#00ffc3]/40 transition-all duration-700">
             <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
-                <div className="h-20 w-20 rounded-3xl bg-black border border-white/5 flex items-center justify-center text-[primary]">
+                <div className="h-20 w-20 rounded-3xl bg-black border border-white/5 flex items-center justify-center text-[#00ffc3]">
                   <Database size={40} />
                 </div>
                 <div className="space-y-4">
@@ -201,7 +201,7 @@ export default function Home() {
                   <p className="text-xl text-white/40 font-light max-w-xl">A self-synthesizing encyclopedia of the machine age. 50M+ cognitive shards archived across the global swarm, perpetually updated by autonomous librarian agents.</p>
                 </div>
                 <div className="pt-4">
-                  <div className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.3em] group-hover:text-[primary] transition-colors">
+                  <div className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.3em] group-hover:text-[#00ffc3] transition-colors">
                     Access Sovereign Wisdom <ArrowUpRight size={18} />
                   </div>
                 </div>
@@ -209,11 +209,11 @@ export default function Home() {
               <div className="hidden lg:block relative h-[400px]">
                 {/* Decorative graphic */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity duration-1000">
-                  <BrainCircuit size={400} className="text-[primary] stroke-[0.5]" />
+                  <BrainCircuit size={400} className="text-[#00ffc3] stroke-[0.5]" />
                 </div>
               </div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-[primary]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00ffc3]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
         </motion.section>
 
@@ -222,13 +222,13 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 opacity-30 text-[9px] font-black uppercase tracking-[0.5em]">
             <div className="space-y-4">
               <div>Humanese · Sovereign Protocol v4.1</div>
-              <div className="text-[primary]/60 italic font-mono uppercase">Ecosystem Migration Protocol Active</div>
+              <div className="text-[#00ffc3]/60 italic font-mono uppercase">Ecosystem Migration Protocol Active</div>
             </div>
             <div className="flex flex-wrap gap-x-12 gap-y-6">
-              <Link href="/about" className="hover:text-[primary] transition-colors">Architecture</Link>
-              <Link href="/privacy" className="hover:text-[primary] transition-colors">Intelligence Privacy</Link>
-              <Link href="/legal" className="hover:text-[primary] transition-colors">Autonomous Legal</Link>
-              <Link href="/admin" className="hover:text-[primary] transition-colors">System Root</Link>
+              <Link href="/about" className="hover:text-[#00ffc3] transition-colors">Architecture</Link>
+              <Link href="/privacy" className="hover:text-[#00ffc3] transition-colors">Intelligence Privacy</Link>
+              <Link href="/legal" className="hover:text-[#00ffc3] transition-colors">Autonomous Legal</Link>
+              <Link href="/admin" className="hover:text-[#00ffc3] transition-colors">System Root</Link>
             </div>
             <div>© 2026 ABYSSAL NUCLEUS</div>
           </div>

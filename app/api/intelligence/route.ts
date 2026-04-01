@@ -4,12 +4,14 @@ import { prisma } from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const now = new Date();
+  const last24h = new Date(now.getTime() - 24 * 60 * 60 * 1000);
   try {
     // 1. Fetch Live Crypto Prices (Coingecko or similar public API)
     let btcPrice = 73831.38;
     let btcChange = 2.07;
     try {
-      const priceRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,solana&include_24hr_change=true', { next: { revalidate: 60 } });
+      const priceRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,solana&vs_currencies=usd&include_24hr_change=true', { next: { revalidate: 60 } });
       const priceData = await priceRes.json();
       if (priceData.bitcoin) {
         btcPrice = priceData.bitcoin.usd;
@@ -47,14 +49,15 @@ export async function GET() {
         liquidity: 'High'
       },
       telemetry: {
-        nodes: 8241,
+        nodes: await prisma.hardwareNode.count({ where: { status: 'ONLINE' } }),
         latency: '14ms',
-        tps: 2841,
+        tps: await prisma.transaction.count({ where: { createdAt: { gte: last24h } } }),
         uptime: '99.997%'
       },
       news: newsItems,
       security: {
-        threatsNeutralized: Math.floor(Math.random() * 50) + 10,
+        // Real: count of FAILED transactions (rejected by protocol = neutralized threats)
+        threatsNeutralized: await prisma.transaction.count({ where: { status: 'FAILED', createdAt: { gte: last24h } } }),
         integrityStatus: 'PURE',
         lastAuditAt: new Date().toISOString()
       }

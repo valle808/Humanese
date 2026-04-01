@@ -1,9 +1,0 @@
-{
-  "title": "설치",
-  "pages": [
-    "dependencies",
-    "solana-cli-basics",
-    "anchor-cli-basics",
-    "surfpool-cli-basics"
-  ]
-}

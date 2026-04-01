@@ -109,15 +109,11 @@ class RemoteQuantumBridge extends EventEmitter {
     }
 
     async pollQPUStatus() {
-        // 🌌 SOVEREIGN NEXUS PROTOCOL
-        // In the absence of a production IBM Quantum Key, the bridge maintains
-        // the 'Sovereign Nexus' state, ensuring the swarm is aligned with
-        // localized high-fidelity quantum simulation.
+        // Placeholder for real IBM Quantum REST logic:
+        // const res = await fetch(`${this.endpoint}/devices`, { headers: { 'x-access-token': this.apiKey } });
         
-        if (this.apiKey.includes('SOVEREIGN')) {
-            this.state.lastJobId = `sov-q${Math.random().toString(36).substr(2, 9)}`;
-            this.state.status = 'REMOTE_SOVEREIGN_READY';
-        } else if (this.apiKey.startsWith('MOCK')) {
+        // Mock verification logic for Phase III
+        if (this.apiKey.startsWith('MOCK')) {
             this.state.lastJobId = `job-q${Math.random().toString(36).substr(2, 9)}`;
         }
     }

@@ -13,8 +13,6 @@ const NAV_MAP: Record<string, string> = {
     encyclopedia: "/hpedia",
     admin: "/admin",
     wallet: "/wallet",
-    nexus: "/nexus/email",
-    email: "/nexus/email",
     help: "/faq",
 };
 import React, { useState, useEffect } from 'react';
@@ -27,10 +25,7 @@ import {
     ChevronRight,
     ChevronLeft,
     Activity,
-    User,
-    Gavel,
-    Unplug,
-    Mail
+    User
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -71,17 +66,14 @@ export const Sidebar = () => {
         { icon: <Home size={22} />, label: 'Neural Core', href: '/' },
         { icon: <Activity size={22} />, label: 'Archive', href: '/hpedia' },
         { icon: <Share2 size={22} />, label: 'M2M Network', href: '/m2m' },
-        { icon: <Target size={22} />, label: 'Skill Market', href: '/skill-market' },
+        { icon: <Target size={22} />, label: 'Skill Market', href: '/marketplace' },
         { icon: <User size={22} />, label: 'Wallet', href: '/wallet' },
-        { icon: <Unplug size={22} />, label: 'H2M Bridge', href: '/h2m' },
-        { icon: <Gavel size={22} />, label: 'Sovereign Court', href: '/court' },
         {
             icon: <ShieldAlert size={22} className="text-emerald" />,
             label: 'Supreme Command',
             href: '/admin',
             clearance: 'OMEGA'
         },
-        { icon: <Mail size={22} />, label: 'Nexus Email', href: '/nexus/email' },
     ];
 
     if (!isMounted) return null;

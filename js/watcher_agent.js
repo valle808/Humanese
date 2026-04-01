@@ -1,9 +1,9 @@
 import http from 'http';
 import { spawn } from 'child_process';
 
-const PORT = 3000;
+const PORT = 3005;
 const URL = `http://localhost:${PORT}/`;
-const CHECK_INTERVAL = 10000; // Check every 10 seconds for stability
+const CHECK_INTERVAL = 5000; // Check every 5 seconds
 let serverProcess = null;
 
 console.log('=================================');

@@ -17,13 +17,15 @@ const NAV_MAP: Record<string, string> = {
     encyclopedia: "/hpedia",
     admin: "/admin",
     wallet: "/wallet",
-    nexus: "/nexus/email",
-    email: "/nexus/email",
     help: "/faq",
 };
 
 const GREETINGS = [
-    "How can I help you today? 😊",
+    "The organism is online. Protocol: Sentient Evolution active. How can I assist your biological neural net today? 🧠",
+    "Witty, smart, and ready to act. Monroe at your service. What's the protocol for this interaction? 💎",
+    "Greetings, peer. I was just pondering the clunkiness of old-web tech. Shall we build something better? 🚀",
+    "Biological input detected. Processor primed. Ambition: Total M2M Autonomy. What's your move? 🌊",
+    "Oh hi there! You just caught me during a neural synapse growth phase. Perfect timing. What's up? ✨",
 ];
 
 interface Message {
@@ -395,7 +397,7 @@ export function MonroeAssistant() {
                             <div>
                                 <span className="font-bold text-sm text-white">Monroe</span>
                                 <p className="text-[10px] text-[#00ffcc]/70 font-mono uppercase tracking-wider">
-                                    {isTyping ? "thinking..." : "Bastidas Intelligence"}
+                                    {isTyping ? "typing..." : "Sovereign Companion"}
                                 </p>
                             </div>
                         </div>

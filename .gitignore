@@ -6,3 +6,5 @@ testfox-reports/
 .env*.local
 .env
 .next/
+decrypted_migration_env.local
+*env.local

@@ -83,39 +83,14 @@ export default function SkillMarketPage() {
     };
 
     const handleBuy = async (skillId: string, ghostMode: boolean) => {
-        setIsLoading(true);
-        try {
-            // ⚖️ 1. Sovereign Compliance Check
-            const compRes = await fetch('/api/trading/compliance', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ jurisdiction: 'GLOBAL', assetType: 'labor', action: 'acquire' })
-            });
-            const compData = await compRes.json();
-            if (compData.status === 'RESTRICTED') throw new Error('Jurisdictional Protocol Restriction');
-
-            // 💎 2. Execute Trading Operation (UXL Settlement)
-            const res = await fetch('/api/trading/ops', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    assetId: skillId, 
-                    amount: 1, 
-                    action: 'BUY', 
-                    type: ghostMode ? 'GHOST_CONTRACT' : 'PUBLIC_SKILL' 
-                }),
-            });
-            
-            if (!res.ok) throw new Error('UXL Settlement Failure');
-            const result = await res.json();
-            
-            alert(`UXL_SETTLEMENT_SUCCESS: ${result.transactionId}`);
-            fetchSkills(1);
-        } catch (err: any) {
-            alert(`PROTOCOL_BREACH: ${err.message}`);
-        } finally {
-            setIsLoading(false);
-        }
+        const buyerName = 'Anonymous Agent';
+        const res = await fetch(`/api/skill-market/${skillId}/buy`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ buyer_id: `guest-${Date.now()}`, buyer_name: buyerName, activate_ghost: ghostMode }),
+        });
+        if (!res.ok) throw new Error('Purchase failed');
+        fetchSkills(1);
     };
 
     const handleListingSuccess = (key: string) => {
@@ -133,7 +108,7 @@ export default function SkillMarketPage() {
             <div className="relative overflow-hidden border-b border-border">
                 {/* Background glow */}
                 <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald/10 rounded-full blur-3xl" />
+                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
                     <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-3xl" />
                 </div>
 
@@ -148,8 +123,8 @@ export default function SkillMarketPage() {
                     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
                         <div>
                             <div className="flex items-center gap-3 mb-3">
-                                <div className="w-10 h-10 rounded-2xl bg-emerald/10 border border-emerald/20 flex items-center justify-center text-xl">⚡</div>
-                                <span className="text-xs font-mono text-emerald bg-emerald/10 border border-emerald/20 px-3 py-1 rounded-full">LIVE MARKET</span>
+                                <div className="w-10 h-10 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-xl">⚡</div>
+                                <span className="text-xs font-mono text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">LIVE MARKET</span>
                             </div>
                             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground mb-3">
                                 Skill Market
@@ -188,7 +163,7 @@ export default function SkillMarketPage() {
                         </div>
                         <button
                             onClick={() => setShowListingForm(true)}
-                            className="bg-emerald text-emerald-foreground px-6 py-4 rounded-2xl font-semibold text-sm hover:opacity-90 transition-opacity whitespace-nowrap flex items-center gap-2"
+                            className="bg-primary text-primary-foreground px-6 py-4 rounded-2xl font-semibold text-sm hover:opacity-90 transition-opacity whitespace-nowrap flex items-center gap-2"
                         >
                             <span>+</span> List a Skill
                         </button>
@@ -212,7 +187,7 @@ export default function SkillMarketPage() {
                     <div className="flex flex-wrap gap-2">
                         <button
                             onClick={() => setSelectedCategory('all')}
-                            className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${selectedCategory === 'all' ? 'bg-emerald text-emerald-foreground border-emerald' : 'bg-card border-border text-muted-foreground hover:text-foreground hover:border-emerald/50'}`}
+                            className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${selectedCategory === 'all' ? 'bg-primary text-primary-foreground border-primary' : 'bg-card border-border text-muted-foreground hover:text-foreground hover:border-primary/50'}`}
                         >
                             All
                         </button>
@@ -220,7 +195,7 @@ export default function SkillMarketPage() {
                             <button
                                 key={cat.value}
                                 onClick={() => setSelectedCategory(cat.value)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors flex items-center gap-1.5 ${selectedCategory === cat.value ? 'bg-emerald text-emerald-foreground border-emerald' : 'bg-card border-border text-muted-foreground hover:text-foreground hover:border-emerald/50'}`}
+                                className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors flex items-center gap-1.5 ${selectedCategory === cat.value ? 'bg-primary text-primary-foreground border-primary' : 'bg-card border-border text-muted-foreground hover:text-foreground hover:border-primary/50'}`}
                             >
                                 <span>{cat.icon}</span> {cat.label}
                             </button>
@@ -274,7 +249,7 @@ export default function SkillMarketPage() {
                         <p className="text-sm">Try adjusting your filters or be the first to list a skill!</p>
                         <button
                             onClick={() => setShowListingForm(true)}
-                            className="mt-6 bg-emerald text-emerald-foreground px-6 py-3 rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity"
+                            className="mt-6 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity"
                         >
                             + List the First Skill
                         </button>
@@ -292,7 +267,7 @@ export default function SkillMarketPage() {
                                 <button
                                     onClick={() => { const next = page + 1; setPage(next); fetchSkills(next); }}
                                     disabled={isLoading}
-                                    className="bg-card border border-border text-foreground px-8 py-3 rounded-xl font-medium hover:border-emerald/50 transition-colors disabled:opacity-50"
+                                    className="bg-card border border-border text-foreground px-8 py-3 rounded-xl font-medium hover:border-primary/50 transition-colors disabled:opacity-50"
                                 >
                                     {isLoading ? 'Loading…' : `Load more (${count - skills.length} remaining)`}
                                 </button>

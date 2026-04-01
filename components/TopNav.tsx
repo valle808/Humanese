@@ -39,12 +39,6 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
             >
               <span>⚡</span> Skill Market
             </a>
-            <a
-              href="/nexus/email"
-              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap border border-border hover:border-primary/50 px-3 py-1.5 rounded-full"
-            >
-              <span>🛰️</span> Nexus Email
-            </a>
           </div>
 
           {/* Center: Search */}

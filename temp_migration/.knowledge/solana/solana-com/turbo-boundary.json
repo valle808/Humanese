@@ -1,8 +1,0 @@
-{
-  "boundaries": [
-    {
-      "from": "packages/**",
-      "disallow": ["apps/**"]
-    }
-  ]
-}

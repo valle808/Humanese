@@ -34,6 +34,3 @@ prisma/migrations
 !tsconfig.json
 !prisma/schema.prisma
 !lib/prisma.ts
-!utils/*.json
-!app/**/*.json
-!components/**/*.json

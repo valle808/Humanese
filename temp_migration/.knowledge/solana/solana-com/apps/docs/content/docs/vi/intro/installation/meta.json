@@ -1,9 +1,0 @@
-{
-  "title": "Cài đặt",
-  "pages": [
-    "dependencies",
-    "solana-cli-basics",
-    "anchor-cli-basics",
-    "surfpool-cli-basics"
-  ]
-}

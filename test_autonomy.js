@@ -1,5 +1,5 @@
-import { OllamaService } from './utils/ollama-service.js';
-import { askMonroeSovereign } from './agents/core/agent-king-sovereign.js';
+import { OllamaService } from '../utils/ollama-service.js';
+import { askMonroeSovereign } from '../agents/core/agent-king-sovereign.js';
 
 async function testAutonomy() {
     console.log('--- Testing Monroe Autonomy (Mocked) ---');

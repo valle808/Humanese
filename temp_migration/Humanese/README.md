@@ -1,2 +1,0 @@
-# Humanese
-Universal language teacher
