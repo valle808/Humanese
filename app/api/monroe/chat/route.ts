@@ -217,6 +217,7 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
             messages: requestMessages as any,
             tools: TOOLS as any,
             tool_choice: "auto",
+            max_tokens: 1000,
         });
 
         const latestMessage = responseData.choices[0]?.message;
