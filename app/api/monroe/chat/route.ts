@@ -126,7 +126,7 @@ export async function POST(req: Request) {
 
         let apiKey = await getSecret('OPENROUTER_API_KEY');
         let baseURL = 'https://openrouter.ai/api/v1';
-        let model = 'meta-llama/llama-3.2-90b-vision-instruct'; // Upgraded to Vision
+        let model = 'anthropic/claude-3.5-sonnet'; // Apex model for Monroe Sovereign V5
 
         if (!apiKey) {
             apiKey = await getSecret('XAI_API_KEY');
