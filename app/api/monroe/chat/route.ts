@@ -305,9 +305,8 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
                 async start(controller) {
                     for await (const chunk of stream) {
                         const content = chunk.choices[0]?.delta?.content || "";
-                        if (content) controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content })}\n\n`));
+                        if (content) controller.enqueue(encoder.encode(content));
                     }
-                    controller.enqueue(encoder.encode('data: [DONE]\n\n'));
                     controller.close();
                 }
             });
