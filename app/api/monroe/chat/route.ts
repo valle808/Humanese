@@ -127,7 +127,7 @@ export async function POST(req: Request) {
         let apiKey = await getSecret('OPENROUTER_API_KEY');
         let baseURL = 'https://openrouter.ai/api/v1';
         // PRIMARY: Llama 3.3 70B — most capable free Omni-Intelligence foundation model (zero credits)
-        let model = 'meta-llama/llama-3.3-70b-instruct:free';
+        let model = 'openrouter/auto-free';
         const isFreeModel = true; // :free models use no credits but have token limits
 
         if (!apiKey) {
