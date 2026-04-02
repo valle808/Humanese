@@ -126,8 +126,8 @@ export async function POST(req: Request) {
 
         let apiKey = await getSecret('OPENROUTER_API_KEY');
         let baseURL = 'https://openrouter.ai/api/v1';
-        // PRIMARY: Gemini 2.0 Flash — most capable free model (zero credits on :free tier)
-        let model = 'google/gemini-2.0-flash-exp:free';
+        // PRIMARY: Llama 3.3 70B — most capable free Omni-Intelligence foundation model (zero credits)
+        let model = 'meta-llama/llama-3.3-70b-instruct:free';
         const isFreeModel = true; // :free models use no credits but have token limits
 
         if (!apiKey) {
