@@ -191,7 +191,7 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans h-[calc(100vh-1rem)] lg:h-[calc(100vh-2.5rem)] m-2 lg:m-5 rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
+    <div className="relative flex-1 bg-[#0a0a0a] flex flex-col selection:bg-[#00ffc3] selection:text-black font-sans h-[calc(100dvh-1rem)] lg:h-[calc(100dvh-2.5rem)] m-2 lg:m-5 rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/5 transition-all duration-700">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#00ffc3]/5 blur-[200px] rounded-full animate-pulse-slow" />
       </div>
@@ -251,7 +251,7 @@ export default function MonroePage() {
           </aside>
 
           <main className="flex-1 flex flex-col bg-white/[0.01] border border-white/5 rounded-3xl shadow-3xl overflow-hidden relative">
-            <div ref={scrollRef} className="flex-1 p-4 lg:p-6 overflow-y-auto space-y-6 custom-scrollbar relative z-10 scroll-smooth">
+            <div ref={scrollRef} className="flex-1 p-4 lg:p-6 pb-20 lg:pb-32 overflow-y-auto space-y-6 custom-scrollbar relative z-10 scroll-smooth">
               <AnimatePresence initial={false}>
                 {messages.map((m, i) => (
                   <motion.div
@@ -288,7 +288,7 @@ export default function MonroePage() {
             </div>
 
             {/* Input Container */}
-            <div className="flex-none p-4 lg:p-6 bg-black/40 border-t border-white/5 backdrop-blur-2xl relative z-10">
+            <div className="flex-none p-4 lg:p-6 bg-[#0a0a0a]/90 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] border-t border-white/10 backdrop-blur-3xl relative z-20">
               <div className="max-w-4xl mx-auto flex flex-col gap-3">
                 
                 {/* Image Previews */}
