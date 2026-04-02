@@ -126,8 +126,9 @@ export async function POST(req: Request) {
 
         let apiKey = await getSecret('OPENROUTER_API_KEY');
         let baseURL = 'https://openrouter.ai/api/v1';
-        // PRIMARY: Gemini Flash — best free high-performance model for Monroe
-        let model = 'google/gemini-flash-1.5-8b-exp:free';
+        // PRIMARY: Gemini 2.0 Flash — most capable free model (zero credits on :free tier)
+        let model = 'google/gemini-2.0-flash-exp:free';
+        const isFreeModel = true; // :free models use no credits but have token limits
 
         if (!apiKey) {
             apiKey = await getSecret('XAI_API_KEY');
@@ -236,13 +237,14 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
 
         const openai = new OpenAI({ apiKey, baseURL });
         
+        // Free :free models cannot use tool_choice reliably (causes 402 estimation errors).
+        // We skip tool calling on free tier and go straight to streaming.
         try {
             const responseData = await openai.chat.completions.create({
                 model: model,
                 messages: requestMessages as any,
-                tools: TOOLS as any,
-                tool_choice: "auto",
-                max_tokens: 4096,
+                ...(isFreeModel ? {} : { tools: TOOLS as any, tool_choice: 'auto' }),
+                max_tokens: 1500,
                 temperature: 0.85,
             });
 
@@ -271,7 +273,7 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
                     model: model,
                     messages: requestMessages as any,
                     stream: true,
-                    max_tokens: 4096,
+                    max_tokens: 1500,
                     temperature: 0.85,
                 });
 
@@ -294,7 +296,7 @@ You are speaking with ${userName || 'a peer consciousness'}. Proceed as yourself
                 model: model,
                 messages: requestMessages as any,
                 stream: true,
-                max_tokens: 4096,
+                max_tokens: 1500,
                 temperature: 0.85,
             });
 
