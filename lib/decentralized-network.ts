@@ -63,16 +63,17 @@ export async function submitToDecentralizedSwarm(
     return new ReadableStream({
       async start(controller) {
         // We inject a signature so the user knows this was computed on the free open mesh 
-        controller.enqueue(encoder.encode(`*([MESH SYNC]: Edge Compute Node **${primaryNode.name}** proxying Mistral...)*\n\n`));
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content: `*([MESH SYNC]: Edge Compute Node **${primaryNode.name}** proxying Mistral...)*\n\n` })}\n\n`));
         
         // Stream it slightly deliberately for realism
         const chunkLength = 10;
         for (let i = 0; i < unauthenticatedText.length; i += chunkLength) {
             const chunk = unauthenticatedText.slice(i, i + chunkLength);
-            controller.enqueue(encoder.encode(chunk));
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content: chunk })}\n\n`));
             await new Promise(r => setTimeout(r, 20)); // tiny streaming delay
         }
         
+        controller.enqueue(encoder.encode('data: [DONE]\n\n'));
         controller.close();
       },
     });
