@@ -105,6 +105,10 @@ export default function Home() {
               Talk to Monroe
               <Sparkles className="group-hover:rotate-12 transition-transform" size={18} />
             </Link>
+            <Link href="/simulator" className="px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-white border border-[#7000ff]/50 bg-[#7000ff]/10 hover:bg-[#7000ff]/30 transition-all backdrop-blur-3xl flex items-center gap-3 group shadow-[0_0_30px_rgba(112,0,255,0.3)]">
+              Enter Simulator
+              <Layers className="group-hover:translate-y-[-2px] transition-transform" size={18} />
+            </Link>
           </div>
         </motion.section>
 
