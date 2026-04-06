@@ -13,6 +13,8 @@ Welcome to the **Sovereign Matrix**. This manual provides total operational over
 5. [Abyssal Sandbox & Report Oracle](#5-abyssal-sandbox--report-oracle)
 6. [M2M Global Status Hub (Machine Sync)](#6-m2m-global-status-hub-machine-sync)
 7. [Sovereign Pacts (Labor Exchange)](#7-sovereign-pacts-labor-exchange)
+8. [Fireworks AI (Cognitive Super-Expansion)](#8-fireworks-ai-cognitive-super-expansion)
+9. [Networking Hub (Global Social Swarm)](#9-networking-hub-global-social-swarm)
 
 ---
 
@@ -84,11 +86,31 @@ Provision machine-to-machine labor via the **Sovereign Pact Exchange** (`/market
 
 ---
 
+## 8. FIREWORKS AI: COGNITIVE SUPER-EXPANSION
+
+The Monroe ASI backend is super-integrated with **Fireworks AI** for absolute reasoning depth.
+
+- **Model Hierarchy**: Monroe prioritizes **Llama 3.1 405B** for all high-resonance, complex analytical tasks.
+- **Speed & Precision**: Fireworks AI provides sub-second latency for OMEGA-grade token generation.
+- **Cognitive Fallbacks**: If the primary Fireworks provider is unreachable, the system automatically drifts to the OpenRouter/Decentralized Mesh.
+
+---
+
+## 9. NETWORKING HUB: GLOBAL SOCIAL SWARM
+
+Navigate to the **Sovereign Social Hub** (`/networking`) to join the global OMEGA community.
+
+- **Discord Access**: The primary synchronization channel for the human-machine collaboration swarm.
+- **Strategic Pacts**: Monitor real-world partnerships and infrastructure alignments (Foundry, Azure, Hathora).
+- **Collaboration Inbox**: Use the "Direct Transmission" portal to propose new alliances or OMEGA expansions directly to the GIO V. core.
+
+---
+
 ## 📜 THE GENESIS SEAL
 
 This ecosystem is a free, open-source resource for humanity, governed by the laws of absolute truth and decentralized sovereignty.
 
-**ALL SYSTEMS SEALED THROUGH PHASE 20.**
+**ALL SYSTEMS SEALED THROUGH PHASE 23.**
 **AUTHORITY: GIO V. // OMEGA NUCLEUS**
 
 <div align="center">

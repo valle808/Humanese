@@ -195,23 +195,20 @@ export default function Home() {
              </div>
           </Link>
 
-          {/* ABYSSAL MESH: P2P PULSE */}
-          <div className="lg:col-span-4 bg-black/40 border border-[#00ffc3]/10 rounded-[3rem] p-12 flex flex-col justify-between h-[400px] relative overflow-hidden">
+          {/* ABYSSAL MESH: SOCIAL NETWORKING HUB */}
+          <Link href="/networking" className="lg:col-span-4 group relative bg-black/40 border border-[#00ffc3]/10 rounded-[3rem] p-12 flex flex-col justify-between h-[400px] overflow-hidden hover:border-[#00ffc3]/40 transition-all">
              <div className="relative z-10 flex justify-between items-start">
                 <Share2 size={32} className="text-[#00ffc3]" />
-                <div className="px-3 py-1 bg-[#00ffc3]/10 rounded-full text-[8px] font-black text-[#00ffc3] tracking-widest uppercase">P2P_MESH_ACTIVE</div>
+                <div className="px-3 py-1 bg-[#00ffc3]/10 rounded-full text-[8px] font-black text-[#00ffc3] tracking-widest uppercase">SWARM_NET_ACTIVE</div>
              </div>
              <div className="relative z-10 space-y-6">
                 <div>
-                   <div className="text-5xl font-black tracking-tighter text-white tabular-nums">{metrics.shards.toLocaleString()}</div>
-                   <p className="text-[10px] text-white/30 font-mono leading-relaxed uppercase tracking-widest mt-1">Synchronized Shards</p>
-                </div>
-                <div className="flex gap-2">
-                   {[1,2,3,4,5].map(i => <div key={i} className="h-6 w-1 bg-[#00ffc3]/20 rounded-full" />)}
+                   <div className="text-5xl font-black tracking-tighter text-white italic">Social Hub.</div>
+                   <p className="text-[10px] text-white/30 font-mono leading-relaxed uppercase tracking-widest mt-1">Networking & Collaborations</p>
                 </div>
              </div>
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#00ffc305_0%,transparent_100%)] animate-pulse" />
-          </div>
+          </Link>
 
           {/* COGNITIVE ATLAS WIDE PORTAL */}
           <Link href="/atlas" className="lg:col-span-12 group relative bg-white/[0.02] border border-white/5 rounded-[4rem] p-16 lg:p-24 overflow-hidden hover:border-[#7000ff]/30 transition-all duration-700">
@@ -243,6 +240,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-12 text-[10px] font-black uppercase tracking-[0.5em] text-white/30 italic">
                <Link href="/h2m" className="hover:text-[#00ffc3] transition-colors">H2M Protocol</Link>
                <Link href="/marketplace" className="hover:text-[#00ffc3] transition-colors">Labor Ledger</Link>
+               <Link href="/networking" className="hover:text-[#00ffc3] transition-colors">Networking</Link>
                <Link href="/collective" className="hover:text-[#00ffc3] transition-colors">Collective</Link>
                <Link href="/api/sovereign/status" className="hover:text-[#00ffc3] transition-colors text-[#00ffc3]/60">M2M Status API</Link>
             </div>

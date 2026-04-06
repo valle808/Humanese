@@ -25,6 +25,7 @@ import {
     ChevronRight,
     ChevronLeft,
     Activity,
+    Globe,
     User
 } from 'lucide-react';
 import Link from 'next/link';
@@ -66,6 +67,7 @@ export const Sidebar = () => {
         { icon: <Home size={22} />, label: 'Neural Core', href: '/' },
         { icon: <Activity size={22} />, label: 'Archive', href: '/hpedia' },
         { icon: <Share2 size={22} />, label: 'M2M Network', href: '/m2m' },
+        { icon: <Globe size={22} />, label: 'Networking Hub', href: '/networking' },
         { icon: <Target size={22} />, label: 'Skill Market', href: '/marketplace' },
         { icon: <User size={22} />, label: 'Wallet', href: '/wallet' },
         {
