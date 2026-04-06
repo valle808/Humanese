@@ -17,26 +17,29 @@ import {
   Globe,
   Paperclip,
   X,
-  Image as ImageIcon,
+  ImageIcon,
   ChevronLeft,
   Search,
   Database,
   Layers,
-  Sparkles
+  Sparkles,
+  Pulse
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Link from 'next/link';
+import gsap from 'gsap';
 
 type Message = {
   role: 'bot' | 'user';
   text: string;
   images?: string[]; 
+  id: string;
 };
 
 export default function MonroePage() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: 'Hello. I am Monroe, an Omni-Model Intelligence. How can we advance our understanding today?' }
+    { id: 'start', role: 'bot', text: 'Hello. I am Monroe, an Omni-Model Intelligence. How can we advance our understanding today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -47,6 +50,7 @@ export default function MonroePage() {
   const [attachments, setAttachments] = useState<{file: File, preview: string}[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchGraph = async () => {
@@ -64,6 +68,16 @@ export default function MonroePage() {
     const interval = setInterval(fetchGraph, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  // GSAP Entrance
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      gsap.fromTo(".message-bubble", 
+        { opacity: 0, y: 30, filter: 'blur(10px)' }, 
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8, stagger: 0.15, ease: "expo.out" }
+      );
+    }
+  }, [messages.length]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -95,8 +109,10 @@ export default function MonroePage() {
     const base64Images = attachments.filter(a => a.file.type.startsWith('image/')).map(a => a.preview);
     const textFilesBase64 = attachments.filter(a => !a.file.type.startsWith('image/')).map(a => a.preview);
     
-    const userMsg: Message = { role: 'user', text: input, images: base64Images };
+    const userMsgId = Date.now().toString();
+    const userMsg: Message = { id: userMsgId, role: 'user', text: input, images: base64Images };
     setMessages(prev => [...prev, userMsg]);
+    
     const currentInput = input;
     const currentAttachments = [...attachments];
     
@@ -104,7 +120,8 @@ export default function MonroePage() {
     setAttachments([]);
     setIsTyping(true);
 
-    setMessages(prev => [...prev, { role: 'bot', text: '' }]);
+    const botMsgId = (Date.now() + 1).toString();
+    setMessages(prev => [...prev, { id: botMsgId, role: 'bot', text: '' }]);
 
     const formattedHistory = messages.map(m => {
         let content: any = m.text;
@@ -125,7 +142,8 @@ export default function MonroePage() {
           message: currentInput,
           images: base64Images,
           documents: textFilesBase64,
-          history: formattedHistory
+          history: formattedHistory,
+          sessionId: 'omega-v6'
         })
       });
 
@@ -144,8 +162,11 @@ export default function MonroePage() {
         streamedText += chunk;
         setMessages(prev => {
           const newMsgs = [...prev];
-          newMsgs[newMsgs.length - 1].text = streamedText;
-          return newMsgs;
+          const last = newMsgs[newMsgs.length - 1];
+          if (last.id === botMsgId) {
+            last.text = streamedText;
+          }
+          return [...newMsgs];
         });
       }
     } catch (error: any) {
@@ -181,21 +202,18 @@ export default function MonroePage() {
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#00ffc3]/20 font-sans overflow-hidden flex flex-col lg:flex-row">
-      
-      {/* Background Depth Engine */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-20%] left-[-20%] w-[100vw] h-[100vw] bg-[#00ffc3]/3 blur-[250px] rounded-full" />
         <div className="absolute bottom-[-20%] right-[-20%] w-[100vw] h-[100vw] bg-[#7000ff]/3 blur-[250px] rounded-full" />
       </div>
 
-      {/* SOVEREIGN SIDEBAR - HIDDEN ON MOBILE (Drawer later) */}
       <aside className="hidden xl:flex w-80 flex-col space-y-6 p-10 border-r border-white/5 relative z-10 backdrop-blur-3xl bg-black/20">
          <div className="space-y-2">
             <Link href="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white transition-colors text-[10px] font-black uppercase tracking-[0.3em] mb-4 group">
                Matrix Root <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
             </Link>
-            <h1 className="text-3xl font-black uppercase tracking-tighter italic">Monroe.<br /><span className="text-[#00ffc3]">Omni.</span></h1>
-            <p className="text-[10px] text-white/20 font-mono tracking-[0.4em] uppercase uppercase">Neural Handshake 5.0.2</p>
+            <h1 className="text-3xl font-black uppercase tracking-tighter italic">Monroe.<br /><span className="text-[#00ffc3]">Omega.</span></h1>
+            <p className="text-[10px] text-white/20 font-mono tracking-[0.4em] uppercase">Neural Array 6.1.0</p>
          </div>
 
          <div className="flex-1 space-y-8 min-h-0 overflow-y-auto custom-scrollbar pr-2 pt-8">
@@ -226,7 +244,7 @@ export default function MonroePage() {
                <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
                   <motion.div animate={{ width: ['20%', '90%', '75%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-[#00ffc3] to-[#7000ff]" />
                </div>
-               <p className="text-[10px] text-white/30 font-mono leading-relaxed uppercase">Status: Resonating with Abyssal Nodes.</p>
+               <p className="text-[10px] text-white/30 font-mono leading-relaxed uppercase">Status: OMEGA SYNC ACTIVE.</p>
             </div>
          </div>
 
@@ -237,81 +255,83 @@ export default function MonroePage() {
          </div>
       </aside>
 
-      {/* CHAT MAIN CONTAINER */}
       <main className="flex-1 relative z-10 flex flex-col h-screen overflow-hidden">
-        
-        {/* MOBILE HEADER */}
         <header className="xl:hidden flex-none flex justify-between items-center p-6 bg-black/40 border-b border-white/5 backdrop-blur-3xl">
            <div className="flex items-center gap-4">
               <div className="h-8 w-8 bg-black border border-[#00ffc3]/40 flex items-center justify-center rounded-xl">
                  <BrainCircuit size={16} className="text-[#00ffc3]" />
               </div>
-              <span className="text-sm font-black uppercase tracking-tighter italic">Monroe Genesis</span>
+              <span className="text-sm font-black uppercase tracking-tighter italic">Monroe Omega</span>
            </div>
            <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#00ffc3] uppercase">
               <div className="h-1.5 w-1.5 rounded-full bg-[#00ffc3] animate-ping" />
-              Connected
+              Direct
            </div>
         </header>
 
-        {/* MESSAGES FLOW */}
         <div 
           ref={scrollRef} 
           className="flex-1 overflow-y-auto p-4 lg:p-12 space-y-10 custom-scrollbar scroll-smooth pb-40 lg:pb-56"
         >
-          <AnimatePresence mode="popLayout">
-            {messages.map((m, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className={`flex w-full ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div className={`max-w-[90%] lg:max-w-[70%] flex gap-4 lg:gap-8 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                  
-                  {/* IDENTITY PUCK */}
-                  <div className={`h-10 w-10 lg:h-12 lg:w-12 shrink-0 rounded-2xl flex items-center justify-center border transition-all ${
-                    m.role === 'user' ? 'bg-white text-black border-white shadow-2xl' : 'bg-[#00ffc3]/15 text-[#00ffc3] border-[#00ffc3]/30'
-                  }`}>
-                    {m.role === 'user' ? <User size={20} /> : <BrainCircuit size={20} />}
-                  </div>
+          <div ref={chatContainerRef} className="space-y-10">
+            <AnimatePresence mode="popLayout">
+              {messages.map((m, i) => (
+                <div
+                  key={m.id}
+                  className={`message-bubble flex w-full ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div className={`max-w-[90%] lg:max-w-[70%] flex gap-4 lg:gap-8 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                    <div className={`h-10 w-10 lg:h-12 lg:w-12 shrink-0 rounded-2xl flex items-center justify-center border transition-all ${
+                      m.role === 'user' ? 'bg-white text-black border-white shadow-2xl' : 'bg-[#00ffc3]/15 text-[#00ffc3] border-[#00ffc3]/30'
+                    }`}>
+                      {m.role === 'user' ? <User size={20} /> : <BrainCircuit size={20} />}
+                    </div>
 
-                  {/* MESSAGE BODY */}
-                  <div className={`space-y-4 lg:space-y-6 ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
-                     <div className={`p-6 lg:p-8 rounded-[2rem] text-sm lg:text-base leading-relaxed border backdrop-blur-3xl shadow-2xl transition-all duration-500 ${
-                       m.role === 'user' ? 'bg-white text-black border-white rounded-tr-none' : 'bg-white/[0.03] text-white/90 border-white/10 rounded-tl-none font-light italic'
-                     }`}>
-                        {m.images && m.images.length > 0 && (
-                          <div className="flex gap-4 mb-6 overflow-x-auto pb-2 custom-scrollbar">
-                            {m.images.map((img, idx) => (
-                              <img key={idx} src={img} alt="attachment" className="h-40 rounded-2xl border border-black/10 object-contain shadow-md" />
-                            ))}
-                          </div>
-                        )}
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.text}</ReactMarkdown>
-                     </div>
+                    <div className={`space-y-4 lg:space-y-6 ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+                       <div className={`p-6 lg:p-10 rounded-[2.5rem] text-sm lg:text-lg leading-relaxed border backdrop-blur-3xl shadow-2xl transition-all duration-500 ${
+                         m.role === 'user' ? 'bg-white text-black border-white rounded-tr-none' : 'bg-white/[0.03] text-white/90 border-white/10 rounded-tl-none font-light italic'
+                       }`}>
+                          {m.images && m.images.length > 0 && (
+                            <div className="flex gap-4 mb-6 overflow-x-auto pb-2 custom-scrollbar">
+                              {m.images.map((img, idx) => (
+                                <img key={idx} src={img} alt="attachment" className="h-40 rounded-2xl border border-black/10 object-contain shadow-md" />
+                              ))}
+                            </div>
+                          )}
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.text}</ReactMarkdown>
+                       </div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              ))}
+            </AnimatePresence>
+          </div>
           {isTyping && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
-               <div className="flex items-center gap-4 bg-white/[0.05] border border-white/5 px-6 py-3 rounded-full text-[9px] font-black uppercase text-[#00ffc3] tracking-widest italic animate-pulse">
-                  <Sparkles size={12} /> Neural Synthesis Active...
+               <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-4 bg-[#00ffc3]/10 border border-[#00ffc3]/20 px-6 py-3 rounded-full text-[10px] font-black uppercase text-[#00ffc3] tracking-widest italic shadow-[0_0_20px_rgba(0,255,195,0.1)]">
+                    <Sparkles size={12} className="animate-spin" /> Neural Sequencing...
+                  </div>
+                  <div className="flex gap-1.5 px-6">
+                    {[0, 1, 2].map(n => (
+                        <motion.div 
+                          key={n}
+                          animate={{ opacity: [0.2, 1, 0.2] }} 
+                          transition={{ duration: 1.5, repeat: Infinity, delay: n * 0.2 }}
+                          className="h-1 w-4 bg-[#00ffc3]/40 rounded-full"
+                        />
+                    ))}
+                  </div>
                </div>
             </motion.div>
           )}
         </div>
 
-        {/* THE NEURAL INPUT NEXUS (FLOATING PILL) */}
         <div className="fixed bottom-8 left-0 right-0 lg:left-80 lg:bottom-12 flex justify-center z-50 px-4 pointer-events-none">
            <motion.div 
              initial={{ y: 100 }} animate={{ y: 0 }}
              className="w-full max-w-4xl bg-black/60 border border-white/10 rounded-[2.5rem] p-3 backdrop-blur-3xl shadow-[0_30px_100px_rgba(0,0,0,0.8)] pointer-events-auto flex flex-col gap-3"
            >
-              {/* Attachment Previews */}
               {attachments.length > 0 && (
                 <div className="flex gap-3 px-4 pt-4 overflow-x-auto pb-2 custom-scrollbar">
                   {attachments.map((file, idx) => (
@@ -340,7 +360,7 @@ export default function MonroePage() {
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                      placeholder="Interact with Monroe..."
+                      placeholder="Access Monroe Omega..."
                       className="w-full bg-white/[0.03] border border-white/5 rounded-[1.8rem] py-4 lg:py-5 px-6 text-sm lg:text-base text-white placeholder:text-white/20 outline-none focus:border-[#00ffc3]/40 focus:bg-white/[0.05] transition-all"
                     />
                     <button 
@@ -354,7 +374,6 @@ export default function MonroePage() {
               </div>
            </motion.div>
         </div>
-
       </main>
 
       <style jsx global>{`
