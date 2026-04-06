@@ -9,6 +9,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#050505" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                  console.log('[SOVEREIGN_SW] Matrix Synchronized:', reg.scope);
+                }, function(err) {
+                  console.log('[SOVEREIGN_SW] Sync Failure:', err);
+                });
+              });
+            }
+          `
+        }} />
+      </head>
       <body className="bg-black text-white font-mono selection:bg-cyan-500/30">
         <Sidebar />
         <CommandPortal />

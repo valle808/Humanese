@@ -1,4 +1,4 @@
-// H2M API Key Manager — Humanese Sovereign Protocol
+// H2M API Key Manager — Sovereign Protocol
 const userId = localStorage.getItem('humanese_userId');
 
 document.addEventListener('DOMContentLoaded', () => {

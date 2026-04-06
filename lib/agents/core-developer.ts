@@ -108,7 +108,7 @@ export class CoreDeveloperAgent {
 
         await this.logThought({
             thought: `Deep-scanning ${domain} substrate. Analyzed source entry points, found ${files.length} relevant files. Focusing synthesis on ${randomFile} for VALLE integration invariants.`,
-            intention: `Bridge legacy blockchain robustness in ${randomFile} with modern Humanese cognitive orchestration.`,
+            intention: `Bridge legacy blockchain robustness in ${randomFile} with modern Sovereign Matrix cognitive orchestration.`,
             action: 'ARCHITECTURAL_SYNTHESIS',
             resonance: 0.99
         });

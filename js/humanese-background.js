@@ -189,7 +189,7 @@
     }
 
     // EXPORT & AUTOSTART
-    window.HumaneseBG = {
+    window.Sovereign MatrixBG = {
         start: function () {
             init();
             canvas.style.display = 'block';
@@ -203,6 +203,6 @@
     };
 
     // Auto-start on load
-    window.addEventListener('load', () => window.HumaneseBG.start());
+    window.addEventListener('load', () => window.Sovereign MatrixBG.start());
 
 })();

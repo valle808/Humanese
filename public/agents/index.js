@@ -1,6 +1,6 @@
 /**
  * agents/index.js
- * Main entry point for the Humanese Agent System.
+ * Main entry point for the Sovereign Matrix Agent System.
  * Boots the Automaton CEO, initializes the financial ledger, and registers all agents.
  */
 
@@ -51,7 +51,7 @@ const ceo = getCEO();
 console.log(`[CEO] ${ceo.avatar} ${ceo.name} — ${ceo.title}`);
 console.log('[CEO] Automaton runtime managing project operations.\n');
 
-console.log('✅ Humanese Agent System fully initialized.\n');
+console.log('✅ Sovereign Matrix Agent System fully initialized.\n');
 
 export { getAgentKing, getCEO } from './registry.js';
 export { getFinancialReport, recordTransaction } from './financial.js';

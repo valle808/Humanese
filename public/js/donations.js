@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────
-   donations.js  –  Humanese Donations Page
+   donations.js  –  Sovereign Matrix Donations Page
    ─────────────────────────────────────────── */
 
 /* ── Animated stat counters ────────────────── */

@@ -1,4 +1,4 @@
-﻿const openSuperHumanesePage = () => {
+﻿const openSuperSovereign MatrixPage = () => {
   document.getElementById("try-super-button").classList.toggle('clicked');
   setTimeout(() => document.getElementById("try-super-button").classList.toggle('clicked'), 200)
   location.href = "../html/superhumanense.html"
@@ -170,7 +170,7 @@ const placeuserStatistics = async () => {
   let userData = getUserDataFromSessionStorage();
   userData = await syncWithPrisma(userData);
 
-  document.title = `Humanese - The world's best way to learn ${getLanguageFullForm(userData.learnLang)}`
+  document.title = `Sovereign Matrix - The world's best way to learn ${getLanguageFullForm(userData.learnLang)}`
   document.querySelectorAll("#profile-image").forEach(item => item.src = userData.profileImage);
   document.querySelector(".country-flag").src = getLanguageFlagPath(userData.learnLang);
   document.querySelectorAll(".fire-text").forEach(item => item.textContent = userData.xp);

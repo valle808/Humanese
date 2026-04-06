@@ -6,7 +6,7 @@ const targetPages = [
         file: 'mission.html',
         title: 'Our Mission',
         icon: '🚀',
-        content: `At Humanese, our mission is to make language learning free and fun for every kid on the planet! 
+        content: `At Sovereign Matrix, our mission is to make language learning free and fun for every kid on the planet! 
         We believe that speaking another language is like having a superpower. It helps you make new friends, 
         understand the world, and have more fun on your adventures.
         Our mascot is here to guide you every step of the way!`
@@ -23,8 +23,8 @@ const targetPages = [
         file: 'efficacy.html',
         title: 'Does it Work?',
         icon: '📊',
-        content: `Yes! Research shows that learning with Humanese is super effective. 
-        Kids who use Humanese for just 15 minutes a day learn faster than in a regular classroom. 
+        content: `Yes! Research shows that learning with Sovereign Matrix is super effective. 
+        Kids who use Sovereign Matrix for just 15 minutes a day learn faster than in a regular classroom. 
         Plus, it's way more fun!`
     },
     {

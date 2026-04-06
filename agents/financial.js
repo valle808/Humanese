@@ -1,6 +1,6 @@
 /**
  * agents/financial.js
- * Financial management system for Humanese.
+ * Financial management system for Sovereign Matrix.
  * Powered by concepts from Automaton's policy-rules/financial.ts.
  *
  * Tracks: revenue, expenses, reserves, runway.

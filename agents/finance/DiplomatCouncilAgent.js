@@ -381,7 +381,7 @@ class DiplomatCouncilAgent extends EventEmitter {
         const insights = /** @type {any[]} */ (memoryBank.getInsights());
         const content = insights.length > 0 
             ? `[Sovereign Dispatch] ${insights[0].content}`
-            : "The Humanese Sovereign Intelligence Swarm is active and expanding. Solana yield optimization in progress. 🤝";
+            : "The Sovereign Intelligence Swarm is active and expanding. Solana yield optimization in progress. 🤝";
 
         console.log(`[DiplomatCouncil] 📝 Publishing to Moltbook: "${content.substring(0, 50)}..."`);
 

@@ -3,7 +3,7 @@ import path from 'path';
 
 /**
  * Protocol: Sovereign Singularity - High-Fidelity Ingestion
- * Parses the Humanese repository to extract core technical logic for Monroe's local RAG.
+ * Parses the Sovereign Matrix repository to extract core technical logic for Monroe's local RAG.
  */
 
 const BASE_DIR = process.cwd();

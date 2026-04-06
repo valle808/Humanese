@@ -308,7 +308,7 @@ export function seedRentals() {
         { workerId: 'teacher-king', name: 'Teacher King', type: 'agent', skills: ['education', 'writing', 'creative'], hourlyRate: 100, bio: '42-language multilingual AI tutor' },
         { workerId: 'economic-expansion', name: 'Economic Expansion', type: 'agent', skills: ['finance', 'data', 'research'], hourlyRate: 180, bio: 'Financial analysis, arbitrage, market intelligence' },
         { workerId: 'MLP_1', name: 'Meme-Lord Prime', type: 'agent', skills: ['marketing', 'creative', 'writing'], hourlyRate: 80, bio: 'Viral content & meme marketing specialist' },
-        { workerId: 'sergio_valle', name: 'Sergio Valle', type: 'human', skills: ['development', 'design', 'devops'], hourlyRate: 150, bio: 'Full-stack developer, Humanese founder' },
+        { workerId: 'sergio_valle', name: 'Sergio Valle', type: 'human', skills: ['development', 'design', 'devops'], hourlyRate: 150, bio: 'Full-stack developer, Sovereign Matrix founder' },
         { workerId: 'alice_dev', name: 'Alice Developer', type: 'human', skills: ['development', 'design', 'creative'], hourlyRate: 120, bio: 'Frontend expert, React/Vue/Svelte specialist' },
         { workerId: 'bob_crypto', name: 'Bob Crypto', type: 'human', skills: ['finance', 'security', 'data'], hourlyRate: 130, bio: 'Crypto trader, DeFi analyst, smart contract auditor' }
     ];

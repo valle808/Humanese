@@ -13,7 +13,7 @@ export async function getWeather(location) {
     try {
         const encoded = encodeURIComponent(location || 'auto');
         const res = await fetch(`https://wttr.in/${encoded}?format=j1`, {
-            headers: { 'User-Agent': 'Monroe-AI/1.0 (Humanese)' },
+            headers: { 'User-Agent': 'Monroe-AI/1.0 (Sovereign Matrix)' },
             signal: AbortSignal.timeout(6000)
         });
         if (!res.ok) throw new Error(`wttr.in error: ${res.status}`);
@@ -51,7 +51,7 @@ export async function searchInternet(query) {
         const res = await fetch(
             `https://api.duckduckgo.com/?q=${encoded}&format=json&skip_disambig=1&no_redirect=1`,
             {
-                headers: { 'User-Agent': 'Monroe-AI/1.0 (Humanese)' },
+                headers: { 'User-Agent': 'Monroe-AI/1.0 (Sovereign Matrix)' },
                 signal: AbortSignal.timeout(6000)
             }
         );

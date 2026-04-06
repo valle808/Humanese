@@ -100,7 +100,7 @@ export default function SkillMarketPage() {
         setTimeout(() => setSuccessKey(''), 8000);
     };
 
-    const platforms = ['Humanese', 'M2M', 'External', 'AgentKit'];
+    const platforms = ['Sovereign Matrix', 'M2M', 'External', 'AgentKit'];
 
     return (
         <div className="min-h-screen bg-background">

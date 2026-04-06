@@ -33,8 +33,8 @@
         });
 
         // Expose global API (minimal for backward compatibility)
-        window.Humanese = window.Humanese || {};
-        window.Humanese.theme = {
+        window.Sovereign Matrix = window.Sovereign Matrix || {};
+        window.Sovereign Matrix.theme = {
             toggle: () => console.warn('Theme toggle disabled.'),
             set: () => console.warn('Theme set disabled.'),
             get: () => NIGHT,

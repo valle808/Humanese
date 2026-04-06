@@ -1,6 +1,6 @@
 /**
  * agents/core/registry.js
- * Central agent registry for the Humanese AI Hierarchy.
+ * Central agent registry for the Sovereign Matrix AI Hierarchy.
  * Combines hierarchy management and the unified skills system.
  */
 

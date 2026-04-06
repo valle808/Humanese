@@ -102,7 +102,7 @@ export const Sidebar = () => {
                     </div>
                     {isExpanded && (
                         <span className="font-bold tracking-widest text-white uppercase truncate menu-label-enter">
-                            Humanese
+                            Sovereign Matrix
                         </span>
                     )}
                 </div>

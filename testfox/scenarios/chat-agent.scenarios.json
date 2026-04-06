@@ -45,7 +45,7 @@
     "path": "/api/assistant/chat",
     "method": "POST",
     "body": {
-      "message": "Tell me about Humanese",
+      "message": "Tell me about Sovereign Matrix",
       "history": [
         { "role": "user", "content": "Hello" },
         { "role": "model", "content": "Hello! I am Monroe." }

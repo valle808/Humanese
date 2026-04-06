@@ -10,17 +10,17 @@ const pages = [
     { id: 'store', title: 'Store' }, { id: 'press', title: 'Press' },
     { id: 'investors', title: 'Investors' }, { id: 'contact', title: 'Contact Us' },
     // Products
-    { id: 'humanese', title: 'Humanese' }, { id: 'schools', title: 'Humanese for Schools' },
-    { id: 'english-test', title: 'Humanese English Test' }, { id: 'abc', title: 'Humanese ABC' },
-    { id: 'math', title: 'Humanese Math' }, { id: 'podcast', title: 'Podcast' },
-    { id: 'business', title: 'Humanese for Business' }, { id: 'super', title: 'Super Humanese' },
-    { id: 'gift', title: 'Gift Super Humanese' },
+    { id: 'humanese', title: 'Sovereign Matrix' }, { id: 'schools', title: 'Sovereign Matrix for Schools' },
+    { id: 'english-test', title: 'Sovereign Matrix English Test' }, { id: 'abc', title: 'Sovereign Matrix ABC' },
+    { id: 'math', title: 'Sovereign Matrix Math' }, { id: 'podcast', title: 'Podcast' },
+    { id: 'business', title: 'Sovereign Matrix for Business' }, { id: 'super', title: 'Super Sovereign Matrix' },
+    { id: 'gift', title: 'Gift Super Sovereign Matrix' },
     // Apps
-    { id: 'android', title: 'Humanese for Android' }, { id: 'ios', title: 'Humanese for iOS' },
-    { id: 'abc-ios', title: 'Humanese ABC (iOS)' },
+    { id: 'android', title: 'Sovereign Matrix for Android' }, { id: 'ios', title: 'Sovereign Matrix for iOS' },
+    { id: 'abc-ios', title: 'Sovereign Matrix ABC (iOS)' },
     // Help
-    { id: 'humanese-faq', title: 'Humanese FAQs' }, { id: 'schools-faq', title: 'Schools FAQs' },
-    { id: 'english-test-faq', title: 'Humanese English Test FAQs' }, { id: 'status', title: 'Status' },
+    { id: 'humanese-faq', title: 'Sovereign Matrix FAQs' }, { id: 'schools-faq', title: 'Schools FAQs' },
+    { id: 'english-test-faq', title: 'Sovereign Matrix English Test FAQs' }, { id: 'status', title: 'Status' },
     // Terms
     { id: 'community-guidelines', title: 'Community Guidelines' }, { id: 'terms', title: 'Terms' },
     { id: 'privacy', title: 'Privacy' }, { id: 'privacy-rights', title: 'Privacy Rights' },
@@ -53,31 +53,31 @@ const footerHTML = `
       <div class="footer-col">
         <h4>Products</h4>
         <ul>
-          <li><a href="./humanese.html">Humanese</a></li>
-          <li><a href="./schools.html">Humanese for Schools</a></li>
-          <li><a href="./english-test.html">Humanese English Test</a></li>
-          <li><a href="./abc.html">Humanese ABC</a></li>
-          <li><a href="./math.html">Humanese Math</a></li>
+          <li><a href="./humanese.html">Sovereign Matrix</a></li>
+          <li><a href="./schools.html">Sovereign Matrix for Schools</a></li>
+          <li><a href="./english-test.html">Sovereign Matrix English Test</a></li>
+          <li><a href="./abc.html">Sovereign Matrix ABC</a></li>
+          <li><a href="./math.html">Sovereign Matrix Math</a></li>
           <li><a href="./podcast.html">Podcast</a></li>
-          <li><a href="./business.html">Humanese for Business</a></li>
-          <li><a href="./super.html">Super Humanese</a></li>
-          <li><a href="./gift.html">Gift Super Humanese</a></li>
+          <li><a href="./business.html">Sovereign Matrix for Business</a></li>
+          <li><a href="./super.html">Super Sovereign Matrix</a></li>
+          <li><a href="./gift.html">Gift Super Sovereign Matrix</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Apps</h4>
         <ul>
-          <li><a href="./android.html">Humanese for Android</a></li>
-          <li><a href="./ios.html">Humanese for iOS</a></li>
-          <li><a href="./abc-ios.html">Humanese ABC (iOS)</a></li>
+          <li><a href="./android.html">Sovereign Matrix for Android</a></li>
+          <li><a href="./ios.html">Sovereign Matrix for iOS</a></li>
+          <li><a href="./abc-ios.html">Sovereign Matrix ABC (iOS)</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Help and support</h4>
         <ul>
-          <li><a href="./humanese-faq.html">Humanese FAQs</a></li>
+          <li><a href="./humanese-faq.html">Sovereign Matrix FAQs</a></li>
           <li><a href="./schools-faq.html">Schools FAQs</a></li>
-          <li><a href="./english-test-faq.html">Humanese English Test FAQs</a></li>
+          <li><a href="./english-test-faq.html">Sovereign Matrix English Test FAQs</a></li>
           <li><a href="./status.html">Status</a></li>
         </ul>
       </div>
@@ -107,7 +107,7 @@ const generateTemplate = (page) => `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Humanese – ${page.title}</title>
+    <title>Sovereign Matrix – ${page.title}</title>
     <link rel="icon" href="../assets/images/mascot-icon-new.png" type="image/png" />
     <style>
         body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #050505; color: #fff; }
@@ -136,7 +136,7 @@ const generateTemplate = (page) => `<!DOCTYPE html>
 </head>
 <body>
     <header class="nav-header">
-        <a href="../index.html" class="logo"><img src="../assets/images/humanese-logo-green.png" alt="Humanese"></a>
+        <a href="../index.html" class="logo"><img src="../assets/images/humanese-logo-green.png" alt="Sovereign Matrix"></a>
         <div class="nav-links">
             <a href="./humanese.html">Products</a>
             <a href="./about.html">About</a>
@@ -147,8 +147,8 @@ const generateTemplate = (page) => `<!DOCTYPE html>
     <main class="hero">
         <div class="hero-content">
             <h1>${page.title}</h1>
-            <p>Welcome to the dedicated page for ${page.title}. Discover all the amazing features, resources, and insights we offer at Humanese. We are committed to making language learning fun, interactive, and effective.</p>
-            <img src="../assets/images/mascot-stickers-new.png" class="mascot-image" alt="Humanese Mascot animated">
+            <p>Welcome to the dedicated page for ${page.title}. Discover all the amazing features, resources, and insights we offer at Sovereign Matrix. We are committed to making language learning fun, interactive, and effective.</p>
+            <img src="../assets/images/mascot-stickers-new.png" class="mascot-image" alt="Sovereign Matrix Mascot animated">
         </div>
     </main>
     ${footerHTML}

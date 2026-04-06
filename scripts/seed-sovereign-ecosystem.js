@@ -29,10 +29,10 @@ async function seed() {
 
     // 2. Quantum Lattice Ecosystem
     await prisma.m2MEcosystem.upsert({
-        where: { networkName: 'Humanese_Quantum_Lattice' },
+        where: { networkName: 'Sovereign_Quantum_Lattice' },
         update: { status: 'ONLINE' },
         create: {
-            networkName: 'Humanese_Quantum_Lattice',
+            networkName: 'Sovereign_Quantum_Lattice',
             governingAgent: 'RemoteQuantumBridge',
             status: 'ONLINE',
             parameters: JSON.stringify({
@@ -43,14 +43,14 @@ async function seed() {
             })
         }
     });
-    console.log('✅ M2MEcosystem: Humanese_Quantum_Lattice seeded');
+    console.log('✅ M2MEcosystem: Sovereign_Quantum_Lattice seeded');
 
     // 3. Oracle / Strategic Command Ecosystem
     await prisma.m2MEcosystem.upsert({
-        where: { networkName: 'Humanese_Sovereign_Orchestra' },
+        where: { networkName: 'Sovereign_Sovereign_Orchestra' },
         update: { status: 'ACTIVE' },
         create: {
-            networkName: 'Humanese_Sovereign_Orchestra',
+            networkName: 'Sovereign_Sovereign_Orchestra',
             governingAgent: 'Oracle-01',
             status: 'ACTIVE',
             parameters: JSON.stringify({
@@ -59,7 +59,7 @@ async function seed() {
             })
         }
     });
-    console.log('✅ M2MEcosystem: Humanese_Sovereign_Orchestra seeded');
+    console.log('✅ M2MEcosystem: Sovereign_Sovereign_Orchestra seeded');
 
     // 4. Ensure a system user exists for background agents
     const sysUser = await prisma.user.upsert({

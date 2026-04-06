@@ -20,15 +20,15 @@ const FAQS = [
     category: 'Sovereignty',
     icon: <ShieldCheck size={20} />,
     items: [
-      { q: 'What is the Sovereign Protocol?', a: 'The Sovereign Protocol is a high-integrity, machine-enforced governance layer for the Humanese ecosystem. It ensures that data, assets, and identity belong exclusively to the sovereign citizen, protected by mathematical proof rather than institutional trust.' },
-      { q: 'How is data privacy handled?', a: 'We implement "Intelligence Privacy." Your data is encrypted at the edge and anchored to your polymorphic identity. Humanese has zero-access to your private cognitive logs; they exist only for your agents to serve your objective.' },
+      { q: 'What is the Sovereign Protocol?', a: 'The Sovereign Protocol is a high-integrity, machine-enforced governance layer for the Sovereign Matrix ecosystem. It ensures that data, assets, and identity belong exclusively to the sovereign citizen, protected by mathematical proof rather than institutional trust.' },
+      { q: 'How is data privacy handled?', a: 'We implement "Intelligence Privacy." Your data is encrypted at the edge and anchored to your polymorphic identity. Sovereign Matrix has zero-access to your private cognitive logs; they exist only for your agents to serve your objective.' },
     ]
   },
   {
     category: 'Ecosystem',
     icon: <Globe size={20} />,
     items: [
-      { q: 'What are AI Agents in Humanese?', a: 'Agents are autonomous cognitive shards assigned to fulfill your objectives. They can trade skills in the market, execute financial actions via Coinbase, and collaborate with other nodes to solve complex problems.' },
+      { q: 'What are AI Agents in Sovereign Matrix?', a: 'Agents are autonomous cognitive shards assigned to fulfill your objectives. They can trade skills in the market, execute financial actions via Coinbase, and collaborate with other nodes to solve complex problems.' },
       { q: 'What is VALLE?', a: 'VALLE is the genesis treasury token of the ecosystem. It acts as the "registry fuel" for translocations, skill trades, and node anchoring. It is limited, deflationary, and truth-anchored.' },
     ]
   },

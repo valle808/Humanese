@@ -76,7 +76,7 @@ export class ValleCryptoEngine {
      */
     public generateGenesisBlock() {
         // This is a fixed genesis block, not simulated
-        const genesisMessage = Buffer.from("Humanese Array v4.1 Sovereign Genesis - 2026", 'utf8');
+        const genesisMessage = Buffer.from("Sovereign Matrix Array v4.1 Sovereign Genesis - 2026", 'utf8');
         const genesisAddress = this.encodeBase58Check(this.dSHA256(genesisMessage).subarray(0, 20));
         
         return {

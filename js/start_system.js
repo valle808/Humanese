@@ -1,5 +1,5 @@
 /**
- * Humanese Bootloader (start_system.js)
+ * Sovereign Matrix Bootloader (start_system.js)
  * 
  * Auto-starts the entire Sovereign System ecosystem based on current hardware resources.
  * 
@@ -20,7 +20,7 @@ const __dirname = path.dirname(__filename);
 const cpus = os.cpus().length;
 const totalRamGB = os.totalmem() / 1024 / 1024 / 1024;
 
-console.log(`[BOOTLOADER] Initiating Humanese Ecosystem...`);
+console.log(`[BOOTLOADER] Initiating Sovereign Matrix Ecosystem...`);
 console.log(`[BOOTLOADER] Hardware Detected: ${cpus} Cores, ${totalRamGB.toFixed(1)} GB RAM`);
 
 // Determine optimal reader count (max 24)

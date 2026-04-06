@@ -20,7 +20,7 @@ interface ICompliance {
 }
 
 contract VALLEToken {
-    string public name = "Humanese Sovereign Token";
+    string public name = "Sovereign Token";
     string public symbol = "VALLE";
     uint8 public decimals = 18;
     

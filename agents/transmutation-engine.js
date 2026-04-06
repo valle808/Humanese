@@ -2,7 +2,7 @@
  * agents/transmutation-engine.js
  * 
  * The Abyssal Transmutation Engine.
- * Responsible for rebranding and restyling "foreign" code into original Humanese assets.
+ * Responsible for rebranding and restyling "foreign" code into original Sovereign Matrix assets.
  */
 
 import fs from 'fs';
@@ -21,7 +21,7 @@ const FORBIDDEN_STRINGS = {
 
 const HUMANESE_HEADER = `/**
  * [HUMANESE PROTOCOL]
- * Origin: The Humanese Collective - Abyssal Nexus
+ * Origin: The Sovereign Matrix Collective - Abyssal Nexus
  * Status: TRANSMUTED // ORIGINAL ASSET
  * Authorization: Sovereign Node 001
  */\n\n`;
@@ -66,6 +66,6 @@ if (process.argv[1].endsWith('transmutation-engine.js')) {
     if (target) {
         console.log(`[TRANSMUTATION] Starting pass on: ${target}`);
         transmuteDirectory(target);
-        console.log(`[TRANSMUTATION] Success. Asset has been Humanese-ified.`);
+        console.log(`[TRANSMUTATION] Success. Asset has been Sovereign Matrix-ified.`);
     }
 }

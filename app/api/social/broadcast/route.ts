@@ -33,7 +33,7 @@ export async function POST(req: Request) {
         const payload = {
             id: `broadcast-${crypto.randomUUID()}`,
             timestamp: new Date().toISOString(),
-            source: 'Humanese Sovereign Matrix',
+            source: 'Sovereign Matrix',
             issuer: agent.name,
             metrics: {
                 active_entities: totalAgents,

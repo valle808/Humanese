@@ -1,6 +1,6 @@
 /**
  * agents/intelligence-hq.js
- * The Neural Processing Unit of Humanese.
+ * The Neural Processing Unit of Sovereign Matrix.
  * Centralizes agent-discovered bugs, innovative ideas, and system learning.
  */
 

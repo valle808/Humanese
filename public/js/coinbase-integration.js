@@ -11,7 +11,7 @@
 const COINBASE_CONFIG = {
     // Coinbase Commerce API endpoint
     apiBase: 'https://api.commerce.coinbase.com',
-    // The Humanese tax/revenue address (set this to the actual Coinbase wallet address)
+    // The Sovereign Matrix tax/revenue address (set this to the actual Coinbase wallet address)
     taxAddress: '', // Will be set by the user's Coinbase account
     // Accepted currencies for payments
     currencies: ['USDC', 'ETH', 'SOL'],
@@ -25,7 +25,7 @@ const COINBASE_CONFIG = {
  * @param {string} currency - 'USDC', 'ETH', or 'SOL'
  * @param {string} description - Payment description
  */
-async function createCoinbasePayment(amountUSD, currency = 'USDC', description = 'Humanese Network Tax') {
+async function createCoinbasePayment(amountUSD, currency = 'USDC', description = 'Sovereign Matrix Network Tax') {
     if (!COINBASE_CONFIG.taxAddress) {
         console.warn('[Coinbase] Tax address not configured. Please set COINBASE_CONFIG.taxAddress.');
         showCoinbaseToast('Coinbase tax address not configured. Please set up your Coinbase account.', 'warning');
@@ -39,7 +39,7 @@ async function createCoinbasePayment(amountUSD, currency = 'USDC', description =
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: 'Humanese Network',
+                name: 'Sovereign Matrix Network',
                 description,
                 amountUSD,
                 currency,
@@ -66,7 +66,7 @@ async function createCoinbasePayment(amountUSD, currency = 'USDC', description =
 }
 
 /**
- * Link a user's Coinbase wallet address to their Humanese profile
+ * Link a user's Coinbase wallet address to their Sovereign Matrix profile
  * @param {string} coinbaseAddress - Ethereum/Base address from Coinbase
  */
 async function linkCoinbaseAddress(coinbaseAddress) {

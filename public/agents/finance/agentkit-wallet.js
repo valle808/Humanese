@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════════════════════
 // agents/agentkit-wallet.js — Coinbase AgentKit Wallet Bridge
 //
-// Wraps AgentKit wallet concepts into the Humanese ecosystem.
+// Wraps AgentKit wallet concepts into the Sovereign Matrix ecosystem.
 // Provides multi-chain wallet management, balance checking,
 // transfers, swaps, and DeFi position viewing.
 //
@@ -169,11 +169,11 @@ const WALLET_PROVIDERS = {
     },
     humanese_native: {
         id: 'humanese_native',
-        name: 'Humanese Native (VALLE)',
+        name: 'Sovereign Matrix Native (VALLE)',
         source: 'humanese',
         chains: ['humanese', 'bitcoin', 'ethereum', 'solana', 'base'],
         capabilities: ['balance', 'transfer', 'tax', 'stake'],
-        description: 'Native VALLE token wallet — the sovereign Humanese ledger',
+        description: 'Native VALLE token wallet — the sovereign Sovereign Matrix ledger',
         requiresApiKey: false
     }
 };

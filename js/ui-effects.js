@@ -1,5 +1,5 @@
 /**
- * Humanese UI Effects - Mouse-over Physics & Character Splitting
+ * Sovereign Matrix UI Effects - Mouse-over Physics & Character Splitting
  * Inspired by AgentKin Core
  */
 

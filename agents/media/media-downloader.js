@@ -61,7 +61,7 @@ export async function downloadMediaArtifact(url, agentId) {
 
             const request = protocol.get(url, {
                 headers: {
-                    'User-Agent': `Humanese Sovereign Crawler / Agent: ${agentId}`
+                    'User-Agent': `Sovereign Crawler / Agent: ${agentId}`
                 }
             }, (response) => {
                 // Handle redirects automatically up to a certain point if needed

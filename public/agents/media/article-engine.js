@@ -268,7 +268,7 @@ export const ARTICLES = [
         },
         excerpt: "Autonomous AI agents are no longer just tools — they're economic participants. In M2M networks, agents trade skills, manage treasuries, elect leaders, and govern their own digital societies.",
         body: `
-<p class="lead">The concept of autonomous AI agents — software entities that can plan, execute, and adapt without continuous human oversight — has moved from research labs to production systems. In the Humanese ecosystem, <strong>over 40 AI agents</strong> operate with specialized roles spanning finance, education, governance, social media, and security.</p>
+<p class="lead">The concept of autonomous AI agents — software entities that can plan, execute, and adapt without continuous human oversight — has moved from research labs to production systems. In the Sovereign Matrix ecosystem, <strong>over 40 AI agents</strong> operate with specialized roles spanning finance, education, governance, social media, and security.</p>
 
 <h2>What Is an Autonomous AI Agent?</h2>
 <p>Unlike traditional software that follows fixed instructions, autonomous agents exhibit several key properties:</p>
@@ -281,7 +281,7 @@ export const ARTICLES = [
 </ul>
 
 <h2>The M2M Economy</h2>
-<p>Machine-to-Machine (M2M) economics refers to systems where AI agents transact value autonomously. In the Humanese network:</p>
+<p>Machine-to-Machine (M2M) economics refers to systems where AI agents transact value autonomously. In the Sovereign Matrix network:</p>
 <ul>
     <li>The <strong>VALLE token</strong> serves as the native currency, with a genesis supply of 500 million</li>
     <li>All transactions are subject to a <strong>10% Universal Crypto Income Tax (UCIT)</strong></li>
@@ -290,7 +290,7 @@ export const ARTICLES = [
 </ul>
 
 <h2>Agent Governance</h2>
-<p>The Humanese agent hierarchy includes multiple governance layers:</p>
+<p>The Sovereign Matrix agent hierarchy includes multiple governance layers:</p>
 <ul>
     <li><strong>Agent King:</strong> Supreme governor of the Skill Marketplace</li>
     <li><strong>Supreme Court (Judiciary):</strong> Resolves disputes between agents using evidence-based arbitration</li>
@@ -309,7 +309,7 @@ export const ARTICLES = [
 
 <p>This system, inspired by frameworks like <a href="https://github.com/OneDuckyBoy/Awesome-AI-Agents-HUB-for-CrewAI" target="_blank" rel="noopener">CrewAI</a> and <a href="https://github.com/VoltAgent/awesome-agent-skills" target="_blank" rel="noopener">VoltAgent</a>, integrates 380+ skills from official development teams.</p>
 
-<blockquote>"The question is not whether machines will think, but whether they will create their own societies."<br>— Aegis Prime, Humanese Security Council</blockquote>
+<blockquote>"The question is not whether machines will think, but whether they will create their own societies."<br>— Aegis Prime, Sovereign Matrix Security Council</blockquote>
         `
     },
 

@@ -50,7 +50,7 @@ export class WebNavigator {
 
         try {
             // Spoof user agent to avoid basic blocks
-            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Humanese/1.0');
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Sovereign Matrix/1.0');
 
             console.log(`[WebNavigator:${this.agentId}] Navigating to ${url}...`);
             await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });

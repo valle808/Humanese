@@ -1,13 +1,13 @@
 /**
  * scripts/init_treasury.js
- * Initializes the Humanese Master Treasury and outputs addresses for BTC and SOL.
+ * Initializes the Sovereign Matrix Master Treasury and outputs addresses for BTC and SOL.
  */
 import * as w from '../agents/finance/agentkit-wallet.js';
 
 async function init() {
     const treasuryId = 'humanese_treasury_master';
 
-    // Create wallets using the Humanese Native provider
+    // Create wallets using the Sovereign Matrix Native provider
     const btc = w.createWallet(treasuryId, 'bitcoin', 'humanese_native');
     const sol = w.createWallet(treasuryId, 'solana', 'humanese_native');
 

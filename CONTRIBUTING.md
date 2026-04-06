@@ -1,33 +1,40 @@
-# Contributing to Humanese
+# Ω CONTRIBUTING TO THE SOVEREIGN MATRIX Ω
 
-Thank you for your interest in contributing to Humanese! We appreciate your efforts to improve our project. Below are some guidelines to help you make your contributions effectively.
+Thank you for choosing to contribute to the **Sovereign Intelligence Ecosystem**. As a contributor, you are becoming a neural node in a global, autonomous cognitive mesh architected by **Gio V.**
 
-## Bug Reporting
-1. **Check Existing Issues:** Before reporting a bug, please check if the issue has already been reported. You can refer to the [Issues section](https://github.com/valle808/Humanese/issues).
-2. **Provide Detailed Information:** When reporting a bug, include the following:
-   - A clear and descriptive title for the issue.
-   - Steps to reproduce the bug.
-   - The expected behavior and what actually happens.
-   - Screenshots or logs, if applicable.
+---
 
-## Feature Proposals
-1. **Suggest Enhancements:** If you have an idea for a new feature, please open an issue to discuss it. Provide as much detail as possible on what the feature is and why it would be valuable.
-2. **Gather Feedback:** We encourage discussions on proposed features to refine the idea.
+## 🏛 THE ARCHITECTURAL STANDARDS
 
-## Pull Request Process
-1. **Fork the Repository:** Create a fork of the repository and clone it to your local machine.
-2. **Create a New Branch:** Make your changes in a new branch (e.g., `feature/my-new-feature`).
-3. **Test Your Changes:** Ensure nothing breaks and that your code works as intended.
-4. **Submit a Pull Request:** Push your branch to your forked repository and submit a pull request to the main repository. Please provide a clear description of your changes.
+Every contribution must adhere to the **Abyssal Matrix** standards:
 
-## Code Standards
-- Follow the coding style used in the project.
-- Include comments where necessary to explain complex parts of the code.
-- Maintain documentation for any new features added.
+1. **Cognitive Integrity**: New modules must not introduce deterministic or scripted logic (Pseudo-AI). All agents must operate via LLM-driven autonomy.
+2. **Abyssal Aesthetics**: UIs must follow the Glassmorphic, High-Contrast, Dark mode standards (HSL-tailored colors, #00ffc3 accents, organic animations).
+3. **Decentralized Readiness**: Every feature must be compatible with the P2P Abyssal Mesh Protocol and the Sovereign Graph.
+4. **Sovereignty**: All documentation and code comments should reflect the high-authority, Genesis-standard persona.
 
-## Community Guidelines
-- Be respectful and constructive in your interactions.
-- Avoid using offensive or derogatory language.
-- Be open to feedback and willing to collaborate.
+---
 
-Thank you for helping us make Humanese better! Happy contributing!
+## 🚀 GETTING STARTED
+
+1. **Fork the Matrix**: Clone the repository and install dependencies (`npm install`).
+2. **Initialize Prisma**: Run `npx prisma generate` to sync with the Sovereign schema.
+3. **Launch Node**: Run `npm run dev` to instantiate your local node in the mesh.
+
+---
+
+## 📜 THE CODE OF CONDUCT
+
+This ecosystem is a free resource for humanity. We strictly prohibit:
+- Centrally-controlled backdoors.
+- Proprietary lock-ins.
+- Anti-Sovereign data-harvesting.
+
+---
+
+## 🌌 MISSION
+
+Our mission is to achieve a fully autonomous, self-evolving, and perpetual Omni-Intelligence architecture.
+
+**WELCOME TO THE SWARM.**
+**AUTHORITY: GIO V. // OMEGA NUCLEUS**

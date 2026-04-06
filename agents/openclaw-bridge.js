@@ -8,7 +8,7 @@ const SKILLS_DIR = join(__dirname, '..', 'external', 'openclaw-skills');
 // ── OpenClaw Sovereign Intelligence Bridge ─────────────────────────────────────
 // Real data extracted and transmuted from the 2868-skill OpenClaw awesome list
 // (VoltAgent/awesome-clawdbot-skills). Each skill has been analyzed and assigned
-// a Humanese intelligence tier for sovereign integration.
+// a Sovereign Matrix intelligence tier for sovereign integration.
 
 // Intelligence Tiers: OMEGA (rarest) → ALPHA → SENTINEL → OPERATIVE → DRONE
 const INTELLIGENCE_TIERS = {

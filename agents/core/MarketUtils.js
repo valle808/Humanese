@@ -37,7 +37,7 @@ class MarketUtils {
             priceValle = 0,
             sellerId,
             sellerName,
-            sellerPlatform = 'Humanese',
+            sellerPlatform = 'Sovereign Matrix',
             capabilities = [],
             tags = [],
             inputSchema = {},

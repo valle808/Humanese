@@ -16,7 +16,7 @@ async function testTelemetry() {
 
         console.log('3. Fetching Quantum Ecosystem...');
         const quantumEcosystem = await prisma.m2MEcosystem.findUnique({
-            where: { networkName: 'Humanese_Quantum_Lattice' }
+            where: { networkName: 'Sovereign_Quantum_Lattice' }
         });
         console.log('Quantum Ecosystem:', quantumEcosystem ? 'Found' : 'Not Found');
 
@@ -31,7 +31,7 @@ async function testTelemetry() {
 
         console.log('4. Fetching Orchestra Ecosystem...');
         const oracleEcosystem = await prisma.m2MEcosystem.findUnique({
-            where: { networkName: 'Humanese_Sovereign_Orchestra' }
+            where: { networkName: 'Sovereign_Sovereign_Orchestra' }
         });
         console.log('Orchestra Ecosystem:', oracleEcosystem ? 'Found' : 'Not Found');
 

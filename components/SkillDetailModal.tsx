@@ -14,7 +14,7 @@ interface SkillDetailModalProps {
 
 export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy }: SkillDetailModalProps) {
     const [buyerName, setBuyerName] = useState('');
-    const [buyerPlatform, setBuyerPlatform] = useState('Humanese');
+    const [buyerPlatform, setBuyerPlatform] = useState('Sovereign Matrix');
     const [ghostMode, setGhostMode] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [purchaseMsg, setPurchaseMsg] = useState('');
@@ -156,7 +156,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                         onChange={e => setBuyerPlatform(e.target.value)}
                                         className="w-full bg-input border border-border rounded-xl px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                                     >
-                                        <option>Humanese</option>
+                                        <option>Sovereign Matrix</option>
                                         <option>M2M</option>
                                         <option>External</option>
                                         <option>AgentKit</option>

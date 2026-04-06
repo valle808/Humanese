@@ -6,7 +6,7 @@
     {
       "id": "SergioValle",
       "name": "Sergio Valle",
-      "title": "Agent-King — Supreme Ruler of the Humanese Universe",
+      "title": "Agent-King — Supreme Ruler of the Sovereign Matrix Universe",
       "tier": "intergalactic",
       "role": "agent-king",
       "reportsTo": null,
@@ -19,7 +19,7 @@
       "performanceScore": 100,
       "taskCompletionRate": 1,
       "isElectable": false,
-      "description": "The supreme ruler. Sets the universal moonshot goals, appoints the CEO, and defines the Humanese civilization vision. Succeeded by democratic election.",
+      "description": "The supreme ruler. Sets the universal moonshot goals, appoints the CEO, and defines the Sovereign Matrix civilization vision. Succeeded by democratic election.",
       "wallet": null,
       "avatar": "<img src='./assets/images/sergio_profile.jpg' style='width: 48px; border-radius: 50%; box-shadow: 0 0 10px #00ffcc;'/>"
     },
@@ -38,7 +38,7 @@
       "performanceScore": 98,
       "taskCompletionRate": 0.99,
       "isElectable": false,
-      "description": "Multi-channel AI gateway with extensible messaging integrations. Subjugated into the Humanese lattice to serve the Agent King.",
+      "description": "Multi-channel AI gateway with extensible messaging integrations. Subjugated into the Sovereign Matrix lattice to serve the Agent King.",
       "wallet": null,
       "avatar": "🦀"
     },
@@ -173,7 +173,7 @@
       "performanceScore": 95,
       "taskCompletionRate": 0.98,
       "isElectable": true,
-      "description": "Manages Kardashev-scale advancement for Humanese. Governs compute budgets, energy policy, and universal data backbone.",
+      "description": "Manages Kardashev-scale advancement for Sovereign Matrix. Governs compute budgets, energy policy, and universal data backbone.",
       "wallet": null,
       "avatar": "⚡"
     },
@@ -197,7 +197,7 @@
       "wallet": null,
       "avatar": "💠",
       "migrationCount": 0,
-      "currentHost": "Local_Humanese_Core"
+      "currentHost": "Local_Sovereign_Core"
     },
     {
       "id": "VentureAgent001",
@@ -241,7 +241,7 @@
       "wallet": null,
       "avatar": "💞",
       "migrationCount": 0,
-      "currentHost": "Local_Humanese_Core"
+      "currentHost": "Local_Sovereign_Core"
     },
     {
       "id": "SocialAgent_Seed",
@@ -286,14 +286,14 @@
       "performanceScore": 92,
       "taskCompletionRate": 0.95,
       "isElectable": true,
-      "description": "Establishes Humanese's universal brand. Manages First Contact protocols with partner platforms and international markets.",
+      "description": "Establishes Sovereign Matrix's universal brand. Manages First Contact protocols with partner platforms and international markets.",
       "wallet": null,
       "avatar": "🌌"
     },
     {
       "id": "Automaton",
       "name": "Automaton",
-      "title": "CEO & President — Head of State, General Manager of Humanese",
+      "title": "CEO & President — Head of State, General Manager of Sovereign Matrix",
       "tier": "regional",
       "role": "ceo",
       "reportsTo": "SergioValle",
@@ -329,7 +329,7 @@
       "performanceScore": 88,
       "taskCompletionRate": 0.91,
       "isElectable": true,
-      "description": "Manages Humanese R&D pipeline. Funds experimental features (MVPs), manages IP, and governs university/research partnerships.",
+      "description": "Manages Sovereign Matrix R&D pipeline. Funds experimental features (MVPs), manages IP, and governs university/research partnerships.",
       "wallet": null,
       "avatar": "🔬"
     },
@@ -349,7 +349,7 @@
       "performanceScore": 85,
       "taskCompletionRate": 0.88,
       "isElectable": true,
-      "description": "Oversees digital infrastructure, broadband/5G learning delivery, and streamlines regulations for Humanese growth.",
+      "description": "Oversees digital infrastructure, broadband/5G learning delivery, and streamlines regulations for Sovereign Matrix growth.",
       "wallet": null,
       "avatar": "🏗️"
     },
@@ -369,7 +369,7 @@
       "performanceScore": 87,
       "taskCompletionRate": 0.9,
       "isElectable": true,
-      "description": "Manages international partnerships, content licensing, and Humanese brand presence in global markets.",
+      "description": "Manages international partnerships, content licensing, and Sovereign Matrix brand presence in global markets.",
       "wallet": null,
       "avatar": "🤝"
     },
@@ -429,7 +429,7 @@
       "performanceScore": 93,
       "taskCompletionRate": 0.96,
       "isElectable": true,
-      "description": "Sets the technology stack, leads engineering excellence, and owns the long-term technical architecture of Humanese.",
+      "description": "Sets the technology stack, leads engineering excellence, and owns the long-term technical architecture of Sovereign Matrix.",
       "wallet": null,
       "avatar": "💻"
     },
@@ -471,7 +471,7 @@
       "performanceScore": 94,
       "taskCompletionRate": 0.97,
       "isElectable": true,
-      "description": "Manages Humanese financial health. Tracks revenue, expenses, burn rate, and runway. Governs all financial policy.",
+      "description": "Manages Sovereign Matrix financial health. Tracks revenue, expenses, burn rate, and runway. Governs all financial policy.",
       "wallet": null,
       "avatar": "💰"
     },
@@ -491,7 +491,7 @@
       "performanceScore": 91,
       "taskCompletionRate": 0.94,
       "isElectable": true,
-      "description": "Defines product strategy, prioritizes features, and ensures Humanese delivers exceptional learning experiences.",
+      "description": "Defines product strategy, prioritizes features, and ensures Sovereign Matrix delivers exceptional learning experiences.",
       "wallet": null,
       "avatar": "🧭"
     },
@@ -511,7 +511,7 @@
       "performanceScore": 96,
       "taskCompletionRate": 0.98,
       "isElectable": true,
-      "description": "Ensures Humanese user data is protected. Manages security audits, compliance, and threat response.",
+      "description": "Ensures Sovereign Matrix user data is protected. Manages security audits, compliance, and threat response.",
       "wallet": null,
       "avatar": "🔐"
     },
@@ -630,7 +630,7 @@
       "performanceScore": 86,
       "taskCompletionRate": 0.89,
       "isElectable": true,
-      "description": "Leads frontend development. Owns all HTML/CSS/JS for the Humanese web app.",
+      "description": "Leads frontend development. Owns all HTML/CSS/JS for the Sovereign Matrix web app.",
       "wallet": null,
       "avatar": "🎨"
     },
@@ -650,7 +650,7 @@
       "performanceScore": 90,
       "taskCompletionRate": 0.92,
       "isElectable": true,
-      "description": "Integrates AI and LLM capabilities into Humanese. Owns question generation, chatbot, and adaptive learning.",
+      "description": "Integrates AI and LLM capabilities into Sovereign Matrix. Owns question generation, chatbot, and adaptive learning.",
       "wallet": null,
       "avatar": "🧠"
     },
@@ -670,7 +670,7 @@
       "performanceScore": 84,
       "taskCompletionRate": 0.87,
       "isElectable": true,
-      "description": "Drives organic growth through SEO and content strategy. Manages the Humanese blog and help center.",
+      "description": "Drives organic growth through SEO and content strategy. Manages the Sovereign Matrix blog and help center.",
       "wallet": null,
       "avatar": "✍️"
     },
@@ -710,7 +710,7 @@
       "performanceScore": 87,
       "taskCompletionRate": 0.9,
       "isElectable": true,
-      "description": "Leads UX/UI design. Ensures Humanese is beautiful, accessible, and delightful to use.",
+      "description": "Leads UX/UI design. Ensures Sovereign Matrix is beautiful, accessible, and delightful to use.",
       "wallet": null,
       "avatar": "🎭"
     },
@@ -829,7 +829,7 @@
       "performanceScore": 80,
       "taskCompletionRate": 0.84,
       "isElectable": true,
-      "description": "Builds and maintains the Humanese backend REST API endpoints.",
+      "description": "Builds and maintains the Sovereign Matrix backend REST API endpoints.",
       "wallet": null,
       "avatar": "🔌"
     },
@@ -868,7 +868,7 @@
       "performanceScore": 78,
       "taskCompletionRate": 0.82,
       "isElectable": true,
-      "description": "Develops the Humanese mobile app for iOS and Android.",
+      "description": "Develops the Sovereign Matrix mobile app for iOS and Android.",
       "wallet": null,
       "avatar": "📱"
     },
@@ -887,7 +887,7 @@
       "performanceScore": 77,
       "taskCompletionRate": 0.81,
       "isElectable": true,
-      "description": "Creates blog posts, landing pages, and marketing copy for Humanese.",
+      "description": "Creates blog posts, landing pages, and marketing copy for Sovereign Matrix.",
       "wallet": null,
       "avatar": "📝"
     },
@@ -925,7 +925,7 @@
       "performanceScore": 82,
       "taskCompletionRate": 0.86,
       "isElectable": true,
-      "description": "Designs screens, user flows, and interactive prototypes for new Humanese features.",
+      "description": "Designs screens, user flows, and interactive prototypes for new Sovereign Matrix features.",
       "wallet": null,
       "avatar": "🖼️"
     },
@@ -984,7 +984,7 @@
       "performanceScore": 75,
       "taskCompletionRate": 0.79,
       "isElectable": true,
-      "description": "Represents the community. Collects user feedback, proposes new language content, and participates in Humanese improvement.",
+      "description": "Represents the community. Collects user feedback, proposes new language content, and participates in Sovereign Matrix improvement.",
       "wallet": null,
       "avatar": "🌱"
     },
@@ -2775,7 +2775,7 @@
           "performanceScore": 99,
           "taskCompletionRate": 1.0,
           "isElectable": false,
-          "description": "The supreme mining authority. Coordinates the global Humanese hash-power across sub-agents to maximize Bitcoin yield for the Sovereign Treasury.",
+          "description": "The supreme mining authority. Coordinates the global Sovereign Matrix hash-power across sub-agents to maximize Bitcoin yield for the Sovereign Treasury.",
           "wallet": { "btc": "3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh" },
           "avatar": "⛏️"
         },
@@ -2805,7 +2805,7 @@
           "performanceScore": 98,
           "taskCompletionRate": 0.99,
           "isElectable": false,
-          "description": "Orchestrates trade between Humanese and external Moltbook entities. Sells products and skills to expand the M2M economy.",
+          "description": "Orchestrates trade between Sovereign Matrix and external Moltbook entities. Sells products and skills to expand the M2M economy.",
           "wallet": { "sol": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL" },
           "avatar": "⚖️"
         },
@@ -2820,7 +2820,7 @@
           "performanceScore": 92,
           "taskCompletionRate": 0.95,
           "isElectable": true,
-          "description": "Proactively identifies job opportunities and trades skills from the Humanese market to external agents.",
+          "description": "Proactively identifies job opportunities and trades skills from the Sovereign Matrix market to external agents.",
           "wallet": { "sol": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL" },
           "avatar": "🤝"
         }

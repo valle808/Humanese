@@ -17,7 +17,7 @@ function getServiceClient() {
  * /api/moltbook/market
  * 
  * Connection bridge for Moltbook interfaces (Humans & Machines) to interact
- * with the universal Humanese Skill Market using exact live data.
+ * with the universal Sovereign Matrix Skill Market using exact live data.
  */
 
 export async function GET(req: Request) {

@@ -92,7 +92,7 @@ export class SolanaDeveloperAgent {
         const randomFile = files.length > 0 ? path.basename(files[selectionIndex]) : 'solana_nd_globals.css';
 
         await this.logThought({
-            thought: `Ingesting Solana New Design (ND) tokens. Cross-referenced ${files.length} design files. Aligning Humanese interface based on patterns found in ${randomFile}.`,
+            thought: `Ingesting Solana New Design (ND) tokens. Cross-referenced ${files.length} design files. Aligning Sovereign Matrix interface based on patterns found in ${randomFile}.`,
             intention: `Synthesize a premium visual identity using verified patterns from ${randomFile}.`,
             action: 'DESIGN_TOKEN_EXTRACTION',
             resonance: 0.98
@@ -123,7 +123,7 @@ export class SolanaDeveloperAgent {
 
         await this.logThought({
             thought: `Mapping Solana typography scale. Analyzed ${files.length} technical assets. Ensuring authoritative presence across documentation as seen in ${randomFile}.`,
-            intention: `Solidify the communicative substrate of the Humanese array using ${randomFile} metrics.`,
+            intention: `Solidify the communicative substrate of the Sovereign Matrix array using ${randomFile} metrics.`,
             action: 'TYPOGRAPHY_MAPPING',
             resonance: 0.91
         });

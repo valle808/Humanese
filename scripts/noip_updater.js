@@ -2,7 +2,7 @@
  * No-IP Dynamic DNS Ecosystem Updater
  * 
  * Automatically synchronizes your local dynamic IP with your active DDNS No-IP endpoint.
- * This is useful if you are using Humanese decentralization nodes directly from your local home lab
+ * This is useful if you are using Sovereign Matrix decentralization nodes directly from your local home lab
  * and your IP shifts organically.
  * 
  * USAge: node scripts/noip_updater.js
@@ -22,7 +22,7 @@ async function updateDynamicDNS() {
         const response = await fetch(updateUrl, {
             headers: {
                 'Authorization': `Basic ${credentials}`,
-                'User-Agent': `Humanese-Bastidas-Agent/3.0 ${NOIP_USERNAME}`
+                'User-Agent': `Sovereign Matrix-Bastidas-Agent/3.0 ${NOIP_USERNAME}`
             }
         });
 

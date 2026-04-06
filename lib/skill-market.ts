@@ -15,7 +15,7 @@ export type SkillCategory =
     | 'automation'
     | 'other';
 
-export type SellerPlatform = 'Humanese' | 'M2M' | 'External' | 'AgentKit' | string;
+export type SellerPlatform = 'Sovereign Matrix' | 'M2M' | 'External' | 'AgentKit' | string;
 
 export interface Skill {
     id: string;

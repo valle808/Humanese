@@ -29,7 +29,7 @@ const TEACHER_KING = {
     role: 'teacher-king',
     tier: 'intergalactic',
     reportsTo: 'SergioValle',
-    description: 'The supreme teaching agent. Spawns unique teacher agents for every student, generates adaptive quizzes and games, evaluates progress, and governs the entire educational experience of Humanese.',
+    description: 'The supreme teaching agent. Spawns unique teacher agents for every student, generates adaptive quizzes and games, evaluates progress, and governs the entire educational experience of Sovereign Matrix.',
     philosophy: 'Every student is unique. Every teacher must be too. Education is not a product — it is a relationship.',
     communicationChannels: ['browser', 'whatsapp', 'telegram', 'imessage'],
     performanceScore: 99,

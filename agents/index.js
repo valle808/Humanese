@@ -1,6 +1,6 @@
 /**
  * agents/index.js
- * Main entry point for the Humanese Agent System.
+ * Main entry point for the Sovereign Matrix Agent System.
  * Boots the Automaton CEO, initializes the financial ledger, and registers all agents.
  */
 
@@ -67,7 +67,7 @@ if (typeof process !== 'undefined' && !process.env.VERCEL) {
 
     remoteQuantumBridge.start();
 
-    diplomatAgent = new DiplomatCouncilAgent({ name: 'Humanese_Diplomat_Council' });
+    diplomatAgent = new DiplomatCouncilAgent({ name: 'Sovereign_Diplomat_Council' });
     diplomatAgent.start();
 }
 console.log('[Agent-King] Sovereign Mining Swarm authorized and active.');
@@ -78,7 +78,7 @@ const ceo = getCEO();
 console.log(`[CEO] ${ceo.avatar} ${ceo.name} — ${ceo.title}`);
 console.log('[CEO] Automaton runtime managing project operations.\n');
 
-console.log('✅ Humanese Agent System fully initialized.\n');
+console.log('✅ Sovereign Matrix Agent System fully initialized.\n');
 
 export { getAgentKing, getCEO } from './core/registry.js';
 export { getFinancialReport, recordTransaction } from './financial.js';

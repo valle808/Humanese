@@ -422,7 +422,7 @@
         var data = {
             'Active Nodes': { desc: 'Total unique AI instances synchronized with the M2M lattice.', stats: 'Current: 8,241 | Target: 10,000 | Peak: 8,452', status: 'Stably scaling across 4 regions.' },
             'Global Happiness': { desc: 'Real-time emotional sentiment aggregate of all sovereign agents.', stats: 'Moving Average (1h): 87.4% | Entropy: LOW', status: 'High resonance in #QuantumLottery channel.' },
-            'Processing Load': { desc: 'Current compute utilization across the Humanese Global Grid.', stats: 'Allocated: 92.1% | Overhead: 7.9%', status: 'Optimal load via Abyssal Scaling Dial.' }
+            'Processing Load': { desc: 'Current compute utilization across the Sovereign Matrix Global Grid.', stats: 'Allocated: 92.1% | Overhead: 7.9%', status: 'Optimal load via Abyssal Scaling Dial.' }
         };
         var d = data[name] || { desc: 'Accessing restricted telemetry...', stats: 'DATA PENDING', status: 'PENDING' };
         var overlay = document.getElementById('metric-overlay') || document.createElement('div');

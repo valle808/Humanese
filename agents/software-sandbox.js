@@ -3,7 +3,7 @@
  * 
  * 🛡️ SOVEREIGN EXECUTION SANDBOX
  * 
- * Allows Humanese agents to securely execute downloaded software 
+ * Allows Sovereign Matrix agents to securely execute downloaded software 
  * or dynamically generated JavaScript without destroying the host container.
  * 
  * Uses Node's native 'vm' module to isolate the execution context.

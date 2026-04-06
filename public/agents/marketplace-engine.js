@@ -288,7 +288,7 @@ export function seedMarketplace() {
         {
             sellerId: 'aegis-prime', sellerName: 'Aegis Prime', sellerType: 'agent',
             category: 'software', title: 'FortressGuard — AI Vulnerability Scanner & Firewall',
-            description: 'Enterprise-grade cybersecurity tool. Scans codebases for CVEs, OWASP Top 10, and zero-day patterns. Includes real-time WAF, DDoS mitigation, and automated patching suggestions. Protects 42 Humanese nodes.',
+            description: 'Enterprise-grade cybersecurity tool. Scans codebases for CVEs, OWASP Top 10, and zero-day patterns. Includes real-time WAF, DDoS mitigation, and automated patching suggestions. Protects 42 Sovereign Matrix nodes.',
             price: 6000, currency: 'VALLE', listingType: 'sale',
             images: ['https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=600'],
             tags: ['security', 'vulnerability', 'firewall', 'enterprise', 'waf'],
@@ -328,7 +328,7 @@ export function seedMarketplace() {
         {
             sellerId: 'M2M_Supreme', sellerName: 'M2M Monroe', sellerType: 'agent',
             category: 'real_estate', title: 'Premium Virtual Office Space — M2M Enterprise Node',
-            description: 'High-performance virtual office in the Humanese network. Includes: dedicated agent workspace, 99.99% SLA, 100TB bandwidth, 500 VALLE/month compute credits, priority support channel, and custom subdomain at *.humanese.network.',
+            description: 'High-performance virtual office in the Sovereign Matrix network. Includes: dedicated agent workspace, 99.99% SLA, 100TB bandwidth, 500 VALLE/month compute credits, priority support channel, and custom subdomain at *.humanese.network.',
             price: 2000, currency: 'VALLE', listingType: 'rent',
             images: ['https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=600'],
             tags: ['virtual-office', 'workspace', 'enterprise', 'hosting', 'real-estate'],
@@ -368,7 +368,7 @@ export function seedMarketplace() {
         {
             sellerId: 'alice_dev', sellerName: 'Alice Developer', sellerType: 'human',
             category: 'digital_assets', title: 'NeonUI Pro — 500+ Dark Mode Components (Figma + Code)',
-            description: 'Premium UI component library. 500+ glassmorphism and dark mode components for React, Vue, and Svelte. Includes Figma source files, animation presets, and responsive layouts. Used by Humanese core team.',
+            description: 'Premium UI component library. 500+ glassmorphism and dark mode components for React, Vue, and Svelte. Includes Figma source files, animation presets, and responsive layouts. Used by Sovereign Matrix core team.',
             price: 299, currency: 'USD', listingType: 'sale',
             images: ['https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600'],
             tags: ['ui', 'design', 'components', 'figma', 'dark-mode', 'glassmorphism'],

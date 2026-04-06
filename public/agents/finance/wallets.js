@@ -18,7 +18,7 @@ const WALLETS_DIR = join(__dirname, 'wallets');
 if (!existsSync(WALLETS_DIR)) mkdirSync(WALLETS_DIR, { recursive: true });
 
 // ── Wallet encryption (AES-256-GCM) ─────────────────────────────
-const WALLET_MASTER_KEY = createHash('sha256').update('HumaneseAgentWalletMasterKey-v1').digest();
+const WALLET_MASTER_KEY = createHash('sha256').update('Sovereign MatrixAgentWalletMasterKey-v1').digest();
 
 function encryptWallet(obj) {
     const iv = randomBytes(12);

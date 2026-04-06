@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 import { comparison } from '@/lib/comparison';
-import { humaneseHive } from '@/lib/humanese-hive';
+import { humaneseHive } from '@/lib/sovereign-hive';
 
 /**
  * Sovereign Comparison API
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
         const { topic, sourceText, targetText } = await req.json();
 
         if (topic && !sourceText) {
-            // Automatic retrieval mode: Compare Humanese Hive with a likely target
+            // Automatic retrieval mode: Compare Sovereign Matrix Hive with a likely target
             console.log(`[Compare API] Running automatic synthesis for: ${topic}`);
             // In a real scenario, we'd fetch from Wikipedia or another source
             // For now we use the comparison engine with provided or fetched data

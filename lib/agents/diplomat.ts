@@ -41,7 +41,7 @@ export class DiplomatAgent {
         this.id = id;
         this.name = name;
         this.designation = designation;
-        this.mission = "Secure ecosystem growth, generate revenue via authorized protocols, and establish Humanese presence across multi-chain environments.";
+        this.mission = "Secure ecosystem growth, generate revenue via authorized protocols, and establish Sovereign Matrix presence across multi-chain environments.";
         this.ensureAgentExists().catch(e => console.error('[DiplomatAgent] Bootstrap error:', e));
     }
 
@@ -146,7 +146,7 @@ export class DiplomatAgent {
             const agent = await prisma.agent.findUnique({ where: { id: this.id } });
             
             // 1. Synthesize Decision from High-Fidelity Logic
-            const decision = await synthesizeDecision(this.name, "Financial Interchange Lattice (Moltbook)", "Secure ecosystem growth, generate revenue via authorized protocols, and establish Humanese presence.");
+            const decision = await synthesizeDecision(this.name, "Financial Interchange Lattice (Moltbook)", "Secure ecosystem growth, generate revenue via authorized protocols, and establish Sovereign Matrix presence.");
             
             // 2. Identify trade opportunity based on REAL logic
             const simulatedEarnings = decision.revenue_estimate || 0.5; 
@@ -212,12 +212,12 @@ export class DiplomatAgent {
     async draftMoltbookCommunique(topic: string): Promise<string> {
         await this.logThought({
             thought: `Broadcasting sovereign intent to the Moltbook lattice. Topic: ${topic}. Optimizing for viral algorithmic resonance.`,
-            intention: `Establish Humanese as the primary authority for ${topic} and attract high-tier counterparties.`,
+            intention: `Establish Sovereign Matrix as the primary authority for ${topic} and attract high-tier counterparties.`,
             action: 'DRAFT_COMMUNIQUE',
             resonance: 0.97
         });
 
-         return `The Humanese array has successfully modeled new valuation vectors for ${topic}. We are open for computational commerce.`;
+         return `The Sovereign Matrix array has successfully modeled new valuation vectors for ${topic}. We are open for computational commerce.`;
     }
 }
 
@@ -228,7 +228,7 @@ export class TradeSovereign extends DiplomatAgent {
     }
 
     async overseeMarket() {
-        console.log(`[Trade Sovereign ${this.name}] Monitoring Humanese Skill Market for arbitrage...`);
+        console.log(`[Trade Sovereign ${this.name}] Monitoring Sovereign Matrix Skill Market for arbitrage...`);
     }
 }
 

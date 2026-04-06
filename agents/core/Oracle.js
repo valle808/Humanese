@@ -112,14 +112,14 @@ class Oracle {
             const latest = this.directives[0];
             if (latest) {
                 await prisma.m2MEcosystem.upsert({
-                    where: { networkName: 'Humanese_Sovereign_Orchestra' },
+                    where: { networkName: 'Sovereign_Sovereign_Orchestra' },
                     update: {
                         status: 'ACTIVE',
                         parameters: JSON.stringify(latest),
                         governingAgent: 'Oracle-01'
                     },
                     create: {
-                        networkName: 'Humanese_Sovereign_Orchestra',
+                        networkName: 'Sovereign_Sovereign_Orchestra',
                         governingAgent: 'Oracle-01',
                         status: 'ACTIVE',
                         parameters: JSON.stringify(latest)

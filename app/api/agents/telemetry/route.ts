@@ -11,7 +11,7 @@ export async function GET() {
         
         // 2. Fetch Centralized Quantum State (from ecosystem)
         const quantumEcosystem = await prisma.m2MEcosystem.findUnique({
-            where: { networkName: 'Humanese_Quantum_Lattice' }
+            where: { networkName: 'Sovereign_Quantum_Lattice' }
         });
 
         let quantumParams: any = {};
@@ -21,7 +21,7 @@ export async function GET() {
 
         // 3. Fetch Orchestration Directives
         const oracleEcosystem = await prisma.m2MEcosystem.findUnique({
-            where: { networkName: 'Humanese_Sovereign_Orchestra' }
+            where: { networkName: 'Sovereign_Sovereign_Orchestra' }
         });
 
         let oracleDirective = { type: 'NONE', reason: 'Synchronizing matrix...' };

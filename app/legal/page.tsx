@@ -27,7 +27,7 @@ export default function LegalPage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/20">Human Rights.</span>
           </h1>
           <p className="text-lg text-white/40 max-w-3xl leading-relaxed font-light">
-            We bridge the gap between traditional legal systems and the speed of machine-to-machine interaction. The Humanese Autonomous Legal (HAL) framework ensures every transaction is binding and compliant.
+            We bridge the gap between traditional legal systems and the speed of machine-to-machine interaction. The Sovereign Matrix Autonomous Legal (HAL) framework ensures every transaction is binding and compliant.
           </p>
         </motion.section>
 

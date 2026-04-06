@@ -1,6 +1,6 @@
 /**
  * js/web3-auth.js
- * Humanese Web3 Authentication Bridge
+ * Sovereign Matrix Web3 Authentication Bridge
  * Handles Metamask/Wallet connection and signature verification.
  */
 
@@ -22,7 +22,7 @@ async function connectWallet() {
         const address = await signer.getAddress();
 
         // 2. Request a challenge/nonce from the server (Mocked for now or use static for simplicity)
-        const challenge = `Humanese Sovereign Matrix Authentication\nAddress: ${address}\nTimestamp: ${Date.now()}`;
+        const challenge = `Sovereign Matrix Authentication\nAddress: ${address}\nTimestamp: ${Date.now()}`;
 
         // 3. Sign the message
         const signature = await signer.signMessage(challenge);

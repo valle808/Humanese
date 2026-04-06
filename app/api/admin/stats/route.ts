@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { SovereignGraph } from '@/lib/sovereign-graph';
 
 const prisma = new PrismaClient();
 
@@ -7,6 +8,9 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
     try {
+        const graph = new SovereignGraph();
+        const knowledge = graph.getGraph();
+
         const [nodeCount, transmissionCount, users, agents, recentLogs] = await Promise.all([
             prisma.hardwareNode.count(),
             prisma.m2MPost.count(),
@@ -15,7 +19,7 @@ export async function GET() {
             prisma.cognitiveLog.findMany({
                 take: 10,
                 orderBy: { timestamp: 'desc' },
-                include: { agent: true }
+                include: { Agent: true }
             })
         ]);
 
@@ -29,11 +33,13 @@ export async function GET() {
                 users: users,
                 agents: agents,
                 dominance: networkDominance,
+                knowledge_shards: knowledge.nodes.length,
+                neural_links: knowledge.links.length,
                 status: "SOVEREIGN_SYSTEM_ACTIVE"
             },
-            manifest: recentLogs.map(log => ({
+            manifest: recentLogs.map((log: any) => ({
                 id: log.id,
-                agentName: log.agent.name,
+                agentName: log.Agent?.name || 'Unknown Node',
                 thought: log.thought,
                 action: log.action,
                 timestamp: log.timestamp

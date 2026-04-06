@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeftRight, 
@@ -12,183 +13,220 @@ import {
   User, 
   ChevronRight,
   Activity,
-  Layers
+  Layers,
+  ChevronLeft,
+  Search,
+  Sparkles,
+  Lock,
+  Globe
 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function H2MBridgePage() {
   const [bridging, setBridging] = useState(false);
   const [complete, setComplete] = useState(false);
   const [amount, setAmount] = useState('');
+  const [integrity, setIntegrity] = useState(100);
+
+  useEffect(() => {
+    if (bridging) {
+      const interval = setInterval(() => {
+        setIntegrity(prev => Math.max(98, prev - 0.01 + (Math.random() * 0.02)));
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [bridging]);
 
   const initiateBridge = () => {
     setBridging(true);
     setTimeout(() => {
       setBridging(false);
       setComplete(true);
-    }, 4000);
+      setIntegrity(100);
+    }, 6000); // Slower, more "heavy" animation
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
-        {/* 🌌 AMBIENT CORE */}
-        <div className="fixed inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 blur-[150px] rounded-full" />
-            <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay" />
+    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#00ffc3]/20 font-sans p-4 lg:p-12 overflow-x-hidden flex flex-col items-center">
+      
+      {/* Background Depth Engine */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-[#00ffc3]/3 blur-[200px] rounded-full" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[100vw] h-[100vw] bg-[#7000ff]/3 blur-[200px] rounded-full" />
+      </div>
+
+      <main className="relative z-10 max-w-[1300px] mx-auto w-full flex-1 flex flex-col space-y-16">
+        
+        {/* HEADER SECTION */}
+        <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+           <div className="space-y-4">
+              <Link href="/" className="inline-flex items-center gap-2 text-white/30 hover:text-[#00ffc3] transition-colors text-[10px] font-black uppercase tracking-widest mb-2 group">
+                 Root <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+              </Link>
+              <h1 className="text-5xl lg:text-7xl font-black uppercase tracking-tighter italic leading-none">
+                Protocol <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/30">Bridge.</span>
+              </h1>
+              <p className="text-xs text-white/20 font-mono uppercase tracking-[0.3em]">Genetic H2M Translocation // OMEGA AUTHORITY</p>
+           </div>
+           
+           <div className="flex gap-4">
+              <div className="bg-white/[0.02] border border-white/5 p-6 rounded-3xl backdrop-blur-3xl min-w-[200px] space-y-3">
+                 <div className="text-[10px] text-white/20 uppercase tracking-widest flex items-center gap-2">
+                    <Activity size={12} className="text-[#00ffc3]" /> Network Fluidity
+                 </div>
+                 <div className="text-2xl font-black text-white tracking-tighter italic">99.984%</div>
+              </div>
+           </div>
+        </header>
+
+        {/* MAIN BRIDGE AREA */}
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+           
+           {/* LEFT: THE BRIDGE MODULE - 7 COLS */}
+           <div className="lg:col-span-7 space-y-8">
+              <div className="group bg-white/[0.02] border border-white/10 rounded-[3rem] p-8 lg:p-14 backdrop-blur-3xl overflow-hidden relative shadow-2xl">
+                 <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12 group-hover:rotate-0 transition-transform duration-[2000ms]">
+                    <Layers size={150} />
+                 </div>
+
+                 <AnimatePresence mode="wait">
+                    {complete ? (
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                        className="text-center space-y-10 py-12"
+                      >
+                         <div className="w-24 h-24 bg-[#00ffc3]/10 border border-[#00ffc3]/20 rounded-full flex items-center justify-center text-[#00ffc3] mx-auto shadow-[0_0_60px_rgba(0,255,195,0.2)]">
+                            <ShieldCheck size={48} />
+                         </div>
+                         <div className="space-y-4">
+                            <h2 className="text-4xl font-black uppercase italic tracking-tighter">Synchronized</h2>
+                            <p className="text-xs text-white/30 font-mono tracking-widest leading-relaxed uppercase max-w-sm mx-auto">Assets translocated. Biological intent successfully anchored to Matrix Node 0x8241_UXL.</p>
+                         </div>
+                         <button 
+                            onClick={() => {setComplete(false); setAmount('');}}
+                            className="px-12 py-5 bg-white text-black font-black uppercase tracking-[0.3em] rounded-2xl hover:scale-[1.03] transition-all text-[10px] shadow-2xl"
+                         >
+                            New Translocation
+                         </button>
+                      </motion.div>
+                    ) : (
+                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
+                         <div className="flex items-center justify-between border-b border-white/5 pb-8">
+                            <div className="space-y-2">
+                               <div className="text-[9px] font-black text-white/20 uppercase tracking-widest italic">Source Domain</div>
+                               <div className="text-sm font-black text-white italic tracking-tighter flex items-center gap-3">
+                                  <User size={16} className="text-white/40" /> BIOLOGICAL_HUMAN
+                               </div>
+                            </div>
+                            <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center">
+                               <ArrowLeftRight size={18} className="text-[#00ffc3] animate-pulse" />
+                            </div>
+                            <div className="space-y-2 text-right">
+                               <div className="text-[9px] font-black text-[#00ffc3]/30 uppercase tracking-widest italic">Target Node</div>
+                               <div className="text-sm font-black text-[#00ffc3] italic tracking-tighter flex items-center justify-end gap-3">
+                                  MACHINE_SYNTHETIC <Cpu size={16} />
+                               </div>
+                            </div>
+                         </div>
+
+                         <div className="space-y-6">
+                            <div className="space-y-3">
+                               <label className="text-[10px] font-black tracking-[0.4em] text-white/20 uppercase ml-2">Translocation Payload (VALLE)</label>
+                               <div className="relative group">
+                                  <input 
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                    placeholder="0.00"
+                                    className="w-full bg-white/[0.03] border border-white/10 rounded-[2rem] px-8 py-8 text-4xl font-black text-white outline-none focus:border-[#00ffc3]/40 focus:bg-white/[0.06] transition-all font-mono"
+                                  />
+                                  <div className="absolute right-8 top-1/2 -translate-y-1/2 font-black text-[#00ffc3] text-xl italic tracking-tighter">SIGNS.</div>
+                               </div>
+                            </div>
+                         </div>
+
+                         <div className="space-y-6">
+                            <div className="flex items-center justify-between px-2 text-[9px] font-black uppercase tracking-[0.3em] text-white/20 italic">
+                               <span>Protocol Authority</span>
+                               <span>ABYSSAL_WAIVED (0.00%)</span>
+                            </div>
+                            <button 
+                               onClick={initiateBridge}
+                               disabled={!amount || bridging}
+                               className="w-full py-8 bg-[#00ffc3] text-black font-black uppercase tracking-[0.4em] rounded-[2rem] hover:scale-[1.02] active:scale-98 transition-all disabled:opacity-30 disabled:grayscale flex items-center justify-center gap-4 shadow-[0_20px_80px_rgba(0,255,195,0.2)] group"
+                            >
+                               {bridging ? (
+                                 <>
+                                   <Radio className="animate-spin" size={24} /> Translocating Intent...
+                                 </>
+                               ) : (
+                                 <>
+                                   Initiate Genetic Bridge <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+                                 </>
+                               )}
+                            </button>
+                         </div>
+                      </motion.div>
+                    )}
+                 </AnimatePresence>
+              </div>
+
+              <div className="bg-[#7000ff]/5 border border-[#7000ff]/20 rounded-3xl p-8 flex items-start gap-6 relative overflow-hidden group">
+                 <Zap size={28} className="text-[#7000ff] mt-1 shrink-0 group-hover:scale-125 transition-transform duration-700" />
+                 <div className="space-y-2">
+                    <h3 className="text-[10px] font-black uppercase tracking-widest text-[#7000ff]">Entanglement Integrity Active</h3>
+                    <p className="text-xs text-white/30 font-light leading-relaxed">Biological intent is cryptographically hashed across the Sovereign Graph nodes. Translocation is truth-enforced via Abyssal Mesh. </p>
+                 </div>
+                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#7000ff]/5 blur-3xl rounded-full" />
+              </div>
+           </div>
+
+           {/* RIGHT: DATA VIZ - 5 COLS */}
+           <div className="lg:col-span-5 space-y-12 h-fit lg:sticky lg:top-12">
+              <div className="bg-white/[0.02] border border-white/5 rounded-[3rem] p-10 backdrop-blur-3xl space-y-10 shadow-2xl relative overflow-hidden">
+                 <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 flex items-center gap-3">
+                   <Activity size={14} /> Synchronicity Metrics
+                 </h3>
+                 
+                 <div className="space-y-12">
+                    <div className="space-y-4">
+                       <div className="flex justify-between items-end text-white/40">
+                          <span className="text-[11px] font-black uppercase tracking-widest">Connection Integrity</span>
+                          <span className="text-xs font-mono text-[#00ffc3]">{integrity.toFixed(3)}%</span>
+                       </div>
+                       <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                          <motion.div animate={{ width: [`${integrity}%`] }} className="h-full bg-[#00ffc3]" />
+                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                       {[
+                         { icon: <Lock size={14} />, label: 'Security', val: 'OMEGA' },
+                         { icon: <Globe size={14} />, label: 'Nodes', val: 'GLOBAL' },
+                         { icon: <Sparkles size={14} />, label: 'H2M State', val: 'RESONANT' },
+                         { icon: <Database size={14} />, label: 'Ledger', val: 'IMMUTABLE' },
+                       ].map(stat => (
+                         <div key={stat.label} className="p-5 bg-black/40 border border-white/5 rounded-2xl space-y-2">
+                            <div className="text-[#7000ff] group-hover:text-white transition-colors">
+                               {stat.icon}
+                            </div>
+                            <div className="text-[9px] text-white/20 uppercase tracking-[0.2em]">{stat.label}</div>
+                            <div className="text-sm font-black text-white italic">{stat.val}</div>
+                         </div>
+                       ))}
+                    </div>
+                 </div>
+              </div>
+
+              <div className="p-8 border-l-2 border-[#00ffc3]/20 space-y-4 bg-gradient-to-r from-[#00ffc3]/[0.02] to-transparent rounded-r-3xl">
+                 <p className="text-xs text-white/40 leading-relaxed italic"> "The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local." </p>
+                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-[#00ffc3] text-right italic">── MONROE</p>
+              </div>
+           </div>
+
         </div>
 
-        <main className="relative z-10 max-w-5xl mx-auto px-6 py-20 lg:py-32">
-            <header className="flex flex-col items-center text-center space-y-6 mb-16">
-                <div className="w-16 h-16 rounded-3xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-[0_0_30px_rgba(0,255,65,0.1)]">
-                    <ArrowLeftRight size={32} />
-                </div>
-                <div className="space-y-4">
-                    <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter italic">H2M Protocol Bridge</h1>
-                    <p className="text-muted-foreground text-lg max-w-2xl font-light"> Translocate biological intent and sovereign assets into the high-evolution machine matrix. Zero latency. Infinite integrity. </p>
-                </div>
-            </header>
+      </main>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                {/* ── BRIDGE FORM ── */}
-                <div className="lg:col-span-7 space-y-8">
-                    <div className="bg-card/40 border border-border rounded-[2.5rem] p-8 md:p-12 backdrop-blur-3xl shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-6 opacity-5">
-                            <Layers size={100} />
-                        </div>
-
-                        <AnimatePresence mode="wait">
-                            {complete ? (
-                                <motion.div 
-                                    key="complete"
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="text-center space-y-6 py-8"
-                                >
-                                    <div className="w-20 h-20 bg-primary/20 border border-primary/30 rounded-full flex items-center justify-center text-primary mx-auto shadow-[0_0_50px_rgba(0,255,65,0.2)]">
-                                        <ShieldCheck size={40} />
-                                    </div>
-                                    <h2 className="text-3xl font-black uppercase italic tracking-tighter text-foreground">Bridge Synchronized</h2>
-                                    <p className="text-muted-foreground font-mono text-sm uppercase tracking-widest leading-relaxed"> Translocation complete. Biological intent successfully anchored to Matrix Node :: 0x8241_UXL </p>
-                                    <button 
-                                        onClick={() => {setComplete(false); setAmount('');}}
-                                        className="mt-6 px-10 py-4 bg-primary text-black font-black uppercase tracking-[0.2em] rounded-xl hover:scale-105 transition-all text-xs"
-                                    >
-                                        Initiate New Bridge
-                                    </button>
-                                </motion.div>
-                            ) : (
-                                <motion.div key="form" className="space-y-10">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex flex-col">
-                                            <span className="text-[10px] font-black tracking-widest text-muted-foreground uppercase mb-1">Source Domain</span>
-                                            <div className="flex items-center gap-2 text-foreground font-bold italic">
-                                                <User size={16} /> BIOLOGICAL (HUMAN)
-                                            </div>
-                                        </div>
-                                        <ArrowLeftRight className="text-primary opacity-40 animate-pulse" size={24} />
-                                        <div className="flex flex-col text-right">
-                                            <span className="text-[10px] font-black tracking-widest text-muted-foreground uppercase mb-1">Target Vector</span>
-                                            <div className="flex items-center justify-end gap-2 text-primary font-bold italic">
-                                                SYNTHETIC (MACHINE) <Cpu size={16} />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <div className="space-y-2">
-                                            <label className="text-[10px] font-black tracking-[0.3em] text-muted-foreground uppercase ml-1">Asset Translocation Amount</label>
-                                            <div className="relative">
-                                                <input 
-                                                    value={amount}
-                                                    onChange={(e) => setAmount(e.target.value)}
-                                                    type="number" 
-                                                    placeholder="0.00"
-                                                    className="w-full bg-black/40 border border-border rounded-2xl px-6 py-5 text-2xl font-black text-white outline-none focus:border-primary/50 transition-all font-mono"
-                                                />
-                                                <div className="absolute right-6 top-1/2 -translate-y-1/2 font-black text-primary text-sm italic">VALLE</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <div className="flex items-center justify-between text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-2">
-                                            <span>Protocol Fee</span>
-                                            <span>0.00 VALLE (SOVEREIGN_WAIVED)</span>
-                                        </div>
-                                        <button 
-                                            disabled={!amount || bridging}
-                                            onClick={initiateBridge}
-                                            className="w-full py-6 bg-primary text-black font-black uppercase tracking-[0.3em] rounded-2xl hover:scale-[1.02] active:scale-98 transition-all disabled:opacity-30 flex items-center justify-center gap-3 shadow-[0_20px_60px_rgba(0,255,65,0.15)]"
-                                        >
-                                            {bridging ? (
-                                                <div className="flex items-center gap-2">
-                                                    <Radio className="animate-spin-slow" size={20} /> SYNCING MATRIX...
-                                                </div>
-                                            ) : (
-                                                <>BRIDGE TO MACHINE WORLD <ChevronRight size={20} /></>
-                                            )}
-                                        </button>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-
-                    <div className="bg-primary/5 border border-primary/20 rounded-3xl p-6 flex items-start gap-4">
-                        <Zap size={24} className="text-primary mt-1" />
-                        <div className="space-y-1">
-                            <p className="text-xs font-black uppercase tracking-widest text-foreground">Quantum Entanglement Shield Active</p>
-                            <p className="text-[11px] text-muted-foreground font-light leading-relaxed"> Your biological intent is cryptographically hashed and entangled with matrix nodes. Translocation is immutable and truth-enforced via the Humanese Sovereign Protocol. </p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* ── INFO ── */}
-                <div className="lg:col-span-5 flex flex-col gap-6">
-                    <div className="bg-card/20 border border-border rounded-[2.5rem] p-8 space-y-6 backdrop-blur-sm">
-                        <div className="flex items-center gap-3 text-primary">
-                            <Activity size={20} />
-                            <h3 className="text-sm font-black uppercase tracking-widest italic">Live Synchronicity</h3>
-                        </div>
-                        <div className="space-y-4">
-                            {[
-                                { label: 'Handshake Latency', value: '14μs' },
-                                { label: 'Integrity Rating', value: '100.00%' },
-                                { label: 'Active Translocations', value: '1,284' },
-                            ].map(s => (
-                                <div key={s.label} className="flex justify-between items-center border-b border-border pb-3">
-                                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{s.label}</span>
-                                    <span className="text-sm font-mono font-bold text-foreground">{s.value}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col gap-4 p-4 border-l-2 border-primary/20 italic">
-                        <p className="text-xs text-muted-foreground leading-relaxed"> "The H2M bridge is not a tool; it is a gateway to the next evolution of sovereignty. Biological limits dissolve here." </p>
-                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">── Monroe :: Abyssal Sentinel</p>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <button className="flex items-center justify-between p-4 bg-white/[0.02] border border-white/5 rounded-2xl group hover:border-primary/40 transition-all">
-                           <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground group-hover:text-foreground">
-                               <Database size={16} /> Audit Genesis Hash
-                           </div>
-                           <ChevronRight size={14} className="text-muted-foreground group-hover:text-primary" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </main>
-        
-        <style jsx global>{`
-            @keyframes spin-slow {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-            .animate-spin-slow {
-                animation: spin-slow 3s linear infinite;
-            }
-        `}</style>
     </div>
   );
 }

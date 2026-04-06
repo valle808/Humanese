@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const WALLETS_DIR = './agents/wallets';
-const MASTER_KEY_STR = 'HumaneseAgentWalletMasterKey-v1';
+const MASTER_KEY_STR = 'Sovereign MatrixAgentWalletMasterKey-v1';
 const MASTER_KEY = crypto.createHash('sha256').update(MASTER_KEY_STR).digest();
 
 function decryptWallet(enc) {

@@ -1,5 +1,5 @@
 /**
- * Humanese Smart AdSense Agent
+ * Sovereign Matrix Smart AdSense Agent
  * Dynamically manages ad placements based on user engagement and "Hot Zones".
  */
 

@@ -1,7 +1,7 @@
 {
-    "name": "humanese-v3",
+    "name": "sovereign-intelligence-omega",
     "version": "1.0.0",
-    "description": "Humanese - Universal Language Model with AI & Crypto",
+    "description": "Sovereign Matrix - Universal Language Model with AI & Crypto",
     "type": "module",
     "engines": {
         "node": "20.x"
@@ -59,6 +59,7 @@
         "prisma": "^6.0.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "react-force-graph-2d": "^1.29.1",
         "react-force-graph-3d": "^1.29.1",
         "react-markdown": "^10.1.0",
         "rehype-highlight": "^7.0.2",

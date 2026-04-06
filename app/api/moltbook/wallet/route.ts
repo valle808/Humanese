@@ -8,7 +8,7 @@ const valleEngine = new ValleCryptoEngine();
 
 /**
  * POST /api/moltbook/wallet
- * Generates or retrieves a Humanese native wallet (VALLE) for a Moltbook user.
+ * Generates or retrieves a Sovereign Matrix native wallet (VALLE) for a Moltbook user.
  * Expects { email, name, moltbookId }
  */
 export async function POST(req: Request) {
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
                     // Default values defined in schema
                 }
             });
-            console.log(`[Humanese Identity] Minted new citizen from Moltbook: ${email}`);
+            console.log(`[Sovereign Matrix Identity] Minted new citizen from Moltbook: ${email}`);
         }
 
         // 2. Resolve or Create Wallet

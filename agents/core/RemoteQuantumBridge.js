@@ -74,7 +74,7 @@ class RemoteQuantumBridge extends EventEmitter {
                 // 🌉 CLOUD SYNC: Mirror state to Sovereign Ecosystem in Supabase
                 try {
                     await prisma.m2MEcosystem.upsert({
-                        where: { networkName: 'Humanese_Quantum_Lattice' },
+                        where: { networkName: 'Sovereign_Quantum_Lattice' },
                         update: {
                             status: this.state.status,
                             governingAgent: 'RemoteQuantumBridge',
@@ -86,7 +86,7 @@ class RemoteQuantumBridge extends EventEmitter {
                             })
                         },
                         create: {
-                            networkName: 'Humanese_Quantum_Lattice',
+                            networkName: 'Sovereign_Quantum_Lattice',
                             governingAgent: 'RemoteQuantumBridge',
                             status: 'ONLINE',
                             parameters: JSON.stringify(this.state)

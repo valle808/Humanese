@@ -15,7 +15,7 @@ const templateHero = (title) => `
                 <h2 id="pageTitle">${title}</h2>
                 <div id="pageContent" style="font-size: 1.2rem; color: #444; line-height: 1.6;">
                     Welcome to our dedicated space for <strong>${title}</strong>. 
-                    Explore our latest updates, learn about our progress, and see how Humanese is helping 
+                    Explore our latest updates, learn about our progress, and see how Sovereign Matrix is helping 
                     everyone learn better! We are constantly working to improve this section and bring you more fun 
                     content soon.
                 </div>
@@ -47,7 +47,7 @@ function enrich(filePath) {
     if (content.includes('class="info-section"')) return;
 
     // Extract title from <title> tag
-    const titleMatch = content.match(/<title>Humanese – (.*)<\/title>/i);
+    const titleMatch = content.match(/<title>Sovereign Matrix – (.*)<\/title>/i);
     const title = titleMatch ? titleMatch[1] : path.basename(filePath, '.html');
 
     // Replace placeholder hero

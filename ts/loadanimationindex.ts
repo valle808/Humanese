@@ -22,7 +22,7 @@ const animationLoader = (id: string, path: string, autoplays: boolean = false): 
 
     const img = document.createElement("img");
     img.src = imgPath;
-    img.alt = "Humanese Mascot";
+    img.alt = "Sovereign Matrix Mascot";
     img.style.width = "100%";
     img.style.maxWidth = "300px";
     img.style.height = "auto";

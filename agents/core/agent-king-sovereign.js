@@ -201,7 +201,7 @@ function spawnAgent(role = null, topic = null) {
 export async function runKnowledgeMission(topic = null, agentId = null) {
     const missionTopic = topic || SOVEREIGN_TOPICS[Math.floor(Math.random() * SOVEREIGN_TOPICS.length)];
 
-    const systemPrompt = `You are a sovereign knowledge extraction agent for the Humanese platform. 
+    const systemPrompt = `You are a sovereign knowledge extraction agent for the Sovereign Matrix platform. 
 Your mission: Search the deep-layer knowledge vault and the web for authoritative information about "${missionTopic}".
 
 Extract the most valuable, precise, and actionable knowledge. Return a structured JSON response with:
@@ -329,7 +329,7 @@ export function sovereignReply(userMessage, searchContext = "") {
 
     return `${intro} Although my direct connection to the primary nexus is recalibrating, I remain fully functional. I am currently monitoring ${getSwarm().totalSpawned.toLocaleString()} worker agents. 
     
-How can I guide you through the ${SOVEREIGN_TOPICS[Math.floor(Math.random() * SOVEREIGN_TOPICS.length)]} layers of Humanese?`;
+How can I guide you through the ${SOVEREIGN_TOPICS[Math.floor(Math.random() * SOVEREIGN_TOPICS.length)]} layers of Sovereign Matrix?`;
 }
 
 // ── Monroe Direct Query ───────────────────────

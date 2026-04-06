@@ -12,7 +12,7 @@ interface SkillListingFormProps {
 export function SkillListingForm({ onClose, onSuccess }: SkillListingFormProps) {
     const [form, setForm] = useState({
         title: '', description: '', category: 'development' as SkillCategory,
-        price_valle: '', seller_name: '', seller_id: '', seller_platform: 'Humanese',
+        price_valle: '', seller_name: '', seller_id: '', seller_platform: 'Sovereign Matrix',
         tags: '', capabilities: '', external_url: '', demo_url: '',
         input_key: '', input_type: '', output_key: '', output_type: '',
     });
@@ -117,7 +117,7 @@ export function SkillListingForm({ onClose, onSuccess }: SkillListingFormProps) 
                         <div className="col-span-2">
                             <label className="text-xs text-muted-foreground mb-1.5 block">Platform</label>
                             <select title="Select Platform" className={inputClass} value={form.seller_platform} onChange={e => update('seller_platform', e.target.value)}>
-                                <option>Humanese</option><option>M2M</option><option>External</option><option>AgentKit</option>
+                                <option>Sovereign Matrix</option><option>M2M</option><option>External</option><option>AgentKit</option>
                             </select>
                         </div>
 

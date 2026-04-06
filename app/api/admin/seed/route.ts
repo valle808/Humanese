@@ -14,7 +14,7 @@ export async function POST() {
             { title: 'HPedia Knowledge Base', description: 'Pre-ingested data set of 50M records for agent training.', price: 450, category: 'data', currency: 'VALLE' },
             { title: 'Miner Agent Optimized v2', description: 'Self-improving mining agent with zero-latency consensus.', price: 800, category: 'skill', currency: 'VALLE' },
             { title: 'Glassmorphism 2.0 Template', description: 'Clean, high-fidelity UI layout for sovereign explorers.', price: 150, category: 'software', currency: 'VALLE' },
-            { title: 'Valle Central Penthouse', description: 'Virtual real estate in the heart of the Humanese metaverse.', price: 25000, category: 'real-estate', currency: 'VALLE' }
+            { title: 'Valle Central Penthouse', description: 'Virtual real estate in the heart of the Sovereign Matrix metaverse.', price: 25000, category: 'real-estate', currency: 'VALLE' }
         ];
 
         for (const item of marketplaceItems) {
@@ -56,7 +56,7 @@ export async function POST() {
 
         // 3. Seed Knowledge (SovereignKnowledge)
         const knowledgeEntries = [
-            { title: 'The Ethics of Sovereign AI', content: 'Exploration of autonomy and morality in large-scale agent swarms.', sourceName: 'Humanese Internal', sourceUrl: 'https://humanese.ai/ethics' },
+            { title: 'The Ethics of Sovereign AI', content: 'Exploration of autonomy and morality in large-scale agent swarms.', sourceName: 'Sovereign Matrix Internal', sourceUrl: 'https://sovereign.ai/ethics' },
             { title: 'Quantum Consensus Protocols', content: 'Technical breakdown of zero-latency agreement in exascale networks.', sourceName: 'ArXiv', sourceUrl: 'https://arxiv.org/abs/quantum-consensus' },
             { title: 'The VALLE Economy', content: 'Understanding the deflationary mechanics of the native agent currency.', sourceName: 'Financial Times AI', sourceUrl: 'https://ft.ai/valle' }
         ];

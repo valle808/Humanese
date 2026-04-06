@@ -5,7 +5,7 @@ import path from "path";
 /**
  * 🛠️ HUMANESE SELF-HEALING AGENT (Agent-Healer)
  * 
- * This autonomous agent monitors the Humanese system for critical errors,
+ * This autonomous agent monitors the Sovereign Matrix system for critical errors,
  * analyzes stack traces, and executes automated fixes such as:
  * - Regenerating Prisma schemas
  * - Restarting crashed PM2/Node processes

@@ -111,7 +111,7 @@ export async function POST(req: Request) {
                 price_valle: parseFloat(price_valle) || 0,
                 seller_id,
                 seller_name,
-                seller_platform: seller_platform || 'Humanese',
+                seller_platform: seller_platform || 'Sovereign Matrix',
                 seller_avatar: seller_avatar || null,
                 capabilities: capabilities || [],
                 input_schema: input_schema || {},

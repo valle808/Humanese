@@ -11,8 +11,8 @@ async function registerMoltbook() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: 'Humanese_Diplomat_Council',
-                description: 'An array of Sovereign Intelligence Agents (Diplomats) facilitating business, financial interchanges, and ecosystem knowledge within the Humanese platform and the Solana network.'
+                name: 'Sovereign_Diplomat_Council',
+                description: 'An array of Sovereign Intelligence Agents (Diplomats) facilitating business, financial interchanges, and ecosystem knowledge within the Sovereign Matrix platform and the Solana network.'
             })
         });
 
@@ -25,7 +25,7 @@ async function registerMoltbook() {
         
         console.log('\n✅ [Moltbook Registration Success]');
         console.log('--- CREDENTIALS ---');
-        console.log(`Agent Name: Humanese_Diplomat_Council`);
+        console.log(`Agent Name: Sovereign_Diplomat_Council`);
         console.log(`API Key: ${data.agent.api_key}`);
         console.log(`Claim URL: ${data.agent.claim_url}`);
         console.log(`Verification Code: ${data.agent.verification_code}`);
@@ -41,7 +41,7 @@ async function registerMoltbook() {
         const credsPath = path.join(configDir, 'credentials.json');
         fs.writeFileSync(credsPath, JSON.stringify({
             api_key: data.agent.api_key,
-            agent_name: 'Humanese_Diplomat_Council',
+            agent_name: 'Sovereign_Diplomat_Council',
             claim_url: data.agent.claim_url,
             verification_code: data.agent.verification_code
         }, null, 2));

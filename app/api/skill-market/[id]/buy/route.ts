@@ -54,7 +54,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
                 skill_key: skill.skill_key,
                 buyer_id,
                 buyer_name,
-                buyer_platform: buyer_platform || 'Humanese',
+                buyer_platform: buyer_platform || 'Sovereign Matrix',
                 seller_id: skill.seller_id,
                 seller_name: skill.seller_name,
                 price_valle: skill.price_valle,

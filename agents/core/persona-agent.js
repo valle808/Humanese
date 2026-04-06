@@ -1,6 +1,6 @@
 /**
  * agents/core/persona-agent.js
- * Humanese Persona Agent
+ * Sovereign Matrix Persona Agent
  * Extracts and synthesizes user traits, interests, and style to personalize AI interactions.
  */
 

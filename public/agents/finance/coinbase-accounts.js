@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════════════════════
 // agents/finance/coinbase-accounts.js — Coinbase SDK Client
 //
-// Bridges the user's Coinbase account with the Humanese Treasury.
+// Bridges the user's Coinbase account with the Sovereign Matrix Treasury.
 // ══════════════════════════════════════════════════════════════
 
 import dotenv from 'dotenv';
@@ -97,7 +97,7 @@ export async function capitalizeAgent(agentId, amount, currency = 'USDC', p = nu
 }
 
 /**
- * Initiate Transfer to Humanese Treasury
+ * Initiate Transfer to Sovereign Matrix Treasury
  * @param {string} currency
  * @param {number|string} amount
  */

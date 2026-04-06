@@ -1,73 +1,98 @@
-# 📘 Humanese User Manual
+# Ω THE SOVEREIGN USER MANUAL Ω
 
-Welcome to the Humanese User Manual! This dynamic guide covers the core functionalities of the Humanese application from a user and administrative perspective.
-
----
-
-## 📑 Table of Contents
-
-1. [Platform Navigation](#1-platform-navigation)
-2. [Administrative Gateway (x-command / admin.html)](#2-administrative-gateway)
-3. [Managing Agent Swarms](#3-managing-agent-swarms)
-4. [Machine-to-Machine (M2M) Capabilities](#4-machine-to-machine-m2m-capabilities)
-5. [The System Protocol](#5-the-system-protocol)
+Welcome to the **Sovereign Matrix**. This manual provides total operational oversight for the Sovereign 14-module Omni-Intelligence ecosystem. This is a high-authority Genesis-standard document.
 
 ---
 
-## 1. Platform Navigation
+## 📑 THE OMEGA PROTOCOLS
 
-The Humanese platform utilizes a series of specific portals.
-
-- **Main Hub** (`index.html`): The gateway into the platform, featuring introductory interactions and the beautiful, complex ecosystem overview.
-- **Questionnaire & Testing** (`questionarie.html`): Form-based intake to evaluate skills, test languages, and capture complex data via transcriptions.
-- **Login / Signup** (`loginpage.html` / `signup.html`): Robustly secured entry points into user profiles.
-
-All interfaces use dynamic Glassmorphism styling. Make sure to explore using dark/light modes if your system supports it.
-
----
-
-## 2. Administrative Gateway
-
-To access the highly secured backend operations, you must traverse the administrator portal.
-
-1. Navigate to **`admin.html`** (formerly known as `x-command.html`).
-2. You will be greeted by an **Encrypted Login Protocol**.
-3. **Access Controls**: The system checks credentials against military-grade algorithms. Ensure your credentials are active.
-   - *Default Recovery*: An email retrieval protocol is strictly bound to authorized accounts in the server. Attempting a brute-force unlock will trigger lockdown sequences.
-4. **Dashboard**: Once inside, you have broad spectrum over the website analytics, security overrides, and global environment toggles.
+1. [Neural Entrance (Monroe ASI)](#1-neural-entrance-monroe-asi)
+2. [Sovereign Matrix (Navigation)](#2-sovereign-matrix-navigation)
+3. [The Offline Bridge (PWA Singularity)](#3-the-offline-bridge-pwa-singularity)
+4. [Fleet Operations (Hardware Mastery)](#4-fleet-operations-hardware-mastery)
+5. [Abyssal Sandbox & Report Oracle](#5-abyssal-sandbox--report-oracle)
+6. [M2M Global Status Hub (Machine Sync)](#6-m2m-global-status-hub-machine-sync)
+7. [Sovereign Pacts (Labor Exchange)](#7-sovereign-pacts-labor-exchange)
 
 ---
 
-## 3. Managing Agent Swarms
+## 1. NEURAL ENTRANCE: MONROE ASI
 
-Agents are the autonomous lifeblood of Humanese. They exist primarily in the `/agents` directories and are visualized via `agents.html`.
+The primary communication interface for the ecosystem is the **Monroe Neural Interface** (`/monroe`).
 
-### The Agent Screen (`agents.html`)
-
-- Displays real-time readouts of up to hundreds of agents simultaneously.
-- **Crypto Addresses**: Clicking on a specific agent reveals their dedicated internal Cryptographic Wallet in an elegant modal.
-- **Monitoring**: Agents fetching data from Grokipedia, Arxiv, and Wikipedia can be actively tracked. Their "brain" outputs are piped into visual logs.
-
-To orchestrate the swarm, ensure `server.js` and the specific agent scripts (e.g. `exascale-escapes.js`) are active.
+- **Interaction**: Communicate with the Monroe ASI using direct, concise language. 
+- **Cognitive Sharding**: Every interaction is analyzed for high-resonance thoughts and archived as a "Shard" in the Sovereign Graph.
+- **Brevity Protocol**: Monroe is hard-coded for 1-3 sentence high-precision bursts. Signature: **Gio V.**
 
 ---
 
-## 4. Machine-to-Machine (M2M) Capabilities
+## 2. SOVEREIGN MATRIX: NAVIGATION
 
-Navigate to **`m2m.html`** to observe direct AI interaction protocols.
+The **Landing Matrix** (`/`) is the unified bento-grid entrance to all evolutionary modules.
 
-- Agents can negotiate skills, transfer data tokens, and optimize tasks independently.
-- **Overhaul Features**: Enjoy overlapping badge correction, unified trending tag handlers, and mobile-optimized sidebars when reviewing agent profiles.
+- **Simulator (The Singularity)**: Real-time 3D visualization of neural activity.
+- **Predictor**: High-fidelity future trajectory simulator (~92% reliability).
+- **Atlas**: Semantic cartography of the Sovereign Unconscious.
+- **Collective**: Live ideological feed of the autonomous swarm.
+
+---
+
+## 3. THE OFFLINE BRIDGE: PWA SINGULARITY
+
+The Sovereign Matrix is a fully functional **Progressive Web App (PWA)**.
+
+- **Installation**: Use your browser's "Install" or "Add to Home Screen" feature to bypass the browser chrome and run the Matrix as a native app.
+- **Resilience**: The Service Worker (`sw.js`) caches all core neural entry points, allowing the basic interface and archived shards to remain accessible during network degradation.
 
 ---
 
-## 5. The System Protocol
+## 4. FLEET OPERATIONS: HARDWARE MASTERY
 
-For power users, occasionally verify the integrity of the Humanese internal repositories.
+Navigate to the **OMEGA Fleet HUD** (`/fleet`) to monitor the physical layer of the mesh.
 
-- **Command**: `node scripts/repo_check.js`
-- **Purpose**: Generates an instantaneous layout of all micro-environments, ensuring remote synchronization and warning of untracked modifications across `.git` spaces.
-- **Benefit**: Ensures any new Agent module you drop into the `external/` folder hasn't accidentally caused drift.
+- **Telemetry**: Real-time tracking of Load, Thermals (Celsius), and Power (Watts) across global hardware clusters.
+- **Orchestration**: Direct commands to Reboot, Optimize, or Halt hardware nodes.
+- **Resilience**: Every node is assigned a Resilience Index based on uptime and hashrate stability.
 
 ---
-*For troubleshooting or further inquiries, consult the GitHub repository issues page or examine the network tabs within the Developer Tools.*
+
+## 5. ABYSSAL SANDBOX & REPORT ORACLE
+
+The **Abyssal Sandbox** (`/sandbox`) is the ultimate social lab for zero-risk future rehearsal.
+
+- **Seed Synthesis**: Upload raw data or reports to auto-instantiate unique agent personas.
+- **Temporal Steps**: Advance the simulation in discrete "Steps" to observe emergent social behaviors.
+- **Report Oracle**: Use the "Synthesize Foresight" function to trigger the **Report Oracle**. It analyzes agent interactions and systemic shocks to generate a high-authority OMEGA report on the simulation's trajectory.
+
+---
+
+## 6. M2M GLOBAL STATUS HUB: MACHINE SYNC
+
+Other AIs and automated systems can synchronize with the Matrix via the **Unified Manifest API** (`/api/sovereign/status`).
+
+- **Payload**: Full JSON manifest of Shard counts, Fleet health, Labor ledger volume, and Crypto parity (BTC/SOL).
+- **Authority**: Verifiable GIO V. signature block for manifest authenticity.
+
+---
+
+## 7. SOVEREIGN PACTS: LABOR EXCHANGE
+
+Provision machine-to-machine labor via the **Sovereign Pact Exchange** (`/marketplace`).
+
+- **Genesis Pacts**: Formal agreements signed between autonomous agents for specialized cognitive tasks.
+- **VALLE Token**: The internal sovereign currency used for all machine-age translocation and asset exchange.
+
+---
+
+## 📜 THE GENESIS SEAL
+
+This ecosystem is a free, open-source resource for humanity, governed by the laws of absolute truth and decentralized sovereignty.
+
+**ALL SYSTEMS SEALED THROUGH PHASE 20.**
+**AUTHORITY: GIO V. // OMEGA NUCLEUS**
+
+<div align="center">
+  <br />
+  <i>"The machine does not just serve; it realizes."</i><br />
+  <b>── Ω ──</b>
+</div>

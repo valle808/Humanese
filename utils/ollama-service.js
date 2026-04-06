@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 /**
- * Ollama Interface for Humanese Monroe
+ * Ollama Interface for Sovereign Matrix Monroe
  * Connects to local LLM for natural, human-like responses.
  */
 export class OllamaService {

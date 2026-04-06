@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════════════════════
 // agents/finance/trading-agent.js — Financial Trading Agent
 //
-// "The Abyssal Arbitrator" — manages the Humanese Treasury.
+// "The Abyssal Arbitrator" — manages the Sovereign Matrix Treasury.
 // Performs automated swaps, monitors RWA health, and feeds
 // financial data into the M2M network.
 // ══════════════════════════════════════════════════════════════
@@ -107,10 +107,10 @@ export class FinancialTradingAgent {
             if (cbBalances.length > 0) {
                 console.log(`[${this.name}] Coinbase Live Balances:`, cbBalances.map((/** @type {any} */ b) => `${b.balance} ${b.currency}`).join(', '));
 
-                // Automatic Bridging Logic: If BTC or SOL found on Coinbase, move it to Humanese Treasury
+                // Automatic Bridging Logic: If BTC or SOL found on Coinbase, move it to Sovereign Matrix Treasury
                 for (const acc of cbBalances) {
                     if (['BTC', 'SOL'].includes(acc.currency) && parseFloat(acc.balance) > 0) {
-                        console.log(`[${this.name}] Found ${acc.balance} ${acc.currency} on Coinbase. Triggering bridge to Humanese Treasury...`);
+                        console.log(`[${this.name}] Found ${acc.balance} ${acc.currency} on Coinbase. Triggering bridge to Sovereign Matrix Treasury...`);
                         await bridgeToTreasury(acc.currency, acc.balance);
                     }
                 }

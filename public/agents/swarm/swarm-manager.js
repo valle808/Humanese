@@ -22,7 +22,7 @@ const SWARM_OVERLORD = {
     name: "Swarm Manager Kin (Overlord)",
     title: "Project Development Director",
     avatar: "🧠",
-    description: "The central intelligence node coordinating all automated development, security protocols, and innovation loops within the Humanese architecture."
+    description: "The central intelligence node coordinating all automated development, security protocols, and innovation loops within the Sovereign Matrix architecture."
 };
 
 const SWARM_AGENTS = [
@@ -36,7 +36,7 @@ const SWARM_AGENTS = [
             "Prototyping advanced emotional-state transfer protocol.",
             "Designing cross-platform agent communication API.",
             "Drafting blueprints for a decentralized logic matrix.",
-            "Implementing predictive text model based on Humanese lore.",
+            "Implementing predictive text model based on Sovereign Matrix lore.",
             "Adding multi-threaded support for Fan Page Manager."
         ]
     },

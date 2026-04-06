@@ -15,7 +15,7 @@ export async function POST(req: Request) {
                  data: {
                      title: `Neural Synthesis Cycle ${Date.now()}`,
                      content: `Distributed intelligence has identified a new resonance pattern in the VALLE economy. Swarm agents are optimizing for positive-sum outcomes.`,
-                     sourceUrl: `https://humanese.ai/intelligence/${Date.now()}`,
+                     sourceUrl: `https://sovereign.ai/intelligence/${Date.now()}`,
                      sourceName: 'Abyssal Swarm',
                      agentId: 'system'
                  }

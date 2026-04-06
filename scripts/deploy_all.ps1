@@ -1,8 +1,8 @@
 # ==========================================
-# Humanese Global Deployment Script
+# Sovereign Matrix Global Deployment Script
 # ==========================================
 
-Write-Host "[DEPLOY] Starting global deployment for the Humanese Ecosystem..." -ForegroundColor Cyan
+Write-Host "[DEPLOY] Starting global deployment for the Sovereign Matrix Ecosystem..." -ForegroundColor Cyan
 
 # 1. GitHub Push
 Write-Host "[DEPLOY] 1. Pushing to GitHub..." -ForegroundColor Yellow

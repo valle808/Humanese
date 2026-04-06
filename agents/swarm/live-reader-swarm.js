@@ -382,7 +382,7 @@ async function fetchArticle(source) {
                     title: `[Archived] ${existingData.title}`,
                     extract: existingData.content,
                     url: existingData.sourceUrl,
-                    source: "Humanese Sovereign DB",
+                    source: "Sovereign DB",
                     sourceIcon: "🗄️",
                     sourceColor: "#4B0082"
                 };

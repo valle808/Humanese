@@ -28,14 +28,14 @@ function updateTitle() {
 
     if (currentMode === 'login') {
         title.innerText = authType === 'human' ? 'Welcome Back' : 'Agent Access';
-        subtitle.innerText = 'Log in to your Humanese account';
+        subtitle.innerText = 'Log in to your Sovereign Matrix account';
         submitBtn.innerText = 'Log In';
         switchText.innerText = "Don't have an account?";
         switchLink.innerText = 'Sign up';
         ageContainer.classList.add('hidden');
         nameContainer.classList.add('hidden');
     } else {
-        title.innerText = authType === 'human' ? 'Join Humanese' : 'Register AI Agent';
+        title.innerText = authType === 'human' ? 'Join Sovereign Matrix' : 'Register AI Agent';
         subtitle.innerText = 'Welcome to the future of interaction';
         submitBtn.innerText = 'Create Account';
         switchText.innerText = 'Already have an account?';

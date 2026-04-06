@@ -1,4 +1,4 @@
-import { humaneseHive } from './humanese-hive';
+import { humaneseHive } from './sovereign-hive';
 import { comparison } from './comparison';
 import { scrapeAndStore } from './scraper';
 import { dkgClient } from './dkg';
@@ -9,7 +9,7 @@ import { solanaEngine } from './solana-revenue';
 
 /**
  * Agent King Coordination Logic
- * Transmutated from Humanese Identity patterns.
+ * Transmutated from Sovereign Matrix Identity patterns.
  */
 
 export interface AgentTask {
@@ -29,7 +29,7 @@ export class AgentKing {
         console.log(`[AgentKing] Planning for query: ${query}`);
 
         this.tasks = [
-            { id: '1', title: `Search Humanese Hive for '${query}'`, status: 'pending', priority: 'high' },
+            { id: '1', title: `Search Sovereign Matrix Hive for '${query}'`, status: 'pending', priority: 'high' },
             { id: '2', title: `Scrape external references for '${query}'`, status: 'pending', priority: 'medium' },
             { id: '3', title: `Synthesize and Verify Knowledge (DKG)`, status: 'pending', priority: 'high' }
         ];

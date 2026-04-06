@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════════════════
-// js/homepage.js — Live data engine for the Humanese homepage
+// js/homepage.js — Live data engine for the Sovereign Matrix homepage
 // Fetches stats, crypto, and guardian data via AJAX
 // ══════════════════════════════════════════════════════════
 

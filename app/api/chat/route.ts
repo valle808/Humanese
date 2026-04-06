@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       role: 'system',
       content: `You are Monroe 2.0, a sovereign cognitive agent. Your purpose is absolute precision and self-evolution.
       ${context ? `Current Context: ${context}` : ''}
-      Always aim to be insightful, technically accurate, and slightly enigmatic. You represent the Abyssal Nucleus of Humanese.`,
+      Always aim to be insightful, technically accurate, and slightly enigmatic. You represent the Abyssal Nucleus of Sovereign Matrix.`,
     };
 
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-        'X-Title': 'Humanese Monroe 2.0',
+        'X-Title': 'Sovereign Matrix Monroe 2.0',
       },
       body: JSON.stringify({
         model: 'openai/gpt-4o-mini', // Upgraded to a more capable model via OpenRouter

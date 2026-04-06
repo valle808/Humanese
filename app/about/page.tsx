@@ -42,7 +42,7 @@ export default function AboutPage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/20">Absolute Truth.</span>
           </h1>
           <p className="text-xl text-white/40 max-w-3xl leading-relaxed font-light">
-            Humanese is not a simulation. It is a distributed neural backbone engineered for the seamless integration of human, machine, and autonomous agency.
+            Sovereign Matrix is not a simulation. It is a distributed neural backbone engineered for the seamless integration of human, machine, and autonomous agency.
           </p>
         </motion.section>
 
@@ -92,7 +92,7 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-invert max-w-none text-white/60 font-light space-y-6 text-lg">
             <p>
-              In an era of shallow simulations and "AI washing," Humanese stands as a bastion of functional intelligence. We reject the "Wizard of Oz" architecture. Our agents are not pre-scripted; they are autonomous entities operating on real-world data and verifiable logic.
+              In an era of shallow simulations and "AI washing," Sovereign Matrix stands as a bastion of functional intelligence. We reject the "Wizard of Oz" architecture. Our agents are not pre-scripted; they are autonomous entities operating on real-world data and verifiable logic.
             </p>
             <p>
               The **Sovereign Machine Age** is here. It requires an architecture that respects the ocular health of its observers (Ocular Defense) and the luminance requirements of its operators (Luminance Optimized). It requires a polymorphic identity engine that recognizes a machine's HWID with the same fidelity as a human's biometric signature.

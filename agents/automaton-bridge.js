@@ -1,8 +1,8 @@
 /**
  * agents/automaton-bridge.js
- * Bridge between the Humanese agent system and the Automaton sovereign AI runtime.
+ * Bridge between the Sovereign Matrix agent system and the Automaton sovereign AI runtime.
  *
- * Automaton (Conway-Research/automaton) is the CEO of Humanese.
+ * Automaton (Conway-Research/automaton) is the CEO of Sovereign Matrix.
  * This bridge reads Automaton's constitution, exposes status checks,
  * and provides a launcher hook when Automaton's build is available.
  */

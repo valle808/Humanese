@@ -182,7 +182,7 @@ export default function HPediaPage() {
                    </div>
                    <div className="flex items-center gap-2 text-emerald/60 text-[10px] font-mono uppercase tracking-widest">
                      <Activity size={12} />
-                     Verified by Humanese Hive 5m ago
+                     Verified by Sovereign Matrix Hive 5m ago
                    </div>
                 </div>
 

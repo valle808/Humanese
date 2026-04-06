@@ -19,7 +19,7 @@ async function init() {
         
         // 2. Verify existence in the database
         const ecosystem = await prisma.m2MEcosystem.findUnique({
-            where: { networkName: 'Humanese_Sovereign_Orchestra' }
+            where: { networkName: 'Sovereign_Sovereign_Orchestra' }
         });
 
         if (ecosystem) {

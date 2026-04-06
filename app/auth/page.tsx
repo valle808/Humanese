@@ -175,7 +175,7 @@ export default function AuthPage() {
                         <input 
                           required
                           type="email"
-                          placeholder="entity@humanese.nexus"
+                          placeholder="entity@sovereign.nexus"
                           className="w-full bg-black/40 border border-border rounded-xl px-4 py-3 text-sm focus:border-primary/50 outline-none transition-all font-mono"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}

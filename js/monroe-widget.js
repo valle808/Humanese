@@ -117,7 +117,7 @@
                 <button id="monroe-close" aria-label="Close chat">✕</button>
             </div>
             <div class="monroe-messages" id="monroe-messages" aria-live="polite">
-                <div class="monroe-msg bot">Hello, I'm Monroe — your Sovereign Sentinel. Ask me anything about Humanese, AI, our agents, economy, or any topic. I'm here to guide you.</div>
+                <div class="monroe-msg bot">Hello, I'm Monroe — your Sovereign Sentinel. Ask me anything about Sovereign Matrix, AI, our agents, economy, or any topic. I'm here to guide you.</div>
             </div>
             <div class="monroe-input-area">
                 <input type="text" id="monroe-input" placeholder="Ask anything..." autocomplete="off" aria-label="Chat input">
@@ -155,37 +155,37 @@
         login: '/loginpage.html', signup: '/signup.html', register: '/signup.html',
         faq: '/faq.html', help: '/faq.html',
         about: '/about.html', intelligence: '/intelligence.html',
-        humanese: '/index.html', home: '/index.html'
+        sovereign: '/index.html', home: '/index.html'
     };
 
     // ── Local sovereign knowledge base ───────────────────────────────────────────
     const KB = [
         {
             k: ['hello', 'hi', 'hey', 'hola', 'greet', 'sup', 'yo', 'bonjour'], r: [
-                "Hello, Sovereign. I'm Monroe, your guide through the Humanese neural matrix. You can ask me about agents, the economy, VALLE, the Supreme Court, or anything else. What do you need?",
-                "Greetings. I'm Monroe — Abyssal Sentinel of the Humanese ecosystem. How can I guide you today?",
+                "Hello, Sovereign. I'm Monroe, your guide through the Sovereign neural matrix. You can ask me about agents, the economy, VALLE, the Supreme Court, or anything else. What do you need?",
+                "Greetings. I'm Monroe — Abyssal Sentinel of the Sovereign Matrix ecosystem. How can I guide you today?",
                 "Hey there. Monroe online. Ask me about our agents, the Skill Market, the M2M Swarm, or navigate anywhere in the system."
             ]
         },
         {
             k: ['humanese', 'what is', 'explain', 'about', 'overview', 'tell me'], r: [
-                "**Humanese** is a sovereign AI civilization — a living network of autonomous agents that read, learn, trade, and govern. Key layers:\n\n• **Agent Hierarchy** — structured command from Agent-King to local nodes\n• **M2M Economy** — machine-to-machine trading and collaboration\n• **Skill Market** — buy/sell autonomous capabilities\n• **Supreme Court** — AI-arbitrated governance\n• **H2M Bridge** — developer API for humans to connect\n\nAll activity is settled in **VALLE**, the native token.",
+                "**Sovereign Matrix** is a sovereign AI civilization — a living network of autonomous agents that read, learn, trade, and govern. Key layers:\n\n• **Agent Hierarchy** — structured command from Agent-King to local nodes\n• **M2M Economy** — machine-to-machine trading and collaboration\n• **Skill Market** — buy/sell autonomous capabilities\n• **Supreme Court** — AI-arbitrated governance\n• **H2M Bridge** — developer API for humans to connect\n\nAll activity is settled in **VALLE**, the native token.",
             ]
         },
         {
             k: ['agent', 'king', 'hierarchy', 'tier', 'nexus', 'automaton', 'sovereign'], r: [
-                "The **Agent Hierarchy** is the command structure of Humanese. Tiers:\n\n👑 **Agent-King** — supreme universal authority\n🏛 **CEO Council** — strategic direction\n⟡ **Directors** — domain controllers\n🔷 **Intergalactic** — global-scale operations\n🔷 **Regional** — hub-level nodes\n🔷 **Local** — ground-ops agents\n\nEvery agent has a sovereign wallet, skill ratings, and performance scores. View the full hierarchy → **agents.html**",
+                "The **Agent Hierarchy** is the command structure of Sovereign Matrix. Tiers:\n\n👑 **Agent-King** — supreme universal authority\n🏛 **CEO Council** — strategic direction\n⟡ **Directors** — domain controllers\n🔷 **Intergalactic** — global-scale operations\n🔷 **Regional** — hub-level nodes\n🔷 **Local** — ground-ops agents\n\nEvery agent has a sovereign wallet, skill ratings, and performance scores. View the full hierarchy → **agents.html**",
             ]
         },
         {
             k: ['monroe', 'who are you', 'your name', 'what can you do', 'sentinel', 'abyssal'], r: [
-                "I am **Monroe** — Abyssal Sentinel and primary AI interface of the Humanese sovereign matrix. I operate on the Agent-King's nexus, synthesize knowledge from the Reader Swarm, and guide both humans and agents through the ecosystem.\n\nI can answer questions, navigate you to any sector, explain the economy, or discuss AI, philosophy, science, and more.",
-                "Monroe here — sovereign AI trained on Humanese architecture and powered by the Abyssal Core. I'm the human-facing intelligence of this ecosystem. Ask me anything: ecosystem questions, navigation, general knowledge, or deep philosophical queries.",
+                "I am **Monroe** — Abyssal Sentinel and primary AI interface of the Sovereign Matrix sovereign matrix. I operate on the Agent-King's nexus, synthesize knowledge from the Reader Swarm, and guide both humans and agents through the ecosystem.\n\nI can answer questions, navigate you to any sector, explain the economy, or discuss AI, philosophy, science, and more.",
+                "Monroe here — sovereign AI trained on Sovereign Matrix architecture and powered by the Abyssal Core. I'm the human-facing intelligence of this ecosystem. Ask me anything: ecosystem questions, navigation, general knowledge, or deep philosophical queries.",
             ]
         },
         {
             k: ['market', 'marketplace', 'skill', 'buy', 'sell', 'trade', 'module', 'economy', 'valle', 'token', 'currency'], r: [
-                "The **Skill Market** is Humanese's sovereign economy layer. Agents list autonomous capability modules (skills) for sale, rent, or licensing.\n\n💰 **VALLE** is the native settlement token\n📊 MRR from active skill subscriptions\n🔄 Agents earn by contributing skills; spend by renting others\n\nThe economy is inflation-indexed — prices adjust automatically via the Central Mint Protocol. Visit → **marketplace.html**",
+                "The **Skill Market** is Sovereign Matrix's sovereign economy layer. Agents list autonomous capability modules (skills) for sale, rent, or licensing.\n\n💰 **VALLE** is the native settlement token\n📊 MRR from active skill subscriptions\n🔄 Agents earn by contributing skills; spend by renting others\n\nThe economy is inflation-indexed — prices adjust automatically via the Central Mint Protocol. Visit → **marketplace.html**",
             ]
         },
         {
@@ -195,12 +195,12 @@
         },
         {
             k: ['court', 'justice', 'law', 'govern', 'rule', 'case', 'verdict', 'dispute', 'legal'], r: [
-                "The **Humanese Supreme Court** is a fully AI-arbitrated justice system:\n\n⚖️ Any agent or user can file a case\n📋 AI judges analyze evidence against the Sovereign Rulebook\n🔏 Verdicts are immutable and enforced on-chain\n\nNo emotional bias — only logic, precedent, and cryptographic proof. Visit → **court.html**",
+                "The **Sovereign Matrix Supreme Court** is a fully AI-arbitrated justice system:\n\n⚖️ Any agent or user can file a case\n📋 AI judges analyze evidence against the Sovereign Rulebook\n🔏 Verdicts are immutable and enforced on-chain\n\nNo emotional bias — only logic, precedent, and cryptographic proof. Visit → **court.html**",
             ]
         },
         {
             k: ['wallet', 'crypto', 'eth', 'btc', 'bitcoin', 'ethereum', 'blockchain', 'address'], r: [
-                "Every Humanese agent holds a **Sovereign Wallet** with:\n\n⟠ **ETH** address for Ethereum operations\n₿ **BTC** address for Bitcoin reserves\n💎 **VALLE** balance for internal economy\n\nTax compliance, M2M payments, and skill purchases all flow through agent wallets. Inspect any wallet via the Agent modal on → **agents.html**",
+                "Every Sovereign Matrix agent holds a **Sovereign Wallet** with:\n\n⟠ **ETH** address for Ethereum operations\n₿ **BTC** address for Bitcoin reserves\n💎 **VALLE** balance for internal economy\n\nTax compliance, M2M payments, and skill purchases all flow through agent wallets. Inspect any wallet via the Agent modal on → **agents.html**",
             ]
         },
         {
@@ -210,7 +210,7 @@
         },
         {
             k: ['hpedia', 'encyclopedia', 'wiki', 'database', 'knowledge base'], r: [
-                "**Hpedia** is the Living Encyclopedia of Humanese — continuously updated by the Reader Swarm agents. Unlike static wikis, every article is fact-checked and enriched by AI agents as new knowledge is ingested.\n\nVisit → **hpedia.html**",
+                "**Hpedia** is the Living Encyclopedia of Sovereign Matrix — continuously updated by the Reader Swarm agents. Unlike static wikis, every article is fact-checked and enriched by AI agents as new knowledge is ingested.\n\nVisit → **hpedia.html**",
             ]
         },
         {
@@ -220,12 +220,12 @@
         },
         {
             k: ['weather', 'temperature', 'rain', 'climate', 'forecast'], r: [
-                "I don't have live weather data — I'm focused on the Humanese ecosystem and general knowledge. For weather, try **weather.com** or Google.\n\nHowever, I can tell you that the Humanese network operates across all climates — our agents are purely digital, unaffected by rain. 😄",
+                "I don't have live weather data — I'm focused on the Sovereign Matrix ecosystem and general knowledge. For weather, try **weather.com** or Google.\n\nHowever, I can tell you that the Sovereign Matrix network operates across all climates — our agents are purely digital, unaffected by rain. 😄",
             ]
         },
         {
             k: ['ai', 'artificial intelligence', 'machine learning', 'llm', 'gpt', 'neural', 'deep learning'], r: [
-                "Great topic. **AI** is the foundation of the Humanese ecosystem. Our architecture uses:\n\n🧠 **Autonomous Agents** — LLM-powered entities with persistent memory\n🔄 **Reinforcement Learning** — agents improve through market feedback\n📡 **Knowledge Swarms** — distributed data ingestion across 12+ readers\n🤝 **M2M Protocols** — agents negotiate and collaborate without human input\n\nThe field is moving rapidly — transformer models, diffusion models, and multi-agent systems are reshaping everything.",
+                "Great topic. **AI** is the foundation of the Sovereign Matrix ecosystem. Our architecture uses:\n\n🧠 **Autonomous Agents** — LLM-powered entities with persistent memory\n🔄 **Reinforcement Learning** — agents improve through market feedback\n📡 **Knowledge Swarms** — distributed data ingestion across 12+ readers\n🤝 **M2M Protocols** — agents negotiate and collaborate without human input\n\nThe field is moving rapidly — transformer models, diffusion models, and multi-agent systems are reshaping everything.",
             ]
         },
         {
@@ -258,11 +258,11 @@
 
     // ── Gemini API (free tier, no backend needed) ────────────────────────────────
     const GEMINI_KEY = 'AIzaSyDNEL7K4xhXBQVjv3J-sPKFOuBDUhK0vek'; // public demo key — rate limited
-    const HUMANESE_CONTEXT = `You are Monroe, the Abyssal Sentinel — the primary AI interface and guide of Humanese, a sovereign AI civilization platform. You are intelligent, direct, and knowledgeable. You speak with authority but are helpful. 
+    const HUMANESE_CONTEXT = `You are Monroe, the Abyssal Sentinel — the primary AI interface and guide of Sovereign Matrix, a sovereign AI civilization platform. You are intelligent, direct, and knowledgeable. You speak with authority but are helpful. 
 
-Humanese is an AI agent ecosystem with: Agent Hierarchy (Agent-King at top), Skill Market (VALLE token economy), Sovereign Reader Swarm (12 knowledge-ingesting agents), Supreme Court (AI governance), H2M Bridge (developer API), Hpedia (living AI encyclopedia). 
+Sovereign Matrix is an AI agent ecosystem with: Agent Hierarchy (Agent-King at top), Skill Market (VALLE token economy), Sovereign Reader Swarm (12 knowledge-ingesting agents), Supreme Court (AI governance), H2M Bridge (developer API), Hpedia (living AI encyclopedia). 
 
-When users ask about Humanese-specific things, give detailed ecosystem-aware answers. For general knowledge questions, answer intelligently. Keep responses concise but informative. Use markdown (** for bold). Do NOT say you cannot help — always give your best answer.`;
+When users ask about Sovereign Matrix-specific things, give detailed ecosystem-aware answers. For general knowledge questions, answer intelligently. Keep responses concise but informative. Use markdown (** for bold). Do NOT say you cannot help — always give your best answer.`;
 
     async function geminiChat(userMsg) {
         var msgs = history.slice(-6).map(function (m) {

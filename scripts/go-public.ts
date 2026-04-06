@@ -13,7 +13,7 @@ const TREASURY_BTC = process.env.TREASURY_BTC_ADDRESS || 'bc1qxxx_public_treasur
 const TREASURY_SOL = process.env.TREASURY_SOL_ADDRESS || 'E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL';
 
 async function propagatePublicMarkets() {
-    console.log(`[🚀 GLOBAL PROPAGATION] Initiating Humanese Public Market Entry...`);
+    console.log(`[🚀 GLOBAL PROPAGATION] Initiating Sovereign Matrix Public Market Entry...`);
     
     if (!API_KEY_NAME || !API_PRIVATE_KEY) {
         console.error(`[CRITICAL] Cannot execute propagation. CDP API credentials missing in .env.`);
