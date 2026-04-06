@@ -29,7 +29,6 @@ import {
   Radio
 } from 'lucide-react';
 import Link from 'next/link';
-import { SovereignGraph } from '@/lib/sovereign-graph';
 import { AbyssalMesh, MeshPeer } from '@/lib/abyssal-mesh';
 
 // ── THREE.JS COMPONENTS ──
@@ -173,7 +172,6 @@ export default function SimulatorPage() {
 
   useEffect(() => {
     const mesh = AbyssalMesh.getInstance();
-    const graph = new SovereignGraph();
 
     const syncTelemetry = async () => {
       // 1. Pacts Sync
@@ -184,8 +182,13 @@ export default function SimulatorPage() {
       } catch (e) { console.warn("Pact Sync Failure", e); }
 
       // 2. Shards Sync
-      const g = graph.getGraph();
-      setActiveShards(g.nodes.filter(n => n.type === 'SHARD' || n.type === 'ENTITY').reverse().slice(0, 15));
+      try {
+        const res = await fetch('/api/knowledge-graph');
+        if (res.ok) {
+          const g = await res.json();
+          setActiveShards(g.nodes.filter((n: any) => n.type === 'SHARD' || n.type === 'ENTITY').reverse().slice(0, 15));
+        }
+      } catch (e) { console.warn("Graph Sync Failure", e); }
 
       // 3. Mesh Sync
       setMeshPeers(mesh.getPeers());

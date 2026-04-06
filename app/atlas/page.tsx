@@ -15,7 +15,7 @@ import {
   Filter 
 } from 'lucide-react';
 import Link from 'next/link';
-import { SovereignGraph, SovereignKnowledge } from '@/lib/sovereign-graph';
+import type { SovereignKnowledge } from '@/lib/sovereign-graph';
 
 // Component
 import ShardHUD from '@/components/atlas/shard-hud';
@@ -32,22 +32,44 @@ export default function CognitiveAtlasPage() {
   const [isSearching, setIsSearching] = useState(false);
   const fgRef = useRef<any>(null);
 
-  // Engines
-  const graphEngine = useMemo(() => new SovereignGraph(), []);
+  const [allData, setAllData] = useState<SovereignKnowledge>({ nodes: [], links: [] });
 
   useEffect(() => {
-    setGraphData(graphEngine.getGraph());
-  }, [graphEngine]);
+    const fetchGraph = async () => {
+      try {
+        const res = await fetch('/api/knowledge-graph');
+        if (res.ok) {
+          const data = await res.json();
+          setAllData(data);
+          setGraphData(data);
+        }
+      } catch (err) {
+        console.error("Atlas: Graph load failed", err);
+      }
+    };
+    fetchGraph();
+  }, []);
 
   const handleSearch = () => {
     if (!searchTerm.trim()) {
-      setGraphData(graphEngine.getGraph());
+      setGraphData(allData);
       return;
     }
     setIsSearching(true);
-    const results = graphEngine.query(searchTerm);
-    setGraphData(results);
-    setTimeout(() => setIsSearching(false), 800);
+    
+    // Client-side filtering mechanism
+    const term = searchTerm.toLowerCase();
+    const matchedNodes = allData.nodes.filter((n: any) => 
+      n.id.toLowerCase().includes(term) || 
+      n.label.toLowerCase().includes(term)
+    );
+    const matchedIds = new Set(matchedNodes.map((n: any) => n.id));
+    const matchedLinks = allData.links.filter((l: any) => 
+      matchedIds.has(l.source) || matchedIds.has(l.target)
+    );
+
+    setGraphData({ nodes: matchedNodes, links: matchedLinks });
+    setTimeout(() => setIsSearching(false), 300);
   };
 
   const formattedData = useMemo(() => ({

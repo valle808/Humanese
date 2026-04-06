@@ -27,7 +27,6 @@ import {
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Link from 'next/link';
-import { SovereignGraph } from '@/lib/sovereign-graph';
 
 type Message = {
   role: 'bot' | 'user';
@@ -50,9 +49,16 @@ export default function MonroePage() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const graph = new SovereignGraph();
-    const fetchGraph = () => {
-      setKnowledgeGraph(graph.getGraph());
+    const fetchGraph = async () => {
+      try {
+        const res = await fetch('/api/knowledge-graph');
+        if (res.ok) {
+          const data = await res.json();
+          setKnowledgeGraph(data);
+        }
+      } catch (err) {
+        console.warn('Sovereign Matrix: Graph sync pending.', err);
+      }
     };
     fetchGraph();
     const interval = setInterval(fetchGraph, 10000);

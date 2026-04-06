@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal as TerminalIcon, Cpu, Activity, Zap, BrainCircuit, Search } from 'lucide-react';
 import { PredictorEngine } from '@/lib/predictor-engine';
-import { SovereignGraph } from '@/lib/sovereign-graph';
 import { CollectiveEngine } from '@/lib/collective-engine';
 
 interface LogEntry {
@@ -24,7 +23,6 @@ export default function NeuralTerminal() {
 
   // Initialize Engines for CLI access
   const predictor = new PredictorEngine('dummy-key');
-  const graph = new SovereignGraph();
   const collective = new CollectiveEngine();
 
   useEffect(() => {
@@ -67,9 +65,17 @@ export default function NeuralTerminal() {
 
       case '/query':
         if (!argText) { addLog('ERROR: Search term required.', 'ERR'); break; }
-        const qResult = graph.query(argText);
-        addLog(`Nodes Found: ${qResult.nodes.length} | Links: ${qResult.links.length}`);
-        qResult.nodes.forEach(n => addLog(` - [${n.type}] ${n.id}`));
+        addLog(`Querying neural graph for: "${argText}"...`, 'SYS');
+        try {
+          const gRes = await fetch('/api/knowledge-graph');
+          const gData = await gRes.json();
+          const term = argText.toLowerCase();
+          const matched = (gData.nodes || []).filter((n: any) =>
+            n.id.toLowerCase().includes(term) || n.label.toLowerCase().includes(term)
+          );
+          addLog(`Nodes Found: ${matched.length}`);
+          matched.forEach((n: any) => addLog(` - [${n.type}] ${n.id}`));
+        } catch (e) { addLog('Graph query failed. Matrix offline?', 'ERR'); }
         break;
 
       case '/inject':

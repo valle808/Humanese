@@ -1,5 +1,19 @@
-import fs from 'fs';
-import path from 'path';
+// Server-only file system access — dynamically loaded to prevent browser bundling errors
+// When this module is imported by a client component, fs-dependent methods are no-ops in the browser.
+const isServer = typeof window === 'undefined';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let fs: any = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let path: any = null;
+
+if (isServer) {
+  // Dynamic require only executes on the server — webpack cannot statically trace it
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  fs = require('fs');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  path = require('path');
+}
 import { AbyssalMesh } from './abyssal-mesh';
 
 export interface GraphNode {
@@ -24,16 +38,20 @@ export interface SovereignKnowledge {
 
 export class SovereignGraph {
   private data: SovereignKnowledge;
-  private filePath: string;
-
-  constructor(basePath: string = process.cwd()) {
+  constructor(basePath?: string) {
     // Persistent storage for the Sovereign Unconscious
-    this.filePath = path.join(basePath, 'data', 'sovereign-mind.json');
     this.data = { nodes: [], links: [] };
-    this.loadGraph();
+    this.filePath = '';
+
+    if (isServer && path && typeof path.join === 'function') {
+      const workingDir = basePath || process.cwd();
+      this.filePath = path.join(workingDir, 'data', 'sovereign-mind.json');
+      this.loadGraph();
+    }
   }
 
   private loadGraph() {
+    if (!isServer || !fs) return;
     try {
       if (fs.existsSync(this.filePath)) {
         const raw = fs.readFileSync(this.filePath, 'utf-8');
@@ -46,6 +64,7 @@ export class SovereignGraph {
   }
 
   public saveGraph() {
+    if (!isServer || !fs || !path) return;
     try {
       const dataDir = path.dirname(this.filePath);
       if (!fs.existsSync(dataDir)) {
