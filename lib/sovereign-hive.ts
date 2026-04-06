@@ -5,7 +5,7 @@ import axios from 'axios';
  * Core ecosystem intelligence aggregation.
  */
 
-export interface Sovereign MatrixHiveArticle {
+export interface SovereignMatrixHiveArticle {
     title: string;
     slug: string;
     snippet?: string;
@@ -16,13 +16,13 @@ export interface Sovereign MatrixHiveArticle {
     linked_pages?: string[];
 }
 
-export class Sovereign MatrixHiveService {
+export class SovereignMatrixHiveService {
     private baseUrl = 'https://api.humanese.io/v1'; // Simulated/Placeholder base URL
 
     /**
      * Search for articles
      */
-    async search(query: string, limit: number = 10): Promise<Sovereign MatrixHiveArticle[]> {
+    async search(query: string, limit: number = 10): Promise<SovereignMatrixHiveArticle[]> {
         try {
             // In a real implementation, this would call the Sovereign Matrix API
             console.log(`[Sovereign Matrix Hive] Searching for: ${query}`);
@@ -39,7 +39,7 @@ export class Sovereign MatrixHiveService {
     /**
      * Get a specific page by slug
      */
-    async getPage(slug: string): Promise<Sovereign MatrixHiveArticle | null> {
+    async getPage(slug: string): Promise<SovereignMatrixHiveArticle | null> {
         try {
             console.log(`[Sovereign Matrix Hive] Fetching page: ${slug}`);
             return null;
@@ -78,4 +78,4 @@ export class Sovereign MatrixHiveService {
     }
 }
 
-export const humaneseHive = new Sovereign MatrixHiveService();
+export const humaneseHive = new SovereignMatrixHiveService();
