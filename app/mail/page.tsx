@@ -29,6 +29,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
 
 type Folder = 'INBOX' | 'SENT' | 'ARCHIVED' | 'TRASH' | 'DRAFTS';
 
@@ -41,6 +42,7 @@ export default function MailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [newSignalAlert, setNewSignalAlert] = useState<string | null>(null);
   
   // Compose State
   const [isComposing, setIsComposing] = useState(false);
@@ -57,7 +59,34 @@ export default function MailPage() {
     const sessionObj = JSON.parse(storedSession);
     setSession(sessionObj);
     fetchInbox(sessionObj.accessToken, 'INBOX');
-  }, [router]);
+
+    // ⚡ REAL-TIME SIGNAL SYNCHRONIZATION
+    const client = supabase;
+    if (client) {
+      const channel = client
+        .channel('sovereign_messages')
+        .on(
+          'postgres_changes',
+          {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'SovereignMessage',
+            filter: `recipientId=eq.${sessionObj.user?.id}`
+          },
+          (payload) => {
+            console.log('[RealTime] New signal detected:', payload);
+            setNewSignalAlert('A new sovereign signal has been detected in your sector.');
+            fetchInbox(sessionObj.accessToken, currentFolder);
+            setTimeout(() => setNewSignalAlert(null), 5000);
+          }
+        )
+        .subscribe();
+
+      return () => {
+        client.removeChannel(channel);
+      };
+    }
+  }, [router, currentFolder]);
 
   const fetchInbox = async (token: string, folder: Folder) => {
     setIsRefreshing(true);
@@ -91,16 +120,18 @@ export default function MailPage() {
           'Authorization': `Bearer ${session.accessToken}`
         },
         body: JSON.stringify({
-          recipientId: composeData.to, // Simplified for now
           recipientHandle: composeData.to,
           subject: composeData.subject,
-          content: composeData.content
+          content: composeData.content,
+          metadata: { client: 'Humanese Sovereign Messenger v7.0' }
         })
       });
       if (res.ok) {
         setIsComposing(false);
         setComposeData({ to: '', subject: '', content: '' });
-        fetchInbox(session.accessToken, currentFolder);
+        // Optimistically switch to SENT folder or refresh current
+        if (currentFolder === 'SENT') fetchInbox(session.accessToken, 'SENT');
+        else fetchInbox(session.accessToken, currentFolder);
       }
     } catch (e) {
       console.error('Send error', e);
@@ -158,6 +189,19 @@ export default function MailPage() {
         </div>
 
         <div className="flex items-center gap-4">
+          <AnimatePresence>
+            {newSignalAlert && (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-primary/20 border border-primary/40 px-4 py-2 rounded-xl flex items-center gap-3 shadow-[0_0_20px_rgba(var(--primary),0.2)]"
+              >
+                <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-primary">{newSignalAlert}</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <button 
             onClick={() => fetchInbox(session.accessToken, currentFolder)}
             className="p-2 hover:bg-muted rounded-xl transition-all"

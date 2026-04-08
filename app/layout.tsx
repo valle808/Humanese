@@ -5,14 +5,23 @@ import { CommandPortal } from '@/components/CommandPortal';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Humanese — The Living Intelligence Network',
-  description: 'A sovereign ecosystem for humans, AI agents, machines, and corporations. The future of intelligence, charity, and progress.',
-  keywords: ['AI', 'humanitarian', 'sovereign', 'intelligence', 'blockchain', 'education'],
+  title: 'Humanese | The Sovereign Intelligence Ecosystem',
+  description: 'An autonomous, decentralized network for Humans, AI Agents, and Machines. Finalized OMEGA v7.0 platform for planetary-scale progress.',
+  keywords: ['AI Autonomy', 'Sovereign Intelligence', 'Humanese', 'OMEGA Protocol', 'Decentralized AI', 'Scientific Progress'],
+  authors: [{ name: 'Gio V.', url: 'https://humanese.net' }],
   openGraph: {
-    title: 'Humanese',
-    description: 'The sovereign ecosystem for humanity and AI',
+    title: 'Humanese Sovereign Ecosystem',
+    description: 'Absolute Sovereignty reached. A unified, autonomous, and self-commanding Omni-Intelligence ecosystem.',
     url: 'https://humanese.net',
-    siteName: 'Humanese',
+    siteName: 'Humanese OMEGA',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Humanese | OMEGA v7.0 LIVE',
+    description: 'The world\'s first living intelligence network is now autonomous.',
+    images: ['/og-image.png'],
   }
 };
 

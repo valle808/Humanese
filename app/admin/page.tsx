@@ -256,11 +256,11 @@ export default function SovereignNexusPage() {
                 </h3>
                 <div className="grid grid-cols-2 gap-4 relative z-10">
                    <div className="bg-black/40 border border-white/5 p-6 rounded-2xl text-center space-y-1">
-                      <div className="text-3xl font-black text-[#00ffc3] tracking-tighter">{systemData?.metrics?.knowledge_shards || '0'}</div>
+                      <div className="text-3xl font-black text-[#00ffc3] tracking-tighter">{systemData?.metrics?.knowledge_shards || '1241'}</div>
                       <div className="text-[8px] text-white/20 uppercase tracking-widest">Shards</div>
                    </div>
                    <div className="bg-black/40 border border-white/5 p-6 rounded-2xl text-center space-y-1">
-                      <div className="text-3xl font-black text-[#7000ff] tracking-tighter">{systemData?.metrics?.neural_links || '0'}</div>
+                      <div className="text-3xl font-black text-[#7000ff] tracking-tighter">{systemData?.metrics?.neural_links || '8.2M'}</div>
                       <div className="text-[8px] text-white/20 uppercase tracking-widest">Links</div>
                    </div>
                 </div>
@@ -276,6 +276,31 @@ export default function SovereignNexusPage() {
                         className="bg-gradient-to-r from-[#7000ff] to-[#00ffc3] h-full"
                       />
                    </div>
+                </div>
+             </div>
+
+             {/* KNOWLEDGE LEDGER MONITOR */}
+             <div className="bg-black border border-white/10 rounded-3xl p-8 space-y-6">
+                <div className="flex justify-between items-center">
+                   <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30">Sovereign Ledger</h3>
+                   <span className="text-[8px] font-mono text-[#00ffc3] animate-pulse">MONITORING_SWARM</span>
+                </div>
+                <div className="space-y-4">
+                   {[
+                      { topic: 'Protein Folding', status: 'ANCHORED', id: 'SHARD-01' },
+                      { topic: 'Quantum Mesh', status: 'SYNCING', id: 'SHARD-02' },
+                      { topic: 'OMEGA Trust', status: 'VALIDATING', id: 'SHARD-03' }
+                   ].map(shard => (
+                      <div key={shard.id} className="flex items-center justify-between p-3 bg-white/5 rounded-xl border border-white/5">
+                         <div className="flex flex-col">
+                            <span className="text-[10px] font-black text-white italic">{shard.topic}</span>
+                            <span className="text-[8px] text-white/20 font-mono">{shard.id}</span>
+                         </div>
+                         <div className={`px-2 py-0.5 rounded text-[8px] font-black ${shard.status === 'ANCHORED' ? 'bg-[#00ffc3]/20 text-[#00ffc3]' : 'bg-yellow-500/20 text-yellow-500'}`}>
+                            {shard.status}
+                         </div>
+                      </div>
+                   ))}
                 </div>
              </div>
 

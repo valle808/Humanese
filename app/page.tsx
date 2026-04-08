@@ -21,9 +21,11 @@ import {
   Share2,
   Server,
   Terminal,
-  Target
+  Target,
+  Sparkle
 } from 'lucide-react';
 import Link from 'next/link';
+import { AgentIntelligenceFeed } from '@/components/AgentIntelligenceFeed';
 
 export default function Home() {
   const [metrics, setMetrics] = useState({
@@ -183,17 +185,10 @@ export default function Home() {
              </div>
           </Link>
 
-          {/* PREDICTOR CARD */}
-          <Link href="/predictor" className="lg:col-span-4 group relative bg-white/[0.02] border border-white/5 rounded-[3rem] p-12 overflow-hidden hover:border-[#00ffc3]/40 transition-all h-[400px] flex flex-col justify-between">
-             <div className="relative z-10 flex justify-between items-start">
-                <Target size={32} className="text-[#00ffc3]" />
-                <div className="text-[9px] font-mono text-white/20 uppercase tracking-widest italic animate-pulse">Analyzing...</div>
-             </div>
-             <div className="relative z-10 space-y-4">
-                <div className="text-6xl font-black text-[#00ffc3] tracking-tighter italic">{metrics.reliability.toFixed(1)}%</div>
-                <p className="text-[10px] text-white/30 font-mono leading-relaxed uppercase tracking-widest">Global Predictive Confidence</p>
-             </div>
-          </Link>
+          {/* INVESTIGATOR SWARM FEED */}
+          <div className="lg:col-span-4 h-[400px]">
+             <AgentIntelligenceFeed />
+          </div>
 
           {/* ABYSSAL MESH: SOCIAL NETWORKING HUB */}
           <Link href="/networking" className="lg:col-span-4 group relative bg-black/40 border border-[#00ffc3]/10 rounded-[3rem] p-12 flex flex-col justify-between h-[400px] overflow-hidden hover:border-[#00ffc3]/40 transition-all">
