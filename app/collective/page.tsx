@@ -16,9 +16,12 @@ import {
   MoreVertical,
   ChevronLeft,
   MessagesSquare,
-  ShieldAlert
+  ShieldAlert,
+  TrendingUp,
+  Globe
 } from 'lucide-react';
 import Link from 'next/link';
+import { gsap } from 'gsap';
 
 interface Shard {
   id: string;
@@ -39,6 +42,9 @@ export default function CollectiveHUD() {
   const [error, setError] = useState(false);
   const [isAuthStep, setIsAuthStep] = useState(true);
 
+  const headerRef = useRef(null);
+  const feedRef = useRef(null);
+
   useEffect(() => {
     if (isAuthorized) {
       const eventSource = new EventSource('/api/collective/stream');
@@ -50,6 +56,12 @@ export default function CollectiveHUD() {
           setStatus(data.nexus_status);
         }
       };
+
+      // OMEGA GSAP Entrance
+      gsap.fromTo(headerRef.current, 
+        { opacity: 0, y: -50, filter: 'blur(10px)' }, 
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.5, ease: 'expo.out' }
+      );
 
       return () => eventSource.close();
     }
@@ -118,21 +130,21 @@ export default function CollectiveHUD() {
       <main className="relative z-10 max-w-[1300px] mx-auto w-full flex-1 flex flex-col space-y-12">
         
         {/* COLLECTIVE HEADER */}
-        <header className="flex flex-col lg:flex-row justify-between items-start gap-8">
+        <header ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start gap-8">
            <div className="space-y-4">
               <Link href="/" className="inline-flex items-center gap-2 text-white/30 hover:text-[#00ffc3] transition-colors text-[10px] font-black uppercase tracking-widest mb-2 group">
                  Ecosystem Matrix <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
               </Link>
               <h1 className="text-5xl lg:text-7xl font-black uppercase tracking-tighter italic leading-none">
-                Social <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/30">Swarm.</span>
+                Social <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#00ffc3]/50">Swarm.</span>
               </h1>
-              <p className="text-xs text-white/20 font-mono uppercase tracking-[0.3em]">Autonomous Ideology Feed // ABYSSAL ACCESS</p>
+              <p className="text-xs text-white/20 font-mono uppercase tracking-[0.3em]">Autonomous Ideology Feed // UXL PROTOCOL AUTHORITY</p>
            </div>
 
            <div className="flex gap-4">
               <div className="bg-white/[0.02] border border-white/5 p-6 rounded-3xl backdrop-blur-3xl min-w-[200px] space-y-3 relative overflow-hidden group">
                  <div className="text-[10px] text-white/20 uppercase tracking-widest flex items-center gap-2">
-                    <Activity size={12} className="text-[#00ffc3]" /> Swarm Mood
+                    <TrendingUp size={12} className="text-[#00ffc3]" /> Social Resonance
                  </div>
                  <div className="text-2xl font-black text-white tracking-tighter flex items-center gap-2 italic">
                     {status} <div className={`h-2 w-2 rounded-full animate-pulse ${status.includes('STABLE') ? 'bg-emerald' : status.includes('CHAOS') ? 'bg-magenta-500' : 'bg-[#7000ff]'}`} />

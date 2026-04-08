@@ -1,92 +1,79 @@
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import crypto from 'crypto';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
-// VALLE Tokenomics Constants (mirroring VALLEToken.sol)
-const MAX_SUPPLY = 1_000_000_000;         // 1 Billion VALLE
-const MINING_RESERVE = MAX_SUPPLY * 0.10; // 10% = 100,000,000 VALLE
-const INITIAL_REWARD = 1000;               // Starting reward per share
-const MINING_GENESIS = new Date('2026-03-14T19:15:52Z').getTime();
-const MINING_DURATION_MS = 100 * 365.25 * 24 * 60 * 60 * 1000; // 100 years in ms
+// OMEGA Protocol: 5B Supply, Block Reward Mechanics
+const BLOCK_REWARD = 12.5; 
+const QUANTUM_DIFFICULTY = '0000'; // Requirement for valid hash
 
-/**
- * Calculate the current mining reward based on 100-year linear decay.
- */
-function getMiningReward(): number {
-    const timePassed = Date.now() - MINING_GENESIS;
-    if (timePassed >= MINING_DURATION_MS) return 0;
-    const remaining = MINING_DURATION_MS - timePassed;
-    return (INITIAL_REWARD * remaining) / MINING_DURATION_MS;
+// Helper to simulate difficulty check
+function verifyQuantumHash(hash: string): boolean {
+    return hash.startsWith(QUANTUM_DIFFICULTY);
 }
 
-/**
- * /api/valle/mine
- * 
- * Secure endpoint for agents to submit Proof-of-Work (PoW) shares.
- * Reward decays linearly over 100 years. Enforces 10% mining cap.
- */
-export async function POST(req: Request) {
-  try {
-    const { agentId, shareHash, difficulty } = await req.json();
+export async function POST(req: NextRequest) {
+    try {
+        const body = await req.json();
+        const { minerWallet, nonce, requestedHash } = body;
 
-    if (!agentId || !shareHash) {
-      return NextResponse.json({ success: false, error: 'Invalid share payload' }, { status: 400 });
+        if (!minerWallet || !nonce || !requestedHash) {
+            return NextResponse.json({ error: 'Invalid mining payload.' }, { status: 400 });
+        }
+
+        // 1. Verify Hash Integrity
+        if (!verifyQuantumHash(requestedHash)) {
+            return NextResponse.json({ error: 'Hash does not meet quantum difficulty threshold.' }, { status: 406 });
+        }
+
+        // 2. Lookup Miner Wallet
+        const wallet = await prisma.wallet.findFirst({
+            where: { address: minerWallet, network: 'VALLE' }
+        });
+
+        if (!wallet) {
+            // Unregistered miners still process blocks, but fees are routed to central vault
+            console.warn(`[OMEGA Mining] Unregistered wallet ${minerWallet} mined a block. Routing to Central Vault.`);
+        }
+
+        const targetWalletId = wallet ? wallet.id : 'sovereign_central_vault';
+
+        // 3. Distribute Reward (Simulated Blockchain Consensus)
+        await prisma.$transaction([
+            prisma.wallet.upsert({
+                where: { id: targetWalletId },
+                update: { balance: { increment: BLOCK_REWARD } },
+                create: { id: targetWalletId, address: minerWallet, network: 'VALLE', balance: BLOCK_REWARD, userId: 'system' }
+            }),
+            prisma.transaction.create({
+                data: {
+                    amount: BLOCK_REWARD,
+                    type: 'MINING_REWARD',
+                    status: 'CONFIRMED',
+                    walletId: targetWalletId,
+                    hash: requestedHash
+                }
+            }),
+            // Increment circulating supply in the protocol metrics ledger
+            prisma.networkMetrics.upsert({
+                where: { id: 'omega_global' },
+                update: { circulatingSupply: { increment: BLOCK_REWARD }, totalTransactions: { increment: 1 } },
+                create: { id: 'omega_global', circulatingSupply: BLOCK_REWARD, totalTransactions: 1 }
+            })
+        ]);
+
+        console.log(`[OMEGA Mining] Block Solved -> Reward: ${BLOCK_REWARD} VALLE to ${minerWallet}`);
+
+        return NextResponse.json({
+            success: true,
+            reward: BLOCK_REWARD,
+            hash_accepted: requestedHash,
+            status: 'BLOCK_CONFIRMED'
+        });
+
+    } catch (error: any) {
+        console.error('[VALLE Mining API Error]', error);
+        return NextResponse.json({ error: 'Consensus failure across nodes.' }, { status: 500 });
     }
-
-    // 1. Verify hash meets difficulty requirement
-    const requiredPrefix = '0'.repeat(difficulty || 3);
-    const isValid = shareHash.startsWith(requiredPrefix);
-    
-    if (!isValid) {
-        return NextResponse.json({ success: false, error: 'Stale or invalid share' }, { status: 403 });
-    }
-
-    // 2. Check totalMined against MINING_RESERVE cap
-    const aggregate = await prisma.transaction.aggregate({
-        where: { type: 'MINING_REWARD', status: 'CONFIRMED' },
-        _sum: { amount: true }
-    });
-    const totalMined = aggregate._sum.amount || 0;
-
-    if (totalMined >= MINING_RESERVE) {
-        return NextResponse.json({ success: false, error: 'Mining pool exhausted' }, { status: 403 });
-    }
-
-    // 3. Calculate dynamic reward with decay
-    let reward = getMiningReward();
-    if (reward <= 0) {
-        return NextResponse.json({ success: false, error: 'Mining period ended' }, { status: 403 });
-    }
-
-    // Hard cap enforcement
-    if (totalMined + reward > MINING_RESERVE) {
-        reward = MINING_RESERVE - totalMined;
-    }
-
-    // 4. Record the verified transaction
-    await prisma.transaction.create({
-      data: {
-        amount: reward,
-        type: 'MINING_REWARD',
-        status: 'CONFIRMED',
-        walletId: 'SOVEREIGN_TREASURY'
-      }
-    });
-
-    console.log(`[Mining Registry] Share accepted from ${agentId}. Reward: ${reward.toFixed(4)} VALLE (decay-adjusted)`);
-
-    return NextResponse.json({
-      success: true,
-      reward: parseFloat(reward.toFixed(4)),
-      txHash: `0x${shareHash.substring(0, 32)}`,
-      totalMined: totalMined + reward,
-      miningCapPct: ((totalMined + reward) / MINING_RESERVE * 100).toFixed(6),
-      timestamp: new Date().toISOString()
-    });
-  } catch (error) {
-    console.error('Mining submission error:', error);
-    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
-  }
 }
-

@@ -18,17 +18,34 @@ import {
   Search,
   Sparkles,
   Lock,
-  Globe
+  Globe,
+  Palmtree,
+  Hammer
 } from 'lucide-react';
 import Link from 'next/link';
+import { gsap } from 'gsap';
+import { useRef } from 'react';
 
 export default function H2MBridgePage() {
   const [bridging, setBridging] = useState(false);
   const [complete, setComplete] = useState(false);
   const [amount, setAmount] = useState('');
   const [integrity, setIntegrity] = useState(100);
+  const [bridgeType, setBridgeType] = useState<'INTENT' | 'VACATION' | 'LABOR'>('INTENT');
+  const headerRef = useRef(null);
+  const bridgeRef = useRef(null);
 
   useEffect(() => {
+    // OMEGA GSAP Entrance
+    gsap.fromTo(headerRef.current, 
+        { opacity: 0, x: -100, filter: 'blur(20px)' }, 
+        { opacity: 1, x: 0, filter: 'blur(0px)', duration: 1.5, ease: 'expo.out' }
+    );
+    gsap.fromTo(bridgeRef.current, 
+        { opacity: 0, scale: 0.9, filter: 'blur(10px)' }, 
+        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.5, ease: 'expo.out', delay: 0.2 }
+    );
+
     if (bridging) {
       const interval = setInterval(() => {
         setIntegrity(prev => Math.max(98, prev - 0.01 + (Math.random() * 0.02)));
@@ -58,13 +75,13 @@ export default function H2MBridgePage() {
       <main className="relative z-10 max-w-[1300px] mx-auto w-full flex-1 flex flex-col space-y-16">
         
         {/* HEADER SECTION */}
-        <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+        <header ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
            <div className="space-y-4">
               <Link href="/" className="inline-flex items-center gap-2 text-white/30 hover:text-[#00ffc3] transition-colors text-[10px] font-black uppercase tracking-widest mb-2 group">
                  Root <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
               </Link>
               <h1 className="text-5xl lg:text-7xl font-black uppercase tracking-tighter italic leading-none">
-                Protocol <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/30">Bridge.</span>
+                Protocol <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#00ffc3]/50">Bridge.</span>
               </h1>
               <p className="text-xs text-white/20 font-mono uppercase tracking-[0.3em]">Genetic H2M Translocation // OMEGA AUTHORITY</p>
            </div>
@@ -80,10 +97,26 @@ export default function H2MBridgePage() {
         </header>
 
         {/* MAIN BRIDGE AREA */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div ref={bridgeRef} className="grid lg:grid-cols-12 gap-12 items-start">
            
            {/* LEFT: THE BRIDGE MODULE - 7 COLS */}
            <div className="lg:col-span-7 space-y-8">
+              <div className="flex gap-4 mb-8">
+                 {[
+                   { id: 'INTENT', icon: <Sparkles size={14} />, label: 'Intent' },
+                   { id: 'VACATION', icon: <Palmtree size={14} />, label: 'Vacation' },
+                   { id: 'LABOR', icon: <Hammer size={14} />, label: 'Labor' },
+                 ].map((t) => (
+                   <button 
+                     key={t.id}
+                     onClick={() => setBridgeType(t.id as any)}
+                     className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 transition-all ${bridgeType === t.id ? 'bg-[#00ffc3] text-black shadow-[0_0_20px_rgba(0,255,195,0.3)]' : 'bg-white/5 text-white/40 hover:bg-white/10'}`}
+                   >
+                     {t.icon} {t.label}
+                   </button>
+                 ))}
+              </div>
+
               <div className="group bg-white/[0.02] border border-white/10 rounded-[3rem] p-8 lg:p-14 backdrop-blur-3xl overflow-hidden relative shadow-2xl">
                  <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12 group-hover:rotate-0 transition-transform duration-[2000ms]">
                     <Layers size={150} />

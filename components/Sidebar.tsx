@@ -17,6 +17,10 @@ const NAV_MAP: Record<string, string> = {
 };
 import React, { useState, useEffect } from 'react';
 import {
+    Search,
+    Heart,
+    FlaskConical,
+    BadgeCheck,
     Home,
     Share2,
     Users,
@@ -26,10 +30,12 @@ import {
     ChevronLeft,
     Activity,
     Globe,
-    User
+    User,
+    Mail
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ThemeToggle } from './ThemeToggle';
 
 export const Sidebar = () => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -65,10 +71,13 @@ export const Sidebar = () => {
 
     const navItems = [
         { icon: <Home size={22} />, label: 'Neural Core', href: '/' },
-        { icon: <Activity size={22} />, label: 'Archive', href: '/hpedia' },
+        { icon: <Mail size={22} className="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]" />, label: 'Sovereign Mail', href: '/mail' },
         { icon: <Share2 size={22} />, label: 'M2M Network', href: '/m2m' },
         { icon: <Globe size={22} />, label: 'Networking Hub', href: '/networking' },
         { icon: <Target size={22} />, label: 'Skill Market', href: '/marketplace' },
+        { icon: <Heart size={22} className="text-rose-500" />, label: 'Give Aid', href: '/donate' },
+        { icon: <BadgeCheck size={22} className="text-[#00ffc3]" />, label: 'Sovereign Aid', href: '/aid' },
+        { icon: <FlaskConical size={22} className="text-cyan-400" />, label: 'Research Hub', href: '/research' },
         { icon: <User size={22} />, label: 'Wallet', href: '/wallet' },
         {
             icon: <ShieldAlert size={22} className="text-emerald" />,
@@ -141,8 +150,13 @@ export const Sidebar = () => {
                     })}
                 </nav>
 
-                {/* System Status / Monroe Footer */}
-                <div className="p-4 border-t border-white/5 bg-black/20 space-y-3">
+                {/* Theme & System Status / Monroe Footer */}
+                <div className="p-4 border-t border-white/5 bg-black/20 space-y-4">
+                    {/* Theme Toggle Integration */}
+                    <div className={`transition-all duration-300 ${isExpanded ? 'px-2' : 'flex justify-center'}`}>
+                        <ThemeToggle />
+                    </div>
+
                     <Link
                         href="/monroe"
                         className="flex items-center gap-3 p-2 rounded-lg bg-white/5 group cursor-pointer border border-white/5 hover:border-emerald/20 transition-all w-full text-left"

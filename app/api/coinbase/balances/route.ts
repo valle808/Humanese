@@ -63,10 +63,13 @@ export async function GET() {
     }
 
     return NextResponse.json({
+        bank_name: 'SOVEREIGN_CENTRAL_BANK',
+        authorized_by: 'GIO_V',
+        status: 'OPERATIONAL',
         onChain: {
             sol: { address: solTreasury, balance: solBalance, unit: 'SOL' },
             valle: { balance: valleBalance, unit: 'VALLE' },
-            eth: { balance: 0, unit: 'ETH' } // Real value: 0 until ETH treasury is funded
+            btc: { balance: 0, unit: 'BTC' } // Target vault for Bitcoin storage
         },
         coinbase: coinbaseAssets,
         timestamp: new Date().toISOString()

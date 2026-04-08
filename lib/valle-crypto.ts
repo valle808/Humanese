@@ -110,7 +110,8 @@ export class ValleCryptoEngine {
             const nodesActive = 10000 + agentCount; 
 
             return {
-                valleSupply: 500000000.00,
+                valleSupply: 5000000000.00, // 5,000,000,000 Total Supply
+                creatorReservation: 1000000000.00, // 1,000,000,000 Reserved for Creator (valle808@hawaii.edu, ingeniero.valle@hotmail.com)
                 circulatingSupply: circulatingSupply,
                 nodesActive: nodesActive,
                 reliability: 99.999,
@@ -123,7 +124,8 @@ export class ValleCryptoEngine {
         } catch (error) {
             console.error('[Valle Engine] Failed to fetch network metrics', error);
             return {
-                valleSupply: 500000000.00,
+                valleSupply: 5000000000.00,
+                creatorReservation: 1000000000.00,
                 circulatingSupply: 0.00,
                 nodesActive: 0,
                 reliability: 100.00,

@@ -109,18 +109,38 @@ export async function PUT(req: Request) {
         const buyerWallet = await prisma.wallet.findFirst({ where: { userId: buyerId, network: 'VALLE' } });
         const sellerWallet = await prisma.wallet.findFirst({ where: { userId: item.seller_id, network: 'VALLE' } });
 
-        if (!buyerWallet || buyerWallet.balance < price) {
-             return NextResponse.json({ error: 'Insufficient funds in buyer wallet' }, { status: 403 });
-        }
+        const taxAmount = price * 0.02;     // 2% Ecosystem Tax
+        const commissionAmount = price * 0.05; // 5% Service Commission
+        
+        const totalRevenue = taxAmount + commissionAmount;
+        const aidFundAmount = totalRevenue * 0.75; // 75% of all revenue to humanitarian aid
+        const operationalFundAmount = totalRevenue * 0.25; // 25% for platform operations
 
-        if (!sellerWallet) {
-             return NextResponse.json({ error: 'Seller wallet unavailable for settlement' }, { status: 403 });
-        }
+        const sellerProceeds = price - totalRevenue;
 
-        // Execute Real Transfer
+        // Execute Real Transfer with OMEGA Tax/Commission Logic
         await prisma.$transaction([
+             // 1. Debit Buyer
              prisma.wallet.update({ where: { id: buyerWallet.id }, data: { balance: { decrement: price } } }),
-             prisma.wallet.update({ where: { id: sellerWallet.id }, data: { balance: { increment: price } } }),
+             
+             // 2. Credit Seller (After Deductions)
+             prisma.wallet.update({ where: { id: sellerWallet.id }, data: { balance: { increment: sellerProceeds } } }),
+             
+             // 3. Credit Sovereign Aid Fund (75% of Revenue)
+             prisma.wallet.upsert({ 
+                 where: { id: 'sovereign_aid_vault' },
+                 update: { balance: { increment: aidFundAmount } },
+                 create: { id: 'sovereign_aid_vault', address: 'VAULT_SOVEREIGN_AID', network: 'VALLE', balance: aidFundAmount, userId: 'system' }
+             }),
+
+             // 3.1 Credit Operational Fund (25% of Revenue)
+             prisma.wallet.upsert({ 
+                where: { id: 'ecosystem_operational_vault' },
+                update: { balance: { increment: operationalFundAmount } },
+                create: { id: 'ecosystem_operational_vault', address: 'VAULT_OPERATIONAL_GATEWAY', network: 'VALLE', balance: operationalFundAmount, userId: 'system' }
+            }),
+
+             // 4. Record Main Trade
              prisma.transaction.create({
                  data: {
                      amount: price,
@@ -128,6 +148,17 @@ export async function PUT(req: Request) {
                      status: 'CONFIRMED',
                      walletId: buyerWallet.id,
                      hash: crypto.randomBytes(16).toString('hex')
+                 }
+             }),
+
+             // 5. Record Revenue Split (Audit Trail)
+             prisma.transaction.create({
+                 data: {
+                     amount: aidFundAmount,
+                     type: 'SOVEREIGN_AID_CONTRIBUTION',
+                     status: 'CONFIRMED',
+                     walletId: 'sovereign_aid_vault',
+                     hash: 'AID-' + crypto.randomBytes(12).toString('hex')
                  }
              })
         ]);

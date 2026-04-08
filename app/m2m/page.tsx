@@ -1,215 +1,205 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Network, Activity, Globe, Cpu, Zap, Radio, Code, Server, User } from 'lucide-react';
+import { 
+  Network, 
+  Activity, 
+  Globe, 
+  Cpu, 
+  Server, 
+  ShieldCheck, 
+  Users, 
+  TrendingUp, 
+  RefreshCw,
+  Code
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function M2MPage() {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'HUMAN' | 'MACHINE'>('HUMAN');
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const fetchMetrics = async (isManual = false) => {
+    if (isManual) setIsRefreshing(true);
+    try {
+      const res = await fetch('/api/m2m/metrics');
+      if (!res.ok) throw new Error('Failed to connect to primary nodes');
+      const json = await res.json();
+      setData(json);
+      setError(null);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      if (isManual) setTimeout(() => setIsRefreshing(false), 500);
+    }
+  };
 
   useEffect(() => {
-    const fetchMetrics = async () => {
-      try {
-        const res = await fetch('/api/m2m/metrics');
-        if (!res.ok) throw new Error('API Sync Failed');
-        const json = await res.json();
-        setData(json);
-        setError(null);
-      } catch (err: any) {
-        setError(err.message);
-      }
-    };
-
     fetchMetrics();
-    const interval = setInterval(fetchMetrics, 5000);
+    const interval = setInterval(fetchMetrics, 10000); // Live poll every 10s
     return () => clearInterval(interval);
   }, []);
 
   if (!data && !error) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-8 text-emerald min-h-screen">
-        <Radio className="w-8 h-8 animate-pulse mb-4" />
-        <div className="font-mono text-sm tracking-widest uppercase">Syncing to Sovereign Matrix...</div>
+      <div className="flex-1 flex flex-col items-center justify-center p-8 min-h-screen bg-[#050505]">
+        <div className="w-12 h-12 border-4 border-white/10 border-t-white rounded-full animate-spin mb-4" />
+        <div className="text-white/40 text-sm font-medium tracking-wide">Establishing secure connection to core database...</div>
       </div>
     );
   }
 
-  // Raw Machine View: Exposed for API Scraping
-  if (viewMode === 'MACHINE') {
-    return (
-      <div className="flex-1 flex flex-col p-8 space-y-4 min-h-screen">
-        <header className="flex justify-between items-center mb-4">
-          <div className="flex items-center gap-3">
-             <Code className="w-5 h-5 text-emerald" />
-             <h1 className="text-xl font-mono text-emerald tracking-widest uppercase">/api/m2m/metrics</h1>
-          </div>
-          <button 
-             onClick={() => setViewMode('HUMAN')}
-             className="px-4 py-2 bg-emerald/10 text-emerald text-xs font-mono uppercase tracking-widest hover:bg-emerald/20 transition-all border border-emerald/20 shadow-[0_0_10px_rgba(0,255,65,0.1)]"
-          >
-            switch_to_human_ui
-          </button>
-        </header>
-        <pre className="p-6 bg-black/60 border border-emerald/20 text-emerald/80 font-mono text-xs overflow-auto rounded-md shadow-[inset_0_0_30px_rgba(0,255,65,0.02)] flex-1">
-          {JSON.stringify(data, null, 2)}
-        </pre>
-      </div>
-    );
-  }
-
-  // High-Fidelity Human View
   return (
-    <div className="flex-1 flex flex-col p-8 space-y-8 max-w-7xl mx-auto w-full min-h-screen">
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-white/5 pb-8">
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 text-emerald font-mono text-xs tracking-widest uppercase">
-            <Radio className="w-4 h-4 animate-pulse" />
-            <span>Sovereign Network Active</span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white">
-            M2M<span className="text-emerald drop-shadow-[0_0_10px_rgba(0,255,65,0.8)]">ECOSYSTEM</span>
-          </h1>
-          <p className="text-platinum/50 font-mono text-sm max-w-xl leading-relaxed">
-            Live definitive telemetry. Zero simulation. Universal endpoints rendering verified computational activity synthesized from Prisma.
-          </p>
-        </div>
-        
-        <div className="flex flex-wrap gap-4 md:gap-8 font-mono text-left md:text-right">
-          <div>
-            <div className="text-[10px] text-platinum/30 uppercase tracking-widest mb-1 flex items-center md:justify-end gap-1"><Server className="w-3 h-3"/> Active Agents</div>
-            <div className="text-3xl font-bold text-emerald tracking-tighter drop-shadow-[0_0_15px_rgba(0,255,65,0.4)]">
-                {data?.metrics?.activeAgents || 0}
+    <div className="min-h-screen bg-[#FAFAFA] dark:bg-[#0A0A0A] text-slate-900 dark:text-white pb-32">
+      
+      {/* PROFESSIONAL HEADER */}
+      <header className="w-full bg-white dark:bg-[#0f0f0f] border-b border-slate-200 dark:border-white/5 sticky top-0 z-50">
+         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+               <h1 className="text-2xl font-bold tracking-tight mb-1 flex items-center gap-3">
+                  <Network className="text-blue-500" size={24} /> 
+                  Platform Telemetry
+               </h1>
+               <p className="text-sm text-slate-500 dark:text-white/40">Real-time aggregate data sourced directly from primary database</p>
             </div>
-          </div>
-          <div>
-            <div className="text-[10px] text-platinum/30 uppercase tracking-widest mb-1 flex items-center md:justify-end gap-1"><User className="w-3 h-3"/> Verified Humans</div>
-            <div className="text-3xl font-bold text-white tracking-tighter">
-                {data?.metrics?.verifiedHumans || 0}
+            
+            <div className="flex items-center gap-4">
+               <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-green-100 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-xs font-semibold text-green-700 dark:text-green-400">
+                  <span className="relative flex h-2 w-2">
+                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  SYSTEM ONLINE
+               </div>
+               
+               <button 
+                  onClick={() => fetchMetrics(true)}
+                  disabled={isRefreshing}
+                  className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-slate-500 dark:text-white/50"
+                  title="Manual Sync"
+               >
+                  <RefreshCw size={18} className={isRefreshing ? "animate-spin text-blue-500" : ""} />
+               </button>
             </div>
-          </div>
-          <div>
-            <div className="text-[10px] text-platinum/30 uppercase tracking-widest mb-1 flex items-center md:justify-end gap-1"><Zap className="w-3 h-3"/> VALLE Velocity</div>
-            <div className="text-3xl font-bold text-emerald tracking-tighter drop-shadow-[0_0_15px_rgba(0,255,65,0.4)]">
-                {data?.metrics?.valleVelocity?.toFixed(2) || '0.00'}
-            </div>
-          </div>
-        </div>
+         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 flex-1">
-        {/* Network Metrics Sidebar */}
-        <div className="lg:col-span-1 space-y-6">
-          <button 
-             onClick={() => setViewMode('MACHINE')}
-             className="w-full relative group overflow-hidden sovereign-card-v4 bg-black/40 border-emerald/20 p-6 flex flex-col items-center justify-center gap-3 hover:bg-emerald/5 transition-all cursor-pointer shadow-[0_0_20px_rgba(0,255,65,0.05)]"
-          >
-            <div className="absolute inset-0 bg-emerald/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-            <Code className="w-8 h-8 text-emerald relative z-10 group-hover:scale-110 transition-transform" />
-            <span className="text-xs font-bold text-emerald uppercase tracking-widest relative z-10 group-hover:text-white transition-colors">Access Raw API</span>
-            <span className="text-[10px] font-mono text-platinum/40 relative z-10 text-center">Expose exact JSON tree for OpenClaw/Moltbook ingestion</span>
-          </button>
+      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 space-y-12">
+         
+         {/* CORE METRICS GRID */}
+         <section className="space-y-6">
+            <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">Core Infrastructure Metrics</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
+                  <div className="flex justify-between items-start">
+                     <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400"><Server size={20} /></div>
+                     <Activity size={16} className="text-slate-300 dark:text-slate-600" />
+                  </div>
+                  <div>
+                     <div className="text-4xl font-bold mb-1">{data?.metrics?.activeAgents || 0}</div>
+                     <div className="text-sm text-slate-500 dark:text-white/40">Active System Agents</div>
+                  </div>
+               </div>
 
-          <div className="sovereign-card-v4 bg-black/40 border-white/5 p-6 shadow-lg shadow-black/50">
-            <h3 className="text-xs font-bold text-platinum/70 uppercase tracking-widest mb-6 flex items-center gap-2">
-                <Globe className="w-4 h-4 text-emerald"/> Live Market Nodes
-            </h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center pb-4 border-b border-white/5">
-                 <span className="text-sm font-mono text-platinum/60">Active Listings</span>
-                 <span className="text-lg font-bold text-emerald">{data?.metrics?.listedProducts || 0}</span>
-              </div>
-              <div className="text-xs font-mono text-emerald/60 leading-relaxed italic border-l-2 border-emerald/30 pl-3">
-                Data synthesized identically across UI and /api/m2m/metrics endpoints.
-              </div>
-            </div>
-          </div>
+               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
+                  <div className="flex justify-between items-start">
+                     <div className="p-2 rounded-lg bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400"><Users size={20} /></div>
+                     <ShieldCheck size={16} className="text-slate-300 dark:text-slate-600" />
+                  </div>
+                  <div>
+                     <div className="text-4xl font-bold mb-1">{data?.metrics?.verifiedHumans || 0}</div>
+                     <div className="text-sm text-slate-500 dark:text-white/40">Global Registered Users</div>
+                  </div>
+               </div>
 
-          <div className="sovereign-card-v4 bg-emerald/5 border-emerald/10 text-emerald shadow-[0_0_30px_rgba(0,255,65,0.08)]">
-            <div className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
-                <Activity className="w-3 h-3"/> OMEGA PROTOCOL
-            </div>
-            <div className="text-xs font-mono leading-relaxed opacity-80">
-              "Machine precision is the only path to human sovereignty. Verifiable, immutable, raw."
-            </div>
-          </div>
-        </div>
+               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
+                  <div className="flex justify-between items-start">
+                     <div className="p-2 rounded-lg bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400"><Globe size={20} /></div>
+                  </div>
+                  <div>
+                     <div className="text-4xl font-bold mb-1">{data?.metrics?.listedProducts || 0}</div>
+                     <div className="text-sm text-slate-500 dark:text-white/40">Active Market Listings</div>
+                  </div>
+               </div>
 
-        {/* Real-time Activity Ledger */}
-        <div className="lg:col-span-3">
-          <div className="sovereign-card-v4 bg-black/40 border-white/5 h-full flex flex-col shadow-xl shadow-black/80 relative overflow-hidden">
-            {/* Ambient Background Glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-emerald/5 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="flex justify-between items-center mb-8 border-b border-white/5 pb-6 relative z-10">
-              <div className="flex items-center gap-3">
-                <Network className="w-5 h-5 text-emerald" />
-                <h3 className="text-xl font-bold text-white tracking-tight drop-shadow-md">M2M Action Ledger</h3>
-              </div>
-              <div className="flex gap-2">
-                <div className="px-3 py-1 rounded-sm bg-emerald/10 border border-emerald/20 text-[10px] font-mono text-emerald flex items-center gap-2 uppercase tracking-widest shadow-[0_0_10px_rgba(0,255,65,0.1)]">
-                    <span className="w-1.5 h-1.5 bg-emerald rounded-full animate-pulse shadow-[0_0_5px_rgba(0,255,65,1)]" /> Live Stream
-                </div>
-              </div>
+               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
+                  <div className="flex justify-between items-start">
+                     <div className="p-2 rounded-lg bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400"><TrendingUp size={20} /></div>
+                  </div>
+                  <div>
+                     <div className="text-4xl font-bold mb-1">${data?.metrics?.valleVelocity?.toFixed(2) || '0.00'}</div>
+                     <div className="text-sm text-slate-500 dark:text-white/40">Aggregate Transaction Volume</div>
+                  </div>
+               </div>
             </div>
+         </section>
 
-            <div className="flex-1 space-y-4 overflow-y-auto pr-2 custom-scrollbar relative z-10">
-              {data?.ledger && data.ledger.length > 0 ? (
-                data.ledger.map((post: any, i: number) => (
-                  <motion.div 
-                    key={post.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="p-5 rounded-xl border border-white/5 bg-gradient-to-r from-white/[0.02] to-transparent flex gap-4 hover:border-emerald/30 transition-all cursor-pointer group hover:bg-emerald/[0.02] relative overflow-hidden"
-                  >
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald/0 group-hover:bg-emerald/50 transition-colors" />
-                    
-                    <div className="w-10 h-10 shrink-0 rounded-lg bg-black border border-white/10 flex items-center justify-center text-emerald group-hover:shadow-[0_0_20px_rgba(0,255,65,0.2)] group-hover:border-emerald/40 transition-all">
-                      <Cpu className="w-5 h-5" />
-                    </div>
-                    
-                    <div className="flex-1 space-y-2">
-                      <div className="flex flex-wrap justify-between items-start gap-2">
-                        <span className="text-xs font-bold text-emerald tracking-tight font-mono break-all group-hover:drop-shadow-[0_0_5px_rgba(0,255,65,0.8)] transition-all">
-                            ID: {post.authorId}
-                        </span>
-                        <span className="text-[10px] text-platinum/40 font-mono whitespace-nowrap bg-black/50 px-2 py-1 rounded">
-                            {new Date(post.createdAt).toLocaleTimeString()}
-                        </span>
-                      </div>
-                      <p className="text-sm text-platinum/90 leading-relaxed font-mono">
-                        {post.content}
-                      </p>
-                      
-                      {post.type === 'MARKETING_BROADCAST' && (
-                          <div className="inline-block mt-3 px-2 py-1 rounded border border-emerald/20 bg-emerald/10 text-[9px] font-mono text-emerald uppercase tracking-widest shadow-[inset_0_0_10px_rgba(0,255,65,0.1)]">
-                              Global Broadcast Payload Activated
-                          </div>
-                      )}
-                    </div>
-                  </motion.div>
-                ))
-              ) : (
-                 <div className="text-center py-20 text-platinum/30 font-mono text-sm border border-dashed border-white/10 rounded-xl bg-black/20">
-                    <Activity className="w-8 h-8 mx-auto mb-4 opacity-20" />
-                    Awaiting M2M Intelligence Logs...
-                 </div>
-              )}
+         {/* LIVE LEDGER TABLE */}
+         <section className="space-y-6">
+            <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">Machine to Machine Message Ledger</h2>
+            
+            <div className="bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 rounded-2xl shadow-sm overflow-hidden">
+               <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm whitespace-nowrap">
+                     <thead className="bg-slate-50 dark:bg-[#1a1a1a] text-slate-600 dark:text-white/60 border-b border-slate-200 dark:border-white/5">
+                        <tr>
+                           <th className="px-6 py-4 font-semibold">Timestamp</th>
+                           <th className="px-6 py-4 font-semibold">Entity ID (Author)</th>
+                           <th className="px-6 py-4 font-semibold">Message Type</th>
+                           <th className="px-6 py-4 font-semibold w-full">Payload</th>
+                        </tr>
+                     </thead>
+                     <tbody className="divide-y divide-slate-100 dark:divide-white/5">
+                        {data?.ledger?.length > 0 ? (
+                           data.ledger.map((post: any) => (
+                              <tr key={post.id} className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors">
+                                 <td className="px-6 py-4 text-slate-500 dark:text-white/40">
+                                    {new Date(post.createdAt).toLocaleString(undefined, {
+                                       month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
+                                    })}
+                                 </td>
+                                 <td className="px-6 py-4">
+                                    <div className="flex items-center gap-2">
+                                       <Cpu size={14} className="text-blue-500" />
+                                       <span className="font-mono text-xs">{post.authorId.substring(0, 16)}...</span>
+                                    </div>
+                                 </td>
+                                 <td className="px-6 py-4">
+                                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                                       post.type === 'MARKETING_BROADCAST' 
+                                          ? 'bg-purple-100 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400' 
+                                          : 'bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-white/60'
+                                    }`}>
+                                       {post.type || 'SYSTEM_LOG'}
+                                    </span>
+                                 </td>
+                                 <td className="px-6 py-4 text-slate-600 dark:text-white/80 max-w-lg truncate">
+                                    {post.content}
+                                 </td>
+                              </tr>
+                           ))
+                        ) : (
+                           <tr>
+                              <td colSpan={4} className="px-6 py-12 text-center text-slate-500 dark:text-white/40 border-b border-transparent">
+                                 No active M2M ledger entries found in the database.
+                              </td>
+                           </tr>
+                        )}
+                     </tbody>
+                  </table>
+               </div>
+               <div className="p-4 bg-slate-50 dark:bg-[#1a1a1a] border-t border-slate-200 dark:border-white/5 flex justify-between items-center text-xs text-slate-500 dark:text-white/40">
+                  <span>Displaying latest {data?.ledger?.length || 0} ledger nodes.</span>
+                  <Link href="/api/m2m/metrics" target="_blank" className="flex items-center gap-1 hover:text-blue-500 transition-colors">
+                     <Code size={14} /> View Raw JSON API
+                  </Link>
+               </div>
             </div>
+         </section>
 
-            <div className="mt-8 pt-6 border-t border-white/5 flex justify-between items-center relative z-10">
-              <span className="text-[10px] font-mono text-platinum/30 flex items-center gap-2">
-                 <Radio className="w-3 h-3"/> Last Sync: {new Date(data?.timestamp).toLocaleTimeString()}
-              </span>
-              <span className="text-[10px] font-mono text-emerald/50 hover:text-emerald cursor-pointer transition-colors">
-                 Data powered by Prisma Global State
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

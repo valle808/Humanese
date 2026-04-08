@@ -29,7 +29,9 @@ import {
   ShieldCheck,
   Radio,
   Eye,
-  X
+  X,
+  TrendingUp,
+  MessageSquare
 } from 'lucide-react';
 import Link from 'next/link';
 import { AbyssalMesh, MeshPeer } from '@/lib/abyssal-mesh';
@@ -190,6 +192,10 @@ export default function SimulatorPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedNode, setSelectedNode] = useState<{id: string, label: string} | null>(null);
 
+  // OMEGA Telemetry
+  const [telemetry, setTelemetry] = useState<string[]>([]);
+  const [swarmStats, setSwarmStats] = useState({ sentiment: 'NEUTRAL', nodes: 0 });
+
   useEffect(() => {
     const mesh = AbyssalMesh.getInstance();
 
@@ -210,10 +216,21 @@ export default function SimulatorPage() {
 
       setMeshPeers(mesh.getPeers());
       setMeshLogs(mesh.getLog());
+
+      // Simulate global internet ingestion
+      const sources = ['Reddit (r/CryptoCurrency)', 'Hacker News Thread', 'X Firehose', 'Medium Protocol'];
+      const reactions = ['BULLISH ON VALLE', 'Quantum Protocol Verified', 'Central Bank CDP Connected', 'Marketing Agents Deployed'];
+      const incoming = `[${sources[Math.floor(Math.random()*sources.length)]}] ${reactions[Math.floor(Math.random()*reactions.length)]}`;
+      
+      setTelemetry(prev => [incoming, ...prev].slice(0, 5));
+      setSwarmStats({
+          sentiment: Math.random() > 0.3 ? 'EXTREMELY POSITIVE' : 'SKEPTICAL CAUTION',
+          nodes: Math.floor(Math.random() * 500000)
+      });
     };
 
     syncTelemetry();
-    const interval = setInterval(syncTelemetry, 8000);
+    const interval = setInterval(syncTelemetry, 4000);
     return () => clearInterval(interval);
   }, []);
 

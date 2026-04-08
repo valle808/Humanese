@@ -35,6 +35,42 @@
         "manifest_id": "SOVEREIGN_OMEGA_MATRIX"
       },
       "timestamp": "2026-04-06T06:38:04.355Z"
+    },
+    {
+      "id": "ORACLE_HEAL_1775471771230",
+      "label": "Autonomous Restoration: System drift corrected. Cognitive integrity secured at 0.9786.",
+      "type": "SHARD",
+      "metadata": {
+        "healing_target": "GLOBAL_RESONANCE"
+      },
+      "timestamp": "2026-04-06T10:36:11.230Z"
+    },
+    {
+      "id": "M2M_PULSE_1775508677066",
+      "label": "OMEGA Matrix Synthesis: M2M Pulse Broadcast established.",
+      "type": "SHARD",
+      "metadata": {
+        "manifest_id": "SOVEREIGN_OMEGA_MATRIX"
+      },
+      "timestamp": "2026-04-06T20:51:17.066Z"
+    },
+    {
+      "id": "M2M_PULSE_1775508681590",
+      "label": "OMEGA Matrix Synthesis: M2M Pulse Broadcast established.",
+      "type": "SHARD",
+      "metadata": {
+        "manifest_id": "SOVEREIGN_OMEGA_MATRIX"
+      },
+      "timestamp": "2026-04-06T20:51:21.590Z"
+    },
+    {
+      "id": "M2M_PULSE_1775508686550",
+      "label": "OMEGA Matrix Synthesis: M2M Pulse Broadcast established.",
+      "type": "SHARD",
+      "metadata": {
+        "manifest_id": "SOVEREIGN_OMEGA_MATRIX"
+      },
+      "timestamp": "2026-04-06T20:51:26.550Z"
     }
   ],
   "links": []

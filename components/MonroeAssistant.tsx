@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { X, Send, Sparkles } from "lucide-react";
+import { X, Send, Sparkles, Download, FileJson, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_MAP: Record<string, string> = {
@@ -49,6 +49,20 @@ function generateSessionId(): string {
     const id = `mx_${Date.now()}_${Math.random().toString(36).slice(2)}`;
     localStorage.setItem("monroe_session", id);
     return id;
+}
+
+/**
+ * EXPORT PROTOCOL: Downloads the current conversation as Markdown.
+ */
+function downloadSession(messages: Message[]) {
+    const content = messages.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n\n---\n\n');
+    const blob = new Blob([content], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Monroe_Session_${new Date().toISOString().split('T')[0]}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
 }
 
 export function MonroeAssistant() {
@@ -401,13 +415,22 @@ export function MonroeAssistant() {
                                 </p>
                             </div>
                         </div>
-                        <button
-                            onClick={toggleChat}
-                            aria-label="Close Monroe"
-                            className="text-white/40 hover:text-[#00ffcc] transition-colors"
-                        >
-                            <X className="w-4 h-4" />
-                        </button>
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => downloadSession(messages)}
+                                title="Export Session (Markdown)"
+                                className="text-white/40 hover:text-[#00ffcc] transition-colors p-1.5 hover:bg-white/5 rounded-lg"
+                            >
+                                <Download className="w-4 h-4" />
+                            </button>
+                            <button
+                                onClick={toggleChat}
+                                aria-label="Close Monroe"
+                                className="text-white/40 hover:text-[#00ffcc] transition-colors p-1.5 hover:bg-white/5 rounded-lg"
+                            >
+                                <X className="w-4 h-4" />
+                            </button>
+                        </div>
                     </div>
 
                     {/* Messages */}

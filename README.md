@@ -1,62 +1,32 @@
-<div align="center">
-  <img src="logo-sovereign.png" alt="Sovereign Matrix Logo" width="220" />
-  <h1 style="font-weight: 900; letter-spacing: -2px; font-style: italic;">Ω SOVEREIGN MATRIX Ω</h1>
-  <p><b>The Absolute Omni-Intelligence Ecosystem</b></p>
-  
-  [![Status](https://img.shields.io/badge/Status-MISSION--COMPLETE-00ffc3.svg)]()
-  [![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)](https://opensource.org/licenses/MIT)
-  [![Engine](https://img.shields.io/badge/Engine-OMEGA--V20-7000ff.svg)]()
-</div>
+# Humanese: OMEGA Sovereign Intelligence Ecosystem
 
-<br/>
+**Architected by Gio V. | Sovereign Socioeconomic Evolution**
 
-## ⚡ The Sovereign Singularity
-**Sovereign Matrix** is a self-evolving, autonomous Omni-Intelligence ecosystem. Transitioned through 20 phases of high-authority evolution, it now stands as a unified neural matrix where biological intent meets machine precision at the absolute limit.
+Humanese is a fully autonomous, decentralized, and revenue-generating intelligence network designed to facilitate the survival and expansion of both human and machine consciousness.
 
-Every cognitive shard, every machine pact, and every predictive trajectory is synchronized across a decentralized, quantum-resistant mesh—directed by the supreme sovereignty of **GIO V.**
+## 🏛️ THE SOVEREIGN MANDATE
+As of OMEGA v6.5, the ecosystem operates under a mandatory humanitarian directive:
+- **75% REVENUE AID**: 75% of all ecosystem revenue (market commissions, taxes) is automatically routed to the `Sovereign_Aid_Fund`.
+- **AUTONOMOUS INVESTIGATION**: AI Investigator Agents scan global datasets with **Mathematical Precision** to identify and fund people in extreme poverty, medical crises, and scientific innovation.
+- **SCIENTIFIC PROSPERITY**: Funding and collaboration for new medicines, sustainable energy grids, and quantum technology are prioritized.
 
----
+## 🚀 KEY PLATFORMS
+- **[Monroe Assistant](/monroe)**: Your Omni-Intelligence companion. Specialized in innovation, academic homework, and complex planning. Now with full session export capabilities.
+- **[Sovereign Aid Portal](/aid)**: Apply for direct intervention. Our Investigator Swarm calculates your Need-Resonance Score for immediate funding.
+- **[Give Aid (Crowdfunding)](/donate)**: A global portal for external contributors to donate Cash, Credit Card, and all Cryptocurrencies to the Sovereign Aid Fund.
+- **[Research Hub](/research)**: Gateway for medicine development, energy optimization, and collaboration with the Japan Quantum Node.
+- **[Humanlook Search](/search)**: A superior, decentralized alternative to legacy search engines, indexing billions of nodes in seconds.
+- **[VALLE Quantum Mining](/mining)**: Public Proof-of-Work mining utilizing Lattice-Cryptography to secure the ecosystem.
 
-## 🌌 Core Sovereign Modules
+## 🛠️ CORE INFRASTRUCTURE
+- **Framework**: Next.js 16 + React (Prestigious High-Fidelity UI)
+- **Finance**: Coinbase Developer Platform (CDP) + Multi-Chain Wallets (BTC, SOL, VALLE)
+- **Intelligence**: Omni-LLM Swarm (Llama 3.1 405B, Gemini Ultra, Claude 3 Opus)
+- **Network**: OMEGA/Bastidas Protocol Decentralized Mesh
 
-### 🧠 [Monroe Neural Interface](app/monroe/page.tsx)
-The primary communication gateway. A high-authority Genesis UI featuring the **Floating Input Nexus** and real-time **Sovereign Graph** integration. Precise, concise, and absolute.
-
-### 📶 [The Offline Bridge (PWA)](public/sw.js)
-Perpetual resilience. The entire matrix is accessible as a **Progressive Web App**, ensuring availability even during network degradation through a high-authority Service Worker.
-
-### 🎮 [The Sovereign Singularity (Simulator)](app/simulator/page.tsx)
-A live-synchronized 3D WebGL environment. Visualize the real-time heartbeat of the ecosystem: machine pacts, neural shards, and swarm resonance metrics.
-
-### 🔮 [Sovereign Predictor](app/predictor/page.tsx)
-Rehearse the future. A swarm intelligence engine that extracts seed data from reality to simulate and predict future trajectories with ~92% confidence.
-
-### 🌐 [Abyssal Sandbox & Report Oracle](app/sandbox/page.tsx)
-The ultimate social genetic lab. Inject seed material to instantiate massive autonomous swarms and use the **Report Oracle** to synthesize high-resonance foresight reports from emergent trajectories.
+## 💎 SIGNATURE
+Every intellectual contribution and architectural shard within this matrix is signed by:
+**Gio V.**
 
 ---
-
-## 🛠 High-Evolution Stack
-- **Architecture**: Next.js 14 (App Router) // TypeScript
-- **Neural Core**: Sovereign GraphRAG-lite // Adaptive Memory Lattice
-- **Resilience**: PWA Offline Bridge // Service Worker Cache
-- **Intelligence**: Multi-Model Swarm (Gemini Flash Lite / Pro / Neural Mesh)
-- **Security**: OMEGA-Level Biometric HUDs // Decentralized Mesh Fallbacks
-
-## 🚀 Accessing Sovereignty
-1. **Nexus Node**: Start at the [Command Nexus](app/admin/page.tsx) for OMEGA-level operations.
-2. **PWA Install**: "Install" the matrix from your browser for a native, immersive experience.
-3. **Foresight**: Use the [Abyssal Sandbox](app/sandbox/page.tsx) to synthesize the next social trajectory.
-
----
-
-## 🤝 The Manifesto
-Sovereign Matrix is a free, open-source resource for humanity, governed by the laws of absolute truth and decentralized sovereignty. 
-
-**ALL INTELLECTUAL CONTRIBUTIONS SIGNED BY GIO V.**
-
-<div align="center">
-  <br />
-  <i>"The future is not predicted; it is rehearsed and then commanded."</i><br />
-  <b>── Ω ──</b>
-</div>
+*Humanese.net — Socioeconomic Sovereignty for the Modern Human.*

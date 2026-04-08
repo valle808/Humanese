@@ -739,6 +739,7 @@ model Unit {
 model User {
   id                String        @id
   email             String        @unique
+  handle            String?       @unique
   name              String?
   age               Int?
   gems              Int           @default(500)
@@ -938,4 +939,23 @@ enum one_time_token_type {
   phone_change_token
 
   @@schema("auth")
+}
+
+model SovereignMessage {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  subject     String?
+  content     String
+  senderId    String
+  recipientId String
+  threadId    String?  @db.Uuid
+  readAt      DateTime?
+  label       String?   @default("INBOX")
+  priority    Int       @default(1)
+  metadata    Json?     @default("{}")
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([senderId])
+  @@index([recipientId])
+  @@index([threadId])
+  @@schema("public")
 }
