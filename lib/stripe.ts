@@ -1,16 +1,27 @@
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is missing from environment variables.');
-}
+let stripeInstance: Stripe | null = null;
 
-// Initialize the Stripe SDK with the official v2024-04-10 API version (or latest supported)
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  // @ts-ignore - The typescript version might be slightly behind the currently installed package
-  apiVersion: '2024-04-10', // Always pin version to ensure payment stability
-  appInfo: {
-    name: 'OMEGA Sovereign Aid',
-    version: '4.0.0',
-    url: 'https://humanese.net/aid'
+export const getStripe = () => {
+  if (stripeInstance) return stripeInstance;
+
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    if (process.env.NODE_ENV === 'production' && typeof window === 'undefined') {
+      console.warn('STRIPE_SECRET_KEY is missing. Stripe functionality will be unavailable.');
+    }
+    return null;
   }
-});
+
+  stripeInstance = new Stripe(key, {
+    // @ts-ignore
+    apiVersion: '2024-04-10',
+    appInfo: {
+      name: 'OMEGA Sovereign Aid',
+      version: '4.0.0',
+      url: 'https://humanese.net/aid'
+    }
+  });
+
+  return stripeInstance;
+};

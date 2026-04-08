@@ -44,3 +44,4 @@ Thumbs.db
 /tmp/*
 scripts/repo_check.js.bak
 data/rentals.json.bak
+.env*.local

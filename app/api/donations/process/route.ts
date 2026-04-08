@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import crypto from 'crypto';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,6 +14,11 @@ export async function POST(req: NextRequest) {
             if (!amount) return NextResponse.json({ error: 'Amount required.' }, { status: 400 });
             
             const numericAmount = parseFloat(amount);
+            
+            const stripe = getStripe();
+            if (!stripe) {
+                return NextResponse.json({ error: 'Stripe is currently unavailable.' }, { status: 503 });
+            }
             
             const paymentIntent = await stripe.paymentIntents.create({
                 amount: Math.round(numericAmount * 100), // Stripe expects cents
