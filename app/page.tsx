@@ -14,6 +14,7 @@ import {
   Shield,
   ShoppingBag,
   Database,
+  Users,
   Sparkles,
   Map as MapIcon,
   Radio,
