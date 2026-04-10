@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
  */
 export async function GET(req: NextRequest) {
     try {
-        const proposals = await prisma.improvementProposal.findMany({
+        const proposals = await (prisma as any).improvementProposal.findMany({
             include: {
                 _count: {
                     select: { votes: true }
@@ -21,9 +21,9 @@ export async function GET(req: NextRequest) {
         });
 
         // Calculate simplified resonance stats
-        const formattedProposals = proposals.map(p => ({
+        const formattedProposals = proposals.map((p: any) => ({
             ...p,
-            voteCount: (p as any)._count.votes,
+            voteCount: p._count.votes,
             // In a real system, resonance would be sum of weights
             resonance: p.resonanceThreshold 
         }));

@@ -19,13 +19,28 @@ import {
   ChevronLeft,
   Users,
   Target,
-  Layers
+  Layers,
+  X
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function GovernanceHub() {
+    const router = useRouter();
     const [proposals, setProposals] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+
+    // Drafting State
+    const [isDrafting, setIsDrafting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [draftError, setDraftError] = useState<string | null>(null);
+    const [newHip, setNewHip] = useState({
+        title: '',
+        type: 'Standards Track',
+        layer: 'Consensus',
+        category: 'Core',
+        content: ''
+    });
 
     useEffect(() => {
         const fetchProposals = async () => {
@@ -46,6 +61,48 @@ export default function GovernanceHub() {
         const interval = setInterval(fetchProposals, 30000);
         return () => clearInterval(interval);
     }, []);
+
+    const handleInitiateDraft = async () => {
+        setDraftError(null);
+        setIsSubmitting(true);
+
+        const sessionStr = localStorage.getItem('humanese_session');
+        if (!sessionStr) {
+            setDraftError("Identity anchor missing. Connect to Sovereign Portal first.");
+            setIsSubmitting(false);
+            return;
+        }
+
+        const session = JSON.parse(sessionStr);
+        const authorId = session.user?.id || 'GIO_V'; // Fallback for dev
+
+        try {
+            const res = await fetch('/api/governance/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title: newHip.title,
+                    type: newHip.type,
+                    layer: newHip.layer,
+                    category: newHip.category,
+                    content: newHip.content,
+                    authorId: authorId
+                })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                // Return data.proposal is from the API
+                router.push(`/governance/hip/${data.proposal.id}`);
+            } else {
+                setDraftError(data.error);
+            }
+        } catch (err) {
+            setDraftError("Matrix handshake failed. Unable to anchor protocol.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden pb-40">
@@ -94,7 +151,10 @@ export default function GovernanceHub() {
                     </div>
 
                     <div className="flex flex-col gap-10 shrink-0">
-                         <button className="px-16 py-8 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.8em] rounded-[3rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none border-0 overflow-hidden relative group/btn">
+                         <button 
+                            onClick={() => setIsDrafting(true)}
+                            className="px-16 py-8 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.8em] rounded-[3rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none border-0 overflow-hidden relative group/btn"
+                         >
                              <Plus size={20} strokeWidth={4} />
                              <span className="relative z-10">Initiate HIP Draft</span>
                              <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
@@ -194,6 +254,108 @@ export default function GovernanceHub() {
                 <div className="text-[30vw] font-black italic italic leading-none uppercase">GOVERN</div>
             </div>
             
+            {/* ── DRAFTING MODAL ── */}
+            <AnimatePresence>
+                {isDrafting && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-8 lg:p-24 bg-black/80 backdrop-blur-2xl"
+                    >
+                        <motion.div 
+                            initial={{ scale: 0.9, opacity: 0, y: 40 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 40 }}
+                            className="relative w-full max-w-6xl bg-[#0a0a0a] border-2 border-white/10 rounded-[4rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] flex flex-col max-h-[90vh]"
+                        >
+                            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
+                            
+                            <header className="p-10 border-b border-white/5 flex justify-between items-center shrink-0">
+                                <div className="space-y-1">
+                                    <div className="text-[10px] text-[#ff6b2b] font-black uppercase tracking-[0.8em] italic leading-none">Protocol_Drafting_v7</div>
+                                    <h2 className="text-3xl font-black text-white italic tracking-tighter uppercase leading-none">Initiate New HIP</h2>
+                                </div>
+                                <button 
+                                    onClick={() => setIsDrafting(false)}
+                                    className="h-14 w-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"
+                                >
+                                    <X size={24} />
+                                </button>
+                            </header>
+
+                            <div className="flex-1 overflow-y-auto p-12 space-y-12">
+                                {draftError && (
+                                    <div className="p-8 bg-red-500/10 border-2 border-red-500/20 rounded-3xl text-[11px] text-red-500 font-black uppercase tracking-[0.4em] italic leading-none text-center">
+                                        Error: {draftError}
+                                    </div>
+                                )}
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] text-white/20 font-black uppercase tracking-[0.6em] italic leading-none pl-2">Proposal Title_</label>
+                                        <input 
+                                            type="text" 
+                                            value={newHip.title}
+                                            onChange={(e) => setNewHip({...newHip, title: e.target.value})}
+                                            placeholder="e.target.SovereignExpansion..."
+                                            className="w-full p-8 bg-white/[0.02] border-2 border-white/5 rounded-3xl text-white font-black italic tracking-tight focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all outline-none"
+                                        />
+                                    </div>
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] text-white/20 font-black uppercase tracking-[0.6em] italic leading-none pl-2">Classification_</label>
+                                        <select 
+                                            value={newHip.type}
+                                            onChange={(e) => setNewHip({...newHip, type: e.target.value})}
+                                            className="w-full p-8 bg-white/[0.02] border-2 border-white/5 rounded-3xl text-white font-black italic tracking-tight focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all outline-none appearance-none"
+                                        >
+                                            <option>Standards Track</option>
+                                            <option>Informational</option>
+                                            <option>Process</option>
+                                        </select>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] text-white/20 font-black uppercase tracking-[0.6em] italic leading-none pl-2">Network Layer_</label>
+                                        <input 
+                                            type="text" 
+                                            value={newHip.layer}
+                                            onChange={(e) => setNewHip({...newHip, layer: e.target.value})}
+                                            placeholder="Consensus / API / UX"
+                                            className="w-full p-8 bg-white/[0.02] border-2 border-white/5 rounded-3xl text-white font-black italic tracking-tight focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all outline-none"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <label className="text-[10px] text-white/20 font-black uppercase tracking-[0.6em] italic leading-none pl-2">Protocol Specification (Markdown)_</label>
+                                    <textarea 
+                                        rows={10}
+                                        value={newHip.content}
+                                        onChange={(e) => setNewHip({...newHip, content: e.target.value})}
+                                        placeholder="## Abstract\nDescribe the systemic intent..."
+                                        className="w-full p-10 bg-white/[0.02] border-2 border-white/5 rounded-[3rem] text-white font-mono text-xl leading-relaxed focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all outline-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <footer className="p-10 border-t border-white/5 bg-black/40 backdrop-blur-3xl flex justify-end shrink-0">
+                                 <button 
+                                    disabled={isSubmitting || !newHip.title || !newHip.content}
+                                    onClick={handleInitiateDraft}
+                                    className="px-16 py-8 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.6em] rounded-[2.5rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-95 transition-all text-xs flex items-center justify-center gap-6 italic leading-none disabled:opacity-30 disabled:grayscale transition-all"
+                                 >
+                                     {isSubmitting ? (
+                                         <span className="animate-pulse">Anchoring Protocol...</span>
+                                     ) : (
+                                         <>Anchor to Sovereign Ledger <ArrowUpRight size={20} strokeWidth={4} /></>
+                                     )}
+                                 </button>
+                            </footer>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <style jsx global>{`
                 .animate-spin-slow { animation: spin 25s linear infinite; }
                 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

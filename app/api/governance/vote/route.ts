@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
         }
 
         // 1. Check if proposal exists
-        const proposal = await prisma.improvementProposal.findUnique({ 
+        const proposal = await (prisma as any).improvementProposal.findUnique({ 
             where: { id: proposalId },
             include: { votes: true }
         });
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
             newStatus = 'Accepted';
         }
 
-        const updated = await prisma.improvementProposal.update({
+        const updated = await (prisma as any).improvementProposal.update({
             where: { id: proposalId },
             data: {
                 resonanceThreshold: supportResonance,

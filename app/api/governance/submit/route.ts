@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
              return NextResponse.json({ error: 'Missing required fields: title, content, type, authorId' }, { status: 400 });
         }
 
-        const proposal = await prisma.improvementProposal.create({
+        const proposal = await (prisma as any).improvementProposal.create({
             data: {
                 title,
                 type,
