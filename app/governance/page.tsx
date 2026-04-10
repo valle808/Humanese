@@ -28,6 +28,7 @@ import Link from 'next/link';
 export default function GovernanceHub() {
     const router = useRouter();
     const [proposals, setProposals] = useState<any[]>([]);
+    const [govStats, setGovStats] = useState<{ totalResonance: number; uniqueVoters: number; statusCounts: Record<string, number> } | null>(null);
     const [loading, setLoading] = useState(true);
 
     // Drafting State
@@ -49,9 +50,10 @@ export default function GovernanceHub() {
                  const data = await res.json();
                  if (data.success) {
                      setProposals(data.proposals);
+                     if (data.stats) setGovStats(data.stats);
                  }
              } catch (err) {
-                 console.error("[Governance Sync Error]", err);
+                 console.error('[Governance Sync Error]', err);
              } finally {
                  setLoading(false);
              }
@@ -165,10 +167,10 @@ export default function GovernanceHub() {
                 {/* ── STATS MATRIX ── */}
                 <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     {[
-                        { label: 'Active Proposals', value: proposals.length || '0', icon: Activity, color: 'text-[#ff6b2b]' },
-                        { label: 'Total Resonance', value: '18.4M', icon: ArrowUpRight, color: 'text-white' },
-                        { label: 'Network Consensus', value: '100%', icon: ShieldCheck, color: 'text-[#ff6b2b]' },
-                        { label: 'Citizens Enrolled', value: '12,842', icon: Users, color: 'text-white' },
+                        { label: 'Total Proposals', value: govStats ? String(govStats.statusCounts ? Object.values(govStats.statusCounts).reduce((a: any, b: any) => a + b, 0) : proposals.length) : '—', icon: Activity, color: 'text-[#ff6b2b]' },
+                        { label: 'Total Resonance', value: govStats ? govStats.totalResonance.toLocaleString(undefined, { maximumFractionDigits: 1 }) : '—', icon: ArrowUpRight, color: 'text-white' },
+                        { label: 'Accepted HIPs', value: govStats?.statusCounts?.['Accepted'] ? String(govStats.statusCounts['Accepted']) : '0', icon: ShieldCheck, color: 'text-[#ff6b2b]' },
+                        { label: 'Unique Voters', value: govStats ? String(govStats.uniqueVoters) : '—', icon: Users, color: 'text-white' },
                     ].map((stat, i) => (
                         <div key={i} className="bg-[#050505] border-2 border-white/10 p-12 rounded-[4rem] group hover:border-[#ff6b2b]/40 transition-all flex flex-col gap-6 relative overflow-hidden backdrop-blur-3xl shadow-[0_60px_120px_rgba(0,0,0,0.85)]">
                             <stat.icon className="absolute right-[-20px] top-[-20px] w-48 h-48 text-white/5 opacity-[0.03] group-hover:scale-110 transition-transform group-hover:rotate-12 duration-1000" />

@@ -34,25 +34,21 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
     useEffect(() => {
         const fetchHip = async () => {
             try {
-                const res = await fetch('/api/governance/list');
+                const res = await fetch(`/api/governance/${id}`);
                 const data = await res.json();
                 if (data.success) {
-                    const found = data.proposals.find((p: any) => p.id === id);
-                    if (found) {
-                        setHip(found);
-                        
-                        // Check if user already voted in this session (simplified)
-                        const sessionStr = localStorage.getItem('humanese_session');
-                        if (sessionStr) {
-                            const session = JSON.parse(sessionStr);
-                            if (found.votes?.some((v: any) => v.voterId === session.user?.id)) {
-                                setVoted(true);
-                            }
+                    setHip(data.proposal);
+                    // Check if user already voted
+                    const sessionStr = localStorage.getItem('humanese_session');
+                    if (sessionStr) {
+                        const session = JSON.parse(sessionStr);
+                        if (data.proposal.votes?.some((v: any) => v.voterId === session.user?.id)) {
+                            setVoted(true);
                         }
                     }
                 }
             } catch (err) {
-                console.error("[HIP Sync Error]", err);
+                console.error('[HIP Sync Error]', err);
             } finally {
                 setLoading(false);
             }
@@ -60,41 +56,28 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
         fetchHip();
     }, [id]);
 
-    const handleSovereignVote = async () => {
+    const handleSovereignVote = async (choice: string = 'Support') => {
         const sessionStr = localStorage.getItem('humanese_session');
-        if (!sessionStr) {
-            setVoteError("Identity signal missing. Please anchor your session in the Sovereign Portal.");
-            return;
-        }
-
-        const session = JSON.parse(sessionStr);
-        const voterId = session.user?.id;
+        const voterId = sessionStr ? (JSON.parse(sessionStr).user?.id ?? `anon_${Date.now()}`) : `anon_${Date.now()}`;
 
         try {
             const res = await fetch('/api/governance/vote', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    proposalId: id,
-                    voterId: voterId,
-                    choice: 'Support',
-                    weight: 1.0 // This would be dynamic based on VALLE stake in production
-                })
+                body: JSON.stringify({ proposalId: id, voterId, choice, weight: 1.0 })
             });
-
             const data = await res.json();
             if (res.ok) {
                 setVoted(true);
-                // Refresh HIP data to show new resonance
-                const updatedRes = await fetch('/api/governance/list');
-                const updatedData = await updatedRes.json();
-                const found = updatedData.proposals.find((p: any) => p.id === id);
-                if (found) setHip(found);
+                // Re-fetch updated HIP
+                const updated = await fetch(`/api/governance/${id}`);
+                const updatedData = await updated.json();
+                if (updatedData.success) setHip(updatedData.proposal);
             } else {
                 setVoteError(data.error);
             }
         } catch (err) {
-            setVoteError("Communication relay failure. Protocol resonance lost.");
+            setVoteError('Communication relay failure. Protocol resonance lost.');
         }
     };
 
@@ -226,15 +209,21 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
 
                                 <AnimatePresence mode="wait">
                                     {!voted ? (
-                                        <motion.button 
-                                            key="vote"
-                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-                                            onClick={handleSovereignVote}
-                                            className="w-full py-10 bg-[#ff6b2b] text-black font-black uppercase tracking-[1em] text-xs rounded-[3rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-6 italic overflow-hidden group/btn leading-none border-0"
-                                        >
-                                            Broadcast Signal <ArrowUpRight size={24} strokeWidth={3} />
-                                            <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
-                                        </motion.button>
+                                        <motion.div key="vote" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="space-y-4">
+                                            <motion.button 
+                                                onClick={() => handleSovereignVote('Support')}
+                                                className="w-full py-10 bg-[#ff6b2b] text-black font-black uppercase tracking-[1em] text-xs rounded-[3rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-6 italic overflow-hidden group/btn leading-none border-0"
+                                            >
+                                                Broadcast Support <ArrowUpRight size={24} strokeWidth={3} />
+                                                <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
+                                            </motion.button>
+                                            <motion.button
+                                                onClick={() => handleSovereignVote('Against')}
+                                                className="w-full py-6 border-2 border-red-500/20 text-red-500/60 font-black uppercase tracking-[0.8em] text-[10px] rounded-[2rem] hover:border-red-500/40 hover:text-red-400 transition-all flex items-center justify-center gap-4 italic leading-none"
+                                            >
+                                                Signal Against
+                                            </motion.button>
+                                        </motion.div>
                                     ) : (
                                         <motion.div 
                                             key="success"
@@ -252,20 +241,49 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                             </div>
                         </div>
 
-                        {/* ANALYTICS FEED */}
+                        {/* LIVE VOTE FEED */}
                         <div className="space-y-8 pt-8 border-t-2 border-white/5 relative z-10">
-                            <h4 className="text-[11px] font-black uppercase tracking-[0.6em] text-white/10 italic pl-2">Recent Transactions_</h4>
-                            <div className="space-y-4">
-                                {[
-                                    { node: 'MONROE_B9', type: 'SUPPORT', time: '2m ago' },
-                                    { node: 'VALLE_OVERLORD', type: 'AMEND', time: '12m ago' },
-                                ].map((tx, i) => (
-                                    <div key={i} className="flex justify-between items-center p-6 bg-white/[0.01] border border-white/5 rounded-3xl group hover:border-[#ff6b2b]/30 transition-all">
+                            <div className="flex items-center justify-between">
+                                <h4 className="text-[11px] font-black uppercase tracking-[0.6em] text-white/10 italic pl-2">Signal Log_</h4>
+                                <span className="text-[10px] text-[#ff6b2b]/40 font-black uppercase tracking-[0.4em] italic">{hip.voteCount ?? 0} signals</span>
+                            </div>
+
+                            {/* Resonance breakdown */}
+                            {hip.resonanceBreakdown && (
+                                <div className="space-y-4 p-6 bg-black/40 border border-white/5 rounded-3xl">
+                                    {[{ label: 'Support', val: hip.resonanceBreakdown.support, color: '#ff6b2b' }, { label: 'Against', val: hip.resonanceBreakdown.against, color: '#ef4444' }, { label: 'Abstain', val: hip.resonanceBreakdown.abstain, color: '#ffffff30' }].map(bar => {
+                                        const total = (hip.resonanceBreakdown.support + hip.resonanceBreakdown.against + hip.resonanceBreakdown.abstain) || 1;
+                                        return (
+                                            <div key={bar.label} className="space-y-1">
+                                                <div className="flex justify-between text-[9px] font-black uppercase tracking-[0.4em] italic">
+                                                    <span style={{ color: bar.color }}>{bar.label}</span>
+                                                    <span className="text-white/20">{bar.val.toFixed(1)}</span>
+                                                </div>
+                                                <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: `${(bar.val / total) * 100}%` }}
+                                                        transition={{ duration: 1.5, ease: 'circOut' }}
+                                                        className="h-full rounded-full"
+                                                        style={{ backgroundColor: bar.color }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+
+                            <div className="space-y-3 max-h-48 overflow-y-auto custom-scrollbar">
+                                {!hip.votes || hip.votes.length === 0 ? (
+                                    <p className="text-center text-[11px] text-white/10 font-black uppercase italic tracking-widest py-6">No signals broadcast yet.</p>
+                                ) : hip.votes.map((vote: any, i: number) => (
+                                    <div key={vote.id ?? i} className="flex justify-between items-center p-5 bg-white/[0.01] border border-white/5 rounded-2xl group hover:border-[#ff6b2b]/30 transition-all">
                                         <div className="flex flex-col gap-1">
-                                            <span className="text-[12px] font-black text-white/80 group-hover:text-white uppercase italic tracking-tighter leading-none">{tx.node}</span>
-                                            <span className="text-[9px] text-[#ff6b2b]/40 font-black uppercase tracking-[0.4em] italic leading-none">{tx.type}</span>
+                                            <span className="text-[11px] font-black text-white/60 group-hover:text-white uppercase italic tracking-tight leading-none">{vote.voterId?.length > 16 ? `${vote.voterId.slice(0,8)}...${vote.voterId.slice(-4)}` : vote.voterId}</span>
+                                            <span className={`text-[9px] font-black uppercase tracking-[0.4em] italic leading-none ${vote.choice === 'Support' ? 'text-[#ff6b2b]' : vote.choice === 'Against' ? 'text-red-400' : 'text-white/20'}`}>{vote.choice}</span>
                                         </div>
-                                        <span className="text-[10px] text-white/10 font-black uppercase tracking-[0.2em] italic">{tx.time}</span>
+                                        <span className="text-[10px] text-white/10 font-black uppercase tracking-[0.2em] italic">{new Date(vote.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                     </div>
                                 ))}
                             </div>
