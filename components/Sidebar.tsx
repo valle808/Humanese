@@ -69,6 +69,7 @@ export const Sidebar = () => {
     const navItems = [
         { icon: <Home size={24} />, label: 'Neural Core', href: '/', id: 'core' },
         { icon: <Mail size={24} />, label: 'Sovereign Mail', href: '/mail', highlight: true, id: 'mail' },
+        { icon: <Gavel size={24} />, label: 'Governance (HIPs)', href: '/governance', id: 'gov' },
         { icon: <ActivityIcon size={24} />, label: 'Intelligence HQ', href: '/intelligence', id: 'intel' },
         { icon: <Target size={24} />, label: 'Skill Market', href: '/skill-market', id: 'skills' },
         { icon: <ShieldCheck size={24} />, label: 'Judicial Oversight', href: '/judiciary', id: 'judiciary' },

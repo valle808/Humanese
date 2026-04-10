@@ -959,3 +959,20 @@ model SovereignMessage {
   @@index([threadId])
   @@schema("public")
 }
+
+model ImprovementProposal {
+  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  hipNumber          Int      @unique @default(autoincrement())
+  title              String
+  authorId           String
+  type               String
+  status             String   @default("Draft")
+  markdownContent    String   @db.Text
+  resonanceThreshold Float    @default(0.0)
+  createdAt          DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime @updatedAt @db.Timestamptz(6)
+
+  @@index([authorId])
+  @@index([status])
+  @@schema("public")
+}
