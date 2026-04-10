@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
     try {
-        const { title, content, type, authorId } = await req.json();
+        const { title, content, type, authorId, layer, category, bipReference } = await req.json();
         
         if (!title || !content || !authorId || !type) {
              return NextResponse.json({ error: 'Missing required fields: title, content, type, authorId' }, { status: 400 });
@@ -15,6 +15,9 @@ export async function POST(req: NextRequest) {
             data: {
                 title,
                 type,
+                layer,
+                category,
+                bipReference,
                 authorId,
                 markdownContent: content,
                 status: 'Draft',

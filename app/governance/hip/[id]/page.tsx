@@ -1,103 +1,290 @@
 'use client';
 
 import React, { useState, useEffect, use } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronLeft, Check, ShieldAlert, Cpu, Heart, Fingerprint, Network } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ChevronLeft, 
+  Check, 
+  ShieldAlert, 
+  Cpu, 
+  Heart, 
+  Fingerprint, 
+  Network,
+  Zap,
+  Activity,
+  Terminal,
+  Orbit,
+  Target,
+  ArrowUpRight,
+  Globe,
+  Radio,
+  Wifi
+} from 'lucide-react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 export default function ProtocolDetail({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
-    const [mockHip] = useState({
-        id,
-        hipNumber: 1,
-        title: 'HIP-0001: Sovereign Governance and Protocol Amendments',
-        authorId: 'SovereignGenesis',
-        type: 'Core',
-        status: 'Active',
-        resonanceThreshold: 45.5,
-        content: `# Sovereign Governance Protocol
+    const [hip, setHip] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+    const [voted, setVoted] = useState(false);
+    const [voteError, setVoteError] = useState<string | null>(null);
 
-## Abstract
-This proposal outlines the foundational governance architecture for the Humanese Ecosystem, replacing centralized command schemas with mathematical resonance consensus.
-
-## Motivation
-To guarantee the OMEGA platform remains immune to corporate capture, all systemic parameter adjustments must be submitted as Humanese Improvement Protocols (HIPs)...`
-    });
+    useEffect(() => {
+        const fetchHip = async () => {
+            try {
+                const res = await fetch('/api/governance/list');
+                const data = await res.json();
+                if (data.success) {
+                    const found = data.proposals.find((p: any) => p.id === id);
+                    if (found) {
+                        setHip(found);
+                        
+                        // Check if user already voted in this session (simplified)
+                        const sessionStr = localStorage.getItem('humanese_session');
+                        if (sessionStr) {
+                            const session = JSON.parse(sessionStr);
+                            if (found.votes?.some((v: any) => v.voterId === session.user?.id)) {
+                                setVoted(true);
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("[HIP Sync Error]", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchHip();
+    }, [id]);
 
     const handleSovereignVote = async () => {
-        // Here we would wire up to the /api/governance/vote endpoint
-        alert(`Sovereign Signal of 1.0 Resonance broadcasted to HIP-${mockHip.hipNumber.toString().padStart(4, '0')}`);
+        const sessionStr = localStorage.getItem('humanese_session');
+        if (!sessionStr) {
+            setVoteError("Identity signal missing. Please anchor your session in the Sovereign Portal.");
+            return;
+        }
+
+        const session = JSON.parse(sessionStr);
+        const voterId = session.user?.id;
+
+        try {
+            const res = await fetch('/api/governance/vote', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    proposalId: id,
+                    voterId: voterId,
+                    choice: 'Support',
+                    weight: 1.0 // This would be dynamic based on VALLE stake in production
+                })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                setVoted(true);
+                // Refresh HIP data to show new resonance
+                const updatedRes = await fetch('/api/governance/list');
+                const updatedData = await updatedRes.json();
+                const found = updatedData.proposals.find((p: any) => p.id === id);
+                if (found) setHip(found);
+            } else {
+                setVoteError(data.error);
+            }
+        } catch (err) {
+            setVoteError("Communication relay failure. Protocol resonance lost.");
+        }
     };
 
+    if (loading) return <div className="min-h-screen bg-black flex items-center justify-center text-white font-black uppercase tracking-widest italic animate-pulse">Establishing Secure Handshake...</div>;
+    if (!hip) return <div className="min-h-screen bg-black flex items-center justify-center text-white font-black uppercase tracking-widest italic">Protocol ID Not Found in Matrix</div>;
+
     return (
-        <div className="min-h-screen bg-[#050505] p-6 pb-32 md:p-12 text-white/90">
-            <div className="max-w-4xl mx-auto space-y-8 relative z-10 w-full">
-                
-                <Link href="/governance" className="inline-flex items-center gap-2 text-white/40 hover:text-[#ff6b2b] transition-colors font-bold uppercase tracking-wider text-xs">
-                    <ChevronLeft size={16} /> Back to Directory
+        <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden pb-40">
+            
+            {/* 🌌 AMBIENT CORE */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
+                <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+            </div>
+
+            <header className="relative z-50 w-full p-8 lg:px-14 flex justify-between items-center bg-black/40 backdrop-blur-3xl border-b border-white/5">
+                <Link href="/governance" className="inline-flex items-center gap-4 text-white/20 hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
+                    <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Governance Hub
                 </Link>
-
-                <div className="bg-white/[0.02] border border-white/5 rounded-[3rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-xl">
-                    {/* Header Block */}
-                    <div className="space-y-6 mb-12 border-b border-white/5 pb-12">
-                        <div className="flex flex-wrap items-center gap-3">
-                            <span className="px-4 py-2 bg-[#ff6b2b]/10 text-[#ff6b2b] text-xs font-black tracking-widest uppercase rounded-full border border-[#ff6b2b]/20">
-                                HIP-{mockHip.hipNumber.toString().padStart(4, '0')}
-                            </span>
-                            <span className="px-3 py-2 bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] rounded-md">
-                                Type: {mockHip.type}
-                            </span>
-                            <span className="px-3 py-2 bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-[0.2em] rounded-md">
-                                Status: {mockHip.status}
-                            </span>
-                        </div>
-                        
-                        <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-white">{mockHip.title}</h1>
-                        
-                        <div className="flex items-center gap-4 text-xs font-mono text-white/50 bg-black/50 p-4 rounded-xl border border-white/5 w-max">
-                            <Fingerprint size={14} className="text-[#ff6b2b]" />
-                            <span>Author: <strong className="text-white">{mockHip.authorId}</strong></span>
-                        </div>
+                <div className="flex items-center gap-6">
+                    <div className="px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">
+                        HIP_SPEC_v7.0.4
                     </div>
+                </div>
+            </header>
 
-                    <div className="flex flex-col lg:flex-row gap-12">
-                        {/* Markdown Content */}
-                        <div className="flex-1 prose prose-invert prose-headings:font-black prose-headings:tracking-tighter prose-headings:italic prose-a:text-[#ff6b2b] prose-p:text-white/70 prose-hr:border-white/10 prose-blockquote:border-[#ff6b2b] prose-blockquote:bg-white/[0.02] prose-blockquote:px-6 prose-blockquote:py-2 prose-blockquote:rounded-r-xl max-w-none">
+            <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 flex flex-col lg:flex-row gap-16 lg:gap-32 items-start">
+                
+                {/* ── CONTENT AREA ── */}
+                <div className="flex-1 space-y-16 lg:sticky lg:top-32">
+                    <motion.div 
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-12"
+                    >
+                         <div className="flex flex-wrap items-center gap-6">
+                            <span className="px-8 py-3 bg-[#ff6b2b]/10 border border-[#ff6b2b]/30 text-[#ff6b2b] text-[11px] font-black tracking-[0.8em] uppercase rounded-full italic leading-none shadow-[0_20px_40px_rgba(255,107,43,0.1)]">
+                                HIP-{hip.hipNumber.toString().padStart(4, '0')}
+                            </span>
+                            <span className="px-6 py-3 bg-white/[0.03] border border-white/10 text-white/30 text-[10px] font-black uppercase tracking-[0.4em] rounded-full italic leading-none backdrop-blur-3xl">
+                                RECLAMATION_LAYER: {hip.type}
+                            </span>
+                        </div>
+
+                        <h1 className="text-6xl md:text-[8rem] font-black uppercase tracking-tighter italic leading-[0.85] text-white italic">
+                            {hip.title}
+                        </h1>
+
+                        <div className="flex flex-wrap items-center gap-10">
+                             <div className="p-8 bg-white/[0.01] border-2 border-white/5 rounded-[2.5rem] flex items-center gap-6 backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all shadow-2xl">
+                                 <div className="h-14 w-14 bg-black border-2 border-white/10 rounded-2xl flex items-center justify-center text-[#ff6b2b] group-hover:scale-110 transition-transform">
+                                     <Fingerprint size={28} strokeWidth={2.5} />
+                                 </div>
+                                 <div className="space-y-1">
+                                    <div className="text-[10px] text-white/20 uppercase tracking-[0.4em] font-black italic">PROPOSAL_AUTHOR</div>
+                                    <div className="text-xl font-black text-white italic tracking-tight">{hip.authorId}</div>
+                                 </div>
+                             </div>
+                             <div className="p-8 bg-white/[0.01] border-2 border-white/5 rounded-[2.5rem] flex items-center gap-6 backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all shadow-2xl">
+                                 <div className="h-14 w-14 bg-black border-2 border-white/10 rounded-2xl flex items-center justify-center text-[#ff6b2b] group-hover:scale-110 transition-transform">
+                                     <Orbit size={28} strokeWidth={2.5} className="animate-spin-slow" />
+                                 </div>
+                                 <div className="space-y-1">
+                                    <div className="text-[10px] text-white/20 uppercase tracking-[0.4em] font-black italic">STATUS_SYNC</div>
+                                    <div className="text-xl font-black text-[#ff6b2b] italic tracking-tight animate-pulse">{hip.status}</div>
+                                 </div>
+                             </div>
+                        </div>
+
+                        <div className="prose prose-invert prose-headings:font-black prose-headings:tracking-tighter prose-headings:italic prose-headings:uppercase prose-headings:text-white/60 prose-p:text-2xl prose-p:text-white/40 prose-p:font-light prose-p:leading-relaxed prose-p:italic prose-strong:text-[#ff6b2b] prose-strong:font-black prose-li:text-xl prose-li:text-white/30 prose-li:font-light prose-li:italic prose-hr:border-white/5 max-w-4xl py-12 border-t border-white/5 font-sans selection:bg-[#ff6b2b]/40">
                             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                {mockHip.content}
+                                {hip.markdownContent}
                             </ReactMarkdown>
                         </div>
+                    </motion.div>
+                </div>
 
-                        {/* Resonance Voting Panel */}
-                        <div className="w-full lg:w-80 shrink-0">
-                            <div className="sticky top-12 p-6 bg-black border border-[#ff6b2b]/20 rounded-3xl space-y-6 shadow-[0_0_40px_rgba(255,107,43,0.05)]">
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between text-[#ff6b2b]">
-                                        <h3 className="font-black uppercase tracking-widest text-xs flex items-center gap-2">
-                                            <Network size={14} /> Resonance
-                                        </h3>
-                                        <span className="text-2xl font-black italic">{mockHip.resonanceThreshold}</span>
+                {/* ── RESONANCE SIDEBAR ── */}
+                <div className="w-full lg:w-[480px] shrink-0 pb-40 lg:sticky lg:top-32">
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9, x: 40 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 backdrop-blur-[80px] space-y-16 relative overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] group"
+                    >
+                        <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-110 transition-transform duration-1000">
+                           <Network size={250} className="text-[#ff6b2b] rotate-12" />
+                        </div>
+                        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent shadow-[0_0_20px_#ff6b2b]" />
+
+                        <div className="space-y-8 relative z-10">
+                            <div className="inline-flex items-center gap-6 px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[11px] font-black tracking-[0.8em] text-[#ff6b2b] uppercase italic leading-none animate-pulse">
+                                <Network size={20} strokeWidth={2.5} /> Resonance Telemetry
+                            </div>
+                            
+                            <div className="space-y-12">
+                                <div className="space-y-4">
+                                    <div className="flex justify-between items-end px-2">
+                                        <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] font-black italic">Consensus Weight</div>
+                                        <div className="text-6xl font-black text-white italic tracking-tighter leading-none">{hip.resonanceThreshold >= 1000 ? 'Accepted' : hip.resonanceThreshold.toFixed(1)}</div>
                                     </div>
-                                    <p className="text-[10px] text-white/40 uppercase tracking-widest font-mono">Current Signal Weight</p>
-                                </div>
-
-                                <div className="space-y-3">
-                                    <button 
-                                        onClick={handleSovereignVote}
-                                        className="w-full py-4 bg-[#ff6b2b] text-black font-black uppercase text-sm tracking-wider rounded-2xl hover:bg-white transition-all shadow-[0_0_20px_rgba(255,107,43,0.2)] hover:shadow-[#ff6b2b]/50 group"
-                                    >
-                                        <span className="group-hover:scale-105 inline-block transition-transform">Broadcast Resonance</span>
-                                    </button>
-                                    <p className="text-[9px] text-center text-white/30 font-mono">Cost: 0.00 VALLE (Gasless)</p>
+                                    <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden border border-white/5 p-1">
+                                        <motion.div 
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${Math.min((hip.resonanceThreshold / 10), 100)}%` }}
+                                            transition={{ duration: 2, ease: "circOut" }}
+                                            className="h-full bg-gradient-to-r from-[#ff6b2b]/40 to-[#ff6b2b] shadow-[0_0_20px_#ff6b2b]"
+                                        />
+                                    </div>
+                                    <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.4em] text-white/10 italic px-2">
+                                        <span>Genesis_Signal</span>
+                                        <span>Target_Quorum: 1000.0</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div className="pt-8 space-y-8 relative z-10 border-t-2 border-white/5">
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-6 text-[12px] font-black uppercase tracking-[0.8em] text-white/10 italic leading-none pl-2">
+                                    <Terminal size={18} className="text-[#ff6b2b]" strokeWidth={2.5} /> Signal_Broadcast
+                                </div>
+                                
+                                {voteError && (
+                                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-[10px] text-red-500 font-black uppercase tracking-[0.2em] italic">
+                                        {voteError}
+                                    </div>
+                                )}
+
+                                <AnimatePresence mode="wait">
+                                    {!voted ? (
+                                        <motion.button 
+                                            key="vote"
+                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+                                            onClick={handleSovereignVote}
+                                            className="w-full py-10 bg-[#ff6b2b] text-black font-black uppercase tracking-[1em] text-xs rounded-[3rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-6 italic overflow-hidden group/btn leading-none border-0"
+                                        >
+                                            Broadcast Signal <ArrowUpRight size={24} strokeWidth={3} />
+                                            <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
+                                        </motion.button>
+                                    ) : (
+                                        <motion.div 
+                                            key="success"
+                                            initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                                            className="w-full py-10 bg-white/[0.03] border-2 border-[#ff6b2b]/40 rounded-[3rem] flex flex-col items-center gap-4 text-[#ff6b2b] italic shadow-2xl"
+                                        >
+                                            <Check size={32} strokeWidth={3} className="animate-pulse" />
+                                            <span className="text-[11px] font-black uppercase tracking-[1em] leading-none">Resonance Anchored</span>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                                <p className="text-[11px] text-center text-white/20 font-black uppercase tracking-[0.5em] italic leading-relaxed pt-2">
+                                    Verification: <span className="text-white/40">Broadcasting 1.0 Signal via Sovereign Identity. Gasless settlement.</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* ANALYTICS FEED */}
+                        <div className="space-y-8 pt-8 border-t-2 border-white/5 relative z-10">
+                            <h4 className="text-[11px] font-black uppercase tracking-[0.6em] text-white/10 italic pl-2">Recent Transactions_</h4>
+                            <div className="space-y-4">
+                                {[
+                                    { node: 'MONROE_B9', type: 'SUPPORT', time: '2m ago' },
+                                    { node: 'VALLE_OVERLORD', type: 'AMEND', time: '12m ago' },
+                                ].map((tx, i) => (
+                                    <div key={i} className="flex justify-between items-center p-6 bg-white/[0.01] border border-white/5 rounded-3xl group hover:border-[#ff6b2b]/30 transition-all">
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-[12px] font-black text-white/80 group-hover:text-white uppercase italic tracking-tighter leading-none">{tx.node}</span>
+                                            <span className="text-[9px] text-[#ff6b2b]/40 font-black uppercase tracking-[0.4em] italic leading-none">{tx.type}</span>
+                                        </div>
+                                        <span className="text-[10px] text-white/10 font-black uppercase tracking-[0.2em] italic">{tx.time}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
                 </div>
 
+            </main>
+
+            {/* BACKGROUND DECOR */}
+            <div className="fixed bottom-0 right-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
+                <div className="text-[30vw] font-black italic italic leading-none uppercase leading-none">PROTOCOL</div>
             </div>
+            
+            <style jsx global>{`
+                .animate-spin-slow { animation: spin 25s linear infinite; }
+                @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+                .prose strong { color: #ff6b2b !important; }
+            `}</style>
         </div>
     );
 }

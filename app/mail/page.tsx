@@ -151,15 +151,33 @@ export default function MailPage() {
     }
   };
 
-  const triggerAgentDraft = () => {
+  const triggerAgentDraft = async () => {
+    if (!composeData.content) {
+       alert("Provide a rough subject and initial content block to initiate synthesis.");
+       return;
+    }
     setAgentDrafting(true);
-    setTimeout(() => {
-      setComposeData(prev => ({
-        ...prev,
-        content: prev.content + "\n\n[NEURAL_SYNTHESIS]: Automated analysis markers indicate high resonance. Transmit protocols optimized for transparency."
-      }));
+    try {
+      const res = await fetch('/api/mail/draft', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: composeData.subject,
+          content: composeData.content
+        })
+      });
+      const data = await res.json();
+      if (res.ok && data.draft) {
+        setComposeData(prev => ({
+          ...prev,
+          content: data.draft + "\n\n[NEURAL_SYNTHESIS_VERIFIED]"
+        }));
+      }
+    } catch (e) {
+      console.error('Draft synthesis failed', e);
+    } finally {
       setAgentDrafting(false);
-    }, 1200);
+    }
   };
 
   if (isLoading) {
