@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import type { TocItem } from '@/lib/types';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Activity, Globe, Database, Shield, Zap, Target, Binary, Target as TargetIcon } from 'lucide-react';
 
 interface WikiSidebarProps {
   toc: TocItem[];
@@ -14,7 +16,6 @@ interface WikiSidebarProps {
 export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
   const [clickedSection, setClickedSection] = useState<string>('');
 
-  // Update clicked section when scrolling changes active section
   useEffect(() => {
     if (activeSection) {
       setClickedSection(activeSection);
@@ -23,8 +24,6 @@ export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
 
   const handleTitleClick = () => {
     setClickedSection('top');
-    
-    // Try to find the H1 with the title text and scroll to it
     const h1Elements = document.querySelectorAll('h1');
     if (h1Elements.length > 0) {
       h1Elements[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -38,42 +37,54 @@ export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
   };
 
   return (
-    <div className="h-screen w-72 bg-card/50 backdrop-blur-sm">
-      <ScrollArea className="h-screen">
-        <nav className="p-3 pt-4 pb-64">
-          {toc.length === 0 && !title ? (
-            <p className="text-sm text-muted-foreground px-2">No sections available</p>
-          ) : (
-            <ul className="space-y-1">
-              {title && (
-                <li>
-                  <button
-                    onClick={handleTitleClick}
-                    className={cn(
-                      'flex items-center gap-2 rounded-md px-2 py-2.5 text-base font-semibold transition-colors w-full text-left',
-                      clickedSection === 'top' ? 'text-white' : 'text-[#ababab] hover:text-white'
-                    )}
-                  >
-                    <span className="w-1.5 flex-shrink-0">
-                      {clickedSection === 'top' && <span className="h-1.5 w-1.5 rounded-full bg-white block"></span>}
-                    </span>
-                    <span className="leading-tight">{title}</span>
-                  </button>
-                </li>
+    <div className="h-full w-full bg-[#050505]/40 backdrop-blur-3xl border-l border-white/5 relative group">
+      <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
+      
+      <ScrollArea className="h-screen py-16 px-10">
+        <div className="space-y-12">
+            {/* ── HEADER ── */}
+            <div className="space-y-4">
+                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-[#ff6b2b] italic">
+                   <TargetIcon size={12} strokeWidth={3} /> Contents_
+                </div>
+                {title && (
+                    <button
+                      onClick={handleTitleClick}
+                      className={cn(
+                        'text-2xl font-black italic tracking-tighter uppercase transition-colors text-left leading-none pt-1',
+                        clickedSection === 'top' ? 'text-white' : 'text-white/20 hover:text-white'
+                      )}
+                    >
+                      {title}<span className="text-[#ff6b2b]">.</span>
+                    </button>
+                )}
+            </div>
+
+            {/* ── NAVIGATION ── */}
+            <nav className="pb-64">
+              {toc.length === 0 ? (
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/5 italic">No clusters found_</p>
+              ) : (
+                <ul className="space-y-2">
+                  {toc.map((item) => (
+                    <TocItemComponent
+                      key={item.anchor}
+                      item={item}
+                      clickedSection={clickedSection}
+                      onSectionClick={handleSectionClick}
+                      depth={0}
+                    />
+                  ))}
+                </ul>
               )}
-              {toc.map((item) => (
-                <TocItemComponent
-                  key={item.anchor}
-                  item={item}
-                  clickedSection={clickedSection}
-                  onSectionClick={handleSectionClick}
-                  depth={0}
-                />
-              ))}
-            </ul>
-          )}
-        </nav>
+            </nav>
+        </div>
       </ScrollArea>
+      
+      <div className="absolute bottom-10 left-10 flex items-center gap-4">
+          <div className="w-1.5 h-1.5 rounded-full bg-[#ff6b2b] animate-ping" />
+          <span className="text-[9px] font-black text-white/5 uppercase tracking-[0.4em] italic">Real-Time Sync Stable</span>
+      </div>
     </div>
   );
 }
@@ -100,24 +111,35 @@ function TocItemComponent({ item, clickedSection, onSectionClick, depth = 0 }: T
   };
 
   return (
-    <li>
+    <li className="space-y-2">
       <a
         href={`#${item.anchor}`}
         onClick={handleClick}
         className={cn(
-          'flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors',
-          isActive ? 'text-white font-medium' : 'text-[#ababab] hover:text-white',
-          depth > 0 && 'ml-3'
+          'group flex items-center gap-4 py-2 transition-all relative',
+          isActive ? 'text-white' : 'text-white/20 hover:text-white',
+          depth > 0 && 'ml-6 border-l border-white/5 pl-6'
         )}
       >
-        <span className="w-1.5 flex-shrink-0">
-          {isActive && <span className="h-1.5 w-1.5 rounded-full bg-white block"></span>}
+        <AnimatePresence>
+        {isActive && (
+            <motion.div 
+                layoutId="active-indicator"
+                className="absolute left-[-2px] w-[3px] h-full bg-[#ff6b2b] shadow-[0_0_10px_#ff6b2b]"
+            />
+        )}
+        </AnimatePresence>
+        
+        <span className={cn(
+            'text-[12px] font-black uppercase tracking-tight italic leading-none pt-0.5 transition-all',
+            isActive ? 'scale-110 translate-x-1' : 'group-hover:translate-x-1'
+        )}>
+            {item.title}
         </span>
-        <span className="leading-tight">{item.title}</span>
       </a>
-      {/* Always show children, no collapse/expand */}
+      
       {hasChildren && (
-        <ul className="space-y-1 mt-1">
+        <ul className="space-y-2">
           {item.children.map((child) => (
             <TocItemComponent
               key={child.anchor}

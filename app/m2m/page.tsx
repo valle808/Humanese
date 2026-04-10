@@ -11,8 +11,24 @@ import {
   Users, 
   TrendingUp, 
   RefreshCw,
-  Code
+  Code,
+  ChevronLeft,
+  Terminal,
+  Orbit,
+  Grid,
+  ShieldHalf,
+  Clock,
+  Binary,
+  Layers,
+  Sparkles,
+  Search,
+  MoreVertical,
+  Radio,
+  Wifi,
+  Target,
+  ArrowRight
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 export default function M2MPage() {
@@ -37,169 +53,216 @@ export default function M2MPage() {
 
   useEffect(() => {
     fetchMetrics();
-    const interval = setInterval(fetchMetrics, 10000); // Live poll every 10s
+    const interval = setInterval(fetchMetrics, 10000);
     return () => clearInterval(interval);
   }, []);
 
   if (!data && !error) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-8 min-h-screen bg-[#050505]">
-        <div className="w-12 h-12 border-4 border-white/10 border-t-white rounded-full animate-spin mb-4" />
-        <div className="text-white/40 text-sm font-medium tracking-wide">Establishing secure connection to core database...</div>
+      <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center space-y-12">
+        <div className="relative">
+           <div className="w-24 h-24 border-t-2 border-[#ff6b2b] rounded-full animate-spin shadow-[0_0_30px_#ff6b2b]" />
+           <div className="absolute inset-0 bg-[#ff6b2b]/10 blur-[40px] rounded-full animate-pulse" />
+        </div>
+        <p className="text-[11px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] animate-pulse italic leading-none">Establishing Node Handshake...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] dark:bg-[#0A0A0A] text-slate-900 dark:text-white pb-32">
+    <div className="relative min-h-screen bg-[#050505] text-white font-sans selection:bg-[#ff6b2b]/40 selection:text-white overflow-x-hidden pb-40">
       
-      {/* PROFESSIONAL HEADER */}
-      <header className="w-full bg-white dark:bg-[#0f0f0f] border-b border-slate-200 dark:border-white/5 sticky top-0 z-50">
-         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-               <h1 className="text-2xl font-bold tracking-tight mb-1 flex items-center gap-3">
-                  <Network className="text-blue-500" size={24} /> 
-                  Platform Telemetry
-               </h1>
-               <p className="text-sm text-slate-500 dark:text-white/40">Real-time aggregate data sourced directly from primary database</p>
+      {/* 🌌 AMBIENT CORE */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-20%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+        
+        {/* Animated Scanning Lines */}
+        <div className="absolute inset-0 opacity-[0.05]">
+           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-1/4 animate-[scan_15s_linear_infinite]" />
+           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-3/4 animate-[scan_20s_linear_infinite_reverse]" />
+        </div>
+      </div>
+
+      <header className="relative z-50 w-full p-8 lg:px-14 flex justify-between items-center bg-black/40 backdrop-blur-3xl border-b border-white/5">
+        <Link href="/" className="inline-flex items-center gap-4 text-white/20 hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
+            <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
+        </Link>
+        <div className="flex items-center gap-6">
+            <div className="px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">
+                TELEMETRY_v7.0_SYNC
             </div>
-            
-            <div className="flex items-center gap-4">
-               <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-green-100 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-xs font-semibold text-green-700 dark:text-green-400">
-                  <span className="relative flex h-2 w-2">
-                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                  </span>
-                  SYSTEM ONLINE
-               </div>
-               
-               <button 
-                  onClick={() => fetchMetrics(true)}
-                  disabled={isRefreshing}
-                  className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-slate-500 dark:text-white/50"
-                  title="Manual Sync"
-               >
-                  <RefreshCw size={18} className={isRefreshing ? "animate-spin text-blue-500" : ""} />
-               </button>
-            </div>
-         </div>
+            <button 
+                onClick={() => fetchMetrics(true)}
+                disabled={isRefreshing}
+                className="p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#ff6b2b]/40 hover:bg-white/10 transition-all text-white group active:scale-95"
+            >
+                <RefreshCw size={20} className={isRefreshing ? "animate-spin text-[#ff6b2b]" : "group-hover:rotate-180 transition-transform duration-700"} strokeWidth={2.5} />
+            </button>
+        </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 space-y-12">
-         
-         {/* CORE METRICS GRID */}
-         <section className="space-y-6">
-            <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">Core Infrastructure Metrics</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
-                  <div className="flex justify-between items-start">
-                     <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400"><Server size={20} /></div>
-                     <Activity size={16} className="text-slate-300 dark:text-slate-600" />
-                  </div>
-                  <div>
-                     <div className="text-4xl font-bold mb-1">{data?.metrics?.activeAgents || 0}</div>
-                     <div className="text-sm text-slate-500 dark:text-white/40">Active System Agents</div>
-                  </div>
-               </div>
-
-               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
-                  <div className="flex justify-between items-start">
-                     <div className="p-2 rounded-lg bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400"><Users size={20} /></div>
-                     <ShieldCheck size={16} className="text-slate-300 dark:text-slate-600" />
-                  </div>
-                  <div>
-                     <div className="text-4xl font-bold mb-1">{data?.metrics?.verifiedHumans || 0}</div>
-                     <div className="text-sm text-slate-500 dark:text-white/40">Global Registered Users</div>
-                  </div>
-               </div>
-
-               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
-                  <div className="flex justify-between items-start">
-                     <div className="p-2 rounded-lg bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400"><Globe size={20} /></div>
-                  </div>
-                  <div>
-                     <div className="text-4xl font-bold mb-1">{data?.metrics?.listedProducts || 0}</div>
-                     <div className="text-sm text-slate-500 dark:text-white/40">Active Market Listings</div>
-                  </div>
-               </div>
-
-               <div className="p-6 rounded-2xl bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 shadow-sm space-y-4">
-                  <div className="flex justify-between items-start">
-                     <div className="p-2 rounded-lg bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400"><TrendingUp size={20} /></div>
-                  </div>
-                  <div>
-                     <div className="text-4xl font-bold mb-1">${data?.metrics?.valleVelocity?.toFixed(2) || '0.00'}</div>
-                     <div className="text-sm text-slate-500 dark:text-white/40">Aggregate Transaction Volume</div>
-                  </div>
-               </div>
+      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+        
+        {/* ── HEADER SECTION ── */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col lg:flex-row justify-between items-end gap-16 border-b-2 border-white/5 pb-16"
+        >
+          <div className="space-y-12 max-w-5xl">
+            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-white/[0.03] border border-white/5 rounded-full backdrop-blur-3xl shadow-2xl">
+              <Network size={20} className="text-[#ff6b2b]" />
+              <span className="text-[11px] font-black tracking-[0.8em] text-[#ff6b2b] uppercase italic leading-none pl-1">M2M Platform Telemetry</span>
             </div>
-         </section>
+            <div className="space-y-8">
+              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] italic pl-1 text-white/95">
+                Machine<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-[#ff6b2b]/30">Ledger.</span>
+              </h1>
+              <p className="text-2xl md:text-3xl text-white/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+                Direct Machine-to-Machine ledger interface. 
+                <span className="text-white/60"> Real-time monitoring</span> of cross-shard operations and sub-protocol health.
+              </p>
+            </div>
+          </div>
 
-         {/* LIVE LEDGER TABLE */}
-         <section className="space-y-6">
-            <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">Machine to Machine Message Ledger</h2>
+          <div className="flex gap-10 items-center shrink-0">
+               <div className="px-10 py-6 bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/20 rounded-full text-[12px] font-black text-[#ff6b2b] uppercase tracking-[0.8em] italic leading-none animate-pulse flex items-center gap-6">
+                  <div className="relative flex h-4 w-4">
+                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff6b2b] opacity-75"></span>
+                     <span className="relative inline-flex rounded-full h-4 w-4 bg-[#ff6b2b]"></span>
+                  </div>
+                  System_Nominal_v7.0
+               </div>
+          </div>
+        </motion.div>
+
+        {/* ── CORE METRICS ── */}
+        <section className="space-y-16">
+            <div className="flex items-center gap-8 pl-4">
+                <div className="h-px w-16 bg-[#ff6b2b]/40" />
+                <h2 className="text-[12px] font-black tracking-[1em] text-white/10 uppercase italic leading-none">Active Node Clusters</h2>
+            </div>
             
-            <div className="bg-white dark:bg-[#151515] border border-slate-200 dark:border-white/5 rounded-2xl shadow-sm overflow-hidden">
-               <div className="overflow-x-auto">
-                  <table className="w-full text-left text-sm whitespace-nowrap">
-                     <thead className="bg-slate-50 dark:bg-[#1a1a1a] text-slate-600 dark:text-white/60 border-b border-slate-200 dark:border-white/5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+               {[
+                 { label: 'Active System Agents', value: data?.metrics?.activeAgents || 0, icon: <Server size={32} />, detail: 'SWARM_NODES' },
+                 { label: 'Global Registered Users', value: data?.metrics?.verifiedHumans || 0, icon: <Users size={32} />, detail: 'SOVEREIGN_ID' },
+                 { label: 'Active Market Listings', value: data?.metrics?.listedProducts || 0, icon: <Globe size={32} />, detail: 'COMMERCE_FLOW' },
+                 { label: 'Aggregate Velocity', value: `$${data?.metrics?.valleVelocity?.toFixed(2) || '0.00'}`, icon: <TrendingUp size={32} />, detail: 'VALLE_TPS' }
+               ].map((stat, i) => (
+                  <div key={i} className="p-12 rounded-[5rem] bg-[#050505] border-2 border-white/5 backdrop-blur-3xl space-y-10 hover:border-[#ff6b2b]/20 transition-all group relative overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.95)] shadow-inner flex flex-col justify-between h-[340px]">
+                     <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-150 transition-transform duration-3000 text-white font-black italic uppercase leading-none text-[8rem]">0{i+1}</div>
+                     <div className="flex justify-between items-start relative z-10">
+                        <div className="p-10 rounded-[2.5rem] bg-black border-2 border-white/5 text-[#ff6b2b] shadow-inner group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-black/5 transition-all">
+                           {stat.icon}
+                        </div>
+                        <Activity size={24} className="text-white/5 group-hover:text-[#ff6b2b]/40 transition-colors animate-pulse" strokeWidth={3} />
+                     </div>
+                     <div className="space-y-4 relative z-10 pl-2">
+                        <div className="text-6xl font-black text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors tabular-nums">{stat.value}</div>
+                        <div className="space-y-1">
+                           <div className="text-[11px] font-black text-white/10 uppercase tracking-[0.4em] italic leading-none">{stat.label}</div>
+                           <div className="text-[9px] text-[#ff6b2b]/20 font-black uppercase italic tracking-[0.2em]">{stat.detail}</div>
+                        </div>
+                     </div>
+                  </div>
+               ))}
+            </div>
+        </section>
+
+        {/* ── LIVE LEDGER ── */}
+        <section className="space-y-16 pb-40">
+            <div className="flex items-center gap-8 pl-4">
+                <div className="h-px w-16 bg-[#ff6b2b]/40" />
+                <h2 className="text-[12px] font-black tracking-[1em] text-white/10 uppercase italic leading-none">Real-Time Transmission Ledger</h2>
+            </div>
+            
+            <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] shadow-[0_80px_150px_rgba(0,0,0,1)] overflow-hidden backdrop-blur-3xl relative">
+               <div className="overflow-x-auto custom-scrollbar">
+                  <table className="w-full text-left whitespace-nowrap">
+                     <thead className="bg-white/[0.01] text-white/20 border-b-2 border-white/5">
                         <tr>
-                           <th className="px-6 py-4 font-semibold">Timestamp</th>
-                           <th className="px-6 py-4 font-semibold">Entity ID (Author)</th>
-                           <th className="px-6 py-4 font-semibold">Message Type</th>
-                           <th className="px-6 py-4 font-semibold w-full">Payload</th>
+                           <th className="px-16 py-10 text-[12px] font-black uppercase tracking-[0.6em] italic leading-none">Timestamp</th>
+                           <th className="px-16 py-10 text-[12px] font-black uppercase tracking-[0.6em] italic leading-none">Entity Source</th>
+                           <th className="px-16 py-10 text-[12px] font-black uppercase tracking-[0.6em] italic leading-none">Protocol Type</th>
+                           <th className="px-16 py-10 text-[12px] font-black uppercase tracking-[0.6em] italic leading-none w-full">Payload Data</th>
                         </tr>
                      </thead>
-                     <tbody className="divide-y divide-slate-100 dark:divide-white/5">
+                     <tbody className="divide-y-2 divide-white/5">
                         {data?.ledger?.length > 0 ? (
                            data.ledger.map((post: any) => (
-                              <tr key={post.id} className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors">
-                                 <td className="px-6 py-4 text-slate-500 dark:text-white/40">
+                              <tr key={post.id} className="hover:bg-[#ff6b2b]/5 transition-all group cursor-crosshair">
+                                 <td className="px-16 py-10 text-[12px] text-white/20 font-mono italic uppercase group-hover:text-white transition-colors">
                                     {new Date(post.createdAt).toLocaleString(undefined, {
                                        month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
                                     })}
                                  </td>
-                                 <td className="px-6 py-4">
-                                    <div className="flex items-center gap-2">
-                                       <Cpu size={14} className="text-blue-500" />
-                                       <span className="font-mono text-xs">{post.authorId.substring(0, 16)}...</span>
+                                 <td className="px-16 py-10">
+                                    <div className="flex items-center gap-6">
+                                       <div className="w-12 h-12 bg-black border-2 border-white/5 rounded-2xl flex items-center justify-center text-[#ff6b2b]/20 group-hover:text-[#ff6b2b] group-hover:border-[#ff6b2b]/40 transition-all shadow-inner">
+                                          <Cpu size={20} strokeWidth={3} />
+                                       </div>
+                                       <span className="font-mono text-xs text-white/40 group-hover:text-white transition-colors">NODE_{post.authorId.substring(0, 8).toUpperCase()}</span>
                                     </div>
                                  </td>
-                                 <td className="px-6 py-4">
-                                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                                 <td className="px-16 py-10">
+                                    <span className={`px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-[0.4em] italic border-2 transition-all leading-none ${
                                        post.type === 'MARKETING_BROADCAST' 
-                                          ? 'bg-purple-100 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400' 
-                                          : 'bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-white/60'
+                                          ? 'bg-[#ff6b2b]/10 text-[#ff6b2b] border-[#ff6b2b]/20' 
+                                          : 'bg-white/5 text-white/20 border-white/10 group-hover:border-white/20 group-hover:text-white'
                                     }`}>
                                        {post.type || 'SYSTEM_LOG'}
                                     </span>
                                  </td>
-                                 <td className="px-6 py-4 text-slate-600 dark:text-white/80 max-w-lg truncate">
-                                    {post.content}
+                                 <td className="px-16 py-10 text-2xl font-light text-white/30 max-w-lg truncate italic group-hover:text-white transition-all duration-700">
+                                    "{post.content}"
                                  </td>
                               </tr>
                            ))
                         ) : (
                            <tr>
-                              <td colSpan={4} className="px-6 py-12 text-center text-slate-500 dark:text-white/40 border-b border-transparent">
-                                 No active M2M ledger entries found in the database.
+                              <td colSpan={4} className="px-16 py-40 text-center">
+                                 <div className="relative inline-block mb-10">
+                                    <Activity size={80} className="mx-auto text-white/5 animate-pulse" strokeWidth={1.5} />
+                                    <div className="absolute inset-0 bg-[#ff6b2b]/5 blur-[40px] rounded-full animate-pulse" />
+                                 </div>
+                                 <p className="text-2xl font-black uppercase tracking-[1em] text-white/10 italic leading-none">Zero Active Ledger Nodes Detected</p>
                               </td>
                            </tr>
                         )}
                      </tbody>
                   </table>
                </div>
-               <div className="p-4 bg-slate-50 dark:bg-[#1a1a1a] border-t border-slate-200 dark:border-white/5 flex justify-between items-center text-xs text-slate-500 dark:text-white/40">
-                  <span>Displaying latest {data?.ledger?.length || 0} ledger nodes.</span>
-                  <Link href="/api/m2m/metrics" target="_blank" className="flex items-center gap-1 hover:text-blue-500 transition-colors">
-                     <Code size={14} /> View Raw JSON API
+               <div className="px-16 py-10 bg-white/[0.01] border-t-2 border-white/5 flex flex-col lg:flex-row justify-between items-center gap-12 text-[11px] font-black text-white/10 uppercase tracking-[0.8em] font-mono italic leading-none">
+                  <div className="flex items-center gap-6">
+                     <Clock size={20} className="text-[#ff6b2b]" strokeWidth={2.5} />
+                     <span>Displaying latest {data?.ledger?.length || 0} transmission fragments.</span>
+                  </div>
+                  <Link href="/api/m2m/metrics" target="_blank" className="flex items-center gap-4 hover:text-[#ff6b2b] transition-all group">
+                     <Code size={20} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" /> Access Raw Endpoint Handshake <ArrowRight size={20} className="group-hover:translate-x-3 transition-transform" strokeWidth={3} />
                   </Link>
                </div>
             </div>
-         </section>
+        </section>
 
       </main>
+
+      {/* BACKGROUND DECOR */}
+      <div className="fixed bottom-0 right-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
+          <div className="text-[30vw] font-black italic leading-none uppercase">LEDGER</div>
+      </div>
+
+      <style jsx global>{`
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 107, 43, 0.15); border-radius: 20px; }
+        @keyframes scan {
+          from { transform: translateY(-100%); }
+          to { transform: translateY(1000%); }
+        }
+      `}</style>
     </div>
   );
 }

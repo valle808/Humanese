@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import { X, Send, Sparkles, Download, FileJson, FileText } from "lucide-react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { X, Send, Sparkles, Download, FileJson, FileText, ChevronRight, Activity, Terminal, Brain, Radio, Wifi, Zap, Orbit, ShieldCheck, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_MAP: Record<string, string> = {
     court: "/court",
@@ -51,9 +52,6 @@ function generateSessionId(): string {
     return id;
 }
 
-/**
- * EXPORT PROTOCOL: Downloads the current conversation as Markdown.
- */
 function downloadSession(messages: Message[]) {
     const content = messages.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n\n---\n\n');
     const blob = new Blob([content], { type: 'text/markdown' });
@@ -82,7 +80,6 @@ export function MonroeAssistant() {
     const toggleChat = () => {
         setIsOpen((prev) => {
             if (!prev && messages.length === 0) {
-                // First open — pick a random greeting
                 const greeting = GREETINGS[Math.floor(Math.random() * GREETINGS.length)];
                 setTimeout(() => {
                     setMessages([{ text: greeting, role: "bot", emotion: "happy" }]);
@@ -92,12 +89,10 @@ export function MonroeAssistant() {
         });
     };
 
-    // Scroll to bottom
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    // Orb Animation
     useEffect(() => {
         if (!canvasRef.current) return;
         const canvas = canvasRef.current;
@@ -158,10 +153,12 @@ export function MonroeAssistant() {
                 const scale = 150 / (150 - pz);
                 const screenX = cx + px * scale;
                 const screenY = cy + py * scale;
-                const targetHue =
-                    168 + moodRef.current * 40 + pz * 1.5 + noise * 60 * moodRef.current;
+                
+                // FLAGSHIP ORANGE HUE (approx 20-30 HSLA)
+                const targetHue = 20 + moodRef.current * 20 + pz * 0.5 + noise * 30 * moodRef.current;
                 const lum = 50 + pz * 0.8 + moodRef.current * 20;
                 const alpha = Math.min(1, 0.4 + scale * 0.3 + moodRef.current * 0.4);
+                
                 renderedParticles.push({
                     x: screenX,
                     y: screenY,
@@ -188,7 +185,6 @@ export function MonroeAssistant() {
         return () => cancelAnimationFrame(animationFrame);
     }, []);
 
-    // Mood Decay
     useEffect(() => {
         const interval = setInterval(() => {
             if (moodRef.current > 0) {
@@ -222,7 +218,6 @@ export function MonroeAssistant() {
         setIsTyping(true);
 
         try {
-            // INTENT: RESEARCH / AGENT
             if (lowerText.includes("research") || lowerText.includes("study plan for")) {
                 setIsTyping(false);
                 setMessages((prev) => [
@@ -254,7 +249,7 @@ export function MonroeAssistant() {
                             setMessages((prev) => [
                                 ...prev,
                                 {
-                                    text: `<span style="color:#00ffcc">➤ Step ${idx + 1}:</span> ${task.title}`,
+                                    text: `<span style="color:#ff6b2b">➤ Step ${idx + 1}:</span> ${task.title}`,
                                     role: "bot",
                                 },
                             ]);
@@ -264,7 +259,6 @@ export function MonroeAssistant() {
                 return;
             }
 
-            // INTENT: COMPARE
             if (lowerText.includes("compare") || lowerText.includes("synthesize")) {
                 const topic = text.replace(/compare|synthesize/gi, "").trim();
                 const compareRes = await fetch("/api/sovereign/compare", {
@@ -291,7 +285,6 @@ export function MonroeAssistant() {
                 return;
             }
 
-            // INTENT: SCRAPE
             if (lowerText.includes("scrape") || lowerText.includes("collect info on")) {
                 const topic = text.replace(/scrape|collect info on/gi, "").trim();
                 setMessages((prev) => [
@@ -321,7 +314,6 @@ export function MonroeAssistant() {
                 return;
             }
 
-            // DEFAULT: MONROE'S SOUL (personality chat)
             const res = await fetch("/api/monroe/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -344,11 +336,9 @@ export function MonroeAssistant() {
                 { role: "monroe", content: reply },
             ]);
 
-            // Save to Firebase memory
             saveToMemory("user", text, mood);
             saveToMemory("monroe", reply, mood);
 
-            // Navigation detection
             for (const key of Object.keys(NAV_MAP)) {
                 if (lowerText.includes(key)) {
                     setTimeout(() => {
@@ -377,89 +367,103 @@ export function MonroeAssistant() {
     };
 
     return (
-        <div className="fixed bottom-5 right-5 z-[9999] font-sans">
-            {/* Trigger Button */}
-            <button
+        <div className="fixed bottom-10 right-10 z-[10000] font-sans selection:bg-[#ff6b2b]/40 selection:text-white">
+            {/* ── TRIGGER BUTTON ── */}
+            <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={toggleChat}
-                aria-label="Toggle Sovereign Assistant"
-                className="group relative h-16 w-16 overflow-hidden rounded-full bg-black shadow-[0_0_20px_rgba(0,255,204,0.3)] transition-all hover:scale-110 active:scale-95"
+                aria-label="Toggle Monroe OMNI Assistant"
+                className="relative h-20 w-20 bg-black border-2 border-white/10 rounded-full shadow-[0_0_50px_rgba(255,107,43,0.3)] transition-all flex items-center justify-center overflow-hidden group"
             >
+                <div className="absolute inset-0 bg-[#ff6b2b]/5 group-hover:bg-[#ff6b2b]/15 transition-all duration-1000" />
                 <canvas
                     ref={canvasRef}
-                    width="120"
-                    height="120"
+                    width="140"
+                    height="140"
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
                 />
-                <svg
-                    className={`w-8 h-8 fill-white z-20 transition-opacity duration-300 ${moodIntensity > 0.3 ? "opacity-0" : "opacity-100"}`}
-                    viewBox="0 0 24 24"
-                >
-                    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L1 23l6.71-1.97C9.02 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.47 0-2.84-.39-4.03-1.06l-.29-.15-3.82 1.12 1.14-3.7-.17-.3C4.12 14.81 3.5 13.46 3.5 12c0-4.69 3.81-8.5 8.5-8.5s8.5 3.81 8.5 8.5-3.81 8.5-8.5 8.5z" />
-                </svg>
-            </button>
+                <Sparkles 
+                    size={32} 
+                    className={`text-white transition-opacity duration-500 z-20 ${moodIntensity > 0.4 ? "opacity-0" : "opacity-30 group-hover:opacity-100"}`}
+                    strokeWidth={2.5}
+                />
+            </motion.button>
 
-            {/* Chat Window */}
+            {/* ── CHAT WINDOW ── */}
+            <AnimatePresence>
             {isOpen && (
-                <div className="absolute bottom-20 right-0 w-[370px] h-[520px] bg-[#07070f]/97 border border-white/10 rounded-2xl flex flex-col shadow-2xl backdrop-blur-md overflow-hidden animate-in slide-in-from-bottom-5">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.9, y: 40, filter: 'blur(20px)' }}
+                    animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 0.9, y: 40, filter: 'blur(20px)' }}
+                    transition={{ duration: 0.5, ease: "circOut" }}
+                    className="absolute bottom-24 right-0 w-[450px] h-[650px] bg-[#050505] border-2 border-white/10 rounded-[3rem] flex flex-col shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner backdrop-blur-3xl overflow-hidden z-50"
+                >
+                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+                    
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-[#00ffcc]/10 to-[#bf00ff]/10 p-4 flex items-center justify-between border-b border-white/10">
-                        <div className="flex items-center gap-3">
-                            <div className="relative h-8 w-8 rounded-full bg-black border border-[#00ffcc]/40 flex items-center justify-center">
-                                <Sparkles className="w-4 h-4 text-[#00ffcc]" />
-                                <div className={`absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border border-black transition-colors ${isTyping ? "bg-yellow-400 animate-pulse" : "bg-[#00ffcc]"}`} />
+                    <div className="relative p-10 flex items-center justify-between border-b-2 border-white/5 bg-white/[0.02]">
+                        <div className="flex items-center gap-6">
+                            <div className="relative h-14 w-14 rounded-2xl bg-black border-2 border-[#ff6b2b]/40 flex items-center justify-center shadow-inner">
+                                <Brain className="w-8 h-8 text-[#ff6b2b] animate-pulse" strokeWidth={2.5} />
+                                <div className={`absolute -top-1 -right-1 h-4 w-4 rounded-full border-2 border-black transition-colors ${isTyping ? "bg-white animate-pulse" : "bg-[#ff6b2b]"}`} />
                             </div>
-                            <div>
-                                <span className="font-bold text-sm text-white">Monroe</span>
-                                <p className="text-[10px] text-[#00ffcc]/70 font-mono uppercase tracking-wider">
-                                    {isTyping ? "typing..." : "Sovereign Companion"}
-                                </p>
+                            <div className="space-y-1">
+                                <span className="text-2xl font-black text-white italic tracking-tighter uppercase leading-none">Monroe.</span>
+                                <div className="flex items-center gap-3">
+                                   <div className={`text-[10px] font-black uppercase tracking-[0.4em] italic leading-none flex items-center gap-3 ${isTyping ? "text-white animate-pulse" : "text-[#ff6b2b]/60"}`}>
+                                       {isTyping ? "PROCESSING_NEURAL_BUS" : "Sovereign_Omni_Intel"}
+                                   </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-4">
                             <button
                                 onClick={() => downloadSession(messages)}
-                                title="Export Session (Markdown)"
-                                className="text-white/40 hover:text-[#00ffcc] transition-colors p-1.5 hover:bg-white/5 rounded-lg"
+                                title="Export Neural Log (MD)"
+                                className="text-white/10 hover:text-[#ff6b2b] transition-all p-3 bg-white/5 border border-white/10 rounded-xl hover:scale-110"
                             >
-                                <Download className="w-4 h-4" />
+                                <Download className="w-5 h-5" strokeWidth={3} />
                             </button>
                             <button
                                 onClick={toggleChat}
-                                aria-label="Close Monroe"
-                                className="text-white/40 hover:text-[#00ffcc] transition-colors p-1.5 hover:bg-white/5 rounded-lg"
+                                aria-label="Abort Interaction"
+                                className="text-white/10 hover:text-[#ff6b2b] transition-all p-3 bg-white/5 border border-white/10 rounded-xl hover:scale-110"
                             >
-                                <X className="w-4 h-4" />
+                                <X className="w-5 h-5" strokeWidth={3} />
                             </button>
                         </div>
                     </div>
 
-                    {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3 scrollbar-hide">
+                    {/* Messages Area */}
+                    <div className="flex-1 overflow-y-auto p-10 flex flex-col gap-8 custom-scrollbar relative z-10">
                         {messages.map((msg, i) => (
-                            <div
+                            <motion.div
+                                initial={{ opacity: 0, x: msg.role === "user" ? 20 : -20 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 key={i}
                                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                             >
                                 <div
-                                    className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.role === "user"
-                                        ? "bg-[#00ffcc] text-black font-medium rounded-br-sm"
-                                        : `bg-white/5 border border-white/8 text-white/90 rounded-bl-sm ${msg.isSovereign ? "border-l-2 border-l-[#00ffcc]" : ""}`
+                                    className={`max-w-[90%] px-8 py-5 rounded-[2.5rem] text-lg leading-relaxed shadow-inner ${msg.role === "user"
+                                        ? "bg-[#ff6b2b] text-black font-black italic tracking-tight rounded-br-lg"
+                                        : `bg-white/[0.03] border-2 border-white/5 text-white/40 italic font-light tracking-tight rounded-bl-lg backdrop-blur-3xl group ${msg.isSovereign ? "border-[#ff6b2b]/40 bg-[#ff6b2b]/5" : ""}`
                                         }`}
                                     dangerouslySetInnerHTML={{
                                         __html: msg.text.replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\*(.*?)\*/g, "<em>$1</em>"),
                                     }}
                                 />
-                            </div>
+                            </motion.div>
                         ))}
 
-                        {/* Typing indicator */}
                         {isTyping && (
                             <div className="flex justify-start">
-                                <div className="bg-white/5 border border-white/8 rounded-2xl rounded-bl-sm px-4 py-3">
-                                    <div className="flex gap-1 items-center">
-                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce [animation-delay:0ms]" />
-                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce [animation-delay:150ms]" />
-                                        <div className="w-1.5 h-1.5 bg-[#00ffcc]/60 rounded-full animate-bounce [animation-delay:300ms]" />
+                                <div className="bg-white/5 border-2 border-white/5 rounded-[2.5rem] rounded-bl-lg px-8 py-5">
+                                    <div className="flex gap-2 items-center">
+                                        <div className="w-2 h-2 bg-[#ff6b2b] rounded-full animate-bounce [animation-delay:0ms]" />
+                                        <div className="w-2 h-2 bg-[#ff6b2b] rounded-full animate-bounce [animation-delay:150ms]" />
+                                        <div className="w-2 h-2 bg-[#ff6b2b] rounded-full animate-bounce [animation-delay:300ms]" />
                                     </div>
                                 </div>
                             </div>
@@ -468,50 +472,62 @@ export function MonroeAssistant() {
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* Quick action chips */}
-                    {messages.length <= 1 && !isTyping && (
-                        <div className="px-4 pb-2 flex flex-wrap gap-2">
-                            {["Tell me a joke 😂", "How are you?", "What can you do?", "Research AI"].map((chip) => (
-                                <button
-                                    key={chip}
-                                    onClick={() => {
-                                        setInputValue(chip);
-                                        setTimeout(() => handleSend(), 50);
-                                    }}
-                                    className="text-[11px] px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-[#00ffcc] hover:border-[#00ffcc]/50 transition-all"
-                                >
-                                    {chip}
-                                </button>
-                            ))}
-                        </div>
-                    )}
+                    {/* Footer / Input */}
+                    <div className="relative p-10 border-t-2 border-white/5 space-y-8 bg-white/[0.01]">
+                        {/* Quick Prompts */}
+                        {messages.length <= 1 && !isTyping && (
+                            <div className="flex flex-wrap gap-3 pb-2">
+                                {["Tell me a joke 😂", "System Status", "Research OMEGA", "Identity Hash"].map((chip) => (
+                                    <button
+                                        key={chip}
+                                        onClick={() => {
+                                            setInputValue(chip);
+                                            setTimeout(() => handleSend(), 50);
+                                        }}
+                                        className="text-[10px] px-6 py-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white/20 hover:text-white hover:border-[#ff6b2b] hover:bg-[#ff6b2b]/10 transition-all font-black uppercase tracking-[0.4em] italic active:scale-95 leading-none"
+                                    >
+                                        {chip}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
 
-                    {/* Input */}
-                    <div className="p-4 border-t border-white/10 flex gap-2">
-                        <input
-                            type="text"
-                            value={inputValue}
-                            onChange={(e) => {
-                                setInputValue(e.target.value);
-                                moodRef.current = Math.min(1.0, moodRef.current + 0.05);
-                            }}
-                            onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-                            placeholder="Talk to Monroe..."
-                            disabled={isTyping}
-                            className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-white text-sm outline-none focus:border-[#00ffcc]/60 transition-colors placeholder:text-white/30 disabled:opacity-50"
-                        />
-                        <Button
-                            onClick={handleSend}
-                            disabled={isTyping || !inputValue.trim()}
-                            size="icon"
-                            className="bg-[#00ffcc] hover:bg-[#00ffcc]/80 text-black rounded-xl disabled:opacity-40"
-                            aria-label="Send message"
-                        >
-                            <Send className="w-4 h-4" />
-                        </Button>
+                        <div className="flex gap-4">
+                            <div className="flex-1 relative group">
+                                <input
+                                    type="text"
+                                    value={inputValue}
+                                    onChange={(e) => {
+                                        setInputValue(e.target.value);
+                                        moodRef.current = Math.min(1.0, moodRef.current + 0.05);
+                                    }}
+                                    onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
+                                    placeholder="Talk to Monroe..."
+                                    disabled={isTyping}
+                                    className="w-full bg-black border-2 border-white/5 rounded-[2rem] px-8 py-5 text-xl text-white outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all placeholder:text-white/5 disabled:opacity-50 italic font-light shadow-inner"
+                                />
+                                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-white/5 group-focus-within:text-[#ff6b2b] transition-all">
+                                   <Terminal size={18} strokeWidth={3} />
+                                </div>
+                            </div>
+                            <Button
+                                onClick={handleSend}
+                                disabled={isTyping || !inputValue.trim()}
+                                className="h-[68px] w-[68px] bg-[#ff6b2b] hover:bg-[#ff6b2b]/80 text-black rounded-full shadow-[0_20px_40px_rgba(255,107,43,0.3)] transition-all hover:scale-105 active:scale-95"
+                                aria-label="Send Directive"
+                            >
+                                <Send className="w-6 h-6" strokeWidth={3} />
+                            </Button>
+                        </div>
                     </div>
-                </div>
+                </motion.div>
             )}
+            </AnimatePresence>
+
+            <style jsx global>{`
+                .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 107, 43, 0.15); border-radius: 20px; }
+            `}</style>
         </div>
     );
 }

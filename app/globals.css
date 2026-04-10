@@ -4,362 +4,192 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 142 71% 45%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 142 71% 45%;
-    --radius: 0.75rem;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 18 100% 58%; /* #ff6b2b - Intense Orange */
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 18 100% 58%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 18 100% 58%;
+    --radius: 2rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 142 71% 45%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 142 71% 45%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 18 100% 58%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 18 100% 58%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 18 100% 58%;
+  }
+
+  ::selection {
+    background-color: #ff6b2b33;
+    color: #ff6b2b;
   }
 }
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
+    border-color: hsl(var(--border) / 0.1);
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 }
 
-/* Custom scrollbar */
+/* ── FLAGSHIP SCROLLBAR ── */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--secondary));
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 4px;
+  background: rgba(255, 107, 43, 0.15);
+  border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.5);
+  background: rgba(255, 107, 43, 0.4);
 }
 
-/* Smooth scroll */
+/* ── SMOOTH SCROLL ── */
 html {
   scroll-behavior: smooth;
 }
 
-/* Wiki content styles */
-
+/* ── WIKI CONTENT FLAGSHIP STYLES ── */
 .wiki-content p {
-  @apply mb-5 leading-relaxed text-base;
-  color: hsl(var(--foreground));
+  @apply mb-10 leading-[1.8] text-2xl font-light italic tracking-tight;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.wiki-content ul,
-.wiki-content ol {
-  @apply mb-5 ml-6 space-y-2;
+.wiki-content h1, .wiki-content h2, .wiki-content h3 {
+  @apply font-black uppercase tracking-tighter italic mb-12 mt-24 leading-none;
 }
 
-.wiki-content ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-}
+.wiki-content h1 { @apply text-8xl text-white; }
+.wiki-content h2 { @apply text-5xl text-white/60; }
+.wiki-content h3 { @apply text-3xl text-[#ff6b2b]; }
 
-.wiki-content ol {
-  list-style-type: decimal;
-  padding-left: 1.5rem;
+.wiki-content ul, .wiki-content ol {
+  @apply mb-12 ml-12 space-y-6;
 }
 
 .wiki-content li {
-  @apply leading-relaxed;
-  color: hsl(var(--foreground));
-  display: list-item;
+  @apply text-2xl font-light italic text-white/20 leading-relaxed tracking-tight relative;
 }
 
-.wiki-content li::marker {
-  color: hsl(var(--primary));
+.wiki-content li::before {
+  content: '→';
+  @apply absolute -left-10 text-[#ff6b2b] font-black opacity-40;
 }
 
 .wiki-content a {
-  @apply text-primary hover:underline decoration-2 underline-offset-2 font-medium transition-colors;
+  @apply text-[#ff6b2b] hover:text-white transition-all underline decoration-[#ff6b2b]/20 underline-offset-[12px] decoration-1;
 }
 
 .wiki-content code {
-  @apply bg-muted text-foreground px-2 py-0.5 rounded-md text-sm font-mono;
+  @apply bg-white/[0.03] border-2 border-white/5 text-[#ff6b2b] px-4 py-1.5 rounded-2xl text-[0.8em] font-mono italic shadow-inner;
 }
 
 .wiki-content pre {
-  @apply bg-muted p-5 rounded-xl overflow-x-auto mb-6 border shadow-sm;
-}
-
-.wiki-content pre code {
-  @apply bg-transparent text-foreground px-0 py-0;
+  @apply bg-[#050505] p-12 rounded-[3.5rem] overflow-x-auto mb-16 border-2 border-white/5 shadow-[0_40px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl shadow-inner;
 }
 
 .wiki-content blockquote {
-  @apply border-l-4 border-primary pl-6 pr-4 py-2 italic my-6 bg-primary/5 rounded-r-lg;
-  color: hsl(var(--foreground));
+  @apply border-l-8 border-[#ff6b2b] pl-16 pr-12 py-12 italic my-20 bg-gradient-to-br from-[#ff6b2b]/10 to-transparent rounded-r-[4rem] text-4xl font-black text-white/90 tracking-tighter uppercase leading-[0.9];
 }
 
 .wiki-content table {
-  @apply w-full border-collapse mb-6 rounded-lg overflow-hidden shadow-sm;
+  @apply w-full border-collapse mb-16 rounded-[4rem] overflow-hidden border-2 border-white/5 bg-white/[0.01] shadow-2xl;
 }
 
-.wiki-content th,
-.wiki-content td {
-  @apply border border-border px-4 py-3 text-white;
+.wiki-content th, .wiki-content td {
+  @apply border-b-2 border-white/5 px-10 py-8 text-white/20 font-light italic text-xl;
 }
 
 .wiki-content th {
-  @apply bg-primary/10 font-semibold text-left text-white;
+  @apply bg-white/[0.02] font-black uppercase text-[#ff6b2b] text-left text-[11px] tracking-[0.6em];
 }
 
-.wiki-content img {
-  @apply rounded-lg shadow-md my-6;
-}
-
-.wiki-content hr {
-  @apply my-8 border-border;
-}
-
-/* Citation superscripts */
+/* ── CITATION FLAGSHIP ── */
 .wiki-content sup.citation-sup {
-  @apply text-xs leading-none ml-0.5;
-  color: #ababab;
+  @apply text-[11px] font-black leading-none ml-2 opacity-20 group-hover:opacity-100 transition-opacity text-[#ff6b2b];
 }
 
 .wiki-content .citation-link {
-  @apply no-underline cursor-pointer relative inline-block;
-  text-decoration: none !important;
-  color: #ababab;
+  @apply no-underline cursor-pointer opacity-20 hover:opacity-100 transition-all;
 }
 
 .wiki-content .citation-link .bracket {
-  color: #ababab;
-  font-weight: 400;
-}
-
-.wiki-content .citation-link:hover .bracket {
-  @apply text-muted-foreground/70;
-}
-
-/* Citation hover tooltip - styled gray box with title/source */
-.wiki-content .citation-link::after {
-  content: attr(data-cite-title);
-  @apply absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-4 py-2 text-sm bg-popover/95 backdrop-blur-sm rounded-lg shadow-2xl pointer-events-none opacity-0 transition-opacity;
-  color: rgba(156, 163, 175, 1);
-  border: 1px solid rgba(75, 85, 99, 0.4);
-  z-index: 50;
-  min-width: 200px;
-  max-width: 500px;
-  width: max-content;
-  white-space: normal;
-  text-align: left;
-  line-height: 1.4;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
-.wiki-content .citation-link:hover::after {
-  @apply opacity-100;
-}
-
-/* References section */
-.wiki-content .references-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem 2rem;
-  margin-top: 1rem;
-}
-
-.wiki-content .reference-item {
-  @apply flex gap-1.5 items-start;
-  break-inside: avoid;
-  line-height: 1.5;
-}
-
-.wiki-content .reference-number {
-  @apply font-normal text-white flex-shrink-0;
-  min-width: 1.75rem;
-}
-
-.wiki-content .reference-content {
-  @apply flex-1;
-}
-
-.wiki-content .reference-link {
-  @apply text-blue-500 hover:text-blue-400 hover:underline;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  word-break: break-word;
-}
-
-.wiki-content .reference-source {
-  @apply text-white/60 italic text-sm;
-  margin-left: 0.25rem;
-}
-
-.wiki-content .reference-placeholder {
-  @apply text-white/70;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  word-break: break-word;
-}
-
-/* Responsive: single column on smaller screens */
-@media (max-width: 768px) {
-  .wiki-content .references-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Attribution line below references */
-.wiki-content .attribution-line {
-  @apply mt-8 pt-6 border-t border-border/20 text-sm;
-  color: #ababab;
-}
-
-.wiki-content .attribution-line a {
-  @apply text-blue-500 hover:text-blue-400 hover:underline;
+  @apply font-black text-[#ff6b2b]/40;
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   🎨 SOVEREIGN SIDEBAR ANIMATIONS & UTILITIES
+   🎨 SOVEREIGN UTILITIES & ANIMATIONS
    ────────────────────────────────────────────────────────────────────────── */
 
 @layer utilities {
-  .glass-2 {
-    @apply bg-glass-gradient backdrop-blur-xl border border-white/5;
-  }
-  
-  .sovereign-card-v4 {
-    @apply glass-2 rounded-2xl p-6 transition-all duration-300 hover:border-emerald/30 hover:shadow-[0_0_20px_rgba(0,255,65,0.1)];
+  .glass-panel {
+    @apply bg-[#050505]/80 backdrop-blur-3xl border-2 border-white/5 shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner;
   }
 
-  .terminal-text {
-    @apply font-mono text-emerald tracking-tight;
+  .omega-title {
+    @apply font-black uppercase tracking-tighter italic leading-none;
   }
 
-  /* OMEGA Clearance Pulse Effect */
-  .animate-omega-glow {
-    animation: omega-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .text-shadow-orange {
+    text-shadow: 0 0 30px rgba(255, 107, 43, 0.5);
   }
 
-  @keyframes omega-pulse {
-    0%, 100% {
-      text-shadow: 0 0 5px rgba(239, 68, 68, 0.5), 0 0 10px rgba(239, 68, 68, 0.3);
-      box-shadow: inset 0 0 15px rgba(239, 68, 68, 0.1);
-      opacity: 1;
-    }
-    50% {
-      text-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 30px rgba(239, 68, 68, 0.5);
-      box-shadow: inset 0 0 25px rgba(239, 68, 68, 0.3);
-      opacity: 0.8;
-    }
+  .animate-pulse-slow {
+    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  /* Smooth Label Entrance */
-  .menu-label-enter {
-    animation: slide-fade-in 0.4s ease-out forwards;
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.98); }
   }
 
-  @keyframes slide-fade-in {
-    from {
-      opacity: 0;
-      transform: translateX(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Glassmorphism Variants */
-  .glass-sidebar {
-    @apply bg-[#0a0a0a]/80 backdrop-blur-xl border-r border-white/10;
-  }
-
-  .glass-v2 {
-    @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.37)];
-  }
-
-  .sovereign-neon {
-    @apply shadow-[0_0_15px_rgba(16,255,149,0.2)];
-    text-shadow: 0 0 10px rgba(16, 255, 149, 0.4);
-  }
-
-  .text-platinum {
-    color: #e5e5e5;
-  }
-
-  .text-emerald {
-    color: #10ff95;
-  }
-
-  /* 🌌 NEURAL GRID BACKGROUND */
   .neural-grid {
-    background-image: linear-gradient(#00f2ff1a 1px, transparent 1px), 
-                      linear-gradient(90deg, #00f2ff1a 1px, transparent 1px);
-    background-size: 50px 50px;
+    background-image: linear-gradient(rgba(255, 107, 43, 0.03) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255, 107, 43, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
   }
-}
-
-/* Solana Official Typography Patterns Extracted by SolanaDev Agent */
-.nd-heading-xl {
-  @apply my-0 font-mono font-medium text-[40px] md:text-[48px] xl:text-[80px] leading-[1.1] md:leading-[1.083] xl:leading-[1.0];
-}
-
-.nd-heading-m {
-  @apply my-0 font-mono font-medium text-[18px] md:text-[32px] xl:text-[36px] leading-[1.333] md:leading-[1.25] xl:leading-[1.222] tracking-[-0.54px] md:tracking-[-0.96px] xl:tracking-[-1.08px];
-}
-
-.nd-heading-s {
-  @apply my-0 font-mono font-medium text-[16px] md:text-[24px] xl:text-[24px] leading-[1.5] md:leading-[1.333] xl:leading-[1.333] tracking-[-0.32px] md:tracking-[-0.48px] xl:tracking-[-0.48px];
-}
-
-.nd-body-m {
-  @apply my-0 text-[16px] md:text-[18px] xl:text-[18px] leading-[1.25] md:leading-[1.44] xl:leading-[1.33] tracking-[-0.16px] md:tracking-[-0.18px] xl:tracking-[-0.18px];
-}
-
-.nd-body-xs {
-  @apply my-0 text-[12px] md:text-[14px] xl:text-[14px] leading-[1.33] md:leading-[1.43] xl:leading-[1.43];
 }

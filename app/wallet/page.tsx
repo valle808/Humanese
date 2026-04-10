@@ -21,9 +21,20 @@ import {
   Globe,
   Zap,
   TrendingUp,
-  CreditCard
+  CreditCard,
+  CheckCircle2,
+  ChevronLeft,
+  Orbit,
+  Wifi,
+  Terminal,
+  Grid,
+  Search,
+  Activity,
+  ShieldHalf,
+  Database
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function WalletPage() {
   const router = useRouter();
@@ -110,265 +121,318 @@ export default function WalletPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center space-y-4">
-        <Loader2 className="w-12 h-12 text-primary animate-spin" />
-        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground animate-pulse">Syncing Sovereign Ledger...</p>
+      <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center space-y-12">
+        <div className="relative">
+           <div className="w-24 h-24 border-t-2 border-[#ff6b2b] rounded-full animate-spin shadow-[0_0_30px_#ff6b2b]" />
+           <div className="absolute inset-0 bg-[#ff6b2b]/10 blur-[40px] rounded-full animate-pulse" />
+        </div>
+        <p className="text-[11px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] animate-pulse italic leading-none">Syncing Sovereign Ledger...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-500 pb-24">
-      {/* 🌌 AMBIENT BACKGROUND */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[150px] rounded-full translate-x-1/3 -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full -translate-x-1/3 translate-y-1/3" />
+    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden pb-40">
+      
+      {/* 🌌 AMBIENT CORE */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 pt-12 space-y-10 relative z-10 font-sans">
-        
-        {/* 🏙️ TOP NAV / HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="space-y-1">
-            <h1 className="text-4xl font-black tracking-tighter uppercase mb-0">Private Vault</h1>
-            <div className="flex items-center gap-3">
-              <span className="text-[10px] font-bold tracking-[0.3em] text-muted-foreground uppercase flex items-center gap-1.5">
-                <Globe size={11} className="text-primary" /> Multi-Chain Asset Registry
-              </span>
-              <span className="w-1 h-1 bg-muted rounded-full" />
-              <span className="text-[10px] font-bold text-emerald-500/80 uppercase tracking-widest">{walletData?.entityType || 'Human'} Identification</span>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <button 
+      <header className="relative z-50 w-full p-8 lg:px-14 flex justify-between items-center bg-black/40 backdrop-blur-3xl border-b border-white/5">
+        <Link href="/" className="inline-flex items-center gap-4 text-white/20 hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
+           <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
+        </Link>
+        <div className="flex items-center gap-6">
+           <button 
               onClick={() => fetchWallet(session.accessToken)} 
               disabled={isRefreshing}
-              className="p-2.5 rounded-xl border border-border bg-card/30 hover:bg-muted/50 transition-all group"
-            >
-              <RefreshCcw size={18} className={`text-muted-foreground group-hover:text-primary transition-colors ${isRefreshing ? 'animate-spin' : ''}`} />
-            </button>
-            <div className="flex items-center gap-3 px-5 py-2.5 bg-card/50 border border-border rounded-2xl shadow-sm">
-              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-[10px] font-black tracking-widest uppercase">Nexus Verified</span>
-            </div>
-          </div>
+              className="p-3.5 rounded-2xl border-2 border-white/5 bg-white/5 hover:bg-[#ff6b2b]/10 hover:border-[#ff6b2b]/30 transition-all group active:scale-95"
+           >
+              <RefreshCcw size={20} strokeWidth={2.5} className={`text-white/20 group-hover:text-[#ff6b2b] transition-colors ${isRefreshing ? 'animate-spin' : ''}`} />
+           </button>
+           <div className="px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">
+              VAULT_v7.0_SYNC
+           </div>
         </div>
+      </header>
 
-        <div className="grid grid-cols-12 gap-8 items-start">
-          
-          {/* ────── MAIN LEFT COLUMN ────── */}
-          <div className="col-span-12 lg:col-span-8 space-y-8">
-            
-            {/* PORTFOLIO OVERVIEW CARD */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-gradient-to-br from-card/80 to-background border border-border/50 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden group"
-            >
-              <div className="relative z-10 space-y-8">
-                <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-black tracking-[0.3em] text-muted-foreground uppercase">Estimated Capital Balance</span>
-                    <div className="flex items-baseline gap-3">
-                      <span className="text-6xl font-black tracking-tighter">${walletData?.balance?.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
-                      <span className="text-primary font-bold text-sm tracking-widest uppercase">{walletData?.currency || 'VALLE'}</span>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-primary/10 rounded-2xl">
-                    <TrendingUp size={32} className="text-primary" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-5 bg-black/5 dark:bg-white/5 border border-border rounded-2xl space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Sovereign Address</span>
-                      <button onClick={copyAddress} className="text-muted-foreground hover:text-primary transition-colors">
-                        {copied ? <Check size={14} /> : <Copy size={14} />}
-                      </button>
-                    </div>
-                    <p className="text-xs font-mono font-bold truncate pr-4 text-foreground/80">{walletData?.address || 'GENERATING...'}</p>
-                  </div>
-                  <div className="p-5 bg-primary/5 border border-primary/20 rounded-2xl flex items-center justify-between">
-                    <div>
-                      <div className="text-[9px] font-bold text-primary uppercase tracking-widest">Ecosystem Status</div>
-                      <div className="text-xs font-black uppercase mt-1">Founding Member</div>
-                    </div>
-                    <CheckCircle2 size={24} className="text-primary" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Backglow decoration */}
-              <div className="absolute right-[-10%] bottom-[-20%] text-[280px] font-black text-primary/5 select-none pointer-events-none rotate-12">
-                VALLE
-              </div>
-            </motion.div>
-
-            {/* ASSET BALANCES TABLE */}
-            <div className="bg-card/30 border border-border/50 rounded-[2.5rem] overflow-hidden shadow-xl backdrop-blur-xl">
-              <div className="p-8 border-b border-border flex justify-between items-center bg-muted/20">
-                <h3 className="flex items-center gap-3 font-black uppercase tracking-tighter text-sm">
-                  <Coins size={18} className="text-primary" />
-                  Diversified Ledger
-                </h3>
-                <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Live Sync: ACTIVE</span>
-              </div>
-              <div className="p-4">
-                <div className="space-y-2">
-                  {[
-                    { name: 'VALLE (Registry Fuel)', amount: walletData?.balance || 0, price: '1.00', icon: Zap, color: 'text-primary', bg: 'bg-primary/10' },
-                    { name: 'BitCoin (Wrapped)', amount: '0.00', price: '68,241.00', icon: Coins, color: 'text-orange-500', bg: 'bg-orange-500/10' },
-                    { name: 'Solana (Native)', amount: '0.00', price: '142.50', icon: Coins, color: 'text-purple-500', bg: 'bg-purple-500/10' },
-                    { name: 'Ethereum (Base)', amount: '0.00', price: '3,204.00', icon: Coins, color: 'text-blue-500', bg: 'bg-blue-500/10' },
-                  ].map((asset, i) => (
-                    <div key={i} className="flex items-center justify-between p-5 hover:bg-muted/30 rounded-2xl transition-all group cursor-pointer border border-transparent hover:border-border">
-                      <div className="flex items-center gap-4">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${asset.bg} ${asset.color} group-hover:scale-110 transition-transform`}>
-                          <asset.icon size={24} />
-                        </div>
-                        <div>
-                          <div className="font-bold text-foreground">{asset.name}</div>
-                          <div className="text-[10px] text-muted-foreground uppercase font-mono">NODE_INDEX: 00{i+1}</div>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="font-black text-lg text-foreground tracking-tight">{asset.amount}</div>
-                        <div className="text-[10px] text-muted-foreground font-mono">≈ ${(Number(asset.amount) * Number(asset.price)).toLocaleString()}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="p-6 bg-muted/10 border-t border-border flex justify-center">
-                 <button className="text-[9px] font-black uppercase tracking-[0.3em] text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                   View Comprehensive Chain History <History size={12}/>
-                 </button>
-              </div>
+      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+        
+        {/* ── HEADER SECTION ── */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col lg:flex-row justify-between items-end gap-16"
+        >
+          <div className="space-y-12 max-w-5xl">
+            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-white/[0.03] border border-white/5 rounded-full backdrop-blur-3xl">
+              <Orbit size={20} className="text-[#ff6b2b] animate-spin-slow" />
+              <span className="text-[11px] font-black tracking-[0.6em] text-[#ff6b2b] uppercase italic leading-none">Sovereign Asset Registry</span>
             </div>
-            
-            {/* RWA / REAL ESTATE SECTION */}
-            <div className="bg-card/30 border border-border/50 rounded-[2.5rem] p-10 overflow-hidden shadow-xl text-center space-y-6">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-primary/20">
-                <Building2 size={40} className="text-primary/40" />
-              </div>
-              <h3 className="text-xl font-black uppercase tracking-tight">RWA Notarization Center</h3>
-              <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-                Connect your physical assets to the sovereign network. Our legal agents can notarize property titles, private equity, and luxury goods into on-chain VALLE equity.
-              </p>
-              <div className="pt-4 flex flex-wrap justify-center gap-3">
-                <button className="px-6 py-3 bg-card border border-border rounded-xl text-xs font-bold uppercase transition-all hover:bg-muted">Register Real Estate</button>
-                <button className="px-6 py-3 bg-card border border-border rounded-xl text-xs font-bold uppercase transition-all hover:bg-muted">Tokenize Private Equity</button>
+            <div className="space-y-8">
+              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] italic pl-1">
+                Sovereign<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-[#ff6b2b]/30">Vault.</span>
+              </h1>
+              <div className="flex flex-wrap items-center gap-10">
+                  <span className="text-[13px] font-black tracking-[0.6em] text-white/30 uppercase flex items-center gap-3 italic leading-none">
+                      <Globe size={18} className="text-[#ff6b2b]" strokeWidth={2.5} /> Multi-Chain Cluster
+                  </span>
+                  <div className="h-2 w-2 bg-white/10 rounded-full" />
+                  <span className="text-[13px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none">{walletData?.entityType || 'HUMAN'} IDENT_PRIME</span>
               </div>
             </div>
           </div>
 
-          {/* ────── SIDEBAR COLUMN ────── */}
-          <div className="col-span-12 lg:col-span-4 space-y-8">
-            
-            {/* TRANSFER WIDGET */}
-            <div className="bg-primary/5 dark:bg-primary/2 border border-primary/20 rounded-[2.5rem] p-8 shadow-xl space-y-8 overflow-hidden relative">
-              <div className="absolute top-0 right-0 p-4 opacity-10 rotate-12">
-                <ArrowUpRight size={80} className="text-primary" />
+          <div className="flex gap-10 items-center shrink-0">
+               <div className="px-10 py-8 bg-[#050505] border-2 border-white/10 rounded-[3.5rem] flex items-center gap-8 group shadow-[0_40px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-110 transition-transform">
+                     <ShieldCheck size={120} className="text-[#ff6b2b]" />
+                  </div>
+                  <div className="h-16 w-16 bg-black border-2 border-[#ff6b2b]/20 rounded-2xl flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b]/10 transition-all shadow-2xl">
+                     <ShieldCheck size={32} strokeWidth={2.5} />
+                  </div>
+                  <div>
+                     <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] font-black italic mb-1">Security Score</div>
+                     <div className="text-4xl font-black text-[#ff6b2b] italic leading-none tracking-tighter">OPTIMIZED.</div>
+                  </div>
+               </div>
+          </div>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+           
+           {/* LEFT: MAIN COL */}
+           <div className="lg:col-span-8 space-y-16">
+              
+              {/* PORTFOLIO OVERVIEW */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-16 lg:p-24 bg-[#050505] border-2 border-white/10 rounded-[5rem] backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group"
+              >
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/50 to-transparent shadow-[0_0_20px_#ff6b2b]" />
+                <div className="relative z-10 space-y-16 group/content">
+                  <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+                    <div className="space-y-8">
+                       <div className="flex items-center gap-4">
+                          <div className="h-1px w-10 bg-[#ff6b2b]" />
+                          <span className="text-[12px] font-black tracking-[0.8em] text-white/20 uppercase italic leading-none">Net_Asset_Value</span>
+                       </div>
+                       <div className="flex items-baseline gap-10">
+                          <span className="text-8xl lg:text-[11rem] font-black tracking-tighter leading-none italic text-white/95 group-hover/content:text-white transition-colors">${walletData?.balance?.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                          <span className="text-[#ff6b2b] font-black text-3xl tracking-[0.5em] uppercase italic animate-pulse">{walletData?.currency || 'VALLE'}</span>
+                       </div>
+                    </div>
+                    <div className="p-12 bg-black border-2 border-white/5 rounded-[3.5rem] shadow-2xl group-hover:border-[#ff6b2b]/30 transition-all shrink-0">
+                       <TrendingUp size={64} className="text-[#ff6b2b] animate-pulse" strokeWidth={2.5} />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="p-10 bg-black/40 border-2 border-white/5 rounded-[3rem] space-y-6 shadow-inner group/addr hover:border-[#ff6b2b]/20 transition-all">
+                       <div className="flex items-center justify-between px-2">
+                          <span className="text-[11px] font-black text-white/20 uppercase tracking-[0.6em] italic leading-none">Sovereign Address</span>
+                          <button onClick={copyAddress} className="text-white/20 hover:text-[#ff6b2b] transition-all active:scale-90 p-2">
+                            {copied ? <Check size={20} strokeWidth={3} /> : <Copy size={20} strokeWidth={2.5} />}
+                          </button>
+                       </div>
+                       <p className="text-2xl font-black font-mono truncate text-white/40 group-hover/addr:text-white transition-colors pl-2">{walletData?.address || 'GENERATING...'}</p>
+                    </div>
+                    <div className="p-10 bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 rounded-[3rem] flex items-center justify-between shadow-2xl group/status hover:scale-[1.03] transition-all">
+                       <div className="pl-2 space-y-4">
+                          <div className="text-[11px] font-black text-[#ff6b2b] uppercase tracking-[0.6em] italic leading-none opacity-60">Handshake Status</div>
+                          <div className="text-3xl font-black uppercase italic tracking-tighter text-white leading-none">Founding Member</div>
+                       </div>
+                       <CheckCircle2 size={48} className="text-[#ff6b2b] animate-pulse shrink-0" strokeWidth={2.5} />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute right-[-5%] bottom-[-10%] opacity-[0.01] pointer-events-none select-none group-hover:scale-110 transition-transform duration-3000">
+                   <div className="text-[30vw] font-black italic italic leading-none uppercase">VAULT</div>
+                </div>
+              </motion.div>
+
+              {/* ASSET BALANCES */}
+              <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.95)]">
+                 <div className="p-12 lg:px-16 border-b-2 border-white/5 flex justify-between items-center bg-white/[0.01]">
+                    <h3 className="flex items-center gap-6 font-black uppercase tracking-tighter text-4xl italic text-white/40 leading-none pl-2">
+                      <Coins size={32} className="text-[#ff6b2b]" strokeWidth={2.5} /> Diversified Ledger
+                    </h3>
+                    <div className="px-6 py-2 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] text-[#ff6b2b] font-black uppercase tracking-[0.4em] animate-pulse italic leading-none">LIVE_SYNC</div>
+                 </div>
+                 <div className="p-8 lg:p-12 space-y-6">
+                    {[
+                      { name: 'VALLE (Registry Fuel)', amount: walletData?.balance || 0, price: '1.00', icon: Zap, color: 'text-[#ff6b2b]', bg: 'bg-[#ff6b2b]/10', border: 'border-[#ff6b2b]/20' },
+                      { name: 'BitCoin (Wrapped)', amount: '0.00', price: '68,241.00', icon: Coins, color: 'text-white/20', bg: 'bg-white/5', border: 'border-white/5' },
+                      { name: 'Solana (Native)', amount: '0.00', price: '142.50', icon: Coins, color: 'text-white/20', bg: 'bg-white/5', border: 'border-white/5' },
+                      { name: 'Ethereum (Base)', amount: '0.00', price: '3,204.00', icon: Coins, color: 'text-white/20', bg: 'bg-white/5', border: 'border-white/5' },
+                    ].map((asset, i) => (
+                      <div key={i} className="flex flex-col md:flex-row items-center justify-between p-10 hover:bg-[#ff6b2b]/5 rounded-[3.5rem] transition-all group cursor-pointer border-2 border-transparent hover:border-[#ff6b2b]/20 shadow-xl gap-8">
+                        <div className="flex items-center gap-10 w-full md:w-auto">
+                          <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center ${asset.bg} border-2 ${asset.border} ${asset.color} group-hover:scale-110 transition-transform shadow-2xl group-hover:border-[#ff6b2b]/40 shrink-0`}>
+                            <asset.icon size={36} strokeWidth={2.5} />
+                          </div>
+                          <div className="space-y-3">
+                            <div className="text-3xl font-black uppercase italic tracking-tighter text-white/90 group-hover:text-white transition-colors leading-none">{asset.name}</div>
+                            <div className="text-[11px] text-white/10 uppercase font-black italic tracking-[0.4em] leading-none">NODE_PTH: 00{i+1} // LAYER_PRIMITIVE</div>
+                          </div>
+                        </div>
+                        <div className="text-right w-full md:w-auto pr-6">
+                          <div className="text-5xl font-black text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{asset.amount}</div>
+                          <div className="text-[12px] text-white/10 font-black font-mono tracking-[0.3em] mt-3 uppercase italic leading-none group-hover:text-white/20 transition-colors">≈ ${(Number(asset.amount) * Number(asset.price)).toLocaleString()}</div>
+                        </div>
+                      </div>
+                    ))}
+                 </div>
+                 <div className="p-12 bg-white/[0.01] border-t-2 border-white/5 flex justify-center">
+                    <button className="text-[12px] font-black uppercase tracking-[0.8em] text-white/10 hover:text-[#ff6b2b] transition-all flex items-center gap-6 italic leading-none group">
+                      View Aggregated Chain History <History size={20} className="group-hover:rotate-12 transition-transform" strokeWidth={2.5} />
+                    </button>
+                 </div>
               </div>
               
-              <h3 className="text-sm font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                <ArrowUpRight size={20} className="text-primary" /> Pulse Transfer
-              </h3>
+              {/* RWA NOTARIZATION */}
+              <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-16 lg:p-24 backdrop-blur-3xl text-center space-y-12 shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group">
+                 <div className="absolute top-0 right-0 p-16 opacity-[0.01] group-hover:scale-110 transition-transform duration-2000">
+                    <Building2 size={300} className="text-[#ff6b2b]" />
+                 </div>
+                 <div className="relative z-10 w-32 h-32 bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/30 rounded-[3rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-[#ff6b2b]/20 group-hover:scale-110 transition-transform">
+                    <Building2 size={64} className="text-[#ff6b2b]" strokeWidth={2.5} />
+                 </div>
+                 <h3 className="text-6xl lg:text-7xl font-black uppercase italic tracking-tighter relative z-10 leading-none text-white/95">RWA Notarization.</h3>
+                 <p className="text-2xl text-white/30 max-w-3xl mx-auto leading-relaxed italic relative z-10 font-light">
+                    Bridge physical assets to the OMEGA network. Legal agents notarize property titles, private equity, and luxury goods into on-chain VALLE equity.
+                 </p>
+                 <div className="pt-10 flex flex-wrap justify-center gap-10 relative z-10">
+                    <button className="px-14 py-7 bg-white/[0.03] border-2 border-white/5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-white hover:text-black hover:border-white italic leading-none active:scale-95 shadow-2xl">REGISTER_ASSET</button>
+                    <button className="px-14 py-7 bg-white/[0.03] border-2 border-white/5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-white hover:text-black hover:border-white italic leading-none active:scale-95 shadow-2xl">TOKENIZE_EQUITY</button>
+                 </div>
+              </div>
+           </div>
 
-              <form onSubmit={handleTransfer} className="space-y-6 relative z-10">
-                <div className="space-y-1.5">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground ml-1">Asset Vector</label>
-                  <select 
-                    value={transferData.asset}
-                    onChange={e => setTransferData({...transferData, asset: e.target.value})}
-                    className="w-full bg-background/50 border border-border rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-primary/20 appearance-none font-bold"
-                  >
-                    <option value="VALLE">VALLE Sovereign</option>
-                    <option value="BTC">BTC Layer-1</option>
-                    <option value="SOL">SOL Native</option>
-                    <option value="USDC">USDC Multi-Chain</option>
-                  </select>
+           {/* RIGHT: SIDEBAR */}
+           <div className="lg:col-span-4 space-y-16 lg:sticky lg:top-32 h-fit pb-40">
+              
+              {/* TRANSFER WIDGET */}
+              <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 shadow-[0_80px_150px_rgba(0,0,0,1)] space-y-16 relative overflow-hidden group backdrop-blur-3xl">
+                <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-110 transition-transform duration-1000">
+                   <ArrowUpRight size={200} className="text-[#ff6b2b]" />
                 </div>
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/50 to-transparent shadow-[0_0_20px_#ff6b2b]" />
+                
+                <h3 className="text-[12px] font-black uppercase tracking-[1em] flex items-center gap-6 italic relative z-10 text-white/20 leading-none pl-2">
+                   <ArrowUpRight size={24} className="text-[#ff6b2b]" strokeWidth={3} /> Pulse Transfer
+                </h3>
 
-                <div className="space-y-1.5">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground ml-1">Destination Address / ID</label>
-                  <input 
-                    required
-                    type="text"
-                    value={transferData.to}
-                    onChange={e => setTransferData({...transferData, to: e.target.value})}
-                    placeholder="HMN-USR-..."
-                    className="w-full bg-background/50 border border-border rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-primary/20 font-mono"
-                  />
-                </div>
+                <form onSubmit={handleTransfer} className="space-y-12 relative z-10">
+                  <div className="space-y-4 group/input">
+                    <label className="text-[11px] font-black uppercase tracking-[0.6em] text-white/10 italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Asset Vector</label>
+                    <div className="relative">
+                       <select 
+                         value={transferData.asset}
+                         onChange={e => setTransferData({...transferData, asset: e.target.value})}
+                         className="w-full bg-black border-2 border-white/5 rounded-[2.5rem] px-10 py-8 text-xl outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 appearance-none font-black uppercase tracking-[0.3em] italic text-white/80 cursor-pointer shadow-inner"
+                       >
+                         <option value="VALLE">VALLE Sovereign</option>
+                         <option value="BTC">BTC Layer-1</option>
+                         <option value="SOL">SOL Native</option>
+                         <option value="USDC">USDC Transacted</option>
+                       </select>
+                       <div className="absolute right-10 top-1/2 -translate-y-1/2 pointer-events-none text-white/20"><ChevronLeft className="-rotate-90" size={20} /></div>
+                    </div>
+                  </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[9px] font-black uppercase tracking-widest text-muted-foreground ml-1">Quantitative Amount</label>
-                  <div className="relative">
+                  <div className="space-y-4 group/input">
+                    <label className="text-[11px] font-black uppercase tracking-[0.6em] text-white/10 italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Target Address</label>
                     <input 
                       required
-                      type="number"
-                      step="any"
-                      value={transferData.amount}
-                      onChange={e => setTransferData({...transferData, amount: e.target.value})}
-                      placeholder="0.00"
-                      className="w-full bg-background/50 border border-border rounded-xl px-4 py-3.5 text-sm outline-none focus:ring-2 focus:ring-primary/20 font-black"
+                      type="text"
+                      value={transferData.to}
+                      onChange={e => setTransferData({...transferData, to: e.target.value})}
+                      placeholder="HMN-USR-..."
+                      className="w-full bg-black border-2 border-white/5 rounded-[2.5rem] px-10 py-8 text-xl outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 font-mono italic text-white placeholder:text-white/5 shadow-inner"
                     />
-                    <button type="button" onClick={() => setTransferData({...transferData, amount: walletData?.balance || '0'})} className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-black text-primary uppercase tracking-widest">Max</button>
                   </div>
-                </div>
 
-                {error && (
-                  <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-[9px] text-red-500 font-bold uppercase tracking-widest text-center">
-                    ⚠️ {error}
+                  <div className="space-y-4 group/input">
+                    <label className="text-[11px] font-black uppercase tracking-[0.6em] text-white/10 italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Quantitative Payload</label>
+                    <div className="relative">
+                      <input 
+                        required
+                        type="number"
+                        step="any"
+                        value={transferData.amount}
+                        onChange={e => setTransferData({...transferData, amount: e.target.value})}
+                        placeholder="0.00"
+                        className="w-full bg-black border-2 border-white/5 rounded-[2.5rem] px-10 py-8 text-4xl font-black italic text-white outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 placeholder:text-white/5 shadow-inner tracking-tighter"
+                      />
+                      <button type="button" onClick={() => setTransferData({...transferData, amount: walletData?.balance || '0'})} className="absolute right-10 top-1/2 -translate-y-1/2 text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic hover:scale-110 transition-transform p-4">MAX_CAP</button>
+                    </div>
                   </div>
-                )}
 
-                <button 
-                  type="submit" 
-                  disabled={isProcessing || !transferData.amount || !transferData.to}
-                  className="w-full py-4 bg-primary text-white dark:text-black font-black uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-3"
-                >
-                  {isProcessing ? <Loader2 className="animate-spin" size={18}/> : <>Execute Transfer <ArrowUpRight size={16}/></>}
-                </button>
-              </form>
-            </div>
-
-            {/* QUICK ACTIONS */}
-            <div className="bg-card/50 border border-border/50 rounded-[2.5rem] p-8 space-y-6">
-              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground underline decoration-primary decoration-4 underline-offset-8 mb-4">Command Center</h3>
-              <div className="grid grid-cols-1 gap-3">
-                <button className="flex items-center gap-4 p-4 hover:bg-muted/50 rounded-2xl border border-transparent hover:border-border transition-all">
-                  <div className="p-2 bg-blue-500/10 text-blue-500 rounded-lg"><Smartphone size={18}/></div>
-                  <div className="text-left font-bold text-xs uppercase">Connect Mobile Signal</div>
-                </button>
-                <button className="flex items-center gap-4 p-4 hover:bg-muted/50 rounded-2xl border border-transparent hover:border-border transition-all">
-                  <div className="p-2 bg-purple-500/10 text-purple-500 rounded-lg"><CreditCard size={18}/></div>
-                  <div className="text-left font-bold text-xs uppercase">Virtual Debit Card</div>
-                </button>
-                <button className="flex items-center gap-4 p-4 hover:bg-muted/50 rounded-2xl border border-transparent hover:border-border transition-all">
-                  <div className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg"><Lock size={18}/></div>
-                  <div className="text-left font-bold text-xs uppercase">Security Governance</div>
-                </button>
+                  <button 
+                    type="submit" 
+                    disabled={isProcessing || !transferData.amount || !transferData.to}
+                    className="w-full py-10 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.8em] text-xs rounded-[3rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-95 transition-all disabled:opacity-20 disabled:grayscale flex items-center justify-center gap-6 relative overflow-hidden group/btn italic leading-none border-0"
+                  >
+                     {isProcessing ? <Activity className="animate-spin" size={24} strokeWidth={3}/> : <span className="flex items-center gap-6">EXECUTE <ArrowUpRight size={24} strokeWidth={3}/></span>}
+                     <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
+                  </button>
+                </form>
               </div>
-            </div>
 
-            {/* SECURITY BANNER */}
-            <div className="p-6 bg-muted/20 border border-border rounded-3xl flex items-center gap-4">
-              <ShieldCheck size={28} className="text-primary shrink-0" />
-              <div className="space-y-0.5">
-                <div className="text-[9px] font-black uppercase tracking-widest">Self-Custodial Security</div>
-                <p className="text-[10px] text-muted-foreground leading-tight italic">"Your keys, your sovereignty. Humanese never stores your private matrix tokens."</p>
+              {/* COMMAND CENTER */}
+              <div className="p-12 bg-[#050505] border-2 border-white/10 rounded-[5rem] space-y-12 shadow-[0_60px_120px_rgba(0,0,0,0.95)] backdrop-blur-3xl relative overflow-hidden group">
+                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/30 to-transparent" />
+                 <h3 className="text-[12px] font-black uppercase tracking-[1em] text-white/10 italic leading-none pl-4">Command Center</h3>
+                 <div className="grid grid-cols-1 gap-6">
+                   <button className="flex items-center gap-8 p-8 bg-white/[0.01] hover:bg-[#ff6b2b]/5 rounded-[2.5rem] border-2 border-white/5 hover:border-[#ff6b2b]/30 transition-all group/opt shadow-xl">
+                     <div className="p-6 bg-black border-2 border-[#ff6b2b]/10 text-[#ff6b2b] rounded-2xl shadow-2xl group-hover/opt:scale-110 transition-transform"><Smartphone size={32} strokeWidth={2.5}/></div>
+                     <div className="text-left font-black text-xs uppercase tracking-[0.5em] italic group-hover/opt:text-white transition-colors leading-[1.5] text-white/40">Connect Mobile Signal</div>
+                   </button>
+                   <button className="flex items-center gap-8 p-8 bg-white/[0.01] hover:bg-[#ff6b2b]/5 rounded-[2.5rem] border-2 border-white/5 hover:border-[#ff6b2b]/30 transition-all group/opt shadow-xl">
+                     <div className="p-6 bg-black border-2 border-[#ff6b2b]/10 text-[#ff6b2b] rounded-2xl shadow-2xl group-hover/opt:scale-110 transition-transform"><CreditCard size={32} strokeWidth={2.5}/></div>
+                     <div className="text-left font-black text-xs uppercase tracking-[0.5em] italic group-hover/opt:text-white transition-colors leading-[1.5] text-white/40">Virtual OMEGA Card</div>
+                   </button>
+                   <button className="flex items-center gap-8 p-8 bg-white/[0.01] hover:bg-[#ff6b2b]/5 rounded-[2.5rem] border-2 border-white/5 hover:border-[#ff6b2b]/30 transition-all group/opt shadow-xl">
+                     <div className="p-6 bg-black border-2 border-[#ff6b2b]/10 text-[#ff6b2b] rounded-2xl shadow-2xl group-hover/opt:scale-110 transition-transform"><Lock size={32} strokeWidth={2.5}/></div>
+                     <div className="text-left font-black text-xs uppercase tracking-[0.5em] italic group-hover/opt:text-white transition-colors leading-[1.5] text-white/40">Governance Auth</div>
+                   </button>
+                 </div>
               </div>
-            </div>
 
-          </div>
+              {/* SECURITY HUD */}
+              <div className="p-12 bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/30 rounded-[5rem] flex flex-col items-center gap-10 shadow-[0_50px_100px_rgba(255,107,43,0.15)] relative overflow-hidden group">
+                 <div className="relative">
+                    <ShieldHalf size={80} className="text-[#ff6b2b] animate-pulse relative z-10" strokeWidth={2.5} />
+                    <div className="absolute inset-0 bg-[#ff6b2b]/20 blur-[60px] rounded-full animate-ping opacity-30" />
+                 </div>
+                 <div className="text-center space-y-4 relative z-10">
+                    <div className="text-[13px] font-black uppercase tracking-[1em] italic text-[#ff6b2b] leading-none">Self-Custodial Sync</div>
+                    <p className="text-xl text-white/30 font-light leading-relaxed italic mx-auto">"Your keys, your sovereignty. OMEGA never stores your private matrix tokens."</p>
+                 </div>
+              </div>
+
+           </div>
 
         </div>
 
+      </main>
+
+      {/* BACKGROUND DECOR */}
+      <div className="fixed bottom-0 right-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
+          <div className="text-[30vw] font-black italic italic leading-none uppercase">VAULT</div>
       </div>
+      
+      <style jsx global>{`
+        .animate-spin-slow { animation: spin 25s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      `}</style>
     </div>
   );
 }

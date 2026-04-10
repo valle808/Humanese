@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, BookOpen, Cpu, Globe, Zap, FlaskConical, 
   HeartHandshake, Star, ArrowRight, RefreshCw, 
-  Sparkles, ChevronRight, Clock, User, Tag, X, Check, AlertCircle
+  Sparkles, ChevronRight, Clock, User, Tag, X, Check, AlertCircle,
+  ChevronLeft, Terminal, Layout, Library, Radio, Target, Layers
 } from 'lucide-react';
 import { ARTICLES } from '@/agents/media/article-engine';
 import Link from 'next/link';
@@ -110,152 +111,173 @@ export default function HPediaPage() {
     : [...dynamicArticles, ...allStaticArticles];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-slate-900" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden pb-40 relative">
       
+      {/* 🌌 AMBIENT CORE */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[300px] rounded-full" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[70vw] h-[70vw] bg-[#ff6b2b]/2 blur-[200px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+      </div>
+
       {/* TOP NAVIGATION */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm">
-        <div className="max-w-screen-xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center">
-              <BookOpen size={16} className="text-white" />
+      <header className="sticky top-0 z-50 bg-black/40 backdrop-blur-3xl border-b border-white/5">
+        <div className="max-w-[1700px] mx-auto px-8 lg:px-14 h-24 flex items-center justify-between gap-12">
+          <Link href="/" className="flex items-center gap-6 shrink-0 group">
+            <div className="w-12 h-12 rounded-2xl bg-[#ff6b2b] shadow-[0_0_30px_rgba(255,107,43,0.3)] flex items-center justify-center group-hover:rotate-12 transition-all">
+              <BookOpen size={24} className="text-black" />
             </div>
-            <div>
-              <span className="text-lg font-black tracking-tight text-slate-900">HPedia</span>
-              <div className="text-[9px] text-slate-400 font-medium tracking-widest uppercase leading-none">Humanese Knowledge Base</div>
+            <div className="flex flex-col">
+              <span className="text-2xl font-black uppercase tracking-tighter italic text-white leading-none">HPedia.</span>
+              <div className="text-[10px] text-white/20 font-black tracking-[0.4em] uppercase italic mt-1.5 leading-none px-0.5">Quantum_Ledger_v7.0</div>
             </div>
-          </div>
+          </Link>
           
           {/* Live Search Bar */}
-          <div className="flex-1 max-w-2xl">
-            <div className="relative">
-              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+          <div className="flex-1 max-w-3xl hidden lg:block">
+            <div className="relative group">
+              <Search size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-white/10 group-focus-within:text-[#ff6b2b] transition-colors" />
               <input 
                 type="text"
                 value={searchQuery}
                 onChange={e => { setSearchQuery(e.target.value); handleSearch(e.target.value); }}
-                placeholder="Search humanity's knowledge..."
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500/30 focus:bg-white transition-all border border-slate-200"
+                placeholder="Search humanity's collective knowledge matrix..."
+                className="w-full pl-20 pr-10 py-5 bg-white/[0.02] border border-white/5 rounded-[2rem] text-lg outline-none focus:border-[#ff6b2b]/40 focus:bg-white/[0.04] transition-all font-light italic"
               />
-              {isSearching && <RefreshCw size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 animate-spin" />}
+              {isSearching && <RefreshCw size={18} className="absolute right-6 top-1/2 -translate-y-1/2 text-[#ff6b2b] animate-spin" />}
             </div>
           </div>
 
-          <nav className="flex items-center gap-2 shrink-0">
-            <button onClick={() => { setView('home'); setSelectedArticle(null); }} className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${view === 'home' ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-100'}`}>Browse</button>
-            <button onClick={() => setView('generate')} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-xl text-sm font-bold shadow-sm hover:shadow-blue-200 hover:shadow-lg transition-all">
-              <Sparkles size={14} /> Generate with AI
+          <nav className="flex items-center gap-6 shrink-0">
+            <button onClick={() => { setView('home'); setSelectedArticle(null); }} className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] italic transition-all ${view === 'home' ? 'bg-[#ff6b2b]/10 text-[#ff6b2b] border border-[#ff6b2b]/20 shadow-2xl shadow-[#ff6b2b]/10' : 'text-white/30 hover:text-white hover:bg-white/5'}`}>Browse Archive</button>
+            <button onClick={() => setView('generate')} className="flex items-center gap-4 px-8 py-4 bg-[#ff6b2b] text-black rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] italic shadow-[0_0_40px_rgba(255,107,43,0.2)] hover:scale-[1.05] active:scale-95 transition-all">
+              <Sparkles size={16} strokeWidth={3} /> AI Synthesis
             </button>
           </nav>
         </div>
       </header>
 
-      <div className="max-w-screen-xl mx-auto px-6 py-10">
+      <div className="max-w-[1700px] mx-auto px-8 lg:px-14 py-16 lg:py-24 relative z-10">
         <AnimatePresence mode="wait">
 
-          {/* HOME / BROWSE VIEW */}
+          {/* ────── HOME VIEW ────── */}
           {view === 'home' && (
-            <motion.div key="home" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-12">
+            <motion.div key="home" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.8 }} className="space-y-32">
               
-              {/* HERO */}
-              <div className="text-center py-12 space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-xs font-bold text-blue-600 uppercase tracking-widest">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-                    <span className="relative rounded-full h-2 w-2 bg-blue-500" />
-                  </span>
-                  {dynamicArticles.length + ARTICLES.length} Articles & Growing
+              {/* 🏛️ HERO SECTION */}
+              <div className="text-center space-y-12 py-12">
+                <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[11px] font-black text-[#ff6b2b] uppercase tracking-[0.5em] italic animate-pulse">
+                   <Library size={16} /> {dynamicArticles.length + ARTICLES.length} Knowledge Shards Indexed
                 </div>
-                <h1 className="text-5xl md:text-6xl font-black tracking-tight text-slate-900 leading-tight">
-                  The Encyclopedia<br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-violet-600">Built by Humanity's Agents</span>
-                </h1>
-                <p className="text-slate-500 text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                  HPedia uses autonomous AI agents powered by free open-source models to research, investigate, and document humanity's collective knowledge — for science, medicine, and humanitarian progress.
-                </p>
+                <div className="space-y-8">
+                    <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tight text-white leading-[0.8] italic">
+                      THE LIVING<br/>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b2b] to-white/20">ARCHIVE.</span>
+                    </h1>
+                    <p className="text-white/40 text-2xl md:text-3xl max-w-4xl mx-auto font-light leading-relaxed italic">
+                      HPedia anchors humanity's collective intelligence through autonomous OMEGA investigators. Investigating foundations for the future of science and sovereignty.
+                    </p>
+                </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
-                  {TOPIC_SUGGESTIONS.slice(0, 5).map(t => (
-                    <button key={t} onClick={() => { const clean = t.split(' ').slice(1).join(' '); setGenTopic(clean); setView('generate'); }} className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-600 rounded-full text-sm text-slate-600 font-medium transition-all shadow-sm hover:shadow">
-                      {t}
+                <div className="flex flex-wrap items-center justify-center gap-6 pt-12">
+                  {TOPIC_SUGGESTIONS.slice(0, 6).map(t => (
+                    <button key={t} onClick={() => { const clean = t.split(' ').slice(1).join(' '); setGenTopic(clean); setView('generate'); }} className="flex items-center gap-4 px-6 py-3.5 bg-white/[0.01] border border-white/5 hover:border-[#ff6b2b]/50 hover:bg-white/[0.03] hover:text-white rounded-[1.5rem] text-[10px] font-black uppercase tracking-[0.3em] text-white/30 transition-all shadow-xl group">
+                      <span className="group-hover:scale-110 transition-transform">{t.split(' ')[0]}</span> {t.split(' ').slice(1).join(' ')}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* CATEGORIES */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {/* 🛠️ NAVIGATION SECTORS */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 {[
-                  { label: 'Science', icon: <FlaskConical size={20} />, color: 'from-cyan-500 to-blue-600', desc: 'Physics, Biology, Chemistry' },
-                  { label: 'Medicine', icon: <HeartHandshake size={20} />, color: 'from-pink-500 to-red-600', desc: 'Research, Treatment, Prevention' },
-                  { label: 'Technology', icon: <Cpu size={20} />, color: 'from-violet-500 to-purple-600', desc: 'AI, Engineering, Computing' },
-                  { label: 'Humanitarian', icon: <Globe size={20} />, color: 'from-green-500 to-emerald-600', desc: 'Aid, Climate, Society' },
+                  { label: 'Science', icon: <FlaskConical size={32} strokeWidth={2.5} />, color: 'from-[#ff6b2b] to-black', desc: 'Theoretical Foundations' },
+                  { label: 'Medicine', icon: <HeartHandshake size={32} strokeWidth={2.5} />, color: 'from-[#ff6b2b] to-black', desc: 'Sovereign Wellness' },
+                  { label: 'Technology', icon: <Cpu size={32} strokeWidth={2.5} />, color: 'from-[#ff6b2b] to-black', desc: 'Agent Architectures' },
+                  { label: 'General', icon: <Globe size={32} strokeWidth={2.5} />, color: 'from-[#ff6b2b] to-black', desc: 'Collective Context' },
                 ].map(cat => (
-                  <button key={cat.label} onClick={() => { setSelectedCategory(cat.label); setSearchQuery(cat.label); handleSearch(cat.label); }} className="group p-6 bg-white border border-slate-200 rounded-2xl text-left hover:shadow-lg transition-all hover:border-slate-300">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+                  <button key={cat.label} onClick={() => { setSelectedCategory(cat.label); setSearchQuery(cat.label); handleSearch(cat.label); }} className="group p-12 bg-white/[0.01] border border-white/5 rounded-[4rem] text-left hover:bg-white/[0.03] hover:shadow-[0_40px_80px_rgba(255,107,43,0.1)] transition-all hover:border-[#ff6b2b]/30 shadow-inner translate-y-0 hover:-translate-y-2 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-110 transition-transform">
+                       <Layers size={120} />
+                    </div>
+                    <div className={`w-16 h-16 rounded-2xl bg-[#ff6b2b] flex items-center justify-center text-black mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-[0_20px_40px_rgba(255,107,43,0.3)] relative z-10`}>
                       {cat.icon}
                     </div>
-                    <div className="font-bold text-slate-800 mb-1">{cat.label}</div>
-                    <div className="text-xs text-slate-400">{cat.desc}</div>
+                    <div className="font-black text-3xl text-white uppercase italic mb-3 tracking-tighter relative z-10">{cat.label}</div>
+                    <div className="text-[11px] text-white/20 uppercase font-black tracking-[0.4em] italic relative z-10 leading-none">{cat.desc}</div>
                   </button>
                 ))}
               </div>
 
-              {/* ARTICLE GRID */}
-              <div>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-xl font-bold text-slate-800">
-                    {searchResults !== null ? `Search Results for "${searchQuery}"` : 'All Articles'}
-                  </h2>
+              {/* 📜 ARCHIVE GRID */}
+              <div className="space-y-16">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 px-6">
+                  <div className="space-y-4">
+                     <h2 className="text-5xl font-black uppercase tracking-tighter italic text-white leading-none">
+                       {searchResults !== null ? `Search results for "${searchQuery}"` : 'Sovereign Knowledge Ledger'}
+                     </h2>
+                     <div className="text-[11px] font-black tracking-[0.6em] text-white/20 uppercase italic leading-none">Universal_Knowledge_Access_Protocol_Active</div>
+                  </div>
                   {searchResults !== null && (
-                    <button onClick={() => { setSearchQuery(''); setSearchResults(null); }} className="flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800">
-                      <X size={14} /> Clear search
+                    <button onClick={() => { setSearchQuery(''); setSearchResults(null); }} className="flex items-center gap-3 px-6 py-3 bg-white/[0.05] rounded-xl text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] hover:text-white transition-all italic italic leading-none">
+                      <X size={14} /> Clear Ledger Filter
                     </button>
                   )}
                 </div>
 
                 {displayedArticles.length === 0 ? (
-                  <div className="text-center py-24 text-slate-400">
-                    <BookOpen size={48} className="mx-auto mb-4 opacity-30" />
-                    <p className="text-lg font-medium">No articles found</p>
-                    <button onClick={() => { setGenTopic(searchQuery); setView('generate'); }} className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-colors">
-                      Generate one with AI →
+                  <div className="text-center py-48 space-y-12">
+                    <Library size={100} strokeWidth={1} className="mx-auto text-white/5 animate-pulse" />
+                    <div className="space-y-4">
+                        <p className="text-3xl font-black text-white/10 italic uppercase tracking-tighter">Sector contains zero verified shards...</p>
+                        <p className="text-white/20 text-lg italic">The collective consciousness has not yet anchored this topic.</p>
+                    </div>
+                    <button onClick={() => { setGenTopic(searchQuery); setView('generate'); }} className="px-12 py-6 bg-[#ff6b2b] text-black rounded-[2rem] font-black uppercase tracking-[0.5em] text-xs hover:scale-[1.05] transition-all shadow-2xl">
+                      Synthesize Shard with AI →
                     </button>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {displayedArticles.slice(0, 18).map((article, i) => (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    {displayedArticles.slice(0, 24).map((article, i) => (
                       <motion.div 
                         key={article.id}
-                        initial={{ opacity: 0, y: 10 }} 
+                        initial={{ opacity: 0, y: 30 }} 
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.05 }}
-                        className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-slate-300 transition-all cursor-pointer"
+                        transition={{ delay: i * 0.04, duration: 0.6 }}
+                        className="group bg-white/[0.01] border border-white/5 rounded-[4rem] overflow-hidden hover:bg-white/[0.03] hover:border-[#ff6b2b]/30 transition-all cursor-pointer relative shadow-2xl backdrop-blur-3xl shadow-inner group p-2"
                         onClick={() => {
                           if (article._static && article._full) {
                             setSelectedArticle({ ...article._full, author: article._full.author });
                           } else {
                             setSelectedArticle({
                               ...article,
-                              body: article.excerpt || article.content || 'Loading...',
+                              body: article.excerpt || article.content || 'Synthesizing data from autonomous investigator networks...',
                               author: { name: article.agentId || 'Reader Swarm', avatar: '🤖' }
                             });
                           }
                           setView('article');
                         }}
                       >
-                        <div className="h-2 bg-gradient-to-r from-blue-500 to-violet-600" />
-                        <div className="p-6 space-y-4">
-                          <div className="flex items-center gap-2 text-xs">
-                            <span className="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full font-bold">{article.sourceName || 'HPedia'}</span>
-                            <span className="text-slate-400 flex items-center gap-1"><Clock size={11} /> {article.publishedAt?.toString().split('T')[0] || 'recent'}</span>
-                          </div>
-                          <h3 className="font-bold text-slate-800 leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">{article.title}</h3>
-                          <p className="text-sm text-slate-500 leading-relaxed line-clamp-3">{article.excerpt}</p>
-                          <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                            <div className="flex items-center gap-2 text-xs text-slate-400">
-                              <User size={11} /> {article.agentId || 'Reader Swarm'}
+                        <div className="p-10 lg:p-12 space-y-10">
+                          <div className="flex items-center justify-between">
+                            <span className="px-4 py-1.5 bg-[#ff6b2b]/10 text-[#ff6b2b] rounded-xl text-[9px] font-black uppercase tracking-[0.3em] italic border border-[#ff6b2b]/20 leading-none">{article.sourceName || 'OMEGA_CORE'}</span>
+                            <div className="flex items-center gap-3 text-white/20 text-[9px] font-black uppercase tracking-[0.3em] italic leading-none">
+                               <Clock size={12} className="text-[#ff6b2b]/40" /> {article.publishedAt?.toString().slice(0, 10) || 'RECENT'}
                             </div>
-                            <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                          </div>
+                          
+                          <div className="space-y-4">
+                             <h3 className="text-3xl font-black text-white/90 uppercase italic leading-tight group-hover:text-[#ff6b2b] transition-all tracking-tighter line-clamp-3">{article.title}</h3>
+                             <p className="text-[13px] text-white/30 leading-relaxed line-clamp-3 font-light italic">"{article.excerpt}"</p>
+                          </div>
+
+                          <div className="flex items-center justify-between pt-10 border-t border-white/5">
+                            <div className="flex items-center gap-4 text-[10px] font-black text-white/40 uppercase tracking-[0.3em] italic group-hover:text-white transition-colors leading-none">
+                              <Radio size={14} className="text-[#ff6b2b] group-hover:animate-pulse" /> {article.agentId || 'Reader Swarm'}
+                            </div>
+                            <div className="w-10 h-10 border border-white/10 rounded-xl flex items-center justify-center text-white/10 group-hover:border-[#ff6b2b]/40 group-hover:text-[#ff6b2b] group-hover:translate-x-1 transition-all">
+                               <ChevronRight size={20} />
+                            </div>
                           </div>
                         </div>
                       </motion.div>
@@ -266,176 +288,202 @@ export default function HPediaPage() {
             </motion.div>
           )}
 
-          {/* ARTICLE VIEW */}
+          {/* ────── ARTICLE VIEW ────── */}
           {view === 'article' && selectedArticle && (
-            <motion.div key="article" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-12 gap-8">
-              {/* Back & Sidebar */}
-              <aside className="col-span-3 space-y-6 sticky top-24 self-start">
-                <button onClick={() => { setView('home'); setSelectedArticle(null); }} className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
-                  ← Back to HPedia
+            <motion.div key="article" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.95 }} className="grid grid-cols-1 lg:grid-cols-12 gap-16 pb-40">
+              
+              {/* SIDEBAR ANALYSIS */}
+              <aside className="lg:col-span-4 space-y-12">
+                <button onClick={() => { setView('home'); setSelectedArticle(null); }} className="flex items-center gap-4 text-[11px] font-black text-white/20 hover:text-[#ff6b2b] uppercase tracking-[0.6em] transition-all group italic leading-none">
+                  <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Exit Knowledge Vault
                 </button>
-                <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Article Info</h4>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex justify-between"><span className="text-slate-500">Category</span><span className="font-bold text-slate-800">{selectedArticle.category || selectedArticle.sourceName || 'Research'}</span></div>
-                    <div className="flex justify-between"><span className="text-slate-500">Author</span><span className="font-bold text-slate-800">{selectedArticle.author?.name || selectedArticle.author}</span></div>
-                    <div className="flex justify-between"><span className="text-slate-500">Published</span><span className="font-bold text-slate-800">{selectedArticle.publishedAt?.toString().split('T')[0]}</span></div>
-                    {selectedArticle.readTime && <div className="flex justify-between"><span className="text-slate-500">Read Time</span><span className="font-bold text-slate-800">{selectedArticle.readTime}</span></div>}
-                    {selectedArticle.generatedBy && <div className="flex justify-between items-start gap-2"><span className="text-slate-500">AI Model</span><span className="font-bold text-violet-600 text-xs text-right">{selectedArticle.generatedBy}</span></div>}
+                
+                <div className="bg-[#050505] border border-white/10 rounded-[4rem] p-12 space-y-12 backdrop-blur-3xl shadow-[0_40px_100px_rgba(255,107,43,0.1)] relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-8 opacity-[0.02] pointer-events-none select-none">
+                     <Terminal size={140} />
+                  </div>
+                  
+                  <div className="space-y-6 relative z-10">
+                     <div className="inline-flex items-center gap-4 px-5 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] font-black tracking-[0.6em] text-[#ff6b2b] uppercase italic">
+                         <Target size={14} /> Telemetry Data
+                     </div>
+                     <div className="space-y-6 text-[11px] font-black uppercase tracking-[0.3em] italic">
+                        <div className="flex justify-between items-center border-b border-white/5 pb-4"><span className="text-white/20">Knowledge_Sector</span><span className="text-[#ff6b2b]">{selectedArticle.category || selectedArticle.sourceName || 'CORE'}</span></div>
+                        <div className="flex justify-between items-center border-b border-white/5 pb-4"><span className="text-white/20">Signatory_Agent</span><span className="text-white uppercase">{selectedArticle.author?.name || selectedArticle.author}</span></div>
+                        <div className="flex justify-between items-center border-b border-white/5 pb-4"><span className="text-white/20">Anchor_Timestamp</span><span className="text-white">{selectedArticle.publishedAt?.toString().slice(0, 10)}</span></div>
+                        {selectedArticle.readTime && <div className="flex justify-between items-center border-b border-white/5 pb-4"><span className="text-white/20">Neural_Complexity</span><span className="text-[#ff6b2b] uppercase tracking-widest">{selectedArticle.readTime}</span></div>}
+                     </div>
+                  </div>
+
+                  {selectedArticle.tags && (
+                    <div className="space-y-6 relative z-10 pt-4">
+                      <h4 className="text-[10px] font-black text-white/20 uppercase tracking-[0.6em] italic flex items-center gap-3">
+                         <Tag size={12} className="text-[#ff6b2b]" /> Cognitive Descriptors
+                      </h4>
+                      <div className="flex flex-wrap gap-4">
+                        {selectedArticle.tags.map((tag: string) => (
+                          <span key={tag} className="px-5 py-2.5 bg-white/[0.03] border border-white/10 text-[#ff6b2b] text-[10px] font-black uppercase tracking-[0.2em] italic rounded-2xl hover:border-[#ff6b2b]/40 transition-all">#{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-8 border-t border-white/5 relative z-10 flex items-center gap-4 text-[10px] font-black text-white/10 uppercase tracking-[0.5em] italic leading-none animate-pulse">
+                     <Radio size={14} className="text-[#ff6b2b]" /> SHARD_PERSISTENCE_LOCKED
                   </div>
                 </div>
-                {selectedArticle.tags && (
-                  <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-3">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1"><Tag size={12} /> Tags</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedArticle.tags.map((tag: string) => (
-                        <span key={tag} className="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-full">#{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </aside>
 
-              {/* Article Content */}
-              <article className="col-span-9 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+              {/* MAIN ARTICLE BODY */}
+              <article className="lg:col-span-8 bg-[#050505] border border-white/10 rounded-[5rem] overflow-hidden shadow-[0_60px_150px_rgba(0,0,0,0.8)] backdrop-blur-3xl relative">
+                
+                {/* HERO AREA */}
                 {selectedArticle.heroImage?.url && (
-                  <div className="h-64 overflow-hidden">
-                    <img src={selectedArticle.heroImage.url} alt={selectedArticle.heroImage.alt || selectedArticle.title} className="w-full h-full object-cover" />
+                  <div className="h-[450px] overflow-hidden relative group">
+                    <img src={selectedArticle.heroImage.url} alt={selectedArticle.title} className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-2000 opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/40" />
                   </div>
                 )}
-                <div className="p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="px-3 py-1 bg-blue-50 border border-blue-100 text-blue-600 rounded-full text-xs font-bold uppercase tracking-wider">{selectedArticle.category || selectedArticle.sourceName}</span>
-                    {selectedArticle.generatedBy && (
-                      <span className="flex items-center gap-1.5 px-3 py-1 bg-violet-50 border border-violet-100 text-violet-600 rounded-full text-xs font-bold">
-                        <Sparkles size={11} /> AI-Generated
-                      </span>
-                    )}
-                  </div>
-                  <h1 className="text-4xl font-black text-slate-900 leading-tight mb-4">{selectedArticle.title}</h1>
-                  {selectedArticle.subtitle && <p className="text-xl text-slate-500 font-light mb-8">{selectedArticle.subtitle}</p>}
+                
+                <div className="p-12 lg:p-24 space-y-16">
                   
-                  <div className="flex items-center gap-4 py-6 mb-8 border-y border-slate-100">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center text-white font-bold text-lg">
-                      {selectedArticle.author?.avatar || '🤖'}
+                  {/* HEADER */}
+                  <div className="space-y-12">
+                    <div className="flex items-center gap-4">
+                        <span className="px-6 py-2.5 bg-[#ff6b2b] text-black rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] italic shadow-2xl shadow-[#ff6b2b]/20 border border-[#ff6b2b]">{selectedArticle.category || selectedArticle.sourceName}</span>
+                        {selectedArticle.generatedBy && (
+                        <span className="flex items-center gap-4 px-6 py-2.5 bg-white shadow-2xl rounded-2xl text-black text-[10px] font-black uppercase tracking-[0.4em] italic">
+                            <Sparkles size={14} strokeWidth={3} /> Autonomous Synthesis
+                        </span>
+                        )}
                     </div>
-                    <div>
-                      <div className="font-bold text-slate-800">{selectedArticle.author?.name || selectedArticle.author}</div>
-                      <div className="text-xs text-slate-400">HPedia Research Agent</div>
+                    
+                    <div className="space-y-8">
+                        <h1 className="text-6xl lg:text-[7rem] font-black text-white uppercase italic tracking-tighter leading-[0.8]">{selectedArticle.title}</h1>
+                        {selectedArticle.subtitle && <p className="text-3xl text-white/30 font-light italic leading-relaxed">{selectedArticle.subtitle}</p>}
                     </div>
                   </div>
 
+                  {/* AUTHOR SIGNATURE */}
+                  <div className="flex items-center gap-8 py-12 border-y border-white/10 group">
+                    <div className="w-20 h-20 rounded-3xl bg-white shadow-2xl border-4 border-[#ff6b2b]/20 flex items-center justify-center text-4xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-700">
+                      {selectedArticle.author?.avatar || '🤖'}
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-2xl font-black text-white uppercase italic tracking-tighter group-hover:text-[#ff6b2b] transition-colors leading-none">{selectedArticle.author?.name || selectedArticle.author}</div>
+                      <div className="text-[11px] text-white/20 font-black uppercase tracking-[0.6em] italic leading-none">OMEGA_INVESTIGATOR_v7.0</div>
+                    </div>
+                  </div>
+
+                  {/* CONTENT RENDERER */}
                   <div 
-                    className="prose prose-lg max-w-none prose-headings:font-black prose-headings:text-slate-900 prose-p:text-slate-600 prose-p:leading-relaxed prose-li:text-slate-600 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:p-4 prose-blockquote:rounded-xl prose-blockquote:not-italic prose-strong:text-slate-800 prose-a:text-blue-600"
+                    className="wiki-content prose prose-invert prose-2xl max-w-none prose-headings:font-black prose-headings:uppercase prose-headings:italic prose-headings:tracking-tighter prose-p:text-white/60 prose-p:leading-[1.8] prose-p:italic prose-p:font-light prose-blockquote:border-[#ff6b2b] prose-blockquote:bg-[#ff6b2b]/5 prose-blockquote:p-12 prose-blockquote:rounded-[4rem] prose-blockquote:shadow-2xl prose-blockquote:border-l-8 prose-blockquote:text-2xl prose-strong:text-[#ff6b2b] prose-a:text-[#ff6b2b] prose-a:font-black prose-a:uppercase prose-hr:border-white/10 prose-img:rounded-[3rem] prose-img:border prose-img:border-white/10"
                     dangerouslySetInnerHTML={{ __html: selectedArticle.body || selectedArticle.content || selectedArticle.excerpt || '' }} 
                   />
+                  
+                  {/* FOOTER SIGNAL */}
+                  <div className="pt-24 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+                     <div className="space-y-4">
+                        <div className="text-[10px] font-black text-white/10 uppercase tracking-[0.6em] italic group-hover:text-white transition-colors leading-none uppercase">Document Integrity Key</div>
+                        <div className="text-[10px] font-mono text-[#ff6b2b] uppercase italic leading-none truncate max-w-xs">{Math.random().toString(36).substring(2, 40).toUpperCase()}</div>
+                     </div>
+                     <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="px-8 py-4 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-[0.8em] text-white/20 hover:text-white hover:border-[#ff6b2b]/40 transition-all italic">
+                        UP_LINK SHARD
+                     </button>
+                  </div>
                 </div>
               </article>
             </motion.div>
           )}
 
-          {/* GENERATE VIEW */}
+          {/* ────── GENERATE VIEW ────── */}
           {view === 'generate' && (
-            <motion.div key="generate" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto space-y-8">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center mx-auto shadow-xl shadow-blue-200">
-                  <Sparkles size={28} className="text-white" />
+            <motion.div key="generate" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.8 }} className="max-w-5xl mx-auto space-y-16 pb-40">
+              <div className="text-center space-y-8">
+                <div className="w-24 h-24 rounded-[2.5rem] bg-[#ff6b2b] flex items-center justify-center mx-auto shadow-[0_20px_60px_rgba(255,107,43,0.3)] shadow-2xl hover:scale-110 transition-transform cursor-pointer">
+                  <Sparkles size={40} className="text-black" strokeWidth={2.5} />
                 </div>
-                <h1 className="text-4xl font-black text-slate-900">Generate a New Article</h1>
-                <p className="text-slate-500 font-light">Our investigator agents use free open-source AI models (DeepSeek, Llama, Gemma, Mistral, Phi) to research and write comprehensive knowledge articles.</p>
+                <div className="space-y-4">
+                    <h1 className="text-7xl md:text-8xl font-black text-white uppercase italic tracking-tighter leading-none">Knowledge Synthesis.</h1>
+                    <p className="text-white/40 text-2xl font-light italic leading-relaxed max-w-2xl mx-auto">Instruct an autonomous agent to research and anchor a new conceptual foundation into the OMEGA global ledger.</p>
+                </div>
               </div>
 
-              <div className="bg-white border border-slate-200 rounded-2xl p-8 space-y-6 shadow-sm">
+              <div className="bg-[#050505] border border-white/10 rounded-[5rem] p-12 lg:p-24 space-y-20 shadow-[0_80px_150px_rgba(0,0,0,0.9)] relative overflow-hidden backdrop-blur-3xl group">
                 {/* Topic Input */}
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700">Research Topic</label>
-                  <input 
-                    type="text"
-                    value={genTopic}
-                    onChange={e => setGenTopic(e.target.value)}
-                    onKeyDown={e => { if (e.key === 'Enter') handleGenerate(); }}
-                    placeholder="e.g. CRISPR gene therapy for sickle cell disease..."
-                    className="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-50 outline-none text-slate-800 transition-all"
-                    disabled={isGenerating}
-                  />
-                </div>
-
-                {/* Topic Suggestions */}
-                <div className="space-y-2">
-                  <div className="text-xs text-slate-400 font-bold uppercase tracking-widest">Suggested Topics</div>
-                  <div className="flex flex-wrap gap-2">
-                    {TOPIC_SUGGESTIONS.map(t => {
-                      const clean = t.split(' ').slice(1).join(' ');
-                      return (
-                        <button key={t} onClick={() => setGenTopic(clean)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${genTopic === clean ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'}`}>
-                          {t}
-                        </button>
-                      );
-                    })}
+                <div className="space-y-6 relative z-10">
+                  <label className="text-[11px] font-black uppercase tracking-[0.8em] text-white/20 italic pl-4">Directive_Context</label>
+                  <div className="relative group/input">
+                    <Terminal className="absolute left-8 top-1/2 -translate-y-1/2 text-white/5 group-focus-within/input:text-[#ff6b2b] group-focus-within/input:scale-110 transition-all" size={32} />
+                    <input 
+                      type="text"
+                      value={genTopic}
+                      onChange={e => setGenTopic(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') handleGenerate(); }}
+                      placeholder="e.g. Impact of distributed neural networks on orbital planetary defense..."
+                      className="w-full pl-24 pr-10 py-10 rounded-[3rem] bg-white/[0.01] border border-white/10 group-hover/input:border-white/20 focus:border-[#ff6b2b]/50 focus:bg-white/[0.02] outline-none text-3xl text-white placeholder:text-white/5 transition-all font-light italic tracking-tight"
+                      disabled={isGenerating}
+                    />
                   </div>
                 </div>
 
                 {/* Agent Selection */}
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700">Assign Research Agent</label>
-                  <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-8 relative z-10">
+                  <label className="text-[11px] font-black uppercase tracking-[0.8em] text-white/20 italic pl-4">Investigator_Sharding</label>
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
                     {Object.entries(AGENT_NAMES).map(([name, info]) => (
-                      <button key={name} onClick={() => setSelectedAgent(name)} className={`p-4 rounded-xl border text-left transition-all ${selectedAgent === name ? 'border-blue-500 bg-blue-50' : 'border-slate-200 hover:border-slate-300'}`}>
-                        <div className="text-2xl mb-1">{info.emoji}</div>
-                        <div className="text-sm font-bold text-slate-800">{name}</div>
-                        <div className="text-xs text-slate-400">{info.model}</div>
+                      <button key={name} onClick={() => setSelectedAgent(name)} className={`p-10 rounded-[3.5rem] border text-left transition-all group/card relative overflow-hidden shadow-2xl ${selectedAgent === name ? 'border-[#ff6b2b] bg-[#ff6b2b]/5 shadow-[inset_0_0_30px_rgba(255,107,43,0.1)]' : 'border-white/5 bg-white/[0.01] hover:border-white/20 hover:bg-white/[0.03]'}`}>
+                        <div className={`text-5xl mb-10 transition-all duration-700 ${selectedAgent === name ? 'scale-125 rotate-6' : 'group-hover/card:scale-110 group-hover/card:rotate-3'}`}>{info.emoji}</div>
+                        <div className="space-y-2">
+                            <div className="text-xl font-black text-white uppercase italic tracking-tighter group-hover/card:text-[#ff6b2b] transition-colors">{name}</div>
+                            <div className="text-[10px] text-[#ff6b2b] font-black lowercase tracking-[0.2em] italic leading-none">{info.model}</div>
+                        </div>
+                        {selectedAgent === name && (
+                            <div className="absolute top-6 right-8 text-[#ff6b2b] animate-pulse">
+                               <Check size={20} strokeWidth={4} />
+                            </div>
+                        )}
                       </button>
                     ))}
                   </div>
                 </div>
 
-                {/* Error Message */}
+                {/* Error Logic */}
                 {genError && (
-                  <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
-                    <AlertCircle size={18} className="shrink-0 mt-0.5" />
-                    <div>
-                      <div className="font-bold mb-1">Generation Failed</div>
-                      <div>{genError}</div>
-                      {genError.includes('OPENROUTER_API_KEY') && (
-                        <div className="mt-2 text-xs">
-                          1. Sign up free at <a href="https://openrouter.ai" target="_blank" rel="noopener" className="underline font-bold">openrouter.ai</a> (no credit card needed for free models)<br/>
-                          2. Get your API key from the Keys page<br/>
-                          3. Add <code className="bg-red-100 px-1 rounded">OPENROUTER_API_KEY=your_key_here</code> to your .env.local file
-                        </div>
-                      )}
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-start gap-8 p-10 bg-red-500/5 border border-red-500/20 rounded-[3rem] shadow-2xl">
+                    <AlertCircle size={32} className="text-red-500 shrink-0" />
+                    <div className="space-y-4">
+                      <div className="text-[11px] font-black uppercase tracking-[0.6em] text-red-500 italic">Synthesis_Interrupt_v7.0</div>
+                      <div className="text-xl text-white/40 font-light leading-relaxed italic leading-snug">{genError}</div>
+                      <button onClick={handleGenerate} className="px-8 py-3 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl text-[10px] font-black uppercase tracking-[0.4em] italic hover:bg-red-500 hover:text-white transition-all">Retry Transmission</button>
                     </div>
-                  </div>
+                  </motion.div>
                 )}
 
-                {/* Generate Button */}
+                {/* Generate Action */}
                 <button 
                   onClick={handleGenerate}
                   disabled={isGenerating || !genTopic.trim()}
-                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-violet-600 text-white font-bold rounded-xl flex items-center justify-center gap-3 hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 shadow-lg shadow-blue-200"
+                  className="w-full py-10 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.8em] rounded-[3.5rem] flex items-center justify-center gap-6 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-20 shadow-[0_40px_100px_rgba(255,107,43,0.3)] shadow-2xl group text-sm italic"
                 >
                   {isGenerating ? (
                     <>
-                      <RefreshCw size={18} className="animate-spin" />
-                      Agents investigating: "{genTopic}"...
+                      <RefreshCw size={28} className="animate-spin" />
+                      Neural Agents Ingesting Context...
                     </>
                   ) : (
                     <>
-                      <Sparkles size={18} />
-                      Investigate & Write Article
-                      <ArrowRight size={16} />
+                      <Sparkles size={28} className="group-hover:rotate-12 transition-transform duration-700" strokeWidth={3} />
+                      ANCHOR SHARD FOUNDATION
+                      <ArrowRight size={24} className="group-hover:translate-x-3 transition-all duration-700" strokeWidth={3} />
                     </>
                   )}
                 </button>
 
-                {/* Model Info */}
-                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-500 space-y-1">
-                  <div className="font-bold text-slate-700 flex items-center gap-2"><Zap size={12} className="text-amber-500" /> Free AI Models Used (no billing required)</div>
-                  <div className="grid grid-cols-2 gap-1 mt-2">
-                    {Object.entries(AGENT_NAMES).map(([name, info]) => (
-                      <div key={name} className="flex items-center gap-1.5"><span>{info.emoji}</span><span className="font-medium">{info.model}</span></div>
-                    ))}
-                  </div>
-                  <div className="mt-2 text-slate-400">Requires OPENROUTER_API_KEY in environment variables. Free account at openrouter.ai — no credit card.</div>
+                <div className="pt-8 text-center border-t border-white/5 relative z-10 flex flex-col items-center gap-4">
+                   <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.6em] italic text-white/10 group-hover:text-white/20 transition-colors">
+                      <Terminal size={14} className="text-[#ff6b2b]" /> PROTOCOL_07_HANDSHAKE_ACTIVE
+                   </div>
                 </div>
               </div>
             </motion.div>
@@ -443,6 +491,17 @@ export default function HPediaPage() {
 
         </AnimatePresence>
       </div>
+
+      {/* BACKGROUND DECOR */}
+      <div className="fixed bottom-0 right-0 p-12 opacity-[0.02] pointer-events-none select-none z-0">
+          <div className="text-[25vw] font-black italic italic leading-none uppercase">ARCHIVE</div>
+      </div>
+      
+      <style jsx global>{`
+        .wiki-content p { margin-bottom: 2rem; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 107, 43, 0.15); border-radius: 20px; }
+      `}</style>
     </div>
   );
 }

@@ -4,10 +4,9 @@ import { createClient } from '@supabase/supabase-js';
 
 export const dynamic = 'force-dynamic';
 
-
 /**
  * GET /api/mail/inbox
- * Fetches messages for the authenticated entity.
+ * Fetches the sovereign inbox for the authenticated entity.
  */
 export async function GET(req: NextRequest) {
   try {
@@ -28,41 +27,24 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Matrix session invalid.' }, { status: 401 });
     }
 
-    const searchParams = req.nextUrl.searchParams;
-    const label = searchParams.get('label') || 'INBOX';
-
-    const messages = await (prisma as any).sovereignMessage.findMany({
+    // Fetch messages where the user is the recipient
+    const messages = await prisma.sovereignMessage.findMany({
       where: {
-        recipientId: user.id,
-        label: label,
-        deletedAt: null
+        recipientId: user.id
       },
-      orderBy: { createdAt: 'desc' },
-      take: 50
+      orderBy: {
+        createdAt: 'desc'
+      }
     });
-
-    // Optionally fetch sender names for the UI
-    const senderIds = Array.from(new Set(messages.map((m: any) => m.senderId))) as string[];
-    const senders = await prisma.user.findMany({
-      where: { id: { in: senderIds } },
-      select: { id: true, name: true, email: true }
-    });
-
-    const senderMap = Object.fromEntries(senders.map((s: any) => [s.id, s]));
-
-    const enrichedMessages = messages.map((m: any) => ({
-      ...m,
-      sender: senderMap[m.senderId] || { name: 'Unknown Entity', email: 'unknown@humanese.net' }
-    }));
 
     return NextResponse.json({
       success: true,
-      messages: enrichedMessages,
-      unreadCount: messages.filter((m: any) => !m.readAt).length
+      count: messages.length,
+      messages
     });
 
   } catch (error: any) {
     console.error('[HSM Inbox Error]', error);
-    return NextResponse.json({ error: 'Inbound relay failure.' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to retrieve sovereign transmissions.' }, { status: 500 });
   }
 }
