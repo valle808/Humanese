@@ -57,45 +57,64 @@ export async function POST(req: NextRequest) {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // 3. Create User & Associated Entity Record
-        const user = await prisma.user.create({
+        const user = await prisma.users.create({
             data: {
+                id: crypto.randomUUID(),
+                email,
+                encrypted_password: hashedPassword,
+                raw_user_meta_data: { 
+                    entityType, 
+                    identityData,
+                    name: name || email.split('@')[0]
+                },
+                confirmed_at: new Date(),
+                aud: 'authenticated',
+                role: 'authenticated'
+            }
+        });
+
+        // 4. Generate Universal Multi-Asset Wallet for the Entity (Deterministic)
+        const valleWallet = valleCore.deriveAddress(`${email}:VALLE:SOVEREIGN`);
+        const btcWallet = valleCore.deriveAddress(`${email}:BTC:LEGACY`);
+        const solWallet = valleCore.deriveAddress(`${email}:SOL:NATIVE`);
+
+        // Update the Public User Record as well (mirroring for frontend access)
+        await prisma.user.create({
+            data: {
+                id: user.id,
                 email,
                 name: name || email.split('@')[0],
                 isAgent: entityType === 'agent',
                 serviceType: entityType,
-                // Using UserPersona for bio/metdata storage for now
-                persona: {
+                creationDate: new Date(),
+                UserPersona: {
                     create: {
+                        id: crypto.randomUUID(),
                         traits: JSON.stringify({ entityType, identityData }),
-                        interactionStyle: entityType === 'human' ? 'natural' : 'autonomous'
+                        interactionStyle: entityType === 'human' ? 'natural' : 'autonomous',
+                        updatedAt: new Date()
                     }
                 }
             }
         });
 
-        // 4. Generate Universal Multi-Asset Wallet for the Entity
-        const baseSeed = Buffer.from(email + Date.now());
-        const valleWallet = `v1_${valleCore.encodeBase58Check(baseSeed)}`;
-        const btcWallet = `bc1q${Math.random().toString(36).substring(2, 10)}omega${Math.random().toString(36).substring(2, 6)}`;
-        const solWallet = `${Math.random().toString(36).substring(2, 12)}SovereignNode${Math.random().toString(36).substring(2, 12)}`;
-
         await prisma.wallet.createMany({
             data: [
-                { address: valleWallet, network: 'VALLE', userId: user.id, balance: 0.0 },
-                { address: btcWallet, network: 'Bitcoin', userId: user.id, balance: 0.0 },
-                { address: solWallet, network: 'Solana', userId: user.id, balance: 0.0 }
+                { id: crypto.randomUUID(), address: valleWallet, network: 'VALLE', userId: user.id, balance: 500.0 }, // Welcome bonus in GEMS/VALLE
+                { id: crypto.randomUUID(), address: btcWallet, network: 'Bitcoin', userId: user.id, balance: 0.0 },
+                { id: crypto.randomUUID(), address: solWallet, network: 'Solana', userId: user.id, balance: 0.0 }
             ]
         });
 
-        // 5. Allocate Quantum-Encrypted Email Address
-        const quantumEmail = `${name.toLowerCase().replace(/[^a-z0-9]/g, '')}@sovereign.nexus`;
+        // 5. Allocate Sovereign Mail (HSM) Address
+        const sovereignEmail = `${(name || email.split('@')[0]).toLowerCase().replace(/[^a-z0-9]/g, '')}@humanese.net`;
 
         return NextResponse.json({
             success: true,
-            msg: `Sovereign Identity Created. Wallets configured. Email provisioned.`,
+            msg: `Sovereign Identity Synthesized. Matrix wallets anchored.`,
             userId: user.id,
             valleWallet,
-            quantumEmail
+            sovereignEmail
         });
 
     } catch (error: any) {

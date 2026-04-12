@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Loader2, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Loader2, ArrowRight, Zap, Target, Binary, Terminal } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -23,91 +24,90 @@ export function SearchBar({ onSearch, isLoading = false, variant = 'default' }: 
 
   if (variant === 'hero') {
     return (
-      <form onSubmit={handleSubmit} className="w-full">
-        <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl">
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/70" />
-          <Input
-            type="text"
-            placeholder="Search Sovereign Knowledge..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="h-16 bg-transparent pl-12 pr-16 text-base text-white placeholder:text-white/60 border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-            disabled={isLoading}
-            maxLength={500}
-          />
-          <button
-            type="submit"
-            disabled={isLoading || !query.trim()}
-            className="absolute right-2 top-1/2 -translate-y-1/2 grid h-12 w-12 place-items-center rounded-full border border-white/20 bg-white/15 text-white hover:bg-white/25 transition disabled:opacity-50"
-          >
-            {isLoading ? (
-              <Loader2 className="h-5 w-5 animate-spin" />
-            ) : (
-              <ArrowRight className="h-5 w-5" />
-            )}
-          </button>
+      <form onSubmit={handleSubmit} className="w-full relative group">
+        <div className="relative rounded-[2.5rem] border-2 border-white/10 bg-[#050505]/40 backdrop-blur-3xl shadow-[0_40px_100px_rgba(0,0,0,0.8)] p-2 transition-all group-focus-within:border-[#ff6b2b]/40 shadow-inner">
+          <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity" />
+          
+          <div className="flex items-center gap-6 px-8">
+             <Search className="h-8 w-8 text-[#ff6b2b] group-focus-within:animate-pulse transition-all" strokeWidth={3} />
+             <input
+               type="text"
+               placeholder="Search Sovereign Knowledge..."
+               value={query}
+               onChange={(e) => setQuery(e.target.value)}
+               className="h-20 bg-transparent flex-1 text-2xl text-white placeholder:text-white/5 border-0 focus:ring-0 focus:outline-none font-black italic tracking-tighter uppercase pt-2"
+               disabled={isLoading}
+               maxLength={500}
+             />
+             <button
+               type="submit"
+               disabled={isLoading || !query.trim()}
+               className="h-16 w-16 grid place-items-center rounded-2xl bg-[#ff6b2b] text-black hover:scale-105 active:scale-95 transition-all disabled:opacity-50 shadow-[0_20px_40px_rgba(255,107,43,0.3)]"
+             >
+               {isLoading ? (
+                 <Loader2 className="h-8 w-8 animate-spin" strokeWidth={3} />
+               ) : (
+                 <ArrowRight className="h-8 w-8" strokeWidth={3} />
+               )}
+             </button>
+          </div>
         </div>
       </form>
     );
   }
 
-  const inputClasses =
-    variant === 'nav'
-      ? 'h-10 rounded-full pl-10 pr-4 bg-muted/40 border-2 border-border/50 focus-visible:ring-0 focus-visible:ring-offset-0'
-      : 'pl-12 h-12 text-base border-2 focus-visible:ring-2 focus-visible:ring-primary/20 transition-all';
-
-  const wrapperClasses = variant === 'nav' ? 'gap-2' : 'gap-3';
+  if (variant === 'nav') {
+    return (
+      <form onSubmit={handleSubmit} className="w-full">
+         <div className="relative group">
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-4 w-4 text-white/10 group-focus-within:text-[#ff6b2b] transition-colors" strokeWidth={3} />
+            <input
+              type="text"
+              placeholder="Access Registry..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full h-14 bg-black border-2 border-white/5 rounded-2xl pl-14 pr-20 text-sm text-white placeholder:text-white/5 focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 outline-none transition-all font-black uppercase tracking-[0.2em] italic shadow-inner"
+              disabled={isLoading}
+              maxLength={500}
+            />
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-2 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-lg scale-75">
+               <span className="text-[10px] font-black text-white/20 italic uppercase pt-0.5">K</span>
+            </div>
+         </div>
+      </form>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      {variant === 'nav' ? (
-        <div className="relative w-full">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            type="text"
-            placeholder="Search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className={inputClasses}
-            disabled={isLoading}
-            maxLength={500}
-          />
-          <kbd className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-            <span className="text-xs">⌘</span>K
-          </kbd>
-        </div>
-      ) : (
-        <div className={`flex ${wrapperClasses}`}>
+    <form onSubmit={handleSubmit} className="w-full space-y-6">
+      <div className="relative group">
+        <div className="absolute inset-0 bg-[#ff6b2b]/5 blur-[20px] rounded-[2rem] opacity-0 group-focus-within:opacity-100 transition-opacity" />
+        <div className="relative flex gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-            <Input
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-white/10 group-focus-within:text-[#ff6b2b] transition-colors" strokeWidth={3} />
+            <input
               type="text"
               placeholder="Search Sovereign Knowledge Matrix..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className={inputClasses}
+              className="w-full h-20 bg-[#050505] border-2 border-white/5 rounded-[2rem] pl-16 pr-10 text-xl text-white placeholder:text-white/5 focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 outline-none transition-all font-black uppercase tracking-tighter italic shadow-inner pt-2"
               disabled={isLoading}
               maxLength={500}
             />
           </div>
-          <Button
+          <button
             type="submit"
             disabled={isLoading || !query.trim()}
-            className="h-12 px-8 text-base font-semibold shadow-lg hover:shadow-xl transition-all"
-            size="lg"
+            className="h-20 px-10 bg-[#ff6b2b] text-black text-xs font-black uppercase tracking-[0.8em] rounded-[1.5rem] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(255,107,43,0.3)] disabled:opacity-50 italic pt-1 leading-none border-0"
           >
             {isLoading ? (
-              <>
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                Loading
-              </>
+              <Loader2 className="h-8 w-8 animate-spin mx-auto" strokeWidth={3} />
             ) : (
-              'Search'
+              'Initiate_Sync'
             )}
-          </Button>
+          </button>
         </div>
-      )}
+      </div>
     </form>
   );
 }
-

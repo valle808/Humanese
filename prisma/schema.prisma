@@ -959,3 +959,41 @@ model SovereignMessage {
   @@index([threadId])
   @@schema("public")
 }
+
+model ImprovementProposal {
+  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  hipNumber          Int      @unique @default(autoincrement())
+  title              String
+  authorId           String
+  type               String   // Standards Track, Informational, Process
+  layer              String?  // Consensus, API, Interface, etc.
+  category           String?  // Core, Networking, etc.
+  status             String   @default("Draft") // Draft, Deferred, Active, Accepted, Rejected, Withdrawn, Final
+  markdownContent    String   @db.Text
+  resonanceThreshold Float    @default(0.0)
+  resolution         String?  @db.Text
+  bipReference       String?  // Optional link to related BIP
+  createdAt          DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime @updatedAt @db.Timestamptz(6)
+  votes              ProposalVote[]
+
+  @@index([authorId])
+  @@index([status])
+  @@schema("public")
+}
+
+model ProposalVote {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  proposalId  String   @db.Uuid
+  voterId     String
+  choice      String   // Support, Against, Abstain
+  weight      Float    @default(1.0)
+  comment     String?
+  timestamp   DateTime @default(now()) @db.Timestamptz(6)
+  proposal    ImprovementProposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+
+  @@unique([proposalId, voterId])
+  @@index([proposalId])
+  @@index([voterId])
+  @@schema("public")
+}

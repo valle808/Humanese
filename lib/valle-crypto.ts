@@ -18,9 +18,17 @@ export class ValleCryptoEngine {
      * Synthesized from `bitcoin/bitcoin` src/crypto/sha256.cpp
      * Double SHA256 is the cryptographic backbone of Valle.
      */
-    private dSHA256(buffer: Buffer): Buffer {
+    public dSHA256(buffer: Buffer): Buffer {
         const firstHash = createHash('sha256').update(buffer).digest();
         return createHash('sha256').update(firstHash).digest();
+    }
+
+    /**
+     * Derives a deterministic address from a seed string.
+     */
+    public deriveAddress(seed: string): string {
+        const hash = this.dSHA256(Buffer.from(seed, 'utf8'));
+        return this.encodeBase58Check(hash.subarray(0, 20));
     }
 
     /**

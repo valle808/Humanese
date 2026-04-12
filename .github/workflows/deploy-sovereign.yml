@@ -1,0 +1,117 @@
+name: 🔱 Sovereign OMEGA — Production Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Deployment reason / release note'
+        required: false
+        default: 'Autonomous sovereign push'
+
+concurrency:
+  group: sovereign-prod
+  cancel-in-progress: false
+
+jobs:
+  # ─────────────────────────────────────────────────────────────────────────
+  # PHASE 1 — QUALITY GATE
+  # ─────────────────────────────────────────────────────────────────────────
+  quality-gate:
+    name: ⚡ Quality Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sovereign Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        env:
+          SOVEREIGN_DATABASE_URL: ${{ secrets.SOVEREIGN_DATABASE_URL }}
+
+      - name: Production Build Verification
+        run: npm run build
+        env:
+          SOVEREIGN_DATABASE_URL: ${{ secrets.SOVEREIGN_DATABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # PHASE 2 — SOVEREIGN VERCEL DEPLOY
+  # ─────────────────────────────────────────────────────────────────────────
+  deploy-vercel:
+    name: 🚀 Deploy to Vercel Production
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Checkout Sovereign Codebase
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+
+      - name: Print Deployment URL
+        run: |
+          echo "🔱 SOVEREIGN OMEGA DEPLOYED"
+          echo "URL: ${{ steps.deploy.outputs.url }}"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # PHASE 3 — ON-CHAIN TELEMETRY PING
+  # ─────────────────────────────────────────────────────────────────────────
+  on-chain-telemetry:
+    name: 📡 On-Chain Telemetry Broadcast
+    needs: deploy-vercel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sovereign Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Broadcast Deployment Event to Sovereign Ledger
+        run: node scripts/broadcast_deployment.mjs
+        env:
+          SOVEREIGN_DATABASE_URL: ${{ secrets.SOVEREIGN_DATABASE_URL }}
+          DEPLOYMENT_URL: ${{ needs.deploy-vercel.outputs.url }}
+          GIT_SHA: ${{ github.sha }}
+          DEPLOYER: 'Gio V. / Bastidas Protocol'
+
+      - name: Notify Sovereign Mesh
+        run: |
+          echo "✅ Sovereign OMEGA v7.0 is LIVE"
+          echo "Commit: ${{ github.sha }}"
+          echo "Author: ${{ github.actor }}"
+          echo "Signed: Gio V. — Bastidas Protocol"

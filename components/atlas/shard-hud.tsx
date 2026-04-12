@@ -35,8 +35,8 @@ export default function ShardHUD({ node, onClose }: ShardHUDProps) {
         <div className="space-y-4">
            <div className="flex items-center gap-3">
               <div className={`h-12 w-12 rounded-2xl flex items-center justify-center border ${
-                node.type === 'PREDICTION' ? 'bg-[#00ffc3]/10 border-[#00ffc3]/30 text-[#00ffc3]' : 
-                node.type === 'CONVERSATION' ? 'bg-[#7000ff]/10 border-[#7000ff]/30 text-[#7000ff]' : 
+                node.type === 'PREDICTION' ? 'bg-[#ff6b2b]/10 border-[#ff6b2b]/30 text-[#ff6b2b]' : 
+                node.type === 'CONVERSATION' ? 'bg-[#ff6b2b]/10 border-[#ff6b2b]/30 text-[#ff6b2b]' : 
                 'bg-white/10 border-white/20 text-white/40'
               }`}>
                  {node.type === 'PREDICTION' ? <Zap size={24} /> : 
@@ -71,7 +71,7 @@ export default function ShardHUD({ node, onClose }: ShardHUDProps) {
                <div className="text-[8px] text-white/20 uppercase tracking-widest flex items-center gap-2">
                   <Activity size={10} /> Resonance
                </div>
-               <div className="text-lg font-black text-[#00ffc3]">94.2%</div>
+               <div className="text-lg font-black text-[#ff6b2b]">94.2%</div>
             </div>
          </div>
 
@@ -97,7 +97,7 @@ export default function ShardHUD({ node, onClose }: ShardHUDProps) {
                {['Central_Identity', 'Economic_Sandbox', 'Swarm_Consensus'].map((ass, i) => (
                  <div key={i} className="flex items-center justify-between p-4 bg-white/[0.03] border border-white/5 rounded-xl hover:bg-white/[0.06] transition-all cursor-pointer group">
                     <span className="text-xs text-white/40 group-hover:text-white transition-colors uppercase font-mono">{ass}</span>
-                    <LinkIcon size={12} className="text-white/10 group-hover:text-[#00ffc3] transition-colors" />
+                    <LinkIcon size={12} className="text-white/10 group-hover:text-[#ff6b2b] transition-colors" />
                  </div>
                ))}
             </div>
@@ -107,7 +107,7 @@ export default function ShardHUD({ node, onClose }: ShardHUDProps) {
 
       {/* FOOTER ACTION */}
       <div className="pt-8 border-t border-white/5">
-         <button className="w-full py-4 bg-[#7000ff] text-white font-black uppercase text-xs tracking-widest rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_40px_rgba(112,0,255,0.2)]">
+         <button className="w-full py-5 bg-[#ff6b2b] text-black font-black uppercase text-xs tracking-[0.4em] rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_50px_rgba(255,107,43,0.3)] italic">
             Trace Full Lineage
          </button>
       </div>

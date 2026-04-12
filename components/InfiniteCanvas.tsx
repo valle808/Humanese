@@ -13,14 +13,14 @@ interface PointCloudProps {
 function PointCloud({ volatility }: PointCloudProps) {
   const points = useRef<THREE.Points>(null!);
   
-  const particleCount = 10000;
+  const particleCount = 12000;
   const positions = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
       const phi = Math.acos(-1 + (2 * i) / particleCount);
       const theta = Math.sqrt(particleCount * Math.PI) * phi;
       
-      const radius = 5;
+      const radius = 5 + Math.random() * 0.2;
       pos[i * 3] = Math.cos(theta) * Math.sin(phi) * radius;
       pos[i * 3 + 1] = Math.sin(theta) * Math.sin(phi) * radius;
       pos[i * 3 + 2] = Math.cos(phi) * radius;
@@ -31,7 +31,8 @@ function PointCloud({ volatility }: PointCloudProps) {
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (points.current) {
-      points.current.rotation.y = time * 0.05;
+      points.current.rotation.y = time * 0.08;
+      points.current.rotation.z = time * 0.03;
       const pulse = 1 + Math.sin(time * 0.5) * (volatility - 1);
       points.current.scale.set(pulse, pulse, pulse);
     }
@@ -41,12 +42,13 @@ function PointCloud({ volatility }: PointCloudProps) {
     <Points ref={points} positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color="#00FF41"
-        size={0.015}
+        // FLAGSHIP INTENSE ORANGE
+        color="#ff6b2b"
+        size={0.02}
         sizeAttenuation={true}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
-        opacity={0.4}
+        opacity={0.6}
       />
     </Points>
   );
@@ -58,13 +60,13 @@ function CameraController({ trigger }: { trigger: number }) {
   useEffect(() => {
     if (trigger > 0) {
       gsap.to(camera.position, {
-        z: 3,
-        duration: 1.2,
-        ease: "power3.inOut",
+        z: 4,
+        duration: 1.5,
+        ease: "power4.inOut",
         onComplete: () => {
           gsap.to(camera.position, {
-            z: 10,
-            duration: 1.8,
+            z: 12,
+            duration: 2.5,
             ease: "expo.out"
           });
         }
@@ -86,7 +88,8 @@ export function InfiniteCanvas({ refreshKey = 0, volatility = 1.0 }: InfiniteCan
   return (
     <div className="w-full h-full bg-[#050505] relative overflow-hidden">
       {/* Visual Fallback: Constant Radial Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,255,65,0.03)_0%,_transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,107,43,0.05)_0%,_transparent_75%)]" />
+      <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
       
       {!hasError ? (
         <Canvas 
@@ -112,22 +115,28 @@ export function InfiniteCanvas({ refreshKey = 0, volatility = 1.0 }: InfiniteCan
             };
           }}
         >
-          <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+          <PerspectiveCamera makeDefault position={[0, 0, 12]} />
           <CameraController trigger={refreshKey} />
           
-          <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={0.5} />
+          <Stars radius={120} depth={60} count={3000} factor={6} saturation={0} fade speed={0.6} />
           
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={0.4} />
+          <pointLight position={[10, 10, 10]} intensity={1} color="#ff6b2b" />
           <PointCloud volatility={volatility} />
           
-          <fog attach="fog" args={['#050505', 8, 15]} />
+          <fog attach="fog" args={['#050505', 10, 20]} />
         </Canvas>
       ) : (
-        <div className="w-full h-full flex items-center justify-center relative">
-            <div className="text-emerald/10 font-mono text-[10px] uppercase tracking-[1em] animate-pulse">
-                Matrix Engine Standby
+        <div className="w-full h-full flex flex-col items-center justify-center relative bg-[#050505]">
+            <div className="relative z-10 space-y-4 text-center">
+                <div className="text-[#ff6b2b]/20 font-black text-xs uppercase tracking-[0.8em] animate-pulse italic">
+                    Matrix_Engine_Standby_
+                </div>
+                <div className="text-white/5 font-black text-[10px] uppercase tracking-[0.4em] italic">
+                    RESONANCE_FIELD_STABILIZED
+                </div>
             </div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,255,65,0.05)_0%,_transparent_60%)] animate-pulse" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,107,43,0.08)_0%,_transparent_60%)] animate-pulse" />
         </div>
       )}
     </div>
