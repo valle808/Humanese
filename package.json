@@ -11,6 +11,7 @@
         "build": "prisma generate && next build",
         "start": "next start",
         "build:static": "prisma generate && node --max-old-space-size=4096 scripts/build_public.js",
+        "deploy:namecheap": "node scripts/deploy_namecheap.js",
         "autoheal": "node watcher_agent.js",
         "prisma:generate": "prisma generate",
         "prisma:migrate": "prisma migrate dev --name init",
