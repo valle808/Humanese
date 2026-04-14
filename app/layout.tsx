@@ -68,7 +68,7 @@ export default function RootLayout({
           `
         }} />
       </head>
-      <body className="bg-black text-white dark:bg-black dark:text-white light:bg-[#fafafa] light:text-slate-900 font-sans selection:bg-primary/30 transition-colors duration-200">
+      <body className="bg-background text-foreground font-sans selection:bg-primary/30 transition-colors duration-500">
         <ThemeProvider>
           <Sidebar />
           <CommandPortal />

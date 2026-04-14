@@ -76,12 +76,12 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-20%] left-[-10%] w-[120vw] h-[120vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/3 blur-[250px] rounded-full" />
+        <div className="absolute top-[-20%] left-[-10%] w-[150vw] max-w-[1500px] h-[150vw] max-h-[1500px] bg-[#ff6b2b]/5 blur-[250px] rounded-full" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[120vw] max-w-[1200px] h-[120vw] max-h-[1200px] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
         <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
@@ -100,11 +100,11 @@ export default function Home() {
           </div>
 
           <div className="space-y-10 max-w-7xl">
-            <h1 className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-black tracking-tighter leading-[0.75] uppercase italic">
+            <h1 className="text-6xl md:text-8xl lg:text-[12rem] font-black tracking-tighter leading-[0.75] uppercase italic">
               OMEGA<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-[#ff6b2b]/20">MATRIX.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-[#ff6b2b]/20">MATRIX.</span>
             </h1>
-            <p className="text-3xl md:text-5xl text-white/40 max-w-5xl leading-tight font-light italic">
+            <p className="text-xl md:text-3xl lg:text-5xl text-foreground/40 max-w-5xl leading-tight font-light italic">
               Absolute Sovereignty achieved. A unified, autonomous ecosystem designed to amplify human potential through Omni-Intelligence.
             </p>
           </div>
@@ -116,7 +116,7 @@ export default function Home() {
                 </span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
              </Link>
-             <Link href="/admin" className="px-20 py-10 rounded-[3rem] font-black uppercase tracking-[0.5em] border-2 border-white/10 bg-white/[0.02] text-white/40 hover:bg-white hover:text-black hover:border-white transition-all flex items-center gap-6 group italic backdrop-blur-3xl">
+             <Link href="/admin" className="px-10 lg:px-20 py-8 lg:py-10 rounded-[3rem] font-black uppercase tracking-[0.5em] border-2 border-border bg-background/5 text-foreground/40 hover:bg-foreground hover:text-background hover:border-foreground transition-all flex items-center gap-6 group italic backdrop-blur-3xl text-sm lg:text-base">
                 COMMAND_NEXUS <Terminal size={28} className="group-hover:translate-x-2 transition-transform" />
              </Link>
           </div>
@@ -130,7 +130,7 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12"
         >
           {/* SIMULATOR: THE SINGULARITY */}
-          <Link href="/simulator" className="lg:col-span-8 group relative bg-[#050505] border-2 border-white/5 rounded-[5rem] p-16 lg:p-24 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 min-h-[600px] flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
+          <Link href="/simulator" className="lg:col-span-8 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-10 md:p-16 lg:p-24 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 min-h-[400px] lg:min-h-[600px] flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent shadow-[0_0_20px_#ff6b2b]" />
              <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start">
@@ -157,7 +157,7 @@ export default function Home() {
           </Link>
 
           {/* OMEGA FLEET: HARDWARE NODE GRID */}
-          <Link href="/fleet" className="lg:col-span-4 group relative bg-[#050505] border-2 border-white/5 rounded-[5rem] p-16 lg:p-20 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
+          <Link href="/fleet" className="lg:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-10 md:p-16 lg:p-20 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
              <div className="relative z-10 space-y-16">
                 <div className="h-24 w-24 rounded-[2rem] bg-black border-2 border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b]/5 group-hover:rotate-12 transition-all">
@@ -212,7 +212,7 @@ export default function Home() {
           </Link>
 
           {/* COGNITIVE ATLAS WIDE PORTAL */}
-          <Link href="/atlas" className="lg:col-span-12 group relative bg-[#050505] border-2 border-white/5 rounded-[5rem] p-16 lg:p-32 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 shadow-[0_80px_200px_rgba(0,0,0,1)] group">
+          <Link href="/atlas" className="lg:col-span-12 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-10 md:p-16 lg:p-32 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 shadow-2xl group">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/30 to-transparent" />
              <div className="relative z-10 grid lg:grid-cols-2 gap-32 items-center">
                 <div className="space-y-16">

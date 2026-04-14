@@ -84,14 +84,14 @@ export function CommandPortal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-[#050505]/95 backdrop-blur-3xl"
+            className="absolute inset-0 bg-background/95 backdrop-blur-3xl"
           />
           <motion.div
             initial={{ scale: 0.95, opacity: 0, y: -40, filter: 'blur(20px)' }}
             animate={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ scale: 0.95, opacity: 0, y: -40, filter: 'blur(20px)' }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-4xl bg-[#050505] border-2 border-white/10 rounded-[4rem] shadow-[0_80px_150px_rgba(0,0,0,1)] overflow-hidden shadow-inner flex flex-col"
+            className="relative w-full max-w-4xl max-h-[85vh] bg-background border-2 border-border rounded-[2.5rem] md:rounded-[4rem] shadow-[0_80px_150px_rgba(0,0,0,0.2)] dark:shadow-[0_80px_150px_rgba(0,0,0,1)] overflow-hidden shadow-inner flex flex-col"
           >
             <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
 

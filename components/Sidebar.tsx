@@ -94,13 +94,13 @@ export const Sidebar = () => {
                 initial={false}
                 animate={{ width: isExpanded ? '20rem' : '7rem' }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-0 left-0 h-screen z-[100] border-r-2 border-white/5 bg-[#050505]/95 backdrop-blur-3xl flex flex-col hidden md:flex shadow-[40px_0_100px_rgba(0,0,0,0.8)] overflow-hidden"
+                className="fixed top-0 left-0 h-screen z-[100] border-r-2 border-border bg-background/95 backdrop-blur-3xl flex flex-col hidden md:flex shadow-[40px_0_100px_rgba(0,0,0,0.1)] dark:shadow-[40px_0_100px_rgba(0,0,0,0.8)] overflow-hidden"
             >
                 <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
 
                 <button
                     onClick={toggleSidebar}
-                    className="absolute -right-5 top-14 bg-[#050505] border-2 border-white/10 rounded-full h-10 w-10 flex items-center justify-center text-white/10 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 hover:scale-110 transition-all z-[110] shadow-2xl active:scale-95"
+                    className="absolute -right-5 top-14 bg-background border-2 border-border rounded-full h-10 w-10 flex items-center justify-center text-foreground/20 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 hover:scale-110 transition-all z-[110] shadow-2xl active:scale-95"
                     aria-label={isExpanded ? "Collapse Sidebar" : "Expand Sidebar"}
                 >
                     {isExpanded ? <ChevronLeft size={20} strokeWidth={3} /> : <ChevronRight size={20} strokeWidth={3} />}
@@ -217,8 +217,8 @@ export const Sidebar = () => {
             </motion.div>
 
             {/* Mobile Navigation Dock */}
-            <div className="md:hidden fixed bottom-10 left-10 right-10 z-[1000]">
-                <div className="bg-[#050505]/95 backdrop-blur-3xl border-2 border-white/10 rounded-[3.5rem] flex justify-around items-center p-6 shadow-[0_40px_100px_rgba(0,0,0,1)] shadow-inner">
+            <div className="md:hidden fixed bottom-4 left-4 right-4 z-[1000]">
+                <div className="bg-background/95 backdrop-blur-3xl border-2 border-border rounded-[3.5rem] flex justify-around items-center p-4 max-w-sm mx-auto shadow-[0_40px_100px_rgba(0,0,0,0.3)] dark:shadow-[0_40px_100px_rgba(0,0,0,1)] shadow-inner">
                     {navItems.slice(0, 5).map((item, index) => {
                         const isActive = pathname === item.href;
                         return (

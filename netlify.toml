@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_PRIVATE_LOCAL_WEBPACK = "true"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  condition = {Role = ["admin"]}
