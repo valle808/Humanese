@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      # elliptic/secp256k1 - no upstream fix available in @coinbase/coinbase-sdk
+      - dependency-name: "elliptic"
+        reason: "No upstream fix available; tracked in @coinbase/coinbase-sdk dependency chain"
+      - dependency-name: "secp256k1"
+        reason: "No upstream fix available; tracked in @coinbase/coinbase-sdk dependency chain"
+      - dependency-name: "@coinbase/coinbase-sdk"
+        reason: "Vendor dependency with no patch available for elliptic/secp256k1 chain"
+    open-pull-requests-limit: 10
+    labels:
+      - "security"
+      - "dependencies"
