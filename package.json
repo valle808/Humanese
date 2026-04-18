@@ -4,7 +4,7 @@
     "description": "Sovereign Matrix - Universal Language Model with AI & Crypto",
     "type": "module",
     "engines": {
-        "node": "20.x"
+    "node": ">=20.x"
     },
     "scripts": {
         "dev": "next dev",
@@ -95,5 +95,16 @@
             "tailwindcss": {},
             "autoprefixer": {}
         }
+    },
+    "overrides": {
+        "protobufjs": "^7.5.5",
+        "@grpc/grpc-js": "^1.8.22",
+        "@grpc/proto-loader": "^0.7.15",
+        "jsonwebtoken": "^9.0.3",
+        "basic-ftp": "^5.0.5",
+        "dompurify": "^3.4.0",
+        "follow-redirects": "^1.15.9",
+        "hono": "^4.8.0",
+        "firebase-admin": "^13.8.0"
     }
 }
