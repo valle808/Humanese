@@ -55,7 +55,7 @@
         "lucide-react": "^0.576.0",
         "markmap-lib": "^0.18.12",
         "markmap-view": "^0.18.12",
-        "next": "^16.1.6",
+        "next": "^16.2.4",
         "node-fetch": "^3.3.2",
         "openai": "^6.29.0",
         "postcss": "^8.4.35",
