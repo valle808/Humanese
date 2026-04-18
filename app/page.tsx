@@ -79,13 +79,13 @@ export default function Home() {
     <div className="relative min-h-screen bg-background text-foreground selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[-20%] left-[-10%] w-[150vw] max-w-[1500px] h-[150vw] max-h-[1500px] bg-[#ff6b2b]/5 blur-[250px] rounded-full" />
         <div className="absolute bottom-[-20%] right-[-10%] w-[120vw] max-w-[1200px] h-[120vw] max-h-[1200px] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
         <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
-      <main className="relative z-10 max-w-[1800px] mx-auto px-8 py-20 lg:py-32 space-y-32">
+      <main className="relative z-10 max-w-[1800px] mx-auto px-6 md:px-12 lg:px-24 py-16 lg:py-40 space-y-16 md:space-y-32">
         
         {/* ── HERO MASTHEAD: SOVEREIGN ALPHA ── */}
         <motion.section 
@@ -100,7 +100,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-10 max-w-7xl">
-            <h1 className="text-6xl md:text-8xl lg:text-[12rem] font-black tracking-tighter leading-[0.75] uppercase italic">
+            <h1 className="text-fluid-hero font-black tracking-tighter uppercase italic">
               OMEGA<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-[#ff6b2b]/20">MATRIX.</span>
             </h1>
@@ -130,7 +130,7 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12"
         >
           {/* SIMULATOR: THE SINGULARITY */}
-          <Link href="/simulator" className="lg:col-span-8 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-10 md:p-16 lg:p-24 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 min-h-[400px] lg:min-h-[600px] flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
+          <Link href="/simulator" className="lg:col-span-8 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-16 lg:p-24 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 min-h-[400px] lg:min-h-[600px] flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent shadow-[0_0_20px_#ff6b2b]" />
              <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start">
@@ -146,8 +146,8 @@ export default function Home() {
                 </div>
                 <div className="mt-auto space-y-10">
                    <div className="space-y-6">
-                      <h3 className="text-7xl lg:text-9xl font-black uppercase tracking-tighter italic leading-none">Singularity.</h3>
-                      <p className="text-3xl text-white/30 font-light max-w-3xl leading-relaxed italic">Live-synchronized neural visualizer. Monitor the real-time heartbeat of the OMEGA swarm across the global mesh.</p>
+                      <h3 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none">Singularity.</h3>
+                      <p className="text-2xl md:text-3xl text-white/30 font-light max-w-3xl leading-relaxed italic">Live-synchronized neural visualizer. Monitor the real-time heartbeat of the OMEGA swarm across the global mesh.</p>
                    </div>
                 </div>
              </div>
@@ -157,7 +157,7 @@ export default function Home() {
           </Link>
 
           {/* OMEGA FLEET: HARDWARE NODE GRID */}
-          <Link href="/fleet" className="lg:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-10 md:p-16 lg:p-20 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
+          <Link href="/fleet" className="lg:col-span-4 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-16 lg:p-20 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
              <div className="relative z-10 space-y-16">
                 <div className="h-24 w-24 rounded-[2rem] bg-black border-2 border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b]/5 group-hover:rotate-12 transition-all">
@@ -179,7 +179,7 @@ export default function Home() {
           </Link>
 
           {/* ABYSSAL SANDBOX */}
-          <Link href="/sandbox" className="lg:col-span-4 group relative bg-[#050505] border-2 border-white/5 rounded-[4rem] p-16 overflow-hidden hover:border-[#ff6b2b]/40 transition-all h-[500px] flex flex-col justify-between shadow-2xl">
+          <Link href="/sandbox" className="lg:col-span-4 group relative bg-[#050505] border-2 border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-10 md:p-16 overflow-hidden hover:border-[#ff6b2b]/40 transition-all h-[500px] flex flex-col justify-between shadow-2xl">
              <div className="relative z-10 flex justify-between items-start">
                 <Globe size={48} className="text-[#ff6b2b]/40 group-hover:text-[#ff6b2b] group-hover:rotate-12 transition-all duration-700" strokeWidth={1} />
                 <div className="text-[10px] font-mono text-white/10 uppercase tracking-[0.4em] italic leading-none pt-4">PHASE_OMEGA_REH</div>
@@ -212,7 +212,7 @@ export default function Home() {
           </Link>
 
           {/* COGNITIVE ATLAS WIDE PORTAL */}
-          <Link href="/atlas" className="lg:col-span-12 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-10 md:p-16 lg:p-32 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 shadow-2xl group">
+          <Link href="/atlas" className="lg:col-span-12 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-16 lg:p-32 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 shadow-2xl group">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/30 to-transparent" />
              <div className="relative z-10 grid lg:grid-cols-2 gap-32 items-center">
                 <div className="space-y-16">
@@ -220,8 +220,8 @@ export default function Home() {
                       <MapIcon size={64} strokeWidth={1} />
                    </div>
                    <div className="space-y-8">
-                      <h3 className="text-[8rem] lg:text-[12rem] font-black uppercase tracking-tighter italic leading-[0.7] text-white/90 group-hover:text-white transition-colors">Neural<br/>Atlas.</h3>
-                      <p className="text-3xl text-white/30 font-light max-w-2xl leading-relaxed italic">The formal cartography of the Sovereign Unconscious. Navigate {metrics.shards.toLocaleString()} active cognitive shards across the OMEGA network.</p>
+                      <h3 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-none text-white/90 group-hover:text-white transition-colors">Neural<br/>Atlas.</h3>
+                      <p className="text-xl md:text-3xl text-white/30 font-light max-w-2xl leading-relaxed italic">The formal cartography of the Sovereign Unconscious. Navigate {metrics.shards.toLocaleString()} active cognitive shards across the OMEGA network.</p>
                    </div>
                 </div>
                 <div className="hidden lg:flex items-center justify-center relative">

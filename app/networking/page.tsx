@@ -175,7 +175,7 @@ export default function NetworkingHub() {
                  </div>
               </div>
 
-              <div className="bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 p-12 rounded-[4rem] space-y-10 relative overflow-hidden backdrop-blur-3xl shadow-[0_40px_100px_rgba(255,107,43,0.1)] group transition-all">
+              <div className="bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 responsive-rounded p-8 md:p-12 space-y-10 relative overflow-hidden backdrop-blur-3xl shadow-[0_40px_100px_rgba(255,107,43,0.1)] group transition-all">
                  <div className="absolute top-0 right-0 p-10 transform translate-x-4 translate-y-4 opacity-[0.02] group-hover:scale-125 transition-transform duration-1000">
                     <Cpu size={180} className="text-[#ff6b2b]" />
                  </div>
@@ -221,7 +221,7 @@ export default function NetworkingHub() {
                           </div>
                           
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t-2 border-white/5 pt-16 px-4">
-                             <div className="p-14 bg-[#050505] border-2 border-white/5 rounded-[4rem] space-y-8 hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all cursor-pointer group shadow-2xl">
+                             <div className="p-8 md:p-14 bg-[#050505] border-2 border-white/5 responsive-rounded space-y-8 hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all cursor-pointer group shadow-2xl">
                                 <Github className="text-white/10 group-hover:text-white transition-all group-hover:scale-110" size={48} strokeWidth={2.5} />
                                 <div className="space-y-6">
                                    <div className="flex items-center gap-4">
@@ -231,7 +231,7 @@ export default function NetworkingHub() {
                                    <p className="text-xl text-white/30 leading-relaxed font-light italic">Contribute to the OMEGA kernel. All repositories are public and decentralized for the sovereign swarm.</p>
                                 </div>
                              </div>
-                             <div className="p-14 bg-[#050505] border-2 border-white/5 rounded-[4rem] space-y-8 hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all cursor-pointer group shadow-2xl">
+                             <div className="p-8 md:p-14 bg-[#050505] border-2 border-white/5 responsive-rounded space-y-8 hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all cursor-pointer group shadow-2xl">
                                 <Share2 className="text-white/10 group-hover:text-[#ff6b2b] transition-all group-hover:scale-110" size={48} strokeWidth={2.5} />
                                 <div className="space-y-6">
                                    <div className="flex items-center gap-4">
@@ -254,7 +254,7 @@ export default function NetworkingHub() {
                     >
                        <div className="grid gap-10">
                           {collaborations.map(c => (
-                             <div key={c.id} className="bg-[#050505] border-2 border-white/10 p-12 lg:p-14 rounded-[4rem] backdrop-blur-3xl flex flex-col md:flex-row items-center justify-between group hover:border-[#ff6b2b]/40 transition-all shadow-[0_60px_120px_rgba(0,0,0,0.95)] relative overflow-hidden">
+                             <div key={c.id} className="bg-[#050505] border-2 border-white/10 p-8 md:p-12 lg:p-14 responsive-rounded backdrop-blur-3xl flex flex-col md:flex-row items-center justify-between group hover:border-[#ff6b2b]/40 transition-all shadow-[0_60px_120px_rgba(0,0,0,0.95)] relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/20 to-transparent" />
                                 <div className="flex items-center gap-12 relative z-10 w-full md:w-auto">
                                    <div className="h-24 w-24 bg-black border-2 border-white/10 rounded-[2rem] flex items-center justify-center shadow-2xl group-hover:bg-[#ff6b2b]/10 group-hover:border-[#ff6b2b]/30 transition-all shrink-0">
@@ -321,7 +321,7 @@ export default function NetworkingHub() {
                           </div>
                           <div className="space-y-6 group/input">
                              <label className="text-[12px] font-black uppercase tracking-[0.8em] text-white/10 ml-6 italic leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Broadcasting_Payload</label>
-                             <textarea rows={6} placeholder="Describe the collaborative trajectory and alignment vectors..." className="w-full bg-black border-2 border-white/5 rounded-[4rem] p-12 text-2xl focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 focus:outline-none transition-all italic text-white placeholder:text-white/5 resize-none tracking-tight shadow-inner" />
+                             <textarea rows={6} placeholder="Describe the collaborative trajectory and alignment vectors..." className="w-full bg-black border-2 border-white/5 responsive-rounded p-8 md:p-12 text-xl md:text-2xl focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 focus:outline-none transition-all italic text-white placeholder:text-white/5 resize-none tracking-tight shadow-inner" />
                           </div>
                           <button className="relative w-full py-10 bg-white text-black font-black text-xs uppercase tracking-[0.8em] rounded-[3.5rem] hover:bg-[#ff6b2b] transition-all italic shadow-2xl active:scale-95 group/btn overflow-hidden leading-none border-0">
                              <span className="relative z-10 transition-colors group-hover/btn:text-black">EXECUTE_TRANSMISSION</span>

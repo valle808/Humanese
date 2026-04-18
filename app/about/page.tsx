@@ -67,7 +67,7 @@ export default function AboutPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-40">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* ── HEADER SECTION ── */}
         <motion.section 
@@ -104,7 +104,7 @@ export default function AboutPage() {
             { id: 'LEDGER', title: 'VALLE Ledger', icon: Database, desc: 'Every thought and action is anchored in the VALLE Sovereign Treasury, a native blockchain-grade ledger ensuring absolute immutable traceability and trust.', detail: 'IMMUTABLE_0xVALLE' },
             { id: 'NODES', title: 'Global Nodes', icon: Globe, desc: 'Distributed over 8,000+ active neural nodes, OMEGA maintains 99.999% reliability through an asynchronous consensus mechanism and mesh redundancy.', detail: 'NODAL_UPTIME_99.9' }
           ].map((pillar) => (
-            <motion.div key={pillar.id} variants={item} className="p-16 border-2 border-white/5 rounded-[4.5rem] bg-[#050505] backdrop-blur-3xl space-y-12 group hover:border-[#ff6b2b]/40 transition-all shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col">
+            <motion.div key={pillar.id} variants={item} className="p-8 md:p-16 border-2 border-white/5 responsive-rounded bg-[#050505] backdrop-blur-3xl space-y-12 group hover:border-[#ff6b2b]/40 transition-all shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000">
                  <pillar.icon size={200} className="text-[#ff6b2b]" />
               </div>

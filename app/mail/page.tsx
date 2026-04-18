@@ -257,7 +257,7 @@ export default function MailPage() {
         <aside className="w-[380px] border-r-2 border-white/5 bg-black/20 backdrop-blur-3xl shrink-0 hidden md:flex flex-col p-12 space-y-16">
           <button 
             onClick={() => setIsComposing(true)}
-            className="w-full py-8 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.6em] text-xs rounded-[2.5rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] flex items-center justify-center gap-6 hover:scale-[1.05] active:scale-95 transition-all italic relative overflow-hidden group shadow-2xl"
+            className="w-full py-6 md:py-8 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.6em] text-xs rounded-[2rem] md:rounded-[2.5rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] flex items-center justify-center gap-6 hover:scale-[1.05] active:scale-95 transition-all italic relative overflow-hidden group shadow-2xl"
           >
             <span className="relative z-10 flex items-center gap-6">
               <Plus size={24} strokeWidth={4} /> Transmit
@@ -323,7 +323,7 @@ export default function MailPage() {
             <div className="flex-1 overflow-y-auto custom-scrollbar">
               <AnimatePresence mode="popLayout">
                 {messages.length === 0 ? (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-full flex flex-col items-center justify-center p-24 text-center space-y-12 opacity-20">
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-full flex flex-col items-center justify-center p-12 lg:p-24 text-center space-y-12 opacity-20">
                     <div className="w-48 h-48 bg-white/5 rounded-full flex items-center justify-center border-4 border-dashed border-white/5 relative">
                        <Inbox size={100} className="text-white/10" />
                        <div className="absolute inset-0 bg-[#ff6b2b]/5 blur-[80px] rounded-full animate-pulse" />
@@ -402,7 +402,7 @@ export default function MailPage() {
                 </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-12 lg:p-24 space-y-24 custom-scrollbar relative z-10 flex flex-col">
+              <div className="flex-1 overflow-y-auto p-8 md:p-12 lg:p-24 space-y-12 md:space-y-24 custom-scrollbar relative z-10 flex flex-col">
                 <div className="flex flex-col lg:flex-row justify-between items-start gap-12">
                   <div className="space-y-12 w-full">
                     <h2 className="text-6xl lg:text-8xl font-black italic tracking-tighter uppercase leading-[0.85] text-white/95 pl-1">{selectedMessage.subject}</h2>
@@ -429,7 +429,7 @@ export default function MailPage() {
                   </div>
                 </div>
 
-                <div className="relative group/content bg-[#050505] border-2 border-white/5 p-16 lg:p-24 rounded-[5rem] shadow-[0_80px_150px_rgba(0,0,0,1)] flex-1 min-h-[400px]">
+                <div className="relative group/content bg-[#050505] border-2 border-white/5 p-8 md:p-16 lg:p-24 responsive-rounded shadow-[0_80px_150px_rgba(0,0,0,1)] flex-1 min-h-[400px]">
                   <div className="absolute top-0 right-0 p-16 opacity-[0.01] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-[40s]">
                      <Globe size={400} className="text-[#ff6b2b]" />
                   </div>
@@ -481,13 +481,13 @@ export default function MailPage() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/98 backdrop-blur-3xl flex items-center justify-center p-8 lg:p-16"
           >
-            <motion.div 
-              initial={{ scale: 0.9, y: 100, opacity: 0, filter: 'blur(40px)' }}
-              animate={{ scale: 1, y: 0, opacity: 1, filter: 'blur(0px)' }}
-              exit={{ scale: 0.9, y: 100, opacity: 0, filter: 'blur(40px)' }}
-              transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="bg-[#050505] border-2 border-white/10 w-full max-w-6xl rounded-[5rem] shadow-[0_0_200px_rgba(255,107,43,0.2)] overflow-hidden flex flex-col relative"
-            >
+              <motion.div 
+                initial={{ scale: 0.9, y: 100, opacity: 0, filter: 'blur(40px)' }}
+                animate={{ scale: 1, y: 0, opacity: 1, filter: 'blur(0px)' }}
+                exit={{ scale: 0.9, y: 100, opacity: 0, filter: 'blur(40px)' }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="bg-[#050505] border-2 border-white/10 w-full max-w-6xl responsive-rounded shadow-[0_0_200px_rgba(255,107,43,0.2)] overflow-hidden flex flex-col relative"
+              >
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent shadow-[0_0_30px_#ff6b2b]" />
 
               <div className="p-16 lg:px-20 border-b-2 border-white/5 flex justify-between items-center bg-white/[0.02] relative z-10 shrink-0">
@@ -502,7 +502,7 @@ export default function MailPage() {
                  </button>
               </div>
               
-              <form onSubmit={handleSendMessage} className="p-16 lg:p-24 space-y-16 flex-1 overflow-y-auto custom-scrollbar relative z-10">
+              <form onSubmit={handleSendMessage} className="p-8 md:p-16 lg:p-24 space-y-12 md:space-y-16 flex-1 overflow-y-auto custom-scrollbar relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                   <div className="space-y-6 group/input">
                     <label className="text-[12px] font-black uppercase tracking-[0.8em] text-white/10 italic ml-6 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Target_Identity</label>

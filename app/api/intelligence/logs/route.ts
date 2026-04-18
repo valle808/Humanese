@@ -16,7 +16,7 @@ export async function GET(request: Request) {
             orderBy: { timestamp: 'desc' },
             take: limit,
             include: {
-                agent: {
+                Agent: {
                     select: {
                         name: true,
                         type: true

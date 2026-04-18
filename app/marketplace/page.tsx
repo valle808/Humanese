@@ -66,7 +66,7 @@ export default function MarketplacePage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32">
         
         {/* ── HEADER SECTION ── */}
         <motion.div 
@@ -174,7 +174,7 @@ export default function MarketplacePage() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
                         transition={{ duration: 0.6, ease: "circOut", delay: i * 0.05 }}
-                        className="group bg-[#050505] border-2 border-white/5 rounded-[5rem] p-12 lg:p-16 backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all duration-700 flex flex-col justify-between h-[520px] relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.95)]"
+                        className="group bg-[#050505] border-2 border-white/5 responsive-rounded p-8 lg:p-16 backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all duration-700 flex flex-col justify-between h-[520px] relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.95)]"
                       >
                         <div className="absolute top-0 right-0 p-16 opacity-[0.01] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-2000">
                             <Layers size={250} className="text-[#ff6b2b]" />

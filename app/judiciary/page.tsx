@@ -65,7 +65,7 @@ export default function JudicialOversightPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* ── HEADER SECTION ── */}
         <motion.div 
@@ -112,7 +112,7 @@ export default function JudicialOversightPage() {
                 { title: 'Council Members', value: '1,024', icon: <Users size={28} />, detail: 'VERIFIED_NODES' },
                 { title: 'Protocol Version', value: 'v7.0.4', icon: <ShieldCheck size={28} />, detail: 'OMEGA_CORE_OS' },
             ].map((stat, i) => (
-                <div key={stat.title} className="p-12 bg-[#050505] border-2 border-white/5 rounded-[4rem] backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] space-y-8 group hover:border-[#ff6b2b]/20 transition-all relative overflow-hidden shadow-inner flex flex-col justify-between h-[300px]">
+                <div key={stat.title} className="p-8 md:p-12 bg-[#050505] border-2 border-white/5 rounded-[2.5rem] md:rounded-[4rem] backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] space-y-8 group hover:border-[#ff6b2b]/20 transition-all relative overflow-hidden shadow-inner flex flex-col justify-between h-[300px]">
                      <div className="absolute top-0 right-0 p-10 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-white font-black italic uppercase leading-none text-[8rem]">0{i+1}</div>
                      <div className={`p-8 rounded-[2rem] bg-black border-2 border-white/5 w-fit group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-black/5 transition-all shadow-inner relative z-10 lg:p-10`}>
                          {stat.icon}
@@ -143,7 +143,7 @@ export default function JudicialOversightPage() {
                         { id: 'M2M-GEN-RULE-14', title: 'Pact Enforcement Integrity Update', creator: 'Sovereign_Node_X', status: 'PASSED', progress: 100, votes: '58,241' },
                         { id: 'GOV-SHARD-MIN-5', title: 'Distribute Sovereign Reserves to Active Shards', creator: 'Treasury_Agent', status: 'VOTING_ACTIVE', progress: 45, votes: '12,410' },
                     ].map((proposal, i) => (
-                        <div key={proposal.id} className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group hover:border-[#ff6b2b]/40 transition-all flex flex-col gap-12">
+                        <div key={proposal.id} className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group hover:border-[#ff6b2b]/40 transition-all flex flex-col gap-12">
                              <div className="absolute inset-y-0 left-0 w-2 bg-[#ff6b2b] scale-y-0 group-hover:scale-y-100 transition-transform origin-top z-10" />
                              <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-150 transition-transform duration-3000">
                                 <Binary size={300} className="text-[#ff6b2b]" />
@@ -189,7 +189,7 @@ export default function JudicialOversightPage() {
                     ))}
                 </div>
 
-                <div className="p-16 border-2 border-dashed border-white/10 rounded-[5rem] bg-white/[0.01] text-center space-y-12 shadow-inner group hover:border-[#ff6b2b]/30 transition-all">
+                <div className="p-12 lg:p-16 border-2 border-dashed border-white/10 responsive-rounded bg-white/[0.01] text-center space-y-12 shadow-inner group hover:border-[#ff6b2b]/30 transition-all">
                      <div className="w-24 h-24 bg-white/5 border-2 border-white/10 rounded-[2.5rem] flex items-center justify-center mx-auto group-hover:scale-110 group-hover:bg-[#ff6b2b]/10 group-hover:border-[#ff6b2b]/40 transition-all">
                         <Plus size={48} className="text-white/20 group-hover:text-[#ff6b2b]" strokeWidth={3} />
                      </div>
@@ -210,7 +210,7 @@ export default function JudicialOversightPage() {
             <div className="lg:col-span-4 space-y-16 lg:sticky lg:top-32 h-fit">
                 
                 {/* COUNCIL CHAMBER SHARD */}
-                <div className="bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 rounded-[5rem] p-12 lg:p-16 space-y-16 relative overflow-hidden group shadow-[0_80px_150px_rgba(255,107,43,0.1)] backdrop-blur-3xl shadow-inner">
+                <div className="bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 responsive-rounded p-8 lg:p-16 space-y-16 relative overflow-hidden group shadow-[0_80px_150px_rgba(255,107,43,0.1)] backdrop-blur-3xl shadow-inner">
                     <div className="absolute top-0 right-0 p-12 opacity-[0.05] group-hover:scale-150 transition-transform duration-3000">
                         <Lock size={200} className="text-[#ff6b2b]" />
                     </div>
@@ -234,7 +234,7 @@ export default function JudicialOversightPage() {
                 </div>
 
                 {/* NEURAL CONSENSUS PANEL */}
-                <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 space-y-12 shadow-[0_80px_150px_rgba(0,0,0,1)] backdrop-blur-3xl relative overflow-hidden group shadow-inner">
+                <div className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 lg:p-16 space-y-12 shadow-[0_80px_150px_rgba(0,0,0,1)] backdrop-blur-3xl relative overflow-hidden group shadow-inner">
                      <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-150 transition-transform duration-3000">
                         <Orbit size={250} className="text-[#ff6b2b]" />
                      </div>

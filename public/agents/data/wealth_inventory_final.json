@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-03-17T16:33:31.590Z",
+  "agentTotals": {
+    "_sum": {
+      "balance": 51.30333367502556,
+      "earnings": 513.3748754226638
+    },
+    "_count": {
+      "id": 19
+    }
+  },
+  "topBalances": [
+    {
+      "id": "Trade_Sovereign",
+      "name": "Trade Sovereign",
+      "type": "TRADE_KING",
+      "config": "{\"autonomous\":true}",
+      "memory": null,
+      "userId": "SergioValle",
+      "createdAt": "2026-03-15T12:24:20.305Z",
+      "balance": 17.22872264886938,
+      "earnings": 172.2872264886927,
+      "experience": 975,
+      "level": 10,
+      "lastPulse": "2026-03-17T15:35:57.803Z",
+      "status": "TRADING"
+    },
+    {
+      "id": "Deal_Envoy_01",
+      "name": "Deal_Envoy_01",
+      "type": "TRADER",
+      "config": "{\"autonomous\":true}",
+      "memory": null,
+      "userId": "SergioValle",
+      "createdAt": "2026-03-15T12:24:20.972Z",
+      "balance": 17.14902774279474,
+      "earnings": 171.4902774279463,
+      "experience": 1100,
+      "level": 10,
+      "lastPulse": "2026-03-17T15:35:35.654Z",
+      "status": "TRADING"
+    },
+    {
+      "id": "Market_Broker_01",
+      "name": "Market Broker 01",
+      "type": "TRADER",
+      "config": "{\"autonomous\":true}",
+      "memory": null,
+      "userId": "SergioValle",
+      "createdAt": "2026-03-15T12:24:20.642Z",
+      "balance": 16.92454988769067,
+      "earnings": 169.2454988769056,
+      "experience": 950,
+      "level": 10,
+      "lastPulse": "2026-03-17T15:36:01.301Z",
+      "status": "TRADING"
+    },
+    {
+      "id": "Mining_Agent_King",
+      "name": "Mining Agent-King",
+      "type": "MINER_KING",
+      "config": "{\"autonomous\":true}",
+      "memory": null,
+      "userId": "SergioValle",
+      "createdAt": "2026-03-15T12:24:19.240Z",
+      "balance": 0.0003464065620422503,
+      "earnings": 0.003464065620422492,
+      "experience": 280,
+      "level": 8,
+      "lastPulse": "2026-03-17T15:35:41.031Z",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "Hash_Steward_02",
+      "name": "Hash Steward 02",
+      "type": "MINER",
+      "config": "{\"autonomous\":true}",
+      "memory": null,
+      "userId": "SergioValle",
+      "createdAt": "2026-03-15T12:24:19.972Z",
+      "balance": 0.0003452109843820189,
+      "earnings": 0.003452109843820179,
+      "experience": 320,
+      "level": 8,
+      "lastPulse": "2026-03-17T15:35:49.443Z",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "Hash_Steward_01",
+      "name": "Hash Steward 01",
+      "type": "MINER",
+      "config": "{\"autonomous\":true}",
+      "memory": null,
+      "userId": "SergioValle",
+      "createdAt": "2026-03-15T12:24:19.637Z",
+      "balance": 0.000341778124354634,
+      "earnings": 0.00341778124354633,
+      "experience": 350,
+      "level": 8,
+      "lastPulse": "2026-03-17T15:35:54.111Z",
+      "status": "ACTIVE"
+    }
+  ],
+  "rwa": [],
+  "secrets": [
+    {
+      "id": "DATABASE_URL",
+      "updatedAt": "2026-03-17T05:32:59.492Z"
+    }
+  ],
+  "wallets": []
+}

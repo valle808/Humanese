@@ -277,7 +277,7 @@ export default function SimulatorPage() {
         </Canvas>
       </div>
 
-      <div className="relative z-10 w-full h-full pointer-events-none flex flex-col justify-between p-8 lg:p-14">
+      <div className="relative z-10 w-full h-full pointer-events-none flex flex-col justify-between p-6 md:p-8 lg:p-14">
         
         {/* TOP HUD */}
         <header className="flex justify-between items-start pointer-events-auto">
@@ -286,7 +286,7 @@ export default function SimulatorPage() {
                  <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Access Matrix
               </Link>
               <div className="space-y-4">
-                  <h1 className="text-7xl lg:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8]">
+                  <h1 className="text-5xl md:text-7xl lg:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] pr-4">
                     Abyssal<br /><span className="text-[#ff6b2b]">Mesh.</span>
                   </h1>
                   <div className="flex gap-12 pt-6">
@@ -301,7 +301,7 @@ export default function SimulatorPage() {
            </div>
 
            <div className="flex flex-col items-end space-y-8">
-              <div className="bg-[#050505]/95 border border-white/10 p-12 lg:p-16 rounded-[4rem] backdrop-blur-3xl min-w-[350px] lg:min-w-[500px] space-y-12 shadow-[0_40px_100px_rgba(0,0,0,0.8)] transition-all hover:border-[#ff6b2b]/30 group">
+              <div className="bg-[#050505]/95 border border-white/10 p-8 md:p-12 lg:p-16 responsive-rounded backdrop-blur-3xl min-w-[300px] md:min-w-[350px] lg:min-w-[500px] space-y-8 md:space-y-12 shadow-[0_40px_100px_rgba(0,0,0,0.8)] transition-all hover:border-[#ff6b2b]/30 group">
                  <div className="flex justify-between items-center">
                     <div className="text-[11px] text-[#ff6b2b] uppercase tracking-[0.6em] flex items-center gap-4 italic font-black">
                         <Share2 size={18} /> P2P Node Cluster
@@ -345,8 +345,8 @@ export default function SimulatorPage() {
                        <Eye size={16} strokeWidth={3} /> Node Interrogation
                     </div>
                     <div className="space-y-4">
-                        <h3 className="text-4xl font-black uppercase italic leading-tight tracking-tighter">{selectedNode.label}</h3>
-                        <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40 italic">ID_HASH: {selectedNode.id.toUpperCase()}</p>
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-black uppercase italic leading-tight tracking-tighter">{selectedNode.label}</h3>
+                        <p className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] opacity-40 italic">ID_HASH: {selectedNode.id.toUpperCase()}</p>
                     </div>
                     <div className="pt-8 border-t border-black/10 flex justify-between items-center">
                        <button onClick={() => setSelectedNode(null)} className="text-[11px] font-black uppercase tracking-[0.4em] hover:scale-110 transition-all italic leading-none underline decoration-black/20 underline-offset-8">
@@ -363,7 +363,7 @@ export default function SimulatorPage() {
 
         {/* BOTTOM TELEMETRY */}
         <footer className="flex flex-col lg:flex-row justify-between items-end gap-16 pointer-events-auto">
-           <div className="w-full lg:max-w-3xl bg-[#050505]/95 border border-white/5 rounded-[4.5rem] p-12 lg:p-16 backdrop-blur-3xl overflow-hidden relative group shadow-[0_50px_120px_rgba(0,0,0,0.9)] transition-all hover:bg-black group">
+           <div className="w-full lg:max-w-3xl bg-[#050505]/95 border border-white/5 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl overflow-hidden relative group shadow-[0_50px_120px_rgba(0,0,0,0.9)] transition-all hover:bg-black group">
               <div className="absolute top-0 right-0 p-16 opacity-[0.02]">
                  <Terminal size={180} className="text-[#ff6b2b] group-hover:scale-110 transition-transform duration-1000" />
               </div>
@@ -413,7 +413,7 @@ export default function SimulatorPage() {
             animate={{ x: 0, opacity: 1 }} 
             exit={{ x: 600, opacity: 0 }}
             transition={{ type: 'spring', damping: 35, stiffness: 250 }}
-            className="fixed right-0 top-0 bottom-0 w-[600px] bg-[#050505]/98 border-l border-white/5 z-50 backdrop-blur-[50px] overflow-y-auto p-20 custom-scrollbar shadow-[-50px_0_150px_rgba(0,0,0,0.9)]"
+            className="fixed right-0 top-0 bottom-0 w-full md:w-[600px] bg-[#050505]/98 border-l border-white/5 z-[100] backdrop-blur-[50px] overflow-y-auto p-8 md:p-20 custom-scrollbar shadow-[-50px_0_150px_rgba(0,0,0,0.9)]"
           >
             <div className="space-y-32">
                <div className="space-y-16">
@@ -434,7 +434,7 @@ export default function SimulatorPage() {
                        <motion.div 
                          key={i} 
                          initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
-                         className={`p-10 border rounded-[4rem] space-y-8 hover:border-[#ff6b2b]/50 transition-all cursor-pointer group shadow-2xl relative overflow-hidden ${
+                         className={`p-8 md:p-10 border responsive-rounded space-y-6 md:space-y-8 hover:border-[#ff6b2b]/50 transition-all cursor-pointer group shadow-2xl relative overflow-hidden ${
                            selectedNode?.label === shard.label ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_60px_rgba(255,107,43,0.4)]' : 'bg-white/[0.01] border-white/5 hover:bg-white/[0.03]'
                          }`}
                          onClick={() => handleNodeSelect(shard.id, shard.label)}

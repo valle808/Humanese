@@ -195,7 +195,7 @@ export default function DonatePage() {
                   </div>
                </div>
                
-               <Link href="/aid" className="group flex justify-between items-center p-12 bg-white/[0.01] border border-white/5 rounded-[4rem] hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all backdrop-blur-3xl shadow-2xl active:scale-95">
+               <Link href="/aid" className="group flex justify-between items-center p-8 md:p-12 bg-white/[0.01] border border-white/5 responsive-rounded hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all backdrop-blur-3xl shadow-2xl active:scale-95">
                   <div className="space-y-3">
                     <div className="text-[12px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">Are you in need?</div>
                     <div className="text-4xl font-black uppercase italic tracking-tighter leading-none text-white/80 group-hover:text-white transition-colors">Apply for Aid →</div>
@@ -304,7 +304,7 @@ export default function DonatePage() {
                             >
                                <div className="p-16 lg:p-24 bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 rounded-[5rem] flex flex-col items-center text-center space-y-12 relative overflow-hidden group shadow-2xl">
                                   <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b2b]/10 via-transparent to-transparent opacity-50" />
-                                  <div className="w-56 h-56 bg-white rounded-[4rem] border-4 border-[#ff6b2b]/30 flex items-center justify-center p-8 shadow-2xl group-hover:scale-105 transition-transform duration-1000">
+                                  <div className="w-40 h-40 md:w-56 md:h-56 bg-white responsive-rounded border-4 border-[#ff6b2b]/30 flex items-center justify-center p-6 md:p-8 shadow-2xl group-hover:scale-105 transition-transform duration-1000">
                                      <div className="w-full h-full bg-black/95 rounded-[2.5rem] flex items-center justify-center shadow-inner">
                                         <Zap size={64} className="text-[#ff6b2b] group-hover:rotate-12 transition-transform duration-700" strokeWidth={3} />
                                      </div>

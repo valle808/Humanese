@@ -54,7 +54,7 @@ export default function NotFound() {
            initial={{ opacity: 0, y: 40 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ delay: 0.4 }}
-           className="p-10 lg:p-14 bg-black/60 border border-white/10 rounded-[4rem] text-left space-y-8 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group"
+           className="p-8 lg:p-14 bg-black/60 border border-white/10 responsive-rounded text-left space-y-8 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group"
         >
            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
            <div className="flex items-center justify-between border-b border-white/5 pb-6">

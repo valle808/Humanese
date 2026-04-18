@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
                 bipReference:       bipReference || null,
                 authorId,
                 markdownContent:    content,
-                status:             'Active',           // Auto-activate on submission
+                status:             'Draft',           // Initialize as Draft
                 resonanceThreshold: 0.0
             }
         });

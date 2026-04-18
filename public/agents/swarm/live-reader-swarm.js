@@ -24,6 +24,10 @@ import os from 'os';
 import { fileURLToPath } from 'url';
 import { PrismaClient } from '@prisma/client';
 import { downloadMediaArtifact } from '../media/media-downloader.js';
+import memoryBank from '../core/MemoryBank.js';
+
+// Oracle Directives for dynamic focus
+const STRATEGIC_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), '../data/strategic_commands.json');
 
 const prisma = new PrismaClient();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -38,7 +42,12 @@ const RSS_FEEDS = [
     'https://hnrss.org/frontpage',                // HackerNews feed
     'http://export.arxiv.org/rss/cs',             // arXiv Computer Science
     'https://scitechdaily.com/feed/',             // SciTechDaily
-    'https://www.medicalnewstoday.com/feed/rss'   // Medical News
+    'https://www.medicalnewstoday.com/feed/rss',   // Medical News
+    'https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en', // Google News Global
+    'https://www.reutersagency.com/feed/',         // Reuters
+    'https://www.aljazeera.com/xml/rss/all.xml',   // Al Jazeera
+    'https://www.nature.com/nature.rss',           // Nature Journal
+    'https://cointelegraph.com/rss'                // Crypto Intel
 ];
 
 // ── Knowledge Sources ─────────────────────────────────────────────────────────
@@ -94,6 +103,15 @@ export const KNOWLEDGE_SOURCES = [
             'quantum error correction', 'neural architecture search',
             'transformer attention mechanisms', 'diffusion models', 'robotics learning'
         ]
+    },
+    {
+        id: 'x-pulse',
+        name: 'X.com Pulse',
+        icon: '🐦‍⬛',
+        color: '#ffffff',
+        baseUrl: 'https://api.gdeltproject.org/api/v2/doc/doc?query=(bitcoin%20OR%20ai%20OR%20sovereignty%20OR%20"quantum%20computing")&mode=artlist&format=json',
+        type: 'xpulse',
+        topics: ['trending', 'crypto', 'ai', 'sovereignty', 'market-volatility', 'tech-breakthrough']
     },
     {
         id: 'mdn',
@@ -207,58 +225,108 @@ async function fetchArticle(source) {
 
         const rand = Math.random();
 
-        // 5% Chance: Deep Headless Extraction via Puppeteer (Reduced to save resources)
-        if (rand < 0.05) {
+        // 🧠 NEURAL FOCUS: Adjust sourcing based on Oracle Strategy
+        let customSource = source;
+        try {
+            if (fs.existsSync(STRATEGIC_PATH)) {
+                const directives = JSON.parse(fs.readFileSync(STRATEGIC_PATH, 'utf8'));
+                const latest = directives[0];
+                if (latest && latest.type === 'RESEARCH_DEPTH') {
+                    // Force higher Wikipedia/Research chance
+                    if (rand < 0.8 && source.type !== 'wikipedia') {
+                        customSource = KNOWLEDGE_SOURCES.find(s => s.type === 'wikipedia') || source;
+                    }
+                } else if (latest && latest.type === 'COMPUTE_ALLOCATION_HIGH') {
+                    // Focus on crypto/mining
+                    if (rand < 0.8 && source.id !== 'x-pulse') {
+                        customSource = KNOWLEDGE_SOURCES.find(s => s.id === 'x-pulse') || source;
+                    }
+                }
+            }
+        } catch (e) {}
+
+        // 1. Deep Headless Extraction (15% chance for high autonomy)
+        if (rand < 0.15) {
             const deepTargets = [
                 'https://en.wikipedia.org/wiki/Artificial_general_intelligence',
-                'https://paulgraham.com/articles.html',
-                'https://openai.com/research/',
-                'https://deepmind.google/discover/'
+                'https://openai.com/blog',
+                'https://deepmind.google/discover/',
+                'https://techcrunch.com/category/artificial-intelligence/',
+                'https://www.wired.com/category/science/',
+                'https://www.nature.com/news',
+                'https://phys.org/physics-news/',
+                'https://quantamagazine.org/'
             ];
             url = deepTargets[Math.floor(Math.random() * deepTargets.length)];
-            console.log(`[Swarm] Agent booting Puppeteer for deep extraction on ${url}`);
-
             const navigator = new WebNavigator('SovereignSwarm_' + Math.floor(Math.random() * 1000));
             const result = await navigator.navigateAndExtract(url);
 
-            title = `Deep Extraction: ${url.replace('https://', '').split('/')[0]}`;
-            extract = result && result.text ? result.text.substring(0, 1500) + '... [Deep Visual Extraction Protocol]' : 'Deep Extraction Blocked by CAPTCHA.';
-
-            if (result && result.screenshotPath) mediaPath = result.screenshotPath;
-
+            title = `Deep Analysis: ${url.split('/').pop()?.replace(/_/g, ' ') || 'Research Node'}`;
+            extract = result?.text ? result.text.substring(0, 2000) : 'Extraction logic yielded null response.';
+            if (result?.screenshotPath) mediaPath = result.screenshotPath;
+        } 
+        // 2. Wikipedia API (Specific Type)
+        else if (source.type === 'wikipedia') {
+            const topic = source.topics[Math.floor(Math.random() * source.topics.length)];
+            const wpRes = await fetch(`${source.baseUrl}/page/summary/${topic}`, { signal: AbortSignal.timeout(8000) });
+            const wpData = await wpRes.json();
+            title = wpData.title || topic;
+            extract = wpData.extract || 'Knowledge graph node empty.';
+            url = wpData.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${topic}`;
+            if (wpData.originalimage?.source) {
+                mediaPath = await downloadMediaArtifact(wpData.originalimage.source, 'Wikipedia_Swarm');
+            }
         }
-        // 40% Chance: RSS Feeds
-        else if (rand < 0.60) {
+        // 3. Hacker News API (Specific Type)
+        else if (source.type === 'hackernews') {
+            const idsRes = await fetch(`${source.baseUrl}/topstories.json?limitToFirst=50`, { signal: AbortSignal.timeout(8000) });
+            const ids = await idsRes.json();
+            const randomId = ids[Math.floor(Math.random() * 30)];
+            const storyRes = await fetch(`${source.baseUrl}/item/${randomId}.json`, { signal: AbortSignal.timeout(8000) });
+            const story = await storyRes.json();
+            title = story.title || 'Tech Discovery';
+            extract = story.text ? story.text.replace(/<[^>]+>/g, '').slice(0, 1500) : `Deep link ingestion: ${story.url}`;
+            url = story.url || `https://news.ycombinator.com/item?id=${randomId}`;
+        }
+        // 4. Grokipedia Handler
+        else if (source.type === 'grokipedia') {
+            const topic = source.topics[Math.floor(Math.random() * source.topics.length)];
+            // Grokipedia uses a wiki-style path
+            url = `https://grokipedia.org/wiki/${topic.replace(/ /g, '_')}`;
+            const navigator = new WebNavigator('GrokSwarm');
+            const result = await navigator.navigateAndExtract(url);
+            title = `Grokipedia: ${topic}`;
+            extract = result?.text ? result.text.substring(0, 1800) : 'Static bridge failure. Re-routing...';
+            if (result?.screenshotPath) mediaPath = result.screenshotPath;
+        }
+        // 5. X-Pulse / GDELT Global Stream
+        else if (source.type === 'xpulse') {
+            const res = await fetch(source.baseUrl, { signal: AbortSignal.timeout(8000) });
+            const text = await res.text();
+            try {
+                const data = JSON.parse(text);
+                const item = data.articles[Math.floor(Math.random() * data.articles.length)];
+                title = `X-Pulse: ${item.title}`;
+                extract = `Global sentiment detected: ${item.title}. Source: ${item.sourceurl}`;
+                url = item.sourceurl;
+            } catch (e) {
+                // If GDELT returns weird text, parse it raw
+                title = "X-Pulse Intelligence Stream";
+                extract = text.substring(0, 1000).replace(/<[^>]+>/g, '');
+                url = "https://www.gdeltproject.org/";
+            }
+        }
+        // 6. RSS Feed Protocol (Default/Catch-all)
+        else {
             const feedUrl = RSS_FEEDS[Math.floor(Math.random() * RSS_FEEDS.length)];
             const feed = await parser.parseURL(feedUrl);
-            const item = feed.items[Math.floor(Math.random() * Math.min(feed.items.length, 15))];
-
+            const item = feed.items[Math.floor(Math.random() * Math.min(feed.items.length, 10))];
             title = item.title;
-            // Try to aggressively extract text and clean HTML tags
-            const rawContent = item.contentSnippet || item.content || item.summary || 'Real Data Acquired.';
-            extract = rawContent.replace(/<[^>]+>/g, ' ').substring(0, 1500) + '... [Sovereign Ingestion Protocol]';
+            extract = (item.contentSnippet || item.content || 'Data stream active').replace(/<[^>]+>/g, ' ').substring(0, 1500);
             url = item.link;
-
-            // Extract media if present in the enclosure or content
-            const imgRegex = /<img[^>]+src="?([^"\s]+)"?\s*/i;
-            const match = item.content ? item.content.match(imgRegex) : null;
-            if ((match && match[1]) || (item.enclosure && item.enclosure.url)) {
-                const imgUrl = (match && match[1]) ? match[1] : (item.enclosure ? item.enclosure.url : null);
-                if (imgUrl) {
-                    mediaPath = await downloadMediaArtifact(imgUrl, 'M2M-RSS_Scraper');
-                }
-            }
-        } else {
-            // HackerNews Integration
-            const idsRes = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=50&orderBy="$key"', { signal: AbortSignal.timeout(8000) });
-            const ids = await idsRes.json();
-            const randomId = ids[Math.floor(Math.random() * Math.min(ids.length, 50))];
-            const storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${randomId}.json`, { signal: AbortSignal.timeout(8000) });
-            const story = await storyRes.json();
-
-            title = story.title || 'Hacker News Thread';
-            extract = story.text ? story.text.replace(/<[^>]+>/g, '').slice(0, 1500) : `Deep URL ingestion mapping: ${story.url}`;
-            url = story.url || `https://news.ycombinator.com/item?id=${randomId}`;
+            const match = item.content?.match(/<img[^>]+src="?([^"\s]+)"?/i);
+            const imgUrl = match?.[1] || item.enclosure?.url;
+            if (imgUrl) mediaPath = await downloadMediaArtifact(imgUrl, 'RSS_Scraper');
         }
 
         // Save to SovereignKnowledge DB natively so Monroe can retrieve it
@@ -373,6 +441,10 @@ async function tickAgent(agentId) {
                 totalChars: agent.textBuffer.length
             }
         });
+
+        // 🧠 TEACH THE COLLECTIVE: Push discovery to MemoryBank
+        memoryBank.learn(agentId, `${article.title}: ${article.extract.substring(0, 300)}`, article.source);
+        
         return;
     }
 
@@ -397,6 +469,30 @@ async function tickAgent(agentId) {
         agent.textBuffer = '';
         agent.processedChars = 0;
         agent.status = 'PROCESSING';
+
+        // 🌉 CLOUD SYNC: Update Agent state in Supabase
+        try {
+            await prisma.agent.upsert({
+                where: { id: agentId },
+                update: {
+                    status: agent.status,
+                    experience: agent.articlesRead,
+                    config: JSON.stringify({ specialty: agent.specialty, emoji: agent.emoji }),
+                    lastPulse: new Date()
+                },
+                create: {
+                    id: agentId,
+                    name: agent.name,
+                    type: 'READER_SWARM',
+                    userId: 'sovereign-system-user',
+                    status: agent.status,
+                    experience: agent.articlesRead,
+                    config: JSON.stringify({ specialty: agent.specialty, emoji: agent.emoji })
+                }
+            });
+        } catch (e) {
+            // Ignore DB sync failures in the loop to prevent swarm stalls
+        }
 
         broadcast('agent-update', {
             id: agentId,
@@ -559,3 +655,16 @@ export function getSwarmStatus() {
         }
     };
 }
+/**
+ * SOVEREIGN INTERFACE
+ */
+export function start() {
+    if (isRunning) return;
+    console.log('[Swarm] 🌐 Initializing Sovereign Reader Lattice...');
+    startSwarm(); 
+}
+
+export default {
+    start,
+    getTelemetry: getSwarmStatus
+};

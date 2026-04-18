@@ -110,7 +110,7 @@ export default function LegalPage() {
         </section>
 
         {/* ── PROHIBITIONS ── */}
-        <section className="p-16 border border-[#ff6b2b]/10 bg-[#ff6b2b]/5 rounded-[4rem] flex flex-col md:flex-row gap-16 items-center shadow-2xl backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all relative overflow-hidden">
+        <section className="p-8 md:p-16 border border-[#ff6b2b]/10 bg-[#ff6b2b]/5 responsive-rounded flex flex-col md:flex-row gap-12 md:gap-16 items-center shadow-2xl backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all relative overflow-hidden">
             <div className="absolute top-0 right-0 p-10 opacity-[0.02] pointer-events-none select-none">
                 <div className="text-[15vw] font-black italic leading-none uppercase">RESTRICT</div>
             </div>

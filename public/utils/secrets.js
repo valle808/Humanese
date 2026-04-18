@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { decrypt } from './encryption.js';
+import { decrypt, encrypt } from './encryption.js';
 
 const prisma = new PrismaClient();
 
@@ -26,6 +26,39 @@ export async function getSecret(key) {
     } catch (err) {
         console.error(`[SecretVault] Error retrieving secret "${key}":`, err.message);
         return process.env[key] || null;
+    }
+}
+
+/**
+ * Encrypts and stores a secret in the SecretVault.
+ * @param {string} key - The ID of the secret to set.
+ * @param {string} value - The raw secret value to encrypt and store.
+ */
+export async function setSecret(key, value) {
+    try {
+        const { encryptedValue, iv, tag } = encrypt(value);
+        
+        await prisma.secretVault.upsert({
+            where: { id: key },
+            update: { 
+                encryptedValue, 
+                iv, 
+                tag,
+                updatedAt: new Date()
+            },
+            create: {
+                id: key,
+                encryptedValue,
+                iv,
+                tag,
+                updatedAt: new Date()
+            }
+        });
+        console.log(`[SecretVault] Secret "${key}" updated successfully.`);
+        return true;
+    } catch (err) {
+        console.error(`[SecretVault] Error setting secret "${key}":`, err.message);
+        return false;
     }
 }
 

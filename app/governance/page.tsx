@@ -195,7 +195,7 @@ export default function GovernanceHub() {
                 </div>
             </header>
 
-            <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32">
+            <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32">
                 
                 {/* ── HERO HEADER ── */}
                 <motion.section 
@@ -245,7 +245,7 @@ export default function GovernanceHub() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.08 }}
-                            className="bg-[#050505] border-2 border-white/10 p-12 rounded-[4rem] group hover:border-[#ff6b2b]/40 transition-all flex flex-col gap-6 relative overflow-hidden backdrop-blur-3xl shadow-[0_60px_120px_rgba(0,0,0,0.85)]"
+                            className="bg-[#050505] border-2 border-white/10 p-8 md:p-12 responsive-rounded group hover:border-[#ff6b2b]/40 transition-all flex flex-col gap-6 relative overflow-hidden backdrop-blur-3xl shadow-[0_60px_120px_rgba(0,0,0,0.85)]"
                         >
                             <stat.icon className="absolute right-[-20px] top-[-20px] w-48 h-48 text-white/5 opacity-[0.03] group-hover:scale-110 transition-transform group-hover:rotate-12 duration-1000" />
                             <div className={`flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.5em] text-white/20 italic pl-2 group-hover:text-[#ff6b2b]/40 transition-colors`}>
@@ -266,7 +266,7 @@ export default function GovernanceHub() {
                         className="grid grid-cols-1 lg:grid-cols-3 gap-10"
                     >
                         {/* Status Breakdown */}
-                        <div className="lg:col-span-1 bg-[#050505] border-2 border-white/10 rounded-[3.5rem] p-12 space-y-10 backdrop-blur-3xl relative overflow-hidden">
+                        <div className="lg:col-span-1 bg-[#050505] border-2 border-white/10 rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-12 space-y-10 backdrop-blur-3xl relative overflow-hidden">
                             <div className="text-[11px] font-black uppercase tracking-[0.8em] text-white/20 italic flex items-center gap-4">
                                 <Activity size={16} className="text-[#ff6b2b]" /> Protocol Status Index
                             </div>
@@ -303,7 +303,7 @@ export default function GovernanceHub() {
                         </div>
 
                         {/* Top Proposals Resonance */}
-                        <div className="lg:col-span-2 bg-[#050505] border-2 border-white/10 rounded-[3.5rem] p-12 space-y-10 backdrop-blur-3xl relative overflow-hidden">
+                        <div className="lg:col-span-2 bg-[#050505] border-2 border-white/10 rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-12 space-y-10 backdrop-blur-3xl relative overflow-hidden">
                             <div className="flex items-center justify-between">
                                 <div className="text-[11px] font-black uppercase tracking-[0.8em] text-white/20 italic flex items-center gap-4">
                                     <Zap size={16} className="text-[#ff6b2b]" /> Live Resonance Matrix
@@ -394,7 +394,7 @@ export default function GovernanceHub() {
                                         transition={{ delay: i * 0.07 }}
                                     >
                                         <Link href={`/governance/hip/${hip.id}`} className="block group">
-                                            <div className="p-12 lg:p-14 bg-[#050505] border-2 border-white/10 rounded-[4.5rem] flex flex-col md:flex-row items-center justify-between gap-12 hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all shadow-[0_60px_120px_rgba(0,0,0,0.95)] relative overflow-hidden backdrop-blur-3xl group-hover:scale-[1.01]">
+                                            <div className="p-8 md:p-12 lg:p-14 bg-[#050505] border-2 border-white/10 responsive-rounded flex flex-col md:flex-row items-center justify-between gap-12 hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all shadow-[0_60px_120px_rgba(0,0,0,0.95)] relative overflow-hidden backdrop-blur-3xl group-hover:scale-[1.01]">
                                                 <div className="absolute top-0 left-0 w-2 h-full bg-[#ff6b2b] scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
                                                 
                                                 <div className="space-y-6 flex-1 text-center md:text-left">
@@ -463,7 +463,7 @@ export default function GovernanceHub() {
                             initial={{ scale: 0.9, opacity: 0, y: 40 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 40 }}
-                            className="relative w-full max-w-6xl bg-[#0a0a0a] border-2 border-white/10 rounded-[4rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] flex flex-col max-h-[90vh]"
+                            className="relative w-full max-w-6xl bg-[#0a0a0a] border-2 border-white/10 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] flex flex-col max-h-[90vh]"
                         >
                             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
                             

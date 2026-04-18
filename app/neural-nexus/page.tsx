@@ -60,7 +60,7 @@ interface NexusState {
 
 function SovereigntyMap() {
     return (
-        <div className="relative w-full h-[350px] bg-[#050505] border-2 border-white/5 rounded-[4rem] overflow-hidden group shadow-inner">
+        <div className="relative w-full h-[350px] bg-[#050505] border-2 border-white/5 responsive-rounded overflow-hidden group shadow-inner">
             <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-1000">
                 <svg width="100%" height="100%" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" className="stroke-[#ff6b2b] fill-none">
                     <circle cx="200" cy="150" r="3" className="animate-pulse" />
@@ -85,7 +85,7 @@ function ResonanceChart({ data }: { data: number[] }) {
     const points = (data || []).map((val, i) => `${i * (100 / 11)},${100 - (val * 100)}`).join(' ');
     
     return (
-        <div className="w-full h-[180px] bg-[#050505] border-2 border-white/5 rounded-[3.5rem] p-10 relative group overflow-hidden shadow-inner">
+        <div className="w-full h-[180px] bg-[#050505] border-2 border-white/5 responsive-rounded p-8 md:p-10 relative group overflow-hidden shadow-inner">
             <div className="absolute top-8 left-10 flex items-center justify-between w-[calc(100%-5rem)]">
                 <span className="text-[11px] font-black tracking-[0.6em] uppercase text-white/10 italic leading-none">Historical Resonance (60m)</span>
                 <span className="text-[12px] font-black font-mono text-[#ff6b2b]/60 italic leading-none">{( (data?.[data.length-1] || 0) * 100).toFixed(1)}%</span>
@@ -177,13 +177,13 @@ export default function NeuralNexusPage() {
                 </div>
             </header>
 
-            <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+            <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
                 
                 {/* ── HEADER SECTION ── */}
                 <motion.div 
                     initial={{ opacity: 0, y: -40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="relative overflow-hidden rounded-[5rem] bg-[#050505] border-2 border-white/10 p-16 lg:p-24 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] group"
+                    className="relative overflow-hidden responsive-rounded bg-[#050505] border-2 border-white/10 p-8 md:p-16 lg:p-24 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] group"
                 >
                     <div className="absolute top-0 right-0 p-16 opacity-[0.02] group-hover:scale-125 transition-transform duration-3000">
                         <Brain size={600} className="text-[#ff6b2b] animate-pulse" strokeWidth={1} />
@@ -242,7 +242,7 @@ export default function NeuralNexusPage() {
                     {/* Visual Column (Map & Tactical Info) */}
                     <div className="lg:col-span-3 space-y-12 lg:sticky lg:top-32 h-fit">
                         <SovereigntyMap />
-                        <div className="bg-[#050505] border-2 border-white/5 rounded-[4rem] p-12 space-y-10 shadow-inner group hover:border-[#ff6b2b]/20 transition-all">
+                        <div className="bg-[#050505] border-2 border-white/5 responsive-rounded p-8 md:p-12 space-y-10 shadow-inner group hover:border-[#ff6b2b]/20 transition-all">
                             <h4 className="text-[12px] font-black tracking-[0.8em] uppercase text-[#ff6b2b] mb-4 italic leading-none pl-1">Operational Status</h4>
                             <div className="space-y-6 font-mono text-[11px] text-white/20 uppercase italic leading-none">
                                 <div className="flex justify-between items-center border-b border-white/5 pb-4"><span>Registry Caching</span> <span className="text-[#ff6b2b] animate-pulse">Active</span></div>
@@ -301,7 +301,7 @@ export default function NeuralNexusPage() {
 
 function TacticalTerminal({ logs }: { logs: CognitiveLog[] }) {
     return (
-        <div className="w-full h-[400px] bg-[#050505] border-2 border-[#ff6b2b]/20 rounded-[4rem] overflow-hidden flex flex-col shadow-[0_40px_100px_rgba(255,107,43,0.1)] group">
+        <div className="w-full h-[400px] bg-[#050505] border-2 border-[#ff6b2b]/20 responsive-rounded overflow-hidden flex flex-col shadow-[0_40px_100px_rgba(255,107,43,0.1)] group">
             <div className="bg-white/[0.02] border-b-2 border-white/5 p-8 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <Terminal size={18} className="text-[#ff6b2b]" strokeWidth={3} />
@@ -348,7 +348,7 @@ function CategoryTab({ children, active, onClick }: { children: string, active: 
 
 function StatCard({ icon, label, value, color }: { icon: any, label: string, value: string | number, color: string }) {
     return (
-        <div className={`p-10 rounded-[3rem] border-2 backdrop-blur-3xl shadow-inner flex flex-col justify-between h-[180px] min-w-[200px] transition-all group hover:scale-[1.03] ${color === 'orange' ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/20 text-[#ff6b2b]' : 'bg-[#050505] border-white/5 text-white'}`}>
+        <div className={`p-8 md:p-10 responsive-rounded border-2 backdrop-blur-3xl shadow-inner flex flex-col justify-between h-[180px] min-w-[200px] transition-all group hover:scale-[1.03] ${color === 'orange' ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/20 text-[#ff6b2b]' : 'bg-[#050505] border-white/5 text-white'}`}>
             <div className="flex items-center gap-4 opacity-40 group-hover:opacity-100 transition-opacity">
                 {icon}
                 <span className="text-[10px] font-black tracking-[0.6em] uppercase italic leading-none">{label}</span>
@@ -393,7 +393,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -40 }}
             transition={{ duration: 0.6, delay: index * 0.03, ease: "circOut" }}
-            className="group relative overflow-hidden rounded-[4rem] bg-[#050505] border-2 border-white/5 p-12 backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all duration-700 shadow-[0_40px_80px_rgba(0,0,0,0.9)] flex flex-col gap-10"
+            className="group relative overflow-hidden responsive-rounded bg-[#050505] border-2 border-white/5 p-8 md:p-12 backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all duration-700 shadow-[0_40px_80px_rgba(0,0,0,0.9)] flex flex-col gap-10"
         >
             <div className="absolute inset-y-0 left-0 w-2 bg-[#ff6b2b] scale-y-0 group-hover:scale-y-100 transition-transform origin-top z-10" />
             

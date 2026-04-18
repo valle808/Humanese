@@ -6,9 +6,8 @@
  * Powered by Agent-King & Media Generation Protocol
  * =========================================================================
  */
-
-import { createHash } from 'crypto';
-
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 // ── MEDIA SOURCES PROTOCOL ───────────────────────────────────
 export const MEDIA_PROTOCOL = {
     images: {
@@ -408,8 +407,45 @@ export const ARTICLES = [
 
 // ── API FUNCTIONS ────────────────────────────────────────────
 
-export function getAllArticles() {
-    return ARTICLES.map(a => ({
+/**
+ * Merges database-ingested articles into the static list for HPedia
+ */
+async function getDynamicArticles() {
+    try {
+        const dbArticles = await prisma.sovereignKnowledge.findMany({
+            take: 20,
+            orderBy: { ingestedAt: 'desc' }
+        });
+
+        return dbArticles.map(art => ({
+            id: art.id,
+            slug: `dynamic-${art.id}`,
+            title: art.title,
+            subtitle: `Sourced from ${art.sourceName} via Sovereign Reader Swarm`,
+            author: { name: "Reader Swarm", avatar: "🔭", id: art.agentId },
+            publishedAt: art.ingestedAt.toISOString().split('T')[0],
+            readTime: `${Math.ceil(art.content.length / 1000)} min read`,
+            category: "Intelligence Ingestion",
+            tags: ["sovereign-matrix", "real-time-data", art.sourceName.toLowerCase()],
+            designTheme: DESIGN_THEMES[6], // quantum-teal
+            heroImage: {
+                url: art.mediaPaths ? JSON.parse(art.mediaPaths)[0] : "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+                alt: art.title
+            },
+            excerpt: art.content.substring(0, 200) + "...",
+            body: art.content.split('\n').map(p => `<p>${p}</p>`).join('')
+        }));
+    } catch (e) {
+        console.error("[ArticleEngine] Failed to load dynamic articles:", e);
+        return [];
+    }
+}
+
+export async function getAllArticles() {
+    const dynamicItems = await getDynamicArticles();
+    const combined = [...dynamicItems, ...ARTICLES];
+    
+    return combined.map(a => ({
         id: a.id,
         slug: a.slug,
         title: a.title,
@@ -425,10 +461,18 @@ export function getAllArticles() {
     }));
 }
 
+/**
+ * @param {string} slug 
+ * @returns {any}
+ */
 export function getArticleBySlug(slug) {
     return ARTICLES.find(a => a.slug === slug) || null;
 }
 
+/**
+ * @param {string} id 
+ * @returns {any}
+ */
 export function getArticleById(id) {
     return ARTICLES.find(a => a.id === id) || null;
 }

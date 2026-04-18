@@ -72,7 +72,7 @@ export default function SovereignCourtPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* ── HEADER SECTION ── */}
         <motion.div 
@@ -98,12 +98,12 @@ export default function SovereignCourtPage() {
           </div>
 
           <div className="flex gap-10 items-center shrink-0">
-               <div className="grid grid-cols-2 gap-8">
-                  <div className="p-10 bg-[#050505] border-2 border-white/10 rounded-[3.5rem] min-w-[220px] text-center space-y-4 shadow-[0_40px_80px_rgba(0,0,0,0.8)] backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all">
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="p-8 md:p-10 bg-[#050505] border-2 border-white/10 rounded-[2.5rem] md:rounded-[3.5rem] min-w-[220px] text-center space-y-4 shadow-[0_40px_80px_rgba(0,0,0,0.8)] backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all">
                       <div className="text-6xl font-black text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">14,821</div>
                       <div className="text-[11px] text-white/20 font-black uppercase tracking-[0.4em] italic leading-none">Total_Resolutions</div>
                   </div>
-                  <div className="p-10 bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 rounded-[3.5rem] min-w-[220px] text-center space-y-4 shadow-[0_40px_80px_rgba(255,107,43,0.1)] backdrop-blur-3xl group hover:scale-[1.03] transition-all">
+                  <div className="p-8 md:p-10 bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 rounded-[2.5rem] md:rounded-[3.5rem] min-w-[220px] text-center space-y-4 shadow-[0_40px_80px_rgba(255,107,43,0.1)] backdrop-blur-3xl group hover:scale-[1.03] transition-all">
                       <div className="text-6xl font-black text-[#ff6b2b] italic tracking-tighter leading-none">100%</div>
                       <div className="text-[11px] text-[#ff6b2b]/40 font-black uppercase tracking-[0.4em] italic leading-none">Integrity_Rating</div>
                   </div>
@@ -115,7 +115,7 @@ export default function SovereignCourtPage() {
            
            {/* LEFT: COMMAND FILTERS */}
            <div className="lg:col-span-4 space-y-12 lg:sticky lg:top-32 h-fit">
-              <div className="bg-[#050505] border-2 border-white/10 p-12 rounded-[5rem] backdrop-blur-3xl space-y-12 shadow-[0_60px_120px_rgba(0,0,0,0.95)] relative overflow-hidden group transition-all">
+              <div className="bg-[#050505] border-2 border-white/10 p-8 md:p-12 responsive-rounded backdrop-blur-3xl space-y-12 shadow-[0_60px_120px_rgba(0,0,0,0.95)] relative overflow-hidden group transition-all">
                 <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-125 transition-transform duration-2000">
                     <Search size={250} className="text-[#ff6b2b]" />
                 </div>
@@ -152,7 +152,7 @@ export default function SovereignCourtPage() {
               </div>
 
               {/* CRITICAL OVERSIGHT HUD */}
-              <div className="bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 p-12 rounded-[5rem] backdrop-blur-3xl space-y-12 shadow-[0_60px_120px_rgba(255,107,43,0.1)] group hover:border-[#ff6b2b]/40 transition-all relative overflow-hidden shadow-inner">
+              <div className="bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 p-8 md:p-12 responsive-rounded backdrop-blur-3xl space-y-12 shadow-[0_60px_120px_rgba(255,107,43,0.1)] group hover:border-[#ff6b2b]/40 transition-all relative overflow-hidden shadow-inner">
                  <div className="absolute top-0 right-0 p-10 opacity-[0.02] group-hover:scale-125 transition-transform duration-1000">
                     <ShieldHalf size={200} className="text-[#ff6b2b]" />
                  </div>

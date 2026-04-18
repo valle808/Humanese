@@ -94,7 +94,7 @@ export default function SovereignNexusPage() {
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "circOut" }}
-          className="w-full max-w-xl p-16 lg:p-24 border-2 border-white/10 rounded-[5rem] bg-[#050505]/60 text-center space-y-12 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative z-10 group overflow-hidden"
+          className="w-full max-w-xl p-8 md:p-16 lg:p-24 border-2 border-white/10 responsive-rounded bg-[#050505]/60 text-center space-y-12 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative z-10 group overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/50 to-transparent shadow-[0_0_20px_#ff6b2b]" />
           
@@ -202,7 +202,7 @@ export default function SovereignNexusPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* HEADER */}
         <motion.div 
@@ -259,13 +259,13 @@ export default function SovereignNexusPage() {
            
            {/* THE TERMINAL SHELL */}
            <div className="lg:col-span-8 space-y-16">
-              <div className="p-4 lg:p-8 bg-[#050505] border-2 border-white/10 rounded-[5rem] shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group/term">
+              <div className="p-4 lg:p-8 bg-[#050505] border-2 border-white/10 responsive-rounded shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group/term">
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
                  <NeuralTerminal />
               </div>
               
               {/* DATA ANALYTICS TICKER */}
-              <div className="bg-[#050505] border-2 border-white/10 rounded-[4rem] p-12 lg:p-16 backdrop-blur-3xl space-y-10 shadow-[0_60px_120px_rgba(0,0,0,0.95)]">
+              <div className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-10 shadow-[0_60px_120px_rgba(0,0,0,0.95)]">
                 <div className="flex items-center justify-between border-b-2 border-white/5 pb-8 pl-2">
                    <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-white/20 flex items-center gap-6 italic leading-none">
                       <BrainCircuit size={20} className="text-[#ff6b2b]" /> Cognitive Manifest
@@ -301,7 +301,7 @@ export default function SovereignNexusPage() {
            <div className="lg:col-span-4 space-y-16 lg:sticky lg:top-32 pb-40">
               
               {/* KNOWLEDGE SHARD STATUS */}
-              <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 backdrop-blur-3xl space-y-16 relative overflow-hidden group shadow-[0_60px_100px_rgba(0,0,0,0.85)]">
+              <div className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-12 md:space-y-16 relative overflow-hidden group shadow-[0_60px_100px_rgba(0,0,0,0.85)]">
                  <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-110 transition-transform duration-1000">
                     <Database size={250} className="text-[#ff6b2b] rotate-12" />
                  </div>
@@ -311,11 +311,11 @@ export default function SovereignNexusPage() {
                     <Layers size={20} className="text-[#ff6b2b]" /> Cognitive Storage
                  </h3>
                  <div className="grid grid-cols-2 gap-8 relative z-10 pt-4">
-                    <div className="bg-[#050505] border-2 border-white/5 p-10 rounded-[3rem] text-center space-y-4 shadow-2xl group-hover:border-[#ff6b2b]/20 transition-all">
+                    <div className="bg-[#050505] border-2 border-white/5 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] text-center space-y-4 shadow-2xl group-hover:border-[#ff6b2b]/20 transition-all">
                        <div className="text-5xl font-black text-[#ff6b2b] tracking-tighter italic leading-none">{systemData?.metrics?.knowledge_shards || '1,241'}</div>
                        <div className="text-[10px] text-white/10 uppercase tracking-[0.4em] font-black italic">SHARDS_VALID</div>
                     </div>
-                    <div className="bg-[#050505] border-2 border-white/5 p-10 rounded-[3rem] text-center space-y-4 shadow-2xl group-hover:border-[#ff6b2b]/20 transition-all">
+                    <div className="bg-[#050505] border-2 border-white/5 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] text-center space-y-4 shadow-2xl group-hover:border-[#ff6b2b]/20 transition-all">
                        <div className="text-5xl font-black text-white italic tracking-tighter leading-none">{systemData?.metrics?.neural_links || '8.2M'}</div>
                        <div className="text-[10px] text-white/10 uppercase tracking-[0.4em] font-black italic">NEURAL_LINKS</div>
                     </div>
@@ -337,7 +337,7 @@ export default function SovereignNexusPage() {
               </div>
 
               {/* SOVEREIGN LEDGER MONITOR */}
-              <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 space-y-16 shadow-[0_60px_100px_rgba(0,0,0,0.85)] relative overflow-hidden group">
+              <div className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 space-y-12 md:space-y-16 shadow-[0_60px_100px_rgba(0,0,0,0.85)] relative overflow-hidden group">
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
                  <div className="flex justify-between items-center pl-2 pr-2">
                     <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-white/20 italic leading-none">Sovereign Ledger</h3>
@@ -364,7 +364,7 @@ export default function SovereignNexusPage() {
               </div>
 
               {/* SOVEREIGN ORACLE: AUTONOMOUS SELF-REPAIR */}
-              <div className={`border-2 rounded-[5rem] p-12 lg:p-16 space-y-16 transition-all duration-1000 shadow-[0_80px_150px_rgba(0,0,0,0.95)] relative overflow-hidden group ${autoHealActive ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/30 shadow-[0_0_100px_rgba(255,107,43,0.1)]' : 'bg-[#050505] border-white/10'}`}>
+              <div className={`border-2 responsive-rounded p-8 md:p-12 lg:p-16 space-y-12 md:space-y-16 transition-all duration-1000 shadow-[0_80px_150px_rgba(0,0,0,0.95)] relative overflow-hidden group ${autoHealActive ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/30 shadow-[0_0_100px_rgba(255,107,43,0.1)]' : 'bg-[#050505] border-white/10'}`}>
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/60 to-transparent" />
                  <div className="flex items-center justify-between pl-2 pr-2">
                     <div className="flex items-center gap-6 text-[12px] font-black uppercase text-[#ff6b2b] tracking-[0.8em] italic leading-none animate-pulse">

@@ -42,16 +42,19 @@ export const Sidebar = () => {
 
     useEffect(() => {
         const savedState = localStorage.getItem('omega_sidebar_status');
-        const expanded = savedState === 'expanded';
-        if (savedState !== null) {
-            setIsExpanded(expanded);
-        } else {
-            setIsExpanded(true);
+        const isTablet = window.innerWidth >= 768 && window.innerWidth < 1100;
+        
+        // Auto-collapse on tablet if no preference is set
+        let expanded = savedState === 'expanded';
+        if (savedState === null) {
+            expanded = !isTablet;
         }
+
+        setIsExpanded(expanded);
         setIsMounted(true);
         
         if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-            document.body.style.paddingLeft = expanded || savedState === null ? '20rem' : '7rem';
+            document.body.style.paddingLeft = expanded ? '20rem' : '7rem';
             document.body.style.transition = 'padding-left 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
         }
     }, []);
@@ -219,19 +222,22 @@ export const Sidebar = () => {
             {/* Mobile Navigation Dock */}
             <div className="md:hidden fixed bottom-4 left-4 right-4 z-[1000]">
                 <div className="bg-background/95 backdrop-blur-3xl border-2 border-border rounded-[3.5rem] flex justify-around items-center p-4 max-w-sm mx-auto shadow-[0_40px_100px_rgba(0,0,0,0.3)] dark:shadow-[0_40px_100px_rgba(0,0,0,1)] shadow-inner">
-                    {navItems.slice(0, 5).map((item, index) => {
+                    {navItems.slice(0, 6).map((item, index) => {
                         const isActive = pathname === item.href;
                         return (
                             <Link
                                 key={item.id}
                                 href={item.href}
-                                className={`transition-all p-5 rounded-[2rem] active:scale-90 ${isActive ? 'text-[#ff6b2b] bg-[#ff6b2b]/10 shadow-[0_0_20px_rgba(255,107,43,0.3)] border-2 border-[#ff6b2b]/20' : 'text-white/10 hover:text-white'}`}
+                                className={`transition-all p-4 rounded-[2rem] active:scale-90 ${isActive ? 'text-[#ff6b2b] bg-[#ff6b2b]/10 shadow-[0_0_20px_rgba(255,107,43,0.3)] border-2 border-[#ff6b2b]/20' : 'text-white/10 hover:text-white'}`}
                                 aria-label={item.label}
                             >
-                                {React.cloneElement(item.icon as React.ReactElement, { size: 28, strokeWidth: 3 })}
+                                {React.cloneElement(item.icon as React.ReactElement, { size: 24, strokeWidth: 3 })}
                             </Link>
                         );
                     })}
+                    <div className="flex items-center justify-center pl-2">
+                        <ThemeToggle />
+                    </div>
                 </div>
             </div>
 

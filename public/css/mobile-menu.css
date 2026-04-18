@@ -267,7 +267,6 @@
         padding: 16px 12px;
         overflow-y: auto;
         overflow-x: hidden;
-        scrollbar-width: none;
         -ms-overflow-style: none;
         gap: 4px;
     }

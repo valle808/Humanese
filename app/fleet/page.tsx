@@ -97,7 +97,7 @@ export default function FleetPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32">
         
         {/* ── FLEET HEADER ── */}
         <motion.div 
@@ -162,7 +162,7 @@ export default function FleetPage() {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         onClick={() => setSelectedNode(node)}
-                        className={`group relative p-12 rounded-[4rem] border-2 transition-all cursor-pointer shadow-[0_40px_80px_rgba(0,0,0,0.8)] relative overflow-hidden backdrop-blur-3xl ${selectedNode?.id === node.id ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/40' : 'bg-[#050505] border-white/5 hover:border-[#ff6b2b]/30'}`}
+                        className={`group relative p-8 md:p-12 responsive-rounded border-2 transition-all cursor-pointer shadow-[0_40px_80px_rgba(0,0,0,0.8)] relative overflow-hidden backdrop-blur-3xl ${selectedNode?.id === node.id ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/40' : 'bg-[#050505] border-white/5 hover:border-[#ff6b2b]/30'}`}
                       >
                          <div className="absolute top-0 right-0 p-8 opacity-[0.01] group-hover:scale-110 transition-transform duration-1000">
                             <Cpu size={120} className="text-[#ff6b2b]" />
@@ -217,7 +217,7 @@ export default function FleetPage() {
                       initial={{ opacity: 0, scale: 0.9, x: 50 }}
                       animate={{ opacity: 1, scale: 1, x: 0 }}
                       exit={{ opacity: 0, scale: 0.95, x: 20 }}
-                      className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 backdrop-blur-3xl space-y-16 relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.95)] group"
+                      className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-12 md:space-y-16 relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.95)] group"
                     >
                        <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-110 transition-all duration-1000">
                           <BarChart3 size={200} className="text-[#ff6b2b]" />
@@ -238,7 +238,7 @@ export default function FleetPage() {
                        </div>
 
                        <div className="grid grid-cols-2 gap-10 relative z-10">
-                          <div className="p-10 bg-white/[0.01] border-2 border-white/5 rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all">
+                          <div className="p-8 md:p-10 bg-white/[0.01] border-2 border-white/5 rounded-[2.5rem] md:rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all">
                              <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] flex items-center gap-4 font-black italic">
                                 <Thermometer size={18} className="text-[#ff6b2b]" /> Thermal
                              </div>
@@ -247,20 +247,20 @@ export default function FleetPage() {
                                 <motion.div animate={{ width: `${(selectedNode.temp / 100) * 100}%` }} className={`h-full ${selectedNode.temp > 75 ? 'bg-red-500 shadow-[0_0_10px_red]' : 'bg-[#ff6b2b] shadow-[0_0_10px_#ff6b2b]'}`} />
                              </div>
                           </div>
-                          <div className="p-10 bg-white/[0.01] border-2 border-white/5 rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all">
+                          <div className="p-8 md:p-10 bg-white/[0.01] border-2 border-white/5 rounded-[2.5rem] md:rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all">
                              <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] flex items-center gap-4 font-black italic">
                                 <Zap size={18} className="text-[#ff6b2b]" /> Energy
                              </div>
                              <div className="text-4xl font-black italic tracking-tighter tabular-nums text-white group-hover/stat:text-[#ff6b2b] transition-colors leading-none">{selectedNode.power.toFixed(0)}W</div>
                              <div className="text-[9px] font-black text-white/10 uppercase tracking-[0.2em] italic">SOURCE: OMEGA_GRID</div>
                           </div>
-                          <div className="p-10 bg-white/[0.01] border-2 border-white/5 rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all text-center lg:text-left">
+                          <div className="p-8 md:p-10 bg-white/[0.01] border-2 border-white/5 rounded-[2.5rem] md:rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all text-center lg:text-left">
                              <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] flex items-center gap-4 font-black italic justify-center lg:justify-start">
                                 <Wind size={18} className="text-[#ff6b2b]" /> Venting
                              </div>
                              <div className="text-3xl font-black italic tracking-tighter tabular-nums text-white group-hover/stat:text-[#ff6b2b] transition-colors leading-none">{selectedNode.fan.toFixed(0)} RPM</div>
                           </div>
-                          <div className="p-10 bg-white/[0.01] border-2 border-white/5 rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all text-center lg:text-left">
+                          <div className="p-8 md:p-10 bg-white/[0.01] border-2 border-white/5 rounded-[2.5rem] md:rounded-[3rem] space-y-6 shadow-inner group/stat hover:border-[#ff6b2b]/30 transition-all text-center lg:text-left">
                              <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] flex items-center gap-4 font-black italic justify-center lg:justify-start">
                                 <Activity size={18} className="text-[#ff6b2b]/40 animate-pulse" /> Resilient
                              </div>

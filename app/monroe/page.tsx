@@ -197,7 +197,7 @@ export default function MonroePage() {
             EXIT_ABYSSAL_MATRIX
           </button>
         </header>
-        <div className="flex-1 overflow-auto p-12 bg-black/60 border border-white/5 rounded-[4rem] shadow-2xl backdrop-blur-3xl custom-scrollbar border-2">
+        <div className="flex-1 overflow-auto p-8 md:p-12 bg-black/60 border border-white/5 responsive-rounded shadow-2xl backdrop-blur-3xl custom-scrollbar border-2">
           <pre className="text-sm leading-loose opacity-80">{JSON.stringify(messages, null, 2)}</pre>
         </div>
       </div>
@@ -227,7 +227,7 @@ export default function MonroePage() {
          </div>
 
          <div className="flex-1 space-y-12 min-h-0 overflow-y-auto custom-scrollbar pr-6">
-            <div className="p-12 border border-white/10 bg-white/[0.01] rounded-[4rem] space-y-10 relative overflow-hidden group hover:border-[#ff6b2b]/30 transition-all shadow-inner">
+            <div className="p-8 md:p-12 border border-white/10 bg-white/[0.01] responsive-rounded space-y-8 md:space-y-10 relative overflow-hidden group hover:border-[#ff6b2b]/30 transition-all shadow-inner">
                <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-1000">
                   <Database size={240} className="text-[#ff6b2b]" />
                </div>

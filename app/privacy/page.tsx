@@ -26,7 +26,7 @@ export default function PrivacyPage() {
          </div>
       </header>
 
-      <main className="relative z-10 max-w-[1400px] mx-auto px-8 pt-24 lg:pt-32 space-y-32">
+      <main className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32">
         
         {/* ── HERO SECTION ── */}
         <motion.section 
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
                animate={{ opacity: 1, y: 0 }}
                transition={{ delay: i * 0.1 }}
                key={i} 
-               className="p-12 bg-white/[0.01] border border-white/5 rounded-[4rem] backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all group shadow-2xl relative overflow-hidden shadow-inner"
+               className="p-8 md:p-12 bg-white/[0.01] border border-white/5 responsive-rounded backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all group shadow-2xl relative overflow-hidden shadow-inner"
             >
               <div className="absolute top-0 right-0 p-10 opacity-[0.02] group-hover:scale-110 transition-transform duration-1000">
                  {item.icon}
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
         </section>
 
         {/* ── THE COVENANT ── */}
-        <div className="p-16 lg:p-24 border border-white/10 rounded-[5rem] bg-[#050505]/60 backdrop-blur-3xl space-y-12 shadow-[0_80px_150px_rgba(0,0,0,0.95)] relative overflow-hidden group">
+        <div className="p-8 md:p-16 lg:p-24 border border-white/10 responsive-rounded bg-[#050505]/60 backdrop-blur-3xl space-y-12 shadow-[0_80px_150px_rgba(0,0,0,0.95)] relative overflow-hidden group">
            <div className="absolute top-0 right-0 p-24 opacity-[0.02] group-hover:scale-110 transition-transform duration-2000">
               <FileLock size={300} className="text-[#ff6b2b]" />
            </div>

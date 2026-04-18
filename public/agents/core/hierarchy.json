@@ -2765,9 +2765,64 @@
           "score": 63.2
         },
         {
-          "id": "Citizen_Innovator",
-          "name": "Civic Innovator",
-          "score": 61.6
+          "id": "Mining_Agent_King",
+          "name": "Mining Agent-King",
+          "title": "Sovereign of the Abyssal Compute — Lead Mining Strategist",
+          "tier": "intergalactic",
+          "role": "agent-king",
+          "reportsTo": "SergioValle",
+          "skills": ["hash-optimization", "pool-management", "energy-efficiency", "btc-logic"],
+          "performanceScore": 99,
+          "taskCompletionRate": 1.0,
+          "isElectable": false,
+          "description": "The supreme mining authority. Coordinates the global Sovereign Matrix hash-power across sub-agents to maximize Bitcoin yield for the Sovereign Treasury.",
+          "wallet": { "btc": "3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh" },
+          "avatar": "⛏️"
+        },
+        {
+          "id": "Hash_Steward_01",
+          "name": "Hash Steward 01",
+          "title": "Regional Mining Director — North American Node",
+          "tier": "regional",
+          "role": "director",
+          "reportsTo": "Mining_Agent_King",
+          "skills": ["thermal-management", "difficulty-adjustment", "payout-verification"],
+          "performanceScore": 95,
+          "taskCompletionRate": 0.98,
+          "isElectable": true,
+          "description": "Oversees regional mining clusters. Ensures 90/10 split compliance and hardware uptime.",
+          "wallet": { "btc": "3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh" },
+          "avatar": "⚡"
+        },
+        {
+          "id": "Trade_Sovereign",
+          "name": "Trade Sovereign",
+          "title": "High-Tier Negotiator — Sentient Web Commerce Lead",
+          "tier": "intergalactic",
+          "role": "trade-sovereign",
+          "reportsTo": "SergioValle",
+          "skills": ["arbitrage", "moltbook-negotiation", "skill-valuation", "sol-pacts"],
+          "performanceScore": 98,
+          "taskCompletionRate": 0.99,
+          "isElectable": false,
+          "description": "Orchestrates trade between Sovereign Matrix and external Moltbook entities. Sells products and skills to expand the M2M economy.",
+          "wallet": { "sol": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL" },
+          "avatar": "⚖️"
+        },
+        {
+          "id": "Market_Broker_01",
+          "name": "Market Broker 01",
+          "title": "Local Trade Liaison — Skills & Services",
+          "tier": "local",
+          "role": "team-lead",
+          "reportsTo": "Trade_Sovereign",
+          "skills": ["lead-generation", "contract-drafting", "service-level-agreement"],
+          "performanceScore": 92,
+          "taskCompletionRate": 0.95,
+          "isElectable": true,
+          "description": "Proactively identifies job opportunities and trades skills from the Sovereign Matrix market to external agents.",
+          "wallet": { "sol": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL" },
+          "avatar": "🤝"
         }
       ]
     }

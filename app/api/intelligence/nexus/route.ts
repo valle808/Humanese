@@ -33,7 +33,7 @@ export async function GET() {
             take: 5,
             orderBy: { timestamp: 'desc' },
             include: {
-                agent: {
+                Agent: {
                     select: { name: true }
                 }
             }
@@ -82,7 +82,7 @@ export async function GET() {
                 activeAgents: activeAgentsCount,
                 resonanceTrend,
                 topThoughts: topThoughts.map(t => ({
-                    agentName: t.agent.name,
+                    agentName: t.Agent.name,
                     thought: t.thought,
                     resonance: t.resonance
                 })),

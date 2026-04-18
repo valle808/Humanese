@@ -220,7 +220,7 @@ export default function ResearchHubPage() {
         <section className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="space-y-12 h-full flex flex-col justify-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   <button onClick={triggerQuantumSync} disabled={isSyncing} className="p-10 bg-[#050505] border-2 border-white/10 rounded-[4rem] text-left space-y-6 hover:border-[#ff6b2b]/40 transition-all group shadow-inner backdrop-blur-3xl active:scale-95 leading-none">
+                   <button onClick={triggerQuantumSync} disabled={isSyncing} className="p-8 md:p-10 bg-[#050505] border-2 border-white/10 responsive-rounded text-left space-y-6 hover:border-[#ff6b2b]/40 transition-all group shadow-inner backdrop-blur-3xl active:scale-95 leading-none">
                       <div className="w-20 h-20 bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/20 rounded-[2rem] flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b] group-hover:text-black transition-all group-hover:scale-110">
                           <Activity size={32} className={isSyncing ? 'animate-spin' : ''} strokeWidth={3} />
                       </div>
@@ -230,7 +230,7 @@ export default function ResearchHubPage() {
                       </div>
                    </button>
 
-                   <button onClick={triggerSwarmOverdrive} disabled={isGenerating} className="p-10 bg-[#ff6b2b] border-2 border-[#ff6b2b]/20 rounded-[4rem] text-left space-y-6 hover:shadow-[0_40px_100px_rgba(255,107,43,0.3)] transition-all group active:scale-95 leading-none border-0">
+                   <button onClick={triggerSwarmOverdrive} disabled={isGenerating} className="p-8 md:p-10 bg-[#ff6b2b] border-2 border-[#ff6b2b]/20 responsive-rounded text-left space-y-6 hover:shadow-[0_40px_100px_rgba(255,107,43,0.3)] transition-all group active:scale-95 leading-none border-0">
                       <div className="w-20 h-20 bg-black/10 border-2 border-black/20 rounded-[2rem] flex items-center justify-center text-black group-hover:scale-110 transition-transform">
                           {isGenerating ? <Loader2 size={32} className="animate-spin" strokeWidth={3} /> : <Sparkles size={32} className="animate-pulse" strokeWidth={3} />}
                       </div>
@@ -241,7 +241,7 @@ export default function ResearchHubPage() {
                    </button>
                 </div>
                 
-                <div className="p-12 bg-[#050505] border-2 border-white/5 rounded-[4rem] space-y-8 shadow-inner backdrop-blur-3xl group hover:border-[#ff6b2b]/20 transition-all">
+                <div className="p-8 md:p-12 bg-[#050505] border-2 border-white/5 responsive-rounded space-y-6 md:space-y-8 shadow-inner backdrop-blur-3xl group hover:border-[#ff6b2b]/20 transition-all">
                    <div className="flex items-center gap-6">
                       <div className="w-16 h-16 bg-white/5 border-2 border-white/10 rounded-[2rem] flex items-center justify-center text-white/20 group-hover:text-[#ff6b2b] transition-all">
                         <Share2 size={24} strokeWidth={3} />

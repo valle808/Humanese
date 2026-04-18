@@ -121,7 +121,7 @@ export default function SandboxPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* ── HEADER ── */}
         <motion.div 
@@ -146,7 +146,7 @@ export default function SandboxPage() {
           </div>
 
           <div className="flex gap-10 items-center shrink-0">
-            <div className="p-10 border border-white/10 bg-white/[0.01] rounded-[3.5rem] min-w-[300px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-[#ff6b2b]/30 transition-all backdrop-blur-3xl">
+            <div className="p-8 md:p-10 border border-white/10 bg-white/[0.01] responsive-rounded min-w-[300px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-[#ff6b2b]/30 transition-all backdrop-blur-3xl">
                <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-110 transition-transform">
                   <Activity size={100} className="text-[#ff6b2b]" />
                </div>
@@ -160,7 +160,7 @@ export default function SandboxPage() {
             </div>
             <button 
               onClick={() => setIsRunning(!isRunning)}
-              className={`group relative h-32 px-16 rounded-[4rem] font-black text-sm uppercase tracking-[0.8em] transition-all flex items-center gap-8 italic shadow-2xl ${isRunning ? 'bg-white/5 text-[#ff6b2b] border-2 border-[#ff6b2b]/40' : 'bg-[#ff6b2b] text-black shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-95'}`}
+              className={`group relative h-24 md:h-32 px-10 md:px-16 responsive-rounded font-black text-xs md:text-sm uppercase tracking-[0.8em] transition-all flex items-center gap-8 italic shadow-2xl ${isRunning ? 'bg-white/5 text-[#ff6b2b] border-2 border-[#ff6b2b]/40' : 'bg-[#ff6b2b] text-black shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-95'}`}
             >
               {isRunning ? <Pause size={32} strokeWidth={3} /> : <Play size={32} strokeWidth={3} />}
               {isRunning ? 'HALT_SIM' : 'INIT_WORLD'}
@@ -190,19 +190,19 @@ export default function SandboxPage() {
                  ))}
               </div>
 
-              <div className="bg-[#050505] border border-white/10 rounded-[5rem] p-12 lg:p-24 backdrop-blur-3xl space-y-16 min-h-[800px] relative overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,0.9)] group">
+              <div className="bg-[#050505] border border-white/10 responsive-rounded p-8 md:p-12 lg:p-24 backdrop-blur-3xl space-y-16 min-h-[800px] relative overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,0.9)] group">
                  <div className="absolute top-0 right-0 p-24 opacity-[0.02] pointer-events-none select-none">
                      <Grid size={300} className="text-[#ff6b2b] group-hover:rotate-12 transition-transform duration-2000" />
                  </div>
                  
-                 <AnimatePresence mode="popLayout">
+                  <AnimatePresence mode="popLayout">
                     {events.length > 0 ? events.map((event, i) => (
                       <motion.div 
                         key={event.id}
                         initial={{ opacity: 0, x: -50, scale: 0.9 }}
                         animate={{ opacity: 1, x: 0, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-                        className={`group p-10 lg:p-14 rounded-[4rem] border-2 backdrop-blur-3xl transition-all shadow-[0_30px_80px_rgba(0,0,0,0.8)] relative overflow-hidden ${event.type === 'SHOCK_EVENT' ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/40 animate-pulse' : 'bg-white/[0.01] border-white/5 hover:border-[#ff6b2b]/30 hover:bg-white/[0.02]'}`}
+                        className={`group p-8 lg:p-14 responsive-rounded border-2 backdrop-blur-3xl transition-all shadow-[0_30px_80px_rgba(0,0,0,0.8)] relative overflow-hidden ${event.type === 'SHOCK_EVENT' ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/40 animate-pulse' : 'bg-white/[0.01] border-white/5 hover:border-[#ff6b2b]/30 hover:bg-white/[0.02]'}`}
                       >
                          <div className="flex justify-between items-start mb-10 relative z-10">
                             <div className="flex items-center gap-8">
@@ -246,7 +246,7 @@ export default function SandboxPage() {
            <div className="lg:col-span-4 space-y-16">
               
               {/* COGNITIVE TOPOLOGY */}
-              <div className="bg-[#050505] border border-white/10 rounded-[5rem] p-12 lg:p-16 backdrop-blur-3xl space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] group hover:border-[#ff6b2b]/30 transition-all relative overflow-hidden">
+              <div className="bg-[#050505] border border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-12 md:space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] group hover:border-[#ff6b2b]/30 transition-all relative overflow-hidden">
                  <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-110 transition-transform">
                     <Target size={180} className="text-[#ff6b2b]" />
                  </div>
@@ -254,11 +254,11 @@ export default function SandboxPage() {
                    <Wifi size={20} className="text-[#ff6b2b] animate-pulse" /> Swarm Topology
                  </h3>
                  <div className="grid grid-cols-2 gap-10 relative z-10">
-                    <div className="p-10 bg-white/[0.02] border border-white/5 rounded-[3.5rem] text-center space-y-4 shadow-inner">
+                    <div className="p-8 md:p-10 bg-white/[0.02] border border-white/5 responsive-rounded text-center space-y-4 shadow-inner">
                        <div className="text-6xl font-black text-[#ff6b2b] tracking-tighter italic leading-none">100</div>
                        <div className="text-[11px] text-white/20 uppercase font-black tracking-[0.4em] italic leading-none">Nodes</div>
                     </div>
-                    <div className="p-10 bg-white/[0.02] border border-white/5 rounded-[3.5rem] text-center space-y-4 shadow-inner">
+                    <div className="p-8 md:p-10 bg-white/[0.02] border border-white/5 responsive-rounded text-center space-y-4 shadow-inner">
                        <div className="text-6xl font-black text-white/80 tracking-tighter italic leading-none">92%</div>
                        <div className="text-[11px] text-white/20 uppercase font-black tracking-[0.4em] italic leading-none">Stability</div>
                     </div>
@@ -280,7 +280,7 @@ export default function SandboxPage() {
               </div>
 
               {/* DIVINE COMMANDS */}
-              <div className="bg-[#050505] border border-white/10 rounded-[5.5rem] p-12 lg:p-16 space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl group">
+              <div className="bg-[#050505] border border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 space-y-12 md:space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl group">
                  <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-white/10 flex items-center gap-6 italic leading-none">
                    <Zap size={24} className="text-[#ff6b2b] animate-pulse" /> Divine Intervention
                  </h3>

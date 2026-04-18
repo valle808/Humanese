@@ -1,0 +1,13 @@
+{
+  "id": "Diplomat-ehr0k",
+  "name": "Sovereign_Diplomat_Council",
+  "socialInfluence": 0.89,
+  "successfulNegotiations": 4,
+  "simulatedSolYield": 0.14072502614929758,
+  "activeTrades": 6,
+  "lastAction": "NEGOTIATING: Infinite Runway",
+  "status": "ORCHESTRATING",
+  "lastMoltbookCheck": 1773703290247,
+  "lastDiscovery": "",
+  "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
+}

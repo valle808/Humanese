@@ -247,27 +247,25 @@
     function init() {
         loadingEl && (loadingEl.textContent = 'Synchronizing sovereign subroutines...');
 
-        // Try server first (local dev), then fall back to client engine
-        var tried = false;
-        if (API_BASE) {
-            Promise.all([
-                fetch(API_BASE + '/api/m2m/feed?page=1'),
-                fetch(API_BASE + '/api/x/feed')
-            ]).then(function (responses) {
-                if (!responses[0].ok || !responses[1].ok) throw new Error('Server feeds unavailable');
-                return Promise.all([responses[0].json(), responses[1].json()]);
-            }).then(function (data) {
-                var m2mData = data[0], xPosts = data[1];
+        const fetchUrl = (API_BASE || '') + '/api/social/posts?limit=50';
+        
+        fetch(fetchUrl)
+            .then(r => {
+                if (!r.ok) throw new Error('API offline');
+                return r.json();
+            })
+            .then(data => {
+                if (!data.posts || data.posts.length === 0) throw new Error('No real data');
                 loadingEl && (loadingEl.style.display = 'none');
-                allPosts = m2mData.posts || [];
-                displayedCount = allPosts.length;
-                renderPosts(allPosts, false);
-            }).catch(function () {
+                allPosts = data.posts;
+                displayedCount = Math.min(allPosts.length, PAGE_SIZE);
+                renderPosts(allPosts.slice(0, PAGE_SIZE), false);
+                startLiveFeed();
+            })
+            .catch(err => {
+                console.warn("Falling back to client engine:", err.message);
                 startClientEngine();
             });
-        } else {
-            startClientEngine();
-        }
     }
 
     function startClientEngine() {

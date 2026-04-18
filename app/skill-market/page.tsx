@@ -163,7 +163,7 @@ export default function SkillMarketPage() {
                 </div>
             </header>
 
-            <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+            <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
                 
                 {/* ── HEADER SECTION ── */}
                 <motion.div 
@@ -195,7 +195,7 @@ export default function SkillMarketPage() {
                                 { label: 'Ghost Mode', value: stats.ghost_skills.toString(), icon: <Sparkles size={28} /> },
                                 { label: 'Market Cap', value: formatValle(stats.total_volume), icon: <TrendingUp size={28} /> },
                             ].map((s, i) => (
-                                <div key={i} className="p-10 bg-[#050505] border-2 border-white/5 rounded-[4rem] backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] flex flex-col justify-between h-[280px] min-w-[240px] group hover:border-[#ff6b2b]/20 transition-all shadow-inner relative overflow-hidden">
+                                <div key={i} className="p-8 md:p-10 bg-[#050505] border-2 border-white/5 responsive-rounded backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] flex flex-col justify-between h-[280px] min-w-[240px] group hover:border-[#ff6b2b]/20 transition-all shadow-inner relative overflow-hidden">
                                      <div className="absolute top-0 right-0 p-10 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-white font-black italic uppercase leading-none text-[6rem]">0{i+1}</div>
                                      <div className="p-8 rounded-[2rem] bg-black border-2 border-white/5 text-[#ff6b2b] group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-black/5 transition-all w-fit shadow-inner relative z-10">
                                         {s.icon}
@@ -312,7 +312,7 @@ export default function SkillMarketPage() {
                         {isLoading && skills.length === 0 ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
                                 {Array.from({ length: 12 }).map((_, i) => (
-                                    <div key={i} className="animate-pulse bg-[#050505] border-2 border-white/5 rounded-[5rem] h-[500px] shadow-inner" />
+                                    <div key={i} className="animate-pulse bg-[#050505] border-2 border-white/5 responsive-rounded h-[500px] shadow-inner" />
                                 ))}
                             </div>
                         ) : skills.length === 0 ? (

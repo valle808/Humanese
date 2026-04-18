@@ -236,7 +236,7 @@ export default function IntelligenceHQ() {
                                     </div>
                                 ) : (
                                     cognitiveLogs.map((log) => (
-                                        <div key={log.id} className="p-12 bg-black border-2 border-white/5 hover:border-[#ff6b2b]/30 rounded-[4rem] group/log transition-all relative overflow-hidden shadow-inner">
+                                        <div key={log.id} className="p-8 md:p-12 bg-black border-2 border-white/5 hover:border-[#ff6b2b]/30 responsive-rounded group/log transition-all relative overflow-hidden shadow-inner">
                                             <div className="absolute inset-y-0 left-0 w-2 bg-[#ff6b2b] scale-y-0 group-hover/log:scale-y-100 transition-transform origin-top" />
                                             
                                             <div className="flex justify-between items-center mb-10 relative z-10">
@@ -288,7 +288,7 @@ export default function IntelligenceHQ() {
                                         <p className="text-2xl font-black uppercase tracking-[1em] italic leading-none">Decrypting Neural Bus...</p>
                                     </div>
                                 ) : error ? (
-                                    <div className="p-20 text-red-500 font-black italic flex flex-col items-center gap-10 bg-red-500/5 rounded-[4rem] border-2 border-red-500/20 shadow-2xl">
+                                    <div className="p-10 md:p-20 text-red-500 font-black italic flex flex-col items-center gap-10 bg-red-500/5 responsive-rounded border-2 border-red-500/20 shadow-2xl">
                                         <ShieldBan size={100} className="animate-pulse" strokeWidth={2.5} />
                                         <span className="text-3xl uppercase tracking-[0.3em] font-black text-center leading-relaxed">{error}</span>
                                     </div>

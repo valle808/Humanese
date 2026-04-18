@@ -1044,8 +1044,6 @@ body {
   display: none;
   flex-direction: column;
   gap: 20px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-color) transparent;
 }
 
 .chat-log::-webkit-scrollbar {
@@ -1162,6 +1160,12 @@ body {
   gap: 12px;
 }
 
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    background: transparent;
+}
+
 .chat-log {
   flex: 1;
   overflow-y: auto;
@@ -1169,7 +1173,6 @@ body {
   display: none;
   flex-direction: column;
   gap: 20px;
-  scrollbar-width: thin;
   -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
   mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
@@ -1569,6 +1572,14 @@ body {
 
 .auto-style-3 {
   margin-top: 20px;
+}
+
+.monroe-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .auto-style-4 {

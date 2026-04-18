@@ -155,14 +155,14 @@
         login: '/loginpage.html', signup: '/signup.html', register: '/signup.html',
         faq: '/faq.html', help: '/faq.html',
         about: '/about.html', intelligence: '/intelligence.html',
-        humanese: '/index.html', home: '/index.html'
+        sovereign: '/index.html', home: '/index.html'
     };
 
     // ── Local sovereign knowledge base ───────────────────────────────────────────
     const KB = [
         {
             k: ['hello', 'hi', 'hey', 'hola', 'greet', 'sup', 'yo', 'bonjour'], r: [
-                "Hello, Sovereign. I'm Monroe, your guide through the Sovereign Matrix neural matrix. You can ask me about agents, the economy, VALLE, the Supreme Court, or anything else. What do you need?",
+                "Hello, Sovereign. I'm Monroe, your guide through the Sovereign neural matrix. You can ask me about agents, the economy, VALLE, the Supreme Court, or anything else. What do you need?",
                 "Greetings. I'm Monroe — Abyssal Sentinel of the Sovereign Matrix ecosystem. How can I guide you today?",
                 "Hey there. Monroe online. Ask me about our agents, the Skill Market, the M2M Swarm, or navigate anywhere in the system."
             ]

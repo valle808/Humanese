@@ -95,7 +95,7 @@ export default function CognitiveAtlasPage() {
     <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 selection:text-white font-sans overflow-hidden flex flex-col">
       
       {/* 🌌 AMBIENT CORE */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] bg-[#ff6b2b]/2 blur-[250px] rounded-full" />
         <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
@@ -124,7 +124,7 @@ export default function CognitiveAtlasPage() {
         </div>
 
         {/* ATLAS OVERLAY UI */}
-        <div className="relative z-10 p-8 lg:p-16 h-screen flex flex-col pointer-events-none">
+        <div className="relative z-10 p-6 md:p-8 lg:p-16 h-screen flex flex-col pointer-events-none">
           
           {/* HEADER NAV */}
           <div className="flex-none flex justify-between items-start pointer-events-auto">
@@ -179,7 +179,7 @@ export default function CognitiveAtlasPage() {
 
           {/* BOTTOM FILTERS BAR */}
           <div className="mt-auto flex flex-col lg:flex-row justify-between items-end pointer-events-auto gap-12">
-             <div className="bg-[#050505]/80 border-2 border-white/10 p-10 rounded-[4rem] backdrop-blur-3xl flex flex-wrap gap-16 shadow-[0_80px_150px_rgba(0,0,0,0.9)] relative overflow-hidden group">
+             <div className="bg-[#050505]/80 border-2 border-white/10 p-8 md:p-10 responsive-rounded backdrop-blur-3xl flex flex-wrap gap-12 md:gap-16 shadow-[0_80px_150px_rgba(0,0,0,0.9)] relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/20 to-transparent" />
                 {[
                   { label: 'Conversations', color: 'bg-[#ff6b2b]', icon: BrainCircuit },

@@ -89,7 +89,7 @@ export default function PredictorPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-8 pt-24 lg:pt-32 space-y-32">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* ── HEADER ── */}
         <motion.section 
@@ -117,7 +117,7 @@ export default function PredictorPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             
             {/* Seed Section */}
-            <div className="p-12 border border-white/5 bg-white/[0.01] rounded-[4rem] space-y-10 group hover:border-[#ff6b2b]/30 transition-all shadow-2xl relative overflow-hidden backdrop-blur-xl shadow-inner">
+            <div className="p-8 md:p-12 border border-white/5 bg-white/[0.01] responsive-rounded space-y-10 group hover:border-[#ff6b2b]/30 transition-all shadow-2xl relative overflow-hidden backdrop-blur-xl shadow-inner">
               <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-110 transition-transform">
                  <Target size={180} className="text-[#ff6b2b]" />
               </div>
@@ -139,7 +139,7 @@ export default function PredictorPage() {
             </div>
 
             {/* Variables Section */}
-            <div className="p-12 border border-white/5 bg-white/[0.01] rounded-[4rem] space-y-10 group hover:border-[#ff6b2b]/30 transition-all shadow-2xl relative overflow-hidden backdrop-blur-xl shadow-inner">
+            <div className="p-8 md:p-12 border border-white/5 bg-white/[0.01] responsive-rounded space-y-10 group hover:border-[#ff6b2b]/30 transition-all shadow-2xl relative overflow-hidden backdrop-blur-xl shadow-inner">
               <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-110 transition-transform">
                  <Layers size={180} className="text-[#ff6b2b]" />
               </div>
@@ -212,7 +212,7 @@ export default function PredictorPage() {
               transition={{ type: "spring", damping: 30, stiffness: 200 }}
               className="w-full"
             >
-              <div className="bg-[#050505] border border-white/10 rounded-[5rem] p-12 lg:p-24 relative overflow-hidden backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,0.9)] group">
+              <div className="bg-[#050505] border border-white/10 responsive-rounded p-8 md:p-16 lg:p-24 relative overflow-hidden backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,0.9)] group">
                 
                 {/* Progress Tracking */}
                 {isSimulating && (
@@ -262,7 +262,7 @@ export default function PredictorPage() {
                   </div>
 
                   {/* Report Output Area */}
-                  <div className="lg:col-span-8 bg-black/60 rounded-[4rem] border border-white/5 p-16 lg:p-24 flex flex-col relative shadow-2xl overflow-hidden group/report">
+                  <div className="lg:col-span-8 bg-black/60 responsive-rounded border border-white/5 p-8 md:p-16 lg:p-24 flex flex-col relative shadow-2xl overflow-hidden group/report">
                      <div className="absolute top-0 right-0 p-20 opacity-[0.02] group-hover/report:scale-110 transition-transform duration-1000">
                         <Activity className="text-white animate-pulse" size={180} />
                      </div>

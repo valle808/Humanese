@@ -265,7 +265,7 @@ export default function AgentsPage() {
             { icon: <TrendingUp />, label: 'Consensus Yield', val: `${((diplomatStats?.socialInfluence || 0) * 100).toFixed(1)}%`, detail: 'SOCIAL_GRAVITY' },
             { icon: <Target />, label: 'Strategic Mode', val: strategy.type, detail: 'OBJECTIVE_VECTOR' }
           ].map((stat, i) => (
-            <div key={i} className="p-12 bg-[#050505] border-2 border-white/5 rounded-[4rem] backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] space-y-6 group hover:border-[#ff6b2b]/20 transition-all shadow-inner relative overflow-hidden">
+            <div key={i} className="p-8 md:p-12 bg-[#050505] border-2 border-white/5 responsive-rounded backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] space-y-6 group hover:border-[#ff6b2b]/20 transition-all shadow-inner relative overflow-hidden">
                <div className="absolute top-0 right-0 p-8 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-white/20 font-black italic uppercase leading-none text-9xl">0{i+1}</div>
                <div className="text-[11px] text-white/10 font-black uppercase tracking-[0.6em] flex items-center gap-4 italic leading-none group-hover:text-white/20 transition-colors pl-1">
                 <span className="text-[#ff6b2b]">{stat.icon}</span> {stat.label}
@@ -456,7 +456,7 @@ export default function AgentsPage() {
 
                  <div className="p-12 lg:p-16 grid grid-cols-1 md:grid-cols-2 gap-12">
                    {miningStats.workers.map(worker => (
-                      <div key={worker.id} className="p-14 bg-black border-2 border-white/5 rounded-[4rem] space-y-12 shadow-2xl group hover:border-[#ff6b2b]/40 transition-all backdrop-blur-3xl relative overflow-hidden flex flex-col justify-between h-[320px]">
+                      <div key={worker.id} className="p-8 md:p-14 bg-black border-2 border-white/5 responsive-rounded space-y-8 md:space-y-12 shadow-2xl group hover:border-[#ff6b2b]/40 transition-all backdrop-blur-3xl relative overflow-hidden flex flex-col justify-between h-auto md:h-[320px] min-h-[250px]">
                          <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-150 transition-transform duration-3000">
                             <Binary size={250} className="text-[#ff6b2b]" />
                          </div>

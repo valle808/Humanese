@@ -157,7 +157,7 @@ export default function HPediaPage() {
         </div>
       </header>
 
-      <div className="max-w-[1700px] mx-auto px-8 lg:px-14 py-16 lg:py-24 relative z-10">
+      <div className="max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 py-16 lg:py-24 relative z-10">
         <AnimatePresence mode="wait">
 
           {/* ────── HOME VIEW ────── */}
@@ -196,7 +196,7 @@ export default function HPediaPage() {
                   { label: 'Technology', icon: <Cpu size={32} strokeWidth={2.5} />, color: 'from-[#ff6b2b] to-black', desc: 'Agent Architectures' },
                   { label: 'General', icon: <Globe size={32} strokeWidth={2.5} />, color: 'from-[#ff6b2b] to-black', desc: 'Collective Context' },
                 ].map(cat => (
-                  <button key={cat.label} onClick={() => { setSelectedCategory(cat.label); setSearchQuery(cat.label); handleSearch(cat.label); }} className="group p-12 bg-white/[0.01] border border-white/5 rounded-[4rem] text-left hover:bg-white/[0.03] hover:shadow-[0_40px_80px_rgba(255,107,43,0.1)] transition-all hover:border-[#ff6b2b]/30 shadow-inner translate-y-0 hover:-translate-y-2 relative overflow-hidden">
+                  <button key={cat.label} onClick={() => { setSelectedCategory(cat.label); setSearchQuery(cat.label); handleSearch(cat.label); }} className="group p-8 md:p-12 bg-white/[0.01] border border-white/5 responsive-rounded text-left hover:bg-white/[0.03] hover:shadow-[0_40px_80px_rgba(255,107,43,0.1)] transition-all hover:border-[#ff6b2b]/30 shadow-inner translate-y-0 hover:-translate-y-2 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-110 transition-transform">
                        <Layers size={120} />
                     </div>
@@ -244,7 +244,7 @@ export default function HPediaPage() {
                         initial={{ opacity: 0, y: 30 }} 
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.04, duration: 0.6 }}
-                        className="group bg-white/[0.01] border border-white/5 rounded-[4rem] overflow-hidden hover:bg-white/[0.03] hover:border-[#ff6b2b]/30 transition-all cursor-pointer relative shadow-2xl backdrop-blur-3xl shadow-inner group p-2"
+                        className="group bg-white/[0.01] border border-white/5 responsive-rounded overflow-hidden hover:bg-white/[0.03] hover:border-[#ff6b2b]/30 transition-all cursor-pointer relative shadow-2xl backdrop-blur-3xl shadow-inner group p-2"
                         onClick={() => {
                           if (article._static && article._full) {
                             setSelectedArticle({ ...article._full, author: article._full.author });
@@ -298,7 +298,7 @@ export default function HPediaPage() {
                   <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Exit Knowledge Vault
                 </button>
                 
-                <div className="bg-[#050505] border border-white/10 rounded-[4rem] p-12 space-y-12 backdrop-blur-3xl shadow-[0_40px_100px_rgba(255,107,43,0.1)] relative overflow-hidden group">
+                <div className="bg-[#050505] border border-white/10 responsive-rounded p-8 md:p-12 space-y-12 backdrop-blur-3xl shadow-[0_40px_100px_rgba(255,107,43,0.1)] relative overflow-hidden group">
                   <div className="absolute top-0 right-0 p-8 opacity-[0.02] pointer-events-none select-none">
                      <Terminal size={140} />
                   </div>
@@ -335,7 +335,7 @@ export default function HPediaPage() {
               </aside>
 
               {/* MAIN ARTICLE BODY */}
-              <article className="lg:col-span-8 bg-[#050505] border border-white/10 rounded-[5rem] overflow-hidden shadow-[0_60px_150px_rgba(0,0,0,0.8)] backdrop-blur-3xl relative">
+              <article className="lg:col-span-8 bg-[#050505] border border-white/10 responsive-rounded overflow-hidden shadow-[0_60px_150px_rgba(0,0,0,0.8)] backdrop-blur-3xl relative">
                 
                 {/* HERO AREA */}
                 {selectedArticle.heroImage?.url && (
@@ -409,7 +409,7 @@ export default function HPediaPage() {
                 </div>
               </div>
 
-              <div className="bg-[#050505] border border-white/10 rounded-[5rem] p-12 lg:p-24 space-y-20 shadow-[0_80px_150px_rgba(0,0,0,0.9)] relative overflow-hidden backdrop-blur-3xl group">
+              <div className="bg-[#050505] border border-white/10 responsive-rounded p-8 md:p-12 lg:p-24 space-y-20 shadow-[0_80px_150px_rgba(0,0,0,0.9)] relative overflow-hidden backdrop-blur-3xl group">
                 {/* Topic Input */}
                 <div className="space-y-6 relative z-10">
                   <label className="text-[11px] font-black uppercase tracking-[0.8em] text-white/20 italic pl-4">Directive_Context</label>

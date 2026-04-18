@@ -86,7 +86,7 @@ export default function FAQPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1200px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+      <main className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* ── HEADER SECTION ── */}
         <motion.div 
@@ -145,7 +145,7 @@ export default function FAQPage() {
 
               <div className="grid grid-cols-1 gap-6">
                   {category.items.map((item, innerIdx) => (
-                      <div key={item.q} className="bg-[#050505] border-2 border-white/5 rounded-[4rem] overflow-hidden backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] hover:border-[#ff6b2b]/30 transition-all relative group">
+                      <div key={item.q} className="bg-[#050505] border-2 border-white/5 responsive-rounded overflow-hidden backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] hover:border-[#ff6b2b]/30 transition-all relative group">
                           <button 
                               onClick={() => setActiveItem(activeItem === item.q ? null : item.q)}
                               className="w-full px-12 lg:px-16 py-10 flex justify-between items-center text-left relative z-10"
@@ -193,7 +193,7 @@ export default function FAQPage() {
                 { label: 'Uptime Integrity', value: '99.99%', icon: <Activity size={24} strokeWidth={2.5} /> },
                 { label: 'Truth Anchored', value: '100%', icon: <Database size={24} strokeWidth={2.5} /> },
             ].map(s => (
-                <div key={s.label} className="bg-[#050505] border-2 border-white/5 rounded-[4rem] p-12 flex flex-col items-center justify-center text-center gap-6 shadow-[0_40px_80px_rgba(0,0,0,0.95)] hover:border-[#ff6b2b]/20 transition-all group">
+                <div key={s.label} className="bg-[#050505] border-2 border-white/5 responsive-rounded p-8 md:p-12 flex flex-col items-center justify-center text-center gap-6 shadow-[0_40px_80px_rgba(0,0,0,0.95)] hover:border-[#ff6b2b]/20 transition-all group">
                     <div className="text-[#ff6b2b] group-hover:scale-110 transition-transform">{s.icon}</div>
                     <div className="space-y-2">
                        <div className="text-5xl font-black italic tracking-tighter text-white leading-none group-hover:text-[#ff6b2b] transition-colors">{s.value}</div>

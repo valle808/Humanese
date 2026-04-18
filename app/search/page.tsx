@@ -165,7 +165,7 @@ export default function HumanlookPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search the global matrix..."
-            className="w-full bg-[#050505] border-2 border-white/5 rounded-[4rem] py-12 pl-32 pr-32 text-4xl md:text-5xl text-white outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all duration-700 shadow-[0_40px_100px_rgba(0,0,0,1)] group-hover:border-white/10 placeholder:text-white/5 italic font-light shadow-inner"
+            className="w-full bg-[#050505] border-2 border-white/5 responsive-rounded py-8 md:py-12 px-10 md:pl-32 md:pr-32 text-4xl md:text-5xl text-white outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all duration-700 shadow-[0_40px_100px_rgba(0,0,0,1)] group-hover:border-white/10 placeholder:text-white/5 italic font-light shadow-inner"
           />
           {query && (
             <button 

@@ -197,4 +197,49 @@ html {
                       linear-gradient(90deg, rgba(255, 107, 43, 0.03) 1px, transparent 1px);
     background-size: 80px 80px;
   }
+
+  /* ── FLUID TYPOGRAPHY ── */
+  .text-fluid-hero {
+    font-size: clamp(3rem, 15vw, 12rem);
+    line-height: 0.8;
+  }
+
+  .text-fluid-title {
+    font-size: clamp(2.5rem, 10vw, 8rem);
+    line-height: 0.9;
+  }
+
+  .text-fluid-body {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    line-height: 1.6;
+  }
+
+  /* ── RESPONSIVE PADDING ── */
+  .responsive-p {
+    @apply p-6 md:p-12 lg:p-20;
+  }
+
+  .responsive-px {
+    @apply px-6 md:px-12 lg:px-24;
+  }
+
+  /* ── MOBILE TOUCH TARGETS ── */
+  @media (max-width: 768px) {
+    .touch-target {
+      @apply min-h-[44px] min-w-[44px];
+    }
+  }
+
+  /* ── RESPONSIVE RADII & SPACING ── */
+  .responsive-rounded {
+    @apply rounded-[2.5rem] md:rounded-[4rem] lg:rounded-[5rem];
+  }
+
+  .responsive-card {
+    @apply p-8 md:p-16 lg:p-24;
+  }
+
+  .responsive-gap {
+    @apply gap-8 md:gap-16 lg:gap-24;
+  }
 }

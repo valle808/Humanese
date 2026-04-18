@@ -258,7 +258,7 @@ export default function MiningPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1700px] mx-auto px-8 pt-24 lg:pt-32 space-y-32 flex-1 flex flex-col">
+      <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
         {/* HEADER */}
         <motion.div 
@@ -310,7 +310,7 @@ export default function MiningPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i }}
-              className="p-8 bg-[#050505] border-2 border-white/5 rounded-[3rem] backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all shadow-inner relative overflow-hidden"
+              className="p-6 md:p-8 bg-[#050505] border-2 border-white/5 rounded-[2rem] md:rounded-[3.5rem] backdrop-blur-3xl group hover:border-[#ff6b2b]/30 transition-all shadow-inner relative overflow-hidden"
             >
               <div className="text-[#ff6b2b]/40 group-hover:text-[#ff6b2b] transition-all mb-4">{s.icon}</div>
               <div className="text-3xl font-black text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{s.value}</div>
@@ -323,7 +323,7 @@ export default function MiningPage() {
             
             {/* LEFT: MINING CONTROLS */}
             <div className="lg:col-span-5 space-y-12 lg:sticky lg:top-32 h-fit">
-              <div className="bg-[#050505] border-2 border-white/10 p-12 lg:p-14 rounded-[5rem] backdrop-blur-3xl space-y-12 shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group transition-all shadow-inner">
+              <div className="bg-[#050505] border-2 border-white/10 p-8 md:p-12 lg:p-14 responsive-rounded backdrop-blur-3xl space-y-12 shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group transition-all shadow-inner">
                 <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-125 transition-transform duration-2000">
                     <ShieldCheck size={250} className="text-[#ff6b2b]" />
                 </div>
@@ -386,7 +386,7 @@ export default function MiningPage() {
             <div className="lg:col-span-7 space-y-12">
 
                {/* Visual Console */}
-               <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] relative group h-[520px] flex flex-col">
+               <div className="bg-[#050505] border-2 border-white/10 responsive-rounded overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] relative group h-[520px] flex flex-col">
                   <div className="p-10 lg:px-14 border-b-2 border-white/5 flex justify-between items-center bg-white/[0.01] relative z-20 shrink-0">
                      <div className="flex items-center gap-6">
                         <Server size={32} className={isMining ? 'text-[#ff6b2b] animate-pulse' : 'text-white/10'} strokeWidth={2.5} />
@@ -423,7 +423,7 @@ export default function MiningPage() {
                </div>
 
                {/* LEADERBOARD + RECENT BLOCKS */}
-               <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)]">
+               <div className="bg-[#050505] border-2 border-white/10 responsive-rounded overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)]">
                   {/* Tab Bar */}
                   <div className="p-8 lg:px-12 border-b-2 border-white/5 flex items-center justify-between">
                      <div className="flex gap-4">
