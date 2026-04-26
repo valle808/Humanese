@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { sendSovereignConfirmation } from '../lib/email.js'; // Note: In ESM, we often use .js extension for imports
+import { sendSovereignConfirmation } from '../lib/email.js'; // Mapping to the TS source via Node resolution or transpile
 
 // Load environment variables
 dotenv.config({ path: '.env.local' });

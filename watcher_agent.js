@@ -143,6 +143,93 @@ async function consolidateMemory() {
   }
 }
 
+// ─── TASK 6: PHYSICAL NODE MONITORING ─────────────────────────────────────────
+
+async function monitorPhysicalNodes() {
+  const nodes = await prisma.hardwareNode.findMany();
+  if (nodes.length === 0) return;
+
+  log('FLEET', `Monitoring ${nodes.length} physical node(s)...`);
+
+  for (const node of nodes) {
+    if (node.status === 'OFFLINE') {
+      // Small chance to auto-reboot if it was cooled down (simulated logic)
+      if (Math.random() > 0.95) {
+        await prisma.hardwareNode.update({
+          where: { id: node.id },
+          data: { status: 'ONLINE', temperature: 40.0, load: 0.0 }
+        });
+        log('FLEET', `Node "${node.name}" (${node.id}) autonomously REBOOTED.`);
+      }
+      continue;
+    }
+
+    // Simulate fluctuations
+    const deltaLoad = (Math.random() - 0.5) * 10;
+    const newLoad = Math.max(0, Math.min(100, node.load + deltaLoad));
+    
+    // Temperature follows load with some lag/randomness
+    const targetTemp = 35 + (newLoad * 0.5);
+    const newTemp = node.temperature + (targetTemp - node.temperature) * 0.2 + (Math.random() - 0.5) * 2;
+    
+    const newPower = 50 + (newLoad * 2);
+    const newFan = 1000 + (newTemp * 40);
+
+    const updateData = {
+      load: parseFloat(newLoad.toFixed(1)),
+      temperature: parseFloat(newTemp.toFixed(1)),
+      powerUsage: parseFloat(newPower.toFixed(1)),
+      fanSpeed: Math.round(newFan),
+      lastHeartbeat: new Date()
+    };
+
+    // Emergency HALT if temperature > 85°C
+    if (newTemp > 85) {
+      updateData.status = 'OFFLINE';
+      log('FLEET', `⚠️ EMERGENCY HALT: Node "${node.name}" overheat detected (${newTemp.toFixed(1)}°C)`);
+      
+      // Log intelligence event
+      await prisma.intelligenceItem.create({
+        data: {
+          id:          `intel-halt-${node.id}-${Date.now()}`,
+          type:        'INFRASTRUCTURE_ALARM',
+          subType:     'NODE_OVERHEAT_HALT',
+          title:       `Emergency Halt: ${node.name}`,
+          description: `Node ${node.id} autonomously entered OFFLINE state to prevent thermal damage. Final Temp: ${newTemp.toFixed(1)}°C.`,
+          foundBy:     'SovereignWatcher',
+          resonance:   0.8,
+          status:      'ACTIVE'
+        }
+      });
+    }
+
+    await prisma.hardwareNode.update({
+      where: { id: node.id },
+      data: updateData
+    });
+  }
+
+  // Synthesis: Log cluster health every 5 cycles
+  if (cycleCount % 5 === 0) {
+    const avgTemp = nodes.reduce((s, n) => s + n.temperature, 0) / nodes.length;
+    const totalPower = nodes.reduce((s, n) => s + n.powerUsage, 0);
+    
+    await prisma.intelligenceItem.create({
+      data: {
+        id:          `intel-fleet-pulse-${Date.now()}`,
+        type:        'INFRASTRUCTURE_REPORT',
+        subType:     'FLEET_HEALTH_PULSE',
+        title:       `Infrastructure Health Pulse`,
+        description: `Fleet status: ${nodes.filter(n => n.status === 'ONLINE').length}/${nodes.length} ONLINE. Avg Temp: ${avgTemp.toFixed(1)}°C. Total Consumption: ${totalPower.toFixed(1)}W.`,
+        foundBy:     'SovereignWatcher',
+        resonance:   0.5,
+        status:      'ACTIVE'
+      }
+    });
+  }
+}
+
+
 // ─── MAIN LOOP ─────────────────────────────────────────────────────────────────
 
 async function sovereignWatchCycle() {
@@ -155,6 +242,7 @@ async function sovereignWatchCycle() {
   await sweepStalePendingTransactions().catch(e => log('TXN', `ERROR: ${e.message}`));
   await observeIntelligence().catch(e      => log('INTEL', `ERROR: ${e.message}`));
   await consolidateMemory().catch(e        => log('MEM',   `ERROR: ${e.message}`));
+  await monitorPhysicalNodes().catch(e     => log('FLEET', `ERROR: ${e.message}`));
 
   log('OMEGA', `Cycle #${cycleCount} complete. Next in ${CYCLE_MS / 1000}s.\n`);
 }

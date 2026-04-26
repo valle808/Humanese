@@ -33,24 +33,16 @@ export class FleetOrchestrator {
     });
 
     return nodes.map(node => {
-        // Generate simulated industrial telemetry based on hashrate
-        const baseLoad = (node.hashrate / 100) * 80; // Heuristic based on max hashrate
-        const load = Math.min(100, Math.max(0, baseLoad + (Math.random() - 0.5) * 5));
-        const temp = 35 + (load * 0.4) + (Math.random() * 2);
-        const fan = 1500 + (load * 30);
-        const power = 100 + (load * 2.5);
-        const resilience = 95 + (Math.random() * 5); // Base resilience
-
         return {
             id: node.id,
             name: node.name,
-            load,
-            temp,
-            fan,
-            power,
+            load: (node as any).load ?? 0,
+            temp: (node as any).temperature ?? 0,
+            fan: (node as any).fanSpeed ?? 0,
+            power: (node as any).powerUsage ?? 0,
             status: node.status as any,
             hashrate: node.hashrate,
-            resilience
+            resilience: 95 + (Math.random() * 5) // Kept slightly dynamic for noise
         };
     });
   }

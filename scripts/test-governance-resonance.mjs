@@ -49,17 +49,20 @@ async function runResonanceTest() {
         console.log(`✅ HIP-${submitData.proposal.hipNumber} Anchored. Initial Status: ${currentStatus}`);
 
         // 2. Reach 'Active' (100 resonance)
-        // Note: DeriveVoterWeight defaults to 1.0 if no wallet. We cast lots of votes.
         console.log(`\n[2] Broadcasting Support Signals (Threshold: 100 for 'Active')...`);
-        for (let i = 0; i < 110; i++) {
+        for (let i = 0; i < 50; i++) {
             const voterId = `node_${sessionID}_${i}`;
+            // Randomly use Ghost Mode for some voters
+            const ghostMode = Math.random() > 0.5;
+            
             const res = await fetch(`${API_BASE}/api/governance/vote`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     proposalId: hipId,
                     voterId,
-                    choice: 'Support'
+                    choice: 'Support',
+                    ghostMode
                 })
             });
             const data = await res.json();
@@ -75,31 +78,37 @@ async function runResonanceTest() {
         }
 
         // 3. Reach 'Accepted' (1000 resonance)
-        console.log(`\n[3] Reaching Majority Consensus (Threshold: 1000 for 'Accepted')...`);
-        // We simulate a whale vote if possible or just more votes.
-        // Actually, let's just do a large loop to prove the threshold.
-        const target = 1000;
-        let lastReport = 0;
-
-        for (let i = 110; i < 900; i++) {
-             const voterId = `node_${sessionID}_${i}`;
-             const res = await fetch(`${API_BASE}/api/governance/vote`, {
-                 method: 'POST',
-                 headers: { 'Content-Type': 'application/json' },
-                 body: JSON.stringify({ proposalId: hipId, voterId, choice: 'Support' })
-             });
-             const data = await res.json();
-             
-             if (data.resonance.support > lastReport + 200) {
-                 console.log(`📈 Current Resonance: ${data.resonance.support.toFixed(1)}`);
-                 lastReport = data.resonance.support;
-             }
-
-             if (data.statusChanged) {
-                 console.log(`🔥 MAJORITY REACHED: ${currentStatus} -> ${data.status} (Resonance: ${data.resonance.support})`);
-                 currentStatus = data.status;
+        console.log(`\n[3] Reaching Majority Consensus via Crowd Resonance (Threshold: 1000 for 'Accepted')...`);
+        console.log(`📡 Dispatching parallel consensus signals...`);
+        
+        const parallelVotes = 250;
+        const batches = 5;
+        const perBatch = parallelVotes / batches;
+        
+        for (let b = 0; b < batches; b++) {
+            const promises = [];
+            for (let i = 0; i < perBatch; i++) {
+                const voterId = `crowd_${sessionID}_${b}_${i}`;
+                promises.push(
+                    fetch(`${API_BASE}/api/governance/vote`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ proposalId: hipId, voterId, choice: 'Support', ghostMode: true })
+                    }).then(r => r.json())
+                );
+            }
+            
+            const results = await Promise.all(promises);
+            const latest = results[results.length - 1];
+            
+            console.log(`📈 Current Resonance: ${latest.resonance.support.toFixed(1)}`);
+            
+            const shift = results.find(r => r.statusChanged);
+            if (shift) {
+                 console.log(`🔥 MAJORITY REACHED: ${currentStatus} -> ${shift.status} (Resonance: ${shift.resonance.support})`);
+                 currentStatus = shift.status;
                  if (currentStatus === 'Accepted') break;
-             }
+            }
         }
 
         console.log(`\n==================================================`);

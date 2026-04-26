@@ -43,10 +43,22 @@ interface FleetNode {
   resilience: number;
 }
 
+interface ForesightReport {
+  title: string;
+  resonance: number;
+  trajectories: string[];
+  emergentRisks: string[];
+  ideologicalDrift: string;
+  conclusion: string;
+  timestamp: string;
+}
+
 export default function FleetPage() {
   const [nodes, setNodes] = useState<FleetNode[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedNode, setSelectedNode] = useState<FleetNode | null>(null);
+  const [report, setReport] = useState<ForesightReport | null>(null);
+  const [generatingReport, setGeneratingReport] = useState(false);
 
   const fetchFleet = async () => {
     try {
@@ -76,6 +88,18 @@ export default function FleetPage() {
     } catch (e) { console.error("Command failure", e); }
   };
 
+  const generateReport = async () => {
+    setGeneratingReport(true);
+    try {
+      const res = await fetch('/api/fleet/report');
+      const data = await res.json();
+      if (data.success) {
+        setReport(data.report);
+      }
+    } catch (e) { console.error("Report generation failure", e); }
+    setGeneratingReport(false);
+  };
+
   return (
     <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden pb-40">
       
@@ -91,6 +115,13 @@ export default function FleetPage() {
            <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
         </Link>
         <div className="flex items-center gap-6">
+           <button 
+              onClick={generateReport}
+              disabled={generatingReport}
+              className="px-8 py-2.5 bg-white/5 border border-white/10 rounded-full text-[10px] font-black text-white/40 uppercase tracking-[0.4em] italic hover:bg-white hover:text-black hover:border-white transition-all disabled:opacity-50"
+           >
+              {generatingReport ? 'Synthesizing...' : 'GENERATE_EXECUTIVE_REPORT'}
+           </button>
            <div className="px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">
               FLEET_v7.0_OPS
            </div>
@@ -318,6 +349,88 @@ export default function FleetPage() {
           <div className="text-[30vw] font-black italic italic leading-none uppercase">FLEET</div>
       </div>
       
+      {/* ── REPORT MODAL ── */}
+      <AnimatePresence>
+        {report && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12 lg:p-24 bg-black/90 backdrop-blur-2xl"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 40 }}
+              animate={{ scale: 1, y: 0 }}
+              className="relative w-full max-w-5xl bg-[#050505] border-2 border-[#ff6b2b]/40 responsive-rounded p-12 md:p-20 overflow-y-auto max-h-full shadow-[0_100px_200px_rgba(255,107,43,0.2)]"
+            >
+              <button 
+                onClick={() => setReport(null)}
+                className="absolute top-10 right-10 text-white/20 hover:text-white transition-colors p-4"
+              >
+                <ChevronRight size={48} className="rotate-180" />
+              </button>
+
+              <div className="space-y-16">
+                 <div className="space-y-6">
+                    <div className="text-[11px] font-black text-[#ff6b2b] uppercase tracking-[0.8em] italic">Intelligence Synthesis Report</div>
+                    <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.8]">{report.title}</h2>
+                    <div className="text-[12px] text-white/20 uppercase tracking-[0.4em] italic pt-4">Timestamp: {new Date(report.timestamp).toLocaleString()}</div>
+                 </div>
+
+                 <div className="grid md:grid-cols-2 gap-20">
+                    <div className="space-y-12">
+                       <div className="space-y-6">
+                          <h4 className="text-[14px] font-black uppercase tracking-[0.6em] text-white/40 italic flex items-center gap-4">
+                             <Target size={18} className="text-[#ff6b2b]" /> Resonance Trajectories
+                          </h4>
+                          <div className="space-y-4">
+                             {report.trajectories.map((t, i) => (
+                                <div key={i} className="flex gap-4 p-6 bg-white/[0.02] border border-white/5 rounded-2xl text-[14px] font-light leading-relaxed text-white/60 italic">
+                                   <div className="text-[#ff6b2b] font-black">0{i+1}.</div>
+                                   {t}
+                                </div>
+                             ))}
+                          </div>
+                       </div>
+                    </div>
+
+                    <div className="space-y-12">
+                       <div className="space-y-6">
+                          <h4 className="text-[14px] font-black uppercase tracking-[0.6em] text-white/40 italic flex items-center gap-4">
+                             <ShieldAlert size={18} className="text-red-500" /> Emergent Risks
+                          </h4>
+                          <div className="space-y-4">
+                             {report.emergentRisks.map((r, i) => (
+                                <div key={i} className="p-6 bg-red-500/5 border border-red-500/20 rounded-2xl text-[14px] font-black text-red-500/80 italic tracking-wide lowercase">
+                                   &gt; {r}
+                                </div>
+                             ))}
+                          </div>
+                       </div>
+
+                       <div className="space-y-6">
+                          <h4 className="text-[14px] font-black uppercase tracking-[0.6em] text-white/40 italic flex items-center gap-4">
+                             <Orbit size={18} className="text-[#ff6b2b]" /> Ideological Drift
+                          </h4>
+                          <div className="p-8 bg-[#ff6b2b]/5 border border-[#ff6b2b]/10 rounded-3xl text-2xl font-black tracking-tight italic text-white/90 leading-tight">
+                             "{report.ideologicalDrift}"
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 <div className="pt-16 border-t border-white/5 space-y-8">
+                    <div className="text-[11px] font-black uppercase tracking-[1em] text-white/20 italic">Final Executive Conclusion</div>
+                    <p className="text-3xl font-light italic text-white/50 leading-relaxed max-w-4xl">
+                       {report.conclusion}
+                    </p>
+                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <style jsx global>{`
         .animate-spin-slow { animation: spin 25s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

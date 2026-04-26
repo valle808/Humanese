@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createHash } from 'crypto';
 import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
@@ -41,7 +42,7 @@ async function deriveVoterWeight(voterId: string): Promise<number> {
 
 export async function POST(req: NextRequest) {
     try {
-        const { proposalId, voterId, choice, comment } = await req.json();
+        const { proposalId, voterId, choice, comment, ghostMode = false } = await req.json();
         
         if (!proposalId || !voterId || !choice) {
              return NextResponse.json({ error: 'Missing proposalId, voterId, or choice' }, { status: 400 });
@@ -77,16 +78,24 @@ export async function POST(req: NextRequest) {
         // 3. Derive VALLE-weighted resonance score
         const weight = await deriveVoterWeight(voterId);
 
-        console.log(`[Governance] Vote cast by ${voterId} | Proposal: ${proposalId} | Choice: ${choice} | Weight: ${weight}`);
+        // 3b. Apply Ghost Mode transformation if requested
+        let effectiveVoterId = voterId;
+        if (ghostMode) {
+            effectiveVoterId = 'ghost_' + createHash('sha256').update(voterId + proposalId).digest('hex');
+            console.log(`[Governance] Applied Ghost Anonymization: ${voterId.substring(0, 8)}... -> ${effectiveVoterId.substring(0, 14)}...`);
+        }
+
+        console.log(`[Governance] Vote cast by ${effectiveVoterId} | Proposal: ${proposalId} | Choice: ${choice} | Weight: ${weight} | Ghost: ${ghostMode}`);
 
         // 4. Register the vote in the Resonance Ledger
         await (prisma as any).proposalVote.create({
             data: {
                 proposalId,
-                voterId,
+                voterId: effectiveVoterId,
                 choice,
                 weight,
-                comment
+                comment,
+                isGhost: ghostMode
             }
         });
 

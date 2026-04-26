@@ -30,49 +30,48 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
     const [loading, setLoading] = useState(true);
     const [voted, setVoted] = useState(false);
     const [voteError, setVoteError] = useState<string | null>(null);
+    const [ghostMode, setGhostMode] = useState(false);
 
-    useEffect(() => {
-        const fetchHip = async () => {
-            try {
-                const res = await fetch(`/api/governance/${id}`);
-                const data = await res.json();
-                if (data.success) {
-                    setHip(data.proposal);
-                    // Check if user already voted
-                    const sessionStr = localStorage.getItem('humanese_session');
-                    if (sessionStr) {
-                        const session = JSON.parse(sessionStr);
-                        if (data.proposal.votes?.some((v: any) => v.voterId === session.user?.id)) {
-                            setVoted(true);
-                        }
+    const fetchHIP = async () => {
+        try {
+            const res = await fetch(`/api/governance/${id}`);
+            const data = await res.json();
+            if (data.success) {
+                setHip(data.proposal);
+                const sessionStr = localStorage.getItem('humanese_session');
+                if (sessionStr) {
+                    const session = JSON.parse(sessionStr);
+                    if (data.proposal.votes?.some((v: any) => v.voterId === session.user?.id)) {
+                        setVoted(true);
                     }
                 }
-            } catch (err) {
-                console.error('[HIP Sync Error]', err);
-            } finally {
-                setLoading(false);
             }
-        };
-        fetchHip();
+        } catch (err) {
+            console.error('[HIP Sync Error]', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchHIP();
     }, [id]);
 
-    const handleSovereignVote = async (choice: string = 'Support') => {
+    const handleSovereignVote = async (choice: string) => {
         const sessionStr = localStorage.getItem('humanese_session');
         const voterId = sessionStr ? (JSON.parse(sessionStr).user?.id ?? `anon_${Date.now()}`) : `anon_${Date.now()}`;
 
         try {
+            setVoteError(null);
             const res = await fetch('/api/governance/vote', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ proposalId: id, voterId, choice, weight: 1.0 })
+                body: JSON.stringify({ proposalId: id, voterId, choice, weight: 1.0, ghostMode })
             });
             const data = await res.json();
             if (res.ok) {
                 setVoted(true);
-                // Re-fetch updated HIP
-                const updated = await fetch(`/api/governance/${id}`);
-                const updatedData = await updated.json();
-                if (updatedData.success) setHip(updatedData.proposal);
+                fetchHIP();
             } else {
                 setVoteError(data.error);
             }
@@ -209,7 +208,26 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
 
                                 <AnimatePresence mode="wait">
                                     {!voted ? (
-                                        <motion.div key="vote" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="space-y-4">
+                                        <motion.div key="vote" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="space-y-6">
+                                            {/* Ghost Mode Toggle */}
+                                            <div 
+                                                onClick={() => setGhostMode(!ghostMode)}
+                                                className={`flex items-center justify-between p-4 rounded-2xl border-2 transition-all cursor-pointer select-none ${ghostMode ? 'bg-[#ff6b2b]/10 border-[#ff6b2b]/40' : 'bg-white/5 border-white/5 opacity-50 hover:opacity-100'}`}
+                                            >
+                                                <div className="flex items-center gap-4">
+                                                    <div className={`p-2 rounded-xl ${ghostMode ? 'bg-[#ff6b2b] text-black' : 'bg-white/10 text-white/40'}`}>
+                                                        <ShieldHalf size={16} strokeWidth={3} />
+                                                    </div>
+                                                    <div className="flex flex-col">
+                                                        <span className={`text-[10px] font-black uppercase tracking-[0.2em] italic leading-none ${ghostMode ? 'text-[#ff6b2b]' : 'text-white/40'}`}>Ghost Mode</span>
+                                                        <span className="text-[8px] text-white/20 font-black uppercase tracking-[0.1em] italic">Anonymize Identity</span>
+                                                    </div>
+                                                </div>
+                                                <div className={`w-8 h-4 rounded-full relative transition-colors ${ghostMode ? 'bg-[#ff6b2b]' : 'bg-white/10'}`}>
+                                                    <div className={`absolute top-1 w-2 h-2 rounded-full bg-white transition-all ${ghostMode ? 'right-1' : 'left-1'}`} />
+                                                </div>
+                                            </div>
+
                                             <motion.button 
                                                 onClick={() => handleSovereignVote('Support')}
                                                 className="w-full py-10 bg-[#ff6b2b] text-black font-black uppercase tracking-[1em] text-xs rounded-[3rem] shadow-[0_40px_100px_rgba(255,107,43,0.3)] hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-6 italic overflow-hidden group/btn leading-none border-0"
@@ -279,9 +297,14 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                                     <p className="text-center text-[11px] text-white/10 font-black uppercase italic tracking-widest py-6">No signals broadcast yet.</p>
                                 ) : hip.votes.map((vote: any, i: number) => (
                                     <div key={vote.id ?? i} className="flex justify-between items-center p-5 bg-white/[0.01] border border-white/5 rounded-2xl group hover:border-[#ff6b2b]/30 transition-all">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-[11px] font-black text-white/60 group-hover:text-white uppercase italic tracking-tight leading-none">{vote.voterId?.length > 16 ? `${vote.voterId.slice(0,8)}...${vote.voterId.slice(-4)}` : vote.voterId}</span>
-                                            <span className={`text-[9px] font-black uppercase tracking-[0.4em] italic leading-none ${vote.choice === 'Support' ? 'text-[#ff6b2b]' : vote.choice === 'Against' ? 'text-red-400' : 'text-white/20'}`}>{vote.choice}</span>
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex flex-col gap-1">
+                                                <span className="text-[11px] font-black text-white/60 group-hover:text-white uppercase italic tracking-tight leading-none flex items-center gap-2">
+                                                    {vote.voterId?.length > 16 ? `${vote.voterId.slice(0,8)}...${vote.voterId.slice(-4)}` : vote.voterId}
+                                                    {vote.isGhost && <ShieldHalf size={10} className="text-[#ff6b2b]" />}
+                                                </span>
+                                                <span className={`text-[9px] font-black uppercase tracking-[0.4em] italic leading-none ${vote.choice === 'Support' ? 'text-[#ff6b2b]' : vote.choice === 'Against' ? 'text-red-400' : 'text-white/20'}`}>{vote.choice}</span>
+                                            </div>
                                         </div>
                                         <span className="text-[10px] text-white/10 font-black uppercase tracking-[0.2em] italic">{new Date(vote.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                     </div>

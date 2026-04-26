@@ -582,12 +582,17 @@ model CognitiveLog {
 }
 
 model HardwareNode {
-  id        String   @id
-  name      String
-  type      String
-  hashrate  Float
-  status    String   @default("ONLINE")
-  createdAt DateTime @default(now())
+  id            String   @id
+  name          String
+  type          String
+  hashrate      Float
+  status        String   @default("ONLINE")
+  load          Float    @default(0.0)
+  temperature   Float    @default(45.0)
+  fanSpeed      Int      @default(2000)
+  powerUsage    Float    @default(150.0)
+  lastHeartbeat DateTime @default(now())
+  createdAt     DateTime @default(now())
 
   @@schema("public")
 }
@@ -988,6 +993,7 @@ model ProposalVote {
   voterId     String
   choice      String   // Support, Against, Abstain
   weight      Float    @default(1.0)
+  isGhost     Boolean  @default(false)
   comment     String?
   timestamp   DateTime @default(now()) @db.Timestamptz(6)
   proposal    ImprovementProposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
