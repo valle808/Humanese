@@ -48,19 +48,19 @@ export const AgentIntelligenceFeed = () => {
     }, []);
 
     return (
-        <div className="relative bg-[#050505] border-2 border-white/5 rounded-[3rem] p-10 flex flex-col h-full shadow-[0_40px_80px_rgba(0,0,0,0.95)] shadow-inner backdrop-blur-3xl overflow-hidden group hover:border-[#ff6b2b]/20 transition-all duration-700">
+        <div className="relative bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[3rem] p-10 flex flex-col h-full shadow-[0_40px_80px_rgba(0,0,0,0.1)] dark:shadow-[0_40px_80px_rgba(0,0,0,0.95)] shadow-inner backdrop-blur-3xl overflow-hidden group hover:border-[#ff6b2b]/20 transition-all duration-700">
             {/* ── SCANNER EFFECT ── */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent animate-scan z-0 opacity-20" />
             <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
             
             <div className="flex justify-between items-center mb-10 relative z-10">
                 <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 rounded-[1.5rem] bg-black border-2 border-[#ff6b2b]/20 flex items-center justify-center text-[#ff6b2b] shadow-inner group-hover:scale-110 transition-transform">
+                    <div className="w-16 h-16 rounded-[1.5rem] bg-foreground/5 dark:bg-black border-2 border-[#ff6b2b]/20 flex items-center justify-center text-[#ff6b2b] shadow-inner group-hover:scale-110 transition-transform">
                         <Activity size={32} className="animate-pulse" strokeWidth={2.5} />
                     </div>
                     <div className="space-y-1">
-                        <h3 className="text-xl font-black uppercase tracking-tighter italic text-white/90">Investigator Swarm</h3>
-                        <div className="text-[10px] text-white/5 uppercase tracking-[0.4em] italic leading-none pl-1">Collective Intel Stream</div>
+                        <h3 className="text-xl font-black uppercase tracking-tighter italic text-foreground/90 dark:text-white/90">Investigator Swarm</h3>
+                        <div className="text-[10px] text-foreground/20 dark:text-white/5 uppercase tracking-[0.4em] italic leading-none pl-1">Collective Intel Stream</div>
                     </div>
                 </div>
                 <div className="flex items-center gap-4 px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full shadow-2xl">
@@ -78,21 +78,21 @@ export const AgentIntelligenceFeed = () => {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
                             transition={{ delay: i * 0.1 }}
-                            className="p-8 bg-black border-2 border-white/5 rounded-[2.5rem] space-y-4 hover:border-[#ff6b2b]/40 transition-all duration-500 group/card cursor-default shadow-inner relative overflow-hidden"
+                            className="p-8 bg-background dark:bg-black border-2 border-border dark:border-white/5 rounded-[2.5rem] space-y-4 hover:border-[#ff6b2b]/40 transition-all duration-500 group/card cursor-default shadow-inner relative overflow-hidden"
                         >
                             <div className="absolute inset-y-0 left-0 w-1 bg-[#ff6b2b] scale-y-0 group-hover/card:scale-y-100 transition-transform origin-top z-10" />
                             
                             <div className="flex justify-between items-center relative z-20">
                                 <div className="flex items-center gap-4">
                                     <span className="px-4 py-2 bg-[#ff6b2b]/5 border border-[#ff6b2b]/20 rounded-xl text-[10px] font-black text-[#ff6b2b] uppercase tracking-widest italic leading-none">{log.action || 'INTERCEPT'}</span>
-                                    <span className="text-[10px] font-black text-white/10 uppercase tracking-[0.2em] italic group-hover/card:text-white/40 transition-colors">{log.agentId}</span>
+                                    <span className="text-[10px] font-black text-foreground/30 dark:text-white/10 uppercase tracking-[0.2em] italic group-hover/card:text-foreground/60 dark:group-hover/card:text-white/40 transition-colors">{log.agentId}</span>
                                 </div>
-                                <div className="text-[9px] font-black text-white/5 uppercase italic tracking-widest">{(log.resonance * 100).toFixed(1)}% RS</div>
+                                <div className="text-[9px] font-black text-foreground/20 dark:text-white/5 uppercase italic tracking-widest">{(log.resonance * 100).toFixed(1)}% RS</div>
                             </div>
                             
                             <div className="space-y-3 relative z-20">
-                                <p className="text-lg font-black text-white/60 tracking-tight italic leading-tight group-hover/card:text-white transition-colors">"{log.intention}"</p>
-                                <p className="text-[14px] text-white/10 font-light italic leading-relaxed tracking-tight line-clamp-2">
+                                <p className="text-lg font-black text-foreground/80 dark:text-white/60 tracking-tight italic leading-tight group-hover/card:text-foreground dark:group-hover/card:text-white transition-colors">"{log.intention}"</p>
+                                <p className="text-[14px] text-foreground/40 dark:text-white/10 font-light italic leading-relaxed tracking-tight line-clamp-2">
                                     {log.thought}
                                 </p>
                             </div>
@@ -101,15 +101,15 @@ export const AgentIntelligenceFeed = () => {
                 </AnimatePresence>
             </div>
 
-            <div className="mt-10 pt-10 border-t-2 border-white/5 flex justify-between items-center relative z-10">
+            <div className="mt-10 pt-10 border-t-2 border-border dark:border-white/5 flex justify-between items-center relative z-10">
                 <div className="flex -space-x-4">
                     {[1, 2, 3, 4].map(i => (
-                        <div key={i} className="w-10 h-10 rounded-full bg-black border-2 border-white/20 flex items-center justify-center text-[10px] font-black text-white/20 hover:border-[#ff6b2b] hover:text-[#ff6b2b] transition-all hover:z-20 hover:scale-125">
+                        <div key={i} className="w-10 h-10 rounded-full bg-background dark:bg-black border-2 border-border dark:border-white/20 flex items-center justify-center text-[10px] font-black text-foreground/40 dark:text-white/20 hover:border-[#ff6b2b] dark:hover:border-[#ff6b2b] hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all hover:z-20 hover:scale-125">
                            A{i}
                         </div>
                     ))}
                 </div>
-                <Link href="/neural-nexus" className="text-[11px] font-black uppercase tracking-[0.4em] text-[#ff6b2b] hover:text-white transition-all flex items-center gap-4 italic active:scale-95 group/link">
+                <Link href="/neural-nexus" className="text-[11px] font-black uppercase tracking-[0.4em] text-[#ff6b2b] hover:text-foreground dark:hover:text-white transition-all flex items-center gap-4 italic active:scale-95 group/link">
                     Open Matrix View <ChevronRight size={18} className="group-hover/link:translate-x-3 transition-transform" strokeWidth={3} />
                 </Link>
             </div>
