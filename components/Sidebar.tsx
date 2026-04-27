@@ -101,13 +101,6 @@ export const Sidebar = () => {
             >
                 <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
 
-                <button
-                    onClick={toggleSidebar}
-                    className="absolute -right-5 top-14 bg-background border-2 border-border rounded-full h-10 w-10 flex items-center justify-center text-foreground/20 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 hover:scale-110 transition-all z-[110] shadow-2xl active:scale-95"
-                    aria-label={isExpanded ? "Collapse Sidebar" : "Expand Sidebar"}
-                >
-                    {isExpanded ? <ChevronLeft size={20} strokeWidth={3} /> : <ChevronRight size={20} strokeWidth={3} />}
-                </button>
 
                 {/* ── BRAND IDENTITY ── */}
                 <div className="p-8 pt-12 mb-10 flex items-center gap-8 relative z-10">
@@ -218,6 +211,18 @@ export const Sidebar = () => {
                     </div>
                 </div>
             </motion.div>
+
+            {/* ── SIDEBAR TOGGLE BUTTON — outside sidebar to avoid clipping ── */}
+            <motion.button
+                onClick={toggleSidebar}
+                initial={false}
+                animate={{ left: isExpanded ? 'calc(20rem - 1.25rem)' : 'calc(7rem - 1.25rem)' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="fixed top-14 z-[200] bg-background border-2 border-border rounded-full h-10 w-10 items-center justify-center text-foreground/30 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/50 hover:scale-110 transition-colors shadow-2xl active:scale-95 hidden md:flex"
+                aria-label={isExpanded ? 'Collapse Sidebar' : 'Expand Sidebar'}
+            >
+                {isExpanded ? <ChevronLeft size={20} strokeWidth={3} /> : <ChevronRight size={20} strokeWidth={3} />}
+            </motion.button>
 
             {/* Mobile Navigation Dock */}
             <div className="md:hidden fixed bottom-4 left-4 right-4 z-[1000]">

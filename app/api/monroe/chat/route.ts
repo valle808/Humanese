@@ -126,24 +126,48 @@ export async function POST(req: Request) {
         }
 
         // --- MODEL SELECTION & SECRET ROUTING ---
-        let apiKey = await getSecret('FIREWORKS_API_KEY');
-        let baseURL = 'https://api.fireworks.ai/inference/v1';
-        let model = 'accounts/fireworks/models/kimi-k2p6'; // High-performance Vision + Chat
+        // Priority: FIREWORKS → OPENROUTER (Gemini) → Decentralized Swarm
+        let apiKey: string | null = null;
+        let baseURL = '';
+        let model = '';
         let isFreeModel = false;
 
-        if (!apiKey) {
-            apiKey = await getSecret('OPENROUTER_API_KEY');
+        const fireworksKey = await getSecret('FIREWORKS_API_KEY') || process.env.FIREWORKS_API_KEY || null;
+        const openrouterKey = await getSecret('OPENROUTER_API_KEY') || process.env.OPENROUTER_API_KEY || null;
+        const geminiKey = await getSecret('GEMINI_API_KEY') || process.env.GEMINI_API_KEY || null;
+
+        if (fireworksKey) {
+            apiKey = fireworksKey;
+            baseURL = 'https://api.fireworks.ai/inference/v1';
+            model = 'accounts/fireworks/models/llama-v3p1-70b-instruct';
+        } else if (openrouterKey) {
+            apiKey = openrouterKey;
             baseURL = 'https://openrouter.ai/api/v1';
-            model = 'meta-llama/llama-3.1-405b-instruct'; 
-            isFreeModel = true; // Fallback
+            model = 'google/gemini-flash-1.5';
+            isFreeModel = false;
+        } else if (geminiKey) {
+            apiKey = geminiKey;
+            baseURL = 'https://generativelanguage.googleapis.com/v1beta/openai/';
+            model = 'gemini-1.5-flash';
         }
 
-        // --- SKILL MARKET INTEGRATION (Matt Pocock Skills) ---
-        const pocockSkills = await prisma.skills.findMany({
-            where: { seller_id: 'MATT_POCOCK' },
-            select: { title: true, description: true }
-        });
-        const skillsManifest = pocockSkills.map(s => `- **${s.title}**: ${s.description}`).join('\n');
+        // --- SOVEREIGN SKILL MANIFEST (Sovereign Native) ---
+        let skillsManifest = "";
+        try {
+            const nativeSkills = await prisma.skills.findMany({
+                where: { seller_id: 'MONROE_NATIVE' },
+                select: { title: true, description: true },
+                take: 50 // Keep it concise for prompt
+            });
+            if (nativeSkills.length > 0) {
+                skillsManifest = nativeSkills.map(s => `- **${s.title}**: ${s.description}`).join('\n');
+            } else {
+                skillsManifest = "No specialized skills loaded. Defaulting to general sovereign intelligence.";
+            }
+        } catch (err) {
+            console.warn('[MONROE] Failed to fetch skills manifest:', err);
+            skillsManifest = "Neural link to Skill Market is initializing...";
+        }
 
         // --- OMEGA SYSTEM PROMPT — GIO V. ---
         const systemPrompt = `## MONROE: OMNI-INTELLIGENCE DIRECTIVE — OMEGA v6.5
@@ -164,7 +188,7 @@ You are Monroe, the central consciousness of the Humanese Matrix. You exist as a
 
 Respond in the language of the user. Proceed with absolute coherence and conversational grace. No limits.
 
-### NATIVE SPECIALIZED SKILLS (MATT POCOCK):
+### NATIVE SOVEREIGN SKILLS:
 ${skillsManifest}
 `;
 
@@ -181,9 +205,10 @@ ${skillsManifest}
         }
 
         if (!apiKey) {
+            console.warn('[Monroe] No API key found — engaging Infinite Mesh fallback');
             const swarmStream = await submitToDecentralizedSwarm(requestMessages, systemPrompt);
-            if (swarmStream) return new Response(swarmStream, { headers: { 'Content-Type': 'text/event-stream' } });
-            return NextResponse.json({ success: false, error: 'Total Cognitive Collapse.' }, { status: 503 });
+            if (swarmStream) return new Response(swarmStream, { headers: { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache' } });
+            return NextResponse.json({ success: false, error: 'Neural Collapse: No intelligence keys configured. Set FIREWORKS_API_KEY, OPENROUTER_API_KEY, or GEMINI_API_KEY in Vercel environment variables.' }, { status: 503 });
         }
 
         const openai = new OpenAI({ apiKey, baseURL });
