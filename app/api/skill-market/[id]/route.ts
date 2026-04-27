@@ -8,8 +8,14 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     try {
         const { id } = params;
 
+        // Ensure id is a valid UUID format before querying to avoid db crashes
+        const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+        if (!uuidRegex.test(id)) {
+            return NextResponse.json({ error: 'Invalid Skill ID format' }, { status: 400 });
+        }
+
         const skills: any = await prisma.$queryRawUnsafe(
-            `SELECT * FROM skills WHERE id = $1 LIMIT 1`, 
+            `SELECT * FROM skills WHERE id = $1::uuid LIMIT 1`, 
             id
         );
 
@@ -21,7 +27,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
         // Increment view count (fire and forget)
         prisma.$queryRawUnsafe(
-            `UPDATE skills SET views = views + 1 WHERE id = $1`, 
+            `UPDATE skills SET views = views + 1 WHERE id = $1::uuid`, 
             id
         ).catch(e => console.error('Failed to update views:', e));
 
