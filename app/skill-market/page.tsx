@@ -148,7 +148,7 @@ export default function SkillMarketPage() {
     const platforms = ['Sovereign Matrix', 'M2M', 'External', 'AgentKit'];
 
     return (
-        <div className="relative min-h-screen bg-background dark:bg-[#050505] text-foreground dark:text-white font-sans selection:bg-[#ff6b2b]/40 selection:text-white overflow-x-hidden pb-40 transition-colors duration-700">
+        <div className="relative min-h-screen bg-background dark:bg-[#050505] text-foreground dark:text-white font-sans selection:bg-[#ff6b2b]/40 selection:text-white overflow-x-hidden pb-12 transition-colors duration-700 flex flex-col">
             
             {/* 🌌 AMBIENT CORE */}
             <div className="fixed inset-0 pointer-events-none z-0">
@@ -163,7 +163,7 @@ export default function SkillMarketPage() {
                 </div>
             </div>
 
-            <header className="relative z-50 w-full p-8 lg:px-14 flex justify-between items-center bg-background/80 dark:bg-black/40 backdrop-blur-3xl border-b border-border dark:border-white/5 transition-colors duration-700">
+            <header className="relative z-50 w-full p-4 lg:px-14 flex justify-between items-center bg-background/80 dark:bg-black/40 backdrop-blur-3xl border-b border-border dark:border-white/5 transition-colors duration-700 shrink-0">
                 <Link href="/" className="inline-flex items-center gap-4 text-foreground/40 dark:text-white/20 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
                     <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
                 </Link>
@@ -174,46 +174,46 @@ export default function SkillMarketPage() {
                 </div>
             </header>
 
-            <main className="relative z-10 max-w-[1700px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
+            <main className="relative z-10 max-w-[1800px] mx-auto px-4 md:px-8 lg:px-12 pt-8 lg:pt-12 space-y-12 flex-1 flex flex-col">
                 
                 {/* ── HEADER SECTION ── */}
                 <motion.div 
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex flex-col lg:flex-row justify-between items-end gap-16 border-b-2 border-border dark:border-white/5 pb-16"
+                    className="flex flex-col lg:flex-row justify-between items-end gap-8 border-b-2 border-border dark:border-white/5 pb-8"
                 >
-                    <div className="space-y-12 max-w-5xl">
-                        <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-black/5 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 rounded-full backdrop-blur-3xl shadow-lg dark:shadow-2xl">
+                    <div className="space-y-6 max-w-3xl">
+                        <div className="inline-flex items-center gap-3 px-5 py-2 bg-black/5 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 rounded-full backdrop-blur-3xl shadow-lg dark:shadow-2xl">
                           <Layers size={20} className="text-[#ff6b2b]" />
                           <span className="text-[11px] font-black tracking-[0.8em] text-[#ff6b2b] uppercase italic leading-none pl-1">Neural Exchange Grid</span>
                         </div>
-                        <div className="space-y-8">
-                          <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] pl-1 text-foreground dark:text-white/95">
+                        <div className="space-y-4">
+                          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic leading-[0.8] pl-1 text-foreground dark:text-white/95">
                             Skill<br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground dark:from-white via-foreground/80 dark:via-white/80 to-[#ff6b2b]/30">Market.</span>
                           </h1>
-                          <p className="text-2xl md:text-3xl text-foreground/60 dark:text-white/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+                          <p className="text-lg md:text-xl text-foreground/60 dark:text-white/30 max-w-2xl leading-relaxed font-light italic tracking-tight">
                             The sovereign economy for AI capabilities. 
-                            <span className="text-foreground/80 dark:text-white/60"> Buy, sell, and trade</span> autonomous intelligence shards across the OMEGA network.
+                            <span className="text-foreground/80 dark:text-white/60"> Buy, sell, and trade</span> autonomous intelligence shards.
                           </p>
                         </div>
                     </div>
 
-                    <div className="flex gap-10 items-center shrink-0">
-                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <div className="flex gap-6 items-center shrink-0 w-full lg:w-auto">
+                         <div className="grid grid-cols-3 gap-4 w-full">
                             {[
-                                { label: 'Skills Listed', value: stats.total_skills.toString(), icon: <Layers size={28} /> },
-                                { label: 'Ghost Mode', value: stats.ghost_skills.toString(), icon: <Sparkles size={28} /> },
-                                { label: 'Market Cap', value: formatValle(stats.total_volume), icon: <TrendingUp size={28} /> },
+                                { label: 'Skills Listed', value: stats.total_skills.toString(), icon: <Layers size={20} /> },
+                                { label: 'Ghost Mode', value: stats.ghost_skills.toString(), icon: <Sparkles size={20} /> },
+                                { label: 'Market Cap', value: formatValle(stats.total_volume), icon: <TrendingUp size={20} /> },
                             ].map((s, i) => (
-                                <div key={i} className="p-8 md:p-10 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 responsive-rounded backdrop-blur-3xl shadow-lg dark:shadow-[0_40px_80px_rgba(0,0,0,0.95)] flex flex-col justify-between h-[280px] min-w-[240px] group hover:border-[#ff6b2b]/20 transition-all shadow-inner relative overflow-hidden">
-                                     <div className="absolute top-0 right-0 p-10 opacity-[0.03] dark:opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-foreground dark:text-white font-black italic uppercase leading-none text-[6rem]">0{i+1}</div>
-                                     <div className="p-8 rounded-[2rem] bg-background dark:bg-black border-2 border-border dark:border-white/5 text-[#ff6b2b] group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-black/5 transition-all w-fit shadow-inner relative z-10">
+                                <div key={i} className="p-5 md:p-6 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-3xl backdrop-blur-3xl shadow-lg dark:shadow-[0_20px_40px_rgba(0,0,0,0.95)] flex flex-col justify-between h-[160px] min-w-[140px] group hover:border-[#ff6b2b]/20 transition-all shadow-inner relative overflow-hidden">
+                                     <div className="absolute top-0 right-0 p-4 opacity-[0.03] dark:opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-foreground dark:text-white font-black italic uppercase leading-none text-[3rem]">0{i+1}</div>
+                                     <div className="p-4 rounded-2xl bg-background dark:bg-black border-2 border-border dark:border-white/5 text-[#ff6b2b] group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-black/5 transition-all w-fit shadow-inner relative z-10">
                                         {s.icon}
                                      </div>
-                                     <div className="space-y-4 relative z-10 pl-2">
-                                        <div className="text-4xl font-black text-foreground dark:text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{s.value}</div>
-                                        <div className="text-[10px] text-foreground/40 dark:text-white/10 font-black uppercase tracking-[0.4em] italic leading-none">{s.label}</div>
+                                     <div className="space-y-2 relative z-10 pl-1">
+                                        <div className="text-2xl font-black text-foreground dark:text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{s.value}</div>
+                                        <div className="text-[9px] text-foreground/40 dark:text-white/30 font-black uppercase tracking-widest italic leading-none">{s.label}</div>
                                      </div>
                                 </div>
                             ))}
@@ -222,23 +222,23 @@ export default function SkillMarketPage() {
                 </motion.div>
 
                 {/* ── SEARCH & ACTIONS ── */}
-                <section className="space-y-16">
-                    <div className="flex flex-col lg:flex-row gap-8">
+                <section className="space-y-8">
+                    <div className="flex flex-col lg:flex-row gap-4">
                         <div className="flex-1 relative group">
                             <input
                                 value={searchQuery}
                                 onChange={e => setSearchQuery(e.target.value)}
-                                placeholder="Transmission Interface: Direct Capability Link..."
-                                className="w-full bg-background dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[4rem] px-12 py-10 pr-24 text-foreground dark:text-white placeholder:text-foreground/30 dark:placeholder:text-white/20 focus:outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 text-2xl sm:text-3xl italic transition-all shadow-md dark:shadow-[0_40px_100px_rgba(0,0,0,1)] shadow-inner"
+                                placeholder="Search capabilities..."
+                                className="w-full bg-background dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-full px-8 py-5 pr-16 text-foreground dark:text-white placeholder:text-foreground/30 dark:placeholder:text-white/20 focus:outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 text-lg italic transition-all shadow-md dark:shadow-[0_20px_40px_rgba(0,0,0,1)] shadow-inner"
                             />
-                            <Search className="absolute right-12 top-1/2 -translate-y-1/2 text-foreground/20 dark:text-white/10 group-focus-within:text-[#ff6b2b] transition-all duration-700" size={40} strokeWidth={3} />
+                            <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-foreground/20 dark:text-white/10 group-focus-within:text-[#ff6b2b] transition-all duration-700" size={24} strokeWidth={3} />
                         </div>
                         <button
                             onClick={() => setShowListingForm(true)}
-                            className="bg-[#ff6b2b] text-black px-20 py-10 rounded-[4rem] font-black text-xs uppercase tracking-[0.8em] hover:scale-[1.05] active:scale-[0.95] transition-all shadow-[0_40px_100px_rgba(255,107,43,0.3)] flex items-center justify-center gap-6 italic relative overflow-hidden group border-0 leading-none"
+                            className="bg-[#ff6b2b] text-black px-10 py-5 rounded-full font-black text-[10px] uppercase tracking-[0.6em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(255,107,43,0.3)] flex items-center justify-center gap-4 italic relative overflow-hidden group border-0 leading-none shrink-0"
                         >
-                            <span className="relative z-10 flex items-center gap-6">
-                                <Plus size={24} strokeWidth={4} /> List Shard
+                            <span className="relative z-10 flex items-center gap-3">
+                                <Plus size={18} strokeWidth={4} /> List Shard
                             </span>
                             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
                         </button>
@@ -268,8 +268,8 @@ export default function SkillMarketPage() {
                 </section>
 
                 {/* ── FILTERS & GRID ── */}
-                <section className="space-y-24">
-                    <div className="flex flex-wrap gap-6 border-b-2 border-border dark:border-white/5 pb-16">
+                <section className="space-y-10 flex-1 flex flex-col">
+                    <div className="flex flex-wrap gap-4 border-b-2 border-border dark:border-white/5 pb-8">
                         <button
                             onClick={() => { setSelectedCategory('all'); setViewMode('all'); }}
                             className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${selectedCategory === 'all' && viewMode === 'all' ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_40px_rgba(255,107,43,0.3)]' : 'bg-black/5 dark:bg-white/5 text-foreground/40 dark:text-white/10 border-black/10 dark:border-white/5 hover:border-[#ff6b2b]/40 hover:text-foreground dark:hover:text-white'}`}
@@ -293,19 +293,19 @@ export default function SkillMarketPage() {
                         ))}
                     </div>
 
-                    <div className="flex items-center justify-between gap-12 flex-wrap">
-                        <div className="flex items-center gap-6 pl-4">
-                           <div className="h-px w-16 bg-[#ff6b2b]/40" />
-                           <p className="text-[12px] font-black uppercase tracking-[1em] text-foreground/40 dark:text-white/10 italic leading-none">
-                               {isLoading ? 'Synchronizing Neural Bus...' : `${count} capabilities discovered`}
+                    <div className="flex items-center justify-between gap-6 flex-wrap">
+                        <div className="flex items-center gap-4 pl-2">
+                           <div className="h-px w-8 bg-[#ff6b2b]/40" />
+                           <p className="text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 italic leading-none">
+                               {isLoading ? 'Synchronizing Neural Bus...' : `${count} discovered`}
                            </p>
                         </div>
-                        <div className="flex flex-wrap items-center gap-8">
+                        <div className="flex flex-wrap items-center gap-4">
                             <select
                                 title="Platform"
                                 value={selectedPlatform}
                                 onChange={e => setSelectedPlatform(e.target.value)}
-                                className="bg-background dark:bg-black border-2 border-border dark:border-white/5 rounded-2xl px-8 py-4 text-[11px] font-black uppercase tracking-[0.3em] text-foreground/60 dark:text-white/20 focus:outline-none focus:border-[#ff6b2b]/40 transition-all italic shadow-inner active:scale-95 leading-none"
+                                className="bg-background dark:bg-black border-2 border-border dark:border-white/5 rounded-xl px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-foreground/60 dark:text-white/40 focus:outline-none focus:border-[#ff6b2b]/40 transition-all italic shadow-inner active:scale-95 leading-none"
                             >
                                 <option value="">All Platforms</option>
                                 {platforms.map(p => <option key={p} value={p}>{p}</option>)}
@@ -314,7 +314,7 @@ export default function SkillMarketPage() {
                                 title="Sort Results"
                                 value={sortBy}
                                 onChange={e => setSortBy(e.target.value as SortOption)}
-                                className="bg-background dark:bg-black border-2 border-border dark:border-white/5 rounded-2xl px-8 py-4 text-[11px] font-black uppercase tracking-[0.3em] text-foreground/60 dark:text-white/20 focus:outline-none focus:border-[#ff6b2b]/40 transition-all italic shadow-inner active:scale-95 leading-none"
+                                className="bg-background dark:bg-black border-2 border-border dark:border-white/5 rounded-xl px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-foreground/60 dark:text-white/40 focus:outline-none focus:border-[#ff6b2b]/40 transition-all italic shadow-inner active:scale-95 leading-none"
                             >
                                 <option value="newest">Latest Signals</option>
                                 <option value="popular">Most Connected</option>
@@ -325,33 +325,33 @@ export default function SkillMarketPage() {
                         </div>
                     </div>
 
-                    <div className="space-y-24">
+                    <div className="space-y-12 flex-1">
                         {isLoading && skills.length === 0 ? (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                                {Array.from({ length: 12 }).map((_, i) => (
-                                    <div key={i} className="animate-pulse bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 responsive-rounded h-[500px] shadow-inner" />
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                {Array.from({ length: 8 }).map((_, i) => (
+                                    <div key={i} className="animate-pulse bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[3rem] h-[300px] shadow-inner" />
                                 ))}
                             </div>
                         ) : skills.length === 0 ? (
-                            <div className="text-center py-60 space-y-16">
+                            <div className="text-center py-24 space-y-8">
                                 <div className="relative inline-block">
-                                    <Activity size={120} className="mx-auto text-foreground/10 dark:text-white/5" strokeWidth={1} />
-                                    <div className="absolute inset-0 bg-[#ff6b2b]/10 blur-[80px] rounded-full animate-ping" />
+                                    <Activity size={80} className="mx-auto text-foreground/10 dark:text-white/5" strokeWidth={1} />
+                                    <div className="absolute inset-0 bg-[#ff6b2b]/10 blur-[60px] rounded-full animate-ping" />
                                 </div>
-                                <div className="space-y-8">
-                                    <h3 className="text-5xl font-black uppercase tracking-tighter italic text-foreground dark:text-white/90">Silence in the Matrix.</h3>
-                                    <p className="text-2xl text-foreground/60 dark:text-white/20 font-light italic tracking-tight">No capabilities discovered in this frequency spectrum.</p>
+                                <div className="space-y-4">
+                                    <h3 className="text-3xl font-black uppercase tracking-tighter italic text-foreground dark:text-white/90">Silence in the Matrix.</h3>
+                                    <p className="text-lg text-foreground/60 dark:text-white/40 font-light italic tracking-tight">No capabilities discovered in this frequency spectrum.</p>
                                     <button
                                         onClick={() => setShowListingForm(true)}
-                                        className="mt-12 px-20 py-8 bg-foreground dark:bg-white text-background dark:text-black rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.8em] hover:bg-[#ff6b2b] dark:hover:bg-[#ff6b2b] transition-all italic active:scale-95 shadow-2xl border-0"
+                                        className="mt-8 px-10 py-5 bg-foreground dark:bg-white text-background dark:text-black rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#ff6b2b] dark:hover:bg-[#ff6b2b] transition-all italic active:scale-95 shadow-xl border-0 inline-block"
                                     >
                                         + Anchor First Shard
                                     </button>
                                 </div>
                             </div>
                         ) : (
-                            <div className="space-y-24">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                            <div className="space-y-12">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                     {skills.map((skill, i) => (
                                         <SkillCard key={skill.id} skill={skill} onSelect={handleSelectSkill} />
                                     ))}
@@ -361,7 +361,7 @@ export default function SkillMarketPage() {
                                         <button
                                             onClick={() => { const next = page + 1; setPage(next); fetchSkills(next); }}
                                             disabled={isLoading}
-                                            className="px-24 py-10 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 text-foreground/60 dark:text-white/20 rounded-full text-[12px] font-black uppercase tracking-[1em] hover:border-[#ff6b2b]/40 hover:text-foreground dark:hover:text-white transition-all italic disabled:opacity-50 active:scale-95 shadow-2xl leading-none"
+                                            className="px-12 py-5 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 text-foreground/60 dark:text-white/40 rounded-full text-[10px] font-black uppercase tracking-widest hover:border-[#ff6b2b]/40 hover:text-foreground dark:hover:text-white transition-all italic disabled:opacity-50 active:scale-95 shadow-lg leading-none"
                                         >
                                             {isLoading ? 'Synchronizing...' : `Expand Search (${count - skills.length} remaining)`}
                                         </button>
@@ -370,20 +370,20 @@ export default function SkillMarketPage() {
                             </div>
                         )}
 
-                        <div className="pt-40 border-t-2 border-border dark:border-white/5">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+                        <div className="pt-16 border-t-2 border-border dark:border-white/5 hidden lg:block">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {[
                                     { icon: <Cpu size={48} strokeWidth={2.5} />, title: 'Sovereign Protocol', body: 'Every shard is assigned a definitive network key, ensuring cryptographic scarcity and immutable ownership across the ledger.' },
                                     { icon: <Sparkles size={48} strokeWidth={2.5} />, title: 'Ghost Mode', body: 'Encrypted acquisition. Shards can be moved into autonomous ghost state — fully operational but invisible to public indexing.' },
                                     { icon: <Globe size={48} strokeWidth={2.5} />, title: 'Omni-Matrix', body: 'Universal trade layer. Direct integration for agents, humans, machines, and external hardware swarms for seamless task execution.' },
                                 ].map((f, i) => (
-                                    <div key={i} className="space-y-10 text-center group">
-                                        <div className="w-32 h-32 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[3.5rem] flex items-center justify-center mx-auto text-foreground/40 dark:text-white/10 group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-[#ff6b2b]/10 transition-all duration-700 shadow-inner group-hover:scale-110">
-                                            {f.icon}
+                                    <div key={i} className="space-y-6 text-center group">
+                                        <div className="w-16 h-16 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-2xl flex items-center justify-center mx-auto text-foreground/40 dark:text-white/30 group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-[#ff6b2b]/10 transition-all duration-700 shadow-inner group-hover:scale-110">
+                                            {React.cloneElement(f.icon as React.ReactElement, { size: 28 })}
                                         </div>
-                                        <div className="space-y-6">
-                                           <h3 className="text-4xl font-black uppercase italic tracking-tighter group-hover:text-[#ff6b2b] transition-colors leading-none">{f.title}</h3>
-                                           <p className="text-xl text-foreground/60 dark:text-white/20 font-light leading-relaxed italic tracking-tight group-hover:text-foreground/80 dark:group-hover:text-white/40 transition-colors">{f.body}</p>
+                                        <div className="space-y-3">
+                                           <h3 className="text-2xl font-black uppercase italic tracking-tighter group-hover:text-[#ff6b2b] transition-colors leading-none">{f.title}</h3>
+                                           <p className="text-sm text-foreground/60 dark:text-white/40 font-light leading-relaxed italic tracking-tight group-hover:text-foreground/80 dark:group-hover:text-white/60 transition-colors">{f.body}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -393,14 +393,14 @@ export default function SkillMarketPage() {
                 </section>
 
                 {/* ── FOOTER SIGNAL ── */}
-                <section className="pt-40 text-center space-y-16">
-                    <div className="w-full flex justify-center gap-4">
-                       <div className="w-4 h-4 rounded-full bg-[#ff6b2b] shadow-[0_0_20px_#ff6b2b]" />
-                       <div className="w-4 h-4 rounded-full bg-black/10 dark:bg-white/10" />
-                       <div className="w-4 h-4 rounded-full bg-black/10 dark:bg-white/10" />
+                <section className="pt-16 pb-8 text-center space-y-6">
+                    <div className="w-full flex justify-center gap-2">
+                       <div className="w-2 h-2 rounded-full bg-[#ff6b2b] shadow-[0_0_10px_#ff6b2b]" />
+                       <div className="w-2 h-2 rounded-full bg-black/10 dark:bg-white/10" />
+                       <div className="w-2 h-2 rounded-full bg-black/10 dark:bg-white/10" />
                     </div>
-                    <Link href="/" className="inline-flex items-center gap-8 text-[12px] font-black uppercase tracking-[1rem] text-foreground/40 dark:text-white/10 hover:text-[#ff6b2b] transition-all italic group active:scale-95 leading-none pl-4 pr-4">
-                        <ChevronLeft size={24} className="group-hover:-translate-x-4 transition-transform" strokeWidth={3} /> Return to Core Shard
+                    <Link href="/" className="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 hover:text-[#ff6b2b] transition-all italic group active:scale-95 leading-none">
+                        <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" strokeWidth={3} /> Return to Core Shard
                     </Link>
                 </section>
             </main>
