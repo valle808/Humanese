@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, 
@@ -36,7 +36,41 @@ import {
 import Link from 'next/link';
 
 export default function JudicialOversightPage() {
+  const [proposals, setProposals] = useState<any[]>([]);
+  const [stats, setStats] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('ALL_DIRECTIVES');
+
+  const fetchData = async () => {
+    try {
+      const [govRes, statsRes] = await Promise.all([
+        fetch('/api/governance/list'),
+        fetch('/api/judiciary/stats')
+      ]);
+      const govData = await govRes.json();
+      const statsData = await statsRes.json();
+
+      if (govData.success) setProposals(govData.proposals);
+      if (statsData.success) setStats(statsData.stats);
+    } catch (e) {
+      console.error("Legislative sync failure", e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const filteredProposals = proposals.filter(p => {
+    if (filter === 'ALL_DIRECTIVES') return true;
+    if (filter === 'VOTING_ACTIVE') return p.status === 'Active' || p.status === 'Draft';
+    if (filter === 'PASSED') return p.status === 'Accepted';
+    return true;
+  });
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-white font-sans selection:bg-[#ff6b2b]/40 selection:text-white overflow-x-hidden pb-40">
@@ -96,9 +130,9 @@ export default function JudicialOversightPage() {
                      <Scale size={150} className="text-[#ff6b2b]" />
                   </div>
                   <div className="text-[11px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none pl-1">Network Consensus Integrity</div>
-                  <div className="text-7xl font-black text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{99.98}%</div>
+                  <div className="text-7xl font-black text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{stats?.integrityRating || 99.98}%</div>
                   <div className="h-4 w-full bg-black border-2 border-white/5 rounded-full overflow-hidden shadow-inner p-[2px] relative z-20">
-                      <div className="h-full bg-[#ff6b2b] w-[99.98%] shadow-[0_0_30px_rgba(255,107,43,0.6)] rounded-full" />
+                      <div className="h-full bg-[#ff6b2b] shadow-[0_0_30px_rgba(255,107,43,0.6)] rounded-full transition-all duration-1000" style={{ width: `${stats?.integrityRating || 99.98}%` }} />
                   </div>
                </div>
           </div>
@@ -107,10 +141,10 @@ export default function JudicialOversightPage() {
         {/* ── CORE METRICS ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
-                { title: 'Governance Power', value: '58.2M', icon: <Vote size={28} />, detail: 'V7_CAST_WEIGHT' },
-                { title: 'Active Proposals', value: '142', icon: <FileText size={28} />, detail: 'QUEUE_DIRECTIVES' },
-                { title: 'Council Members', value: '1,024', icon: <Users size={28} />, detail: 'VERIFIED_NODES' },
-                { title: 'Protocol Version', value: 'v7.0.4', icon: <ShieldCheck size={28} />, detail: 'OMEGA_CORE_OS' },
+                { title: 'Governance Power', value: stats ? `${(stats.totalVotes / 1000).toFixed(1)}K` : '...', icon: <Vote size={28} />, detail: 'RESONANCE_TRANS' },
+                { title: 'Active Proposals', value: stats?.totalProposals || '...', icon: <FileText size={28} />, detail: 'QUEUE_DIRECTIVES' },
+                { title: 'Council Members', value: stats?.uniqueVoters || '...', icon: <Users size={28} />, detail: 'VERIFIED_NODES' },
+                { title: 'Protocol Version', value: stats?.protocolVersion || '...', icon: <ShieldCheck size={28} />, detail: 'OMEGA_CORE_OS' },
             ].map((stat, i) => (
                 <div key={stat.title} className="p-8 md:p-12 bg-[#050505] border-2 border-white/5 rounded-[2.5rem] md:rounded-[4rem] backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] space-y-8 group hover:border-[#ff6b2b]/20 transition-all relative overflow-hidden shadow-inner flex flex-col justify-between h-[300px]">
                      <div className="absolute top-0 right-0 p-10 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-white font-black italic uppercase leading-none text-[8rem]">0{i+1}</div>
@@ -134,16 +168,30 @@ export default function JudicialOversightPage() {
                     <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic flex items-center gap-10 text-white/40 leading-none pl-4">
                         <Activity size={48} className="text-[#ff6b2b] animate-pulse" strokeWidth={3} /> Active Amendments
                     </h2>
-                    <div className="px-10 py-3 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[12px] text-[#ff6b2b] font-black uppercase tracking-[0.6em] italic leading-none animate-pulse">RESONANCE_PHASE_07</div>
+                    <div className="flex gap-4">
+                        {['ALL_DIRECTIVES', 'VOTING_ACTIVE', 'PASSED'].map(f => (
+                            <button 
+                                key={f}
+                                onClick={() => setFilter(f)}
+                                className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest italic transition-all border-2 ${filter === f ? 'bg-[#ff6b2b] text-black border-[#ff6b2b]' : 'bg-transparent text-white/20 border-white/5 hover:border-white/20'}`}
+                            >
+                                {f.replace('_', ' ')}
+                            </button>
+                        ))}
+                    </div>
                 </div>
                 
                 <div className="space-y-12">
-                    {[
-                        { id: 'UXL-V5-AMEND-1', title: 'Recalibrate Asset Translocation Protocols', creator: 'Architect_0x01', status: 'VOTING_ACTIVE', progress: 82, votes: '42,801' },
-                        { id: 'M2M-GEN-RULE-14', title: 'Pact Enforcement Integrity Update', creator: 'Sovereign_Node_X', status: 'PASSED', progress: 100, votes: '58,241' },
-                        { id: 'GOV-SHARD-MIN-5', title: 'Distribute Sovereign Reserves to Active Shards', creator: 'Treasury_Agent', status: 'VOTING_ACTIVE', progress: 45, votes: '12,410' },
-                    ].map((proposal, i) => (
-                        <div key={proposal.id} className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group hover:border-[#ff6b2b]/40 transition-all flex flex-col gap-12">
+                    <AnimatePresence mode="popLayout">
+                    {filteredProposals.map((proposal, i) => (
+                        <motion.div 
+                            layout
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            key={proposal.id} 
+                            className="bg-[#050505] border-2 border-white/10 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group hover:border-[#ff6b2b]/40 transition-all flex flex-col gap-12"
+                        >
                              <div className="absolute inset-y-0 left-0 w-2 bg-[#ff6b2b] scale-y-0 group-hover:scale-y-100 transition-transform origin-top z-10" />
                              <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-150 transition-transform duration-3000">
                                 <Binary size={300} className="text-[#ff6b2b]" />
@@ -152,8 +200,8 @@ export default function JudicialOversightPage() {
                              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 relative z-20">
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-6">
-                                        <span className="text-[11px] font-mono font-black text-[#ff6b2b] bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/20 px-6 py-2 rounded-full uppercase tracking-[0.3em] italic leading-none">{proposal.id}</span>
-                                        {proposal.status === 'VOTING_ACTIVE' && (
+                                        <span className="text-[11px] font-mono font-black text-[#ff6b2b] bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/20 px-6 py-2 rounded-full uppercase tracking-[0.3em] italic leading-none">HIP-{proposal.hipNumber.toString().padStart(4, '0')}</span>
+                                        {(proposal.status === 'Active' || proposal.status === 'Draft') && (
                                             <div className="flex items-center gap-4">
                                                <span className="h-3 w-3 rounded-full bg-[#ff6b2b] animate-ping shadow-[0_0_15px_#ff6b2b]" />
                                                <span className="text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.6em] italic animate-pulse leading-none">RESONATING</span>
@@ -162,31 +210,32 @@ export default function JudicialOversightPage() {
                                     </div>
                                     <h3 className="text-4xl lg:text-5xl font-black text-white/40 group-hover:text-white transition-colors italic tracking-tighter leading-[0.9] pr-12">"{proposal.title}"</h3>
                                     <div className="flex items-center gap-6 text-[11px] font-black text-white/5 uppercase tracking-[0.5em] italic leading-none pl-1">
-                                       <Terminal size={16} strokeWidth={3} className="text-[#ff6b2b]/40" /> Proposed_by: {proposal.creator}
+                                       <Terminal size={16} strokeWidth={3} className="text-[#ff6b2b]/40" /> Proposed_by: {proposal.authorId}
                                     </div>
                                 </div>
                                 <div className="text-left md:text-right space-y-4 shrink-0 pr-4">
                                     <div className="text-[10px] text-white/10 uppercase tracking-[0.8em] font-black italic leading-none">Consensus_Status</div>
-                                    <div className={`text-3xl font-black uppercase tracking-widest italic leading-none ${proposal.status === 'PASSED' ? 'text-emerald-500' : 'text-[#ff6b2b] animate-pulse'}`}>{proposal.status}</div>
+                                    <div className={`text-3xl font-black uppercase tracking-widest italic leading-none ${proposal.status === 'Accepted' ? 'text-emerald-500' : 'text-[#ff6b2b] animate-pulse'}`}>{proposal.status}</div>
                                 </div>
                              </div>
 
                              <div className="space-y-8 relative z-20 pl-2">
                                  <div className="flex justify-between items-end text-[12px] font-black uppercase tracking-[0.6em] italic leading-none">
                                      <span className="text-white/10 flex items-center gap-4"><Layers size={20} className="text-[#ff6b2b]/20" /> Sync Consensus Progress</span>
-                                     <span className="text-white flex items-center gap-6"><Activity size={20} className="text-[#ff6b2b]" /> {proposal.progress}% // {proposal.votes} Transmissions</span>
+                                     <span className="text-white flex items-center gap-6"><Activity size={20} className="text-[#ff6b2b]" /> {Math.min((proposal.resonance / 10), 100).toFixed(1)}% // {proposal.voteCount} Transmissions</span>
                                  </div>
                                  <div className="h-4 w-full bg-black border-2 border-white/5 rounded-full overflow-hidden shadow-inner p-[2px]">
                                      <motion.div 
                                         initial={{ width: 0 }}
-                                        animate={{ width: `${proposal.progress}%` }}
+                                        animate={{ width: `${Math.min((proposal.resonance / 10), 100)}%` }}
                                         transition={{ duration: 2, ease: "circOut" }}
-                                        className={`h-full shadow-2xl rounded-full ${proposal.status === 'PASSED' ? 'bg-emerald-500 shadow-emerald-500/40' : 'bg-[#ff6b2b] shadow-[#ff6b2b]/40'}`}
+                                        className={`h-full shadow-2xl rounded-full ${proposal.status === 'Accepted' ? 'bg-emerald-500 shadow-emerald-500/40' : 'bg-[#ff6b2b] shadow-[#ff6b2b]/40'}`}
                                      />
                                  </div>
                              </div>
-                        </div>
+                        </motion.div>
                     ))}
+                    </AnimatePresence>
                 </div>
 
                 <div className="p-12 lg:p-16 border-2 border-dashed border-white/10 responsive-rounded bg-white/[0.01] text-center space-y-12 shadow-inner group hover:border-[#ff6b2b]/30 transition-all">
@@ -199,9 +248,9 @@ export default function JudicialOversightPage() {
                            Initialize a new protocol directive for the OMEGA ecosystem. 
                            <span className="text-[#ff6b2b]/60"> Security deposit</span> of 1,000 $VALLE required for mission verification.
                         </p>
-                        <button className="mt-8 px-20 py-8 bg-white text-black font-black uppercase tracking-[0.8em] text-[11px] rounded-[2.5rem] hover:bg-[#ff6b2b] hover:shadow-[0_40px_80px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/draft">
+                        <Link href="/governance" className="inline-block mt-8 px-20 py-8 bg-white text-black font-black uppercase tracking-[0.8em] text-[11px] rounded-[2.5rem] hover:bg-[#ff6b2b] hover:shadow-[0_40px_80px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/draft">
                            Construct Directive <ArrowRight size={20} className="inline ml-4 group-hover/draft:translate-x-3 transition-transform" strokeWidth={3} />
-                        </button>
+                        </Link>
                      </div>
                 </div>
             </div>
@@ -227,9 +276,9 @@ export default function JudicialOversightPage() {
                             <span className="relative z-10 flex items-center justify-center gap-6">Connect Delegate Shard <Radio size={20} className="animate-pulse" strokeWidth={3} /></span>
                             <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity" />
                         </button>
-                        <button className="w-full py-10 border-2 border-white/10 bg-black text-white/20 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 font-black uppercase tracking-[0.8em] rounded-[3rem] hover:bg-[#ff6b2b]/5 transition-all text-[11px] italic leading-none active:scale-95 group/btn">
+                        <Link href="/governance" className="w-full py-10 border-2 border-white/10 bg-black text-white/20 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 font-black uppercase tracking-[0.8em] rounded-[3rem] hover:bg-[#ff6b2b]/5 transition-all text-[11px] italic leading-none active:scale-95 group/btn flex items-center justify-center">
                             View Voting Ledger
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

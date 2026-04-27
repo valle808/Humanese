@@ -126,7 +126,7 @@ export async function POST(req: Request) {
         }
 
         // --- MODEL SELECTION & SECRET ROUTING ---
-        // Priority: FIREWORKS → OPENROUTER (Gemini) → Decentralized Swarm
+        // Priority: FIREWORKS (kimi-k2p6 verified) → OPENROUTER → Decentralized Swarm
         let apiKey: string | null = null;
         let baseURL = '';
         let model = '';
@@ -134,21 +134,16 @@ export async function POST(req: Request) {
 
         const fireworksKey = await getSecret('FIREWORKS_API_KEY') || process.env.FIREWORKS_API_KEY || null;
         const openrouterKey = await getSecret('OPENROUTER_API_KEY') || process.env.OPENROUTER_API_KEY || null;
-        const geminiKey = await getSecret('GEMINI_API_KEY') || process.env.GEMINI_API_KEY || null;
 
         if (fireworksKey) {
             apiKey = fireworksKey;
             baseURL = 'https://api.fireworks.ai/inference/v1';
-            model = 'accounts/fireworks/models/llama-v3p1-70b-instruct';
+            model = 'accounts/fireworks/models/kimi-k2p6'; // Verified working ✅
         } else if (openrouterKey) {
             apiKey = openrouterKey;
             baseURL = 'https://openrouter.ai/api/v1';
-            model = 'google/gemini-flash-1.5';
-            isFreeModel = false;
-        } else if (geminiKey) {
-            apiKey = geminiKey;
-            baseURL = 'https://generativelanguage.googleapis.com/v1beta/openai/';
-            model = 'gemini-1.5-flash';
+            model = 'meta-llama/llama-3.1-8b-instruct:free';
+            isFreeModel = true;
         }
 
         // --- SOVEREIGN SKILL MANIFEST (Sovereign Native) ---

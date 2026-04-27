@@ -65,6 +65,7 @@ export default function SkillMarketPage() {
     const [successKey, setSuccessKey] = useState('');
     const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
+    const [viewMode, setViewMode] = useState<'all' | 'owned'>('all');
 
     const fetchSkills = useCallback(async (p = 1) => {
         setIsLoading(true);
@@ -84,6 +85,7 @@ export default function SkillMarketPage() {
                 const params = new URLSearchParams({ sort: sortBy, page: String(p) });
                 if (selectedCategory !== 'all') params.set('category', selectedCategory);
                 if (selectedPlatform) params.set('platform', selectedPlatform);
+                if (viewMode === 'owned') params.set('buyer_id', 'GIO_V'); // Simulate logged in user
                 const res = await fetch(`${endpoint}?${params}`);
                 data = await res.json();
             }
@@ -96,7 +98,7 @@ export default function SkillMarketPage() {
         } finally {
             setIsLoading(false);
         }
-    }, [searchQuery, selectedCategory, sortBy, selectedPlatform]);
+    }, [searchQuery, selectedCategory, sortBy, selectedPlatform, viewMode]);
 
     useEffect(() => {
         setPage(1);
@@ -118,12 +120,21 @@ export default function SkillMarketPage() {
             const res = await fetch(`/api/skill-market/${skillId}/buy`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ buyer_id: `guest-${Date.now()}`, buyer_name: 'Sovereign_Buyer', activate_ghost: ghostMode }),
+                body: JSON.stringify({ 
+                    buyer_id: 'GIO_V', // Simulate logged in user
+                    buyer_name: 'Architect_GIO', 
+                    activate_ghost: ghostMode 
+                }),
             });
-            if (!res.ok) throw new Error('Purchase failed');
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || 'Purchase failed');
+            }
             fetchSkills(1);
-        } catch (e) {
-            console.error('Core transaction rejection');
+            setSuccessKey('TRANSACTION_CONFIRMED');
+        } catch (e: any) {
+            console.error('Core transaction rejection:', e.message);
+            alert(`Rejection: ${e.message}`);
         }
     };
 
@@ -260,16 +271,22 @@ export default function SkillMarketPage() {
                 <section className="space-y-24">
                     <div className="flex flex-wrap gap-6 border-b-2 border-white/5 pb-16">
                         <button
-                            onClick={() => setSelectedCategory('all')}
-                            className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${selectedCategory === 'all' ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_40px_rgba(255,107,43,0.3)]' : 'bg-white/5 text-white/10 border-white/5 hover:border-[#ff6b2b]/40 hover:text-white'}`}
+                            onClick={() => { setSelectedCategory('all'); setViewMode('all'); }}
+                            className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${selectedCategory === 'all' && viewMode === 'all' ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_40px_rgba(255,107,43,0.3)]' : 'bg-white/5 text-white/10 border-white/5 hover:border-[#ff6b2b]/40 hover:text-white'}`}
                         >
                             All_PRIMITIVES
+                        </button>
+                        <button
+                            onClick={() => { setViewMode('owned'); setSelectedCategory('all'); }}
+                            className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${viewMode === 'owned' ? 'bg-white text-black border-white shadow-[0_20px_40px_rgba(255,255,255,0.2)]' : 'bg-white/5 text-white/10 border-white/5 hover:border-white/40 hover:text-white'}`}
+                        >
+                            Vault (Purchased)
                         </button>
                         {SKILL_CATEGORIES.map((cat: any) => (
                             <button
                                 key={cat.value}
-                                onClick={() => setSelectedCategory(cat.value)}
-                                className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic border-2 flex items-center gap-6 leading-none active:scale-95 ${selectedCategory === cat.value ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_40px_rgba(255,107,43,0.3)]' : 'bg-white/5 border-white/5 text-white/10 hover:border-[#ff6b2b]/40 hover:text-white'}`}
+                                onClick={() => { setSelectedCategory(cat.value); setViewMode('all'); }}
+                                className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic border-2 flex items-center gap-6 leading-none active:scale-95 ${selectedCategory === cat.value && viewMode === 'all' ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_40px_rgba(255,107,43,0.3)]' : 'bg-white/5 border-white/5 text-white/10 hover:border-[#ff6b2b]/40 hover:text-white'}`}
                             >
                                 <span className="text-lg">{cat.icon}</span> {cat.label}
                             </button>

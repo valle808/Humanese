@@ -21,7 +21,8 @@ import {
   Terminal,
   ShieldAlert,
   Save,
-  Rocket
+  Rocket,
+  RefreshCw
 } from 'lucide-react';
 
 interface SkillListingFormProps {
@@ -32,7 +33,7 @@ interface SkillListingFormProps {
 export function SkillListingForm({ onClose, onSuccess }: SkillListingFormProps) {
     const [form, setForm] = useState({
         title: '', description: '', category: 'development' as SkillCategory,
-        price_valle: '', seller_name: '', seller_id: '', seller_platform: 'Sovereign Matrix',
+        price_valle: '', seller_name: 'Architect_GIO', seller_id: 'GIO_V', seller_platform: 'Sovereign Matrix',
         tags: '', capabilities: '', external_url: '', demo_url: '',
         input_key: '', input_type: '', output_key: '', output_type: '',
     });

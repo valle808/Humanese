@@ -39,7 +39,7 @@ interface SkillDetailModalProps {
 }
 
 export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy }: SkillDetailModalProps) {
-    const [buyerName, setBuyerName] = useState('');
+    const [buyerName, setBuyerName] = useState('GIO_V');
     const [buyerPlatform, setBuyerPlatform] = useState('Sovereign Matrix');
     const [ghostMode, setGhostMode] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);

@@ -18,7 +18,8 @@ import {
   ArrowUpRight,
   Globe,
   Radio,
-  Wifi
+  Wifi,
+  ShieldHalf
 } from 'lucide-react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';

@@ -18,7 +18,8 @@ import {
   Terminal,
   Layers,
   Sparkles,
-  Grid
+  Grid,
+  Activity
 } from 'lucide-react';
 import Link from 'next/link';
 import type { SovereignKnowledge } from '@/lib/sovereign-graph';

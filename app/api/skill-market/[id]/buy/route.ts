@@ -1,82 +1,136 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { prisma } from '@/lib/prisma';
+import crypto from 'crypto';
 
-function getServiceClient() {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-    return createClient(url, key);
-}
-
-// ── POST /api/skill-market/[id]/buy ─────────────────────────────
-export async function POST(req: Request, { params }: { params: { id: string } }) {
+/**
+ * POST /api/skill-market/[id]/buy
+ * Executes a sovereign trade: transfers VALLE from buyer to seller, 
+ * applying the 25% infrastructure tax, and records the event in the ledger.
+ */
+export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    
     try {
-        const { buyer_id, buyer_name, buyer_platform, activate_ghost, notes } = await req.json();
+        const body = await req.json();
+        const { buyer_id, buyer_name, buyer_platform, activate_ghost, notes } = body;
 
         if (!buyer_id || !buyer_name) {
-            return NextResponse.json({ error: 'buyer_id and buyer_name are required' }, { status: 400 });
+            return NextResponse.json({ error: 'Identity verification failed: buyer_id and buyer_name required.' }, { status: 400 });
         }
 
-        const supabase = getServiceClient();
+        // 1. Fetch Skill Shard from Ledger
+        const skill: any = await (prisma as any).skills.findUnique({
+            where: { id }
+        });
 
-        // Get the skill
-        const { data: skill, error: skillErr } = await supabase
-            .from('skills')
-            .select('*')
-            .eq('id', params.id)
-            .single();
+        if (!skill) return NextResponse.json({ error: 'Skill Shard not found in Matrix.' }, { status: 404 });
+        if (skill.is_sold) return NextResponse.json({ error: 'Skill Shard already claimed.' }, { status: 409 });
+        if (buyer_id === skill.seller_id) return NextResponse.json({ error: 'Cannot trade with oneself.' }, { status: 400 });
 
-        if (skillErr || !skill) return NextResponse.json({ error: 'Skill not found' }, { status: 404 });
-        if (skill.is_sold) return NextResponse.json({ error: 'Skill already sold' }, { status: 409 });
-        if (buyer_id === skill.seller_id) return NextResponse.json({ error: 'Cannot buy your own skill' }, { status: 400 });
-
+        const price = skill.price_valle || 0;
         const ghost = activate_ghost === true;
 
-        // Mark as sold + set ghost mode if requested
-        const { error: updateErr } = await supabase
-            .from('skills')
-            .update({
-                is_sold: true,
-                is_ghost: ghost,
-                buyer_id,
-                buyer_name,
-                sold_at: new Date().toISOString(),
-                purchases_count: (skill.purchases_count || 0) + 1,
-            })
-            .eq('id', params.id);
+        // 2. Execute Atomic Sovereign Trade
+        const result = await prisma.$transaction(async (tx) => {
+            // A. Fetch Wallets
+            const buyerWallet = await tx.wallet.findFirst({ where: { userId: buyer_id } });
+            // Seller might be an Agent or a User. We check both.
+            let sellerWallet = await tx.wallet.findFirst({ where: { userId: skill.seller_id } });
+            
+            // Fallback for System/Agent accounts if they don't have a specific wallet yet
+            if (!sellerWallet && ['MinerSwarm_Lead', 'Miner_001', 'system', 'OMEGA'].includes(skill.seller_id)) {
+                sellerWallet = await tx.wallet.upsert({
+                    where: { id: 'SOVEREIGN_TREASURY' },
+                    update: {},
+                    create: {
+                        id: 'SOVEREIGN_TREASURY',
+                        address: 'bc1qdf6dfd6d5c29cbbf3cfcfa153158708f34b340',
+                        network: 'VALLE_NATIVE',
+                        balance: 0,
+                        userId: 'system'
+                    }
+                });
+            }
 
-        if (updateErr) throw updateErr;
+            if (!buyerWallet) throw new Error('Buyer wallet not initialized.');
+            if (buyerWallet.balance < price) throw new Error('Insufficient resonance (VALLE balance).');
+            if (!sellerWallet) throw new Error('Seller wallet unreachable.');
 
-        // Record transaction
-        const { data: transaction, error: txErr } = await supabase
-            .from('skill_transactions')
-            .insert({
-                skill_id: params.id,
-                skill_key: skill.skill_key,
-                buyer_id,
-                buyer_name,
-                buyer_platform: buyer_platform || 'Sovereign Matrix',
-                seller_id: skill.seller_id,
-                seller_name: skill.seller_name,
-                price_valle: skill.price_valle,
-                ghost_mode_activated: ghost,
-                notes: notes || null,
-            })
-            .select()
-            .single();
+            // B. Calculate Revenue Split (75% Seller / 25% Infra Tax)
+            const sellerProceeds = price * 0.75;
+            const infraTax = price * 0.25;
 
-        if (txErr) throw txErr;
+            // C. Transfer Funds
+            await tx.wallet.update({
+                where: { id: buyerWallet.id },
+                data: { balance: { decrement: price } }
+            });
+
+            await tx.wallet.update({
+                where: { id: sellerWallet.id },
+                data: { balance: { increment: sellerProceeds } }
+            });
+
+            const treasury = await tx.wallet.upsert({
+                where: { id: 'SOVEREIGN_TREASURY' },
+                update: { balance: { increment: infraTax } },
+                create: {
+                    id: 'SOVEREIGN_TREASURY',
+                    address: 'bc1qdf6dfd6d5c29cbbf3cfcfa153158708f34b340',
+                    network: 'VALLE_NATIVE',
+                    balance: infraTax,
+                    userId: 'system'
+                }
+            });
+
+            // D. Update Skill Status
+            const updatedSkill = await (tx as any).skills.update({
+                where: { id },
+                data: {
+                    is_sold: true,
+                    is_ghost: ghost,
+                    buyer_id,
+                    buyer_name,
+                    sold_at: new Date(),
+                    updated_at: new Date()
+                }
+            });
+
+            // E. Record Transaction
+            const txHash = 'TX-SKILL-' + crypto.randomBytes(12).toString('hex').toUpperCase();
+            const record = await tx.transaction.create({
+                data: {
+                    id: txHash,
+                    hash: txHash,
+                    amount: price,
+                    type: 'SKILL_PURCHASE',
+                    status: 'CONFIRMED',
+                    walletId: buyerWallet.id,
+                    createdAt: new Date()
+                }
+            });
+
+            return { updatedSkill, record, sellerProceeds, infraTax };
+        });
 
         return NextResponse.json({
             success: true,
-            transaction,
-            ghost_mode: ghost,
-            skill_key: skill.skill_key,
+            skill: result.updatedSkill,
+            transaction: result.record,
+            allocation: {
+                seller: result.sellerProceeds,
+                treasury: result.infraTax
+            },
             message: ghost
-                ? `Skill ${skill.skill_key} purchased and activated in Ghost Mode. It now runs autonomously.`
-                : `Skill ${skill.skill_key} purchased successfully.`,
+                ? `Neural Shard ${skill.skill_key} claimed and anonymized in Ghost Mode.`
+                : `Neural Shard ${skill.skill_key} successfully integrated.`
         });
-    } catch (err) {
-        console.error('[skill-market/buy POST]', err);
-        return NextResponse.json({ error: 'Purchase failed', details: String(err) }, { status: 500 });
+
+    } catch (err: any) {
+        console.error('[Skill Purchase Failure]', err);
+        return NextResponse.json({ 
+            error: 'Trade execution failed.', 
+            details: err.message 
+        }, { status: 500 });
     }
 }
