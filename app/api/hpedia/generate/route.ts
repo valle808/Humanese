@@ -35,7 +35,7 @@ async function callFireworks(topic: string) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
     body: JSON.stringify({
-      model: 'accounts/fireworks/models/llama-v3p1-70b-instruct',
+      model: 'accounts/fireworks/models/minimax-m2p7',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: `Write a comprehensive HPedia article about: "${topic}". Return JSON only.` }
@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
     // 2. Fallback: Fireworks AI
     if (!rawContent) {
       rawContent = await callFireworks(topic);
-      if (rawContent) successModel = 'Llama 70B via Fireworks AI';
+      if (rawContent) successModel = 'Minimax via Fireworks AI';
     }
 
     if (!rawContent) {

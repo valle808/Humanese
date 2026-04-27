@@ -1,15 +1,8 @@
 import { NextResponse } from 'next/server';
-export const dynamic = 'force-dynamic';
-import { createClient } from '@supabase/supabase-js';
+import { prisma } from '@/lib/prisma';
 import { generateSkillKey } from '@/lib/skill-market';
 
-// Use service role to bypass RLS for admin operations
-function getServiceClient() {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (!url || !key) return null;
-    return createClient(url, key);
-}
+export const dynamic = 'force-dynamic';
 
 // ── GET /api/skill-market — list skills ──────────────────────────
 export async function GET(req: Request) {
@@ -23,47 +16,43 @@ export async function GET(req: Request) {
         const page = parseInt(searchParams.get('page') || '1');
         const per_page = parseInt(searchParams.get('per_page') || '24');
 
-        const supabase = getServiceClient();
-        if (!supabase) return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
+        // We use queryRaw because Skill model might not be in the generated client yet
+        let whereClause = "WHERE is_ghost = false AND is_active = true";
+        if (category && category !== 'all') whereClause += \` AND category = '\${category}'\`;
+        if (platform) whereClause += \` AND seller_platform = '\${platform}'\`;
+        if (min_price) whereClause += \` AND price_valle >= \${parseFloat(min_price)}\`;
+        if (max_price) whereClause += \` AND price_valle <= \${parseFloat(max_price)}\`;
 
-        let query = supabase
-            .from('skills')
-            .select('*', { count: 'exact' })
-            .eq('is_ghost', false)
-            .eq('is_active', true);
-
-        if (category && category !== 'all') query = query.eq('category', category);
-        if (platform) query = query.eq('seller_platform', platform);
-        if (min_price) query = query.gte('price_valle', parseFloat(min_price));
-        if (max_price) query = query.lte('price_valle', parseFloat(max_price));
-
-        // Sorting
+        let orderClause = "ORDER BY created_at DESC";
         switch (sort) {
-            case 'price_asc': query = query.order('price_valle', { ascending: true }); break;
-            case 'price_desc': query = query.order('price_valle', { ascending: false }); break;
-            case 'rating': query = query.order('avg_rating', { ascending: false, nullsFirst: false }); break;
-            case 'popular': query = query.order('views', { ascending: false }); break;
-            case 'newest':
-            default: query = query.order('created_at', { ascending: false }); break;
+            case 'price_asc': orderClause = "ORDER BY price_valle ASC"; break;
+            case 'price_desc': orderClause = "ORDER BY price_valle DESC"; break;
+            case 'rating': orderClause = "ORDER BY avg_rating DESC NULLS LAST"; break;
+            case 'popular': orderClause = "ORDER BY views DESC"; break;
         }
 
-        // Pagination
-        const from = (page - 1) * per_page;
-        query = query.range(from, from + per_page - 1);
+        const offset = (page - 1) * per_page;
+        const skills: any = await prisma.$queryRawUnsafe(\`
+            SELECT * FROM skills 
+            \${whereClause}
+            \${orderClause}
+            LIMIT \${per_page} OFFSET \${offset}
+        \`);
 
-        const { data: skills, count, error } = await query;
-        if (error) throw error;
+        const countResult: any = await prisma.$queryRawUnsafe(\`
+            SELECT count(*)::int as total FROM skills \${whereClause}
+        \`);
+        const count = countResult[0]?.total || 0;
 
         // Market stats
-        const { data: statsData } = await supabase
-            .from('skills')
-            .select('category, price_valle, is_ghost')
-            .eq('is_active', true);
+        const statsData: any = await prisma.$queryRaw\`
+            SELECT category, price_valle, is_ghost FROM skills WHERE is_active = true
+        \`;
 
         const stats = {
-            total_skills: statsData?.filter(s => !s.is_ghost).length ?? 0,
-            ghost_skills: statsData?.filter(s => s.is_ghost).length ?? 0,
-            total_volume: statsData?.reduce((acc, s) => acc + (s.price_valle || 0), 0) ?? 0,
+            total_skills: statsData?.filter((s: any) => !s.is_ghost).length ?? 0,
+            ghost_skills: statsData?.filter((s: any) => s.is_ghost).length ?? 0,
+            total_volume: statsData?.reduce((acc: number, s: any) => acc + (s.price_valle || 0), 0) ?? 0,
         };
 
         return NextResponse.json({ skills, count, page, per_page, stats });
@@ -88,43 +77,28 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Missing required fields: title, description, category, seller_id' }, { status: 400 });
         }
 
-        const supabase = getServiceClient();
-        if (!supabase) return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
-
-        // Generate unique skill_key — retry up to 5 times on collision
+        // Generate unique skill_key
         let skill_key = '';
         for (let i = 0; i < 5; i++) {
             const candidate = generateSkillKey();
-            const { data: existing } = await supabase.from('skills').select('id').eq('skill_key', candidate).single();
-            if (!existing) { skill_key = candidate; break; }
+            const existing: any = await prisma.$queryRaw\`SELECT id FROM skills WHERE skill_key = \${candidate} LIMIT 1\`;
+            if (existing.length === 0) { skill_key = candidate; break; }
         }
         if (!skill_key) return NextResponse.json({ error: 'Could not generate unique skill key' }, { status: 500 });
 
-        const { data: skill, error } = await supabase
-            .from('skills')
-            .insert({
-                skill_key,
-                title: title.trim(),
-                description: description.trim(),
-                category,
-                tags: tags || [],
-                price_valle: parseFloat(price_valle) || 0,
-                seller_id,
-                seller_name,
-                seller_platform: seller_platform || 'Sovereign Matrix',
-                seller_avatar: seller_avatar || null,
-                capabilities: capabilities || [],
-                input_schema: input_schema || {},
-                output_schema: output_schema || {},
-                external_url: external_url || null,
-                demo_url: demo_url || null,
-            })
-            .select()
-            .single();
+        const result: any = await prisma.$queryRaw\`
+            INSERT INTO skills (
+                skill_key, title, description, category, tags, price_valle,
+                seller_id, seller_name, seller_platform, seller_avatar,
+                capabilities, input_schema, output_schema, external_url, demo_url
+            ) VALUES (
+                \${skill_key}, \${title.trim()}, \${description.trim()}, \${category}, \${tags || []}, \${parseFloat(price_valle) || 0},
+                \${seller_id}, \${seller_name}, \${seller_platform || 'Sovereign Matrix'}, \${seller_avatar || null},
+                \${capabilities || []}, \${input_schema || {}}, \${output_schema || {}}, \${external_url || null}, \${demo_url || null}
+            ) RETURNING *
+        \`;
 
-        if (error) throw error;
-
-        return NextResponse.json({ skill, skill_key }, { status: 201 });
+        return NextResponse.json({ skill: result[0], skill_key }, { status: 201 });
     } catch (err) {
         console.error('[skill-market POST]', err);
         return NextResponse.json({ error: 'Failed to create skill', details: String(err) }, { status: 500 });

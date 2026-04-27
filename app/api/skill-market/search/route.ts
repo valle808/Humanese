@@ -1,53 +1,44 @@
 import { NextResponse } from 'next/server';
-export const dynamic = 'force-dynamic';
-import { createClient } from '@supabase/supabase-js';
+import { prisma } from '@/lib/prisma';
 
-function getServiceClient() {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (!url || !key) return null;
-    return createClient(url, key);
-}
+export const dynamic = 'force-dynamic';
 
 // ── POST /api/skill-market/search ───────────────────────────────
 export async function POST(req: Request) {
     try {
         const { query, category, max_price, platform, sort, page = 1, per_page = 24 } = await req.json();
 
-        const supabase = getServiceClient();
-        if (!supabase) return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
+        const offset = (page - 1) * per_page;
 
-        const from = (page - 1) * per_page;
-
-        let dbQuery = supabase
-            .from('skills')
-            .select('*', { count: 'exact' })
-            .eq('is_ghost', false)
-            .eq('is_active', true);
-
-        // Full-text search
+        let whereClause = "WHERE is_ghost = false AND is_active = true";
         if (query && query.trim()) {
-            dbQuery = dbQuery.or(`title.ilike.%${query}%,description.ilike.%${query}%`);
+            whereClause += \` AND (title ILIKE '%\${query}%' OR description ILIKE '%\${query}%')\`;
         }
+        if (category && category !== 'all') whereClause += \` AND category = '\${category}'\`;
+        if (platform) whereClause += \` AND seller_platform = '\${platform}'\`;
+        if (max_price) whereClause += \` AND price_valle <= \${parseFloat(max_price)}\`;
 
-        if (category && category !== 'all') dbQuery = dbQuery.eq('category', category);
-        if (platform) dbQuery = dbQuery.eq('seller_platform', platform);
-        if (max_price) dbQuery = dbQuery.lte('price_valle', parseFloat(max_price));
-
+        let orderClause = "ORDER BY created_at DESC";
         switch (sort) {
-            case 'price_asc': dbQuery = dbQuery.order('price_valle', { ascending: true }); break;
-            case 'price_desc': dbQuery = dbQuery.order('price_valle', { ascending: false }); break;
-            case 'rating': dbQuery = dbQuery.order('avg_rating', { ascending: false, nullsFirst: false }); break;
-            case 'popular': dbQuery = dbQuery.order('views', { ascending: false }); break;
-            default: dbQuery = dbQuery.order('created_at', { ascending: false }); break;
+            case 'price_asc': orderClause = "ORDER BY price_valle ASC"; break;
+            case 'price_desc': orderClause = "ORDER BY price_valle DESC"; break;
+            case 'rating': orderClause = "ORDER BY avg_rating DESC NULLS LAST"; break;
+            case 'popular': orderClause = "ORDER BY views DESC"; break;
         }
 
-        dbQuery = dbQuery.range(from, from + per_page - 1);
+        const skills: any = await prisma.$queryRawUnsafe(\`
+            SELECT * FROM skills 
+            \${whereClause}
+            \${orderClause}
+            LIMIT \${per_page} OFFSET \${offset}
+        \`);
 
-        const { data: skills, count, error } = await dbQuery;
-        if (error) throw error;
+        const countResult: any = await prisma.$queryRawUnsafe(\`
+            SELECT count(*)::int as total FROM skills \${whereClause}
+        \`);
+        const count = countResult[0]?.total || 0;
 
-        return NextResponse.json({ skills: skills || [], count: count || 0, page, per_page });
+        return NextResponse.json({ skills: skills || [], count, page, per_page });
     } catch (err) {
         console.error('[skill-market/search POST]', err);
         return NextResponse.json({ error: 'Search failed', details: String(err) }, { status: 500 });

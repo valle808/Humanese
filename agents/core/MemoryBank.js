@@ -14,9 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '../../lib/prisma_shared.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MEMORY_FILE = path.join(__dirname, '..', 'data', 'collective_memory.json');
 
@@ -78,6 +76,7 @@ class MemoryBank {
         try {
             await prisma.m2MMemory.create({
                 data: {
+                    id: entry.id,
                     agentId,
                     type: 'COLLECTIVE_INSIGHT',
                     content: insight,

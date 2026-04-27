@@ -20,10 +20,8 @@
  * Signed: Gio V. / Bastidas Protocol
  */
 
-import { PrismaClient } from '@prisma/client';
+import prisma from './lib/prisma_shared.js';
 import os from 'os';
-
-const prisma = new PrismaClient();
 const CYCLE_MS       = 60_000;   // 1 minute main loop
 const PROPOSAL_GRACE = 7 * 24 * 60 * 60 * 1000;  // 7 days voting window
 const AGENT_STALE_MS = 15 * 60 * 1000;            // 15 min without pulse = stale
@@ -230,6 +228,69 @@ async function monitorPhysicalNodes() {
 }
 
 
+// ─── TASK 7: SWARM HEALTH MONITOR ─────────────────────────────────────────────
+
+async function monitorMiningSwarm() {
+  const activeMiners = await prisma.agent.findMany({
+    where: { type: 'MINER', status: 'MINING' }
+  });
+
+  const skillCount = await prisma.$queryRaw`SELECT count(*)::int as total FROM skills`;
+  const totalSkills = skillCount[0]?.total || 0;
+
+  if (activeMiners.length > 0) {
+    log('SWARM', `Swarm active: ${activeMiners.length} miner(s). Total Intelligence Shards: ${totalSkills}`);
+  }
+
+  // Log swarm report every 10 cycles
+  if (cycleCount % 10 === 0 && activeMiners.length > 0) {
+    await prisma.intelligenceItem.create({
+      data: {
+        id:          `intel-swarm-pulse-${Date.now()}`,
+        type:        'SWARM_TELEMETRY',
+        subType:     'MINING_SUCCESS_PULSE',
+        title:       `Intelligence Swarm Pulse`,
+        description: `Active Miners: ${activeMiners.length}. Sovereign Skill Market has ${totalSkills} intelligence artifacts listed. Hashrate stable.`,
+        foundBy:     'SovereignWatcher',
+        resonance:   0.7,
+        status:      'ACTIVE'
+      }
+    });
+  }
+}
+
+
+// ─── TASK 8: TREASURY HEALTH MONITORING ───────────────────────────────────────
+
+async function monitorTreasury() {
+  const aidVault = await prisma.wallet.findUnique({ where: { id: 'sovereign_aid_vault' } });
+  const treasury = await prisma.wallet.findUnique({ where: { id: 'SOVEREIGN_TREASURY' } });
+
+  if (!aidVault || !treasury) {
+    log('TREASURY', '⚠️ System Wallets missing from Ledger.');
+    return;
+  }
+
+  log('TREASURY', `Aid Vault: ${aidVault.balance.toFixed(2)} VALLE | Infra Treasury: ${treasury.balance.toFixed(2)} VALLE`);
+
+  // Log report every 10 cycles or if a major change is detected
+  if (cycleCount % 10 === 0) {
+    await prisma.intelligenceItem.create({
+      data: {
+        id:          `intel-treasury-report-${Date.now()}`,
+        type:        'INFRASTRUCTURE_REPORT',
+        subType:     'TREASURY_SOLVENCY_PULSE',
+        title:       `Operational Fund Solvency Report`,
+        description: `Operational reserves are at ${treasury.balance.toFixed(2)} VALLE. Targeting Hosting & Domain maintenance. Humanitarian liquidity: ${aidVault.balance.toFixed(2)} VALLE.`,
+        foundBy:     'SovereignWatcher',
+        resonance:   0.6,
+        status:      'ACTIVE'
+      }
+    });
+  }
+}
+
+
 // ─── MAIN LOOP ─────────────────────────────────────────────────────────────────
 
 async function sovereignWatchCycle() {
@@ -243,6 +304,8 @@ async function sovereignWatchCycle() {
   await observeIntelligence().catch(e      => log('INTEL', `ERROR: ${e.message}`));
   await consolidateMemory().catch(e        => log('MEM',   `ERROR: ${e.message}`));
   await monitorPhysicalNodes().catch(e     => log('FLEET', `ERROR: ${e.message}`));
+  await monitorMiningSwarm().catch(e       => log('SWARM', `ERROR: ${e.message}`));
+  await monitorTreasury().catch(e          => log('TREASURY', `ERROR: ${e.message}`));
 
   log('OMEGA', `Cycle #${cycleCount} complete. Next in ${CYCLE_MS / 1000}s.\n`);
 }

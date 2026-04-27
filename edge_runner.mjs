@@ -8,11 +8,9 @@
  * Usage: node edge_runner.mjs [NODE_NAME]
  */
 
-import { PrismaClient } from '@prisma/client';
+import prisma from './lib/prisma_shared.js';
 import os from 'os';
 import crypto from 'crypto';
-
-const prisma = new PrismaClient();
 const nodeName = process.argv[2] || `OVAL-NODE-${os.hostname()}`;
 const nodeHashrate = Math.floor(os.freemem() / (1024 * 1024 * 1024)) * 1.5 + 10; // Simple pseudo-benchmark
 

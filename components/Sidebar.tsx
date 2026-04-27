@@ -97,7 +97,7 @@ export const Sidebar = () => {
                 initial={false}
                 animate={{ width: isExpanded ? '20rem' : '7rem' }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-0 left-0 h-screen z-[100] border-r-2 border-border bg-background/95 backdrop-blur-3xl flex flex-col hidden md:flex shadow-[40px_0_100px_rgba(0,0,0,0.1)] dark:shadow-[40px_0_100px_rgba(0,0,0,0.8)] overflow-hidden"
+                className="fixed top-0 left-0 h-screen z-[100] border-r-2 border-border bg-background/95 backdrop-blur-3xl flex flex-col hidden md:flex shadow-[40px_0_100px_rgba(0,0,0,0.1)] dark:shadow-[40px_0_100px_rgba(0,0,0,0.8)]"
             >
                 <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
 

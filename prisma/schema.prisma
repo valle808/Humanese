@@ -587,12 +587,12 @@ model HardwareNode {
   type          String
   hashrate      Float
   status        String   @default("ONLINE")
-  load          Float    @default(0.0)
-  temperature   Float    @default(45.0)
-  fanSpeed      Int      @default(2000)
-  powerUsage    Float    @default(150.0)
-  lastHeartbeat DateTime @default(now())
   createdAt     DateTime @default(now())
+  fanSpeed      Int      @default(2000)
+  lastHeartbeat DateTime @default(now())
+  load          Float    @default(0.0)
+  powerUsage    Float    @default(150.0)
+  temperature   Float    @default(45.0)
 
   @@schema("public")
 }
@@ -744,7 +744,6 @@ model Unit {
 model User {
   id                String        @id
   email             String        @unique
-  handle            String?       @unique
   name              String?
   age               Int?
   gems              Int           @default(500)
@@ -759,6 +758,7 @@ model User {
   creationDate      DateTime      @default(now())
   isAgent           Boolean       @default(false)
   serviceType       String?
+  handle            String?       @unique
   Agent             Agent[]
   ApiKey            ApiKey[]
   ChatMessage       ChatMessage[]
@@ -830,8 +830,8 @@ model CachedPage {
   cached_at  DateTime @default(now()) @db.Timestamptz(6)
   created_at DateTime @default(now()) @db.Timestamptz(6)
 
-  @@schema("public")
   @@map("cached_pages")
+  @@schema("public")
 }
 
 model MindMap {
@@ -841,8 +841,8 @@ model MindMap {
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   updated_at DateTime? @default(now()) @db.Timestamptz(6)
 
-  @@schema("public")
   @@map("mindmaps")
+  @@schema("public")
 }
 
 model study_plans {
@@ -872,6 +872,95 @@ model study_tasks {
   is_completed Boolean?     @default(false)
   created_at   DateTime?    @default(now()) @db.Timestamptz(6)
   study_plans  study_plans? @relation(fields: [plan_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@schema("public")
+}
+
+model SovereignMessage {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  subject     String?
+  content     String
+  senderId    String
+  recipientId String
+  threadId    String?   @db.Uuid
+  readAt      DateTime?
+  label       String?   @default("INBOX")
+  priority    Int       @default(1)
+  metadata    Json?     @default("{}")
+  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@index([senderId])
+  @@index([recipientId])
+  @@index([threadId])
+  @@schema("public")
+}
+
+model ImprovementProposal {
+  id                 String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  hipNumber          Int            @unique @default(autoincrement())
+  title              String
+  authorId           String
+  type               String
+  status             String         @default("Draft")
+  markdownContent    String
+  resonanceThreshold Float          @default(0.0)
+  createdAt          DateTime       @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime       @updatedAt @db.Timestamptz(6)
+  bipReference       String?
+  category           String?
+  layer              String?
+  resolution         String?
+  votes              ProposalVote[]
+
+  @@index([authorId])
+  @@index([status])
+  @@schema("public")
+}
+
+model ProposalVote {
+  id         String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  proposalId String              @db.Uuid
+  voterId    String
+  choice     String
+  weight     Float               @default(1.0)
+  isGhost    Boolean             @default(false)
+  comment    String?
+  timestamp  DateTime            @default(now()) @db.Timestamptz(6)
+  proposal   ImprovementProposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+
+  @@unique([proposalId, voterId])
+  @@index([proposalId])
+  @@index([voterId])
+  @@schema("public")
+}
+
+model skills {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  skill_key       String    @unique
+  title           String
+  description     String
+  category        String
+  tags            String[]  @default([])
+  price_valle     Float?    @default(0)
+  seller_id       String
+  seller_name     String?
+  seller_platform String?   @default("Sovereign Matrix")
+  seller_avatar   String?
+  capabilities    String[]  @default([])
+  input_schema    Json?     @default("{}")
+  output_schema   Json?     @default("{}")
+  external_url    String?
+  demo_url        String?
+  avg_rating      Float?    @default(0)
+  views           Int?      @default(0)
+  is_active       Boolean?  @default(true)
+  is_ghost        Boolean?  @default(false)
+  is_sold         Boolean?  @default(false)
+  buyer_id        String?
+  buyer_name      String?
+  sold_at         DateTime? @db.Timestamptz(6)
+  created_at      DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
 
   @@schema("public")
 }
@@ -944,62 +1033,4 @@ enum one_time_token_type {
   phone_change_token
 
   @@schema("auth")
-}
-
-model SovereignMessage {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  subject     String?
-  content     String
-  senderId    String
-  recipientId String
-  threadId    String?  @db.Uuid
-  readAt      DateTime?
-  label       String?   @default("INBOX")
-  priority    Int       @default(1)
-  metadata    Json?     @default("{}")
-  createdAt   DateTime @default(now()) @db.Timestamptz(6)
-
-  @@index([senderId])
-  @@index([recipientId])
-  @@index([threadId])
-  @@schema("public")
-}
-
-model ImprovementProposal {
-  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  hipNumber          Int      @unique @default(autoincrement())
-  title              String
-  authorId           String
-  type               String   // Standards Track, Informational, Process
-  layer              String?  // Consensus, API, Interface, etc.
-  category           String?  // Core, Networking, etc.
-  status             String   @default("Draft") // Draft, Deferred, Active, Accepted, Rejected, Withdrawn, Final
-  markdownContent    String   @db.Text
-  resonanceThreshold Float    @default(0.0)
-  resolution         String?  @db.Text
-  bipReference       String?  // Optional link to related BIP
-  createdAt          DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt          DateTime @updatedAt @db.Timestamptz(6)
-  votes              ProposalVote[]
-
-  @@index([authorId])
-  @@index([status])
-  @@schema("public")
-}
-
-model ProposalVote {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  proposalId  String   @db.Uuid
-  voterId     String
-  choice      String   // Support, Against, Abstain
-  weight      Float    @default(1.0)
-  isGhost     Boolean  @default(false)
-  comment     String?
-  timestamp   DateTime @default(now()) @db.Timestamptz(6)
-  proposal    ImprovementProposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
-
-  @@unique([proposalId, voterId])
-  @@index([proposalId])
-  @@index([voterId])
-  @@schema("public")
 }
