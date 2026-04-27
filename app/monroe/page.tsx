@@ -148,27 +148,27 @@ export default function MonroePage() {
 
   if (viewMode === 'MACHINE') {
     return (
-      <div className="flex-1 flex flex-col p-6 space-y-6 min-h-screen bg-[#050505] text-[#ff6b2b] font-mono">
+      <div className="flex-1 flex flex-col p-6 space-y-6 min-h-screen bg-background dark:bg-[#050505] text-[#ff6b2b] font-mono">
         <header className="flex justify-between items-center border-b border-[#ff6b2b]/20 pb-6">
           <div className="flex items-center gap-3 text-lg font-black uppercase tracking-widest italic">
             <Terminal size={22} /> RAW_M2M_LEAK :: SECTOR_MONROE
           </div>
-          <button onClick={() => setViewMode('HUMAN')} className="px-5 py-2 border border-[#ff6b2b] bg-[#ff6b2b]/10 text-xs font-black uppercase tracking-widest hover:bg-[#ff6b2b] hover:text-black transition-all rounded-xl">
+          <button onClick={() => setViewMode('HUMAN')} className="px-5 py-2 border border-[#ff6b2b] bg-[#ff6b2b]/10 text-xs font-black uppercase tracking-widest hover:bg-[#ff6b2b] hover:text-foreground dark:hover:text-black transition-all rounded-xl">
             EXIT_MATRIX
           </button>
         </header>
-        <pre className="flex-1 overflow-auto text-xs leading-loose opacity-70 bg-black/40 p-6 rounded-2xl">{JSON.stringify(messages, null, 2)}</pre>
+        <pre className="flex-1 overflow-auto text-xs leading-loose opacity-70 bg-black/5 dark:bg-black/40 p-6 rounded-2xl text-foreground dark:text-white">{JSON.stringify(messages, null, 2)}</pre>
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white font-sans overflow-hidden flex flex-col lg:flex-row">
+    <div className="relative min-h-screen bg-background dark:bg-[#050505] text-foreground dark:text-white font-sans overflow-hidden flex flex-col lg:flex-row">
 
       {/* AMBIENT BG */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-[#ff6b2b]/4 blur-[200px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#ff6b2b]/2 blur-[180px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-[#ff6b2b]/10 dark:bg-[#ff6b2b]/4 blur-[200px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#ff6b2b]/5 dark:bg-[#ff6b2b]/2 blur-[180px] rounded-full" />
       </div>
 
       {/* ── LEFT SIDEBAR ── */}
@@ -179,7 +179,7 @@ export default function MonroePage() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -320, opacity: 0 }}
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-            className="fixed top-0 left-0 h-screen w-72 z-[90] border-r border-white/10 bg-black/80 backdrop-blur-3xl flex flex-col shadow-2xl xl:hidden"
+            className="fixed top-0 left-0 h-screen w-72 z-[90] border-r border-black/10 dark:border-white/10 bg-background/90 dark:bg-black/80 backdrop-blur-3xl flex flex-col shadow-2xl xl:hidden"
           >
             <SidebarContent knowledgeGraph={knowledgeGraph} onClose={() => setSidebarOpen(false)} onMachineView={() => setViewMode('MACHINE')} />
           </motion.aside>
@@ -187,7 +187,7 @@ export default function MonroePage() {
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden xl:flex w-64 flex-shrink-0 flex-col border-r border-white/10 bg-black/40 backdrop-blur-3xl relative z-10">
+      <aside className="hidden xl:flex w-64 flex-shrink-0 flex-col border-r border-black/10 dark:border-white/10 bg-background/50 dark:bg-black/40 backdrop-blur-3xl relative z-10">
         <SidebarContent knowledgeGraph={knowledgeGraph} onMachineView={() => setViewMode('MACHINE')} />
       </aside>
 
@@ -195,24 +195,24 @@ export default function MonroePage() {
       <main className="flex-1 relative z-10 flex flex-col h-screen overflow-hidden">
 
         {/* HEADER */}
-        <header className="flex-none flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-black/60 backdrop-blur-3xl">
+        <header className="flex-none flex items-center gap-3 px-4 py-3 border-b border-black/10 dark:border-white/10 bg-background/80 dark:bg-black/60 backdrop-blur-3xl">
           <button
             onClick={() => setSidebarOpen(s => !s)}
-            className="xl:hidden h-8 w-8 rounded-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 transition-all"
+            className="xl:hidden h-8 w-8 rounded-xl border border-black/10 dark:border-white/10 flex items-center justify-center text-foreground/40 dark:text-white/40 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 transition-all"
           >
             <Layers size={16} />
           </button>
-          <div className="h-8 w-8 bg-black border border-[#ff6b2b]/50 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(255,107,43,0.2)]">
+          <div className="h-8 w-8 bg-black/5 dark:bg-black border border-[#ff6b2b]/50 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(255,107,43,0.2)]">
             <BrainCircuit size={18} className="text-[#ff6b2b]" />
           </div>
           <div>
-            <span className="text-sm font-black uppercase tracking-tight text-white">Monroe <span className="text-[#ff6b2b]">v7.0</span></span>
+            <span className="text-sm font-black uppercase tracking-tight text-foreground dark:text-white">Monroe <span className="text-[#ff6b2b]">v7.0</span></span>
             <div className="flex items-center gap-1.5 mt-0.5">
               <div className="h-1.5 w-1.5 rounded-full bg-[#ff6b2b] animate-pulse" />
-              <span className="text-[10px] text-[#ff6b2b]/60 font-black tracking-widest uppercase">OMEGA STREAMING</span>
+              <span className="text-[10px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-widest uppercase">OMEGA STREAMING</span>
             </div>
           </div>
-          <div className="ml-auto flex items-center gap-2 text-[10px] text-white/20 font-black uppercase tracking-widest">
+          <div className="ml-auto flex items-center gap-2 text-[10px] text-foreground/30 dark:text-white/20 font-black uppercase tracking-widest">
             <Wifi size={12} /> SYNCED
           </div>
         </header>
@@ -240,30 +240,30 @@ export default function MonroePage() {
                     {m.images && m.images.length > 0 && (
                       <div className="flex gap-2 flex-wrap">
                         {m.images.map((img, idx) => (
-                          <img key={idx} src={img} alt="attachment" className="h-32 rounded-xl border border-white/10 object-contain bg-black/40" />
+                          <img key={idx} src={img} alt="attachment" className="h-32 rounded-xl border border-black/10 dark:border-white/10 object-contain bg-black/5 dark:bg-black/40" />
                         ))}
                       </div>
                     )}
                     <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${m.role === 'user'
-                        ? 'bg-white text-black font-medium rounded-tr-md'
-                        : 'bg-white/[0.04] border border-white/8 text-white/85 rounded-tl-md'
+                        ? 'bg-black text-white dark:bg-white dark:text-black font-medium rounded-tr-md shadow-md'
+                        : 'bg-black/5 border border-black/10 text-foreground dark:bg-white/[0.04] dark:border-white/8 dark:text-white/85 rounded-tl-md shadow-sm'
                       }`}>
                       {m.role === 'bot' ? (
-                        <div className="prose prose-invert prose-sm max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-[#ff6b2b] prose-a:text-[#ff6b2b] prose-code:text-[#ff6b2b] prose-code:bg-white/5 prose-code:px-1 prose-code:rounded prose-pre:bg-black/60 prose-pre:border prose-pre:border-white/10">
+                        <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-[#ff6b2b] prose-a:text-[#ff6b2b] prose-code:text-[#ff6b2b] prose-code:bg-black/5 dark:prose-code:bg-white/5 prose-code:px-1 prose-code:rounded prose-pre:bg-black/5 dark:prose-pre:bg-black/60 prose-pre:border prose-pre:border-black/10 dark:prose-pre:border-white/10">
                           <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.text}</ReactMarkdown>
                         </div>
                       ) : (
                         <span>{m.text}</span>
                       )}
                     </div>
-                    <span className="text-[10px] text-white/15 font-mono px-1">
+                    <span className="text-[10px] text-foreground/40 dark:text-white/30 font-mono px-1">
                       {m.role === 'bot' ? 'Monroe · OMEGA' : 'You'}
                     </span>
                   </div>
 
                   {m.role === 'user' && (
-                    <div className="h-7 w-7 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mt-0.5">
-                      <User size={14} className="text-white/50" />
+                    <div className="h-7 w-7 shrink-0 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center mt-0.5">
+                      <User size={14} className="text-foreground/50 dark:text-white/50" />
                     </div>
                   )}
                 </motion.div>
@@ -275,7 +275,7 @@ export default function MonroePage() {
                 <div className="h-7 w-7 shrink-0 rounded-xl bg-[#ff6b2b]/10 border border-[#ff6b2b]/30 flex items-center justify-center">
                   <BrainCircuit size={14} className="text-[#ff6b2b]" />
                 </div>
-                <div className="px-4 py-3 rounded-2xl rounded-tl-md bg-white/[0.04] border border-white/8 flex items-center gap-1.5">
+                <div className="px-4 py-3 rounded-2xl rounded-tl-md bg-black/5 border border-black/10 dark:bg-white/[0.04] dark:border-white/8 flex items-center gap-1.5 shadow-sm">
                   <Sparkles size={13} className="text-[#ff6b2b] animate-spin mr-1" />
                   {[0, 1, 2].map(n => (
                     <motion.div
@@ -292,14 +292,14 @@ export default function MonroePage() {
         </div>
 
         {/* INPUT BAR */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-5 pt-3 bg-gradient-to-t from-[#050505] via-[#050505]/95 to-transparent z-20">
+        <div className="absolute bottom-0 left-0 right-0 px-4 pb-5 pt-3 bg-gradient-to-t from-background via-background/95 dark:from-[#050505] dark:via-[#050505]/95 to-transparent z-20">
           <div className="max-w-3xl mx-auto">
             {attachments.length > 0 && (
               <div className="flex gap-2 mb-2 overflow-x-auto pb-1">
                 {attachments.map((file, idx) => (
                   <div key={idx} className="relative shrink-0 group">
-                    <img src={file.preview} className="h-14 w-14 object-cover rounded-xl border border-white/10" alt="attachment" />
-                    <button onClick={() => removeAttachment(idx)} className="absolute -top-1.5 -right-1.5 h-5 w-5 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                    <img src={file.preview} className="h-14 w-14 object-cover rounded-xl border border-black/10 dark:border-white/10 shadow-sm" alt="attachment" />
+                    <button onClick={() => removeAttachment(idx)} className="absolute -top-1.5 -right-1.5 h-5 w-5 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-md">
                       <X size={10} strokeWidth={3} />
                     </button>
                   </div>
@@ -307,11 +307,11 @@ export default function MonroePage() {
               </div>
             )}
 
-            <div className="flex items-end gap-2 bg-white/[0.04] border border-white/10 rounded-2xl p-2 focus-within:border-[#ff6b2b]/40 transition-all shadow-lg">
+            <div className="flex items-end gap-2 bg-white dark:bg-white/[0.04] border border-black/10 dark:border-white/10 rounded-2xl p-2 focus-within:border-[#ff6b2b]/40 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-lg">
               <input type="file" multiple ref={fileInputRef} onChange={handleFileSelect} className="hidden" accept="image/*" />
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="h-8 w-8 shrink-0 rounded-xl bg-white/5 hover:bg-[#ff6b2b]/10 hover:text-[#ff6b2b] text-white/30 flex items-center justify-center transition-all"
+                className="h-8 w-8 shrink-0 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-[#ff6b2b]/10 hover:text-[#ff6b2b] text-foreground/40 dark:text-white/30 flex items-center justify-center transition-all"
               >
                 <Paperclip size={15} />
               </button>
@@ -322,20 +322,20 @@ export default function MonroePage() {
                 onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                 placeholder="Message Monroe..."
                 rows={1}
-                className="flex-1 bg-transparent text-sm text-white placeholder:text-white/20 outline-none resize-none py-1.5 leading-relaxed max-h-32 overflow-y-auto"
+                className="flex-1 bg-transparent text-sm text-foreground dark:text-white placeholder:text-foreground/40 dark:placeholder:text-white/40 outline-none resize-none py-1.5 leading-relaxed max-h-32 overflow-y-auto"
                 style={{ scrollbarWidth: 'none' }}
               />
 
               <button
                 onClick={handleSend}
                 disabled={(!input.trim() && attachments.length === 0) || isTyping}
-                className="h-8 w-8 shrink-0 bg-[#ff6b2b] text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 disabled:opacity-20 transition-all shadow-[0_0_20px_rgba(255,107,43,0.3)]"
+                className="h-8 w-8 shrink-0 bg-[#ff6b2b] text-white dark:text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 disabled:opacity-20 transition-all shadow-[0_0_20px_rgba(255,107,43,0.4)]"
               >
                 <ChevronRight size={16} strokeWidth={3} />
               </button>
             </div>
 
-            <div className="flex justify-between items-center mt-1.5 px-1 text-[9px] text-white/10 font-mono uppercase tracking-widest">
+            <div className="flex justify-between items-center mt-1.5 px-1 text-[9px] text-foreground/30 dark:text-white/20 font-mono uppercase tracking-widest">
               <div className="flex items-center gap-1.5">
                 <Radio size={10} className="text-[#ff6b2b] animate-pulse" /> Signal Verified
               </div>
@@ -362,24 +362,24 @@ function SidebarContent({ knowledgeGraph, onClose, onMachineView }: {
   return (
     <div className="flex flex-col h-full p-5 space-y-5">
       <div className="flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-white/30 hover:text-[#ff6b2b] transition-all text-[10px] font-black uppercase tracking-widest group">
+        <Link href="/" className="flex items-center gap-2 text-foreground/40 dark:text-white/30 hover:text-[#ff6b2b] transition-all text-[10px] font-black uppercase tracking-widest group">
           <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Core Matrix
         </Link>
         {onClose && (
-          <button onClick={onClose} className="h-6 w-6 rounded-lg bg-white/5 flex items-center justify-center text-white/30 hover:text-white transition-all">
+          <button onClick={onClose} className="h-6 w-6 rounded-lg bg-black/5 dark:bg-white/5 flex items-center justify-center text-foreground/50 dark:text-white/30 hover:text-foreground dark:hover:text-white transition-all">
             <X size={12} />
           </button>
         )}
       </div>
 
       <div>
-        <h1 className="text-3xl font-black uppercase tracking-tighter italic leading-none">Monroe.<br /><span className="text-[#ff6b2b]">Omega.</span></h1>
-        <p className="text-[10px] text-[#ff6b2b]/60 font-black tracking-widest uppercase italic mt-1">Neural_Array_v7.0</p>
+        <h1 className="text-3xl font-black uppercase tracking-tighter italic leading-none text-foreground dark:text-white">Monroe.<br /><span className="text-[#ff6b2b]">Omega.</span></h1>
+        <p className="text-[10px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-widest uppercase italic mt-1">Neural_Array_v7.0</p>
       </div>
 
       {/* Shard Stream */}
       <div className="flex-1 overflow-y-auto space-y-2 min-h-0" style={{ scrollbarWidth: 'none' }}>
-        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/20 mb-2">
+        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 mb-2">
           <Layers size={12} className="text-[#ff6b2b]" /> Active Shards
         </div>
         {knowledgeGraph?.nodes ? knowledgeGraph.nodes.slice(-4).map((node: any, i: number) => (
@@ -388,33 +388,33 @@ function SidebarContent({ knowledgeGraph, onClose, onMachineView }: {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.07 }}
-            className="p-3 bg-black/40 border border-white/5 rounded-xl hover:border-[#ff6b2b]/30 transition-all cursor-pointer"
+            className="p-3 bg-black/5 dark:bg-black/40 border border-black/10 dark:border-white/5 rounded-xl hover:border-[#ff6b2b]/30 transition-all cursor-pointer shadow-sm"
           >
             <div className="flex justify-between items-center mb-1">
-              <span className="text-[9px] text-white/20 uppercase tracking-widest">{node.type}</span>
-              <div className="h-1.5 w-1.5 rounded-full bg-[#ff6b2b]/50 animate-pulse" />
+              <span className="text-[9px] text-foreground/40 dark:text-white/30 uppercase tracking-widest">{node.type}</span>
+              <div className="h-1.5 w-1.5 rounded-full bg-[#ff6b2b]/80 dark:bg-[#ff6b2b]/50 animate-pulse" />
             </div>
-            <p className="text-xs font-black text-white/50 leading-tight line-clamp-2">{node.label}</p>
+            <p className="text-xs font-black text-foreground/60 dark:text-white/60 leading-tight line-clamp-2">{node.label}</p>
           </motion.div>
         )) : (
-          <div className="text-[10px] text-[#ff6b2b]/20 font-black uppercase tracking-widest text-center py-8 animate-pulse">
+          <div className="text-[10px] text-[#ff6b2b]/60 dark:text-[#ff6b2b]/40 font-black uppercase tracking-widest text-center py-8 animate-pulse">
             Syncing Ledger...
           </div>
         )}
       </div>
 
       {/* Swarm Parity */}
-      <div className="p-3 border border-[#ff6b2b]/10 bg-[#ff6b2b]/5 rounded-xl space-y-2">
+      <div className="p-3 border border-[#ff6b2b]/20 dark:border-[#ff6b2b]/10 bg-[#ff6b2b]/10 dark:bg-[#ff6b2b]/5 rounded-xl space-y-2">
         <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-[#ff6b2b]">
           <div className="flex items-center gap-2"><Orbit size={12} className="animate-spin" style={{ animationDuration: '20s' }} /> Swarm</div>
           <span>94%</span>
         </div>
-        <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
-          <motion.div animate={{ width: ['20%', '98%', '92%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-[#ff6b2b] to-white" />
+        <div className="h-1 w-full bg-black/10 dark:bg-white/5 rounded-full overflow-hidden">
+          <motion.div animate={{ width: ['20%', '98%', '92%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-[#ff6b2b] to-black/20 dark:to-white" />
         </div>
       </div>
 
-      <button onClick={onMachineView} className="w-full py-2.5 bg-white/[0.02] border border-white/8 hover:bg-[#ff6b2b]/10 hover:border-[#ff6b2b]/30 text-white/20 hover:text-[#ff6b2b] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2">
+      <button onClick={onMachineView} className="w-full py-2.5 bg-black/5 dark:bg-white/[0.02] border border-black/10 dark:border-white/8 hover:bg-[#ff6b2b]/10 dark:hover:bg-[#ff6b2b]/10 hover:border-[#ff6b2b]/30 text-foreground/50 dark:text-white/30 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
         <Terminal size={13} /> raw_extraction
       </button>
     </div>

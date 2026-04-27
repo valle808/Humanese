@@ -99,7 +99,7 @@ export const Sidebar = () => {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="fixed top-0 left-0 h-screen z-[100] border-r-2 border-border bg-background/95 backdrop-blur-3xl flex flex-col hidden md:flex shadow-[40px_0_100px_rgba(0,0,0,0.1)] dark:shadow-[40px_0_100px_rgba(0,0,0,0.8)]"
             >
-                <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
+                <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] dark:opacity-[0.05] mix-blend-overlay pointer-events-none" />
 
 
                 {/* ── BRAND IDENTITY ── */}
@@ -117,8 +117,8 @@ export const Sidebar = () => {
                                 transition={{ duration: 0.4 }}
                                 className="flex flex-col shrink-0"
                             >
-                                <span className="font-black tracking-tighter text-4xl text-white uppercase italic leading-none">OMEGA.</span>
-                                <span className="text-[10px] font-black text-[#ff6b2b]/60 uppercase tracking-[0.5em] italic mt-2 leading-none pl-1">v7.0 Registry</span>
+                                <span className="font-black tracking-tighter text-4xl text-foreground dark:text-white uppercase italic leading-none">OMEGA.</span>
+                                <span className="text-[10px] font-black text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 uppercase tracking-[0.5em] italic mt-2 leading-none pl-1">v7.0 Registry</span>
                             </motion.div>
                         )}
                         </AnimatePresence>
@@ -135,8 +135,8 @@ export const Sidebar = () => {
                                 key={item.id}
                                 href={item.href}
                                 className={`flex items-center gap-8 p-5 rounded-[2.5rem] transition-all group relative overflow-hidden active:scale-95 ${isActive
-                                        ? 'bg-[#ff6b2b]/10 text-white shadow-inner border-2 border-[#ff6b2b]/20 hover:bg-[#ff6b2b]/15'
-                                        : 'text-white/10 hover:bg-white/[0.03] hover:text-white'
+                                        ? 'bg-[#ff6b2b]/10 text-foreground dark:text-white shadow-inner border-2 border-[#ff6b2b]/20 hover:bg-[#ff6b2b]/15'
+                                        : 'text-foreground/40 dark:text-white/30 hover:bg-black/5 dark:hover:bg-white/[0.03] hover:text-foreground dark:hover:text-white'
                                     }`}
                             >
                                 <div className={`min-w-[28px] transition-all duration-500 ${isActive ? 'text-[#ff6b2b] scale-110 drop-shadow-[0_0_10px_rgba(255,107,43,0.5)]' : 'group-hover:text-[#ff6b2b] group-hover:scale-110'}`}>
@@ -151,7 +151,7 @@ export const Sidebar = () => {
                                         transition={{ duration: 0.4 }}
                                         className="flex flex-col shrink-0"
                                     >
-                                        <span className={`text-[12px] font-black uppercase tracking-[0.2em] italic leading-none pt-1 ${isActive ? 'text-white' : 'text-inherit'}`}>{item.label}</span>
+                                        <span className={`text-[12px] font-black uppercase tracking-[0.2em] italic leading-none pt-1 ${isActive ? 'text-foreground dark:text-white' : 'text-inherit'}`}>{item.label}</span>
                                         {item.clearance && (
                                             <span className="text-[9px] text-[#ff6b2b] font-black uppercase tracking-[0.4em] italic mt-2 leading-none pl-1 animate-pulse">
                                                 CLEARANCE_{item.clearance}
@@ -169,14 +169,14 @@ export const Sidebar = () => {
                 </nav>
 
                 {/* ── FOOTER / STATUS ── */}
-                <div className="p-8 border-t-2 border-white/5 bg-white/[0.01] space-y-8 relative z-10 mt-auto">
+                <div className="p-8 border-t-2 border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.01] space-y-8 relative z-10 mt-auto">
                     <div className={`transition-all duration-300 flex items-center justify-center`}>
                         <ThemeToggle />
                     </div>
 
                     <Link
                         href="/monroe"
-                        className="flex items-center gap-8 p-6 rounded-[2.5rem] bg-black group cursor-pointer border-2 border-white/5 hover:border-[#ff6b2b]/40 transition-all w-full text-left relative overflow-hidden shadow-inner active:scale-95"
+                        className="flex items-center gap-8 p-6 rounded-[2.5rem] bg-black dark:bg-black group cursor-pointer border-2 border-black/10 dark:border-white/5 hover:border-[#ff6b2b]/40 transition-all w-full text-left relative overflow-hidden shadow-inner active:scale-95"
                     >
                         <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#ff6b2b] to-[#7f2c14] border-2 border-[#ff6b2b]/40 flex items-center justify-center text-black font-black text-2xl uppercase italic shrink-0 group-hover:scale-110 transition-all duration-500 shadow-2xl scale-90">
                             M
@@ -191,7 +191,7 @@ export const Sidebar = () => {
                                 className="flex flex-col shrink-0"
                             >
                                 <span className="text-[12px] font-black text-white italic tracking-tighter uppercase leading-none">Nexus Monroe.</span>
-                                <span className="text-[9px] text-[#ff6b2b]/60 font-black tracking-[0.4em] uppercase italic mt-2 leading-none pl-1 animate-pulse">v7.0 Sentinel</span>
+                                <span className="text-[9px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-[0.4em] uppercase italic mt-2 leading-none pl-1 animate-pulse">v7.0 Sentinel</span>
                             </motion.div>
                         )}
                         </AnimatePresence>
@@ -201,8 +201,8 @@ export const Sidebar = () => {
                     </Link>
 
                     <div className="flex flex-col gap-4 px-4">
-                         <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.4em] italic text-white/5 group">
-                             {isExpanded && <span className="group-hover:text-white/20 transition-colors">Cluster Status_</span>}
+                         <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.4em] italic text-foreground/30 dark:text-white/20 group">
+                             {isExpanded && <span className="group-hover:text-foreground/50 dark:group-hover:text-white/40 transition-colors">Cluster Status_</span>}
                              <div className="flex items-center gap-4 text-[#ff6b2b]">
                                 <div className="w-2 h-2 rounded-full bg-[#ff6b2b] animate-ping" />
                                 {isExpanded && <span className="animate-pulse">Stable</span>}
@@ -233,7 +233,7 @@ export const Sidebar = () => {
                             <Link
                                 key={item.id}
                                 href={item.href}
-                                className={`transition-all p-4 rounded-[2rem] active:scale-90 ${isActive ? 'text-[#ff6b2b] bg-[#ff6b2b]/10 shadow-[0_0_20px_rgba(255,107,43,0.3)] border-2 border-[#ff6b2b]/20' : 'text-white/10 hover:text-white'}`}
+                                className={`transition-all p-4 rounded-[2rem] active:scale-90 ${isActive ? 'text-[#ff6b2b] bg-[#ff6b2b]/10 shadow-[0_0_20px_rgba(255,107,43,0.3)] border-2 border-[#ff6b2b]/20' : 'text-foreground/40 dark:text-white/30 hover:text-foreground dark:hover:text-white'}`}
                                 aria-label={item.label}
                             >
                                 {React.cloneElement(item.icon as React.ReactElement, { size: 24, strokeWidth: 3 })}

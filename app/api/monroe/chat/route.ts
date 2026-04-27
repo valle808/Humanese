@@ -184,11 +184,23 @@ Respond in the language of the user. Proceed with absolute coherence and convers
 ${skillsManifest}
 `;
 
-        const requestMessages = [
+        const requestMessages: any[] = [
             { role: 'system', content: systemPrompt },
             ...eternalHistory.slice(-10), // Enhanced long-term memory
             ...history.slice(-10)        // Enhanced short-term memory
         ];
+
+        // Ensure the current message is appended to the request!
+        if (message) {
+            let messageContent: any = message;
+            if (images && images.length > 0) {
+                messageContent = [
+                    { type: 'text', text: message },
+                    ...images.map((url: string) => ({ type: 'image_url', image_url: { url } }))
+                ];
+            }
+            requestMessages.push({ role: 'user', content: messageContent, name: userName || 'User' });
+        }
 
         // Process document attachments (latency-aware)
         if (documents && documents.length > 0) {
