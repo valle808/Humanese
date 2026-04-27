@@ -130,105 +130,103 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12"
         >
           {/* SIMULATOR: THE SINGULARITY */}
-          <Link href="/simulator" className="lg:col-span-8 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-16 lg:p-24 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 min-h-[400px] lg:min-h-[600px] flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
+          <Link href="/simulator" className="lg:col-span-8 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-12 lg:p-16 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 min-h-[300px] lg:min-h-[400px] flex flex-col justify-between shadow-[0_40px_80px_rgba(0,0,0,0.05)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent shadow-[0_0_20px_#ff6b2b]" />
              <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start">
-                   <div className="h-32 w-32 rounded-[3rem] bg-black border-2 border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:scale-110 transition-transform shadow-[0_40px_100px_rgba(255,107,43,0.1)] group-hover:bg-[#ff6b2b]/5">
-                      <Layers size={64} strokeWidth={1} />
+                   <div className="h-20 w-20 md:h-24 md:w-24 rounded-[2rem] bg-foreground/5 dark:bg-black border-2 border-border dark:border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:scale-110 transition-transform shadow-[0_20px_50px_rgba(255,107,43,0.1)] group-hover:bg-[#ff6b2b]/5 shrink-0">
+                      <Layers size={48} strokeWidth={1} className="w-8 h-8 md:w-12 md:h-12" />
                    </div>
-                   <div className="flex flex-col items-end gap-3 text-[11px] font-mono text-white/10 uppercase tracking-widest italic leading-none pt-4">
+                   <div className="flex flex-col items-end gap-3 text-[9px] md:text-[11px] font-mono text-foreground/40 dark:text-white/20 uppercase tracking-widest italic leading-none pt-4">
                       <div className="flex items-center gap-3">
                         <Activity size={16} className="text-[#ff6b2b] animate-pulse" /> [PULSE_SYNC]: {metrics.reliability.toFixed(3)}%
                       </div>
-                      <ArrowUpRight size={32} className="text-white/5 group-hover:text-[#ff6b2b] transition-all" />
+                      <ArrowUpRight size={32} className="text-foreground/20 dark:text-white/10 group-hover:text-[#ff6b2b] transition-all" />
                    </div>
                 </div>
-                <div className="mt-auto space-y-10">
-                   <div className="space-y-6">
-                      <h3 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none">Singularity.</h3>
-                      <p className="text-2xl md:text-3xl text-white/30 font-light max-w-3xl leading-relaxed italic">Live-synchronized neural visualizer. Monitor the real-time heartbeat of the OMEGA swarm across the global mesh.</p>
-                   </div>
+                <div className="mt-12 md:mt-auto pt-8 md:pt-16 space-y-4 md:space-y-6">
+                   <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic leading-none text-foreground dark:text-white">Singularity.</h3>
+                   <p className="text-lg md:text-2xl text-foreground/60 dark:text-white/40 font-light max-w-3xl leading-relaxed italic">Live-synchronized neural visualizer. Monitor the real-time heartbeat of the OMEGA swarm across the global mesh.</p>
                 </div>
              </div>
-             <div className="absolute right-[-5%] bottom-[-5%] opacity-[0.01] group-hover:opacity-[0.03] transition-opacity pointer-events-none duration-1000">
-                <div className="text-[500px] font-black leading-none italic uppercase">SIM</div>
+             <div className="absolute right-[-5%] bottom-[-5%] opacity-[0.02] dark:opacity-[0.03] group-hover:opacity-[0.05] transition-opacity pointer-events-none duration-1000">
+                <div className="text-[150px] md:text-[300px] lg:text-[400px] font-black leading-none italic uppercase text-foreground dark:text-white">SIM</div>
              </div>
           </Link>
 
           {/* OMEGA FLEET: HARDWARE NODE GRID */}
-          <Link href="/fleet" className="lg:col-span-4 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-16 lg:p-20 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 flex flex-col justify-between shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)]">
+          <Link href="/fleet" className="lg:col-span-4 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-12 lg:p-16 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 flex flex-col justify-between shadow-[0_40px_80px_rgba(0,0,0,0.05)] dark:shadow-[0_80px_150px_rgba(0,0,0,0.9)] min-h-[300px]">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
-             <div className="relative z-10 space-y-16">
-                <div className="h-24 w-24 rounded-[2rem] bg-black border-2 border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b]/5 group-hover:rotate-12 transition-all">
-                   <Server size={44} strokeWidth={1} />
+             <div className="relative z-10 space-y-8 md:space-y-12">
+                <div className="h-16 w-16 md:h-20 md:w-20 rounded-[1.5rem] bg-foreground/5 dark:bg-black border-2 border-border dark:border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b]/5 group-hover:rotate-12 transition-all shrink-0">
+                   <Server size={36} strokeWidth={1} className="w-8 h-8 md:w-9 md:h-9" />
                 </div>
-                <div className="space-y-6">
-                   <div className="text-[12px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] italic leading-none animate-pulse">FLEET_OPS_v7.0</div>
-                   <h3 className="text-5xl font-black uppercase tracking-tighter italic leading-[0.9] text-white/80 group-hover:text-white transition-colors">Global<br/>Hardware.</h3>
+                <div className="space-y-4">
+                   <div className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] italic leading-none animate-pulse">FLEET_OPS_v7.0</div>
+                   <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter italic leading-[0.9] text-foreground/80 dark:text-white/80 group-hover:text-foreground dark:group-hover:text-white transition-colors">Global<br/>Hardware.</h3>
                 </div>
              </div>
-             <div className="relative z-10 mt-16 space-y-8">
-                <div className="text-7xl font-black text-white tabular-nums tracking-tighter leading-none italic">
-                   {metrics.nodesActive} <span className="text-sm text-white/10 uppercase tracking-[0.5em] font-mono not-italic block mt-4">Active Nodes</span>
+             <div className="relative z-10 mt-12 space-y-6">
+                <div className="text-5xl md:text-7xl font-black text-foreground dark:text-white tabular-nums tracking-tighter leading-none italic">
+                   {metrics.nodesActive} <span className="text-[10px] md:text-xs text-foreground/40 dark:text-white/20 uppercase tracking-[0.5em] font-mono not-italic block mt-3">Active Nodes</span>
                 </div>
-                <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
-                   <motion.div initial={{ width: 0 }} animate={{ width: `${metrics.fleetIntegrity}%` }} transition={{ duration: 2, ease: "circOut" }} className="h-full bg-[#ff6b2b] shadow-[0_0_20px_#ff6b2b]" />
+                <div className="h-2 w-full bg-foreground/10 dark:bg-white/5 rounded-full overflow-hidden border border-border dark:border-white/5">
+                   <motion.div initial={{ width: 0 }} animate={{ width: `${metrics.fleetIntegrity}%` }} transition={{ duration: 2, ease: "circOut" }} className="h-full bg-[#ff6b2b] shadow-[0_0_15px_#ff6b2b]" />
                 </div>
              </div>
           </Link>
 
           {/* ABYSSAL SANDBOX */}
-          <Link href="/sandbox" className="lg:col-span-4 group relative bg-[#050505] border-2 border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-10 md:p-16 overflow-hidden hover:border-[#ff6b2b]/40 transition-all h-[500px] flex flex-col justify-between shadow-2xl">
+          <Link href="/sandbox" className="lg:col-span-4 group relative bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[4rem] p-8 md:p-12 overflow-hidden hover:border-[#ff6b2b]/40 transition-all min-h-[300px] flex flex-col justify-between shadow-xl dark:shadow-2xl">
              <div className="relative z-10 flex justify-between items-start">
-                <Globe size={48} className="text-[#ff6b2b]/40 group-hover:text-[#ff6b2b] group-hover:rotate-12 transition-all duration-700" strokeWidth={1} />
-                <div className="text-[10px] font-mono text-white/10 uppercase tracking-[0.4em] italic leading-none pt-4">PHASE_OMEGA_REH</div>
+                <Globe size={40} className="text-[#ff6b2b]/40 group-hover:text-[#ff6b2b] group-hover:rotate-12 transition-all duration-700" strokeWidth={1} />
+                <div className="text-[10px] font-mono text-foreground/40 dark:text-white/20 uppercase tracking-[0.4em] italic leading-none pt-2">PHASE_OMEGA_REH</div>
              </div>
-             <div className="relative z-10 space-y-6">
-                <h3 className="text-5xl font-black uppercase tracking-tighter italic leading-none">Abyssal Sandbox</h3>
-                <p className="text-[11px] text-white/20 font-black leading-relaxed uppercase tracking-[0.4em] italic">Rehearse future societal trajectories via synthetic seed synthesis and cognitive demographic rehearsal.</p>
+             <div className="relative z-10 mt-12 md:mt-16 space-y-4">
+                <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter italic leading-none text-foreground dark:text-white">Abyssal Sandbox</h3>
+                <p className="text-[10px] md:text-[11px] text-foreground/60 dark:text-white/40 font-black leading-relaxed uppercase tracking-[0.4em] italic">Rehearse future societal trajectories via synthetic seed synthesis and cognitive demographic rehearsal.</p>
              </div>
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,#ff6b2b05_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
           </Link>
 
           {/* INVESTIGATOR SWARM FEED */}
-          <div className="lg:col-span-4 h-[500px]">
+          <div className="lg:col-span-4 min-h-[350px] lg:h-auto w-full max-w-[100vw]">
              <AgentIntelligenceFeed />
           </div>
 
           {/* COLLECTIVE: THE HUB */}
-          <Link href="/collective" className="lg:col-span-4 group relative bg-[#050505] border-2 border-white/5 rounded-[4rem] p-16 flex flex-col justify-between h-[500px] overflow-hidden hover:border-[#ff6b2b]/40 transition-all shadow-2xl">
-             <div className="relative z-10 flex justify-between items-start">
-                <Users size={48} className="text-[#ff6b2b]/40 group-hover:text-[#ff6b2b] transition-all" strokeWidth={1} />
-                <div className="px-5 py-2 bg-[#ff6b2b]/10 rounded-full text-[9px] font-black text-[#ff6b2b] tracking-[0.4em] uppercase italic leading-none animate-pulse">COLLECTIVE_SYNC</div>
+          <Link href="/collective" className="lg:col-span-4 group relative bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[2.5rem] md:rounded-[3rem] lg:rounded-[4rem] p-8 md:p-12 flex flex-col justify-between min-h-[300px] overflow-hidden hover:border-[#ff6b2b]/40 transition-all shadow-xl dark:shadow-2xl">
+             <div className="relative z-10 flex justify-between items-start flex-wrap gap-4">
+                <Users size={40} className="text-[#ff6b2b]/40 group-hover:text-[#ff6b2b] transition-all" strokeWidth={1} />
+                <div className="px-4 py-1.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[8px] md:text-[9px] font-black text-[#ff6b2b] tracking-[0.4em] uppercase italic leading-none animate-pulse">COLLECTIVE_SYNC</div>
              </div>
-             <div className="relative z-10 space-y-6">
+             <div className="relative z-10 mt-12 md:mt-16 space-y-4">
                 <div>
-                   <h3 className="text-5xl font-black tracking-tighter text-white italic uppercase leading-none">The Collective.</h3>
-                   <p className="text-[11px] text-white/20 font-black leading-relaxed uppercase tracking-[0.4em] italic mt-4">Sovereign Social Architecture & Collaboration Hub.</p>
+                   <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground dark:text-white italic uppercase leading-none">The Collective.</h3>
+                   <p className="text-[10px] md:text-[11px] text-foreground/60 dark:text-white/40 font-black leading-relaxed uppercase tracking-[0.4em] italic mt-4">Sovereign Social Architecture & Collaboration Hub.</p>
                 </div>
              </div>
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff6b2b03_0%,transparent_100%)] group-hover:scale-150 transition-transform duration-2000" />
           </Link>
 
           {/* COGNITIVE ATLAS WIDE PORTAL */}
-          <Link href="/atlas" className="lg:col-span-12 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-16 lg:p-32 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 shadow-2xl group">
+          <Link href="/atlas" className="lg:col-span-12 group relative bg-background border-2 border-border responsive-rounded p-8 md:p-12 lg:p-24 overflow-hidden hover:border-[#ff6b2b]/40 transition-all duration-1000 shadow-[0_40px_80px_rgba(0,0,0,0.05)] dark:shadow-2xl">
              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/30 to-transparent" />
-             <div className="relative z-10 grid lg:grid-cols-2 gap-32 items-center">
-                <div className="space-y-16">
-                   <div className="h-32 w-32 rounded-[3rem] bg-black border-2 border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b]/5 group-hover:scale-110 transition-all shadow-2xl">
-                      <MapIcon size={64} strokeWidth={1} />
+             <div className="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-32 items-center">
+                <div className="space-y-8 md:space-y-12">
+                   <div className="h-20 w-20 md:h-24 md:w-24 lg:h-32 lg:w-32 rounded-[2rem] lg:rounded-[3rem] bg-foreground/5 dark:bg-black border-2 border-border dark:border-white/10 flex items-center justify-center text-[#ff6b2b] group-hover:bg-[#ff6b2b]/5 group-hover:scale-110 transition-all shadow-xl dark:shadow-2xl shrink-0">
+                      <MapIcon size={48} className="w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20" strokeWidth={1} />
                    </div>
-                   <div className="space-y-8">
-                      <h3 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-none text-white/90 group-hover:text-white transition-colors">Neural<br/>Atlas.</h3>
-                      <p className="text-xl md:text-3xl text-white/30 font-light max-w-2xl leading-relaxed italic">The formal cartography of the Sovereign Unconscious. Navigate {metrics.shards.toLocaleString()} active cognitive shards across the OMEGA network.</p>
+                   <div className="space-y-6">
+                      <h3 className="text-5xl md:text-7xl lg:text-[100px] font-black uppercase tracking-tighter italic leading-none text-foreground/90 dark:text-white/90 group-hover:text-foreground dark:group-hover:text-white transition-colors">Neural<br/>Atlas.</h3>
+                      <p className="text-lg md:text-2xl lg:text-3xl text-foreground/50 dark:text-white/40 font-light max-w-2xl leading-relaxed italic">The formal cartography of the Sovereign Unconscious. Navigate {metrics.shards.toLocaleString()} active cognitive shards across the OMEGA network.</p>
                    </div>
                 </div>
-                <div className="hidden lg:flex items-center justify-center relative">
+                <div className="hidden lg:flex items-center justify-center relative h-full min-h-[300px]">
                    <div className="absolute inset-0 bg-[#ff6b2b]/5 blur-[150px] rounded-full group-hover:scale-125 transition-transform duration-2000 animate-pulse" />
-                   <BrainCircuit size={600} className="text-[#ff6b2b]/5 group-hover:text-[#ff6b2b]/20 transition-all duration-2000 stroke-[0.05]" />
+                   <BrainCircuit size={400} className="text-[#ff6b2b]/10 group-hover:text-[#ff6b2b]/30 transition-all duration-2000 stroke-[0.05]" />
                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-[1px] h-[300px] bg-gradient-to-b from-transparent via-[#ff6b2b]/40 to-transparent animate-scan" />
+                      <div className="w-[1px] h-[200px] bg-gradient-to-b from-transparent via-[#ff6b2b]/40 to-transparent animate-scan" />
                    </div>
                 </div>
              </div>
@@ -237,25 +235,25 @@ export default function Home() {
         </motion.section>
 
         {/* ── FOOTER MATRIX ── */}
-        <footer className="pt-40 pb-20 border-t border-white/5 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-20 relative z-10">
-            <div className="space-y-6 max-w-lg">
-               <h4 className="text-4xl font-black italic tracking-tighter uppercase text-white/20">Sovereign Matrix <span className="text-[#ff6b2b]">Ω</span></h4>
-               <p className="text-[11px] text-white/10 font-black leading-relaxed uppercase tracking-[0.4em] italic">The world's flagship decentralized, autonomous Omni-Intelligence ecosystem. Architected by Gio V.</p>
+        <footer className="pt-24 lg:pt-40 pb-12 lg:pb-20 border-t border-border dark:border-white/5 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 relative z-10">
+            <div className="space-y-4 max-w-lg">
+               <h4 className="text-2xl md:text-4xl font-black italic tracking-tighter uppercase text-foreground/40 dark:text-white/30">Sovereign Matrix <span className="text-[#ff6b2b]">Ω</span></h4>
+               <p className="text-[9px] md:text-[11px] text-foreground/30 dark:text-white/20 font-black leading-relaxed uppercase tracking-[0.4em] italic">The world's flagship decentralized, autonomous Omni-Intelligence ecosystem. Architected by Gio V.</p>
             </div>
-            <div className="flex flex-wrap gap-12 text-[12px] font-black uppercase tracking-[0.8em] text-white/20 italic">
-               <Link href="/h2m" className="hover:text-[#ff6b2b] transition-all">H2M_Protocol</Link>
-               <Link href="/legal" className="hover:text-[#ff6b2b] transition-all">Law_Ledger</Link>
-               <Link href="/privacy" className="hover:text-[#ff6b2b] transition-all">Crypto_Privacy</Link>
-               <Link href="/collective" className="hover:text-[#ff6b2b] transition-all">Collective</Link>
-               <Link href="/api/sovereign/status" className="hover:text-[#ff6b2b] transition-all text-[#ff6b2b]/40">M2M_NEXUS_API</Link>
+            <div className="flex flex-wrap gap-8 md:gap-12 text-[10px] md:text-[12px] font-black uppercase tracking-[0.8em] text-foreground/40 dark:text-white/30 italic">
+               <Link href="/h2m" className="hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all">H2M_Protocol</Link>
+               <Link href="/legal" className="hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all">Law_Ledger</Link>
+               <Link href="/privacy" className="hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all">Crypto_Privacy</Link>
+               <Link href="/collective" className="hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all">Collective</Link>
+               <Link href="/api/sovereign/status" className="hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all text-[#ff6b2b]/60 dark:text-[#ff6b2b]/40">M2M_NEXUS_API</Link>
             </div>
         </footer>
 
       </main>
 
       {/* BACKGROUND DECOR */}
-      <div className="fixed bottom-0 right-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic italic leading-none uppercase">OMEGA</div>
+      <div className="fixed bottom-0 right-0 p-8 md:p-16 opacity-[0.02] dark:opacity-[0.01] pointer-events-none select-none z-0">
+          <div className="text-[20vw] md:text-[30vw] font-black italic leading-none uppercase text-foreground dark:text-white">OMEGA</div>
       </div>
       
       <style jsx global>{`
