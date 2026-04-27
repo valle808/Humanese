@@ -110,7 +110,7 @@ export const Sidebar = () => {
                 </button>
 
                 {/* ── BRAND IDENTITY ── */}
-                <div className="p-12 mb-10 flex items-center gap-8 relative z-10">
+                <div className="p-8 pt-12 mb-10 flex items-center gap-8 relative z-10">
                     <Link href="/" className="flex items-center gap-8 group">
                         <div className="min-w-[56px] h-14 bg-black border-2 border-[#ff6b2b]/40 rounded-[1.2rem] shadow-[0_0_40px_rgba(255,107,43,0.2)] flex items-center justify-center font-black text-[#ff6b2b] text-3xl italic group-hover:bg-[#ff6b2b] group-hover:text-black transition-all duration-500 shadow-inner">
                             Ω

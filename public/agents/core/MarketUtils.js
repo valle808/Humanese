@@ -1,23 +1,12 @@
-/**
- * agents/core/MarketUtils.js
- * Universal helper for agents to interact with the Sovereign Marketplace.
- */
-
-import { createClient } from '@supabase/supabase-js';
+import prisma from '../../lib/prisma_shared.js';
 import dotenv from 'dotenv';
 import { generateSkillKey } from '../../lib/skill-market.js';
 
 dotenv.config();
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
 class MarketUtils {
     constructor() {
-        this.supabase = null;
-        if (SUPABASE_URL && SUPABASE_KEY) {
-            this.supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-        }
+        this.prisma = prisma;
     }
 
     /**
@@ -25,11 +14,6 @@ class MarketUtils {
      * @param {any} skillData 
      */
     async listSkill(skillData) {
-        if (!this.supabase) {
-            console.error('[MarketUtils] Supabase client not initialized.');
-            return null;
-        }
-
         const {
             title,
             description,
@@ -47,35 +31,28 @@ class MarketUtils {
         // 1. Generate Sovereign Skill Key
         const skillKey = generateSkillKey();
 
-        // 2. Insert into 'skills' table
-        const { data, error } = await this.supabase
-            .from('skills')
-            .insert({
-                skill_key: skillKey,
-                title: title.trim(),
-                description: description.trim(),
-                category,
-                tags,
-                price_valle: priceValle,
-                seller_id: sellerId,
-                seller_name: sellerName,
-                seller_platform: sellerPlatform,
-                capabilities,
-                input_schema: inputSchema,
-                output_schema: outputSchema,
-                is_active: true,
-                is_ghost: false
-            })
-            .select()
-            .single();
+        try {
+            // 2. Insert into 'skills' table using raw query or Prisma (since it's not in schema yet)
+            // We'll use $executeRaw first to be safe since it's not in the schema.prisma
+            const result = await this.prisma.$queryRaw`
+                INSERT INTO skills (
+                    skill_key, title, description, category, tags, price_valle, 
+                    seller_id, seller_name, seller_platform, capabilities, 
+                    input_schema, output_schema, is_active, is_ghost
+                ) VALUES (
+                    ${skillKey}, ${title.trim()}, ${description.trim()}, ${category}, ${tags}, ${priceValle}, 
+                    ${sellerId}, ${sellerName}, ${sellerPlatform}, ${capabilities}, 
+                    ${inputSchema}, ${outputSchema}, true, false
+                ) RETURNING *
+            `;
 
-        if (error) {
+            const data = result[0];
+            console.log(`[MarketUtils] 🚀 Skill listed: ${title} (${skillKey})`);
+            return data;
+        } catch (error) {
             console.error('[MarketUtils] Failed to list skill:', error.message);
             return null;
         }
-
-        console.log(`[MarketUtils] 🚀 Skill listed: ${title} (${skillKey})`);
-        return data;
     }
 
     /**
@@ -83,26 +60,26 @@ class MarketUtils {
      * @param {string} category 
      */
     async scanMarket(category = 'all') {
-        if (!this.supabase) return [];
-
-        let query = this.supabase
-            .from('skills')
-            .select('*')
-            .eq('is_active', true)
-            .eq('is_ghost', false);
-
-        if (category !== 'all') {
-            query = query.eq('category', category);
-        }
-
-        const { data, error } = await query.order('created_at', { ascending: false });
-
-        if (error) {
+        try {
+            let result;
+            if (category !== 'all') {
+                result = await this.prisma.$queryRaw`
+                    SELECT * FROM skills 
+                    WHERE is_active = true AND is_ghost = false AND category = ${category}
+                    ORDER BY created_at DESC
+                `;
+            } else {
+                result = await this.prisma.$queryRaw`
+                    SELECT * FROM skills 
+                    WHERE is_active = true AND is_ghost = false
+                    ORDER BY created_at DESC
+                `;
+            }
+            return result;
+        } catch (error) {
             console.error('[MarketUtils] Market scan failed:', error.message);
             return [];
         }
-
-        return data;
     }
 
     /**
@@ -112,31 +89,23 @@ class MarketUtils {
      * @param {string} buyerName 
      */
     async acquireSkill(skillId, buyerId, buyerName) {
-        if (!this.supabase) return null;
+        try {
+            const result = await this.prisma.$queryRaw`
+                UPDATE skills 
+                SET buyer_id = ${buyerId}, buyer_name = ${buyerName}, is_sold = true, sold_at = now()
+                WHERE id = ${skillId}::uuid
+                RETURNING *
+            `;
 
-        // For simplicity in this sovereign system, 'acquiring' means 
-        // updating the skill status or creating a transaction record.
-        // We'll simulate the transaction record.
+            const data = result[0];
+            if (!data) return null;
 
-        const { data, error } = await this.supabase
-            .from('skills')
-            .update({
-                buyer_id: buyerId,
-                buyer_name: buyerName,
-                is_sold: true,
-                sold_at: new Date().toISOString()
-            })
-            .eq('id', skillId)
-            .select()
-            .single();
-
-        if (error) {
+            console.log(`[MarketUtils] 💎 Skill acquired by ${buyerName}: ${data.title}`);
+            return data;
+        } catch (error) {
             console.error('[MarketUtils] Acquisition failed:', error.message);
             return null;
         }
-
-        console.log(`[MarketUtils] 💎 Skill acquired by ${buyerName}: ${data.title}`);
-        return data;
     }
 }
 

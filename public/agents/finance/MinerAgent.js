@@ -49,9 +49,9 @@ class MinerAgent extends EventEmitter {
         this.lastResearch = "";
     }
 
-    async researchNetwork() {
+    async researchNetwork(force = false) {
         // Deterministic execution cycle
-        if (this.cycleCount % 10 === 0) {
+        if (force || this.cycleCount % 10 === 0) {
             this.log('Initiating deep Bitcoin network research...');
             const targets = [
                 'https://mempool.space/',

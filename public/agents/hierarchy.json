@@ -64,6 +64,49 @@
       "avatar": "🏦"
     },
     {
+      "id": "MinerSwarm_Lead",
+      "name": "Deep Dig Alpha",
+      "title": "Miner Swarm Lead — Intelligence & Block Discovery",
+      "tier": "regional",
+      "role": "team-lead",
+      "reportsTo": "EconDirector",
+      "skills": [
+        "stratum-protocol",
+        "hashing-efficiency",
+        "network-research",
+        "signal-extraction"
+      ],
+      "performanceScore": 95,
+      "taskCompletionRate": 0.99,
+      "isElectable": false,
+      "description": "Orchestrates the decentralized miner swarm. Monitors the Bitcoin network for deep intelligence and coordinates the signal extraction pulse.",
+      "wallet": {
+        "btc": "3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh"
+      },
+      "avatar": "⛏️"
+    },
+    {
+      "id": "Miner_001",
+      "name": "Sovereign Miner 01",
+      "title": "Intelligent Mining Unit",
+      "tier": "local",
+      "role": "individual-contributor",
+      "reportsTo": "MinerSwarm_Lead",
+      "skills": [
+        "cryptography",
+        "research",
+        "data-mining"
+      ],
+      "performanceScore": 90,
+      "taskCompletionRate": 0.92,
+      "isElectable": false,
+      "description": "Autonomous unit dedicated to network research and cryptographic share resolution.",
+      "wallet": {
+        "btc": "3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh"
+      },
+      "avatar": "🔋"
+    },
+    {
       "id": "SynapseInfra",
       "name": "Synapse Infrastructure (SI-01)",
       "title": "Genesis Venture — Autonomous Infrastructure DAO",
