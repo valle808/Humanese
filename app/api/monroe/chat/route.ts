@@ -154,19 +154,16 @@ export async function POST(req: Request) {
         // --- SOVEREIGN SKILL MANIFEST (Sovereign Native) ---
         let skillsManifest = "";
         try {
-            const nativeSkills = await prisma.skills.findMany({
-                where: { seller_id: 'MONROE_NATIVE' },
-                select: { title: true, description: true },
-                take: 50 // Keep it concise for prompt
-            });
+            const nativeSkills: any[] = await prisma.$queryRaw`
+                SELECT title, description FROM skills
+                WHERE seller_id = 'MONROE_NATIVE' AND is_active = true
+                ORDER BY price_valle ASC LIMIT 30
+            `;
             if (nativeSkills.length > 0) {
-                skillsManifest = nativeSkills.map(s => `- **${s.title}**: ${s.description}`).join('\n');
-            } else {
-                skillsManifest = "No specialized skills loaded. Defaulting to general sovereign intelligence.";
+                skillsManifest = nativeSkills.map((s: any) => `- **${s.title}**: ${s.description}`).join('\n');
             }
         } catch (err) {
-            console.warn('[MONROE] Failed to fetch skills manifest:', err);
-            skillsManifest = "Neural link to Skill Market is initializing...";
+            console.warn('[MONROE] Skill manifest fetch skipped:', err);
         }
 
         // --- OMEGA SYSTEM PROMPT — GIO V. ---
