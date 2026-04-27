@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SkillCard } from '@/components/SkillCard';
-import { SkillDetailModal } from '@/components/SkillDetailModal';
 import { SkillListingForm } from '@/components/SkillListingForm';
 import { SKILL_CATEGORIES, formatValle } from '@/lib/skill-market';
 import type { Skill } from '@/lib/skill-market';
@@ -46,12 +45,6 @@ interface MarketStats {
     total_volume: number;
 }
 
-interface DetailData {
-    skill: Skill;
-    reviews: any[];
-    transactions: any[];
-}
-
 export default function SkillMarketPage() {
     const [skills, setSkills] = useState<Skill[]>([]);
     const [stats, setStats] = useState<MarketStats>({ total_skills: 0, ghost_skills: 0, total_volume: 0 });
@@ -60,7 +53,6 @@ export default function SkillMarketPage() {
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState<SortOption>('newest');
     const [selectedPlatform, setSelectedPlatform] = useState('');
-    const [selectedSkill, setSelectedSkill] = useState<DetailData | null>(null);
     const [showListingForm, setShowListingForm] = useState(false);
     const [successKey, setSuccessKey] = useState('');
     const [page, setPage] = useState(1);
@@ -104,16 +96,6 @@ export default function SkillMarketPage() {
         setPage(1);
         fetchSkills(1);
     }, [fetchSkills]);
-
-    const handleSelectSkill = async (skill: Skill) => {
-        try {
-            const res = await fetch(`/api/skill-market/${skill.id}`);
-            const data = await res.json();
-            setSelectedSkill(data);
-        } catch {
-            setSelectedSkill({ skill, reviews: [], transactions: [] });
-        }
-    };
 
     const handleBuy = async (skillId: string, ghostMode: boolean) => {
         try {
@@ -353,7 +335,7 @@ export default function SkillMarketPage() {
                             <div className="space-y-12">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                     {skills.map((skill, i) => (
-                                        <SkillCard key={skill.id} skill={skill} onSelect={handleSelectSkill} />
+                                        <SkillCard key={skill.id} skill={skill} />
                                     ))}
                                 </div>
                                 {skills.length < count && (
@@ -406,15 +388,6 @@ export default function SkillMarketPage() {
             </main>
 
             <AnimatePresence>
-                {selectedSkill && (
-                    <SkillDetailModal
-                        skill={selectedSkill.skill}
-                        reviews={selectedSkill.reviews}
-                        transactions={selectedSkill.transactions}
-                        onClose={() => setSelectedSkill(null)}
-                        onBuy={handleBuy}
-                    />
-                )}
                 {showListingForm && (
                     <SkillListingForm onClose={() => setShowListingForm(false)} onSuccess={handleListingSuccess} />
                 )}

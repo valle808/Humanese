@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import type { Skill } from '@/lib/skill-market';
 import { getCategoryMeta, formatValle } from '@/lib/skill-market';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { 
   Zap, 
   Sparkles, 
@@ -24,11 +25,11 @@ import {
 
 interface SkillCardProps {
     skill: Skill;
-    onSelect: (skill: Skill) => void;
 }
 
-export function SkillCard({ skill, onSelect }: SkillCardProps) {
+export function SkillCard({ skill }: SkillCardProps) {
     const [copied, setCopied] = useState(false);
+    const router = useRouter();
     const meta = getCategoryMeta(skill.category);
 
     const handleCopyKey = (e: React.MouseEvent) => {
@@ -52,7 +53,7 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ y: -10, transition: { duration: 0.4, ease: "circOut" } }}
-            onClick={() => onSelect(skill)}
+            onClick={() => router.push(`/skill-market/${skill.id}`)}
             className="group relative bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[3rem] p-6 sm:p-8 cursor-pointer hover:border-[#ff6b2b]/40 dark:hover:border-[#ff6b2b]/40 transition-all duration-700 flex flex-col gap-6 shadow-lg dark:shadow-[0_40px_80px_rgba(0,0,0,0.95)] shadow-inner backdrop-blur-3xl overflow-hidden h-full"
         >
             {/* ── AMBIENT DEPTH ── */}
@@ -147,7 +148,7 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
                         {copied ? <Check size={18} strokeWidth={3} className="text-[#ff6b2b] animate-bounce" /> : <Copy size={18} strokeWidth={3} className="group-hover/copy:rotate-12 transition-transform" />}
                     </button>
                     <button
-                        onClick={(e) => { e.stopPropagation(); onSelect(skill); }}
+                        onClick={(e) => { e.stopPropagation(); router.push(`/skill-market/${skill.id}`); }}
                         className="px-5 py-3 bg-foreground dark:bg-white text-background dark:text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-[#ff6b2b] dark:hover:bg-[#ff6b2b] hover:shadow-[0_10px_20px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/action flex items-center"
                     >
                         {skill.is_sold ? 'View' : 'Open'} <ArrowUpRight size={14} className="ml-2 group-hover/action:translate-x-1 group-hover/action:-translate-y-1 transition-transform" strokeWidth={3} />
