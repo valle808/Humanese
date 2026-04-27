@@ -53,7 +53,7 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ y: -10, transition: { duration: 0.4, ease: "circOut" } }}
             onClick={() => onSelect(skill)}
-            className="group relative bg-[#050505] border-2 border-white/5 rounded-[4rem] p-10 cursor-pointer hover:border-[#ff6b2b]/40 transition-all duration-700 flex flex-col gap-8 shadow-[0_40px_80px_rgba(0,0,0,0.95)] shadow-inner backdrop-blur-3xl overflow-hidden h-full"
+            className="group relative bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[3rem] p-6 sm:p-8 cursor-pointer hover:border-[#ff6b2b]/40 dark:hover:border-[#ff6b2b]/40 transition-all duration-700 flex flex-col gap-6 shadow-lg dark:shadow-[0_40px_80px_rgba(0,0,0,0.95)] shadow-inner backdrop-blur-3xl overflow-hidden h-full"
         >
             {/* ── AMBIENT DEPTH ── */}
             <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#ff6b2b]/5 blur-[80px] rounded-full group-hover:bg-[#ff6b2b]/15 transition-all duration-1000 z-0" />
@@ -76,81 +76,81 @@ export function SkillCard({ skill, onSelect }: SkillCardProps) {
             )}
 
             {/* ── HEADER ── */}
-            <div className="flex items-start justify-between gap-6 relative z-10">
-                <div className="flex items-center gap-6">
-                    <div className="h-20 w-20 rounded-[2.5rem] bg-black border-2 border-white/5 flex items-center justify-center text-4xl shadow-inner group-hover:border-[#ff6b2b]/40 transition-all duration-700 bg-gradient-to-br from-white/[0.02] to-transparent">
+            <div className="flex items-start justify-between gap-4 relative z-10">
+                <div className="flex items-center gap-4 flex-1">
+                    <div className="h-16 w-16 shrink-0 rounded-3xl bg-black/5 dark:bg-black border-2 border-black/10 dark:border-white/5 flex items-center justify-center text-3xl shadow-inner group-hover:border-[#ff6b2b]/40 transition-all duration-700 bg-gradient-to-br from-black/5 dark:from-white/[0.02] to-transparent">
                        {meta.icon}
                     </div>
-                    <div className="space-y-2">
-                        <div className="font-black text-2xl text-white/90 leading-none line-clamp-1 italic tracking-tighter group-hover:text-[#ff6b2b] transition-colors">{skill.title}</div>
-                        <div className="flex items-center gap-4 text-[11px] text-white/10 font-black uppercase tracking-[0.4em] italic leading-none pl-1">
-                           {skill.seller_name} <div className="w-1.5 h-1.5 rounded-full bg-[#ff6b2b]/20 animate-pulse" />
+                    <div className="space-y-1.5 flex-1 min-w-0">
+                        <div className="font-black text-xl text-foreground dark:text-white/90 leading-tight italic tracking-tight group-hover:text-[#ff6b2b] transition-colors break-words pr-2">{skill.title}</div>
+                        <div className="flex items-center gap-3 text-[10px] text-foreground/50 dark:text-white/30 font-black uppercase tracking-widest italic leading-none pl-1">
+                           <span className="truncate">{skill.seller_name}</span> <div className="w-1.5 h-1.5 shrink-0 rounded-full bg-[#ff6b2b]/60 dark:bg-[#ff6b2b]/20 animate-pulse" />
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col items-end gap-2 shrink-0">
                    {skill.is_sold && !skill.is_ghost && (
-                       <span className="text-[10px] font-black bg-white/5 text-white/20 border-2 border-white/5 px-4 py-1.5 rounded-full uppercase tracking-[0.4em] italic leading-none">SOLD</span>
+                       <span className="text-[9px] font-black bg-black/5 dark:bg-white/5 text-foreground/40 dark:text-white/20 border-2 border-black/10 dark:border-white/5 px-3 py-1.5 rounded-full uppercase tracking-widest italic leading-none">SOLD</span>
                    )}
                    {skill.is_ghost && (
-                       <span className="text-[10px] font-black bg-[#ff6b2b]/10 text-[#ff6b2b] border-2 border-[#ff6b2b]/20 px-4 py-1.5 rounded-full uppercase tracking-[0.4em] italic leading-none animate-pulse">GHOST</span>
+                       <span className="text-[9px] font-black bg-[#ff6b2b]/10 text-[#ff6b2b] border-2 border-[#ff6b2b]/20 px-3 py-1.5 rounded-full uppercase tracking-widest italic leading-none animate-pulse">GHOST</span>
                    )}
                 </div>
             </div>
 
             {/* ── DESCRIPTION ── */}
-            <p className="text-lg text-white/20 leading-relaxed line-clamp-3 italic font-light tracking-tight group-hover:text-white/60 transition-all duration-700 flex-1">
+            <p className="text-sm text-foreground/60 dark:text-white/40 leading-relaxed line-clamp-4 italic font-light tracking-normal group-hover:text-foreground/80 dark:group-hover:text-white/70 transition-all duration-700 flex-1">
                "{skill.description}"
             </p>
 
             {/* ── CAPABILITIES PREVIEW ── */}
             {skill.capabilities && (skill.capabilities as string[]).length > 0 && (
-                <div className="flex flex-wrap gap-4 relative z-10">
+                <div className="flex flex-wrap gap-2 relative z-10">
                     {(skill.capabilities as string[]).slice(0, 2).map((cap, i) => (
-                        <span key={i} className="text-[11px] font-black uppercase tracking-[0.4em] bg-black border-2 border-white/5 px-6 py-2.5 rounded-2xl text-white/10 italic group-hover:border-[#ff6b2b]/20 group-hover:text-[#ff6b2b]/60 transition-all leading-none shadow-inner">
+                        <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-black/5 dark:bg-black border-2 border-black/10 dark:border-white/5 px-3 py-1.5 rounded-xl text-foreground/40 dark:text-white/30 italic group-hover:border-[#ff6b2b]/20 group-hover:text-[#ff6b2b]/80 transition-all leading-none shadow-sm text-center">
                             {cap.length > 25 ? cap.slice(0, 22) + '...' : cap}
                         </span>
                     ))}
                     {(skill.capabilities as string[]).length > 2 && (
-                        <span className="text-[11px] font-black text-white/5 py-2.5 italic leading-none">+{(skill.capabilities as string[]).length - 2}</span>
+                        <span className="text-[9px] font-black text-foreground/30 dark:text-white/20 py-1.5 italic leading-none">+{(skill.capabilities as string[]).length - 2}</span>
                     )}
                 </div>
             )}
 
             {/* ── TAGS ── */}
-            <div className="flex flex-wrap gap-4 relative z-10">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] px-6 py-3 rounded-full border-2 border-[#ff6b2b]/20 bg-[#ff6b2b]/5 text-[#ff6b2b] italic leading-none group-hover:bg-[#ff6b2b] group-hover:text-black transition-all">
+            <div className="flex flex-wrap gap-2 relative z-10">
+                <span className="text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border-2 border-[#ff6b2b]/20 bg-[#ff6b2b]/5 text-[#ff6b2b] italic leading-none group-hover:bg-[#ff6b2b] group-hover:text-black transition-all text-center">
                     {meta.label}
                 </span>
-                <span className={`text-[10px] font-black uppercase tracking-[0.4em] px-6 py-3 rounded-full border-2 italic leading-none ${currentPlatform.bg} ${currentPlatform.text} ${currentPlatform.border}`}>
+                <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border-2 italic leading-none text-center ${currentPlatform.bg} ${currentPlatform.text} ${currentPlatform.border}`}>
                     {skill.seller_platform}
                 </span>
             </div>
 
             {/* ── FOOTER ── */}
-            <div className="flex items-center justify-between pt-10 border-t-2 border-white/5 relative z-10 mt-auto">
-                <div className="space-y-4">
-                    <div className="text-4xl font-black text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{formatValle(skill.price_valle)}</div>
-                    <div className="flex items-center gap-6 text-[11px] font-black text-white/5 uppercase tracking-[0.4em] italic leading-none">
+            <div className="flex items-center justify-between pt-6 border-t-2 border-black/10 dark:border-white/5 relative z-10 mt-auto gap-4">
+                <div className="space-y-3 shrink min-w-0">
+                    <div className="text-2xl font-black text-foreground dark:text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors truncate">{formatValle(skill.price_valle)}</div>
+                    <div className="flex items-center gap-3 text-[9px] font-black text-foreground/40 dark:text-white/20 uppercase tracking-widest italic leading-none">
                         {skill.avg_rating ? (
-                            <span className="flex items-center gap-4 text-[#ff6b2b]"><Star size={14} strokeWidth={3} className="fill-[#ff6b2b]" /> {skill.avg_rating.toFixed(1)}</span>
+                            <span className="flex items-center gap-1.5 text-[#ff6b2b]"><Star size={12} strokeWidth={3} className="fill-[#ff6b2b]" /> {skill.avg_rating.toFixed(1)}</span>
                         ) : null}
-                        <span className="flex items-center gap-4"><Eye size={14} strokeWidth={3} /> {skill.views}</span>
+                        <span className="flex items-center gap-1.5"><Eye size={12} strokeWidth={3} /> {skill.views}</span>
                     </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 shrink-0">
                     <button
                         onClick={handleCopyKey}
-                        className="p-5 bg-black border-2 border-white/5 rounded-2xl hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all text-white/10 hover:text-[#ff6b2b] shadow-inner active:scale-95 group/copy"
+                        className="p-3 bg-black/5 dark:bg-black border-2 border-black/10 dark:border-white/5 rounded-xl hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all text-foreground/40 dark:text-white/30 hover:text-[#ff6b2b] shadow-sm active:scale-95 group/copy"
                         title="Copy Skill Key"
                     >
-                        {copied ? <Check size={24} strokeWidth={3} className="text-[#ff6b2b] animate-bounce" /> : <Copy size={24} strokeWidth={3} className="group-hover/copy:rotate-12 transition-transform" />}
+                        {copied ? <Check size={18} strokeWidth={3} className="text-[#ff6b2b] animate-bounce" /> : <Copy size={18} strokeWidth={3} className="group-hover/copy:rotate-12 transition-transform" />}
                     </button>
                     <button
                         onClick={(e) => { e.stopPropagation(); onSelect(skill); }}
-                        className="px-10 py-5 bg-white text-black text-[11px] font-black uppercase tracking-[0.6em] rounded-2xl hover:bg-[#ff6b2b] hover:shadow-[0_20px_40px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/action"
+                        className="px-5 py-3 bg-foreground dark:bg-white text-background dark:text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-[#ff6b2b] dark:hover:bg-[#ff6b2b] hover:shadow-[0_10px_20px_rgba(255,107,43,0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/action flex items-center"
                     >
-                        {skill.is_sold ? 'View' : 'Open'} <ArrowUpRight size={18} className="inline ml-4 group-hover/action:translate-x-2 group-hover/action:-translate-y-2 transition-transform" strokeWidth={3} />
+                        {skill.is_sold ? 'View' : 'Open'} <ArrowUpRight size={14} className="ml-2 group-hover/action:translate-x-1 group-hover/action:-translate-y-1 transition-transform" strokeWidth={3} />
                     </button>
                 </div>
             </div>
