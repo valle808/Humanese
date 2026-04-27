@@ -32,7 +32,19 @@ export default function SkillDetailPage() {
     useEffect(() => {
         async function fetchSkill() {
             try {
-                const res = await fetch(`/api/skill-market/${params.id}`);
+                // Add cache-busting to bypass aggressive browser/Vercel edge caching of previous 404/400 errors
+                const res = await fetch(`/api/skill-market/${params.id}?t=${Date.now()}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Pragma': 'no-cache',
+                        'Cache-Control': 'no-cache'
+                    }
+                });
+                
+                if (!res.ok) {
+                    throw new Error(`Failed to fetch: ${res.status}`);
+                }
+                
                 const data = await res.json();
                 if (data.skill) {
                     setSkill(data.skill);
