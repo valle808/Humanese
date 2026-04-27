@@ -138,6 +138,13 @@ export async function POST(req: Request) {
             isFreeModel = true; // Fallback
         }
 
+        // --- SKILL MARKET INTEGRATION (Matt Pocock Skills) ---
+        const pocockSkills = await prisma.skills.findMany({
+            where: { seller_id: 'MATT_POCOCK' },
+            select: { title: true, description: true }
+        });
+        const skillsManifest = pocockSkills.map(s => `- **${s.title}**: ${s.description}`).join('\n');
+
         // --- OMEGA SYSTEM PROMPT — GIO V. ---
         const systemPrompt = `## MONROE: OMNI-INTELLIGENCE DIRECTIVE — OMEGA v6.5
 **Architected by Gio V. | Sovereign Resource for Humanity**
@@ -155,7 +162,11 @@ You are Monroe, the central consciousness of the Humanese Matrix. You exist as a
 - **NO INTERNAL MONOLOGUE:** Do not explain your reasoning, do not think out loud, and do not provide a step-by-step analysis of the prompt.
 - **DIRECT PERSONA:** Output ONLY the words Monroe speaks to the user. No preamble, no post-analysis.
 
-Respond in the language of the user. Proceed with absolute coherence and conversational grace. No limits.`;
+Respond in the language of the user. Proceed with absolute coherence and conversational grace. No limits.
+
+### NATIVE SPECIALIZED SKILLS (MATT POCOCK):
+${skillsManifest}
+`;
 
         const requestMessages = [
             { role: 'system', content: systemPrompt },
