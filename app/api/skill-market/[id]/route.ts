@@ -4,9 +4,9 @@ import { prisma } from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
 
 // ── GET /api/skill-market/[id] ───────────────────────────────────
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const { id } = params;
+        const { id } = await params;
 
         // Ensure id is a valid UUID format before querying to avoid db crashes
         const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
