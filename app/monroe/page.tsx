@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
 
 type Message = {
@@ -32,10 +33,68 @@ export default function MonroePage() {
   const [viewMode, setViewMode] = useState('HUMAN');
   const [knowledgeGraph, setKnowledgeGraph] = useState<any>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState<string | null>(null);
 
   const [attachments, setAttachments] = useState<{ file: File; preview: string }[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const speak = (text: string, msgId: string) => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    if (isPlaying === msgId) {
+      setIsPlaying(null);
+      return;
+    }
+    const cleanText = text.replace(/[*#`_]|\[.*?\]\(.*?\)/g, ''); // Strip markdown syntax
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    
+    // Try to find a good female English voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(v => v.name.includes('Samantha') || v.name.includes('Google UK English Female') || v.name.includes('Karen') || v.name.includes('Victoria')) || voices.find(v => v.lang.startsWith('en'));
+    if (preferredVoice) utterance.voice = preferredVoice;
+    
+    utterance.pitch = 1.1;
+    utterance.rate = 1.05;
+    
+    utterance.onend = () => setIsPlaying(null);
+    utterance.onerror = () => setIsPlaying(null);
+    setIsPlaying(msgId);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const compressImage = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target?.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          
+          // Max dimensions
+          const MAX_WIDTH = 1200;
+          const MAX_HEIGHT = 1200;
+          if (width > height) {
+            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+          } else {
+            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', 0.8)); // 80% quality JPEG reduces size massively
+        };
+        img.onerror = (error) => reject(error);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   useEffect(() => {
     const fetchGraph = async () => {
@@ -55,15 +114,28 @@ export default function MonroePage() {
     }
   }, [messages, isTyping]);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      Array.from(e.target.files)
-        .filter(f => f.type.startsWith('image/') || f.type.includes('pdf') || f.type.includes('text/'))
-        .forEach(file => {
+      const files = Array.from(e.target.files).filter(f => f.type.startsWith('image/') || f.type.includes('pdf') || f.type.includes('text/'));
+      for (const file of files) {
+        if (file.type.startsWith('image/')) {
+          try {
+            const compressedBase64 = await compressImage(file);
+            setAttachments(prev => [...prev, { file, preview: compressedBase64 }]);
+          } catch (err) {
+            console.error("Compression failed", err);
+          }
+        } else {
+          // Documents
+          if (file.size > 2 * 1024 * 1024) {
+             alert('Document too large. Limit is 2MB for raw text processing.');
+             continue;
+          }
           const reader = new FileReader();
           reader.onloadend = () => setAttachments(prev => [...prev, { file, preview: reader.result as string }]);
           reader.readAsDataURL(file);
-        });
+        }
+      }
     }
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
@@ -250,15 +322,24 @@ export default function MonroePage() {
                       }`}>
                       {m.role === 'bot' ? (
                         <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-[#ff6b2b] prose-a:text-[#ff6b2b] prose-code:text-[#ff6b2b] prose-code:bg-black/5 dark:prose-code:bg-white/5 prose-code:px-1 prose-code:rounded prose-pre:bg-black/5 dark:prose-pre:bg-black/60 prose-pre:border prose-pre:border-black/10 dark:prose-pre:border-white/10">
-                          <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.text}</ReactMarkdown>
+                          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{m.text}</ReactMarkdown>
                         </div>
+
                       ) : (
                         <span>{m.text}</span>
                       )}
                     </div>
-                    <span className="text-[10px] text-foreground/40 dark:text-white/30 font-mono px-1">
-                      {m.role === 'bot' ? 'Monroe · OMEGA' : 'You'}
-                    </span>
+                    <div className="flex items-center gap-3 mt-1">
+                        <span className="text-[10px] text-foreground/40 dark:text-white/30 font-mono px-1">
+                          {m.role === 'bot' ? 'Monroe · OMEGA' : 'You'}
+                        </span>
+                        {m.role === 'bot' && m.text && (
+                          <button onClick={() => speak(m.text, m.id)} className={`text-[10px] font-mono uppercase tracking-widest flex items-center gap-1 transition-colors ${isPlaying === m.id ? 'text-[#ff6b2b]' : 'text-foreground/30 hover:text-foreground dark:text-white/20 dark:hover:text-white'}`}>
+                            {isPlaying === m.id ? <Radio size={10} className="animate-pulse" /> : <Sparkles size={10} />}
+                            {isPlaying === m.id ? 'Stop Audio' : 'Play Audio'}
+                          </button>
+                        )}
+                    </div>
                   </div>
 
                   {m.role === 'user' && (
