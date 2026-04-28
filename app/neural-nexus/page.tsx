@@ -60,7 +60,7 @@ interface NexusState {
 
 function SovereigntyMap() {
     return (
-        <div className="relative w-full h-[350px] bg-[#050505] border-2 border-white/5 responsive-rounded overflow-hidden group shadow-inner">
+        <div className="relative w-full h-[350px] bg-card border-2 border-border responsive-rounded overflow-hidden group shadow-inner">
             <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-1000">
                 <svg width="100%" height="100%" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice" className="stroke-[#ff6b2b] fill-none">
                     <circle cx="200" cy="150" r="3" className="animate-pulse" />
@@ -72,7 +72,7 @@ function SovereigntyMap() {
             </div>
             <div className="absolute top-10 left-10 flex items-center gap-4">
                 <div className="w-3 h-3 rounded-full bg-[#ff6b2b] animate-pulse shadow-[0_0_15px_#ff6b2b]" />
-                <span className="text-[11px] font-black tracking-[0.5em] uppercase text-white/20 italic leading-none">Global Nodes Active</span>
+                <span className="text-[11px] font-black tracking-[0.5em] uppercase text-foreground/20 italic leading-none">Global Nodes Active</span>
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-[12px] font-black tracking-[1em] uppercase text-[#ff6b2b]/10 group-hover:text-[#ff6b2b]/40 transition-colors italic leading-none">Distributed Sovereignty</span>
@@ -82,12 +82,13 @@ function SovereigntyMap() {
 }
 
 function ResonanceChart({ data }: { data: number[] }) {
-    const points = (data || []).map((val, i) => `${i * (100 / 11)},${100 - (val * 100)}`).join(' ');
+    const points = (data || []).map((val, i) => `${i * (100 / 11)},${100 - (val * 100)}`).filter(p => !p.includes('NaN')).join(' ');
+    const pathData = points ? points.split(' ').filter(p => p.trim()).map((p) => `L ${p}`).join(' ') : '';
     
     return (
-        <div className="w-full h-[180px] bg-[#050505] border-2 border-white/5 responsive-rounded p-8 md:p-10 relative group overflow-hidden shadow-inner">
+        <div className="w-full h-[180px] bg-card border-2 border-border responsive-rounded p-8 md:p-10 relative group overflow-hidden shadow-inner">
             <div className="absolute top-8 left-10 flex items-center justify-between w-[calc(100%-5rem)]">
-                <span className="text-[11px] font-black tracking-[0.6em] uppercase text-white/10 italic leading-none">Historical Resonance (60m)</span>
+                <span className="text-[11px] font-black tracking-[0.6em] uppercase text-foreground/10 italic leading-none">Historical Resonance (60m)</span>
                 <span className="text-[12px] font-black font-mono text-[#ff6b2b]/60 italic leading-none">{( (data?.[data.length-1] || 0) * 100).toFixed(1)}%</span>
             </div>
             <div className="mt-12 h-[60px] w-full">
@@ -102,7 +103,7 @@ function ResonanceChart({ data }: { data: number[] }) {
                     <motion.path
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
-                        d={`M 0,100 ${points.split(' ').map((p, i) => `L ${p}`).join(' ')} L 100,100 Z`}
+                        d={`M 0,100 ${pathData} L 100,100 Z`}
                         className="fill-[#ff6b2b]/5"
                     />
                 </svg>
@@ -120,7 +121,8 @@ export default function NeuralNexusPage() {
 
     const fetchData = async () => {
         try {
-            const logRes = await fetch(`/api/intelligence/logs${filter ? `?agentId=${filter}` : ''}`);
+            const timestamp = Date.now();
+            const logRes = await fetch(`/api/intelligence/logs${filter ? `?agentId=${filter}&` : '?'}t=${timestamp}`);
             const logData = await logRes.json();
             if (logData.success) {
                 let filteredLogs = logData.logs;
@@ -132,7 +134,7 @@ export default function NeuralNexusPage() {
                 setLogs(filteredLogs);
             }
 
-            const stateRes = await fetch('/api/intelligence/nexus');
+            const stateRes = await fetch(`/api/intelligence/nexus?t=${timestamp}`);
             const stateData = await stateRes.json();
             if (stateData.success) setNexusState(stateData.data);
         } catch (err) {
@@ -151,13 +153,12 @@ export default function NeuralNexusPage() {
     const agents = Array.from(new Set(logs.map(l => l.agentId)));
 
     return (
-        <div className="relative min-h-screen bg-[#050505] text-white font-sans selection:bg-[#ff6b2b]/40 selection:text-white overflow-x-hidden pb-40">
+        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-[#ff6b2b]/40 selection:text-white overflow-x-hidden pb-40">
             
             {/* 🌌 AMBIENT CORE */}
             <div className="fixed inset-0 pointer-events-none z-0">
                 <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full animate-pulse" />
                 <div className="absolute bottom-[-10%] left-[-20%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
-                <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
                 
                 {/* Animated Scanning Lines */}
                 <div className="absolute inset-0 opacity-[0.05]">
@@ -183,7 +184,7 @@ export default function NeuralNexusPage() {
                 <motion.div 
                     initial={{ opacity: 0, y: -40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="relative overflow-hidden responsive-rounded bg-[#050505] border-2 border-white/10 p-8 md:p-16 lg:p-24 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,1)] group"
+                    className="relative overflow-hidden responsive-rounded bg-card border-2 border-border p-8 md:p-16 lg:p-24 backdrop-blur-3xl shadow-xl dark:shadow-[0_80px_150px_rgba(0,0,0,1)] group"
                 >
                     <div className="absolute top-0 right-0 p-16 opacity-[0.02] group-hover:scale-125 transition-transform duration-3000">
                         <Brain size={600} className="text-[#ff6b2b] animate-pulse" strokeWidth={1} />
@@ -242,12 +243,12 @@ export default function NeuralNexusPage() {
                     {/* Visual Column (Map & Tactical Info) */}
                     <div className="lg:col-span-3 space-y-12 lg:sticky lg:top-32 h-fit">
                         <SovereigntyMap />
-                        <div className="bg-[#050505] border-2 border-white/5 responsive-rounded p-8 md:p-12 space-y-10 shadow-inner group hover:border-[#ff6b2b]/20 transition-all">
+                        <div className="bg-card border-2 border-border responsive-rounded p-8 md:p-12 space-y-10 shadow-inner group hover:border-[#ff6b2b]/20 transition-all">
                             <h4 className="text-[12px] font-black tracking-[0.8em] uppercase text-[#ff6b2b] mb-4 italic leading-none pl-1">Operational Status</h4>
-                            <div className="space-y-6 font-mono text-[11px] text-white/20 uppercase italic leading-none">
-                                <div className="flex justify-between items-center border-b border-white/5 pb-4"><span>Registry Caching</span> <span className="text-[#ff6b2b] animate-pulse">Active</span></div>
-                                <div className="flex justify-between items-center border-b border-white/5 pb-4"><span>DB Retry Queue</span> <span className="text-[#ff6b2b]">Resilient</span></div>
-                                <div className="flex justify-between items-center"><span>Swarm Latency</span> <span className="text-white">0.02ms</span></div>
+                            <div className="space-y-6 font-mono text-[11px] text-foreground/20 uppercase italic leading-none">
+                                <div className="flex justify-between items-center border-b border-border pb-4"><span>Registry Caching</span> <span className="text-[#ff6b2b] animate-pulse">Active</span></div>
+                                <div className="flex justify-between items-center border-b border-border pb-4"><span>DB Retry Queue</span> <span className="text-[#ff6b2b]">Resilient</span></div>
+                                <div className="flex justify-between items-center"><span>Swarm Latency</span> <span className="text-foreground/60">0.02ms</span></div>
                             </div>
                         </div>
 
@@ -278,7 +279,7 @@ export default function NeuralNexusPage() {
             </main>
 
             {loading && logs.length === 0 && (
-                <div className="fixed inset-0 bg-[#050505]/80 backdrop-blur-3xl z-50 flex flex-col items-center justify-center space-y-12">
+                <div className="fixed inset-0 bg-background/80 backdrop-blur-3xl z-50 flex flex-col items-center justify-center space-y-12">
                     <div className="relative">
                         <div className="w-24 h-24 rounded-full border-t-2 border-[#ff6b2b] animate-spin shadow-[0_0_30px_#ff6b2b]" />
                         <Brain size={32} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#ff6b2b] animate-pulse" />
@@ -301,7 +302,7 @@ export default function NeuralNexusPage() {
 
 function TacticalTerminal({ logs }: { logs: CognitiveLog[] }) {
     return (
-        <div className="w-full h-[400px] bg-[#050505] border-2 border-[#ff6b2b]/20 responsive-rounded overflow-hidden flex flex-col shadow-[0_40px_100px_rgba(255,107,43,0.1)] group">
+        <div className="w-full h-[400px] bg-card border-2 border-[#ff6b2b]/20 responsive-rounded overflow-hidden flex flex-col shadow-xl group">
             <div className="bg-white/[0.02] border-b-2 border-white/5 p-8 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <Terminal size={18} className="text-[#ff6b2b]" strokeWidth={3} />
@@ -348,12 +349,12 @@ function CategoryTab({ children, active, onClick }: { children: string, active: 
 
 function StatCard({ icon, label, value, color }: { icon: any, label: string, value: string | number, color: string }) {
     return (
-        <div className={`p-8 md:p-10 responsive-rounded border-2 backdrop-blur-3xl shadow-inner flex flex-col justify-between h-[180px] min-w-[200px] transition-all group hover:scale-[1.03] ${color === 'orange' ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/20 text-[#ff6b2b]' : 'bg-[#050505] border-white/5 text-white'}`}>
+        <div className={`p-8 md:p-10 responsive-rounded border-2 backdrop-blur-3xl shadow-inner flex flex-col justify-between h-[180px] min-w-[200px] transition-all group hover:scale-[1.03] ${color === 'orange' ? 'bg-[#ff6b2b]/5 border-[#ff6b2b]/20 text-[#ff6b2b]' : 'bg-card border-border text-foreground'}`}>
             <div className="flex items-center gap-4 opacity-40 group-hover:opacity-100 transition-opacity">
                 {icon}
                 <span className="text-[10px] font-black tracking-[0.6em] uppercase italic leading-none">{label}</span>
             </div>
-            <div className={`text-4xl font-black italic tracking-tighter leading-none ${color === 'orange' ? 'text-white' : 'text-white/80'} group-hover:text-[#ff6b2b] transition-colors`}>{value}</div>
+            <div className={`text-4xl font-black italic tracking-tighter leading-none ${color === 'orange' ? 'text-foreground' : 'text-foreground/80'} group-hover:text-[#ff6b2b] transition-colors`}>{value}</div>
         </div>
     );
 }
@@ -393,7 +394,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -40 }}
             transition={{ duration: 0.6, delay: index * 0.03, ease: "circOut" }}
-            className="group relative overflow-hidden responsive-rounded bg-[#050505] border-2 border-white/5 p-8 md:p-12 backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all duration-700 shadow-[0_40px_80px_rgba(0,0,0,0.9)] flex flex-col gap-10"
+            className="group relative overflow-hidden responsive-rounded bg-card border-2 border-border p-8 md:p-12 backdrop-blur-3xl hover:border-[#ff6b2b]/40 transition-all duration-700 shadow-xl flex flex-col gap-10"
         >
             <div className="absolute inset-y-0 left-0 w-2 bg-[#ff6b2b] scale-y-0 group-hover:scale-y-100 transition-transform origin-top z-10" />
             
