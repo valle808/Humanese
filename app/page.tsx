@@ -168,7 +168,6 @@ export default function Home() {
              </div>
              <div className="relative z-10 mt-8 space-y-4">
                 <div className="text-4xl md:text-6xl font-black text-foreground dark:text-white tabular-nums tracking-tighter leading-none italic">
-                <div className="text-4xl md:text-6xl font-black text-foreground tabular-nums tracking-tighter leading-none italic">
                    {metrics.nodesActive} <span className="text-[9px] md:text-[10px] text-foreground/40 uppercase tracking-[0.4em] font-mono not-italic block mt-2">Active Nodes</span>
                 </div>
                 <div className="h-1.5 w-full bg-border rounded-full overflow-hidden border border-border">
