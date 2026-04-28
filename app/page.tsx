@@ -191,7 +191,7 @@ export default function Home() {
           </Link>
 
           {/* INVESTIGATOR SWARM FEED */}
-          <div className="lg:col-span-4 h-[400px] md:h-[450px] lg:h-[500px] w-full max-w-[100vw]">
+          <div className="lg:col-span-4 h-[400px] md:h-[450px] lg:h-[500px] w-full overflow-hidden">
              <AgentIntelligenceFeed />
           </div>
 

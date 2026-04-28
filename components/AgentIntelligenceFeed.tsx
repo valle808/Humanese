@@ -63,7 +63,7 @@ export const AgentIntelligenceFeed = () => {
     }, [logs.length]);
 
     return (
-        <div className="relative bg-card border-2 border-border rounded-[3rem] p-6 md:p-10 flex flex-col h-full shadow-2xl backdrop-blur-3xl overflow-hidden group hover:border-[#ff6b2b]/20 transition-all duration-700">
+        <div className="relative bg-card border-2 border-border rounded-[3rem] p-6 md:p-10 flex flex-col overflow-hidden group hover:border-[#ff6b2b]/20 transition-all duration-700 shadow-2xl backdrop-blur-3xl" style={{height: '100%', maxHeight: '500px'}}>
             {/* ── SCANNER EFFECT ── */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent animate-scan z-0 opacity-20" />
             <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
@@ -84,53 +84,58 @@ export const AgentIntelligenceFeed = () => {
                 </div>
             </div>
 
-            <div className="flex-1 relative z-10 flex items-center justify-center my-4">
+            {/* ── SLIDE VIEWPORT: fixed height, clips overflow so only 1 card shows ── */}
+            <div className="flex-1 relative z-10 min-h-0 overflow-hidden">
                 <AnimatePresence mode="wait">
                     {logs.length > 0 ? (
                         <motion.div
                             key={logs[currentIndex]?.id || currentIndex}
-                            initial={{ opacity: 0, x: 40, scale: 0.95 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            exit={{ opacity: 0, x: -40, scale: 0.95 }}
-                            transition={{ duration: 0.5, ease: "anticipate" }}
-                            className="w-full p-6 md:p-8 bg-foreground/5 dark:bg-black border-2 border-border dark:border-white/5 rounded-[2rem] md:rounded-[2.5rem] space-y-4 hover:border-[#ff6b2b]/40 transition-all duration-500 group/card cursor-default shadow-inner relative overflow-hidden absolute"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+                            className="w-full h-full p-5 md:p-6 bg-foreground/5 dark:bg-black/60 border-2 border-border dark:border-white/5 rounded-[2rem] space-y-3 hover:border-[#ff6b2b]/40 transition-colors group/card cursor-default shadow-inner relative overflow-hidden"
                         >
                             <div className="absolute inset-y-0 left-0 w-1 bg-[#ff6b2b] scale-y-0 group-hover/card:scale-y-100 transition-transform origin-top z-10" />
-                            
+
                             <div className="flex justify-between items-center relative z-20">
-                                <div className="flex items-center gap-4">
-                                    <span className="px-3 md:px-4 py-1.5 md:py-2 bg-[#ff6b2b]/5 border border-[#ff6b2b]/20 rounded-lg md:rounded-xl text-[9px] md:text-[10px] font-black text-[#ff6b2b] uppercase tracking-widest italic leading-none">{logs[currentIndex]?.action || 'INTERCEPT'}</span>
-                                    <span className="text-[9px] md:text-[10px] font-black text-foreground/20 dark:text-white/10 uppercase tracking-[0.2em] italic group-hover/card:text-foreground/40 dark:group-hover/card:text-white/40 transition-colors truncate max-w-[120px]">{logs[currentIndex]?.agentId}</span>
+                                <div className="flex items-center gap-3 flex-wrap">
+                                    <span className="px-3 py-1.5 bg-[#ff6b2b]/5 border border-[#ff6b2b]/20 rounded-lg text-[9px] font-black text-[#ff6b2b] uppercase tracking-widest italic leading-none">{logs[currentIndex]?.action || 'INTERCEPT'}</span>
+                                    <span className="text-[9px] font-black text-foreground/20 dark:text-white/10 uppercase tracking-[0.2em] italic truncate max-w-[100px]">{logs[currentIndex]?.agentId}</span>
                                 </div>
-                                <div className="text-[8px] md:text-[9px] font-black text-foreground/10 dark:text-white/5 uppercase italic tracking-widest shrink-0">{((logs[currentIndex]?.resonance || 0) * 100).toFixed(1)}% RS</div>
+                                <div className="text-[8px] font-black text-foreground/10 dark:text-white/5 uppercase italic tracking-widest shrink-0">{((logs[currentIndex]?.resonance || 0) * 100).toFixed(1)}% RS</div>
                             </div>
-                            
-                            <div className="space-y-2 md:space-y-4 relative z-20 py-2">
-                                <p className="text-lg md:text-xl font-black text-foreground/60 dark:text-white/60 tracking-tight italic leading-tight group-hover/card:text-foreground dark:group-hover/card:text-white transition-colors">"{logs[currentIndex]?.intention}"</p>
-                                <p className="text-[13px] md:text-[15px] text-foreground/40 dark:text-white/20 font-light italic leading-relaxed tracking-tight line-clamp-4">
+
+                            <div className="space-y-2 relative z-20">
+                                <p className="text-base md:text-lg font-black text-foreground/60 dark:text-white/60 tracking-tight italic leading-tight group-hover/card:text-foreground dark:group-hover/card:text-white transition-colors line-clamp-2">"{logs[currentIndex]?.intention}"</p>
+                                <p className="text-[12px] md:text-[13px] text-foreground/40 dark:text-white/20 font-light italic leading-relaxed tracking-tight line-clamp-3">
                                     {logs[currentIndex]?.thought}
                                 </p>
                             </div>
                         </motion.div>
                     ) : (
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                            className="h-full w-full flex items-center justify-center opacity-20 italic text-sm py-20 absolute inset-0"
+                            className="w-full h-full flex items-center justify-center opacity-20 italic text-sm"
                         >
                             Waiting for neural synchronization...
                         </motion.div>
                     )}
                 </AnimatePresence>
-                
-                {/* Slideshow indicators */}
-                {logs.length > 0 && (
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5">
-                         {logs.map((_, i) => (
-                             <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === currentIndex ? 'bg-[#ff6b2b] w-6 shadow-[0_0_10px_#ff6b2b]' : 'bg-foreground/10 w-1.5'}`} />
-                         ))}
-                    </div>
-                )}
             </div>
+
+            {/* ── SLIDE DOTS ── */}
+            {logs.length > 0 && (
+                <div className="flex justify-center gap-2 pt-3 relative z-10 shrink-0">
+                    {logs.map((_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => setCurrentIndex(i)}
+                            className={`h-1.5 rounded-full transition-all duration-400 ${i === currentIndex ? 'bg-[#ff6b2b] w-5 shadow-[0_0_8px_#ff6b2b]' : 'bg-foreground/15 w-1.5 hover:bg-foreground/30'}`}
+                        />
+                    ))}
+                </div>
+            )}
 
             <div className="mt-8 pt-8 border-t-2 border-border dark:border-white/5 flex justify-between items-center relative z-10">
                 <div className="flex -space-x-3 md:-space-x-4">
