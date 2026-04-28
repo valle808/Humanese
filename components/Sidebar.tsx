@@ -169,45 +169,48 @@ export const Sidebar = () => {
                 </nav>
 
                 {/* ── FOOTER / STATUS ── */}
-                <div className="p-8 border-t-2 border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.01] space-y-8 relative z-10 mt-auto">
-                    <div className={`transition-all duration-300 flex items-center justify-center`}>
-                        <ThemeToggle />
+                <div className="p-4 md:p-6 border-t-2 border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.01] space-y-4 relative z-10 mt-auto">
+                    {/* Theme Toggle */}
+                    <div className={`flex ${isExpanded ? 'justify-start px-2' : 'justify-center'}`}>
+                        <ThemeToggle compact={!isExpanded} />
                     </div>
 
+                    {/* Monroe Card */}
                     <Link
                         href="/monroe"
-                        className="flex items-center gap-8 p-6 rounded-[2.5rem] bg-black dark:bg-black group cursor-pointer border-2 border-black/10 dark:border-white/5 hover:border-[#ff6b2b]/40 transition-all w-full text-left relative overflow-hidden shadow-inner active:scale-95"
+                        className={`flex items-center p-4 rounded-[2rem] bg-black dark:bg-black group cursor-pointer border-2 border-black/10 dark:border-white/5 hover:border-[#ff6b2b]/40 transition-all w-full text-left relative overflow-hidden shadow-inner active:scale-95 ${
+                            isExpanded ? 'gap-5' : 'justify-center'
+                        }`}
                     >
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#ff6b2b] to-[#7f2c14] border-2 border-[#ff6b2b]/40 flex items-center justify-center text-black font-black text-2xl uppercase italic shrink-0 group-hover:scale-110 transition-all duration-500 shadow-2xl scale-90">
+                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#ff6b2b] to-[#7f2c14] border-2 border-[#ff6b2b]/40 flex items-center justify-center text-black font-black text-xl uppercase italic shrink-0 group-hover:scale-110 transition-all duration-500 shadow-2xl">
                             M
                         </div>
                         <AnimatePresence>
                         {isExpanded && (
-                            <motion.div 
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                transition={{ duration: 0.4 }}
-                                className="flex flex-col shrink-0"
+                            <motion.div
+                                initial={{ opacity: 0, x: -16, width: 0 }}
+                                animate={{ opacity: 1, x: 0, width: 'auto' }}
+                                exit={{ opacity: 0, x: -16, width: 0 }}
+                                transition={{ duration: 0.35 }}
+                                className="flex flex-col overflow-hidden shrink-0"
                             >
-                                <span className="text-[12px] font-black text-white italic tracking-tighter uppercase leading-none">Nexus Monroe.</span>
-                                <span className="text-[9px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-[0.4em] uppercase italic mt-2 leading-none pl-1 animate-pulse">v7.0 Sentinel</span>
+                                <span className="text-[11px] font-black text-white italic tracking-tighter uppercase leading-none whitespace-nowrap">Nexus Monroe.</span>
+                                <span className="text-[9px] text-[#ff6b2b]/80 font-black tracking-[0.4em] uppercase italic mt-1.5 leading-none pl-0.5 animate-pulse whitespace-nowrap">v7.0 Sentinel</span>
                             </motion.div>
                         )}
                         </AnimatePresence>
-                        <div className="absolute top-[-10px] right-[-10px] p-6 opacity-[0.05] group-hover:rotate-12 group-hover:scale-125 transition-all">
-                             <Zap size={60} className="text-[#ff6b2b]" />
+                        <div className="absolute top-[-10px] right-[-10px] p-4 opacity-[0.05] group-hover:rotate-12 group-hover:scale-125 transition-all pointer-events-none">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff6b2b" strokeWidth="2"><path d="m13 2-2 2.5h3L12 7" /><path d="M12 2v10" /><path d="M8.56 2.75c-4.37 1.27-7.39 5.26-7.39 9.96 0 5.52 4.48 10 10 10s10-4.48 10-10c0-4.7-3.02-8.69-7.39-9.96" /></svg>
                         </div>
                     </Link>
 
-                    <div className="flex flex-col gap-4 px-4">
-                         <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[0.4em] italic text-foreground/30 dark:text-white/20 group">
-                             {isExpanded && <span className="group-hover:text-foreground/50 dark:group-hover:text-white/40 transition-colors">Cluster Status_</span>}
-                             <div className="flex items-center gap-4 text-[#ff6b2b]">
-                                <div className="w-2 h-2 rounded-full bg-[#ff6b2b] animate-ping" />
-                                {isExpanded && <span className="animate-pulse">Stable</span>}
-                             </div>
-                         </div>
+                    {/* Cluster status dot */}
+                    <div className={`flex items-center gap-3 px-2 ${isExpanded ? 'justify-between' : 'justify-center'}`}>
+                        {isExpanded && <span className="text-[10px] font-black uppercase tracking-[0.4em] italic text-foreground/30">Cluster Status_</span>}
+                        <div className="flex items-center gap-2 text-[#ff6b2b]">
+                            <div className="w-2 h-2 rounded-full bg-[#ff6b2b] animate-ping shrink-0" />
+                            {isExpanded && <span className="text-[10px] font-black uppercase tracking-[0.3em] italic animate-pulse">Stable</span>}
+                        </div>
                     </div>
                 </div>
             </motion.div>
