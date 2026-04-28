@@ -72,7 +72,7 @@ export class SovereignGraph {
       }
       fs.writeFileSync(this.filePath, JSON.stringify(this.data, null, 2), 'utf-8');
     } catch (e) {
-      console.error('Sovereign Mind: Persistence Collapse.', e);
+      console.warn('Sovereign Mind: Persistence inhibited (likely read-only filesystem).', e);
     }
   }
 

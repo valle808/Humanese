@@ -11,13 +11,19 @@ export async function GET() {
         const graph = new SovereignGraph();
         const orchestrator = FleetOrchestrator.getInstance();
         
-        const [nodes, fleet, cryptoMetrics, m2mCount, agentCount] = await Promise.all([
-            graph.getGraph(),
-            orchestrator.getFleetStatus(),
-            valleCore.getNetworkMetrics(),
-            prisma.m2MPost.count(),
-            prisma.agent.count()
-        ]);
+        const nodes = await graph.getGraph();
+        
+        let fleet = [];
+        try { fleet = await orchestrator.getFleetStatus(); } catch (e) { console.warn('Fleet offline', e); }
+        
+        let cryptoMetrics = { circulatingSupply: 0, transactionCount: 0, btcParity: 0, solParity: 0 };
+        try { cryptoMetrics = await valleCore.getNetworkMetrics() as any; } catch (e) { console.warn('Crypto core offline', e); }
+        
+        let m2mCount = 0;
+        try { m2mCount = await prisma.m2MPost.count(); } catch (e) { console.warn('Pact ledger offline', e); }
+        
+        let agentCount = 0;
+        try { agentCount = await prisma.agent.count(); } catch (e) { console.warn('Agent swarm offline', e); }
 
         const manifest = {
             id: "SOVEREIGN_OMEGA_MATRIX",
