@@ -173,11 +173,11 @@ export async function POST(req: Request) {
         if (fireworksKey) {
             apiKey = fireworksKey;
             baseURL = 'https://api.fireworks.ai/inference/v1';
-            model = 'accounts/fireworks/models/kimi-k2p6'; // Verified working ✅
+            model = images && images.length > 0 ? 'accounts/fireworks/models/llama-v3p2-11b-vision-instruct' : 'accounts/fireworks/models/kimi-k2p6'; // Verified working ✅
         } else if (openrouterKey) {
             apiKey = openrouterKey;
             baseURL = 'https://openrouter.ai/api/v1';
-            model = 'meta-llama/llama-3.1-8b-instruct:free';
+            model = images && images.length > 0 ? 'meta-llama/llama-3.2-11b-vision-instruct:free' : 'meta-llama/llama-3.1-8b-instruct:free';
             isFreeModel = true;
         }
 
@@ -226,11 +226,11 @@ ${skillsManifest}
         ];
 
         // Ensure the current message is appended to the request!
-        if (message) {
-            let messageContent: any = message;
+        if (message || (images && images.length > 0)) {
+            let messageContent: any = message || "Please analyze the attached context.";
             if (images && images.length > 0) {
                 messageContent = [
-                    { type: 'text', text: message },
+                    { type: 'text', text: message || "Please deeply analyze this image and explain what it is." },
                     ...images.map((url: string) => ({ type: 'image_url', image_url: { url } }))
                 ];
             }
