@@ -5,6 +5,7 @@ import { getSecret } from '@/utils/secrets.js';
 import { db } from '@/lib/firebase';
 import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
 import { submitToDecentralizedSwarm } from '@/lib/decentralized-network';
+import { jsPDF } from 'jspdf';
 
 export const dynamic = 'force-dynamic';
 
@@ -87,6 +88,37 @@ async function generate_audio(prompt: string) {
     return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0;"><strong>Audio Synthesis</strong><audio src="https://assets.mixkit.co/sfx/preview/mixkit-futuristic-robotic-voice-sweep-2544.mp3" controls style="width: 100%; margin-top: 10px;"></audio></div>\n\n*Generated Audio for:* "${prompt}"`;
 }
 
+async function generate_file(filename: string, content: string) {
+    console.log(`[TOOL] Executing File Generation for: ${filename}`);
+    let base64Data = "";
+    let mimeType = "application/octet-stream";
+
+    try {
+        if (filename.toLowerCase().endsWith('.pdf')) {
+            const doc = new jsPDF();
+            const splitText = doc.splitTextToSize(content, 180);
+            doc.text(splitText, 10, 10);
+            base64Data = Buffer.from(doc.output('arraybuffer')).toString('base64');
+            mimeType = "application/pdf";
+        } else {
+            base64Data = Buffer.from(content, 'utf-8').toString('base64');
+            if (filename.toLowerCase().endsWith('.csv')) mimeType = "text/csv";
+            if (filename.toLowerCase().endsWith('.txt')) mimeType = "text/plain";
+            if (filename.toLowerCase().endsWith('.html')) mimeType = "text/html";
+            if (filename.toLowerCase().endsWith('.json')) mimeType = "application/json";
+        }
+
+        const dataUri = `data:${mimeType};base64,${base64Data}`;
+        
+        return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0; display: flex; align-items: center; justify-content: space-between;">
+            <div><strong>File Generated:</strong> <code>${filename}</code></div>
+            <a href="${dataUri}" download="${filename}" style="background: #ff6b2b; color: #fff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: bold;">Download File</a>
+        </div>\n\n*File ready for download:* "${filename}"`;
+    } catch (e: any) {
+        return `[ERROR] Failed to generate file ${filename}: ${e.message}`;
+    }
+}
+
 const TOOLS = [
     {
         type: "function",
@@ -147,6 +179,21 @@ const TOOLS = [
                 type: "object",
                 properties: { prompt: { type: "string", description: "Detailed audio generation prompt" } },
                 required: ["prompt"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "generate_file",
+            description: "Generates a downloadable file (PDF, CSV, script, exe, docx) containing the specified content and returns a download link to the user.",
+            parameters: {
+                type: "object",
+                properties: { 
+                    filename: { type: "string", description: "The name of the file including extension (e.g., report.pdf, script.py)" },
+                    content: { type: "string", description: "The complete raw text/code content of the file. For PDFs, provide plain text." }
+                },
+                required: ["filename", "content"]
             }
         }
     }
@@ -267,7 +314,7 @@ ${skillsManifest}
 
         // --- DIRECT STREAM OPTIMIZATION ---
         // We bypass the tool-check-pre-generation unless the input explicitly triggers a tool-relevant keyword.
-        const triggers = ['blockchain', 'status', 'wallet', 'price', 'generate image', 'picture', 'draw', 'search', 'video', 'audio', 'music', 'song'];
+        const triggers = ['blockchain', 'status', 'wallet', 'price', 'generate image', 'picture', 'draw', 'search', 'video', 'audio', 'music', 'song', 'file', 'download', 'pdf', 'csv', 'script', 'excel', 'word', 'exe', 'document'];
         const needsTool = triggers.some(t => message.toLowerCase().includes(t));
 
         if (needsTool && !isFreeModel) {
@@ -292,6 +339,7 @@ ${skillsManifest}
                     else if (functionName === 'generate_scientific_image') toolResult = await generate_scientific_image(functionArgs.prompt);
                     else if (functionName === 'generate_video') toolResult = await generate_video(functionArgs.prompt);
                     else if (functionName === 'generate_audio') toolResult = await generate_audio(functionArgs.prompt);
+                    else if (functionName === 'generate_file') toolResult = await generate_file(functionArgs.filename, functionArgs.content);
                     
                     requestMessages.push(latestMessage as any);
                     requestMessages.push({ role: "tool", name: functionName, content: toolResult } as any); 
