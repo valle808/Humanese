@@ -317,7 +317,7 @@ ${skillsManifest}
         const triggers = ['blockchain', 'status', 'wallet', 'price', 'generate image', 'picture', 'draw', 'search', 'video', 'audio', 'music', 'song', 'file', 'download', 'pdf', 'csv', 'script', 'excel', 'word', 'exe', 'document'];
         const needsTool = triggers.some(t => message.toLowerCase().includes(t));
 
-        if (needsTool && !isFreeModel) {
+        if (needsTool) {
             const responseData = await openai.chat.completions.create({
                 model: model,
                 messages: requestMessages as any,
@@ -333,16 +333,24 @@ ${skillsManifest}
                     const functionName = toolCall.function?.name;
                     const functionArgs = JSON.parse(toolCall.function?.arguments || '{}');
                     let toolResult = "";
+                    let isMediaTool = false;
+                    
                     if (functionName === 'query_blockchain') toolResult = await query_blockchain();
                     else if (functionName === 'fetch_swarm_status') toolResult = await fetch_swarm_status();
                     else if (functionName === 'search_internet') toolResult = await search_internet(functionArgs.query);
-                    else if (functionName === 'generate_scientific_image') toolResult = await generate_scientific_image(functionArgs.prompt);
-                    else if (functionName === 'generate_video') toolResult = await generate_video(functionArgs.prompt);
-                    else if (functionName === 'generate_audio') toolResult = await generate_audio(functionArgs.prompt);
-                    else if (functionName === 'generate_file') toolResult = await generate_file(functionArgs.filename, functionArgs.content);
+                    else if (functionName === 'generate_scientific_image') { toolResult = await generate_scientific_image(functionArgs.prompt); isMediaTool = true; }
+                    else if (functionName === 'generate_video') { toolResult = await generate_video(functionArgs.prompt); isMediaTool = true; }
+                    else if (functionName === 'generate_audio') { toolResult = await generate_audio(functionArgs.prompt); isMediaTool = true; }
+                    else if (functionName === 'generate_file') { toolResult = await generate_file(functionArgs.filename, functionArgs.content); isMediaTool = true; }
                     
                     requestMessages.push(latestMessage as any);
-                    requestMessages.push({ role: "tool", name: functionName, content: toolResult } as any); 
+                    
+                    if (isMediaTool) {
+                        requestMessages.push({ role: "tool", name: functionName, content: "SUCCESS. The media/file has been successfully shown to the user. Do not try to re-output the link or file data. Just confirm completion." } as any);
+                        requestMessages.push({ role: "assistant", content: toolResult } as any); // Pre-inject media
+                    } else {
+                        requestMessages.push({ role: "tool", name: functionName, content: toolResult } as any); 
+                    }
                 }
             }
         }
@@ -359,6 +367,13 @@ ${skillsManifest}
         const encoder = new TextEncoder();
         const customStream = new ReadableStream({
             async start(controller) {
+                // If there's an injected media response at the end, output it first!
+                const lastMsg = requestMessages[requestMessages.length - 1];
+                if (lastMsg && lastMsg.role === 'assistant' && (lastMsg.content.includes('<div') || lastMsg.content.includes('!['))) {
+                    controller.enqueue(encoder.encode(lastMsg.content + '\n\n'));
+                    requestMessages.pop(); // Remove it from context before final stream so AI doesn't get confused
+                }
+
                 for await (const chunk of stream) {
                     const content = chunk.choices[0]?.delta?.content || "";
                     if (content) controller.enqueue(encoder.encode(content));
