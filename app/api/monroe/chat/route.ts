@@ -173,11 +173,13 @@ export async function POST(req: Request) {
         if (fireworksKey) {
             apiKey = fireworksKey;
             baseURL = 'https://api.fireworks.ai/inference/v1';
-            model = images && images.length > 0 ? 'accounts/fireworks/models/llama-v3p2-11b-vision-instruct' : 'accounts/fireworks/models/kimi-k2p6'; // Verified working ✅
+            model = 'accounts/fireworks/models/kimi-k2p6'; // Verified working ✅ (Supports Vision)
         } else if (openrouterKey) {
             apiKey = openrouterKey;
             baseURL = 'https://openrouter.ai/api/v1';
-            model = images && images.length > 0 ? 'meta-llama/llama-3.2-11b-vision-instruct:free' : 'meta-llama/llama-3.1-8b-instruct:free';
+            // OpenRouter free models that support vision: google/gemini-2.0-pro-exp-02-05:free
+            // If the key is openrouter, we use gemini-2.0-pro-exp-02-05:free when images are present.
+            model = images && images.length > 0 ? 'google/gemini-2.0-pro-exp-02-05:free' : 'meta-llama/llama-3.1-8b-instruct:free';
             isFreeModel = true;
         }
 
