@@ -110,9 +110,29 @@ async function generate_file(filename: string, content: string) {
 
         const dataUri = `data:${mimeType};base64,${base64Data}`;
         
-        return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0; display: flex; align-items: center; justify-content: space-between;">
-            <div><strong>File Generated:</strong> <code>${filename}</code></div>
-            <a href="${dataUri}" download="${filename}" style="background: #ff6b2b; color: #fff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: bold;">Download File</a>
+        let inlinePreview = "";
+        const lowerName = filename.toLowerCase();
+        
+        if (lowerName.endsWith('.pdf')) {
+            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3);"><object data="${dataUri}" type="application/pdf" width="100%" height="400px"><iframe src="${dataUri}" width="100%" height="400px" style="border: none;">This browser does not support PDFs. Please download the PDF to view it.</iframe></object></div>`;
+        } else if (lowerName.endsWith('.png') || lowerName.endsWith('.jpg') || lowerName.endsWith('.jpeg') || lowerName.endsWith('.gif') || lowerName.endsWith('.webp')) {
+            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3);"><img src="${dataUri}" style="max-width: 100%; height: auto; display: block;" alt="Generated Image" /></div>`;
+        } else if (lowerName.endsWith('.mp4') || lowerName.endsWith('.webm') || lowerName.endsWith('.ogg')) {
+            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3);"><video src="${dataUri}" controls style="max-width: 100%; display: block;"></video></div>`;
+        } else if (lowerName.endsWith('.mp3') || lowerName.endsWith('.wav')) {
+            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); padding: 10px; background: rgba(255,107,43,0.05);"><audio src="${dataUri}" controls style="width: 100%;"></audio></div>`;
+        } else {
+            // Text, Code, CSV, JSON, docx (as text), exe (as text dump)
+            const safeContent = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow-y: auto; max-height: 350px; border: 1px solid rgba(255,107,43,0.3); background: #0d0d0d; padding: 15px;"><pre style="margin: 0; font-family: monospace; font-size: 12px; color: #a5d6ff; white-space: pre-wrap; word-wrap: break-word;"><code>${safeContent}</code></pre></div>`;
+        }
+        
+        return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div><strong>File Generated:</strong> <code>${filename}</code></div>
+                <a href="${dataUri}" download="${filename}" style="background: #ff6b2b; color: #fff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: bold; display: inline-block;">Download File</a>
+            </div>
+            ${inlinePreview}
         </div>\n\n*File ready for download:* "${filename}"`;
     } catch (e: any) {
         return `[ERROR] Failed to generate file ${filename}: ${e.message}`;
