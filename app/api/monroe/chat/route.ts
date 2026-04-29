@@ -44,17 +44,26 @@ async function search_internet(query: string) {
     });
 }
 
-async function analyze_document(base64Data: string) {
-    console.log(`[TOOL] Analyzing heavy document constraint (${base64Data.length} bytes)`);
+async function analyze_document(docData: {name: string, base64: string}) {
+    console.log(`[TOOL] Analyzing heavy document constraint (${docData.name})`);
     try {
-        // Strip the data:type/ext;base64, header if present
-        const base64str = base64Data.includes(',') ? base64Data.split(',')[1] : base64Data;
-        const decodedText = Buffer.from(base64str, 'base64').toString('utf-8');
+        const base64str = docData.base64.includes(',') ? docData.base64.split(',')[1] : docData.base64;
+        const buffer = Buffer.from(base64str, 'base64');
+        
+        let extractedText = "";
+        if (docData.name.toLowerCase().endsWith('.pdf') || docData.name.toLowerCase().endsWith('.txt') || docData.name.toLowerCase().endsWith('.csv') || docData.name.toLowerCase().endsWith('.json') || docData.name.toLowerCase().endsWith('.md')) {
+            extractedText = buffer.toString('utf-8');
+        } else {
+            // Treat as binary or unknown (like .exe)
+            // Send a safe hex/ASCII representation or just notify the model it's a binary file.
+            extractedText = `[BINARY FILE DETECTED]\nSize: ${buffer.length} bytes\nHex Dump Preview:\n${buffer.toString('hex').substring(0, 500)}...`;
+        }
+        
         // Truncate to save context window (first 5000 characters for analysis)
-        const summaryText = decodedText.substring(0, 5000);
-        return `[DOCUMENT EXTRACTION START]\n${summaryText}\n[DOCUMENT EXTRACTION END]`;
+        const summaryText = extractedText.substring(0, 5000);
+        return `[FILE UPLOADED: ${docData.name}]\n${summaryText}\n[END OF FILE EXTRACTION]`;
     } catch (error) {
-        return `DOCUMENT ANALYSIS FAILED: Base64 decoding error.`;
+        return `[FILE ERROR: Could not analyze ${docData.name}]`;
     }
 }
 
@@ -241,8 +250,10 @@ ${skillsManifest}
 
         // Process document attachments (latency-aware)
         if (documents && documents.length > 0) {
-           const docText = await analyze_document(documents[0]);
-           requestMessages.push({ role: 'system', content: `[SYSTEM: ATTACHED DATA] ${docText.substring(0, 2000)}` });
+           for (const doc of documents) {
+               const docText = await analyze_document(doc);
+               requestMessages.push({ role: 'system', content: `[SYSTEM: ATTACHED DATA] ${docText.substring(0, 3000)}` });
+           }
         }
 
         if (!apiKey) {

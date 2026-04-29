@@ -116,7 +116,7 @@ export default function MonroePage() {
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const files = Array.from(e.target.files).filter(f => f.type.startsWith('image/') || f.type.includes('pdf') || f.type.includes('text/'));
+      const files = Array.from(e.target.files);
       for (const file of files) {
         if (file.type.startsWith('image/')) {
           try {
@@ -126,9 +126,9 @@ export default function MonroePage() {
             console.error("Compression failed", err);
           }
         } else {
-          // Documents
-          if (file.size > 2 * 1024 * 1024) {
-             alert('Document too large. Limit is 2MB for raw text processing.');
+          // Documents and all other file types (pdf, docx, exe, etc.)
+          if (file.size > 5 * 1024 * 1024) {
+             alert(`File ${file.name} is too large. Limit is 5MB for raw processing.`);
              continue;
           }
           const reader = new FileReader();
@@ -147,7 +147,10 @@ export default function MonroePage() {
     if ((!input.trim() && attachments.length === 0) || isTyping) return;
 
     const base64Images = attachments.filter(a => a.file.type.startsWith('image/')).map(a => a.preview);
-    const textFilesBase64 = attachments.filter(a => !a.file.type.startsWith('image/')).map(a => a.preview);
+    const documentsData = attachments.filter(a => !a.file.type.startsWith('image/')).map(a => ({
+      name: a.file.name,
+      base64: a.preview
+    }));
 
     const userMsgId = Date.now().toString();
     const userMsg: Message = { id: userMsgId, role: 'user', text: input, images: base64Images };
@@ -179,7 +182,7 @@ export default function MonroePage() {
         body: JSON.stringify({
           message: currentInput,
           images: base64Images,
-          documents: textFilesBase64,
+          documents: documentsData,
           history: formattedHistory,
           sessionId: 'omega-v7-monroe'
         })
@@ -389,7 +392,7 @@ export default function MonroePage() {
             )}
 
             <div className="flex items-end gap-2 bg-white dark:bg-white/[0.04] border border-black/10 dark:border-white/10 rounded-2xl p-2 focus-within:border-[#ff6b2b]/40 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-lg">
-              <input type="file" multiple ref={fileInputRef} onChange={handleFileSelect} className="hidden" accept="image/*" />
+              <input type="file" multiple ref={fileInputRef} onChange={handleFileSelect} className="hidden" accept="*/*" />
               <button
                 onClick={() => fileInputRef.current?.click()}
                 className="h-8 w-8 shrink-0 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-[#ff6b2b]/10 hover:text-[#ff6b2b] text-foreground/40 dark:text-white/30 flex items-center justify-center transition-all"
