@@ -72,7 +72,9 @@ async function analyze_document(docData: {name: string, base64: string}) {
 async function generate_scientific_image(prompt: string) {
     console.log(`[TOOL] Executing Image Generation for: ${prompt}`);
     const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1024&height=1024&nologo=true`;
-    return `![Generated Model](${url})`;
+    return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); background: rgba(0,0,0,0.2); shadow: 0 10px 40px rgba(0,0,0,0.3); animate: pulse 2s infinite;">
+        <img src="${url}" style="width: 100%; height: auto; display: block;" alt="Monroe_Synthesis_${prompt.substring(0,20)}" />
+    </div>\n\n*Neural Visualization:* "${prompt}"`;
 }
 
 async function generate_video(prompt: string) {
@@ -390,7 +392,7 @@ ${skillsManifest}
             async start(controller) {
                 // If there's an injected media response at the end, output it first!
                 const lastMsg = requestMessages[requestMessages.length - 1];
-                if (lastMsg && lastMsg.role === 'assistant' && (lastMsg.content.includes('<div') || lastMsg.content.includes('!['))) {
+                if (lastMsg && lastMsg.role === 'assistant' && lastMsg.content.includes('<div')) {
                     controller.enqueue(encoder.encode(lastMsg.content + '\n\n'));
                     requestMessages.pop(); // Remove it from context before final stream so AI doesn't get confused
                 }
