@@ -71,8 +71,9 @@ async function analyze_document(docData: {name: string, base64: string}) {
 // Generate image via generic proxy tool
 async function generate_scientific_image(prompt: string) {
     console.log(`[TOOL] Executing Image Generation for: ${prompt}`);
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1024&height=1024&nologo=true`;
-    return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); background: rgba(0,0,0,0.2); shadow: 0 10px 40px rgba(0,0,0,0.3); animate: pulse 2s infinite;">
+    const seed = Math.floor(Math.random() * 1000000);
+    const url = `https://pollinations.ai/p/${encodeURIComponent(prompt)}?width=1024&height=1024&seed=${seed}&nologo=true`;
+    return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); background: rgba(0,0,0,0.2); shadow: 0 10px 40px rgba(0,0,0,0.3);">
         <img src="${url}" style="width: 100%; height: auto; display: block;" alt="Monroe_Synthesis_${prompt.substring(0,20)}" />
     </div>\n\n*Neural Visualization:* "${prompt}"`;
 }
