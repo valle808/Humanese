@@ -373,16 +373,23 @@ ${skillsManifest}
                     requestMessages.push(latestMessage as any);
                     
                     if (isMediaTool) {
-                        requestMessages.push({ role: "tool", name: functionName, content: "SUCCESS. The media/file has been successfully shown to the user. Do not try to re-output the link or file data. Just confirm completion." } as any);
-                        requestMessages.push({ role: "assistant", content: toolResult } as any); // Pre-inject media
+                        // ✅ DIRECT RETURN — send media HTML immediately, no second LLM call
+                        const encoder2 = new TextEncoder();
+                        const directStream = new ReadableStream({
+                            start(controller) {
+                                controller.enqueue(encoder2.encode(toolResult));
+                                controller.close();
+                            }
+                        });
+                        return new Response(directStream, { headers: { 'Content-Type': 'text/event-stream' } });
                     } else {
-                        requestMessages.push({ role: "tool", name: functionName, content: toolResult } as any); 
+                        requestMessages.push({ role: "tool", name: functionName, tool_call_id: toolCall.id, content: toolResult } as any);
                     }
                 }
             }
         }
 
-        // --- FINAL OMEGA STREAM ---
+        // --- FINAL OMEGA STREAM (text-only responses) ---
         const stream = await openai.chat.completions.create({
             model: model,
             messages: requestMessages as any,
@@ -394,20 +401,15 @@ ${skillsManifest}
         const encoder = new TextEncoder();
         const customStream = new ReadableStream({
             async start(controller) {
-                // If there's an injected media response at the end, output it first!
-                const lastMsg = requestMessages[requestMessages.length - 1];
-                if (lastMsg && lastMsg.role === 'assistant' && lastMsg.content.includes('<div')) {
-                    controller.enqueue(encoder.encode(lastMsg.content + '\n\n'));
-                    requestMessages.pop(); // Remove it from context before final stream so AI doesn't get confused
-                }
-
                 for await (const chunk of stream) {
                     let content = chunk.choices[0]?.delta?.content || "";
                     
                     // Fallback Interceptor: Catch hallucinated markdown images and fix them inline
                     if (content.includes('![') && content.includes('](')) {
                        content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
-                           return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); background: rgba(0,0,0,0.2);"><img src="${url}" style="width: 100%; height: auto; display: block;" alt="${alt}" /></div>`;
+                           const seed = Math.floor(Math.random() * 1000000);
+                           const proxyUrl = `/api/monroe/image-proxy?prompt=${encodeURIComponent(alt)}&seed=${seed}`;
+                           return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); background: rgba(0,0,0,0.2);"><img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="${alt}" loading="lazy" /></div>`;
                        });
                     }
                     
@@ -424,3 +426,4 @@ ${skillsManifest}
         return NextResponse.json({ success: false, error: 'Engine Restart Required.' }, { status: 500 });
     }
 }
+
