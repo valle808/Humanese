@@ -80,10 +80,23 @@ export async function GET(req: NextRequest) {
     }
 }
 
-// POST handler — for programmatic use
+// POST handler — for programmatic use or HTML form submissions
 export async function POST(req: NextRequest) {
     try {
-        const { filename, content } = await req.json();
+        let filename = '';
+        let content: string | undefined = undefined;
+
+        const contentType = req.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+            const body = await req.json();
+            filename = body.filename;
+            content = body.content;
+        } else if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
+            const formData = await req.formData();
+            filename = formData.get('filename') as string;
+            content = formData.get('content') as string;
+        }
+
         if (!filename || content === undefined) {
             return new NextResponse('Missing params', { status: 400 });
         }

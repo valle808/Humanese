@@ -122,14 +122,18 @@ async function generate_file(filename: string, content: string) {
             inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow-y: auto; max-height: 350px; border: 1px solid rgba(255,107,43,0.3); background: #0d0d0d; padding: 15px;"><pre style="margin: 0; font-family: monospace; font-size: 12px; color: #a5d6ff; white-space: pre-wrap; word-wrap: break-word;"><code>${safeContent}</code></pre></div>`;
         }
 
-        // Encode content as base64 so we can pass it through a GET param safely
-        const b64content = Buffer.from(content, 'utf-8').toString('base64');
-        const safeDownloadUrl = `/api/monroe/file-generator?filename=${encodedFilename}&b64=${encodeURIComponent(b64content)}`;
+        // Escape </textarea> so it doesn't prematurely close the hidden textarea
+        const safeContentForTextarea = content.replace(/<\/textarea>/ig, '&lt;/textarea&gt;');
+        const safeFilename = filename.replace(/"/g, '&quot;');
 
         return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
                 <div style="font-family:monospace;"><strong>📄 File Generated:</strong> <code>${filename}</code></div>
-                <a href="${safeDownloadUrl}" target="_blank" style="background: #ff6b2b; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; display: inline-block; letter-spacing:0.5px;">⬇ Download File</a>
+                <form method="POST" action="/api/monroe/file-generator" target="_blank" style="margin: 0; padding: 0;">
+                    <input type="hidden" name="filename" value="${safeFilename}" />
+                    <textarea name="content" style="display:none;">${safeContentForTextarea}</textarea>
+                    <button type="submit" style="background: #ff6b2b; color: #fff; padding: 8px 16px; border-radius: 8px; border: none; text-decoration: none; font-size: 13px; font-weight: bold; display: inline-block; letter-spacing:0.5px; cursor: pointer; font-family: inherit;">⬇ Download File</button>
+                </form>
             </div>
             ${inlinePreview}
         </div>\n\n*File ready:* "${filename}"`;
