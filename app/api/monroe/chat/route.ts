@@ -68,27 +68,18 @@ async function analyze_document(docData: {name: string, base64: string}) {
     }
 }
 
-// Generate image via server-side fetch → base64 embed (no CORS / broken-URL issues)
+// Generate image via the dedicated /api/monroe/image-proxy route
+// The browser fetches the image independently — no streaming corruption!
 async function generate_scientific_image(prompt: string) {
-    console.log(`[TOOL] Executing Image Generation for: ${prompt}`);
-    try {
-        const seed = Math.floor(Math.random() * 1000000);
-        const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1024&height=1024&seed=${seed}&nologo=true&model=flux`;
-        console.log(`[TOOL] Fetching image from: ${url}`);
-        const response = await fetch(url, { signal: AbortSignal.timeout(25000) });
-        if (!response.ok) throw new Error(`Image API returned ${response.status}`);
-        const arrayBuffer = await response.arrayBuffer();
-        const base64 = Buffer.from(arrayBuffer).toString('base64');
-        const mimeType = response.headers.get('content-type') || 'image/jpeg';
-        const dataUri = `data:${mimeType};base64,${base64}`;
-        return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.4); background: rgba(0,0,0,0.3); box-shadow: 0 10px 40px rgba(255,107,43,0.15);">
-        <img src="${dataUri}" style="width: 100%; height: auto; display: block;" alt="Monroe Neural Synthesis" />
+    console.log(`[TOOL] Queueing Image Generation for: ${prompt}`);
+    const seed = Math.floor(Math.random() * 1000000);
+    // Point to our own proxy endpoint so the browser loads the image cleanly
+    const proxyUrl = `/api/monroe/image-proxy?prompt=${encodeURIComponent(prompt)}&seed=${seed}`;
+    return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.4); background: rgba(0,0,0,0.3); box-shadow: 0 10px 40px rgba(255,107,43,0.15);">
+        <img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="Monroe Neural Synthesis" loading="lazy" />
     </div>\n\n*Neural Visualization complete.* Prompt: "${prompt}"`;
-    } catch (err: any) {
-        console.error('[TOOL] Image generation failed:', err.message);
-        return `⚠️ Image synthesis failed: ${err.message}. Try again or rephrase the prompt.`;
-    }
 }
+
 
 async function generate_video(prompt: string) {
     console.log(`[TOOL] Executing Video Generation for: ${prompt}`);
