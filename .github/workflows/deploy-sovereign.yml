@@ -100,12 +100,6 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Send Dana Confirmation Email (Sovereign Allocation)
-        run: node scripts/send_dana_confirmation.js
-        env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          DEPLOYMENT_URL: 'https://humanese.net'
-
       - name: Notify Sovereign Mesh
         run: |
           echo "✅ Sovereign OMEGA v7.0 is LIVE"
