@@ -343,15 +343,20 @@ ${skillsManifest}
                 messages: requestMessages as any,
                 tools: TOOLS as any,
                 tool_choice: 'auto',
-                max_tokens: 500,
+                max_tokens: 4000,
                 temperature: 0.7,
             });
 
             const latestMessage = responseData.choices[0]?.message;
-            if (latestMessage?.tool_calls) {
                 for (const toolCall of latestMessage.tool_calls as any[]) {
                     const functionName = toolCall.function?.name;
-                    const functionArgs = JSON.parse(toolCall.function?.arguments || '{}');
+                    let functionArgs: any = {};
+                    try {
+                        functionArgs = JSON.parse(toolCall.function?.arguments || '{}');
+                    } catch (err) {
+                        console.error('[TOOL] JSON Parse Error for tool args:', err);
+                        continue; // Skip this tool call if arguments are truncated/malformed
+                    }
                     let toolResult = "";
                     let isMediaTool = false;
                     
