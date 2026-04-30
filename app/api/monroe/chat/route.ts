@@ -348,6 +348,7 @@ ${skillsManifest}
             });
 
             const latestMessage = responseData.choices[0]?.message;
+            if (latestMessage?.tool_calls) {
                 for (const toolCall of latestMessage.tool_calls as any[]) {
                     const functionName = toolCall.function?.name;
                     let functionArgs: any = {};
