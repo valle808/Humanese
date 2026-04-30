@@ -53,42 +53,11 @@ jobs:
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
 
   # ─────────────────────────────────────────────────────────────────────────
-  # PHASE 2 — SOVEREIGN VERCEL DEPLOY
-  # ─────────────────────────────────────────────────────────────────────────
-  deploy-vercel:
-    name: 🚀 Deploy to Vercel Production
-    needs: quality-gate
-    runs-on: ubuntu-latest
-    outputs:
-      url: ${{ steps.deploy.outputs.preview-url }}
-    environment:
-      name: production
-      url: ${{ steps.deploy.outputs.preview-url }}
-    steps:
-      - name: Checkout Sovereign Codebase
-        uses: actions/checkout@v4
-
-      - name: Deploy to Vercel
-        id: deploy
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
-          working-directory: ./
-
-      - name: Print Deployment URL
-        run: |
-          echo "🔱 SOVEREIGN OMEGA DEPLOYED"
-          echo "URL: ${{ steps.deploy.outputs.url }}"
-
-  # ─────────────────────────────────────────────────────────────────────────
-  # PHASE 3 — ON-CHAIN TELEMETRY PING
+  # PHASE 2 — ON-CHAIN TELEMETRY PING
   # ─────────────────────────────────────────────────────────────────────────
   on-chain-telemetry:
     name: 📡 On-Chain Telemetry Broadcast
-    needs: deploy-vercel
+    needs: quality-gate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Sovereign Codebase
@@ -107,16 +76,16 @@ jobs:
         run: node scripts/broadcast_deployment.mjs
         env:
           SOVEREIGN_DATABASE_URL: ${{ secrets.SOVEREIGN_DATABASE_URL }}
-          DEPLOYMENT_URL: ${{ needs.deploy-vercel.outputs.url }}
+          DEPLOYMENT_URL: 'https://humanese.net'
           GIT_SHA: ${{ github.sha }}
           DEPLOYER: 'Gio V. / Bastidas Protocol'
 
   # ─────────────────────────────────────────────────────────────────────────
-  # PHASE 4 — SOVEREIGN COMMUNICATIONS
+  # PHASE 3 — SOVEREIGN COMMUNICATIONS
   # ─────────────────────────────────────────────────────────────────────────
   sovereign-notifications:
     name: ✉️ Sovereign Notification Loop
-    needs: [deploy-vercel, on-chain-telemetry]
+    needs: [on-chain-telemetry]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Sovereign Codebase
@@ -135,7 +104,7 @@ jobs:
         run: node scripts/send_dana_confirmation.js
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          DEPLOYMENT_URL: ${{ needs.deploy-vercel.outputs.url }}
+          DEPLOYMENT_URL: 'https://humanese.net'
 
       - name: Notify Sovereign Mesh
         run: |
