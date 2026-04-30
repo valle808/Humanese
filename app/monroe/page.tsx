@@ -12,6 +12,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
+import { db } from '@/lib/firebase';
+import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
 
 type Message = {
   role: 'bot' | 'user';
@@ -35,6 +37,37 @@ export default function MonroePage() {
   const [knowledgeGraph, setKnowledgeGraph] = useState<any>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
+
+  const [sessionId, setSessionId] = useState(`omega-v7-${Date.now()}`);
+  const [selectedMode, setSelectedMode] = useState('CREATIVE');
+  const [historySessions, setHistorySessions] = useState<{sessionId: string, prompt: string, mode: string}[]>([]);
+
+  const MODES = [
+    { id: 'CREATIVE', label: 'Creative', icon: Sparkles },
+    { id: 'THINKING', label: 'Thinking', icon: BrainCircuit },
+    { id: 'INVESTIGATION', label: 'Investigate', icon: ZoomIn },
+    { id: 'PREDICTION', label: 'Predict', icon: Orbit },
+    { id: 'CREATOR', label: 'Create App/File', icon: Terminal }
+  ];
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      if (!db) return;
+      try {
+        const q = query(collection(db, 'monroe_conversations'), orderBy('timestamp', 'desc'), limit(100));
+        const snapshot = await getDocs(q);
+        const sessionsMap = new Map();
+        snapshot.docs.forEach(doc => {
+           const data = doc.data();
+           if (!sessionsMap.has(data.sessionId) && data.role === 'user') {
+               sessionsMap.set(data.sessionId, { sessionId: data.sessionId, prompt: data.content, mode: data.mode || 'CREATIVE' });
+           }
+        });
+        setHistorySessions(Array.from(sessionsMap.values()).slice(0, 10));
+      } catch(e) {}
+    };
+    fetchHistory();
+  }, [messages.length]); // Re-fetch on new messages
 
   const [attachments, setAttachments] = useState<{ file: File; preview: string }[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -185,7 +218,8 @@ export default function MonroePage() {
           images: base64Images,
           documents: documentsData,
           history: formattedHistory,
-          sessionId: 'omega-v7-monroe'
+          sessionId: sessionId,
+          mode: selectedMode
         })
       });
 
@@ -257,14 +291,14 @@ export default function MonroePage() {
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
             className="fixed top-0 left-0 h-screen w-72 z-[90] border-r border-black/10 dark:border-white/10 bg-background/90 dark:bg-black/80 backdrop-blur-3xl flex flex-col shadow-2xl xl:hidden"
           >
-            <SidebarContent knowledgeGraph={knowledgeGraph} onClose={() => setSidebarOpen(false)} onMachineView={() => setViewMode('MACHINE')} />
+            <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { setSessionId(id); setMessages([]); setSidebarOpen(false); }} onNewChat={() => { setSessionId(`omega-v7-${Date.now()}`); setMessages([]); setSidebarOpen(false); }} onClose={() => setSidebarOpen(false)} onMachineView={() => setViewMode('MACHINE')} />
           </motion.aside>
         )}
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
       <aside className="hidden xl:flex w-64 flex-shrink-0 flex-col border-r border-black/10 dark:border-white/10 bg-background/50 dark:bg-black/40 backdrop-blur-3xl relative z-10">
-        <SidebarContent knowledgeGraph={knowledgeGraph} onMachineView={() => setViewMode('MACHINE')} />
+        <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { setSessionId(id); setMessages([]); }} onNewChat={() => { setSessionId(`omega-v7-${Date.now()}`); setMessages([]); }} onMachineView={() => setViewMode('MACHINE')} />
       </aside>
 
       {/* ── MAIN CHAT ── */}
@@ -415,6 +449,23 @@ export default function MonroePage() {
               </div>
             )}
 
+            {/* Mode Selector */}
+            <div className="flex gap-2 mb-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+              {MODES.map(m => {
+                const Icon = m.icon;
+                const isSelected = selectedMode === m.id;
+                return (
+                  <button
+                    key={m.id}
+                    onClick={() => setSelectedMode(m.id)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all ${isSelected ? 'bg-[#ff6b2b] border-[#ff6b2b] text-white shadow-[0_0_15px_rgba(255,107,43,0.3)]' : 'bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-foreground/50 dark:text-white/40 hover:text-foreground dark:hover:text-white hover:border-[#ff6b2b]/50'}`}
+                  >
+                    <Icon size={12} /> {m.label}
+                  </button>
+                );
+              })}
+            </div>
+
             <div className="flex items-end gap-2 bg-white dark:bg-white/[0.04] border border-black/10 dark:border-white/10 rounded-2xl p-2 focus-within:border-[#ff6b2b]/40 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-lg">
               <input type="file" multiple ref={fileInputRef} onChange={handleFileSelect} className="hidden" accept="*/*" />
               <button
@@ -445,7 +496,7 @@ export default function MonroePage() {
 
             <div className="flex justify-between items-center mt-1.5 px-1 text-[9px] text-foreground/30 dark:text-white/20 font-mono uppercase tracking-widest">
               <div className="flex items-center gap-1.5">
-                <Radio size={10} className="text-[#ff6b2b] animate-pulse" /> Signal Verified
+                <Radio size={10} className="text-[#ff6b2b] animate-pulse" /> {selectedMode} MODE VERIFIED
               </div>
               <span>Enter to send · Shift+Enter for newline</span>
             </div>
@@ -507,8 +558,11 @@ export default function MonroePage() {
 }
 
 // ── Sidebar Content Component ─────────────────────────────────────
-function SidebarContent({ knowledgeGraph, onClose, onMachineView }: {
+function SidebarContent({ knowledgeGraph, history = [], onSelectSession, onNewChat, onClose, onMachineView }: {
   knowledgeGraph: any;
+  history?: {sessionId: string, prompt: string, mode: string}[];
+  onSelectSession?: (id: string) => void;
+  onNewChat?: () => void;
   onClose?: () => void;
   onMachineView: () => void;
 }) {
@@ -527,34 +581,35 @@ function SidebarContent({ knowledgeGraph, onClose, onMachineView }: {
 
       <div>
         <h1 className="text-3xl font-black uppercase tracking-tighter italic leading-none text-foreground dark:text-white">Monroe.<br /><span className="text-[#ff6b2b]">Omega.</span></h1>
-        <p className="text-[10px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-widest uppercase italic mt-1">Neural_Array_v7.0</p>
-      </div>
-
-      {/* Shard Stream */}
-      <div className="flex-1 overflow-y-auto space-y-2 min-h-0" style={{ scrollbarWidth: 'none' }}>
-        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 mb-2">
-          <Layers size={12} className="text-[#ff6b2b]" /> Active Shards
-        </div>
-        {knowledgeGraph?.nodes ? knowledgeGraph.nodes.slice(-4).map((node: any, i: number) => (
-          <motion.div
-            key={node.id}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.07 }}
-            className="p-3 bg-black/5 dark:bg-black/40 border border-black/10 dark:border-white/5 rounded-xl hover:border-[#ff6b2b]/30 transition-all cursor-pointer shadow-sm"
-          >
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-[9px] text-foreground/40 dark:text-white/30 uppercase tracking-widest">{node.type}</span>
-              <div className="h-1.5 w-1.5 rounded-full bg-[#ff6b2b]/80 dark:bg-[#ff6b2b]/50 animate-pulse" />
-            </div>
-            <p className="text-xs font-black text-foreground/60 dark:text-white/60 leading-tight line-clamp-2">{node.label}</p>
-          </motion.div>
-        )) : (
-          <div className="text-[10px] text-[#ff6b2b]/60 dark:text-[#ff6b2b]/40 font-black uppercase tracking-widest text-center py-8 animate-pulse">
-            Syncing Ledger...
-          </div>
+        <p className="text-[10px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-widest uppercase italic mt-1 mb-3">Neural_Array_v7.0</p>
+        {onNewChat && (
+          <button onClick={onNewChat} className="w-full py-2 bg-[#ff6b2b] text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-[0_0_15px_rgba(255,107,43,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+            <Sparkles size={12} /> New Conversation
+          </button>
         )}
       </div>
+
+      {/* History Stream */}
+      {history.length > 0 && (
+        <div className="flex-1 overflow-y-auto space-y-2 min-h-0 border-t border-black/10 dark:border-white/5 pt-3" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 mb-2">
+            <Database size={12} className="text-[#ff6b2b]" /> Recent Sessions
+          </div>
+          {history.map((session, i) => (
+            <div
+              key={session.sessionId}
+              onClick={() => onSelectSession && onSelectSession(session.sessionId)}
+              className="p-3 bg-black/5 dark:bg-black/40 border border-black/10 dark:border-white/5 rounded-xl hover:border-[#ff6b2b]/30 hover:bg-[#ff6b2b]/5 transition-all cursor-pointer group"
+            >
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[9px] text-[#ff6b2b] uppercase tracking-widest font-black">{session.mode}</span>
+                <ChevronRight size={10} className="text-foreground/30 dark:text-white/20 group-hover:text-[#ff6b2b] transition-colors" />
+              </div>
+              <p className="text-xs font-medium text-foreground/70 dark:text-white/70 leading-tight line-clamp-2">{session.prompt}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Swarm Parity */}
       <div className="p-3 border border-[#ff6b2b]/20 dark:border-[#ff6b2b]/10 bg-[#ff6b2b]/10 dark:bg-[#ff6b2b]/5 rounded-xl space-y-2">
@@ -567,7 +622,7 @@ function SidebarContent({ knowledgeGraph, onClose, onMachineView }: {
         </div>
       </div>
 
-      <button onClick={onMachineView} className="w-full py-2.5 bg-black/5 dark:bg-white/[0.02] border border-black/10 dark:border-white/8 hover:bg-[#ff6b2b]/10 dark:hover:bg-[#ff6b2b]/10 hover:border-[#ff6b2b]/30 text-foreground/50 dark:text-white/30 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
+      <button onClick={onMachineView} className="w-full py-2.5 bg-black/5 dark:bg-white/[0.02] border border-black/10 dark:border-white/8 hover:bg-[#ff6b2b]/10 dark:hover:bg-[#ff6b2b]/10 hover:border-[#ff6b2b]/30 text-foreground/50 dark:text-white/30 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shrink-0">
         <Terminal size={13} /> raw_extraction
       </button>
     </div>

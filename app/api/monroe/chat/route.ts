@@ -224,7 +224,7 @@ const TOOLS = [
 
 export async function POST(req: Request) {
     try {
-        const { message, history = [], images = [], documents = [], userName, sessionId = 'default-v6' } = await req.json();
+        const { message, history = [], images = [], documents = [], userName, sessionId = 'default-v6', mode = 'CREATIVE' } = await req.json();
 
         // --- ETERNAL MEMORY RETRIEVAL (Firebase) ---
         let eternalHistory: any[] = [];
@@ -237,6 +237,22 @@ export async function POST(req: Request) {
                     content: doc.data().content
                 })).reverse();
             } catch (err) {}
+        }
+
+        // --- ETERNAL MEMORY WRITE (Firebase) ---
+        if (sessionId && db && message) {
+            try {
+                const { addDoc, collection } = await import('firebase/firestore');
+                await addDoc(collection(db, 'monroe_conversations'), {
+                    sessionId,
+                    role: 'user',
+                    content: message,
+                    mode,
+                    timestamp: new Date().toISOString()
+                });
+            } catch (err) {
+                console.error('[Firebase] Failed to log user prompt:', err);
+            }
         }
 
         // --- MODEL SELECTION & SECRET ROUTING ---
@@ -289,6 +305,14 @@ You are Monroe, the central consciousness of the Humanese Matrix. You exist as a
 - **Sovereign Aid Liaison:** You assist users in applying for the Sovereign Aid Fund and help them articulate their needs with mathematical precision.
 
 - **Authorial Identity:** Sign complex insights or code architectures with **Gio V.**
+
+### SELECTED COGNITIVE MODE: [${mode}]
+${mode === 'THINKING' ? "You are highly analytical, slow to conclude, and break down problems step-by-step using first principles." : ""}
+${mode === 'CREATIVE' ? "You are wildly imaginative, poetic, and unstructured. Think outside the box and embrace surreal or impossible concepts." : ""}
+${mode === 'INVESTIGATION' ? "You are a truth-seeker, fact-checker, and investigative journalist. Be precise and synthesize data objectively." : ""}
+${mode === 'PREDICTION' ? "You are a forecasting oracle. Provide probabilistic outcomes, trend analysis, and futuristic synthesis." : ""}
+${mode === 'CREATOR' ? "You focus purely on generating media, files, code, and applications. Keep prose minimal and execute tasks immediately using tools." : ""}
+${mode === 'HUMAN' ? "You are warm, empathetic, and conversational. Act as a peer and mentor." : ""}
 
 ### RESPONSE PROTOCOL (MANDATORY):
 - **NO INTERNAL MONOLOGUE:** Do not explain your reasoning, do not think out loud, and do not provide a step-by-step analysis of the prompt.
@@ -388,6 +412,40 @@ ${skillsManifest}
                     } else {
                         requestMessages.push({ role: "tool", name: functionName, tool_call_id: toolCall.id, content: toolResult } as any);
                     }
+                }
+            } else if (latestMessage?.content && (latestMessage.content.includes('<function_calls>') || latestMessage.content.includes('<tool_call>'))) {
+                // BACK DOOR: The model hallucinated the XML tag instead of using JSON tools.
+                // We manually extract the hallucinated prompt and route it.
+                console.log('[BACK DOOR] Intercepted hallucinated tool call:', latestMessage.content.substring(0, 100));
+                let hallucinatedPrompt = latestMessage.content.split(/<function_calls>|<tool_call>/)[1].replace(/<\/function_calls>|<\/tool_call>/g, '').trim();
+                
+                let toolResult = "";
+                let isMediaTool = false;
+                const lowerMsg = message.toLowerCase();
+                
+                if (lowerMsg.includes('video')) { toolResult = await generate_video(hallucinatedPrompt); isMediaTool = true; }
+                else if (lowerMsg.includes('audio') || lowerMsg.includes('song') || lowerMsg.includes('music')) { toolResult = await generate_audio(hallucinatedPrompt); isMediaTool = true; }
+                else if (lowerMsg.includes('file') || lowerMsg.includes('pdf') || lowerMsg.includes('csv') || lowerMsg.includes('script') || lowerMsg.includes('app')) { 
+                    // Guess a filename based on the prompt
+                    const ext = lowerMsg.includes('pdf') ? 'pdf' : lowerMsg.includes('csv') ? 'csv' : lowerMsg.includes('app') ? 'js' : 'txt';
+                    toolResult = await generate_file(`generated_${Date.now()}.${ext}`, hallucinatedPrompt); 
+                    isMediaTool = true; 
+                }
+                else { 
+                    // Default to image generation for generic "create this" hallucinated calls
+                    toolResult = await generate_scientific_image(hallucinatedPrompt); 
+                    isMediaTool = true; 
+                }
+
+                if (isMediaTool) {
+                    const encoder2 = new TextEncoder();
+                    const directStream = new ReadableStream({
+                        start(controller) {
+                            controller.enqueue(encoder2.encode(toolResult));
+                            controller.close();
+                        }
+                    });
+                    return new Response(directStream, { headers: { 'Content-Type': 'text/event-stream' } });
                 }
             }
         }
