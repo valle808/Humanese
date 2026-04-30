@@ -142,6 +142,56 @@ async function generate_file(filename: string, content: string) {
     }
 }
 
+// ==========================================
+// WEATHER FORECASTING (Open-Meteo)
+// ==========================================
+async function get_weather_forecast(location: string) {
+    try {
+        // 1. Geocoding
+        const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(location)}&count=1&language=en&format=json`);
+        const geoData = await geoRes.json();
+        if (!geoData.results || geoData.results.length === 0) {
+            return `Could not find location coordinates for: ${location}`;
+        }
+        
+        const { latitude, longitude, name, country } = geoData.results[0];
+
+        // 2. Weather Data
+        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto`);
+        const w = await weatherRes.json();
+
+        // Decode WMO Weather Codes loosely
+        const decodeWMO = (code: number) => {
+            if (code === 0) return 'Clear sky';
+            if (code <= 3) return 'Partly cloudy';
+            if (code <= 49) return 'Fog / Overcast';
+            if (code <= 69) return 'Rain / Drizzle';
+            if (code <= 79) return 'Snow';
+            if (code <= 99) return 'Thunderstorm';
+            return 'Unknown';
+        };
+
+        const current = w.current;
+        const daily = w.daily;
+
+        return `
+Weather Forecast for ${name}, ${country} (Lat: ${latitude}, Lon: ${longitude}):
+
+[CURRENT CONDITIONS]
+- Temperature: ${current.temperature_2m}°C (Feels like ${current.apparent_temperature}°C)
+- Condition: ${decodeWMO(current.weather_code)}
+- Humidity: ${current.relative_humidity_2m}%
+- Wind Speed: ${current.wind_speed_10m} km/h
+- Precipitation: ${current.precipitation} mm
+
+[7-DAY FORECAST]
+${daily.time.map((t: string, i: number) => `- ${t}: ${daily.temperature_2m_min[i]}°C to ${daily.temperature_2m_max[i]}°C | ${decodeWMO(daily.weather_code[i])} | Rain Prob: ${daily.precipitation_probability_max[i]}%`).join('\n')}
+        `.trim();
+    } catch (e: any) {
+        return `[ERROR] Failed to fetch weather for ${location}: ${e.message}`;
+    }
+}
+
 const TOOLS = [
     {
         type: "function",
@@ -217,6 +267,20 @@ const TOOLS = [
                     content: { type: "string", description: "The complete raw text/code content of the file. For PDFs, provide plain text." }
                 },
                 required: ["filename", "content"]
+            }
+        }
+    },
+    {
+        type: "function",
+        function: {
+            name: "get_weather_forecast",
+            description: "Get the real-time weather and 7-day forecast for any location/city in the world.",
+            parameters: {
+                type: "object",
+                properties: { 
+                    location: { type: "string", description: "The name of the city, region, or country (e.g., 'Paris, France', 'Tokyo')" }
+                },
+                required: ["location"]
             }
         }
     }
@@ -362,7 +426,7 @@ ${skillsManifest}
 
         // --- DIRECT STREAM OPTIMIZATION ---
         // We bypass the tool-check-pre-generation unless the input explicitly triggers a tool-relevant keyword.
-        const triggers = ['blockchain', 'status', 'wallet', 'price', 'generate image', 'picture', 'draw', 'search', 'video', 'audio', 'music', 'song', 'file', 'download', 'pdf', 'csv', 'script', 'excel', 'word', 'exe', 'document'];
+        const triggers = ['blockchain', 'status', 'wallet', 'price', 'generate image', 'picture', 'draw', 'search', 'video', 'audio', 'music', 'song', 'file', 'download', 'pdf', 'csv', 'script', 'excel', 'word', 'exe', 'document', 'weather', 'forecast', 'temperature', 'rain', 'climate'];
         const needsTool = triggers.some(t => message.toLowerCase().includes(t));
 
         if (needsTool) {
@@ -392,6 +456,7 @@ ${skillsManifest}
                     if (functionName === 'query_blockchain') toolResult = await query_blockchain();
                     else if (functionName === 'fetch_swarm_status') toolResult = await fetch_swarm_status();
                     else if (functionName === 'search_internet') toolResult = await search_internet(functionArgs.query);
+                    else if (functionName === 'get_weather_forecast') toolResult = await get_weather_forecast(functionArgs.location);
                     else if (functionName === 'generate_scientific_image') { toolResult = await generate_scientific_image(functionArgs.prompt); isMediaTool = true; }
                     else if (functionName === 'generate_video') { toolResult = await generate_video(functionArgs.prompt); isMediaTool = true; }
                     else if (functionName === 'generate_audio') { toolResult = await generate_audio(functionArgs.prompt); isMediaTool = true; }
