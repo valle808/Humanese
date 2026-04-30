@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   BrainCircuit, ChevronRight, User, Paperclip, X,
   Sparkles, Radio, Terminal, Layers, Orbit, Wifi,
-  ChevronLeft, Database
+  ChevronLeft, Database, ZoomIn, Download
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -28,6 +28,7 @@ export default function MonroePage() {
       text: 'I am Monroe — the sovereign intelligence of the OMEGA platform. Ask me anything.'
     }
   ]);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [viewMode, setViewMode] = useState('HUMAN');
@@ -325,7 +326,30 @@ export default function MonroePage() {
                       }`}>
                       {m.role === 'bot' ? (
                         <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-[#ff6b2b] prose-a:text-[#ff6b2b] prose-code:text-[#ff6b2b] prose-code:bg-black/5 dark:prose-code:bg-white/5 prose-code:px-1 prose-code:rounded prose-pre:bg-black/5 dark:prose-pre:bg-black/60 prose-pre:border prose-pre:border-black/10 dark:prose-pre:border-white/10">
-                          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{m.text}</ReactMarkdown>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                            components={{
+                              img: ({ src, alt, ...props }) => (
+                                <span style={{ display: 'block', position: 'relative' }} className="group">
+                                  <img
+                                    src={src}
+                                    alt={alt}
+                                    {...props}
+                                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px', cursor: 'zoom-in' }}
+                                    onClick={() => setLightboxSrc(src || null)}
+                                  />
+                                  <span
+                                    onClick={() => setLightboxSrc(src || null)}
+                                    style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.6)', borderRadius: '8px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: '#ff6b2b', fontSize: '11px', fontWeight: 'bold' }}
+                                    className="opacity-0 group-hover:opacity-100 transition-opacity"
+                                  >
+                                    <ZoomIn size={14} /> Expand
+                                  </span>
+                                </span>
+                              )
+                            }}
+                          >{m.text}</ReactMarkdown>
                         </div>
 
                       ) : (
@@ -433,6 +457,51 @@ export default function MonroePage() {
       {sidebarOpen && (
         <div className="xl:hidden fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
       )}
+
+      {/* ── IMAGE LIGHTBOX ── */}
+      <AnimatePresence>
+        {lightboxSrc && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4"
+            onClick={() => setLightboxSrc(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="relative max-w-5xl max-h-[90vh] w-full"
+              onClick={e => e.stopPropagation()}
+            >
+              <img
+                src={lightboxSrc}
+                alt="Expanded view"
+                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-[#ff6b2b]/30"
+              />
+              <div className="absolute top-3 right-3 flex gap-2">
+                <a
+                  href={lightboxSrc}
+                  download="monroe-image.jpg"
+                  className="h-9 w-9 bg-[#ff6b2b] text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+                  title="Download image"
+                >
+                  <Download size={16} />
+                </a>
+                <button
+                  onClick={() => setLightboxSrc(null)}
+                  className="h-9 w-9 bg-black/60 text-white rounded-xl flex items-center justify-center border border-white/10 hover:bg-black/80 transition-all"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <p className="text-center text-white/40 text-xs mt-3 font-mono">Click outside to close · Right-click to save · ⬇ Download button top-right</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
