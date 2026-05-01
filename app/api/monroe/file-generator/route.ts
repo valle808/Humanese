@@ -197,12 +197,14 @@ async function buildFile(filename: string, content: string, historyStr: string =
     }
 
     if (lower.endsWith('.docx') || lower.endsWith('.doc')) {
-        const rtf = \`{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Arial;}}\\f0\\fs24 \${content.replace(/\\n/g, '\\\\par\\n')}}\`;
+        const rtfContent = content.replace(/\n/g, '\\par\n');
+        const rtf = '{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Arial;}}\\f0\\fs24 ' + rtfContent + '}';
         return { buffer: Buffer.from(rtf, 'utf-8'), mimeType: 'application/msword' };
     }
 
     if (lower.endsWith('.zip')) {
-        const archive = \`=== MONROE OMEGA ARCHIVE ===\\nFile: \${filename}\\nGenerated: \${new Date().toISOString()}\\n\${'='.repeat(50)}\\n\\n\${content}\`;
+        const sep = '='.repeat(50);
+        const archive = '=== MONROE OMEGA ARCHIVE ===\nFile: ' + filename + '\nGenerated: ' + new Date().toISOString() + '\n' + sep + '\n\n' + content;
         return { buffer: Buffer.from(archive, 'utf-8'), mimeType: 'application/zip' };
     }
 
