@@ -33,6 +33,7 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
+import { UserMenu } from './UserMenu';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Sidebar = () => {
@@ -169,9 +170,15 @@ export const Sidebar = () => {
                 </nav>
 
                 {/* ── FOOTER / STATUS ── */}
-                <div className="p-4 md:p-6 border-t-2 border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.01] space-y-4 relative z-10 mt-auto">
+                <div className="p-4 md:p-6 border-t-2 border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.01] space-y-4 relative z-10 mt-auto flex flex-col items-center">
+                    
+                    {/* User Profile Menu */}
+                    <div className="w-full">
+                        <UserMenu isExpanded={isExpanded} />
+                    </div>
+
                     {/* Theme Toggle */}
-                    <div className={`flex ${isExpanded ? 'justify-start px-2' : 'justify-center'}`}>
+                    <div className={`flex w-full ${isExpanded ? 'justify-start px-2' : 'justify-center'}`}>
                         <ThemeToggle compact={!isExpanded} />
                     </div>
 

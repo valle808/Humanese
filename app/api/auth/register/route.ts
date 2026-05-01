@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { prisma } from '@/lib/prisma';
 import crypto from 'crypto';
+import { Wallet } from 'ethers';
 
 export const dynamic = 'force-dynamic';
 
@@ -92,6 +93,29 @@ export async function POST(req: NextRequest) {
       }
     });
 
+    // Automatically provision a Personal Learning Agent for the user
+    const agentId = `agent-${userId}`;
+    await prisma.agent.create({
+      data: {
+        id: agentId,
+        name: `${name}'s Sovereign Agent`,
+        type: 'Personal Assistant',
+        config: JSON.stringify({ learningRate: 0.05, memoryRetention: 'persistent', persona: 'adaptive' }),
+        userId: userId,
+        status: 'IDLE',
+      }
+    });
+
+    // Generate Sovereign Secret Phrase (BIP39 Mnemonic)
+    const randomWallet = Wallet.createRandom();
+    const secretPhrase = randomWallet.mnemonic?.phrase || '';
+
+    // Store a hashed version of the mnemonic in metadata (in production, use a more secure key vault)
+    const hashedPhrase = crypto.createHash('sha256').update(secretPhrase).digest('hex');
+    await supabaseAdmin.auth.admin.updateUserById(userId, {
+      user_metadata: { secretPhraseHash: hashedPhrase }
+    });
+
     console.log(`[Auth] New ${entityType || 'human'} registered: ${email} | Wallet: ${walletAddress} | Ecosystem: ${isEcosystemEmail}`);
 
     return NextResponse.json({
@@ -102,7 +126,8 @@ export async function POST(req: NextRequest) {
       userId,
       walletAddress,
       isEcosystemMember: isEcosystemEmail,
-      requiresVerification: true
+      requiresVerification: true,
+      secretPhrase // Return strictly ONCE to the user
     });
 
   } catch (error: any) {

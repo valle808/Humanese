@@ -22,7 +22,22 @@ export async function POST(req: NextRequest) {
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     );
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    let authResponse;
+
+    // Detect if input is phone number (+1234567890)
+    const isPhone = /^\+?[1-9]\d{1,14}$/.test(email);
+    // Detect if input is just a username (no @)
+    const isUsername = !email.includes('@') && !isPhone;
+
+    const finalIdentifier = isUsername ? `${email}@humanese.net` : email;
+
+    if (isPhone) {
+      authResponse = await supabase.auth.signInWithPassword({ phone: finalIdentifier, password });
+    } else {
+      authResponse = await supabase.auth.signInWithPassword({ email: finalIdentifier, password });
+    }
+
+    const { data, error } = authResponse;
 
     if (error) {
       if (error.message.includes('Email not confirmed')) {

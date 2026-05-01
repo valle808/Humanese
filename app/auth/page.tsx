@@ -60,6 +60,7 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const [secretPhrase, setSecretPhrase] = useState<string | null>(null);
 
   useEffect(() => {
     if (mode === 'login' && step === 'mode') {
@@ -97,6 +98,7 @@ export default function AuthPage() {
       if (res.ok) {
         if (mode === 'register') {
           setSuccessMsg(data.msg);
+          if (data.secretPhrase) setSecretPhrase(data.secretPhrase);
           setStep('verification');
         } else {
           localStorage.setItem('humanese_session', JSON.stringify(data.session));
@@ -323,7 +325,14 @@ export default function AuthPage() {
 
                     {/* Passphrase */}
                     <div className="space-y-3 group/input">
-                      <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">{mode === 'login' ? 'Sovereign Passphrase' : 'New Access Token'}</label>
+                      <div className="flex items-center justify-between ml-4 mb-2">
+                        <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">{mode === 'login' ? 'Sovereign Passphrase' : 'New Access Token'}</label>
+                        {mode === 'login' && (
+                          <Link href="/auth/recover" className="text-[9px] font-black uppercase tracking-[0.4em] text-[#ff6b2b] hover:underline italic leading-none">
+                            Forgot Protocol?
+                          </Link>
+                        )}
+                      </div>
                       <div className="relative">
                         <Lock size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-[#ff6b2b] transition-colors" />
                         <input 
@@ -381,6 +390,20 @@ export default function AuthPage() {
                     <span className="text-[#ff6b2b] font-mono font-black">{formData.useHumaneseEmail ? `${formData.customUsername}@humanese.net` : formData.email}</span>
                   </p>
                 </div>
+
+                {secretPhrase && (
+                  <div className="p-6 bg-secondary/50 border border-[#ff6b2b]/40 rounded-[2rem] text-left space-y-4 shadow-[0_10px_20px_rgba(255,107,43,0.1)] relative overflow-hidden group/phrase">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-[#ff6b2b]" />
+                    <div className="flex items-center gap-3">
+                      <ShieldCheck size={20} className="text-[#ff6b2b]" />
+                      <h3 className="text-[10px] font-black uppercase tracking-[0.6em] text-[#ff6b2b] italic leading-none">Critical: Save Sovereign Phrase</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground italic">This is the only time your 12-word recovery phrase will be shown. Write it down. If you lose your credentials, this is the ONLY way to recover your Personal Agent and Wallet.</p>
+                    <div className="p-4 bg-background border border-border rounded-xl font-mono text-[#ff6b2b] text-center text-lg select-all tracking-wider">
+                      {secretPhrase}
+                    </div>
+                  </div>
+                )}
 
                 <form onSubmit={handleVerifyOTP} className="space-y-8">
                   <div className="flex justify-center">
