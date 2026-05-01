@@ -25,7 +25,8 @@ import {
   Terminal,
   Orbit,
   ChevronLeft,
-  RefreshCw
+  RefreshCw,
+  Activity
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
