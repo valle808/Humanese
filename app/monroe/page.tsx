@@ -13,7 +13,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
+import { collection, query, limit, getDocs } from 'firebase/firestore';
 
 type Message = {
   role: 'bot' | 'user';
@@ -38,7 +38,13 @@ export default function MonroePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
 
-  const [sessionId, setSessionId] = useState(`omega-v7-${Date.now()}`);
+  const [sessionId, setSessionId] = useState(() => {
+    // Restore last sessionId from localStorage for persistent history
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('monroe_session_id') || `omega-v7-${Date.now()}`;
+    }
+    return `omega-v7-${Date.now()}`;
+  });
   const [selectedMode, setSelectedMode] = useState('CREATIVE');
   const [historySessions, setHistorySessions] = useState<{sessionId: string, prompt: string, mode: string}[]>([]);
 
@@ -296,14 +302,14 @@ export default function MonroePage() {
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
             className="fixed top-0 left-0 h-screen w-72 z-[90] border-r border-black/10 dark:border-white/10 bg-background/90 dark:bg-black/80 backdrop-blur-3xl flex flex-col shadow-2xl xl:hidden"
           >
-            <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { setSessionId(id); setMessages([]); setSidebarOpen(false); }} onNewChat={() => { setSessionId(`omega-v7-${Date.now()}`); setMessages([]); setSidebarOpen(false); }} onClose={() => setSidebarOpen(false)} onMachineView={() => setViewMode('MACHINE')} />
+            <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { const newId = id; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); setSidebarOpen(false); }} onNewChat={() => { const newId = `omega-v7-${Date.now()}`; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); setSidebarOpen(false); }} onClose={() => setSidebarOpen(false)} onMachineView={() => setViewMode('MACHINE')} />
           </motion.aside>
         )}
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
       <aside className="hidden xl:flex w-64 flex-shrink-0 flex-col border-r border-black/10 dark:border-white/10 bg-background/50 dark:bg-black/40 backdrop-blur-3xl relative z-10">
-        <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { setSessionId(id); setMessages([]); }} onNewChat={() => { setSessionId(`omega-v7-${Date.now()}`); setMessages([]); }} onMachineView={() => setViewMode('MACHINE')} />
+        <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { setSessionId(id); localStorage.setItem('monroe_session_id', id); setMessages([]); }} onNewChat={() => { const newId = `omega-v7-${Date.now()}`; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); }} onMachineView={() => setViewMode('MACHINE')} />
       </aside>
 
       {/* ── MAIN CHAT ── */}

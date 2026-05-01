@@ -75,6 +75,7 @@ async function generate_scientific_image(prompt: string) {
     const seed = Math.floor(Math.random() * 1000000);
     // Point to our own proxy endpoint so the browser loads the image cleanly
     const proxyUrl = `/api/monroe/image-proxy?prompt=${encodeURIComponent(prompt)}&seed=${seed}`;
+    // Return ONLY the image HTML — no trailing text or captions whatsoever
     return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.4); background: rgba(0,0,0,0.3); box-shadow: 0 10px 40px rgba(255,107,43,0.15);">
         <img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="Monroe Neural Synthesis" loading="lazy" />
     </div>`;
@@ -483,6 +484,7 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou
 
             const latestMessage = responseData.choices[0]?.message;
             if (latestMessage?.tool_calls) {
+                let mediaReturned = false;
                 for (const toolCall of latestMessage.tool_calls as any[]) {
                     const functionName = toolCall.function?.name;
                     let functionArgs: any = {};
@@ -490,7 +492,7 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou
                         functionArgs = JSON.parse(toolCall.function?.arguments || '{}');
                     } catch (err) {
                         console.error('[TOOL] JSON Parse Error for tool args:', err);
-                        continue; // Skip this tool call if arguments are truncated/malformed
+                        continue;
                     }
                     let toolResult = "";
                     let isMediaTool = false;
@@ -504,10 +506,8 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou
                     else if (functionName === 'generate_audio') { toolResult = await generate_audio(functionArgs.prompt); isMediaTool = true; }
                     else if (functionName === 'generate_file') { toolResult = await generate_file(functionArgs.filename, functionArgs.content, JSON.stringify(history)); isMediaTool = true; }
                     
-                    requestMessages.push(latestMessage as any);
-                    
                     if (isMediaTool) {
-                        // ✅ DIRECT RETURN — send media HTML immediately, no second LLM call
+                        // ✅ DIRECT RETURN — send ONLY the media HTML, strip any LLM caption text entirely
                         const encoder2 = new TextEncoder();
                         const directStream = new ReadableStream({
                             start(controller) {
@@ -517,6 +517,7 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou
                         });
                         return new Response(directStream, { headers: { 'Content-Type': 'text/event-stream' } });
                     } else {
+                        requestMessages.push(latestMessage as any);
                         requestMessages.push({ role: "tool", name: functionName, tool_call_id: toolCall.id, content: toolResult } as any);
                     }
                 }
