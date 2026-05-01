@@ -13,7 +13,17 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
 import { db } from '@/lib/firebase';
-import { collection, query, limit, getDocs } from 'firebase/firestore';
+
+// ── LocalStorage-based history (reliable, no Firebase permissions needed) ──
+const HISTORY_KEY = 'monroe_session_history';
+function loadLocalHistory(): {sessionId: string, prompt: string, mode: string}[] {
+  if (typeof window === 'undefined') return [];
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; }
+}
+function saveLocalHistory(sessions: {sessionId: string, prompt: string, mode: string}[]) {
+  if (typeof window === 'undefined') return;
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(sessions.slice(0, 20))); } catch {}
+}
 
 type Message = {
   role: 'bot' | 'user';
@@ -57,28 +67,9 @@ export default function MonroePage() {
   ];
 
   useEffect(() => {
-    const fetchHistory = async () => {
-      if (!db) return;
-      try {
-        const q = query(collection(db, 'monroe_conversations'), limit(200));
-        const snapshot = await getDocs(q);
-        const sessionsMap = new Map();
-        
-        // Manual sort in memory to bypass missing Firebase composite indexes
-        const docs = snapshot.docs.map(doc => doc.data()).sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-        
-        docs.forEach(data => {
-           if (!sessionsMap.has(data.sessionId) && data.role === 'user') {
-               sessionsMap.set(data.sessionId, { sessionId: data.sessionId, prompt: data.content, mode: data.mode || 'CREATIVE' });
-           }
-        });
-        setHistorySessions(Array.from(sessionsMap.values()).slice(0, 10));
-      } catch(e) {
-        console.warn('Firebase history fetch error:', e);
-      }
-    };
-    fetchHistory();
-  }, [messages.length]); // Re-fetch on new messages
+    // Load session history from localStorage (instant, no Firebase permissions needed)
+    setHistorySessions(loadLocalHistory());
+  }, [messages.length]);
 
   const [attachments, setAttachments] = useState<{ file: File; preview: string }[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -205,6 +196,17 @@ export default function MonroePage() {
     setInput('');
     setAttachments([]);
     setIsTyping(true);
+
+    // Save session to localStorage history (only on first user message per session)
+    const isFirstMessage = messages.filter(m => m.role === 'user').length === 0;
+    if (isFirstMessage && currentInput.trim()) {
+      const existing = loadLocalHistory();
+      // Prepend new session, avoiding duplicates
+      const updated = [{ sessionId, prompt: currentInput.trim().slice(0, 80), mode: selectedMode }, ...existing.filter(s => s.sessionId !== sessionId)];
+      saveLocalHistory(updated);
+      setHistorySessions(updated.slice(0, 10));
+    }
+
 
     const botMsgId = (Date.now() + 1).toString();
     setMessages(prev => [...prev, { id: botMsgId, role: 'bot', text: '' }]);

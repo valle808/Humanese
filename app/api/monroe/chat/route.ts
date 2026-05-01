@@ -138,7 +138,7 @@ async function generate_file(filename: string, content: string, historyJson: str
                 </form>
             </div>
             ${inlinePreview}
-        </div>\n\n*File ready:* "${filename}"`;
+        </div>`;
     } catch (e: any) {
         return `[ERROR] Failed to generate file ${filename}: ${e.message}`;
     }
