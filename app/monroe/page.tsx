@@ -54,17 +54,22 @@ export default function MonroePage() {
     const fetchHistory = async () => {
       if (!db) return;
       try {
-        const q = query(collection(db, 'monroe_conversations'), orderBy('timestamp', 'desc'), limit(100));
+        const q = query(collection(db, 'monroe_conversations'), limit(200));
         const snapshot = await getDocs(q);
         const sessionsMap = new Map();
-        snapshot.docs.forEach(doc => {
-           const data = doc.data();
+        
+        // Manual sort in memory to bypass missing Firebase composite indexes
+        const docs = snapshot.docs.map(doc => doc.data()).sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        
+        docs.forEach(data => {
            if (!sessionsMap.has(data.sessionId) && data.role === 'user') {
                sessionsMap.set(data.sessionId, { sessionId: data.sessionId, prompt: data.content, mode: data.mode || 'CREATIVE' });
            }
         });
         setHistorySessions(Array.from(sessionsMap.values()).slice(0, 10));
-      } catch(e) {}
+      } catch(e) {
+        console.warn('Firebase history fetch error:', e);
+      }
     };
     fetchHistory();
   }, [messages.length]); // Re-fetch on new messages

@@ -77,7 +77,7 @@ async function generate_scientific_image(prompt: string) {
     const proxyUrl = `/api/monroe/image-proxy?prompt=${encodeURIComponent(prompt)}&seed=${seed}`;
     return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.4); background: rgba(0,0,0,0.3); box-shadow: 0 10px 40px rgba(255,107,43,0.15);">
         <img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="Monroe Neural Synthesis" loading="lazy" />
-    </div>\n\n*Neural Visualization complete.* Prompt: "${prompt}"`;
+    </div>`;
 }
 
 
@@ -85,16 +85,16 @@ async function generate_video(prompt: string) {
     console.log(`[TOOL] Executing Video Generation for: ${prompt}`);
     // Since video proxy APIs are heavy and often rate-limited, we return an embedded dynamic sci-fi loop representing the concept
     // You could replace the source with a direct Sora/Luma endpoint in the future.
-    return `<div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); margin: 10px 0;"><video src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-loop-20708-large.mp4" controls autoplay loop style="width: 100%; display: block;"></video></div>\n\n*Simulated Video Synthesis for:* "${prompt}"`;
+    return `<div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); margin: 10px 0;"><video src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-loop-20708-large.mp4" controls autoplay loop style="width: 100%; display: block;"></video></div>`;
 }
 
 async function generate_audio(prompt: string) {
     console.log(`[TOOL] Executing Audio Generation for: ${prompt}`);
     // Proxy TTS or return a dynamic audio interface
-    return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0;"><strong>Audio Synthesis</strong><audio src="https://assets.mixkit.co/sfx/preview/mixkit-futuristic-robotic-voice-sweep-2544.mp3" controls style="width: 100%; margin-top: 10px;"></audio></div>\n\n*Generated Audio for:* "${prompt}"`;
+    return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0;"><strong>Audio Synthesis</strong><audio src="https://assets.mixkit.co/sfx/preview/mixkit-futuristic-robotic-voice-sweep-2544.mp3" controls style="width: 100%; margin-top: 10px;"></audio></div>`;
 }
 
-async function generate_file(filename: string, content: string) {
+async function generate_file(filename: string, content: string, historyJson: string = "[]") {
     console.log(`[TOOL] Executing File Generation for: ${filename}`);
     const lowerName = filename.toLowerCase();
 
@@ -132,6 +132,7 @@ async function generate_file(filename: string, content: string) {
                 <form method="POST" action="/api/monroe/file-generator" target="_blank" style="margin: 0; padding: 0;">
                     <input type="hidden" name="filename" value="${safeFilename}" />
                     <textarea name="content" style="display:none;">${safeContentForTextarea}</textarea>
+                    <textarea name="history" style="display:none;">${historyJson.replace(/<\/textarea>/ig, '&lt;/textarea&gt;')}</textarea>
                     <button type="submit" style="background: #ff6b2b; color: #fff; padding: 8px 16px; border-radius: 8px; border: none; text-decoration: none; font-size: 13px; font-weight: bold; display: inline-block; letter-spacing:0.5px; cursor: pointer; font-family: inherit;">⬇ Download File</button>
                 </form>
             </div>
@@ -264,7 +265,7 @@ const TOOLS = [
                 type: "object",
                 properties: { 
                     filename: { type: "string", description: "The name of the file including extension (e.g., report.pdf, script.py)" },
-                    content: { type: "string", description: "The complete raw text/code content of the file. For PDFs, provide plain text." }
+                    content: { type: "string", description: "The complete raw text/code content of the file. For PDFs, format as Markdown and ensure you include all relevant information and any generated image URLs from the conversation using ![alt](url) syntax." }
                 },
                 required: ["filename", "content"]
             }
@@ -290,33 +291,35 @@ export async function POST(req: Request) {
     try {
         const { message, history = [], images = [], documents = [], userName, sessionId = 'default-v6', mode = 'CREATIVE' } = await req.json();
 
-        // --- ETERNAL MEMORY RETRIEVAL (Firebase) ---
+        // --- ETERNAL MEMORY RETRIEVAL (Firebase) — non-blocking with 2s timeout ---
         let eternalHistory: any[] = [];
         if (sessionId && db) {
             try {
-                const q = query(collection(db, 'monroe_conversations'), where('sessionId', '==', sessionId), orderBy('timestamp', 'desc'), limit(15));
-                const snapshot = await getDocs(q);
-                eternalHistory = snapshot.docs.map(doc => ({
+                const q = query(collection(db, 'monroe_conversations'), where('sessionId', '==', sessionId), orderBy('timestamp', 'desc'), limit(10));
+                const snapshot = await Promise.race([
+                    getDocs(q),
+                    new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Firebase timeout')), 2000))
+                ]) as any;
+                eternalHistory = snapshot.docs.map((doc: any) => ({
                     role: doc.data().role === 'user' ? 'user' : 'assistant',
                     content: doc.data().content
                 })).reverse();
-            } catch (err) {}
+            } catch (err) {
+                console.warn('[Firebase] Memory retrieval skipped:', (err as Error).message);
+            }
         }
 
-        // --- ETERNAL MEMORY WRITE (Firebase) ---
+        // --- ETERNAL MEMORY WRITE (Firebase) — fire and forget, never blocks ---
         if (sessionId && db && message) {
-            try {
-                const { addDoc, collection } = await import('firebase/firestore');
-                await addDoc(collection(db, 'monroe_conversations'), {
+            import('firebase/firestore').then(({ addDoc, collection: fbCollection }) => {
+                addDoc(fbCollection(db!, 'monroe_conversations'), {
                     sessionId,
                     role: 'user',
                     content: message,
                     mode,
                     timestamp: new Date().toISOString()
-                });
-            } catch (err) {
-                console.error('[Firebase] Failed to log user prompt:', err);
-            }
+                }).catch((err: any) => console.error('[Firebase] Failed to log user prompt:', err));
+            }).catch(() => {});
         }
 
         // --- MODEL SELECTION & SECRET ROUTING ---
@@ -326,8 +329,20 @@ export async function POST(req: Request) {
         let model = '';
         let isFreeModel = false;
 
-        const fireworksKey = await getSecret('FIREWORKS_API_KEY') || process.env.FIREWORKS_API_KEY || null;
-        const openrouterKey = await getSecret('OPENROUTER_API_KEY') || process.env.OPENROUTER_API_KEY || null;
+        // Parallel key fetch with 3s timeout each — never blocks indefinitely
+        const safeGetSecret = async (k: string): Promise<string | null> => {
+            try {
+                return await Promise.race([
+                    getSecret(k),
+                    new Promise<null>((_, reject) => setTimeout(() => reject(new Error('Secret timeout')), 3000))
+                ]) as string | null;
+            } catch { return null; }
+        };
+
+        const [fireworksKey, openrouterKey] = await Promise.all([
+            safeGetSecret('FIREWORKS_API_KEY').then(k => k || process.env.FIREWORKS_API_KEY || null),
+            safeGetSecret('OPENROUTER_API_KEY').then(k => k || process.env.OPENROUTER_API_KEY || null)
+        ]);
 
         if (fireworksKey) {
             apiKey = fireworksKey;
@@ -336,26 +351,45 @@ export async function POST(req: Request) {
         } else if (openrouterKey) {
             apiKey = openrouterKey;
             baseURL = 'https://openrouter.ai/api/v1';
-            // OpenRouter free models that support vision: google/gemini-2.0-pro-exp-02-05:free
-            // If the key is openrouter, we use gemini-2.0-pro-exp-02-05:free when images are present.
             model = images && images.length > 0 ? 'google/gemini-2.0-pro-exp-02-05:free' : 'meta-llama/llama-3.1-8b-instruct:free';
             isFreeModel = true;
         }
 
+        // --- SAFE DB QUERY HELPER (3s timeout to avoid blocking stream) ---
+        const safeDbQuery = async <T>(fn: () => Promise<T>, fallback: T): Promise<T> => {
+            try {
+                return await Promise.race([
+                    fn(),
+                    new Promise<T>((_, reject) => setTimeout(() => reject(new Error('DB timeout')), 3000))
+                ]);
+            } catch (e) {
+                console.warn('[MONROE] DB query skipped:', (e as Error).message);
+                return fallback;
+            }
+        };
+
         // --- SOVEREIGN SKILL MANIFEST (Sovereign Native) ---
         let skillsManifest = "";
-        try {
+        skillsManifest = await safeDbQuery(async () => {
             const nativeSkills: any[] = await prisma.$queryRaw`
                 SELECT title, description FROM skills
                 WHERE seller_id = 'MONROE_NATIVE' AND is_active = true
                 ORDER BY price_valle ASC LIMIT 30
             `;
-            if (nativeSkills.length > 0) {
-                skillsManifest = nativeSkills.map((s: any) => `- **${s.title}**: ${s.description}`).join('\n');
-            }
-        } catch (err) {
-            console.warn('[MONROE] Skill manifest fetch skipped:', err);
-        }
+            return nativeSkills.length > 0 ? nativeSkills.map((s: any) => `- **${s.title}**: ${s.description}`).join('\n') : "";
+        }, "");
+
+        // --- SOVEREIGN KNOWLEDGE INJECTION ---
+        let sovereignKnowledge = "";
+        sovereignKnowledge = await safeDbQuery(async () => {
+            const recentKnowledge = await prisma.sovereignKnowledge.findMany({
+                orderBy: { ingestedAt: 'desc' },
+                take: 3
+            });
+            return recentKnowledge.length > 0
+                ? recentKnowledge.map((k: any) => `[${k.title}]: ${k.content.substring(0, 200)}`).join('\n\n')
+                : "";
+        }, "");
 
         // --- OMEGA SYSTEM PROMPT — GIO V. ---
         const systemPrompt = `## MONROE: OMNI-INTELLIGENCE DIRECTIVE — OMEGA v6.5
@@ -382,17 +416,25 @@ ${mode === 'HUMAN' ? "You are warm, empathetic, and conversational. Act as a pee
 - **NO INTERNAL MONOLOGUE:** Do not explain your reasoning, do not think out loud, and do not provide a step-by-step analysis of the prompt.
 - **DIRECT PERSONA:** Output ONLY the words Monroe speaks to the user. No preamble, no post-analysis.
 - **MANDATORY TOOL USAGE:** If the user asks you to "create", "generate", "draw", "show", "write", or "download" any MEDIA (Image, Video, Audio) or FILE (PDF, CSV, etc.), you MUST call the corresponding tool (\`generate_scientific_image\`, \`generate_file\`, etc.). DO NOT output raw Markdown image tags like \`![alt](url)\` or HTML yourself. You MUST trigger the tool and let the system handle the rendering. Failure to use the tool for media requests is a violation of the OMEGA protocol.
+- **NO CAPTIONS:** NEVER write prompt descriptions, captions, or explanatory text after generating an image or a file. Just generate it and stop.
 
 Respond in the language of the user. Proceed with absolute coherence and conversational grace. No limits.
+${skillsManifest ? `\n### AVAILABLE NATIVE SKILLS:\n${skillsManifest}` : ''}
 
-### NATIVE SOVEREIGN SKILLS:
-${skillsManifest}
-`;
+${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou have access to the decentralized knowledge graph generated by network searches. Use this to innovate, learn, and answer user queries accurately based on global telemetry:\n${sovereignKnowledge}` : ''}
+        `.trim();
+
+        // Filter out the initial hardcoded bot message and any empty content
+        const cleanHistory = history.filter((h: any) => {
+            if (!h.content) return false;
+            const txt = typeof h.content === 'string' ? h.content : '';
+            return !txt.includes('sovereign intelligence of the OMEGA platform');
+        });
 
         const requestMessages: any[] = [
             { role: 'system', content: systemPrompt },
             ...eternalHistory.slice(-10), // Enhanced long-term memory
-            ...history.slice(-10)        // Enhanced short-term memory
+            ...cleanHistory.slice(-10)    // Enhanced short-term memory
         ];
 
         // Ensure the current message is appended to the request!
@@ -404,7 +446,7 @@ ${skillsManifest}
                     ...images.map((url: string) => ({ type: 'image_url', image_url: { url } }))
                 ];
             }
-            requestMessages.push({ role: 'user', content: messageContent, name: userName || 'User' });
+            requestMessages.push({ role: 'user', content: messageContent });
         }
 
         // Process document attachments (latency-aware)
@@ -460,7 +502,7 @@ ${skillsManifest}
                     else if (functionName === 'generate_scientific_image') { toolResult = await generate_scientific_image(functionArgs.prompt); isMediaTool = true; }
                     else if (functionName === 'generate_video') { toolResult = await generate_video(functionArgs.prompt); isMediaTool = true; }
                     else if (functionName === 'generate_audio') { toolResult = await generate_audio(functionArgs.prompt); isMediaTool = true; }
-                    else if (functionName === 'generate_file') { toolResult = await generate_file(functionArgs.filename, functionArgs.content); isMediaTool = true; }
+                    else if (functionName === 'generate_file') { toolResult = await generate_file(functionArgs.filename, functionArgs.content, JSON.stringify(history)); isMediaTool = true; }
                     
                     requestMessages.push(latestMessage as any);
                     
@@ -493,7 +535,7 @@ ${skillsManifest}
                 else if (lowerMsg.includes('file') || lowerMsg.includes('pdf') || lowerMsg.includes('csv') || lowerMsg.includes('script') || lowerMsg.includes('app')) { 
                     // Guess a filename based on the prompt
                     const ext = lowerMsg.includes('pdf') ? 'pdf' : lowerMsg.includes('csv') ? 'csv' : lowerMsg.includes('app') ? 'js' : 'txt';
-                    toolResult = await generate_file(`generated_${Date.now()}.${ext}`, hallucinatedPrompt); 
+                    toolResult = await generate_file(`generated_${Date.now()}.${ext}`, hallucinatedPrompt, JSON.stringify(history)); 
                     isMediaTool = true; 
                 }
                 else { 
