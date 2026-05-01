@@ -46,8 +46,10 @@ export default function RootLayout({
                 if (!stored || stored === 'system') {
                   resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                 }
+                document.documentElement.classList.remove('dark', 'light');
                 document.documentElement.classList.add(resolved);
               } catch(e) {
+                document.documentElement.classList.remove('light');
                 document.documentElement.classList.add('dark');
               }
             })();`

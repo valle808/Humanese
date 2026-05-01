@@ -16,36 +16,43 @@ const ThemeContext = createContext<ThemeContextType>({
   setTheme: () => {}
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('dark');
-  const [resolvedTheme, setResolvedTheme] = useState<'dark' | 'light'>('dark');
-
-  useEffect(() => {
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'dark';
+  try {
     const stored = localStorage.getItem('humanese-theme') as Theme | null;
-    if (stored) setThemeState(stored);
-  }, []);
+    if (stored && ['dark', 'light', 'system'].includes(stored)) return stored;
+  } catch {}
+  return 'system';
+}
+
+function resolveTheme(t: Theme): 'dark' | 'light' {
+  if (t === 'system') {
+    return typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark' : 'light';
+  }
+  return t;
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  // Lazy initializer reads localStorage synchronously — no dark flash overwrite on hydration
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
+  const [resolvedTheme, setResolvedTheme] = useState<'dark' | 'light'>(() => resolveTheme(getInitialTheme()));
 
   useEffect(() => {
-    const applyTheme = (t: Theme) => {
-      const root = document.documentElement;
-      let resolved: 'dark' | 'light';
-      if (t === 'system') {
-        resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      } else {
-        resolved = t;
-      }
+    const apply = (t: Theme) => {
+      const resolved = resolveTheme(t);
       setResolvedTheme(resolved);
+      const root = document.documentElement;
       root.classList.remove('dark', 'light');
       root.classList.add(resolved);
     };
 
-    applyTheme(theme);
+    apply(theme);
     localStorage.setItem('humanese-theme', theme);
 
-    // Watch for system changes when on 'system' mode
     if (theme === 'system') {
       const mq = window.matchMedia('(prefers-color-scheme: dark)');
-      const handler = () => applyTheme('system');
+      const handler = () => apply('system');
       mq.addEventListener('change', handler);
       return () => mq.removeEventListener('change', handler);
     }

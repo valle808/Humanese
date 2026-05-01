@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root, .light {
     --background: 0 0% 98%;
     --foreground: 0 0% 8%;
     --card: 0 0% 95%;
@@ -20,10 +20,11 @@
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
+    --border: 0 0% 85%;
     --input: 0 0% 90%;
     --ring: 18 100% 58%;
     --radius: 2rem;
+    color-scheme: light;
   }
 
   .dark {
@@ -46,6 +47,7 @@
     --border: 0 0% 10%;
     --input: 0 0% 10%;
     --ring: 18 100% 58%;
+    color-scheme: dark;
   }
 
   ::selection {
