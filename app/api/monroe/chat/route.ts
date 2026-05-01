@@ -469,20 +469,38 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou
 
         // --- DIRECT STREAM OPTIMIZATION ---
         // We bypass the tool-check-pre-generation unless the input explicitly triggers a tool-relevant keyword.
-        const triggers = ['blockchain', 'status', 'wallet', 'price', 'generate image', 'picture', 'draw', 'search', 'video', 'audio', 'music', 'song', 'file', 'download', 'pdf', 'csv', 'script', 'excel', 'word', 'exe', 'document', 'weather', 'forecast', 'temperature', 'rain', 'climate'];
+        const triggers = ['blockchain', 'status', 'wallet', 'price', 'image', 'picture', 'draw', 'generate', 'create', 'paint', 'video', 'audio', 'music', 'song', 'file', 'download', 'pdf', 'csv', 'script', 'excel', 'word', 'exe', 'document', 'weather', 'forecast', 'temperature', 'rain', 'climate', 'swarm', 'fleet'];
         const needsTool = triggers.some(t => message.toLowerCase().includes(t));
 
         if (needsTool) {
-            const responseData = await openai.chat.completions.create({
-                model: model,
-                messages: requestMessages as any,
-                tools: TOOLS as any,
-                tool_choice: 'auto',
-                max_tokens: 4000,
-                temperature: 0.7,
-            });
+            // AbortController ensures tool-detection call never blocks beyond 45s (Vercel limit is 60s)
+            const toolAbortController = new AbortController();
+            const toolTimeout = setTimeout(() => toolAbortController.abort(), 45000);
 
-            const latestMessage = responseData.choices[0]?.message;
+            let responseData: any;
+            try {
+                responseData = await openai.chat.completions.create({
+                    model: model,
+                    messages: requestMessages as any,
+                    tools: TOOLS as any,
+                    tool_choice: 'auto',
+                    max_tokens: 4000,
+                    temperature: 0.7,
+                }, { signal: toolAbortController.signal as any });
+            } catch (toolErr: any) {
+                clearTimeout(toolTimeout);
+                if (toolErr.name === 'AbortError' || toolErr.message?.includes('abort')) {
+                    console.error('[TOOL] Tool-detection call aborted (timeout)');
+                    // Fall through to streaming response
+                } else {
+                    throw toolErr;
+                }
+            } finally {
+                clearTimeout(toolTimeout);
+            }
+
+            // If tool detection timed out or was aborted, responseData will be undefined — fall through to stream
+            const latestMessage = responseData?.choices?.[0]?.message;
             if (latestMessage?.tool_calls) {
                 let mediaReturned = false;
                 for (const toolCall of latestMessage.tool_calls as any[]) {
