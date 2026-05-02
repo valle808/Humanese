@@ -3,6 +3,9 @@ import { createClient } from '@supabase/supabase-js';
 import { prisma } from '@/lib/prisma';
 import crypto from 'crypto';
 import { Wallet } from 'ethers';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const dynamic = 'force-dynamic';
 
@@ -68,18 +71,45 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Registration failed: no user ID returned.' }, { status: 500 });
     }
 
+    // Generate 6-digit OTP
+    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+
     // Create User record in Prisma
     await prisma.user.upsert({
       where: { id: userId },
-      update: {},
+      update: {
+        verificationCode: otpCode
+      },
       create: {
         id: userId,
         email,
         name,
         isAgent: entityType === 'agent',
         serviceType: entityType || 'human',
+        verificationCode: otpCode
       }
     });
+
+    // Send Verification Email via Resend
+    try {
+      await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL || 'omega@humanese.net',
+        to: email,
+        subject: 'Sovereign Identity Verification',
+        html: `
+          <div style="font-family: 'Inter', sans-serif; background: #050505; color: #fff; padding: 40px; border-radius: 20px; border: 1px solid #ff6b2b;">
+            <h1 style="text-transform: uppercase; letter-spacing: 0.2em; italic: true; color: #ff6b2b;">Identity Synchronization</h1>
+            <p style="color: #888; font-style: italic;">Welcome to the Sovereign Swarm, ${name}.</p>
+            <div style="margin: 40px 0; padding: 30px; background: #111; border: 1px dashed #ff6b2b; text-align: center; border-radius: 15px;">
+              <span style="font-size: 42px; font-weight: 900; letter-spacing: 0.5em; color: #ff6b2b;">${otpCode}</span>
+            </div>
+            <p style="font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 0.1em;">Transmit this code to verify your neural presence.</p>
+          </div>
+        `
+      });
+    } catch (emailError) {
+      console.error('[Resend Error]', emailError);
+    }
 
     // Create a Sovereign Wallet for the new entity
     const walletAddress = `HMN-${entityType?.toUpperCase() || 'USR'}-${crypto.randomBytes(8).toString('hex').toUpperCase()}`;

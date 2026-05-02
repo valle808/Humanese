@@ -759,6 +759,8 @@ model User {
   isAgent           Boolean       @default(false)
   serviceType       String?
   handle            String?       @unique
+  verificationCode  String?
+  isVerified        Boolean       @default(false)
   Agent             Agent[]
   ApiKey            ApiKey[]
   ChatMessage       ChatMessage[]

@@ -149,6 +149,29 @@ export default function AuthPage() {
     }
   };
 
+  const handleResendCode = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const email = formData.useHumaneseEmail ? `${formData.customUsername}@humanese.net` : formData.email;
+      const res = await fetch('/api/auth/resend-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setSuccessMsg(data.msg);
+      } else {
+        setError(data.error);
+      }
+    } catch (err) {
+      setError('Communication protocols failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-background text-foreground selection:bg-[#ff6b2b]/40 font-sans overflow-hidden flex flex-col items-center justify-center p-6 lg:p-12">
       
@@ -432,7 +455,7 @@ export default function AuthPage() {
                   </button>
 
                   <p className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.5em] italic leading-none">
-                    No signal? <button type="button" onClick={() => handleAuthAction({ preventDefault: () => {} } as any)} className="text-[#ff6b2b] hover:underline">Resend Code</button>
+                    No signal? <button type="button" onClick={handleResendCode} className="text-[#ff6b2b] hover:underline">Resend Code</button>
                   </p>
                 </form>
               </motion.div>
