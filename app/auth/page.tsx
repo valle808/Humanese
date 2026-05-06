@@ -99,11 +99,21 @@ export default function AuthPage() {
         if (mode === 'register') {
           setSuccessMsg(data.msg);
           if (data.secretPhrase) setSecretPhrase(data.secretPhrase);
-          setStep('verification');
+          
+          if (data.requiresVerification === false) {
+            // Auto-verified @humanese.net email
+            setStep('success');
+            // We still want them to see the secret phrase, which is shown on the success step if present
+          } else {
+            setStep('verification');
+          }
         } else {
           localStorage.setItem('humanese_session', JSON.stringify(data.session));
           setStep('success');
-          setTimeout(() => router.push('/'), 2000);
+          // If there's no secret phrase (e.g. standard login), redirect normally
+          if (!data.secretPhrase) {
+            setTimeout(() => router.push('/'), 2000);
+          }
         }
       } else {
         setError(data.error);
@@ -481,10 +491,32 @@ export default function AuthPage() {
                   <p className="text-xl text-muted-foreground font-black uppercase tracking-[0.4em] italic leading-none">Welcome to the Swarm.</p>
                 </div>
 
-                <div className="flex flex-col items-center gap-4 pt-6">
-                  <Activity className="animate-spin text-[#ff6b2b]" size={32} strokeWidth={2.5} />
-                  <span className="text-[10px] font-black text-muted-foreground/60 uppercase tracking-[0.6em] italic leading-none animate-pulse">Establishing secure handshake...</span>
-                </div>
+                {secretPhrase && (
+                  <div className="p-8 bg-secondary/50 border border-[#ff6b2b]/40 rounded-[2.5rem] text-left space-y-6 shadow-[0_20px_40px_rgba(255,107,43,0.1)] relative overflow-hidden max-w-2xl mx-auto">
+                    <div className="absolute top-0 left-0 w-2 h-full bg-[#ff6b2b]" />
+                    <div className="flex items-center gap-4">
+                      <ShieldCheck size={24} className="text-[#ff6b2b]" />
+                      <h3 className="text-xs font-black uppercase tracking-[0.6em] text-[#ff6b2b] italic leading-none">Critical: Save Sovereign Phrase</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground italic leading-relaxed">This is the **ONLY** time your 12-word recovery phrase will be shown. It has also been transmitted to your @humanese.net inbox for your records. If you lose this, you lose your Personal Agent and Wallet forever.</p>
+                    <div className="p-6 bg-background border-2 border-[#ff6b2b]/20 rounded-2xl font-mono text-[#ff6b2b] text-center text-xl select-all tracking-[0.2em] shadow-inner">
+                      {secretPhrase}
+                    </div>
+                    <button 
+                      onClick={() => router.push('/')}
+                      className="w-full py-5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/40 text-[#ff6b2b] font-black uppercase tracking-[0.4em] text-[10px] rounded-xl hover:bg-[#ff6b2b] hover:text-black transition-all italic mt-4"
+                    >
+                      I have secured my phrase. Proceed to Nexus.
+                    </button>
+                  </div>
+                )}
+
+                {!secretPhrase && (
+                  <div className="flex flex-col items-center gap-4 pt-6">
+                    <Activity className="animate-spin text-[#ff6b2b]" size={32} strokeWidth={2.5} />
+                    <span className="text-[10px] font-black text-muted-foreground/60 uppercase tracking-[0.6em] italic leading-none animate-pulse">Establishing secure handshake...</span>
+                  </div>
+                )}
               </motion.div>
             )}
 

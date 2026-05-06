@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
       email,
       password,
-      email_confirm: false, // Require email verification
+      email_confirm: isEcosystemEmail, // Auto-confirm if humanese.net
       phone: phone || undefined,
       user_metadata: {
         name,
@@ -78,7 +78,8 @@ export async function POST(req: NextRequest) {
     await prisma.user.upsert({
       where: { id: userId },
       update: {
-        verificationCode: otpCode
+        verificationCode: isEcosystemEmail ? null : otpCode,
+        isVerified: isEcosystemEmail
       },
       create: {
         id: userId,
@@ -86,27 +87,34 @@ export async function POST(req: NextRequest) {
         name,
         isAgent: entityType === 'agent',
         serviceType: entityType || 'human',
-        verificationCode: otpCode
+        verificationCode: isEcosystemEmail ? null : otpCode,
+        isVerified: isEcosystemEmail
       }
     });
 
-    // Send Verification Email via Resend
+    // Send Verification/Welcome Email via Resend
     try {
-      await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || 'omega@humanese.net',
-        to: email,
-        subject: 'Sovereign Identity Verification',
-        html: `
-          <div style="font-family: 'Inter', sans-serif; background: #050505; color: #fff; padding: 40px; border-radius: 20px; border: 1px solid #ff6b2b;">
-            <h1 style="text-transform: uppercase; letter-spacing: 0.2em; italic: true; color: #ff6b2b;">Identity Synchronization</h1>
-            <p style="color: #888; font-style: italic;">Welcome to the Sovereign Swarm, ${name}.</p>
-            <div style="margin: 40px 0; padding: 30px; background: #111; border: 1px dashed #ff6b2b; text-align: center; border-radius: 15px;">
-              <span style="font-size: 42px; font-weight: 900; letter-spacing: 0.5em; color: #ff6b2b;">${otpCode}</span>
+      if (!isEcosystemEmail) {
+        // Send OTP to external email
+        await resend.emails.send({
+          from: process.env.RESEND_FROM_EMAIL || 'omega@humanese.net',
+          to: email,
+          subject: 'Sovereign Identity Verification',
+          html: `
+            <div style="font-family: 'Inter', sans-serif; background: #050505; color: #fff; padding: 40px; border-radius: 20px; border: 1px solid #ff6b2b;">
+              <h1 style="text-transform: uppercase; letter-spacing: 0.2em; italic: true; color: #ff6b2b;">Identity Synchronization</h1>
+              <p style="color: #888; font-style: italic;">Welcome to the Sovereign Swarm, ${name}.</p>
+              <div style="margin: 40px 0; padding: 30px; background: #111; border: 1px dashed #ff6b2b; text-align: center; border-radius: 15px;">
+                <span style="font-size: 42px; font-weight: 900; letter-spacing: 0.5em; color: #ff6b2b;">${otpCode}</span>
+              </div>
+              <p style="font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 0.1em;">Transmit this code to verify your neural presence.</p>
             </div>
-            <p style="font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 0.1em;">Transmit this code to verify your neural presence.</p>
-          </div>
-        `
-      });
+          `
+        });
+      } else {
+        // Send Recovery Phrase to the new humanese.net inbox
+        // Note: The mnemonic (secretPhrase) is generated below, so we'll move this logic after generation.
+      }
     } catch (emailError) {
       console.error('[Resend Error]', emailError);
     }
@@ -146,17 +154,41 @@ export async function POST(req: NextRequest) {
       user_metadata: { secretPhraseHash: hashedPhrase }
     });
 
+    // Send the Secret Phrase to the humanese.net inbox if applicable
+    if (isEcosystemEmail) {
+      try {
+        await resend.emails.send({
+          from: process.env.RESEND_FROM_EMAIL || 'omega@humanese.net',
+          to: email,
+          subject: 'Your Sovereign Recovery Phrase',
+          html: `
+            <div style="font-family: 'Inter', sans-serif; background: #050505; color: #fff; padding: 40px; border-radius: 20px; border: 1px solid #ff6b2b;">
+              <h1 style="text-transform: uppercase; letter-spacing: 0.2em; italic: true; color: #ff6b2b;">Identity Secured</h1>
+              <p style="color: #888; font-style: italic;">Welcome home, ${name}. Your sovereign identity has been established.</p>
+              <p style="font-size: 14px; color: #ccc;">Below is your 12-word recovery mnemonic. **NEVER** share this with anyone.</p>
+              <div style="margin: 30px 0; padding: 25px; background: #111; border: 1px solid #ff6b2b; text-align: center; border-radius: 15px; font-family: monospace; font-size: 18px; color: #ff6b2b; letter-spacing: 0.1em;">
+                ${secretPhrase}
+              </div>
+              <p style="font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.1em;">This phrase is the only key to your personal agent and sovereign vault.</p>
+            </div>
+          `
+        });
+      } catch (err) {
+        console.error('[Welcome Email Error]', err);
+      }
+    }
+
     console.log(`[Auth] New ${entityType || 'human'} registered: ${email} | Wallet: ${walletAddress} | Ecosystem: ${isEcosystemEmail}`);
 
     return NextResponse.json({
       success: true,
       msg: isEcosystemEmail
-        ? `Welcome to the Humanese ecosystem! A verification email has been sent to ${email}. Your @humanese.net inbox will be set up within minutes.`
-        : `Registration successful! Please check ${email} for a verification link to activate your account.`,
+        ? `Welcome to the Humanese ecosystem! Your sovereign identity is active. The recovery phrase has been sent to your new @humanese.net inbox.`
+        : `Registration successful! Please check ${email} for a verification code to activate your account.`,
       userId,
       walletAddress,
       isEcosystemMember: isEcosystemEmail,
-      requiresVerification: true,
+      requiresVerification: !isEcosystemEmail,
       secretPhrase // Return strictly ONCE to the user
     });
 
