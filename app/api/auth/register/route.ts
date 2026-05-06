@@ -5,8 +5,6 @@ import crypto from 'crypto';
 import { Wallet } from 'ethers';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export const dynamic = 'force-dynamic';
 
 /**
@@ -26,6 +24,7 @@ export const dynamic = 'force-dynamic';
  * 4. If @humanese.net email, marks as ecosystem member
  */
 export async function POST(req: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await req.json();
     const { email, password, name, entityType, phone } = body;
