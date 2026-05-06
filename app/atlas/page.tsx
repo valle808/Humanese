@@ -332,6 +332,3 @@ export default function CognitiveAtlasPage() {
     </div>
   );
 }
-iv>
-  );
-}
