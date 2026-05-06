@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
+import { HistoricVerdictMap } from '@/components/HistoricVerdictMap';
+
 export default function JudicialOversightPage() {
   const [proposals, setProposals] = useState<any[]>([]);
   const [stats, setStats] = useState<any>(null);
@@ -128,6 +130,11 @@ export default function JudicialOversightPage() {
                </div>
           </div>
         </motion.div>
+
+        {/* ── HISTORIC VERDICT MAP ── */}
+        <section>
+          <HistoricVerdictMap />
+        </section>
 
         {/* ── CORE METRICS ── */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
