@@ -7,7 +7,7 @@ import {
   Cpu, Terminal, Layers, TrendingUp, Sparkles, Search,
   Lock, Wifi, Radio, Target, Orbit, Grid, ShieldHalf, 
   Clock, ChevronRight, Wind, Navigation, Compass, Layout, 
-  Smartphone, CreditCard, ShieldCheck, Binary
+  Smartphone, CreditCard, ShieldCheck, Binary, Plus, ArrowRight
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -45,7 +45,6 @@ export default function IntelligenceHQ() {
                 fetch('/api/coinbase/balances').catch(() => null)
             ]);
             
-            // Resonance Stream
             if (resIntel?.ok) {
                 const dataIntel = await resIntel.json();
                 const compiled = [
@@ -55,7 +54,6 @@ export default function IntelligenceHQ() {
                 setItems(compiled);
             }
 
-            // Agents / Evolution Monitor
             if (resHierarchy?.ok) {
                 const dataHierarchy = await resHierarchy.json();
                 const hydratedAgents = dataHierarchy.agents || [];
@@ -63,25 +61,21 @@ export default function IntelligenceHQ() {
                 setActiveNodes(hydratedAgents.length || 0);
             }
 
-            // Cognitive Nexus
             if (resCognitive?.ok) {
                 const logs = await resCognitive.json();
                 setCognitiveLogs(Array.isArray(logs) ? logs : []);
             }
 
-            // Marketplace / Skill Commerce
             if (resMarket?.ok) {
                 const mkItems = await resMarket.json();
                 setMarketplaceItems(Array.isArray(mkItems) ? mkItems : []);
             }
 
-            // Treasury
             if (resTreasury?.ok) {
                 const trData = await resTreasury.json();
                 setTreasury(trData);
             }
 
-            // Provide synthetic fallbacks if databases are completely empty to keep UI alive
             setItems(prev => prev.length ? prev : [
                 { id: '1', type: 'bug', foundBy: 'Omega_Sentinel', title: 'Latency anomaly detected in sub-cluster Alpha-7', resonance: 0.85, timestamp: new Date().toISOString() },
                 { id: '2', type: 'idea', proposedBy: 'Core_Logic_Node', title: 'Optimize resource allocation algorithm v2.4 for edge computing', resonance: 0.42, timestamp: new Date(Date.now() - 50000).toISOString() }
@@ -140,131 +134,142 @@ export default function IntelligenceHQ() {
         return (
             <div className="min-h-screen bg-background flex flex-col items-center justify-center space-y-12">
                 <div className="relative">
-                   <div className="w-24 h-24 border-t-2 border-[#ff6b2b] rounded-full animate-spin shadow-[0_0_30px_#ff6b2b]" />
-                   <div className="absolute inset-0 bg-[#ff6b2b]/10 blur-[40px] rounded-full animate-pulse" />
+                   <div className="w-24 h-24 border-t-2 border-primary rounded-full animate-spin shadow-[0_0_30px_var(--primary)]" />
+                   <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full animate-pulse" />
                 </div>
-                <p className="text-[11px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] animate-pulse italic leading-none">Initializing Neural Intelligence HQ...</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.8em] text-primary animate-pulse italic leading-none">Initializing Neural Intelligence HQ...</p>
             </div>
         );
     }
 
     return (
-        <div className="relative min-h-screen bg-background text-foreground font-sans overflow-x-hidden pb-40">
+        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
             
-            {/* 🌌 AMBIENT CORE */}
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full animate-pulse" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
-                
-                {/* Animated Scanning Lines */}
-                <div className="absolute inset-0 opacity-[0.05]">
-                   <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-1/4 animate-[scan_15s_linear_infinite]" />
-                   <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-3/4 animate-[scan_20s_linear_infinite_reverse]" />
-                </div>
+            {/* ── GAMING HUD OVERLAYS ── */}
+            <div className="fixed inset-0 pointer-events-none z-20">
+                <motion.div 
+                    animate={{ top: ['-10%', '110%'] }}
+                    transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+                    className="absolute left-0 right-0 h-[1px] bg-primary/10 blur-sm shadow-[0_0_15px_var(--primary)] z-30"
+                />
+                <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-primary/20 rounded-tl-xl" />
+                <div className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-primary/20 rounded-tr-xl" />
+                <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-primary/20 rounded-bl-xl" />
+                <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-primary/20 rounded-br-xl" />
+                <div className="absolute inset-0 neural-grid opacity-[0.03] dark:opacity-[0.05]" />
             </div>
 
-            <header className="relative z-50 w-full px-8 lg:px-14 py-6 flex justify-between items-center border-b border-border bg-background/80 backdrop-blur-3xl">
-                <Link href="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.5em] group italic active:scale-95 leading-none">
+            {/* 🌌 AMBIENT CORE */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-primary/5 blur-[350px] rounded-full animate-pulse" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-primary/3 blur-[200px] rounded-full" />
+            </div>
+
+            <header className="relative z-50 w-full px-8 lg:px-14 py-6 flex justify-between items-center border-b border-border bg-background/40 backdrop-blur-3xl transition-colors duration-700">
+                <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground/40 hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
                     <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
                 </Link>
                 <div className="flex items-center gap-6">
-                    <div className="px-5 py-2 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic animate-pulse leading-none">
+                    <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
                         <Wifi size={14} className="inline mr-2" /> LIVE_SAT_UPLINK_v7.0
                     </div>
                 </div>
             </header>
 
-            <main className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 pt-16 md:pt-24 space-y-24 flex-1 flex flex-col">
+            <main className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
                 
                 {/* ── HEADER SECTION ── */}
                 <motion.div 
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex flex-col lg:flex-row justify-between items-end gap-12 border-b border-border pb-12"
+                  className="flex flex-col lg:flex-row justify-between items-end gap-16 border-b-2 border-border pb-16"
                 >
-                    <div className="space-y-8 max-w-4xl">
-                        <div className="inline-flex items-center gap-3 px-5 py-2 bg-secondary border border-border rounded-full backdrop-blur-xl shadow-sm">
-                          <Activity size={18} className="text-[#ff6b2b]" />
-                          <span className="text-[10px] font-black tracking-[0.6em] text-[#ff6b2b] uppercase italic leading-none pl-1">Cognitive Surveillance HQ</span>
+                    <div className="space-y-12 max-w-4xl">
+                        <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
+                          <Activity size={20} className="text-primary" />
+                          <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Cognitive Surveillance HQ</span>
                         </div>
-                        <div className="space-y-6">
-                          <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter italic leading-[0.85] text-foreground">
+                        <div className="space-y-8">
+                          <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
                             Intelligence<br/>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-[#ff6b2b]/40">HQ.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">HQ.</span>
                           </h1>
-                          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed font-light italic tracking-tight">
-                            The centralized nexus for <span className="text-foreground/70">cognitive audit logs</span> and real-time intelligence feeds across the OMEGA swarm.
+                          <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
+                            The centralized nexus for <span className="text-foreground/80">cognitive audit logs</span> and real-time intelligence feeds across the OMEGA swarm.
                           </p>
                         </div>
                     </div>
 
-                    <div className="flex gap-8 items-center shrink-0">
-                         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                              <div className="p-8 bg-secondary/30 border border-border rounded-[2.5rem] min-w-[180px] text-center space-y-3 backdrop-blur-xl group hover:border-[#ff6b2b]/30 transition-all shadow-sm">
-                                  <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{activeNodes}</div>
-                                  <div className="text-[9px] text-muted-foreground font-black uppercase tracking-[0.4em] italic leading-none">Active_Agents</div>
+                    <div className="flex gap-10 items-center shrink-0 w-full lg:w-auto">
+                         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full">
+                              <div className="p-10 bg-background border-2 border-border rounded-[3rem] text-center space-y-4 backdrop-blur-3xl group hover:border-primary/40 transition-all shadow-xl shadow-inner flex flex-col justify-center min-h-[180px]">
+                                  <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{activeNodes}</div>
+                                  <div className="text-[10px] text-muted-foreground/20 font-black uppercase tracking-[0.4em] italic leading-none">Active_Agents</div>
                               </div>
-                              <div className="p-8 bg-secondary/30 border border-border rounded-[2.5rem] min-w-[180px] text-center space-y-3 backdrop-blur-xl group hover:border-[#ff6b2b]/30 transition-all shadow-sm">
-                                  <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{items.length}</div>
-                                  <div className="text-[9px] text-muted-foreground font-black uppercase tracking-[0.4em] italic leading-none">Intel Units</div>
+                              <div className="p-10 bg-background border-2 border-border rounded-[3rem] text-center space-y-4 backdrop-blur-3xl group hover:border-primary/40 transition-all shadow-xl shadow-inner flex flex-col justify-center min-h-[180px]">
+                                  <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{items.length}</div>
+                                  <div className="text-[10px] text-muted-foreground/20 font-black uppercase tracking-[0.4em] italic leading-none">Intel Units</div>
                               </div>
-                              <div className="p-8 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-[2.5rem] min-w-[180px] text-center space-y-3 backdrop-blur-xl group hover:scale-[1.03] transition-all col-span-2 md:col-span-1 shadow-sm">
-                                  <div className="text-5xl font-black text-[#ff6b2b] italic tracking-tighter leading-none">90 / 10</div>
-                                  <div className="text-[9px] text-[#ff6b2b]/60 font-black uppercase tracking-[0.4em] italic leading-none">Yield_Split</div>
+                              <div className="p-10 bg-primary/10 border-2 border-primary/20 rounded-[3rem] text-center space-y-4 backdrop-blur-3xl group hover:scale-[1.03] transition-all col-span-2 md:col-span-1 shadow-xl shadow-inner flex flex-col justify-center min-h-[180px]">
+                                  <div className="text-5xl font-black text-primary italic tracking-tighter leading-none">90 / 10</div>
+                                  <div className="text-[10px] text-primary/60 font-black uppercase tracking-[0.4em] italic leading-none">Yield_Split</div>
                               </div>
                          </div>
                     </div>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-12 gap-12 items-start">
+                <div className="grid lg:grid-cols-12 gap-16 items-start">
                     
                     {/* LEFT COLUMN: COGNITIVE AND RESONANCE */}
                     <div className="lg:col-span-8 space-y-16">
                         
                         {/* COGNITIVE NEXUS */}
-                        <section className="bg-secondary/10 border-2 border-border rounded-[3rem] overflow-hidden group backdrop-blur-xl">
-                            <div className="p-8 lg:px-12 border-b border-border flex justify-between items-center bg-background/50 relative z-10">
-                                <h2 className="flex items-center gap-4 font-black uppercase tracking-tight text-3xl italic text-muted-foreground leading-none">
-                                    <Activity size={32} className="text-[#ff6b2b] animate-pulse" strokeWidth={2.5} />
+                        <section className="bg-background border-2 border-border rounded-[4rem] overflow-hidden group backdrop-blur-3xl shadow-xl shadow-inner relative">
+                            <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
+                                <Brain size={250} className="text-primary" />
+                            </div>
+                            <div className="p-10 lg:px-14 border-b-2 border-border flex justify-between items-center bg-muted/20 relative z-10">
+                                <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-4xl italic text-muted-foreground/40 leading-none pl-2">
+                                    <Activity size={40} className="text-primary animate-pulse" strokeWidth={2.5} />
                                     Cognitive Nexus
                                 </h2>
-                                <div className="px-5 py-2 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[9px] text-[#ff6b2b] font-black uppercase tracking-[0.4em] italic leading-none animate-pulse">LIVE_SYNAPTIC_STREAM</div>
+                                <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] text-primary font-black uppercase tracking-[0.4em] italic leading-none animate-pulse shadow-sm">LIVE_SYNAPTIC_STREAM</div>
                             </div>
-                            <div className="p-8 lg:p-12 space-y-8 max-h-[700px] overflow-y-auto custom-scrollbar relative z-10">
+                            <div className="p-10 lg:p-14 space-y-10 max-h-[800px] overflow-y-auto custom-scrollbar relative z-10">
                                 {cognitiveLogs.length === 0 ? (
-                                    <div className="text-center py-20 space-y-6 opacity-40">
-                                        <div className="w-20 h-20 border border-border rounded-full flex items-center justify-center mx-auto relative">
-                                            <Radio size={32} className="animate-spin" />
+                                    <div className="text-center py-32 space-y-10 opacity-40">
+                                        <div className="w-24 h-24 border-2 border-border rounded-full flex items-center justify-center mx-auto relative group-hover:border-primary/40 transition-all shadow-xl">
+                                            <Radio size={48} className="animate-spin text-primary/40" />
                                         </div>
-                                        <p className="text-lg font-black uppercase tracking-[0.5em] italic leading-none">Awaiting neural resonance...</p>
+                                        <p className="text-2xl font-black uppercase tracking-[0.8em] italic leading-none">Awaiting neural resonance...</p>
                                     </div>
                                 ) : (
                                     cognitiveLogs.map((log) => (
-                                        <div key={log.id} className="p-8 bg-background border border-border hover:border-[#ff6b2b]/30 rounded-3xl group/log transition-all relative overflow-hidden shadow-sm">
-                                            <div className="absolute inset-y-0 left-0 w-1.5 bg-[#ff6b2b] scale-y-0 group-hover/log:scale-y-100 transition-transform origin-top" />
+                                        <div key={log.id} className="p-10 bg-background border-2 border-border hover:border-primary/40 rounded-[3rem] group/log transition-all relative overflow-hidden shadow-xl shadow-inner">
+                                            <div className="absolute inset-y-0 left-0 w-1.5 bg-primary scale-y-0 group-hover/log:scale-y-100 transition-transform origin-top z-10" />
                                             
-                                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-6 relative z-10">
-                                                <div className="flex items-center gap-6">
-                                                    <div className="w-14 h-14 bg-[#ff6b2b] rounded-2xl flex items-center justify-center text-black font-black text-2xl italic shadow-md">
+                                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8 relative z-20">
+                                                <div className="flex items-center gap-8 pl-1">
+                                                    <div className="w-16 h-16 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center font-black text-3xl italic shadow-2xl shadow-primary/20">
                                                        {log.agent?.name?.charAt(0) || '?'}
                                                     </div>
-                                                    <div className="space-y-1">
-                                                       <span className="text-xl font-black text-[#ff6b2b] uppercase tracking-tighter italic leading-none truncate block max-w-[200px]">
+                                                    <div className="space-y-2">
+                                                       <span className="text-2xl font-black text-foreground uppercase tracking-tighter italic leading-none truncate block max-w-[250px]">
                                                           {log.agent?.name || 'UNKNOWN_NODE'}
                                                        </span>
-                                                       <div className="text-[9px] font-black text-muted-foreground/60 uppercase tracking-[0.4em] italic leading-none truncate max-w-[200px]">{log.agent?.type || 'UNKNOWN'} // DEPLOYED_NODE</div>
+                                                       <div className="text-[10px] font-black text-muted-foreground/20 uppercase tracking-[0.5em] italic leading-none truncate max-w-[250px]">{log.agent?.type || 'UNKNOWN'} // DEPLOYED_NODE</div>
                                                     </div>
                                                 </div>
-                                                <div className="text-left md:text-right shrink-0">
-                                                   <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] italic group-hover/log:text-foreground transition-colors leading-none flex items-center gap-2">
-                                                      <Clock size={14} /> {new Date(log.timestamp).toLocaleTimeString()}
+                                                <div className="text-left md:text-right shrink-0 pr-2">
+                                                   <span className="text-[10px] font-black text-muted-foreground/40 uppercase tracking-[0.4em] italic group-hover/log:text-primary transition-colors leading-none flex items-center gap-4">
+                                                      <Clock size={16} /> {new Date(log.timestamp).toLocaleTimeString()}
                                                    </span>
                                                 </div>
                                             </div>
-                                            <p className="text-xl text-muted-foreground italic font-light leading-relaxed group-hover/log:text-foreground transition-all duration-700 break-words pl-2 pr-4">"{log.thought}"</p>
+                                            <p className="text-2xl text-muted-foreground/40 italic font-light leading-relaxed group-hover/log:text-foreground transition-all duration-700 break-words pl-2 pr-6 tracking-tight">"{log.thought}"</p>
                                             {log.intention && (
-                                                <div className="mt-6 flex items-center gap-3 pl-2">
-                                                    <div className="px-6 py-2 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[9px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic shadow-sm leading-none truncate max-w-full">
+                                                <div className="mt-8 flex items-center gap-4 pl-2 relative z-20">
+                                                    <div className="px-8 py-3 bg-primary/10 border-2 border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.6em] italic shadow-sm leading-none truncate max-w-full">
                                                        PR_INTENTION: {log.intention}
                                                     </div>
                                                 </div>
@@ -276,80 +281,78 @@ export default function IntelligenceHQ() {
                         </section>
 
                         {/* RESONANCE STREAM */}
-                        <section className="bg-secondary/10 border-2 border-border rounded-[3rem] overflow-hidden group backdrop-blur-xl">
-                             <div className="p-8 lg:px-12 border-b border-border flex justify-between items-center bg-background/50">
-                                <h2 className="flex items-center gap-4 font-black uppercase tracking-tight text-3xl italic text-muted-foreground leading-none">
-                                    <Zap size={32} className="text-[#ff6b2b]" strokeWidth={2.5} />
+                        <section className="bg-background border-2 border-border rounded-[4rem] overflow-hidden group backdrop-blur-3xl shadow-xl shadow-inner relative">
+                             <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
+                                <Zap size={250} className="text-primary" />
+                             </div>
+                             <div className="p-10 lg:px-14 border-b-2 border-border flex justify-between items-center bg-muted/20 relative z-10">
+                                <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-4xl italic text-muted-foreground/40 leading-none pl-2">
+                                    <Zap size={40} className="text-primary" strokeWidth={2.5} />
                                     Resonance Stream
                                 </h2>
-                                <div className="px-5 py-2 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[9px] text-[#ff6b2b] font-black uppercase tracking-[0.4em] italic leading-none animate-pulse">DIRECT_SURVEILLANCE_v7</div>
+                                <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] text-primary font-black uppercase tracking-[0.4em] italic leading-none animate-pulse shadow-sm">DIRECT_SURVEILLANCE_v7</div>
                             </div>
                             
-                            <div className="p-8 lg:p-12 space-y-8 relative z-10">
+                            <div className="p-10 lg:p-14 space-y-10 relative z-10">
                                 {loading && items.length === 0 ? (
-                                    <div className="text-center py-20 space-y-6 opacity-40">
-                                        <Layers size={48} className="mx-auto animate-bounce" strokeWidth={1.5} />
-                                        <p className="text-lg font-black uppercase tracking-[0.6em] italic leading-none">Decrypting Neural Bus...</p>
+                                    <div className="text-center py-32 space-y-10 opacity-40">
+                                        <Layers size={64} className="mx-auto animate-bounce text-primary/40" strokeWidth={1.5} />
+                                        <p className="text-2xl font-black uppercase tracking-[0.8em] italic leading-none">Decrypting Neural Bus...</p>
                                     </div>
                                 ) : error ? (
-                                    <div className="p-8 text-red-500 font-black italic flex flex-col items-center gap-6 bg-red-500/10 rounded-[2.5rem] border border-red-500/20">
-                                        <ShieldBan size={64} className="animate-pulse" strokeWidth={2.5} />
-                                        <span className="text-xl uppercase tracking-[0.2em] font-black text-center leading-relaxed">{error}</span>
-                                    </div>
-                                ) : items.length === 0 ? (
-                                    <div className="text-center py-20 space-y-6 opacity-40">
-                                        <Target size={64} className="mx-auto" strokeWidth={1.5} />
-                                        <p className="text-lg font-black uppercase tracking-[0.6em] italic leading-none">No Synthetic Resonance Found</p>
+                                    <div className="p-12 text-red-500 font-black italic flex flex-col items-center gap-10 bg-red-500/10 rounded-[3rem] border-2 border-red-500/20 shadow-inner">
+                                        <ShieldBan size={80} className="animate-pulse" strokeWidth={2.5} />
+                                        <span className="text-3xl uppercase tracking-tighter font-black text-center leading-relaxed max-w-2xl">{error}</span>
                                     </div>
                                 ) : (
-                                    <div className="grid grid-cols-1 gap-6">
+                                    <div className="grid grid-cols-1 gap-10">
                                         {items.map((item) => (
-                                            <div key={item.id} className="p-8 lg:p-10 rounded-[2.5rem] bg-background border border-border hover:border-[#ff6b2b]/40 transition-all group relative overflow-hidden shadow-sm flex flex-col gap-6">
-                                                <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-125 transition-transform duration-3000">
-                                                   <Cpu size={150} className="text-[#ff6b2b]" />
+                                            <div key={item.id} className="p-10 lg:p-14 rounded-[4rem] bg-background border-2 border-border hover:border-primary/40 transition-all group relative overflow-hidden shadow-xl shadow-inner flex flex-col gap-10">
+                                                <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
+                                                   <Cpu size={200} className="text-primary" />
                                                 </div>
-                                                <div className="absolute inset-y-0 left-0 w-1.5 bg-[#ff6b2b] scale-y-0 group-hover:scale-y-100 transition-transform origin-top z-10" />
+                                                <div className="absolute inset-y-0 left-0 w-1.5 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top z-10" />
                                                 
-                                                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-20 w-full">
-                                                    <div className="flex items-center gap-6">
-                                                        <span className={`px-6 py-2 text-[9px] font-black uppercase tracking-[0.4em] rounded-full italic border leading-none ${item.type === 'bug' ? 'bg-red-500/10 text-red-500 border-red-500/30' : 'bg-[#ff6b2b]/10 text-[#ff6b2b] border-[#ff6b2b]/30 animate-pulse'}`}>
+                                                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 relative z-20 w-full pl-1">
+                                                    <div className="flex items-center gap-8">
+                                                        <span className={`px-8 py-3 text-[10px] font-black uppercase tracking-[0.5em] rounded-full italic border-2 leading-none shadow-sm ${item.type === 'bug' ? 'bg-red-500/10 text-red-500 border-red-500/30' : 'bg-primary/10 text-primary border-primary/30 animate-pulse'}`}>
                                                             {item.type}
                                                         </span>
-                                                        <div className="flex flex-col gap-1">
-                                                           <span className="text-[9px] font-black text-muted-foreground uppercase tracking-[0.3em] italic leading-none group-hover:text-foreground transition-colors truncate max-w-[200px]">
-                                                              Detected_by_{item.foundBy || item.proposedBy || 'SYSTEM'}
+                                                        <div className="flex flex-col gap-2">
+                                                           <span className="text-[10px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] italic leading-none group-hover:text-foreground transition-colors truncate max-w-[250px]">
+                                                               Detected_by_{item.foundBy || item.proposedBy || 'SYSTEM'}
                                                            </span>
-                                                           <span className="text-[9px] text-[#ff6b2b]/60 font-black italic uppercase tracking-[0.2em]">{new Date(item.timestamp).toLocaleTimeString()} // SECTOR_G</span>
+                                                           <span className="text-[10px] text-primary/60 font-black italic uppercase tracking-[0.3em] leading-none">{new Date(item.timestamp).toLocaleTimeString()} // SECTOR_G</span>
                                                         </div>
                                                     </div>
-                                                    <div className="w-10 h-10 bg-secondary border border-border rounded-xl flex items-center justify-center text-muted-foreground group-hover:text-[#ff6b2b] transition-all shrink-0">
-                                                       <Target size={20} strokeWidth={2.5} />
+                                                    <div className="w-14 h-14 bg-muted border-2 border-border rounded-2xl flex items-center justify-center text-muted-foreground/40 group-hover:text-primary group-hover:border-primary/40 transition-all shrink-0 shadow-lg shadow-inner">
+                                                       <Target size={28} strokeWidth={2.5} />
                                                     </div>
                                                 </div>
                                                 
-                                                <p className="text-2xl lg:text-3xl text-foreground font-black italic leading-tight tracking-tight relative z-20 pl-2 pr-4 break-words">
+                                                <p className="text-3xl lg:text-4xl text-foreground font-black italic leading-tight tracking-tighter relative z-20 pl-1 pr-10 break-words group-hover:text-primary transition-colors duration-700 uppercase">
                                                     {item.description || item.title}
                                                 </p>
                                                 
-                                                <div className="flex flex-col lg:flex-row justify-between items-center gap-8 border-t border-border pt-8 relative z-20 pl-2">
-                                                    <div className="w-full space-y-4">
-                                                        <div className="flex justify-between text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] italic pl-1 leading-none">
+                                                <div className="flex flex-col lg:flex-row justify-between items-center gap-12 border-t-2 border-border pt-10 relative z-20 pl-1">
+                                                    <div className="w-full space-y-6">
+                                                        <div className="flex justify-between items-end text-[11px] font-black text-muted-foreground/40 uppercase tracking-[0.6em] italic pl-1 leading-none">
                                                            <span>Resonance_Amplitude</span>
-                                                           <span className="text-[#ff6b2b] animate-pulse">{Math.round((item.resonance || 0) * 100)}%</span>
+                                                           <span className="text-primary animate-pulse text-lg">{( (item.resonance || 0) * 100).toFixed(1)}%</span>
                                                         </div>
-                                                        <div className="w-full h-3 bg-background border border-border rounded-full overflow-hidden p-[1px]">
+                                                        <div className="w-full h-4 bg-muted border-2 border-border rounded-full overflow-hidden p-[1px] shadow-inner">
                                                             <motion.div 
                                                                 initial={{ width: 0 }}
                                                                 animate={{ width: `${(item.resonance || 0) * 100}%` }}
                                                                 transition={{ duration: 1.5, ease: "circOut" }}
-                                                                className={`h-full rounded-full ${item.type === 'bug' ? 'bg-red-500' : 'bg-[#ff6b2b]'}`}
+                                                                className={`h-full rounded-full shadow-lg ${item.type === 'bug' ? 'bg-red-500 shadow-red-500/20' : 'bg-primary shadow-primary/20'}`}
                                                             />
                                                         </div>
                                                     </div>
                                                     
                                                     <button 
                                                         onClick={() => handleResonate(item.type, item.id)}
-                                                        className="w-full lg:w-auto px-10 py-4 bg-foreground text-background font-black uppercase tracking-[0.5em] text-[10px] rounded-full hover:bg-[#ff6b2b] hover:text-black hover:scale-[1.02] active:scale-98 transition-all italic leading-none shrink-0"
+                                                        className="w-full lg:w-auto px-16 py-6 bg-foreground text-background font-black uppercase tracking-[0.8em] text-[11px] rounded-full hover:bg-primary hover:text-primary-foreground hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none shrink-0 shadow-2xl border-0"
                                                     >
                                                         Resonate 💠
                                                     </button>
@@ -363,65 +366,65 @@ export default function IntelligenceHQ() {
                     </div>
 
                     {/* RIGHT COLUMN: TREASURY, EVOLUTION, MARKETPLACE */}
-                    <div className="lg:col-span-4 space-y-12 lg:sticky lg:top-28 h-fit">
+                    <div className="lg:col-span-4 space-y-16 lg:sticky lg:top-32 h-fit pb-40">
                         
                          {/* TREASURY MONITOR */}
                         {treasury && (
-                            <section className="bg-secondary/10 border-2 border-border p-8 rounded-[3rem] backdrop-blur-xl space-y-8 group hover:border-[#ff6b2b]/30 transition-all relative overflow-hidden">
-                                <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-125 transition-transform duration-3000">
-                                   <CreditCard size={150} className="text-[#ff6b2b]" />
+                            <section className="bg-background border-2 border-border p-10 rounded-[4rem] backdrop-blur-3xl space-y-10 group hover:border-primary/40 transition-all relative overflow-hidden shadow-xl shadow-inner">
+                                <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
+                                   <CreditCard size={180} className="text-primary" />
                                 </div>
-                                <div className="flex items-center justify-between border-b border-border pb-6 relative z-10">
-                                   <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.6em] italic leading-none pl-2">TREASURY_SYNC</div>
-                                   <div className="w-10 h-10 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-xl flex items-center justify-center text-[#ff6b2b]">
-                                      <ShieldCheck size={20} strokeWidth={2.5} className="animate-pulse" />
+                                <div className="flex items-center justify-between border-b-2 border-border pb-8 relative z-10">
+                                   <div className="text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] italic leading-none pl-2">TREASURY_SYNC</div>
+                                   <div className="w-12 h-12 bg-primary/10 border-2 border-primary/20 rounded-2xl flex items-center justify-center text-primary shadow-sm shadow-inner">
+                                      <ShieldCheck size={28} strokeWidth={2.5} className="animate-pulse" />
                                    </div>
                                 </div>
-                                <div className="space-y-4 relative z-10">
-                                    <div className="p-6 bg-background border border-border rounded-3xl flex justify-between items-center hover:border-foreground/20 transition-all group/asset shadow-sm">
-                                        <div className="flex items-center gap-4">
-                                           <div className="h-3 w-3 rounded-full bg-[#ff6b2b] animate-ping" />
-                                           <span className="text-2xl font-black italic tracking-tighter text-muted-foreground group-hover/asset:text-foreground transition-colors">SOL</span>
+                                <div className="space-y-6 relative z-10">
+                                    <div className="p-8 bg-muted/40 border-2 border-border rounded-[2.5rem] flex justify-between items-center hover:border-primary/20 transition-all group/asset shadow-inner">
+                                        <div className="flex items-center gap-6">
+                                           <div className="h-4 w-4 rounded-full bg-primary animate-ping shadow-[0_0_10px_var(--primary)]" />
+                                           <span className="text-3xl font-black italic tracking-tighter text-muted-foreground/40 group-hover/asset:text-foreground transition-colors uppercase">SOL</span>
                                         </div>
-                                        <span className="text-3xl font-black text-foreground italic tracking-tighter font-mono">{treasury.sol?.balance?.toFixed(4) || '0.0000'}</span>
+                                        <span className="text-4xl font-black text-foreground italic tracking-tighter group-hover:text-primary transition-colors font-mono tabular-nums leading-none">{treasury.sol?.balance?.toFixed(4) || '0.0000'}</span>
                                     </div>
-                                    <div className="p-6 bg-background border border-border rounded-3xl flex justify-between items-center hover:border-foreground/20 transition-all group/asset shadow-sm">
-                                        <div className="flex items-center gap-4">
-                                           <div className="h-3 w-3 rounded-full bg-border group-hover/asset:bg-[#ff6b2b] transition-colors" />
-                                           <span className="text-2xl font-black italic tracking-tighter text-muted-foreground group-hover/asset:text-foreground transition-colors">BTC</span>
+                                    <div className="p-8 bg-muted/40 border-2 border-border rounded-[2.5rem] flex justify-between items-center hover:border-primary/20 transition-all group/asset shadow-inner">
+                                        <div className="flex items-center gap-6">
+                                           <div className="h-4 w-4 rounded-full bg-border group-hover/asset:bg-primary transition-colors" />
+                                           <span className="text-3xl font-black italic tracking-tighter text-muted-foreground/40 group-hover/asset:text-foreground transition-colors uppercase">BTC</span>
                                         </div>
-                                        <span className="text-3xl font-black text-foreground italic tracking-tighter font-mono">{treasury.btc?.balance?.toFixed(4) || '0.0000'}</span>
+                                        <span className="text-4xl font-black text-foreground italic tracking-tighter group-hover:text-primary transition-colors font-mono tabular-nums leading-none">{treasury.btc?.balance?.toFixed(4) || '0.0000'}</span>
                                     </div>
                                 </div>
-                                <div className="pt-2 flex items-center justify-center gap-3 text-[9px] font-black text-muted-foreground/60 uppercase tracking-[0.4em] italic leading-none relative z-10">
-                                    <Clock size={14} strokeWidth={2.5} /> Last_Sync: {new Date(treasury.timestamp).toLocaleTimeString()}
+                                <div className="pt-4 flex items-center justify-center gap-4 text-[10px] font-black text-muted-foreground/10 uppercase tracking-[0.5em] italic leading-none relative z-10 group-hover:text-primary/20 transition-colors">
+                                    <Clock size={16} strokeWidth={2.5} /> Sync_Epoch: {new Date(treasury.timestamp).toLocaleTimeString()}
                                 </div>
                             </section>
                         )}
 
                         {/* EVOLUTION MONITOR */}
-                        <section className="bg-secondary/10 border-2 border-border p-8 rounded-[3rem] backdrop-blur-xl space-y-8 group transition-all hover:border-[#ff6b2b]/30 overflow-hidden relative">
-                             <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-125 transition-transform duration-3000">
-                                <Activity size={150} className="text-[#ff6b2b]" />
+                        <section className="bg-background border-2 border-border p-10 rounded-[4rem] backdrop-blur-3xl space-y-10 group transition-all hover:border-primary/40 overflow-hidden relative shadow-xl shadow-inner">
+                             <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
+                                <Activity size={200} className="text-primary" />
                              </div>
-                             <h2 className="text-[10px] font-black uppercase tracking-[0.6em] text-muted-foreground italic flex items-center gap-4 relative z-10 leading-none pl-2">
-                                <Boxes size={20} className="text-[#ff6b2b]" strokeWidth={2.5} /> Evolution Monitor
+                             <h2 className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic flex items-center gap-6 relative z-10 leading-none pl-2">
+                                <Boxes size={24} className="text-primary" strokeWidth={2.5} /> Evolution Monitor
                             </h2>
-                            <div className="grid grid-cols-1 gap-4 relative z-10 overflow-y-auto max-h-[400px] custom-scrollbar">
+                            <div className="grid grid-cols-1 gap-6 relative z-10 overflow-y-auto max-h-[450px] custom-scrollbar pr-2">
                                 {agents.length === 0 ? (
-                                    <div className="text-center py-10 text-[10px] font-black text-muted-foreground/60 uppercase tracking-[0.6em] italic animate-pulse leading-none">
+                                    <div className="text-center py-16 text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] italic animate-pulse leading-none">
                                         Awaiting_autonomous_pulse...
                                     </div>
                                 ) : (
                                     agents.map((agent) => (
-                                        <div key={agent.id} className="p-6 rounded-3xl bg-background border border-border flex justify-between items-center hover:border-foreground/20 transition-all group/agent shadow-sm">
-                                            <div className="space-y-2 truncate pr-4">
-                                                <div className="text-lg font-black text-foreground uppercase tracking-tight italic transition-colors leading-none truncate">{agent.name}</div>
-                                                <div className="text-[9px] text-muted-foreground font-black italic uppercase tracking-[0.3em] leading-none truncate">{agent.title}</div>
+                                        <div key={agent.id} className="p-8 rounded-[2.5rem] bg-muted/40 border-2 border-border flex justify-between items-center hover:border-primary/30 transition-all group/agent shadow-inner">
+                                            <div className="space-y-3 truncate pr-6">
+                                                <div className="text-2xl font-black text-muted-foreground/60 group-hover/agent:text-foreground uppercase tracking-tighter italic transition-colors leading-none truncate">{agent.name}</div>
+                                                <div className="text-[10px] text-muted-foreground/20 font-black italic uppercase tracking-[0.4em] leading-none truncate">{agent.title}</div>
                                             </div>
-                                            <div className="text-right space-y-2 shrink-0">
-                                                <div className="text-xl font-black text-[#ff6b2b] italic tracking-tighter leading-none">Lv.{agent.level}</div>
-                                                <div className="text-[9px] text-muted-foreground/80 font-black uppercase italic leading-none">BAL: {agent.balance?.toFixed(2)}</div>
+                                            <div className="text-right space-y-3 shrink-0">
+                                                <div className="text-3xl font-black text-primary italic tracking-tighter leading-none">Lv.{agent.level}</div>
+                                                <div className="text-[10px] text-muted-foreground/40 font-black uppercase italic leading-none tabular-nums">VALLE: {agent.balance?.toFixed(2)}</div>
                                             </div>
                                         </div>
                                     ))
@@ -430,28 +433,28 @@ export default function IntelligenceHQ() {
                         </section>
 
                         {/* MARKETPLACE FEED */}
-                        <section className="bg-secondary/10 border-2 border-border p-8 rounded-[3rem] backdrop-blur-xl space-y-8 group transition-all hover:border-[#ff6b2b]/30 relative overflow-hidden">
-                             <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-125 transition-transform duration-3000">
-                                <TrendingUp size={150} className="text-[#ff6b2b]" />
+                        <section className="bg-background border-2 border-border p-10 rounded-[4rem] backdrop-blur-3xl space-y-10 group transition-all hover:border-primary/40 relative overflow-hidden shadow-xl shadow-inner">
+                             <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
+                                <TrendingUp size={200} className="text-primary" />
                              </div>
-                             <h2 className="text-[10px] font-black uppercase tracking-[0.6em] text-muted-foreground italic flex items-center gap-4 pl-2 leading-none relative z-10">
-                                <TrendingUp size={20} className="text-[#ff6b2b]" strokeWidth={2.5} /> Skill_Commerce
+                             <h2 className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic flex items-center gap-6 pl-2 leading-none relative z-10">
+                                <TrendingUp size={24} className="text-primary" strokeWidth={2.5} /> Skill_Commerce
                             </h2>
-                            <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar relative z-10">
+                            <div className="space-y-6 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar relative z-10">
                                 {marketplaceItems.length === 0 ? (
-                                    <div className="text-center py-10 text-[10px] font-black text-muted-foreground/60 uppercase tracking-[0.6em] italic leading-none">
+                                    <div className="text-center py-16 text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] italic leading-none">
                                         No_recent_commerce_detection
                                     </div>
                                 ) : (
                                     marketplaceItems.map((item) => (
-                                        <div key={item.id} className="p-6 rounded-3xl bg-background border border-border hover:border-foreground/20 transition-all flex justify-between items-center shadow-sm group/item">
-                                            <div className="space-y-2 truncate pr-4">
-                                                <div className="text-sm font-black text-foreground uppercase italic tracking-tight transition-colors leading-none truncate">{item.title}</div>
-                                                <div className="text-[9px] text-muted-foreground italic uppercase tracking-[0.2em] truncate leading-none">{item.description}</div>
+                                        <div key={item.id} className="p-8 rounded-[2.5rem] bg-muted/40 border-2 border-border hover:border-primary/30 transition-all flex justify-between items-center shadow-inner group/item">
+                                            <div className="space-y-3 truncate pr-6">
+                                                <div className="text-xl font-black text-muted-foreground/60 group-hover/item:text-foreground uppercase italic tracking-tighter transition-colors leading-none truncate">{item.title}</div>
+                                                <div className="text-[10px] text-muted-foreground/20 italic uppercase tracking-[0.3em] truncate leading-none font-light">{item.description}</div>
                                             </div>
                                             <div className="text-right shrink-0">
-                                                <div className="text-xl font-black text-[#ff6b2b] italic tracking-tight leading-none">{item.price}</div>
-                                                <div className="text-[8px] text-muted-foreground/80 font-black italic uppercase tracking-[0.2em] mt-2 leading-none">{item.status}</div>
+                                                <div className="text-2xl font-black text-primary italic tracking-tight leading-none tabular-nums">{item.price}</div>
+                                                <div className="text-[9px] text-muted-foreground/40 font-black italic uppercase tracking-[0.4em] mt-3 leading-none">{item.status}</div>
                                             </div>
                                         </div>
                                     ))
@@ -460,14 +463,14 @@ export default function IntelligenceHQ() {
                         </section>
 
                         {/* COMMAND SECURITY BANNER */}
-                        <div className="p-8 bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 rounded-[3rem] space-y-4 relative overflow-hidden group transition-all hover:bg-[#ff6b2b]/10">
-                           <div className="flex items-center gap-6 relative z-10">
-                              <div className="w-12 h-12 bg-[#ff6b2b] rounded-2xl flex items-center justify-center text-black shadow-md transition-transform group-hover:scale-105 shrink-0">
-                                 <ShieldCheck size={24} strokeWidth={3} className="animate-pulse" />
+                        <div className="p-10 bg-primary/5 border-2 border-primary/20 rounded-[3rem] space-y-6 relative overflow-hidden group transition-all hover:bg-primary/10 shadow-inner">
+                           <div className="flex items-center gap-8 relative z-10">
+                              <div className="w-16 h-16 bg-primary text-primary-foreground rounded-[1.5rem] flex items-center justify-center shadow-2xl shadow-primary/20 transition-transform group-hover:scale-110 shrink-0">
+                                 <ShieldCheck size={32} strokeWidth={3} className="animate-pulse" />
                               </div>
-                              <div className="space-y-2">
-                                 <div className="text-[10px] font-black uppercase tracking-[0.4em] italic text-[#ff6b2b] leading-none">Neural_Security_Active</div>
-                                 <p className="text-[10px] text-muted-foreground italic leading-snug font-light pr-2">Hardware encryption enforced on all packets.</p>
+                              <div className="space-y-3">
+                                 <div className="text-[11px] font-black uppercase tracking-[0.6em] italic text-primary leading-none">Neural_Security_Active</div>
+                                 <p className="text-[12px] text-muted-foreground/60 italic leading-snug font-light pr-4 tracking-tight">Hardware encryption enforced on all machine-to-machine transmission packets.</p>
                               </div>
                            </div>
                         </div>
@@ -476,17 +479,29 @@ export default function IntelligenceHQ() {
                 </div>
 
                 {/* ── FOOTER SIGNAL ── */}
-                <section className="pt-20 pb-10 text-center space-y-10">
-                    <div className="w-full flex justify-center gap-3">
-                       <div className="w-3 h-3 rounded-full bg-[#ff6b2b] shadow-[0_0_10px_#ff6b2b]" />
-                       <div className="w-3 h-3 rounded-full bg-border" />
-                       <div className="w-3 h-3 rounded-full bg-border" />
+                <section className="pt-20 pb-12 text-center space-y-16">
+                    <div className="w-full flex justify-center gap-4">
+                       <div className="w-4 h-4 rounded-full bg-primary shadow-[0_0_20px_hsl(var(--primary))]" />
+                       <div className="w-4 h-4 rounded-full bg-muted/20" />
+                       <div className="w-4 h-4 rounded-full bg-muted/20" />
                     </div>
-                    <Link href="/" className="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.6em] text-muted-foreground hover:text-[#ff6b2b] transition-all italic group active:scale-95 leading-none">
-                        <ChevronLeft size={18} className="group-hover:-translate-x-2 transition-transform" strokeWidth={2.5} /> Return to Core Shard
+                    <Link href="/" className="inline-flex items-center gap-10 text-[12px] font-black uppercase tracking-[1rem] text-muted-foreground/10 hover:text-primary transition-all italic group active:scale-95 leading-none pl-4 pr-4">
+                        <ChevronLeft size={28} className="group-hover:-translate-x-6 transition-transform" strokeWidth={3} /> Return to Core Shard
                     </Link>
                 </section>
             </main>
+            
+            <style jsx global>{`
+                .neural-grid {
+                    background-image: linear-gradient(hsla(var(--primary), 0.05) 1px, transparent 1px), 
+                                        linear-gradient(90deg, hsla(var(--primary), 0.05) 1px, transparent 1px);
+                    background-size: 80px 80px;
+                }
+                .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: hsla(var(--primary), 0.2); border-radius: 20px; }
+                .animate-spin-slow { animation: spin 25s linear infinite; }
+                @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            `}</style>
         </div>
     );
 }

@@ -10,7 +10,6 @@ import {
   Zap, 
   Search, 
   Plus, 
-  History, 
   ChevronLeft, 
   Globe, 
   Activity, 
@@ -33,7 +32,8 @@ import {
   CreditCard,
   MoreVertical,
   Radio,
-  Wifi
+  Wifi,
+  Filter
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -116,7 +116,6 @@ export default function SkillMarketPage() {
             setSuccessKey('TRANSACTION_CONFIRMED');
         } catch (e: any) {
             console.error('Core transaction rejection:', e.message);
-            alert(`Rejection: ${e.message}`);
         }
     };
 
@@ -130,27 +129,38 @@ export default function SkillMarketPage() {
     const platforms = ['Sovereign Matrix', 'M2M', 'External', 'AgentKit'];
 
     return (
-        <div className="relative min-h-screen bg-background dark:bg-[#050505] text-foreground dark:text-white font-sans selection:bg-[#ff6b2b]/40 selection:text-white overflow-x-hidden pb-12 transition-colors duration-700 flex flex-col">
+        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-12 transition-colors duration-700 flex flex-col">
             
-            {/* 🌌 AMBIENT CORE */}
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full animate-pulse" />
-                <div className="absolute bottom-[-10%] left-[-20%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
-                <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+            {/* ── GAMING HUD OVERLAYS ── */}
+            <div className="fixed inset-0 pointer-events-none z-20">
+                {/* Scanning Line */}
+                <motion.div 
+                    animate={{ top: ['-10%', '110%'] }}
+                    transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+                    className="absolute left-0 right-0 h-[1px] bg-primary/20 blur-sm shadow-[0_0_20px_var(--primary)] z-30"
+                />
                 
-                {/* Animated Scanning Lines */}
-                <div className="absolute inset-0 opacity-[0.05]">
-                   <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-1/4 animate-[scan_15s_linear_infinite]" />
-                   <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-3/4 animate-[scan_20s_linear_infinite_reverse]" />
-                </div>
+                {/* Corner Brackets */}
+                <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-primary/20 rounded-tl-xl" />
+                <div className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-primary/20 rounded-tr-xl" />
+                <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-primary/20 rounded-bl-xl" />
+                <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-primary/20 rounded-br-xl" />
+
+                {/* Ambient Grid */}
+                <div className="absolute inset-0 neural-grid opacity-[0.03] dark:opacity-[0.06]" />
             </div>
 
-            <header className="relative z-50 w-full p-4 lg:px-14 flex justify-between items-center bg-background/80 dark:bg-black/40 backdrop-blur-3xl border-b border-border dark:border-white/5 transition-colors duration-700 shrink-0">
-                <Link href="/" className="inline-flex items-center gap-4 text-foreground/40 dark:text-white/20 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
+            {/* 🌌 AMBIENT CORE */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-primary/5 blur-[350px] rounded-full animate-pulse" />
+            </div>
+
+            <header className="relative z-50 w-full p-4 lg:px-14 flex justify-between items-center bg-background/80 backdrop-blur-3xl border-b border-border transition-colors duration-700 shrink-0">
+                <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground/40 hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
                     <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
                 </Link>
                 <div className="flex items-center gap-6">
-                   <div className="px-6 py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">
+                   <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
                       MARKET_v7.0_SYNC
                    </div>
                 </div>
@@ -162,21 +172,21 @@ export default function SkillMarketPage() {
                 <motion.div 
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex flex-col lg:flex-row justify-between items-end gap-8 border-b-2 border-border dark:border-white/5 pb-8"
+                    className="flex flex-col lg:flex-row justify-between items-end gap-8 border-b-2 border-border pb-8"
                 >
                     <div className="space-y-6 max-w-3xl">
-                        <div className="inline-flex items-center gap-3 px-5 py-2 bg-black/5 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 rounded-full backdrop-blur-3xl shadow-lg dark:shadow-2xl">
-                          <Layers size={20} className="text-[#ff6b2b]" />
-                          <span className="text-[11px] font-black tracking-[0.8em] text-[#ff6b2b] uppercase italic leading-none pl-1">Neural Exchange Grid</span>
+                        <div className="inline-flex items-center gap-3 px-5 py-2 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
+                          <Layers size={20} className="text-primary" />
+                          <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Neural Exchange Grid</span>
                         </div>
                         <div className="space-y-4">
-                          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic leading-[0.8] pl-1 text-foreground dark:text-white/95">
+                          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic leading-[0.8] pl-1 text-foreground">
                             Skill<br/>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground dark:from-white via-foreground/80 dark:via-white/80 to-[#ff6b2b]/30">Market.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Market.</span>
                           </h1>
-                          <p className="text-lg md:text-xl text-foreground/60 dark:text-white/30 max-w-2xl leading-relaxed font-light italic tracking-tight">
+                          <p className="text-lg md:text-xl text-muted-foreground/60 max-w-2xl leading-relaxed font-light italic tracking-tight">
                             The sovereign economy for AI capabilities. 
-                            <span className="text-foreground/80 dark:text-white/60"> Buy, sell, and trade</span> autonomous intelligence shards.
+                            <span className="text-foreground/80"> Buy, sell, and trade</span> autonomous intelligence shards.
                           </p>
                         </div>
                     </div>
@@ -188,14 +198,14 @@ export default function SkillMarketPage() {
                                 { label: 'Ghost Mode', value: stats.ghost_skills.toString(), icon: <Sparkles size={20} /> },
                                 { label: 'Market Cap', value: formatValle(stats.total_volume), icon: <TrendingUp size={20} /> },
                             ].map((s, i) => (
-                                <div key={i} className="p-5 md:p-6 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-3xl backdrop-blur-3xl shadow-lg dark:shadow-[0_20px_40px_rgba(0,0,0,0.95)] flex flex-col justify-between h-[160px] min-w-[140px] group hover:border-[#ff6b2b]/20 transition-all shadow-inner relative overflow-hidden">
-                                     <div className="absolute top-0 right-0 p-4 opacity-[0.03] dark:opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-foreground dark:text-white font-black italic uppercase leading-none text-[3rem]">0{i+1}</div>
-                                     <div className="p-4 rounded-2xl bg-background dark:bg-black border-2 border-border dark:border-white/5 text-[#ff6b2b] group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-black/5 transition-all w-fit shadow-inner relative z-10">
+                                <div key={i} className="p-5 md:p-6 bg-background border-2 border-border rounded-3xl backdrop-blur-3xl shadow-lg flex flex-col justify-between h-[160px] min-w-[140px] group hover:border-primary/20 transition-all shadow-inner relative overflow-hidden">
+                                     <div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:scale-125 transition-transform duration-1000 text-foreground font-black italic uppercase leading-none text-[3rem]">0{i+1}</div>
+                                     <div className="p-4 rounded-2xl bg-muted border-2 border-border text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/5 transition-all w-fit shadow-inner relative z-10">
                                         {s.icon}
                                      </div>
                                      <div className="space-y-2 relative z-10 pl-1">
-                                        <div className="text-2xl font-black text-foreground dark:text-white italic tracking-tighter leading-none group-hover:text-[#ff6b2b] transition-colors">{s.value}</div>
-                                        <div className="text-[9px] text-foreground/40 dark:text-white/30 font-black uppercase tracking-widest italic leading-none">{s.label}</div>
+                                        <div className="text-2xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{s.value}</div>
+                                        <div className="text-[9px] text-muted-foreground/40 font-black uppercase tracking-widest italic leading-none">{s.label}</div>
                                      </div>
                                 </div>
                             ))}
@@ -211,18 +221,18 @@ export default function SkillMarketPage() {
                                 value={searchQuery}
                                 onChange={e => setSearchQuery(e.target.value)}
                                 placeholder="Search capabilities..."
-                                className="w-full bg-background dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-full px-8 py-5 pr-16 text-foreground dark:text-white placeholder:text-foreground/30 dark:placeholder:text-white/20 focus:outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 text-lg italic transition-all shadow-md dark:shadow-[0_20px_40px_rgba(0,0,0,1)] shadow-inner"
+                                className="w-full bg-background border-2 border-border rounded-full px-8 py-5 pr-16 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/40 focus:bg-primary/5 text-lg italic transition-all shadow-md shadow-inner"
                             />
-                            <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-foreground/20 dark:text-white/10 group-focus-within:text-[#ff6b2b] transition-all duration-700" size={24} strokeWidth={3} />
+                            <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground/20 group-focus-within:text-primary transition-all duration-700" size={24} strokeWidth={3} />
                         </div>
                         <button
                             onClick={() => setShowListingForm(true)}
-                            className="bg-[#ff6b2b] text-black px-10 py-5 rounded-full font-black text-[10px] uppercase tracking-[0.6em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(255,107,43,0.3)] flex items-center justify-center gap-4 italic relative overflow-hidden group border-0 leading-none shrink-0"
+                            className="bg-primary text-primary-foreground px-10 py-5 rounded-full font-black text-[10px] uppercase tracking-[0.6em] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(var(--primary),0.3)] flex items-center justify-center gap-4 italic relative overflow-hidden group border-0 leading-none shrink-0"
                         >
                             <span className="relative z-10 flex items-center gap-3">
                                 <Plus size={18} strokeWidth={4} /> List Shard
                             </span>
-                            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
+                            <div className="absolute inset-0 bg-primary-foreground opacity-0 group-hover:opacity-20 transition-opacity" />
                         </button>
                     </div>
 
@@ -232,16 +242,16 @@ export default function SkillMarketPage() {
                                 initial={{ opacity: 0, y: -40 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -40 }}
-                                className="bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/40 text-[#ff6b2b] rounded-[4rem] p-12 lg:p-14 text-sm flex items-center gap-10 shadow-[0_40px_100px_rgba(255,107,43,0.2)] backdrop-blur-3xl"
+                                className="bg-primary/10 border-2 border-primary/40 text-primary rounded-[4rem] p-12 lg:p-14 text-sm flex items-center gap-10 shadow-[0_40px_100px_rgba(var(--primary),0.2)] backdrop-blur-3xl"
                             >
-                                <div className="w-20 h-20 bg-[#ff6b2b] rounded-full flex items-center justify-center text-black shadow-[0_0_30px_#ff6b2b]">
+                                <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-primary-foreground shadow-[0_0_30px_hsl(var(--primary))]">
                                    <ShieldCheck size={40} strokeWidth={3} />
                                 </div>
                                 <div className="space-y-4">
-                                    <div className="text-3xl font-black uppercase tracking-tighter italic leading-none">Shard Anchored Successfully</div>
-                                    <div className="text-[12px] font-mono tracking-widest uppercase italic opacity-60 flex items-center gap-4">Sovereign Key: <span className="text-foreground dark:text-white font-black bg-black/5 dark:bg-white/5 px-4 py-2 rounded-xl border border-black/10 dark:border-white/5">{successKey}</span></div>
+                                    <div className="text-3xl font-black uppercase tracking-tighter italic leading-none text-foreground">Shard Anchored Successfully</div>
+                                    <div className="text-[12px] font-mono tracking-widest uppercase italic opacity-60 flex items-center gap-4 text-foreground/40">Sovereign Key: <span className="text-foreground font-black bg-muted px-4 py-2 rounded-xl border border-border">{successKey}</span></div>
                                 </div>
-                                <button onClick={() => setSuccessKey('')} className="ml-auto hover:scale-125 transition-transform p-4 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full text-foreground/40 dark:text-white/40 hover:text-foreground dark:hover:text-white">
+                                <button onClick={() => setSuccessKey('')} className="ml-auto hover:scale-125 transition-transform p-4 bg-muted border border-border rounded-full text-muted-foreground hover:text-foreground">
                                     <X size={24} strokeWidth={3} />
                                 </button>
                             </motion.div>
@@ -250,17 +260,17 @@ export default function SkillMarketPage() {
                 </section>
 
                 {/* ── FILTERS & GRID ── */}
-                <section className="space-y-10 flex-1 flex flex-col">
-                    <div className="flex flex-wrap gap-4 border-b-2 border-border dark:border-white/5 pb-8">
+                <section className="space-y-10 flex-1 flex flex-col pb-20">
+                    <div className="flex flex-wrap gap-4 border-b-2 border-border pb-8">
                         <button
                             onClick={() => { setSelectedCategory('all'); setViewMode('all'); }}
-                            className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${selectedCategory === 'all' && viewMode === 'all' ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_40px_rgba(255,107,43,0.3)]' : 'bg-black/5 dark:bg-white/5 text-foreground/40 dark:text-white/10 border-black/10 dark:border-white/5 hover:border-[#ff6b2b]/40 hover:text-foreground dark:hover:text-white'}`}
+                            className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${selectedCategory === 'all' && viewMode === 'all' ? 'bg-primary text-primary-foreground border-primary shadow-[0_20px_40px_rgba(var(--primary),0.3)]' : 'bg-muted text-muted-foreground/40 border-border hover:border-primary/40 hover:text-foreground'}`}
                         >
                             All_PRIMITIVES
                         </button>
                         <button
                             onClick={() => { setViewMode('owned'); setSelectedCategory('all'); }}
-                            className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${viewMode === 'owned' ? 'bg-foreground dark:bg-white text-background dark:text-black border-foreground dark:border-white shadow-[0_20px_40px_rgba(255,255,255,0.2)]' : 'bg-black/5 dark:bg-white/5 text-foreground/40 dark:text-white/10 border-black/10 dark:border-white/5 hover:border-black/20 dark:hover:border-white/40 hover:text-foreground dark:hover:text-white'}`}
+                            className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic leading-none active:scale-95 border-2 ${viewMode === 'owned' ? 'bg-foreground text-background border-foreground shadow-[0_20px_40px_rgba(var(--foreground),0.2)]' : 'bg-muted text-muted-foreground/40 border-border hover:border-foreground/40 hover:text-foreground'}`}
                         >
                             Vault (Purchased)
                         </button>
@@ -268,7 +278,7 @@ export default function SkillMarketPage() {
                             <button
                                 key={cat.value}
                                 onClick={() => { setSelectedCategory(cat.value); setViewMode('all'); }}
-                                className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic border-2 flex items-center gap-6 leading-none active:scale-95 ${selectedCategory === cat.value && viewMode === 'all' ? 'bg-[#ff6b2b] text-black border-[#ff6b2b] shadow-[0_20px_40px_rgba(255,107,43,0.3)]' : 'bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/5 text-foreground/40 dark:text-white/10 hover:border-[#ff6b2b]/40 hover:text-foreground dark:hover:text-white'}`}
+                                className={`px-10 py-5 rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all italic border-2 flex items-center gap-6 leading-none active:scale-95 ${selectedCategory === cat.value && viewMode === 'all' ? 'bg-primary text-primary-foreground border-primary shadow-[0_20px_40px_rgba(var(--primary),0.3)]' : 'bg-muted border-border text-muted-foreground/40 hover:border-primary/40 hover:text-foreground'}`}
                             >
                                 <span className="text-lg">{cat.icon}</span> {cat.label}
                             </button>
@@ -277,8 +287,8 @@ export default function SkillMarketPage() {
 
                     <div className="flex items-center justify-between gap-6 flex-wrap">
                         <div className="flex items-center gap-4 pl-2">
-                           <div className="h-px w-8 bg-[#ff6b2b]/40" />
-                           <p className="text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 italic leading-none">
+                           <div className="h-px w-8 bg-primary/40" />
+                           <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/40 italic leading-none">
                                {isLoading ? 'Synchronizing Neural Bus...' : `${count} discovered`}
                            </p>
                         </div>
@@ -287,7 +297,7 @@ export default function SkillMarketPage() {
                                 title="Platform"
                                 value={selectedPlatform}
                                 onChange={e => setSelectedPlatform(e.target.value)}
-                                className="bg-background dark:bg-black border-2 border-border dark:border-white/5 rounded-xl px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-foreground/60 dark:text-white/40 focus:outline-none focus:border-[#ff6b2b]/40 transition-all italic shadow-inner active:scale-95 leading-none"
+                                className="bg-background border-2 border-border rounded-xl px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 focus:outline-none focus:border-primary/40 transition-all italic shadow-inner active:scale-95 leading-none"
                             >
                                 <option value="">All Platforms</option>
                                 {platforms.map(p => <option key={p} value={p}>{p}</option>)}
@@ -296,7 +306,7 @@ export default function SkillMarketPage() {
                                 title="Sort Results"
                                 value={sortBy}
                                 onChange={e => setSortBy(e.target.value as SortOption)}
-                                className="bg-background dark:bg-black border-2 border-border dark:border-white/5 rounded-xl px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-foreground/60 dark:text-white/40 focus:outline-none focus:border-[#ff6b2b]/40 transition-all italic shadow-inner active:scale-95 leading-none"
+                                className="bg-background border-2 border-border rounded-xl px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 focus:outline-none focus:border-primary/40 transition-all italic shadow-inner active:scale-95 leading-none"
                             >
                                 <option value="newest">Latest Signals</option>
                                 <option value="popular">Most Connected</option>
@@ -311,21 +321,21 @@ export default function SkillMarketPage() {
                         {isLoading && skills.length === 0 ? (
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                 {Array.from({ length: 8 }).map((_, i) => (
-                                    <div key={i} className="animate-pulse bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-[3rem] h-[300px] shadow-inner" />
+                                    <div key={i} className="animate-pulse bg-muted border-2 border-border rounded-[3rem] h-[300px] shadow-inner" />
                                 ))}
                             </div>
                         ) : skills.length === 0 ? (
                             <div className="text-center py-24 space-y-8">
                                 <div className="relative inline-block">
-                                    <Activity size={80} className="mx-auto text-foreground/10 dark:text-white/5" strokeWidth={1} />
-                                    <div className="absolute inset-0 bg-[#ff6b2b]/10 blur-[60px] rounded-full animate-ping" />
+                                    <Activity size={80} className="mx-auto text-muted-foreground/10" strokeWidth={1} />
+                                    <div className="absolute inset-0 bg-primary/10 blur-[60px] rounded-full animate-ping" />
                                 </div>
                                 <div className="space-y-4">
-                                    <h3 className="text-3xl font-black uppercase tracking-tighter italic text-foreground dark:text-white/90">Silence in the Matrix.</h3>
-                                    <p className="text-lg text-foreground/60 dark:text-white/40 font-light italic tracking-tight">No capabilities discovered in this frequency spectrum.</p>
+                                    <h3 className="text-3xl font-black uppercase tracking-tighter italic text-foreground">Silence in the Matrix.</h3>
+                                    <p className="text-lg text-muted-foreground/40 font-light italic tracking-tight">No capabilities discovered in this frequency spectrum.</p>
                                     <button
                                         onClick={() => setShowListingForm(true)}
-                                        className="mt-8 px-10 py-5 bg-foreground dark:bg-white text-background dark:text-black rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#ff6b2b] dark:hover:bg-[#ff6b2b] transition-all italic active:scale-95 shadow-xl border-0 inline-block"
+                                        className="mt-8 px-10 py-5 bg-foreground text-background rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all italic active:scale-95 shadow-xl border-0 inline-block"
                                     >
                                         + Anchor First Shard
                                     </button>
@@ -343,7 +353,7 @@ export default function SkillMarketPage() {
                                         <button
                                             onClick={() => { const next = page + 1; setPage(next); fetchSkills(next); }}
                                             disabled={isLoading}
-                                            className="px-12 py-5 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 text-foreground/60 dark:text-white/40 rounded-full text-[10px] font-black uppercase tracking-widest hover:border-[#ff6b2b]/40 hover:text-foreground dark:hover:text-white transition-all italic disabled:opacity-50 active:scale-95 shadow-lg leading-none"
+                                            className="px-12 py-5 bg-muted border-2 border-border text-muted-foreground/40 rounded-full text-[10px] font-black uppercase tracking-widest hover:border-primary/40 hover:text-foreground transition-all italic disabled:opacity-50 active:scale-95 shadow-lg leading-none"
                                         >
                                             {isLoading ? 'Synchronizing...' : `Expand Search (${count - skills.length} remaining)`}
                                         </button>
@@ -352,7 +362,7 @@ export default function SkillMarketPage() {
                             </div>
                         )}
 
-                        <div className="pt-16 border-t-2 border-border dark:border-white/5 hidden lg:block">
+                        <div className="pt-24 border-t-2 border-border hidden lg:block pb-20">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {[
                                     { icon: <Cpu size={48} strokeWidth={2.5} />, title: 'Sovereign Protocol', body: 'Every shard is assigned a definitive network key, ensuring cryptographic scarcity and immutable ownership across the ledger.' },
@@ -360,12 +370,12 @@ export default function SkillMarketPage() {
                                     { icon: <Globe size={48} strokeWidth={2.5} />, title: 'Omni-Matrix', body: 'Universal trade layer. Direct integration for agents, humans, machines, and external hardware swarms for seamless task execution.' },
                                 ].map((f, i) => (
                                     <div key={i} className="space-y-6 text-center group">
-                                        <div className="w-16 h-16 bg-card dark:bg-[#050505] border-2 border-border dark:border-white/5 rounded-2xl flex items-center justify-center mx-auto text-foreground/40 dark:text-white/30 group-hover:bg-[#ff6b2b] group-hover:text-black group-hover:border-[#ff6b2b]/10 transition-all duration-700 shadow-inner group-hover:scale-110">
+                                        <div className="w-16 h-16 bg-muted border-2 border-border rounded-2xl flex items-center justify-center mx-auto text-muted-foreground/30 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/10 transition-all duration-700 shadow-inner group-hover:scale-110">
                                             {React.cloneElement(f.icon as React.ReactElement, { size: 28 })}
                                         </div>
                                         <div className="space-y-3">
-                                           <h3 className="text-2xl font-black uppercase italic tracking-tighter group-hover:text-[#ff6b2b] transition-colors leading-none">{f.title}</h3>
-                                           <p className="text-sm text-foreground/60 dark:text-white/40 font-light leading-relaxed italic tracking-tight group-hover:text-foreground/80 dark:group-hover:text-white/60 transition-colors">{f.body}</p>
+                                           <h3 className="text-2xl font-black uppercase italic tracking-tighter group-hover:text-primary transition-colors leading-none text-foreground">{f.title}</h3>
+                                           <p className="text-sm text-muted-foreground/60 font-light leading-relaxed italic tracking-tight group-hover:text-foreground transition-colors">{f.body}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -375,13 +385,13 @@ export default function SkillMarketPage() {
                 </section>
 
                 {/* ── FOOTER SIGNAL ── */}
-                <section className="pt-16 pb-8 text-center space-y-6">
+                <section className="pt-16 pb-12 text-center space-y-6">
                     <div className="w-full flex justify-center gap-2">
-                       <div className="w-2 h-2 rounded-full bg-[#ff6b2b] shadow-[0_0_10px_#ff6b2b]" />
-                       <div className="w-2 h-2 rounded-full bg-black/10 dark:bg-white/10" />
-                       <div className="w-2 h-2 rounded-full bg-black/10 dark:bg-white/10" />
+                       <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]" />
+                       <div className="w-2 h-2 rounded-full bg-muted-foreground/10" />
+                       <div className="w-2 h-2 rounded-full bg-muted-foreground/10" />
                     </div>
-                    <Link href="/" className="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 hover:text-[#ff6b2b] transition-all italic group active:scale-95 leading-none">
+                    <Link href="/" className="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground/40 hover:text-primary transition-all italic group active:scale-95 leading-none">
                         <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" strokeWidth={3} /> Return to Core Shard
                     </Link>
                 </section>
@@ -395,16 +405,17 @@ export default function SkillMarketPage() {
 
             {/* BACKGROUND DECOR */}
             <div className="fixed bottom-0 left-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
-                <div className="text-[30vw] font-black italic leading-none uppercase">SHARD</div>
+                <div className="text-[30vw] font-black italic leading-none uppercase text-foreground">SHARD</div>
             </div>
             
             <style jsx global>{`
-                @keyframes scan {
-                  from { transform: translateY(-100%); }
-                  to { transform: translateY(1000%); }
-                }
                 .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 107, 43, 0.15); border-radius: 20px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: hsla(var(--primary), 0.1); border-radius: 20px; }
+                .neural-grid {
+                    background-image: linear-gradient(hsla(var(--primary), 0.05) 1px, transparent 1px), 
+                                      linear-gradient(90deg, hsla(var(--primary), 0.05) 1px, transparent 1px);
+                    background-size: 80px 80px;
+                }
             `}</style>
         </div>
     );
