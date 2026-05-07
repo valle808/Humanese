@@ -73,6 +73,7 @@
         "stripe": "^22.0.0",
         "tailwind-merge": "^3.5.0",
         "tailwindcss": "^3.4.1",
+        "three": "^0.183.2",
         "twitter-api-v2": "^1.29.0",
         "vm2": "^3.10.5"
     },
@@ -87,8 +88,7 @@
         "concurrently": "^9.2.1",
         "firebase-tools": "^15.10.0",
         "nodemon": "^3.0.3",
-        "puppeteer": "^24.37.5",
-        "three": "^0.183.2"
+        "puppeteer": "^24.37.5"
     },
     "postcss": {
         "plugins": {
