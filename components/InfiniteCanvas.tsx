@@ -43,7 +43,7 @@ function PointCloud({ volatility }: PointCloudProps) {
       <PointMaterial
         transparent
         // FLAGSHIP INTENSE ORANGE
-        color="#ff6b2b"
+        color="hsl(var(--primary))"
         size={0.02}
         sizeAttenuation={true}
         depthWrite={false}
@@ -86,9 +86,9 @@ export function InfiniteCanvas({ refreshKey = 0, volatility = 1.0 }: InfiniteCan
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="w-full h-full bg-[#050505] relative overflow-hidden">
+    <div className="w-full h-full bg-background relative overflow-hidden">
       {/* Visual Fallback: Constant Radial Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,107,43,0.05)_0%,_transparent_75%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_hsl(var(--primary) / 0.05)_0%,_transparent_75%)]" />
       <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
       
       {!hasError ? (
@@ -102,7 +102,7 @@ export function InfiniteCanvas({ refreshKey = 0, volatility = 1.0 }: InfiniteCan
           }}
           onError={() => setHasError(true)}
           onCreated={({ gl }) => {
-            gl.setClearColor('#050505', 0);
+            gl.setClearColor('hsl(var(--background))', 0);
             
             const handleContextLost = (event: Event) => {
               event.preventDefault();
@@ -121,22 +121,22 @@ export function InfiniteCanvas({ refreshKey = 0, volatility = 1.0 }: InfiniteCan
           <Stars radius={120} depth={60} count={3000} factor={6} saturation={0} fade speed={0.6} />
           
           <ambientLight intensity={0.4} />
-          <pointLight position={[10, 10, 10]} intensity={1} color="#ff6b2b" />
+          <pointLight position={[10, 10, 10]} intensity={1} color="hsl(var(--primary))" />
           <PointCloud volatility={volatility} />
           
-          <fog attach="fog" args={['#050505', 10, 20]} />
+          <fog attach="fog" args={['hsl(var(--background))', 10, 20]} />
         </Canvas>
       ) : (
-        <div className="w-full h-full flex flex-col items-center justify-center relative bg-[#050505]">
+        <div className="w-full h-full flex flex-col items-center justify-center relative bg-background">
             <div className="relative z-10 space-y-4 text-center">
-                <div className="text-[#ff6b2b]/20 font-black text-xs uppercase tracking-[0.8em] animate-pulse italic">
+                <div className="text-primary/20 font-black text-xs uppercase tracking-[0.8em] animate-pulse italic">
                     Matrix_Engine_Standby_
                 </div>
-                <div className="text-white/5 font-black text-[10px] uppercase tracking-[0.4em] italic">
+                <div className="text-muted-foreground/5 font-black text-[10px] uppercase tracking-[0.4em] italic">
                     RESONANCE_FIELD_STABILIZED
                 </div>
             </div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,107,43,0.08)_0%,_transparent_60%)] animate-pulse" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_hsl(var(--primary) / 0.08)_0%,_transparent_60%)] animate-pulse" />
         </div>
       )}
     </div>

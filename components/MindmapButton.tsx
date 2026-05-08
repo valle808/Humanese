@@ -54,7 +54,7 @@ export function MindmapButton({ pageUrl, pageMarkdown, pageTitle }: MindmapButto
       <div className="fixed bottom-28 right-8 z-50">
         <Button
           onClick={handleGenerate}
-          className="rounded-full h-14 w-14 shadow-2xl bg-white/20 backdrop-blur-xl border border-white/30 hover:bg-white/30 text-white"
+          className="rounded-full h-14 w-14 shadow-2xl bg-muted/10 backdrop-blur-xl border border-border hover:bg-muted/10 text-foreground"
           size="icon"
           aria-label="Generate Mindmap"
         >

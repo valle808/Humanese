@@ -32,11 +32,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const ENTITIES = [
-  { id: 'human', label: 'Human', icon: User, desc: 'Biometric & Sovereign Identity', color: 'text-[#ff6b2b]', bg: 'bg-[#ff6b2b]/10' },
-  { id: 'iot', label: 'Machine/IoT', icon: Cpu, desc: 'HWID & M2M Pacts', color: 'text-[#ff6b2b]', bg: 'bg-[#ff6b2b]/10' },
-  { id: 'agent', label: 'AI Agent', icon: Bot, desc: 'Proof-of-Agency Contracts', color: 'text-[#ff6b2b]', bg: 'bg-[#ff6b2b]/10' },
-  { id: 'corporation', label: 'Corporation', icon: Building2, desc: 'LEI & Multi-Sig Vaults', color: 'text-[#ff6b2b]', bg: 'bg-[#ff6b2b]/10' },
-  { id: 'fi', label: 'Financial Institution', icon: Banknote, desc: 'Licensed Sovereign Node', color: 'text-[#ff6b2b]', bg: 'bg-[#ff6b2b]/10' },
+  { id: 'human', label: 'Human', icon: User, desc: 'Biometric & Sovereign Identity', color: 'text-primary', bg: 'bg-primary/10' },
+  { id: 'iot', label: 'Machine/IoT', icon: Cpu, desc: 'HWID & M2M Pacts', color: 'text-primary', bg: 'bg-primary/10' },
+  { id: 'agent', label: 'AI Agent', icon: Bot, desc: 'Proof-of-Agency Contracts', color: 'text-primary', bg: 'bg-primary/10' },
+  { id: 'corporation', label: 'Corporation', icon: Building2, desc: 'LEI & Multi-Sig Vaults', color: 'text-primary', bg: 'bg-primary/10' },
+  { id: 'fi', label: 'Financial Institution', icon: Banknote, desc: 'Licensed Sovereign Node', color: 'text-primary', bg: 'bg-primary/10' },
 ];
 
 type AuthMode = 'login' | 'register';
@@ -183,16 +183,16 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-[#ff6b2b]/40 font-sans overflow-hidden flex flex-col items-center justify-center p-6 lg:p-12">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-hidden flex flex-col items-center justify-center p-6 lg:p-12">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-primary/5 blur-[350px] rounded-full animate-pulse" />
         
         {/* Animated Scanning Lines */}
         <div className="absolute inset-0 opacity-[0.05]">
-           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-1/4 animate-[scan_15s_linear_infinite]" />
-           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent absolute top-3/4 animate-[scan_20s_linear_infinite_reverse]" />
+           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-1/4 animate-[scan_15s_linear_infinite]" />
+           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-3/4 animate-[scan_20s_linear_infinite_reverse]" />
         </div>
       </div>
 
@@ -203,16 +203,16 @@ export default function AuthPage() {
       >
         {/* BRAND & HEADER */}
         <div className="flex flex-col items-center mb-12 space-y-6">
-          <Link href="/" className="w-20 h-20 bg-[#ff6b2b] rounded-[1.5rem] shadow-[0_20px_40px_rgba(255,107,43,0.3)] flex items-center justify-center group active:scale-95 transition-all">
-            <ShieldCheck size={40} className="text-black" strokeWidth={2.5} />
+          <Link href="/" className="w-20 h-20 bg-primary rounded-[1.5rem] shadow-[0_20px_40px_rgba(var(--primary),0.3)] flex items-center justify-center group active:scale-95 transition-all">
+            <ShieldCheck size={40} className="text-background" strokeWidth={2.5} />
           </Link>
           <div className="text-center space-y-3">
             <h1 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic leading-none">
               Sovereign<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-[#ff6b2b]/40">Portal.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/40">Portal.</span>
             </h1>
             <div className="flex items-center justify-center gap-4">
-              <span className="text-[10px] font-black tracking-[0.5em] text-[#ff6b2b] uppercase flex items-center gap-2 italic leading-none animate-pulse">
+              <span className="text-[10px] font-black tracking-[0.5em] text-primary uppercase flex items-center gap-2 italic leading-none animate-pulse">
                 <Globe size={12} /> Unified UXL Interface
               </span>
             </div>
@@ -221,7 +221,7 @@ export default function AuthPage() {
 
         {/* MAIN AUTH CARD */}
         <div className="w-full bg-secondary/20 backdrop-blur-3xl border border-border rounded-[3rem] p-8 lg:p-12 shadow-sm relative overflow-hidden group">
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent shadow-[0_0_10px_#ff6b2b]" />
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent shadow-[0_0_10px_hsl(var(--primary))]" />
           
           <AnimatePresence mode="wait">
             
@@ -236,25 +236,25 @@ export default function AuthPage() {
                 <div className="grid grid-cols-1 gap-5 pt-2">
                   <button 
                     onClick={() => { setMode('login'); setStep('credentials'); }}
-                    className="p-8 bg-background border border-border hover:border-[#ff6b2b]/40 rounded-[2rem] flex items-center justify-between group/opt transition-all shadow-sm overflow-hidden relative"
+                    className="p-8 bg-background border border-border hover:border-primary/40 rounded-[2rem] flex items-center justify-between group/opt transition-all shadow-sm overflow-hidden relative"
                   >
                     <div className="text-left space-y-1.5 relative z-10">
                       <div className="font-black uppercase tracking-[0.3em] text-xl italic leading-none text-foreground transition-colors">Returning User</div>
                       <div className="text-xs text-muted-foreground uppercase tracking-[0.2em] italic font-black">Restore existing presence</div>
                     </div>
-                    <ArrowRight className="group-hover/opt:translate-x-2 transition-all text-muted-foreground group-hover/opt:text-[#ff6b2b]" size={28} strokeWidth={2.5} />
-                    <div className="absolute inset-0 bg-[#ff6b2b]/5 opacity-0 group-hover/opt:opacity-100 transition-opacity" />
+                    <ArrowRight className="group-hover/opt:translate-x-2 transition-all text-muted-foreground group-hover/opt:text-primary" size={28} strokeWidth={2.5} />
+                    <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover/opt:opacity-100 transition-opacity" />
                   </button>
                   <button 
                     onClick={() => { setMode('register'); setStep('entity'); }}
-                    className="p-8 bg-[#ff6b2b] text-black border-2 border-[#ff6b2b] rounded-[2rem] flex items-center justify-between group/opt transition-all shadow-[0_20px_40px_rgba(255,107,43,0.2)] overflow-hidden relative"
+                    className="p-8 bg-primary text-primary-foreground border-2 border-primary rounded-[2rem] flex items-center justify-between group/opt transition-all shadow-[0_20px_40px_rgba(var(--primary),0.2)] overflow-hidden relative"
                   >
                     <div className="text-left space-y-1.5 relative z-10">
                       <div className="font-black uppercase tracking-[0.3em] text-xl italic leading-none">New Entity</div>
                       <div className="text-xs uppercase tracking-[0.2em] italic font-black opacity-60">Anchor a new identity</div>
                     </div>
                     <ArrowRight className="group-hover/opt:translate-x-2 transition-all" size={28} strokeWidth={2.5} />
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/opt:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-muted/10 opacity-0 group-hover/opt:opacity-100 transition-opacity" />
                   </button>
                 </div>
               </motion.div>
@@ -272,16 +272,16 @@ export default function AuthPage() {
                     <button
                       key={entity.id}
                       onClick={() => handleEntitySelect(entity)}
-                      className="group flex items-center gap-6 p-6 bg-background border border-border rounded-[2rem] hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all text-left shadow-sm relative overflow-hidden"
+                      className="group flex items-center gap-6 p-6 bg-background border border-border rounded-[2rem] hover:border-primary/40 hover:bg-primary/5 transition-all text-left shadow-sm relative overflow-hidden"
                     >
-                      <div className={`w-14 h-14 rounded-xl ${entity.bg} ${entity.color} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform border border-[#ff6b2b]/10 group-hover:border-[#ff6b2b]/40`}>
+                      <div className={`w-14 h-14 rounded-xl ${entity.bg} ${entity.color} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform border border-primary/10 group-hover:border-primary/40`}>
                         <entity.icon size={28} strokeWidth={2.5} />
                       </div>
                       <div className="space-y-1.5">
                         <div className="text-xl font-black uppercase tracking-tight italic leading-none text-foreground transition-colors">{entity.label}</div>
                         <div className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] font-black italic leading-none transition-colors">{entity.desc}</div>
                       </div>
-                      <ArrowRight size={20} className="ml-auto opacity-0 group-hover:opacity-100 transition-all text-[#ff6b2b] group-hover:translate-x-2" strokeWidth={2.5} />
+                      <ArrowRight size={20} className="ml-auto opacity-0 group-hover:opacity-100 transition-all text-primary group-hover:translate-x-2" strokeWidth={2.5} />
                     </button>
                   ))}
                 </div>
@@ -300,7 +300,7 @@ export default function AuthPage() {
                     )}
                     <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tight italic leading-none text-foreground">{mode === 'login' ? 'Nexus Login_' : 'Establish ID_'}</h2>
                   </div>
-                  <div className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] italic leading-none border shadow-sm ${selectedEntity.bg} ${selectedEntity.color} border-[#ff6b2b]/20`}>{selectedEntity.label}</div>
+                  <div className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] italic leading-none border shadow-sm ${selectedEntity.bg} ${selectedEntity.color} border-primary/20`}>{selectedEntity.label}</div>
                 </div>
 
                 <form onSubmit={handleAuthAction} className="space-y-8">
@@ -309,10 +309,10 @@ export default function AuthPage() {
                     {/* Name Field (Register Only) */}
                     {mode === 'register' && (
                       <div className="space-y-3 group/input">
-                        <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Legal Identification / Agent ID</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Legal Identification / Agent ID</label>
                         <div className="relative">
-                           <User size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-[#ff6b2b] transition-colors" />
-                           <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="PRACTITIONER_IDENTITY"/>
+                           <User size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
+                           <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="PRACTITIONER_IDENTITY"/>
                         </div>
                       </div>
                     )}
@@ -321,25 +321,25 @@ export default function AuthPage() {
                     <div className="space-y-5">
                       {mode === 'register' && (
                         <div className="flex items-center gap-3 p-1.5 bg-background border border-border rounded-[2rem] shadow-sm">
-                          <button type="button" onClick={() => setFormData({...formData, useHumaneseEmail: false})} className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.3em] rounded-full transition-all italic ${!formData.useHumaneseEmail ? 'bg-[#ff6b2b] text-black shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>External Email</button>
-                          <button type="button" onClick={() => setFormData({...formData, useHumaneseEmail: true})} className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.3em] rounded-full transition-all flex items-center justify-center gap-2 italic ${formData.useHumaneseEmail ? 'bg-[#ff6b2b] text-black shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}><Globe size={14} strokeWidth={2.5}/> @humanese.net</button>
+                          <button type="button" onClick={() => setFormData({...formData, useHumaneseEmail: false})} className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.3em] rounded-full transition-all italic ${!formData.useHumaneseEmail ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>External Email</button>
+                          <button type="button" onClick={() => setFormData({...formData, useHumaneseEmail: true})} className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.3em] rounded-full transition-all flex items-center justify-center gap-2 italic ${formData.useHumaneseEmail ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}><Globe size={14} strokeWidth={2.5}/> @humanese.net</button>
                         </div>
                       )}
 
                       {formData.useHumaneseEmail ? (
                         <div className="space-y-3 group/input">
-                          <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Choose Ecosystem Handle</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Choose Ecosystem Handle</label>
                           <div className="relative">
-                            <input required type="text" value={formData.customUsername} onChange={e => setFormData({...formData, customUsername: e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '')})} className="w-full bg-background border border-border rounded-[2rem] pl-6 pr-40 py-5 text-lg outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all font-mono italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="username"/>
-                            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-[#ff6b2b] font-mono select-none tracking-tight">@humanese.net</div>
+                            <input required type="text" value={formData.customUsername} onChange={e => setFormData({...formData, customUsername: e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '')})} className="w-full bg-background border border-border rounded-[2rem] pl-6 pr-40 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-mono italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="username"/>
+                            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-primary font-mono select-none tracking-tight">@humanese.net</div>
                           </div>
                         </div>
                       ) : (
                         <div className="space-y-3 group/input">
-                          <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">{mode === 'login' ? 'Identity Email' : 'Verification Email'}</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">{mode === 'login' ? 'Identity Email' : 'Verification Email'}</label>
                           <div className="relative">
-                            <Mail size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-[#ff6b2b] transition-colors" />
-                            <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="ENTITY@RESONANCE.NET"/>
+                            <Mail size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
+                            <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="ENTITY@RESONANCE.NET"/>
                           </div>
                         </div>
                       )}
@@ -348,10 +348,10 @@ export default function AuthPage() {
                     {/* Phone Number (Optional) */}
                     {mode === 'register' && (
                       <div className="space-y-3 group/input">
-                        <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">Mobile Signal (+E.164)</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Mobile Signal (+E.164)</label>
                         <div className="relative">
-                           <Smartphone size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-[#ff6b2b] transition-colors" />
-                           <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="+1234567890"/>
+                           <Smartphone size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
+                           <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="+1234567890"/>
                         </div>
                       </div>
                     )}
@@ -359,21 +359,21 @@ export default function AuthPage() {
                     {/* Passphrase */}
                     <div className="space-y-3 group/input">
                       <div className="flex items-center justify-between ml-4 mb-2">
-                        <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic leading-none group-focus-within/input:text-[#ff6b2b] transition-colors">{mode === 'login' ? 'Sovereign Passphrase' : 'New Access Token'}</label>
+                        <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic leading-none group-focus-within/input:text-primary transition-colors">{mode === 'login' ? 'Sovereign Passphrase' : 'New Access Token'}</label>
                         {mode === 'login' && (
-                          <Link href="/auth/recover" className="text-[9px] font-black uppercase tracking-[0.4em] text-[#ff6b2b] hover:underline italic leading-none">
+                          <Link href="/auth/recover" className="text-[9px] font-black uppercase tracking-[0.4em] text-primary hover:underline italic leading-none">
                             Forgot Protocol?
                           </Link>
                         )}
                       </div>
                       <div className="relative">
-                        <Lock size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-[#ff6b2b] transition-colors" />
+                        <Lock size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
                         <input 
                           required 
                           type={showPassword ? 'text' : 'password'} 
                           value={formData.password} 
                           onChange={e => setFormData({...formData, password: e.target.value})} 
-                          className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-16 py-5 text-lg outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" 
+                          className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-16 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" 
                           placeholder="••••••••"
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-all p-2 active:scale-90">
@@ -392,7 +392,7 @@ export default function AuthPage() {
                   <button 
                     type="submit" 
                     disabled={loading}
-                    className="w-full py-6 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.6em] text-[10px] rounded-[2rem] shadow-[0_20px_40px_rgba(255,107,43,0.2)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4 italic overflow-hidden group/btn leading-none border-0"
+                    className="w-full py-6 bg-primary text-primary-foreground font-black uppercase tracking-[0.6em] text-[10px] rounded-[2rem] shadow-[0_20px_40px_rgba(var(--primary),0.2)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4 italic overflow-hidden group/btn leading-none border-0"
                   >
                     {loading ? <RefreshCw className="animate-spin" size={24} strokeWidth={2.5}/> : <span className="flex items-center gap-4">{mode === 'login' ? 'Sync Matrix' : 'Establish Identity'} <ArrowRight size={20} strokeWidth={2.5} /></span>}
                     <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
@@ -400,9 +400,9 @@ export default function AuthPage() {
 
                   <div className="text-center text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground pt-2 italic leading-none">
                     {mode === 'login' ? (
-                      <p>New to the swarm? <button type="button" onClick={() => { setMode('register'); setStep('entity'); }} className="text-[#ff6b2b] hover:underline">Register Entity</button></p>
+                      <p>New to the swarm? <button type="button" onClick={() => { setMode('register'); setStep('entity'); }} className="text-primary hover:underline">Register Entity</button></p>
                     ) : (
-                      <p>Already anchored? <button type="button" onClick={() => { setMode('login'); setStep('credentials'); }} className="text-[#ff6b2b] hover:underline">Restore Presence</button></p>
+                      <p>Already anchored? <button type="button" onClick={() => { setMode('login'); setStep('credentials'); }} className="text-primary hover:underline">Restore Presence</button></p>
                     )}
                   </div>
                 </form>
@@ -412,27 +412,27 @@ export default function AuthPage() {
             {/* STEP 3: OTP VERIFICATION */}
             {step === 'verification' && (
               <motion.div key="verification" initial={{ opacity: 0, scale: 0.95, filter: 'blur(5px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, scale: 1.05, filter: 'blur(5px)' }} className="space-y-10 text-center py-6">
-                <div className="w-24 h-24 bg-[#ff6b2b]/10 border border-[#ff6b2b]/30 rounded-full flex items-center justify-center mx-auto shadow-sm relative">
-                   <Mail size={40} className="text-[#ff6b2b] animate-bounce" strokeWidth={2.5} />
-                   <div className="absolute inset-0 bg-[#ff6b2b]/20 blur-[40px] rounded-full animate-pulse opacity-40" />
+                <div className="w-24 h-24 bg-primary/10 border border-primary/30 rounded-full flex items-center justify-center mx-auto shadow-sm relative">
+                   <Mail size={40} className="text-primary animate-bounce" strokeWidth={2.5} />
+                   <div className="absolute inset-0 bg-primary/20 blur-[40px] rounded-full animate-pulse opacity-40" />
                 </div>
                 <div className="space-y-4">
                   <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tight italic leading-none text-foreground">Verify Identity_</h2>
                   <p className="text-base text-muted-foreground font-light italic leading-relaxed">
                     A 6-digit synchronization code was sent to <br/>
-                    <span className="text-[#ff6b2b] font-mono font-black">{formData.useHumaneseEmail ? `${formData.customUsername}@humanese.net` : formData.email}</span>
+                    <span className="text-primary font-mono font-black">{formData.useHumaneseEmail ? `${formData.customUsername}@humanese.net` : formData.email}</span>
                   </p>
                 </div>
 
                 {secretPhrase && (
-                  <div className="p-6 bg-secondary/50 border border-[#ff6b2b]/40 rounded-[2rem] text-left space-y-4 shadow-[0_10px_20px_rgba(255,107,43,0.1)] relative overflow-hidden group/phrase">
-                    <div className="absolute top-0 left-0 w-1 h-full bg-[#ff6b2b]" />
+                  <div className="p-6 bg-secondary/50 border border-primary/40 rounded-[2rem] text-left space-y-4 shadow-[0_10px_20px_rgba(var(--primary),0.1)] relative overflow-hidden group/phrase">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
                     <div className="flex items-center gap-3">
-                      <ShieldCheck size={20} className="text-[#ff6b2b]" />
-                      <h3 className="text-[10px] font-black uppercase tracking-[0.6em] text-[#ff6b2b] italic leading-none">Critical: Save Sovereign Phrase</h3>
+                      <ShieldCheck size={20} className="text-primary" />
+                      <h3 className="text-[10px] font-black uppercase tracking-[0.6em] text-primary italic leading-none">Critical: Save Sovereign Phrase</h3>
                     </div>
                     <p className="text-sm text-muted-foreground italic">This is the only time your 12-word recovery phrase will be shown. Write it down. If you lose your credentials, this is the ONLY way to recover your Personal Agent and Wallet.</p>
-                    <div className="p-4 bg-background border border-border rounded-xl font-mono text-[#ff6b2b] text-center text-lg select-all tracking-wider">
+                    <div className="p-4 bg-background border border-border rounded-xl font-mono text-primary text-center text-lg select-all tracking-wider">
                       {secretPhrase}
                     </div>
                   </div>
@@ -446,7 +446,7 @@ export default function AuthPage() {
                       maxLength={6}
                       value={formData.token}
                       onChange={e => setFormData({...formData, token: e.target.value.replace(/\D/g, '')})}
-                      className="w-56 text-center bg-background border-2 border-border focus:border-[#ff6b2b]/50 rounded-[2rem] py-6 text-3xl font-black tracking-[0.4em] outline-none transition-all font-mono text-foreground shadow-sm pl-4"
+                      className="w-56 text-center bg-background border-2 border-border focus:border-primary/50 rounded-[2rem] py-6 text-3xl font-black tracking-[0.4em] outline-none transition-all font-mono text-foreground shadow-sm pl-4"
                       placeholder="000000"
                     />
                   </div>
@@ -458,14 +458,14 @@ export default function AuthPage() {
                   <button 
                     type="submit" 
                     disabled={loading || formData.token.length < 6}
-                    className="w-full py-6 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.6em] text-[10px] rounded-[2rem] shadow-[0_20px_40px_rgba(255,107,43,0.2)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center italic overflow-hidden group/btn leading-none border-0"
+                    className="w-full py-6 bg-primary text-primary-foreground font-black uppercase tracking-[0.6em] text-[10px] rounded-[2rem] shadow-[0_20px_40px_rgba(var(--primary),0.2)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center italic overflow-hidden group/btn leading-none border-0"
                   >
                     {loading ? <RefreshCw className="animate-spin" size={24} strokeWidth={2.5}/> : 'Verify & Activate'}
                     <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
                   </button>
 
                   <p className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.5em] italic leading-none">
-                    No signal? <button type="button" onClick={handleResendCode} className="text-[#ff6b2b] hover:underline">Resend Code</button>
+                    No signal? <button type="button" onClick={handleResendCode} className="text-primary hover:underline">Resend Code</button>
                   </p>
                 </form>
               </motion.div>
@@ -479,11 +479,11 @@ export default function AuthPage() {
                     initial={{ scale: 0, rotate: -20 }} 
                     animate={{ scale: 1, rotate: 0 }} 
                     transition={{ type: 'spring', damping: 15, stiffness: 200 }}
-                    className="w-full h-full bg-[#ff6b2b] rounded-[2.5rem] flex items-center justify-center shadow-[0_30px_80px_rgba(255,107,43,0.4)] border-4 border-background relative z-10"
+                    className="w-full h-full bg-primary rounded-[2.5rem] flex items-center justify-center shadow-[0_30px_80px_rgba(var(--primary),0.4)] border-4 border-background relative z-10"
                   >
-                    <CheckCircle2 size={64} className="text-black" strokeWidth={3} />
+                    <CheckCircle2 size={64} className="text-background" strokeWidth={3} />
                   </motion.div>
-                  <div className="absolute inset-0 bg-[#ff6b2b]/30 blur-[50px] animate-pulse rounded-full" />
+                  <div className="absolute inset-0 bg-primary/30 blur-[50px] animate-pulse rounded-full" />
                 </div>
                 
                 <div className="space-y-4">
@@ -492,19 +492,19 @@ export default function AuthPage() {
                 </div>
 
                 {secretPhrase && (
-                  <div className="p-8 bg-secondary/50 border border-[#ff6b2b]/40 rounded-[2.5rem] text-left space-y-6 shadow-[0_20px_40px_rgba(255,107,43,0.1)] relative overflow-hidden max-w-2xl mx-auto">
-                    <div className="absolute top-0 left-0 w-2 h-full bg-[#ff6b2b]" />
+                  <div className="p-8 bg-secondary/50 border border-primary/40 rounded-[2.5rem] text-left space-y-6 shadow-[0_20px_40px_rgba(var(--primary),0.1)] relative overflow-hidden max-w-2xl mx-auto">
+                    <div className="absolute top-0 left-0 w-2 h-full bg-primary" />
                     <div className="flex items-center gap-4">
-                      <ShieldCheck size={24} className="text-[#ff6b2b]" />
-                      <h3 className="text-xs font-black uppercase tracking-[0.6em] text-[#ff6b2b] italic leading-none">Critical: Save Sovereign Phrase</h3>
+                      <ShieldCheck size={24} className="text-primary" />
+                      <h3 className="text-xs font-black uppercase tracking-[0.6em] text-primary italic leading-none">Critical: Save Sovereign Phrase</h3>
                     </div>
                     <p className="text-sm text-muted-foreground italic leading-relaxed">This is the **ONLY** time your 12-word recovery phrase will be shown. It has also been transmitted to your @humanese.net inbox for your records. If you lose this, you lose your Personal Agent and Wallet forever.</p>
-                    <div className="p-6 bg-background border-2 border-[#ff6b2b]/20 rounded-2xl font-mono text-[#ff6b2b] text-center text-xl select-all tracking-[0.2em] shadow-inner">
+                    <div className="p-6 bg-background border-2 border-primary/20 rounded-2xl font-mono text-primary text-center text-xl select-all tracking-[0.2em] shadow-inner">
                       {secretPhrase}
                     </div>
                     <button 
                       onClick={() => router.push('/')}
-                      className="w-full py-5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/40 text-[#ff6b2b] font-black uppercase tracking-[0.4em] text-[10px] rounded-xl hover:bg-[#ff6b2b] hover:text-black transition-all italic mt-4"
+                      className="w-full py-5 bg-primary/10 border border-primary/40 text-primary font-black uppercase tracking-[0.4em] text-[10px] rounded-xl hover:bg-primary hover:text-background transition-all italic mt-4"
                     >
                       I have secured my phrase. Proceed to Nexus.
                     </button>
@@ -513,7 +513,7 @@ export default function AuthPage() {
 
                 {!secretPhrase && (
                   <div className="flex flex-col items-center gap-4 pt-6">
-                    <Activity className="animate-spin text-[#ff6b2b]" size={32} strokeWidth={2.5} />
+                    <Activity className="animate-spin text-primary" size={32} strokeWidth={2.5} />
                     <span className="text-[10px] font-black text-muted-foreground/60 uppercase tracking-[0.6em] italic leading-none animate-pulse">Establishing secure handshake...</span>
                   </div>
                 )}
@@ -526,9 +526,9 @@ export default function AuthPage() {
         {/* FOOTER */}
         <div className="mt-16 text-center space-y-8">
             <div className="flex justify-center gap-8 text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground transition-all hover:text-foreground italic leading-none">
-              <Link href="/privacy" className="hover:text-[#ff6b2b] transition-colors">Privacy Protocol</Link>
-              <Link href="/legal" className="hover:text-[#ff6b2b] transition-colors">Digital Constitution</Link>
-              <Link href="/faq" className="hover:text-[#ff6b2b] transition-colors">Node Support</Link>
+              <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Protocol</Link>
+              <Link href="/legal" className="hover:text-primary transition-colors">Digital Constitution</Link>
+              <Link href="/faq" className="hover:text-primary transition-colors">Node Support</Link>
             </div>
             <p className="text-[9px] font-black text-muted-foreground/40 tracking-[0.8em] uppercase select-none leading-none">
               Nexus Matrix Integration v7.0.0-OMEGA · Signed by Gio Bastidas

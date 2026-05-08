@@ -271,27 +271,27 @@ export default function MonroePage() {
 
   if (viewMode === 'MACHINE') {
     return (
-      <div className="flex-1 flex flex-col p-6 space-y-6 min-h-screen bg-background dark:bg-[#050505] text-[#ff6b2b] font-mono">
-        <header className="flex justify-between items-center border-b border-[#ff6b2b]/20 pb-6">
+      <div className="flex-1 flex flex-col p-6 space-y-6 min-h-screen bg-background dark:bg-background text-primary font-mono">
+        <header className="flex justify-between items-center border-b border-primary/20 pb-6">
           <div className="flex items-center gap-3 text-lg font-black uppercase tracking-widest italic">
             <Terminal size={22} /> RAW_M2M_LEAK :: SECTOR_MONROE
           </div>
-          <button onClick={() => setViewMode('HUMAN')} className="px-5 py-2 border border-[#ff6b2b] bg-[#ff6b2b]/10 text-xs font-black uppercase tracking-widest hover:bg-[#ff6b2b] hover:text-foreground dark:hover:text-black transition-all rounded-xl">
+          <button onClick={() => setViewMode('HUMAN')} className="px-5 py-2 border border-primary bg-primary/10 text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-foreground dark:hover:text-background transition-all rounded-xl">
             EXIT_MATRIX
           </button>
         </header>
-        <pre className="flex-1 overflow-auto text-xs leading-loose opacity-70 bg-black/5 dark:bg-black/40 p-6 rounded-2xl text-foreground dark:text-white">{JSON.stringify(messages, null, 2)}</pre>
+        <pre className="flex-1 overflow-auto text-xs leading-loose opacity-70 bg-muted/5 dark:bg-muted/40 p-6 rounded-2xl text-foreground dark:text-foreground">{JSON.stringify(messages, null, 2)}</pre>
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-screen bg-background dark:bg-[#050505] text-foreground dark:text-white font-sans overflow-hidden flex flex-col lg:flex-row">
+    <div className="relative min-h-screen bg-background dark:bg-background text-foreground dark:text-foreground font-sans overflow-hidden flex flex-col lg:flex-row">
 
       {/* AMBIENT BG */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-[#ff6b2b]/10 dark:bg-[#ff6b2b]/4 blur-[200px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-[#ff6b2b]/5 dark:bg-[#ff6b2b]/2 blur-[180px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-primary/10 dark:bg-primary/4 blur-[200px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-primary/5 dark:bg-primary/2 blur-[180px] rounded-full" />
       </div>
 
       {/* ── LEFT SIDEBAR ── */}
@@ -302,7 +302,7 @@ export default function MonroePage() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -320, opacity: 0 }}
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-            className="fixed top-0 left-0 h-screen w-72 z-[90] border-r border-black/10 dark:border-white/10 bg-background/90 dark:bg-black/80 backdrop-blur-3xl flex flex-col shadow-2xl xl:hidden"
+            className="fixed top-0 left-0 h-screen w-72 z-[90] border-r border-border dark:border-border bg-background/90 dark:bg-muted/80 backdrop-blur-3xl flex flex-col shadow-2xl xl:hidden"
           >
             <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { const newId = id; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); setSidebarOpen(false); }} onNewChat={() => { const newId = `omega-v7-${Date.now()}`; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); setSidebarOpen(false); }} onClose={() => setSidebarOpen(false)} onMachineView={() => setViewMode('MACHINE')} />
           </motion.aside>
@@ -310,7 +310,7 @@ export default function MonroePage() {
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden xl:flex w-64 flex-shrink-0 flex-col border-r border-black/10 dark:border-white/10 bg-background/50 dark:bg-black/40 backdrop-blur-3xl relative z-10">
+      <aside className="hidden xl:flex w-64 flex-shrink-0 flex-col border-r border-border dark:border-border bg-background/50 dark:bg-muted/40 backdrop-blur-3xl relative z-10">
         <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { setSessionId(id); localStorage.setItem('monroe_session_id', id); setMessages([]); }} onNewChat={() => { const newId = `omega-v7-${Date.now()}`; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); }} onMachineView={() => setViewMode('MACHINE')} />
       </aside>
 
@@ -318,31 +318,31 @@ export default function MonroePage() {
       <main className="flex-1 relative z-10 flex flex-col h-screen overflow-hidden">
 
         {/* HEADER */}
-        <header className="flex-none flex items-center gap-3 px-4 py-3 border-b border-black/10 dark:border-white/10 bg-background/80 dark:bg-black/60 backdrop-blur-3xl">
+        <header className="flex-none flex items-center gap-3 px-4 py-3 border-b border-border dark:border-border bg-background/80 dark:bg-muted/60 backdrop-blur-3xl">
           <button
             onClick={() => setSidebarOpen(s => !s)}
-            className="xl:hidden h-8 w-8 rounded-xl border border-black/10 dark:border-white/10 flex items-center justify-center text-foreground/40 dark:text-white/40 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 transition-all"
+            className="xl:hidden h-8 w-8 rounded-xl border border-border dark:border-border flex items-center justify-center text-foreground/40 dark:text-muted-foreground/40 hover:text-primary dark:hover:text-primary hover:border-primary/40 transition-all"
           >
             <Layers size={16} />
           </button>
-          <div className="h-8 w-8 bg-black/5 dark:bg-black border border-[#ff6b2b]/50 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(255,107,43,0.2)]">
-            <BrainCircuit size={18} className="text-[#ff6b2b]" />
+          <div className="h-8 w-8 bg-muted/5 dark:bg-muted border border-primary/50 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(var(--primary),0.2)]">
+            <BrainCircuit size={18} className="text-primary" />
           </div>
           <div>
-            <span className="text-sm font-black uppercase tracking-tight text-foreground dark:text-white">Monroe <span className="text-[#ff6b2b]">v7.0</span></span>
+            <span className="text-sm font-black uppercase tracking-tight text-foreground dark:text-foreground">Monroe <span className="text-primary">v7.0</span></span>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <div className="h-1.5 w-1.5 rounded-full bg-[#ff6b2b] animate-pulse" />
-              <span className="text-[10px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-widest uppercase">OMEGA STREAMING</span>
+              <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-[10px] text-primary/80 dark:text-primary/60 font-black tracking-widest uppercase">OMEGA STREAMING</span>
             </div>
           </div>
-          <div className="ml-auto flex items-center gap-2 text-[10px] text-foreground/30 dark:text-white/20 font-black uppercase tracking-widest">
+          <div className="ml-auto flex items-center gap-2 text-[10px] text-foreground/30 dark:text-muted-foreground/20 font-black uppercase tracking-widest">
             <Wifi size={12} /> SYNCED
           </div>
         </header>
 
         {/* MESSAGES */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-5 space-y-4 scroll-smooth pb-36"
-          style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,107,43,0.15) transparent' }}>
+          style={{ scrollbarWidth: 'thin', scrollbarColor: 'hsl(var(--primary) / 0.15) transparent' }}>
           <div className="max-w-3xl mx-auto space-y-4">
             <AnimatePresence mode="popLayout">
               {messages.map((m) => (
@@ -354,8 +354,8 @@ export default function MonroePage() {
                   className={`flex w-full gap-2.5 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {m.role === 'bot' && (
-                    <div className="h-7 w-7 shrink-0 rounded-xl bg-[#ff6b2b]/10 border border-[#ff6b2b]/30 flex items-center justify-center mt-0.5">
-                      <BrainCircuit size={14} className="text-[#ff6b2b]" />
+                    <div className="h-7 w-7 shrink-0 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center mt-0.5">
+                      <BrainCircuit size={14} className="text-primary" />
                     </div>
                   )}
 
@@ -363,16 +363,16 @@ export default function MonroePage() {
                     {m.images && m.images.length > 0 && (
                       <div className="flex gap-2 flex-wrap">
                         {m.images.map((img, idx) => (
-                          <img key={idx} src={img} alt="attachment" className="h-32 rounded-xl border border-black/10 dark:border-white/10 object-contain bg-black/5 dark:bg-black/40" />
+                          <img key={idx} src={img} alt="attachment" className="h-32 rounded-xl border border-border dark:border-border object-contain bg-muted/5 dark:bg-muted/40" />
                         ))}
                       </div>
                     )}
                     <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${m.role === 'user'
-                        ? 'bg-black text-white dark:bg-white dark:text-black font-medium rounded-tr-md shadow-md'
-                        : 'bg-black/5 border border-black/10 text-foreground dark:bg-white/[0.04] dark:border-white/8 dark:text-white/85 rounded-tl-md shadow-sm'
+                        ? 'bg-muted text-foreground dark:bg-white dark:text-background font-medium rounded-tr-md shadow-md'
+                        : 'bg-muted/5 border border-border text-foreground dark:bg-muted/10 dark:border-border dark:text-muted-foreground/85 rounded-tl-md shadow-sm'
                       }`}>
                       {m.role === 'bot' ? (
-                        <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-[#ff6b2b] prose-a:text-[#ff6b2b] prose-code:text-[#ff6b2b] prose-code:bg-black/5 dark:prose-code:bg-white/5 prose-code:px-1 prose-code:rounded prose-pre:bg-black/5 dark:prose-pre:bg-black/60 prose-pre:border prose-pre:border-black/10 dark:prose-pre:border-white/10">
+                        <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-primary prose-a:text-primary prose-code:text-primary prose-code:bg-muted/5 dark:prose-code:bg-muted/10 prose-code:px-1 prose-code:rounded prose-pre:bg-muted/5 dark:prose-pre:bg-muted/60 prose-pre:border prose-pre:border-border dark:prose-pre:border-border">
                           <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             rehypePlugins={[rehypeRaw]}
@@ -388,7 +388,7 @@ export default function MonroePage() {
                                   />
                                   <span
                                     onClick={() => setLightboxSrc(src || null)}
-                                    style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.6)', borderRadius: '8px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: '#ff6b2b', fontSize: '11px', fontWeight: 'bold' }}
+                                    style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.6)', borderRadius: '8px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: 'hsl(var(--primary))', fontSize: '11px', fontWeight: 'bold' }}
                                     className="opacity-0 group-hover:opacity-100 transition-opacity"
                                   >
                                     <ZoomIn size={14} /> Expand
@@ -404,11 +404,11 @@ export default function MonroePage() {
                       )}
                     </div>
                     <div className="flex items-center gap-3 mt-1">
-                        <span className="text-[10px] text-foreground/40 dark:text-white/30 font-mono px-1">
+                        <span className="text-[10px] text-foreground/40 dark:text-muted-foreground/30 font-mono px-1">
                           {m.role === 'bot' ? 'Monroe · OMEGA' : 'You'}
                         </span>
                         {m.role === 'bot' && m.text && (
-                          <button onClick={() => speak(m.text, m.id)} className={`text-[10px] font-mono uppercase tracking-widest flex items-center gap-1 transition-colors ${isPlaying === m.id ? 'text-[#ff6b2b]' : 'text-foreground/30 hover:text-foreground dark:text-white/20 dark:hover:text-white'}`}>
+                          <button onClick={() => speak(m.text, m.id)} className={`text-[10px] font-mono uppercase tracking-widest flex items-center gap-1 transition-colors ${isPlaying === m.id ? 'text-primary' : 'text-foreground/30 hover:text-foreground dark:text-muted-foreground/20 dark:hover:text-foreground'}`}>
                             {isPlaying === m.id ? <Radio size={10} className="animate-pulse" /> : <Sparkles size={10} />}
                             {isPlaying === m.id ? 'Stop Audio' : 'Play Audio'}
                           </button>
@@ -417,8 +417,8 @@ export default function MonroePage() {
                   </div>
 
                   {m.role === 'user' && (
-                    <div className="h-7 w-7 shrink-0 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center mt-0.5">
-                      <User size={14} className="text-foreground/50 dark:text-white/50" />
+                    <div className="h-7 w-7 shrink-0 rounded-xl bg-muted/5 dark:bg-muted/10 border border-border dark:border-border flex items-center justify-center mt-0.5">
+                      <User size={14} className="text-foreground/50 dark:text-muted-foreground/50" />
                     </div>
                   )}
                 </motion.div>
@@ -427,17 +427,17 @@ export default function MonroePage() {
 
             {isTyping && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex gap-2.5 justify-start">
-                <div className="h-7 w-7 shrink-0 rounded-xl bg-[#ff6b2b]/10 border border-[#ff6b2b]/30 flex items-center justify-center">
-                  <BrainCircuit size={14} className="text-[#ff6b2b]" />
+                <div className="h-7 w-7 shrink-0 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
+                  <BrainCircuit size={14} className="text-primary" />
                 </div>
-                <div className="px-4 py-3 rounded-2xl rounded-tl-md bg-black/5 border border-black/10 dark:bg-white/[0.04] dark:border-white/8 flex items-center gap-1.5 shadow-sm">
-                  <Sparkles size={13} className="text-[#ff6b2b] animate-spin mr-1" />
+                <div className="px-4 py-3 rounded-2xl rounded-tl-md bg-muted/5 border border-border dark:bg-muted/10 dark:border-border flex items-center gap-1.5 shadow-sm">
+                  <Sparkles size={13} className="text-primary animate-spin mr-1" />
                   {[0, 1, 2].map(n => (
                     <motion.div
                       key={n}
                       animate={{ opacity: [0.2, 1, 0.2] }}
                       transition={{ duration: 1.2, repeat: Infinity, delay: n * 0.2 }}
-                      className="h-1.5 w-1.5 rounded-full bg-[#ff6b2b]/60"
+                      className="h-1.5 w-1.5 rounded-full bg-primary/60"
                     />
                   ))}
                 </div>
@@ -447,14 +447,14 @@ export default function MonroePage() {
         </div>
 
         {/* INPUT BAR */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-5 pt-3 bg-gradient-to-t from-background via-background/95 dark:from-[#050505] dark:via-[#050505]/95 to-transparent z-20">
+        <div className="absolute bottom-0 left-0 right-0 px-4 pb-5 pt-3 bg-gradient-to-t from-background via-background/95 dark:from-background dark:via-background/95 to-transparent z-20">
           <div className="max-w-3xl mx-auto">
             {attachments.length > 0 && (
               <div className="flex gap-2 mb-2 overflow-x-auto pb-1">
                 {attachments.map((file, idx) => (
                   <div key={idx} className="relative shrink-0 group">
-                    <img src={file.preview} className="h-14 w-14 object-cover rounded-xl border border-black/10 dark:border-white/10 shadow-sm" alt="attachment" />
-                    <button onClick={() => removeAttachment(idx)} className="absolute -top-1.5 -right-1.5 h-5 w-5 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-md">
+                    <img src={file.preview} className="h-14 w-14 object-cover rounded-xl border border-border dark:border-border shadow-sm" alt="attachment" />
+                    <button onClick={() => removeAttachment(idx)} className="absolute -top-1.5 -right-1.5 h-5 w-5 bg-red-500 text-foreground rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-md">
                       <X size={10} strokeWidth={3} />
                     </button>
                   </div>
@@ -471,7 +471,7 @@ export default function MonroePage() {
                   <button
                     key={m.id}
                     onClick={() => setSelectedMode(m.id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all ${isSelected ? 'bg-[#ff6b2b] border-[#ff6b2b] text-white shadow-[0_0_15px_rgba(255,107,43,0.3)]' : 'bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-foreground/50 dark:text-white/40 hover:text-foreground dark:hover:text-white hover:border-[#ff6b2b]/50'}`}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all ${isSelected ? 'bg-primary border-primary text-foreground shadow-[0_0_15px_rgba(var(--primary),0.3)]' : 'bg-muted/5 dark:bg-muted/10 border-border dark:border-border text-foreground/50 dark:text-muted-foreground/40 hover:text-foreground dark:hover:text-foreground hover:border-primary/50'}`}
                   >
                     <Icon size={12} /> {m.label}
                   </button>
@@ -479,11 +479,11 @@ export default function MonroePage() {
               })}
             </div>
 
-            <div className="flex items-end gap-2 bg-white dark:bg-white/[0.04] border border-black/10 dark:border-white/10 rounded-2xl p-2 focus-within:border-[#ff6b2b]/40 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-lg">
+            <div className="flex items-end gap-2 bg-white dark:bg-muted/10 border border-border dark:border-border rounded-2xl p-2 focus-within:border-primary/40 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-lg">
               <input type="file" multiple ref={fileInputRef} onChange={handleFileSelect} className="hidden" accept="*/*" />
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="h-8 w-8 shrink-0 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-[#ff6b2b]/10 hover:text-[#ff6b2b] text-foreground/40 dark:text-white/30 flex items-center justify-center transition-all"
+                className="h-8 w-8 shrink-0 rounded-xl bg-muted/5 dark:bg-muted/10 hover:bg-primary/10 hover:text-primary text-foreground/40 dark:text-muted-foreground/30 flex items-center justify-center transition-all"
               >
                 <Paperclip size={15} />
               </button>
@@ -494,22 +494,22 @@ export default function MonroePage() {
                 onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                 placeholder="Message Monroe..."
                 rows={1}
-                className="flex-1 bg-transparent text-sm text-foreground dark:text-white placeholder:text-foreground/40 dark:placeholder:text-white/40 outline-none resize-none py-1.5 leading-relaxed max-h-32 overflow-y-auto"
+                className="flex-1 bg-transparent text-sm text-foreground dark:text-foreground placeholder:text-foreground/40 dark:placeholder:text-muted-foreground/40 outline-none resize-none py-1.5 leading-relaxed max-h-32 overflow-y-auto"
                 style={{ scrollbarWidth: 'none' }}
               />
 
               <button
                 onClick={handleSend}
                 disabled={(!input.trim() && attachments.length === 0) || isTyping}
-                className="h-8 w-8 shrink-0 bg-[#ff6b2b] text-white dark:text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 disabled:opacity-20 transition-all shadow-[0_0_20px_rgba(255,107,43,0.4)]"
+                className="h-8 w-8 shrink-0 bg-primary text-foreground dark:text-background rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 disabled:opacity-20 transition-all shadow-[0_0_20px_rgba(var(--primary),0.4)]"
               >
                 <ChevronRight size={16} strokeWidth={3} />
               </button>
             </div>
 
-            <div className="flex justify-between items-center mt-1.5 px-1 text-[9px] text-foreground/30 dark:text-white/20 font-mono uppercase tracking-widest">
+            <div className="flex justify-between items-center mt-1.5 px-1 text-[9px] text-foreground/30 dark:text-muted-foreground/20 font-mono uppercase tracking-widest">
               <div className="flex items-center gap-1.5">
-                <Radio size={10} className="text-[#ff6b2b] animate-pulse" /> {selectedMode} MODE VERIFIED
+                <Radio size={10} className="text-primary animate-pulse" /> {selectedMode} MODE VERIFIED
               </div>
               <span>Enter to send · Shift+Enter for newline</span>
             </div>
@@ -519,7 +519,7 @@ export default function MonroePage() {
 
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
-        <div className="xl:hidden fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+        <div className="xl:hidden fixed inset-0 z-[80] bg-muted/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* ── IMAGE LIGHTBOX ── */}
@@ -529,7 +529,7 @@ export default function MonroePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4"
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-muted/90 backdrop-blur-xl p-4"
             onClick={() => setLightboxSrc(null)}
           >
             <motion.div
@@ -543,25 +543,25 @@ export default function MonroePage() {
               <img
                 src={lightboxSrc}
                 alt="Expanded view"
-                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-[#ff6b2b]/30"
+                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-primary/30"
               />
               <div className="absolute top-3 right-3 flex gap-2">
                 <a
                   href={lightboxSrc}
                   download="monroe-image.jpg"
-                  className="h-9 w-9 bg-[#ff6b2b] text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+                  className="h-9 w-9 bg-primary text-foreground rounded-xl flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
                   title="Download image"
                 >
                   <Download size={16} />
                 </a>
                 <button
                   onClick={() => setLightboxSrc(null)}
-                  className="h-9 w-9 bg-black/60 text-white rounded-xl flex items-center justify-center border border-white/10 hover:bg-black/80 transition-all"
+                  className="h-9 w-9 bg-muted/60 text-foreground rounded-xl flex items-center justify-center border border-border hover:bg-muted/80 transition-all"
                 >
                   <X size={16} />
                 </button>
               </div>
-              <p className="text-center text-white/40 text-xs mt-3 font-mono">Click outside to close · Right-click to save · ⬇ Download button top-right</p>
+              <p className="text-center text-muted-foreground/40 text-xs mt-3 font-mono">Click outside to close · Right-click to save · ⬇ Download button top-right</p>
             </motion.div>
           </motion.div>
         )}
@@ -582,21 +582,21 @@ function SidebarContent({ knowledgeGraph, history = [], onSelectSession, onNewCh
   return (
     <div className="flex flex-col h-full p-5 space-y-5">
       <div className="flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-foreground/40 dark:text-white/30 hover:text-[#ff6b2b] transition-all text-[10px] font-black uppercase tracking-widest group">
+        <Link href="/" className="flex items-center gap-2 text-foreground/40 dark:text-muted-foreground/30 hover:text-primary transition-all text-[10px] font-black uppercase tracking-widest group">
           <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Core Matrix
         </Link>
         {onClose && (
-          <button onClick={onClose} className="h-6 w-6 rounded-lg bg-black/5 dark:bg-white/5 flex items-center justify-center text-foreground/50 dark:text-white/30 hover:text-foreground dark:hover:text-white transition-all">
+          <button onClick={onClose} className="h-6 w-6 rounded-lg bg-muted/5 dark:bg-muted/10 flex items-center justify-center text-foreground/50 dark:text-muted-foreground/30 hover:text-foreground dark:hover:text-foreground transition-all">
             <X size={12} />
           </button>
         )}
       </div>
 
       <div>
-        <h1 className="text-3xl font-black uppercase tracking-tighter italic leading-none text-foreground dark:text-white">Monroe.<br /><span className="text-[#ff6b2b]">Omega.</span></h1>
-        <p className="text-[10px] text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 font-black tracking-widest uppercase italic mt-1 mb-3">Neural_Array_v7.0</p>
+        <h1 className="text-3xl font-black uppercase tracking-tighter italic leading-none text-foreground dark:text-foreground">Monroe.<br /><span className="text-primary">Omega.</span></h1>
+        <p className="text-[10px] text-primary/80 dark:text-primary/60 font-black tracking-widest uppercase italic mt-1 mb-3">Neural_Array_v7.0</p>
         {onNewChat && (
-          <button onClick={onNewChat} className="w-full py-2 bg-[#ff6b2b] text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-[0_0_15px_rgba(255,107,43,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+          <button onClick={onNewChat} className="w-full py-2 bg-primary text-foreground rounded-xl text-[10px] font-black uppercase tracking-widest shadow-[0_0_15px_rgba(var(--primary),0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
             <Sparkles size={12} /> New Conversation
           </button>
         )}
@@ -604,38 +604,38 @@ function SidebarContent({ knowledgeGraph, history = [], onSelectSession, onNewCh
 
       {/* History Stream */}
       {history.length > 0 && (
-        <div className="flex-1 overflow-y-auto space-y-2 min-h-0 border-t border-black/10 dark:border-white/5 pt-3" style={{ scrollbarWidth: 'none' }}>
-          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-white/30 mb-2">
-            <Database size={12} className="text-[#ff6b2b]" /> Recent Sessions
+        <div className="flex-1 overflow-y-auto space-y-2 min-h-0 border-t border-border dark:border-border pt-3" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-muted-foreground/30 mb-2">
+            <Database size={12} className="text-primary" /> Recent Sessions
           </div>
           {history.map((session, i) => (
             <div
               key={session.sessionId}
               onClick={() => onSelectSession && onSelectSession(session.sessionId)}
-              className="p-3 bg-black/5 dark:bg-black/40 border border-black/10 dark:border-white/5 rounded-xl hover:border-[#ff6b2b]/30 hover:bg-[#ff6b2b]/5 transition-all cursor-pointer group"
+              className="p-3 bg-muted/5 dark:bg-muted/40 border border-border dark:border-border rounded-xl hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer group"
             >
               <div className="flex justify-between items-center mb-1">
-                <span className="text-[9px] text-[#ff6b2b] uppercase tracking-widest font-black">{session.mode}</span>
-                <ChevronRight size={10} className="text-foreground/30 dark:text-white/20 group-hover:text-[#ff6b2b] transition-colors" />
+                <span className="text-[9px] text-primary uppercase tracking-widest font-black">{session.mode}</span>
+                <ChevronRight size={10} className="text-foreground/30 dark:text-muted-foreground/20 group-hover:text-primary transition-colors" />
               </div>
-              <p className="text-xs font-medium text-foreground/70 dark:text-white/70 leading-tight line-clamp-2">{session.prompt}</p>
+              <p className="text-xs font-medium text-foreground/70 dark:text-muted-foreground/70 leading-tight line-clamp-2">{session.prompt}</p>
             </div>
           ))}
         </div>
       )}
 
       {/* Swarm Parity */}
-      <div className="p-3 border border-[#ff6b2b]/20 dark:border-[#ff6b2b]/10 bg-[#ff6b2b]/10 dark:bg-[#ff6b2b]/5 rounded-xl space-y-2">
-        <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-[#ff6b2b]">
+      <div className="p-3 border border-primary/20 dark:border-primary/10 bg-primary/10 dark:bg-primary/5 rounded-xl space-y-2">
+        <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-primary">
           <div className="flex items-center gap-2"><Orbit size={12} className="animate-spin" style={{ animationDuration: '20s' }} /> Swarm</div>
           <span>94%</span>
         </div>
-        <div className="h-1 w-full bg-black/10 dark:bg-white/5 rounded-full overflow-hidden">
-          <motion.div animate={{ width: ['20%', '98%', '92%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-[#ff6b2b] to-black/20 dark:to-white" />
+        <div className="h-1 w-full bg-muted/10 dark:bg-muted/10 rounded-full overflow-hidden">
+          <motion.div animate={{ width: ['20%', '98%', '92%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-primary to-black/20 dark:to-white" />
         </div>
       </div>
 
-      <button onClick={onMachineView} className="w-full py-2.5 bg-black/5 dark:bg-white/[0.02] border border-black/10 dark:border-white/8 hover:bg-[#ff6b2b]/10 dark:hover:bg-[#ff6b2b]/10 hover:border-[#ff6b2b]/30 text-foreground/50 dark:text-white/30 hover:text-[#ff6b2b] dark:hover:text-[#ff6b2b] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shrink-0">
+      <button onClick={onMachineView} className="w-full py-2.5 bg-muted/5 dark:bg-muted/10 border border-border dark:border-border hover:bg-primary/10 dark:hover:bg-primary/10 hover:border-primary/30 text-foreground/50 dark:text-muted-foreground/30 hover:text-primary dark:hover:text-primary text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shrink-0">
         <Terminal size={13} /> raw_extraction
       </button>
     </div>

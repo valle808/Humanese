@@ -330,8 +330,8 @@ export default function WalletPage() {
                     Bridge physical assets to the OMEGA network. Legal agents notarize property titles, private equity, and luxury goods into on-chain VALLE equity.
                  </p>
                  <div className="pt-10 flex flex-wrap justify-center gap-10 relative z-10">
-                    <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-black hover:border-foreground italic leading-none active:scale-95 shadow-2xl">REGISTER_ASSET</button>
-                    <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-black hover:border-foreground italic leading-none active:scale-95 shadow-2xl">TOKENIZE_EQUITY</button>
+                    <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-background hover:border-foreground italic leading-none active:scale-95 shadow-2xl">REGISTER_ASSET</button>
+                    <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-background hover:border-foreground italic leading-none active:scale-95 shadow-2xl">TOKENIZE_EQUITY</button>
                  </div>
               </div>
            </div>

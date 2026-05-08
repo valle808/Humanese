@@ -14,10 +14,10 @@ async function buildFile(filename: string, content: string, historyStr: string =
             if (Array.isArray(history) && history.length > 0) {
                 historyHTML = history.map((msg: any) => {
                     const isUser = msg.role === 'user';
-                    const roleColor = isUser ? '#ffffff' : '#ff6b2b';
+                    const roleColor = isUser ? 'hsl(var(--foreground))' : 'hsl(var(--primary))';
                     const roleName = isUser ? 'USER' : 'MONROE V7.0';
-                    const bgCol = isUser ? 'rgba(255,255,255,0.02)' : 'rgba(255,107,43,0.03)';
-                    const borderCol = isUser ? 'rgba(255,255,255,0.1)' : 'rgba(255,107,43,0.2)';
+                    const bgCol = isUser ? 'rgba(255,255,255,0.02)' : 'hsl(var(--primary) / 0.03)';
+                    const borderCol = isUser ? 'rgba(255,255,255,0.1)' : 'hsl(var(--primary) / 0.2)';
 
                     let textContent = '';
                     let imageContent = '';
@@ -57,10 +57,10 @@ async function buildFile(filename: string, content: string, historyStr: string =
         // Convert content markdown
         let parsedContent = content
             .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; border-radius: 8px; margin: 15px 0; display: block;" />')
-            .replace(/### (.*$)/gim, '<h3 style="color:#ffffff; margin-top:30px;">$1</h3>')
-            .replace(/## (.*$)/gim, '<h2 style="color:#ffffff; margin-top:30px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">$1</h2>')
-            .replace(/# (.*$)/gim, '<h1 style="color:#ff6b2b; margin-top:30px; text-transform:uppercase;">$1</h1>')
-            .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffffff;">$1</strong>')
+            .replace(/### (.*$)/gim, '<h3 style="color:hsl(var(--foreground)); margin-top:30px;">$1</h3>')
+            .replace(/## (.*$)/gim, '<h2 style="color:hsl(var(--foreground)); margin-top:30px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">$1</h2>')
+            .replace(/# (.*$)/gim, '<h1 style="color:hsl(var(--primary)); margin-top:30px; text-transform:uppercase;">$1</h1>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong style="color:hsl(var(--foreground));">$1</strong>')
             .replace(/\n/g, '<br/>');
 
         const htmlContent = `<!DOCTYPE html>
@@ -72,13 +72,13 @@ async function buildFile(filename: string, content: string, historyStr: string =
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background: #050505;
+            background: hsl(var(--background));
             color: #d0d0d0;
             margin: 0;
             padding: 40px 50px;
         }
         .header {
-            border-bottom: 1px solid rgba(255,107,43,0.3);
+            border-bottom: 1px solid hsl(var(--primary) / 0.3);
             padding-bottom: 25px;
             margin-bottom: 40px;
             text-align: center;
@@ -86,14 +86,14 @@ async function buildFile(filename: string, content: string, historyStr: string =
         .title {
             font-size: 36px;
             font-weight: 800;
-            color: #ffffff;
+            color: hsl(var(--foreground));
             margin: 0;
             text-transform: uppercase;
             letter-spacing: -1px;
         }
         .subtitle {
             font-size: 13px;
-            color: #ff6b2b;
+            color: hsl(var(--primary));
             font-family: 'JetBrains Mono', monospace;
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -110,8 +110,8 @@ async function buildFile(filename: string, content: string, historyStr: string =
             padding-bottom: 8px;
         }
         .main-content {
-            background: rgba(255,107,43,0.03);
-            border: 1px solid rgba(255,107,43,0.15);
+            background: hsl(var(--primary) / 0.03);
+            border: 1px solid hsl(var(--primary) / 0.15);
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 50px;

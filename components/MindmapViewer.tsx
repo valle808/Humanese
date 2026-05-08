@@ -81,7 +81,7 @@ export function MindmapViewer({ markdown }: MindmapViewerProps) {
   }
 
   return (
-    <div className="w-full h-full bg-black rounded-lg border border-white/10 overflow-hidden">
+    <div className="w-full h-full bg-muted rounded-lg border border-border overflow-hidden">
       <style>{`
         .markmap-node text {
           fill: white !important;

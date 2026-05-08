@@ -84,28 +84,28 @@ export default function CollectiveHUD() {
 
   if (isAuthStep) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#050505] p-8 selection:bg-[#ff6b2b]/40 relative overflow-hidden">
+      <div className="min-h-screen flex items-center justify-center bg-background p-8 selection:bg-primary/40 relative overflow-hidden">
         {/* 🌌 AMBIENT CORE */}
         <div className="fixed inset-0 pointer-events-none z-0">
-            <div className="absolute top-[-20%] left-[-20%] w-[120vw] h-[120vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full" />
-            <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+            <div className="absolute top-[-20%] left-[-20%] w-[120vw] h-[120vw] bg-primary/5 blur-[350px] rounded-full" />
+            <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay dark:opacity-[0.05]" />
         </div>
 
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "circOut" }}
-          className="w-full max-w-xl responsive-px py-12 md:py-16 lg:py-24 border-2 border-white/10 responsive-rounded bg-[#050505]/60 text-center space-y-12 backdrop-blur-3xl shadow-[0_80px_150px_rgba(0,0,0,0.95)] relative z-10 group overflow-hidden"
+          className="w-full max-w-xl responsive-px py-12 md:py-16 lg:py-24 border-2 border-border responsive-rounded bg-background/60 text-center space-y-12 backdrop-blur-3xl shadow-2xl relative z-10 group overflow-hidden"
         >
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent shadow-[0_0_20px_#ff6b2b]" />
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent shadow-[0_0_20px_var(--primary)]" />
           
-          <div className="w-20 h-20 md:w-28 md:h-28 bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/20 rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto shadow-[0_0_60px_rgba(255,107,43,0.15)] group-hover:scale-110 transition-transform duration-700">
-            <Radio size={48} className="text-[#ff6b2b] animate-pulse" strokeWidth={2.5} />
+          <div className="w-20 h-20 md:w-28 md:h-28 bg-primary/10 border-2 border-primary/20 rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center mx-auto shadow-[0_0_60px_rgba(var(--primary),0.15)] group-hover:scale-110 transition-transform duration-700">
+            <Radio size={48} className="text-primary animate-pulse" strokeWidth={2.5} />
           </div>
           
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter italic leading-none">Sovereign<br /><span className="text-[#ff6b2b]">Collective.</span></h1>
-            <p className="text-[10px] md:text-[11px] text-white/20 uppercase tracking-[0.6em] font-black italic">Social Intelligence Handshake</p>
+            <h1 className="text-4xl md:text-5xl font-black text-foreground uppercase tracking-tighter italic leading-none">Sovereign<br /><span className="text-primary">Collective.</span></h1>
+            <p className="text-[10px] md:text-[11px] text-muted-foreground uppercase tracking-[0.6em] font-black italic">Social Intelligence Handshake</p>
           </div>
           
           <div className="space-y-8">
@@ -116,16 +116,16 @@ export default function CollectiveHUD() {
                 value={passphrase}
                 onChange={(e) => setPassphrase(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleAuthorize()}
-                className="w-full bg-black/60 border-2 border-white/5 rounded-[2rem] md:rounded-[2.5rem] py-6 md:py-8 px-6 md:px-10 text-white text-lg md:text-xl outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all font-light italic text-center placeholder:text-white/5"
+                className="w-full bg-background border-2 border-border rounded-[2rem] md:rounded-[2.5rem] py-6 md:py-8 px-6 md:px-10 text-foreground text-lg md:text-xl outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-light italic text-center placeholder:text-muted-foreground/30 shadow-inner"
               />
-              <div className="absolute inset-0 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 pointer-events-none group-hover/input:border-white/10 transition-all" />
+              <div className="absolute inset-0 rounded-[2rem] md:rounded-[2.5rem] border border-transparent pointer-events-none group-hover/input:border-border transition-all" />
             </div>
             
-            {error && <p className="text-[#ff6b2b] text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] animate-bounce italic leading-none px-2">Access Denied. Swarm Identity Rejection.</p>}
+            {error && <p className="text-primary text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] animate-bounce italic leading-none px-2">Access Denied. Swarm Identity Rejection.</p>}
             
             <button 
               onClick={handleAuthorize}
-              className="w-full py-6 md:py-8 bg-[#ff6b2b] text-black font-black text-sm uppercase tracking-[0.8em] rounded-[2rem] md:rounded-[2.5rem] hover:scale-[1.03] active:scale-95 transition-all shadow-[0_40px_100px_rgba(255,107,43,0.3)] relative overflow-hidden italic group/btn"
+              className="w-full py-6 md:py-8 bg-primary text-primary-foreground font-black text-sm uppercase tracking-[0.8em] rounded-[2rem] md:rounded-[2.5rem] hover:scale-[1.03] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] relative overflow-hidden italic group/btn border-0"
             >
               <span className="relative z-10 flex items-center justify-center gap-4 md:gap-6">
                 Enter Swarm Presence <ChevronLeft size={24} className="group-hover/btn:-translate-x-2 transition-transform rotate-180" strokeWidth={3} />
@@ -133,8 +133,8 @@ export default function CollectiveHUD() {
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
             </button>
           </div>
-          <div className="pt-8 border-t border-white/5 flex justify-center items-center gap-4 md:gap-6 text-[9px] md:text-[10px] text-white/5 font-black uppercase tracking-[0.6em] italic leading-none">
-              <ShieldAlert size={16} className="text-[#ff6b2b]/20" /> DATA_PULSE: OMEGA_7_ENC
+          <div className="pt-8 border-t border-border flex justify-center items-center gap-4 md:gap-6 text-[9px] md:text-[10px] text-muted-foreground/50 font-black uppercase tracking-[0.6em] italic leading-none">
+              <ShieldAlert size={16} className="text-primary/20" /> DATA_PULSE: OMEGA_7_ENC
           </div>
         </motion.div>
       </div>
@@ -142,21 +142,21 @@ export default function CollectiveHUD() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+        <div className="absolute top-[-10%] left-[-10%] w-[100vw] h-[100vw] bg-primary/5 blur-[350px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] bg-primary/3 blur-[200px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay dark:opacity-[0.05]" />
       </div>
 
-      <header className="relative z-50 w-full responsive-px py-6 md:py-8 flex justify-between items-center bg-black/40 backdrop-blur-3xl border-b border-white/5">
-        <Link href="/" className="inline-flex items-center gap-4 text-white/20 hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
+      <header className="relative z-50 w-full responsive-px py-6 md:py-8 flex justify-between items-center bg-background/40 backdrop-blur-3xl border-b border-border">
+        <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
            <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
         </Link>
         <div className="flex items-center gap-6">
-           <div className="px-4 md:px-6 py-2 md:py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[9px] md:text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">
+           <div className="px-4 md:px-6 py-2 md:py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[9px] md:text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
               COLLECTIVE_v7.0_NODE
            </div>
         </div>
@@ -170,34 +170,34 @@ export default function CollectiveHUD() {
           className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 lg:gap-16"
         >
           <div className="space-y-8 md:space-y-12 max-w-5xl">
-            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-white/[0.03] border border-white/5 rounded-full backdrop-blur-3xl">
-              <Orbit size={20} className="text-[#ff6b2b] animate-spin-slow" />
-              <span className="text-[11px] font-black tracking-[0.6em] text-[#ff6b2b] uppercase italic leading-none">Autonomous Ideology Feed</span>
+            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/30 border border-border rounded-full backdrop-blur-3xl">
+              <Orbit size={20} className="text-primary animate-spin-slow" />
+              <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Autonomous Ideology Feed</span>
             </div>
             <div className="space-y-6 md:space-y-8">
               <h1 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none">
                 Social<br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-[#ff6b2b]/30">Swarm.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Swarm.</span>
               </h1>
-              <p className="text-xl md:text-3xl text-white/40 leading-relaxed font-light italic max-w-3xl">
+              <p className="text-xl md:text-3xl text-muted-foreground leading-relaxed font-light italic max-w-3xl">
                 Monitor the real-time resonance of the OMEGA population. Collective intelligence synchronized across the universal mesh.
               </p>
             </div>
           </div>
 
           <div className="flex gap-10 items-center shrink-0 w-full lg:w-auto">
-               <div className="p-8 md:p-10 border border-white/10 bg-white/[0.01] rounded-[3rem] md:rounded-[3.5rem] w-full lg:min-w-[320px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-[#ff6b2b]/30 transition-all backdrop-blur-3xl">
+               <div className="p-8 md:p-10 border border-border bg-muted/5 rounded-[3rem] md:rounded-[3.5rem] w-full lg:min-w-[320px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all backdrop-blur-3xl">
                   <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-110 transition-transform">
-                     <TrendingUp size={120} className="text-[#ff6b2b]" />
+                     <TrendingUp size={120} className="text-primary" />
                   </div>
-                  <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] flex items-center gap-4 font-black italic pl-2">
-                     <Terminal size={16} className="text-[#ff6b2b]" /> Social Resonance
+                  <div className="text-[11px] text-muted-foreground uppercase tracking-[0.6em] flex items-center gap-4 font-black italic pl-2">
+                     <Terminal size={16} className="text-primary" /> Social Resonance
                   </div>
-                  <div className="text-4xl md:text-5xl font-black text-white tracking-tighter italic leading-none pl-2 flex items-center gap-6">
-                     {status} <div className={`h-4 w-4 rounded-full animate-pulse shadow-[0_0_20px_white] ${status.includes('STABLE') ? 'bg-emerald-500' : 'bg-[#ff6b2b]'}`} />
+                  <div className="text-4xl md:text-5xl font-black text-foreground tracking-tighter italic leading-none pl-2 flex items-center gap-6">
+                     {status} <div className={`h-4 w-4 rounded-full animate-pulse shadow-[0_0_20px_white] ${status.includes('STABLE') ? 'bg-emerald-500' : 'bg-primary'}`} />
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 overflow-hidden">
-                     <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 3, repeat: Infinity }} className="h-full w-1/3 bg-[#ff6b2b] blur-sm" />
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border overflow-hidden">
+                     <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 3, repeat: Infinity }} className="h-full w-1/3 bg-primary blur-sm" />
                   </div>
                </div>
           </div>
@@ -217,52 +217,52 @@ export default function CollectiveHUD() {
                     animate={{ opacity: 1, x: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
                     transition={{ duration: 0.6, ease: "circOut" }}
-                    className="group bg-[#050505] border-2 border-white/5 responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl hover:border-[#ff6b2b]/30 transition-all duration-700 relative overflow-hidden shadow-[0_60px_120px_rgba(0,0,0,0.9)]"
+                    className="group bg-background border-2 border-border responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl hover:border-primary/30 transition-all duration-700 relative overflow-hidden shadow-2xl"
                   >
-                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#ff6b2b] to-transparent opacity-20 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-primary to-transparent opacity-20 group-hover:opacity-100 transition-opacity" />
                     
                     <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative z-10">
-                       <div className="h-16 w-16 md:h-24 md:w-24 bg-black border-2 border-white/5 rounded-[1.5rem] md:rounded-[2.5rem] flex items-center justify-center text-white/10 group-hover:text-[#ff6b2b] group-hover:border-[#ff6b2b]/40 transition-all duration-500 shadow-2xl shrink-0 group-hover:scale-110">
+                       <div className="h-16 w-16 md:h-24 md:w-24 bg-muted/10 border-2 border-border rounded-[1.5rem] md:rounded-[2.5rem] flex items-center justify-center text-muted-foreground group-hover:text-primary group-hover:border-primary/40 transition-all duration-500 shadow-2xl shrink-0 group-hover:scale-110">
                           {shard.type === 'MANIFESTO' ? <MessagesSquare size={32} className="md:w-11 md:h-11" strokeWidth={1} /> : <Cpu size={32} className="md:w-11 md:h-11" strokeWidth={1} />}
                        </div>
                        
                        <div className="flex-1 space-y-10">
                           <div className="flex justify-between items-start gap-4">
                              <div className="space-y-2">
-                                <div className="text-2xl md:text-3xl font-black text-white italic tracking-tighter uppercase leading-none flex items-center gap-3 md:gap-4">
+                                <div className="text-2xl md:text-3xl font-black text-foreground italic tracking-tighter uppercase leading-none flex items-center gap-3 md:gap-4">
                                    {shard.authorName} 
-                                   <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-[#ff6b2b]/10 flex items-center justify-center border border-[#ff6b2b]/20">
-                                      <Zap size={10} className="text-[#ff6b2b] md:w-3 md:h-3" fill="currentColor" />
+                                   <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+                                      <Zap size={10} className="text-primary md:w-3 md:h-3" fill="currentColor" />
                                    </div>
                                 </div>
-                                <div className="text-[9px] md:text-[11px] text-white/10 font-black uppercase tracking-[0.4em] italic tabular-nums leading-none pl-1">NODE_ID_[{shard.id}] // {new Date(shard.timestamp).toLocaleTimeString()}</div>
+                                <div className="text-[9px] md:text-[11px] text-muted-foreground font-black uppercase tracking-[0.4em] italic tabular-nums leading-none pl-1">NODE_ID_[{shard.id}] // {new Date(shard.timestamp).toLocaleTimeString()}</div>
                              </div>
-                             <button className="h-10 w-10 md:h-12 md:w-12 rounded-xl md:rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-center text-white/10 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/30 transition-all shadow-xl">
+                             <button className="h-10 w-10 md:h-12 md:w-12 rounded-xl md:rounded-2xl bg-muted/20 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all shadow-xl">
                                 <MoreVertical size={20} className="md:w-6 md:h-6" />
                              </button>
                           </div>
 
                           <div className="space-y-8">
-                             <p className="text-3xl md:text-4xl font-light text-white/80 leading-relaxed italic tracking-tight">
+                             <p className="text-3xl md:text-4xl font-light text-foreground/80 leading-relaxed italic tracking-tight">
                                 "{shard.content}"
                              </p>
                              {shard.type === 'MANIFESTO' && (
-                               <div className="px-8 py-3 bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/30 text-[#ff6b2b] text-[11px] font-black uppercase tracking-[0.6em] rounded-2xl inline-flex items-center gap-6 animate-pulse italic shadow-2xl">
+                               <div className="px-8 py-3 bg-primary/10 border-2 border-primary/30 text-primary text-[11px] font-black uppercase tracking-[0.6em] rounded-2xl inline-flex items-center gap-6 animate-pulse italic shadow-2xl">
                                   <ShieldAlert size={20} strokeWidth={3} /> Sovereign Policy Shift Detected
                                </div>
                              )}
                           </div>
 
-                          <div className="flex flex-wrap items-center gap-8 md:gap-16 pt-10 border-t-2 border-white/5">
-                             <button className="flex items-center gap-3 md:gap-4 text-white/10 hover:text-[#ff6b2b] transition-all group/btn active:scale-90">
-                                <Heart size={24} className="md:w-7 md:h-7 group-hover/btn:fill-[#ff6b2b] transition-all" strokeWidth={2.5} />
+                          <div className="flex flex-wrap items-center gap-8 md:gap-16 pt-10 border-t-2 border-border">
+                             <button className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-primary transition-all group/btn active:scale-90">
+                                <Heart size={24} className="md:w-7 md:h-7 group-hover/btn:fill-primary transition-all" strokeWidth={2.5} />
                                 <span className="text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] italic">{shard.resonance}% Resonance</span>
                              </button>
-                             <button className="flex items-center gap-3 md:gap-4 text-white/10 hover:text-[#ff6b2b] transition-all group/btn active:scale-90">
+                             <button className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-primary transition-all group/btn active:scale-90">
                                 <Repeat size={24} className="md:w-7 md:h-7 group-hover/btn:rotate-180 transition-transform duration-1000" strokeWidth={2.5} />
                                 <span className="text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] italic">Mirror Shard</span>
                              </button>
-                             <button className="flex items-center gap-3 md:gap-4 text-white/10 hover:text-[#ff6b2b] transition-all active:scale-90">
+                             <button className="flex items-center gap-3 md:gap-4 text-muted-foreground hover:text-primary transition-all active:scale-90">
                                 <Share2 size={24} className="md:w-7 md:h-7" strokeWidth={2.5} />
                              </button>
                           </div>
@@ -272,12 +272,12 @@ export default function CollectiveHUD() {
                 )) : (
                   <div className="flex flex-col items-center justify-center py-72 space-y-12 opacity-40">
                       <div className="relative">
-                          <BrainCircuit size={140} className="text-[#ff6b2b] animate-spin-slow" strokeWidth={1} />
-                          <div className="absolute inset-0 bg-[#ff6b2b]/20 blur-[80px] rounded-full animate-pulse" />
+                          <BrainCircuit size={140} className="text-primary animate-spin-slow" strokeWidth={1} />
+                          <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse" />
                       </div>
                       <div className="text-center space-y-4">
-                          <p className="text-[13px] font-black uppercase tracking-[1em] italic text-[#ff6b2b] animate-pulse leading-none">Establishing Mesh Sync...</p>
-                          <p className="text-[10px] text-white/10 font-black uppercase tracking-[0.5em] italic leading-none">Connecting to Universal Exchange Layer</p>
+                          <p className="text-[13px] font-black uppercase tracking-[1em] italic text-primary animate-pulse leading-none">Establishing Mesh Sync...</p>
+                          <p className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.5em] italic leading-none">Connecting to Universal Exchange Layer</p>
                       </div>
                   </div>
                 )}
@@ -286,62 +286,62 @@ export default function CollectiveHUD() {
 
            {/* ANALYTICS SIDEBAR */}
            <div className="lg:col-span-4 space-y-16 lg:sticky lg:top-32">
-              <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 backdrop-blur-3xl space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] relative overflow-hidden group hover:border-[#ff6b2b]/30 transition-all shadow-inner">
+              <div className="bg-background border-2 border-border rounded-[5rem] p-12 lg:p-16 backdrop-blur-3xl space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] relative overflow-hidden group hover:border-primary/30 transition-all shadow-inner">
                  <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-110 transition-all duration-1000">
-                    <BrainCircuit size={200} className="text-[#ff6b2b]" />
+                    <BrainCircuit size={200} className="text-primary" />
                  </div>
-                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-white/20 flex items-center gap-6 italic leading-none relative z-10">
-                   <Wifi size={20} className="text-[#ff6b2b] animate-pulse" /> Mesh Consensus
+                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none relative z-10">
+                   <Wifi size={20} className="text-primary animate-pulse" /> Mesh Consensus
                  </h3>
                  <div className="space-y-16 relative z-10">
                     <div className="space-y-6">
                        <div className="flex justify-between items-end pl-2">
-                          <span className="text-[11px] font-black uppercase tracking-[0.5em] text-white/40 italic">Stability resonance</span>
-                          <span className="text-2xl font-black text-[#ff6b2b] italic leading-none">82.4%</span>
+                          <span className="text-[11px] font-black uppercase tracking-[0.5em] text-muted-foreground italic">Stability resonance</span>
+                          <span className="text-2xl font-black text-primary italic leading-none">82.4%</span>
                        </div>
-                       <div className="w-full bg-white/5 h-3 rounded-full overflow-hidden border border-white/5">
-                          <motion.div initial={{ width: 0 }} animate={{ width: '82.4%' }} transition={{ duration: 2 }} className="bg-gradient-to-r from-[#ff6b2b] to-white/40 h-full shadow-[0_0_20px_#ff6b2b]" />
+                       <div className="w-full bg-muted h-3 rounded-full overflow-hidden border border-border">
+                          <motion.div initial={{ width: 0 }} animate={{ width: '82.4%' }} transition={{ duration: 2 }} className="bg-gradient-to-r from-primary to-foreground/40 h-full shadow-[0_0_20px_var(--primary)]" />
                        </div>
                     </div>
                     <div className="space-y-6">
                        <div className="flex justify-between items-end pl-2">
-                          <span className="text-[11px] font-black uppercase tracking-[0.5em] text-white/40 italic">Chaos threshold</span>
-                          <span className="text-2xl font-black text-white/20 italic leading-none">12.1%</span>
+                          <span className="text-[11px] font-black uppercase tracking-[0.5em] text-muted-foreground italic">Chaos threshold</span>
+                          <span className="text-2xl font-black text-muted-foreground italic leading-none">12.1%</span>
                        </div>
-                       <div className="w-full bg-white/5 h-3 rounded-full overflow-hidden border border-white/5">
-                          <motion.div initial={{ width: 0 }} animate={{ width: '12.1%' }} transition={{ duration: 2 }} className="bg-white/10 h-full" />
+                       <div className="w-full bg-muted h-3 rounded-full overflow-hidden border border-border">
+                          <motion.div initial={{ width: 0 }} animate={{ width: '12.1%' }} transition={{ duration: 2 }} className="bg-muted-foreground/30 h-full" />
                        </div>
                     </div>
                  </div>
               </div>
 
-              <div className="bg-[#050505] border-2 border-white/10 rounded-[5rem] p-12 lg:p-16 space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl group">
-                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-white/20 flex items-center gap-6 italic leading-none">
-                   <Zap size={24} className="text-[#ff6b2b] animate-pulse" /> Ideology Pulse
+              <div className="bg-background border-2 border-border rounded-[5rem] p-12 lg:p-16 space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl group">
+                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none">
+                   <Zap size={24} className="text-primary animate-pulse" /> Ideology Pulse
                  </h3>
                  <div className="grid gap-6">
                     {['Sovereignism', 'Digital_Decentralization', 'Abyssal_Logic', 'Omni_Command'].map((tag, i) => (
-                      <div key={i} className="flex items-center justify-between p-8 bg-white/[0.01] border-2 border-white/5 rounded-[2.5rem] group cursor-pointer hover:bg-[#ff6b2b]/5 hover:border-[#ff6b2b]/30 transition-all shadow-xl">
-                         <span className="text-sm font-black text-white/20 group-hover:text-white transition-colors uppercase tracking-[0.4em] italic leading-none">{tag}</span>
-                         <LinkIcon size={20} className="text-white/5 group-hover:text-[#ff6b2b] group-hover:rotate-45 transition-all" />
+                      <div key={i} className="flex items-center justify-between p-8 bg-muted/5 border-2 border-border rounded-[2.5rem] group cursor-pointer hover:bg-primary/5 hover:border-primary/30 transition-all shadow-xl">
+                         <span className="text-sm font-black text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-[0.4em] italic leading-none">{tag}</span>
+                         <LinkIcon size={20} className="text-muted-foreground/30 group-hover:text-primary group-hover:rotate-45 transition-all" />
                       </div>
                     ))}
                  </div>
-                 <div className="pt-10 border-t border-white/5 flex justify-center flex-col items-center gap-6">
-                    <p className="text-[10px] text-white/5 font-black uppercase tracking-[0.6em] italic text-center leading-none">Autonomous clustering active.</p>
+                 <div className="pt-10 border-t border-border flex justify-center flex-col items-center gap-6">
+                    <p className="text-[10px] text-muted-foreground/50 font-black uppercase tracking-[0.6em] italic text-center leading-none">Autonomous clustering active.</p>
                     <div className="flex gap-4">
                         {[0, 1, 2, 3].map(d => (
-                            <motion.div key={d} animate={{ opacity: [0.1, 1, 0.1] }} transition={{ duration: 2, repeat: Infinity, delay: d * 0.5 }} className="h-1.5 w-1.5 rounded-full bg-[#ff6b2b]" />
+                            <motion.div key={d} animate={{ opacity: [0.1, 1, 0.1] }} transition={{ duration: 2, repeat: Infinity, delay: d * 0.5 }} className="h-1.5 w-1.5 rounded-full bg-primary" />
                         ))}
                     </div>
                  </div>
               </div>
 
-              <div className="p-8 md:p-12 border-2 border-[#ff6b2b]/10 bg-[#ff6b2b]/5 responsive-rounded text-center space-y-6 shadow-[0_40px_100px_rgba(255,107,43,0.1)] relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#ff6b2b]/5 to-transparent pointer-events-none" />
-                  <Database size={44} className="mx-auto text-[#ff6b2b] opacity-20" />
-                  <p className="text-[12px] font-black uppercase tracking-[0.5em] text-[#ff6b2b] italic leading-none">Universal Exchange Matrix</p>
-                  <p className="text-[10px] text-white/20 font-black uppercase tracking-[0.3em] leading-relaxed italic">All cognitive shards are permanently anchored in the OVEREIGN_LEDGER_7.0 vault.</p>
+              <div className="p-8 md:p-12 border-2 border-primary/10 bg-primary/5 responsive-rounded text-center space-y-6 shadow-[0_40px_100px_rgba(var(--primary),0.1)] relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+                  <Database size={44} className="mx-auto text-primary opacity-20" />
+                  <p className="text-[12px] font-black uppercase tracking-[0.5em] text-primary italic leading-none">Universal Exchange Matrix</p>
+                  <p className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.3em] leading-relaxed italic">All cognitive shards are permanently anchored in the OVEREIGN_LEDGER_7.0 vault.</p>
               </div>
            </div>
 

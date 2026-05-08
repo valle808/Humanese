@@ -51,8 +51,8 @@
   }
 
   ::selection {
-    background-color: #ff6b2b33;
-    color: #ff6b2b;
+    background-color: hsl(var(--primary))33;
+    color: hsl(var(--primary));
   }
 }
 
@@ -87,12 +87,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 107, 43, 0.15);
+  background: hsl(var(--primary) / 0.15);
   border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 107, 43, 0.4);
+  background: hsl(var(--primary) / 0.4);
 }
 
 /* ── SMOOTH SCROLL ── */
@@ -112,7 +112,7 @@ html {
 
 .wiki-content h1 { @apply text-8xl text-white; }
 .wiki-content h2 { @apply text-5xl text-white/60; }
-.wiki-content h3 { @apply text-3xl text-[#ff6b2b]; }
+.wiki-content h3 { @apply text-3xl text-[hsl(var(--primary))]; }
 
 .wiki-content ul, .wiki-content ol {
   @apply mb-12 ml-12 space-y-6;
@@ -124,23 +124,23 @@ html {
 
 .wiki-content li::before {
   content: '→';
-  @apply absolute -left-10 text-[#ff6b2b] font-black opacity-40;
+  @apply absolute -left-10 text-[hsl(var(--primary))] font-black opacity-40;
 }
 
 .wiki-content a {
-  @apply text-[#ff6b2b] hover:text-white transition-all underline decoration-[#ff6b2b]/20 underline-offset-[12px] decoration-1;
+  @apply text-[hsl(var(--primary))] hover:text-white transition-all underline decoration-[hsl(var(--primary))]/20 underline-offset-[12px] decoration-1;
 }
 
 .wiki-content code {
-  @apply bg-white/[0.03] border-2 border-white/5 text-[#ff6b2b] px-4 py-1.5 rounded-2xl text-[0.8em] font-mono italic shadow-inner;
+  @apply bg-white/[0.03] border-2 border-white/5 text-[hsl(var(--primary))] px-4 py-1.5 rounded-2xl text-[0.8em] font-mono italic shadow-inner;
 }
 
 .wiki-content pre {
-  @apply bg-[#050505] p-12 rounded-[3.5rem] overflow-x-auto mb-16 border-2 border-white/5 shadow-[0_40px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl shadow-inner;
+  @apply bg-[hsl(var(--background))] p-12 rounded-[3.5rem] overflow-x-auto mb-16 border-2 border-white/5 shadow-[0_40px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl shadow-inner;
 }
 
 .wiki-content blockquote {
-  @apply border-l-8 border-[#ff6b2b] pl-16 pr-12 py-12 italic my-20 bg-gradient-to-br from-[#ff6b2b]/10 to-transparent rounded-r-[4rem] text-4xl font-black text-white/90 tracking-tighter uppercase leading-[0.9];
+  @apply border-l-8 border-[hsl(var(--primary))] pl-16 pr-12 py-12 italic my-20 bg-gradient-to-br from-[hsl(var(--primary))]/10 to-transparent rounded-r-[4rem] text-4xl font-black text-white/90 tracking-tighter uppercase leading-[0.9];
 }
 
 .wiki-content table {
@@ -152,12 +152,12 @@ html {
 }
 
 .wiki-content th {
-  @apply bg-white/[0.02] font-black uppercase text-[#ff6b2b] text-left text-[11px] tracking-[0.6em];
+  @apply bg-white/[0.02] font-black uppercase text-[hsl(var(--primary))] text-left text-[11px] tracking-[0.6em];
 }
 
 /* ── CITATION FLAGSHIP ── */
 .wiki-content sup.citation-sup {
-  @apply text-[11px] font-black leading-none ml-2 opacity-20 group-hover:opacity-100 transition-opacity text-[#ff6b2b];
+  @apply text-[11px] font-black leading-none ml-2 opacity-20 group-hover:opacity-100 transition-opacity text-[hsl(var(--primary))];
 }
 
 .wiki-content .citation-link {
@@ -165,7 +165,7 @@ html {
 }
 
 .wiki-content .citation-link .bracket {
-  @apply font-black text-[#ff6b2b]/40;
+  @apply font-black text-[hsl(var(--primary))]/40;
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -174,7 +174,7 @@ html {
 
 @layer utilities {
   .glass-panel {
-    @apply bg-[#050505]/80 backdrop-blur-3xl border-2 border-white/5 shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner;
+    @apply bg-[hsl(var(--background))]/80 backdrop-blur-3xl border-2 border-white/5 shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner;
   }
 
   .omega-title {
@@ -182,7 +182,7 @@ html {
   }
 
   .text-shadow-orange {
-    text-shadow: 0 0 30px rgba(255, 107, 43, 0.5);
+    text-shadow: 0 0 30px hsl(var(--primary) / 0.5);
   }
 
   .animate-pulse-slow {
@@ -195,8 +195,8 @@ html {
   }
 
   .neural-grid {
-    background-image: linear-gradient(rgba(255, 107, 43, 0.03) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255, 107, 43, 0.03) 1px, transparent 1px);
+    background-image: linear-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px), 
+                      linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
     background-size: 80px 80px;
   }
 

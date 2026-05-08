@@ -40,7 +40,7 @@ export function PromoPopup() {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
+        className="fixed inset-0 z-[100] bg-muted/60 backdrop-blur-sm animate-in fade-in duration-300"
         onClick={handleClose}
       />
 
@@ -91,7 +91,7 @@ export function PromoPopup() {
               <Button
                 onClick={handleFollow}
                 size="lg"
-                className="rounded-full bg-black hover:bg-gray-800 text-white px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all"
+                className="rounded-full bg-muted hover:bg-gray-800 text-foreground px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all"
               >
                 Follow @theadistar
               </Button>

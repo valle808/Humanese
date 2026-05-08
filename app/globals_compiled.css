@@ -523,7 +523,7 @@ body {
   --tw-numeric-fraction:  ;
   --tw-ring-inset:  ;
   --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
+  --tw-ring-offset-color: hsl(var(--foreground));
   --tw-ring-color: rgb(59 130 246 / 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
@@ -573,7 +573,7 @@ body {
   --tw-numeric-fraction:  ;
   --tw-ring-inset:  ;
   --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
+  --tw-ring-offset-color: hsl(var(--foreground));
   --tw-ring-color: rgb(59 130 246 / 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
@@ -2200,7 +2200,7 @@ body {
 }
 
 .from-white {
-  --tw-gradient-from: #fff var(--tw-gradient-from-position);
+  --tw-gradient-from: hsl(var(--foreground)) var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
@@ -2253,7 +2253,7 @@ body {
 }
 
 .fill-white {
-  fill: #fff;
+  fill: hsl(var(--foreground));
 }
 
 .stroke-emerald\/50 {
@@ -3769,7 +3769,7 @@ html {
 
 .solana-border {
   --stroke: 1px;
-  --bg-color: #000000;
+  --bg-color: hsl(var(--background));
   --rotation: 0deg;
   border-radius: 12px;
   border: var(--stroke) solid transparent;

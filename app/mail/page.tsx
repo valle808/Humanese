@@ -402,10 +402,10 @@ export default function MailPage() {
                    <ArrowLeft size={24} strokeWidth={2.5} />
                 </button>
                 <div className="flex items-center gap-8">
-                  <button className="flex items-center gap-6 px-12 py-5 bg-foreground text-background dark:bg-white dark:text-black shadow-[0_30px_80px_rgba(var(--primary),0.1)] hover:bg-primary hover:text-primary-foreground hover:shadow-[0_30px_80px_rgba(var(--primary),0.3)] transition-all rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.6em] italic leading-none active:scale-95 group/btn">
+                  <button className="flex items-center gap-6 px-12 py-5 bg-foreground text-background dark:bg-white dark:text-background shadow-[0_30px_80px_rgba(var(--primary),0.1)] hover:bg-primary hover:text-primary-foreground hover:shadow-[0_30px_80px_rgba(var(--primary),0.3)] transition-all rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.6em] italic leading-none active:scale-95 group/btn">
                     <Reply size={20} className="group-hover/btn:-translate-x-1 transition-transform" strokeWidth={3} /> Reply
                   </button>
-                  <button className="flex items-center gap-6 px-12 py-5 bg-muted border-2 border-border hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-black transition-all rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.6em] italic text-muted-foreground leading-none active:scale-95 group/btn">
+                  <button className="flex items-center gap-6 px-12 py-5 bg-muted border-2 border-border hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-background transition-all rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.6em] italic text-muted-foreground leading-none active:scale-95 group/btn">
                     <Forward size={20} className="group-hover/btn:translate-x-1 transition-transform" strokeWidth={3} /> Forward
                   </button>
                 </div>

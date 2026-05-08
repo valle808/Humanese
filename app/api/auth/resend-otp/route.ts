@@ -37,11 +37,11 @@ export async function POST(req: NextRequest) {
       to: email,
       subject: 'New Identity Verification Code',
       html: `
-        <div style="font-family: 'Inter', sans-serif; background: #050505; color: #fff; padding: 40px; border-radius: 20px; border: 1px solid #ff6b2b;">
-          <h1 style="text-transform: uppercase; letter-spacing: 0.2em; italic: true; color: #ff6b2b;">Identity Resynchronization</h1>
+        <div style="font-family: 'Inter', sans-serif; background: hsl(var(--background)); color: hsl(var(--foreground)); padding: 40px; border-radius: 20px; border: 1px solid hsl(var(--primary));">
+          <h1 style="text-transform: uppercase; letter-spacing: 0.2em; italic: true; color: hsl(var(--primary));">Identity Resynchronization</h1>
           <p style="color: #888; font-style: italic;">A new code has been generated for your neural presence.</p>
-          <div style="margin: 40px 0; padding: 30px; background: #111; border: 1px dashed #ff6b2b; text-align: center; border-radius: 15px;">
-            <span style="font-size: 42px; font-weight: 900; letter-spacing: 0.5em; color: #ff6b2b;">${otpCode}</span>
+          <div style="margin: 40px 0; padding: 30px; background: hsl(var(--muted)); border: 1px dashed hsl(var(--primary)); text-align: center; border-radius: 15px;">
+            <span style="font-size: 42px; font-weight: 900; letter-spacing: 0.5em; color: hsl(var(--primary));">${otpCode}</span>
           </div>
           <p style="font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 0.1em;">Transmit this code to verify your neural presence.</p>
         </div>

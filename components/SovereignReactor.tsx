@@ -5,7 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-function ReactorParticles({ count = 5000, color = "#ff6b2b", size = 0.08, speed = 0.06 }) {
+function ReactorParticles({ count = 5000, color = "hsl(var(--primary))", size = 0.08, speed = 0.06 }) {
   const points = useRef<THREE.Points>(null!);
   
   const positions = useMemo(() => {
@@ -48,23 +48,23 @@ function ReactorParticles({ count = 5000, color = "#ff6b2b", size = 0.08, speed 
 
 export function SovereignReactor() {
   return (
-    <div className="w-full h-full bg-[#050505] relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,107,43,0.05)_0%,_transparent_75%)] pointer-events-none" />
+    <div className="w-full h-full bg-background relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_hsl(var(--primary) / 0.05)_0%,_transparent_75%)] pointer-events-none" />
         
         <Canvas camera={{ position: [0, 0, 18], fov: 55 }} gl={{ antialias: false, powerPreference: "high-performance" }}>
-            <color attach="background" args={['#050505']} />
+            <color attach="background" args={['hsl(var(--background))']} />
             {/* FLAGSHIP ORANGE PARTICLES */}
-            <ReactorParticles count={4000} color="#ff6b2b" size={0.08} speed={0.04} />
+            <ReactorParticles count={4000} color="hsl(var(--primary))" size={0.08} speed={0.04} />
             {/* AMBER ACCENT PARTICLES */}
             <ReactorParticles count={2000} color="#ff8c00" size={0.04} speed={-0.03} />
             {/* STARK WHITE CORE PARTICLES */}
-            <ReactorParticles count={800} color="#ffffff" size={0.02} speed={0.01} />
+            <ReactorParticles count={800} color="hsl(var(--foreground))" size={0.02} speed={0.01} />
             
             <ambientLight intensity={0.4} />
-            <pointLight position={[0, 0, 0]} intensity={2} color="#ff6b2b" />
+            <pointLight position={[0, 0, 0]} intensity={2} color="hsl(var(--primary))" />
             
-            <fog attach="fog" args={['#050505', 10, 25]} />
+            <fog attach="fog" args={['hsl(var(--background))', 10, 25]} />
         </Canvas>
     </div>
   );

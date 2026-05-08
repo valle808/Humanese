@@ -64,7 +64,7 @@ export function CoinbaseTelemetry() {
                 {balances.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {balances.map((b) => (
-                            <div key={b.id} className="p-4 rounded-lg bg-white/5 border border-nd-border-light hover:border-nd-highlight-blue transition-colors">
+                            <div key={b.id} className="p-4 rounded-lg bg-muted/10 border border-nd-border-light hover:border-nd-highlight-blue transition-colors">
                                 <span className="nd-body-xs uppercase text-nd-mid-em-text block mb-2">{b.name}</span>
                                 <div className="flex items-end justify-between">
                                     <span className="nd-heading-s font-mono">{b.balance}</span>
@@ -74,7 +74,7 @@ export function CoinbaseTelemetry() {
                         ))}
                     </div>
                 ) : !loading && (
-                    <div className="p-4 rounded border border-nd-border-light bg-black text-center text-nd-mid-em-text nd-body-s font-mono">
+                    <div className="p-4 rounded border border-nd-border-light bg-muted text-center text-nd-mid-em-text nd-body-s font-mono">
                         NO BALANCES DETECTED OR KEYS INVALID
                     </div>
                 )}

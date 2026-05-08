@@ -74,6 +74,7 @@ export const Sidebar = () => {
         { icon: <Home size={24} />, label: 'Neural Core', href: '/', id: 'core' },
         { icon: <Mail size={24} />, label: 'Sovereign Mail', href: '/mail', highlight: true, id: 'mail' },
         { icon: <Gavel size={24} />, label: 'Governance (HIPs)', href: '/governance', id: 'gov' },
+        { icon: <Orbit size={24} />, label: 'Neural Atlas', href: '/atlas', id: 'atlas' },
         { icon: <ActivityIcon size={24} />, label: 'Intelligence HQ', href: '/intelligence', id: 'intel' },
         { icon: <Target size={24} />, label: 'Skill Market', href: '/skill-market', id: 'skills' },
         { icon: <ShieldCheck size={24} />, label: 'Judicial Oversight', href: '/judiciary', id: 'judiciary' },
@@ -106,7 +107,7 @@ export const Sidebar = () => {
                 {/* ── BRAND IDENTITY ── */}
                 <div className="p-8 pt-12 mb-10 flex items-center gap-8 relative z-10">
                     <Link href="/" className="flex items-center gap-8 group">
-                        <div className="min-w-[56px] h-14 bg-black border-2 border-[#ff6b2b]/40 rounded-[1.2rem] shadow-[0_0_40px_rgba(255,107,43,0.2)] flex items-center justify-center font-black text-[#ff6b2b] text-3xl italic group-hover:bg-[#ff6b2b] group-hover:text-black transition-all duration-500 shadow-inner">
+                        <div className="min-w-[56px] h-14 bg-muted border-2 border-primary/40 rounded-[1.2rem] shadow-[0_0_40px_rgba(var(--primary),0.2)] flex items-center justify-center font-black text-primary text-3xl italic group-hover:bg-primary group-hover:text-background transition-all duration-500 shadow-inner">
                             Ω
                         </div>
                         <AnimatePresence mode="wait">
@@ -118,8 +119,8 @@ export const Sidebar = () => {
                                 transition={{ duration: 0.4 }}
                                 className="flex flex-col shrink-0"
                             >
-                                <span className="font-black tracking-tighter text-4xl text-foreground dark:text-white uppercase italic leading-none">OMEGA.</span>
-                                <span className="text-[10px] font-black text-[#ff6b2b]/80 dark:text-[#ff6b2b]/60 uppercase tracking-[0.5em] italic mt-2 leading-none pl-1">v7.0 Registry</span>
+                                <span className="font-black tracking-tighter text-4xl text-foreground dark:text-foreground uppercase italic leading-none">OMEGA.</span>
+                                <span className="text-[10px] font-black text-primary/80 dark:text-primary/60 uppercase tracking-[0.5em] italic mt-2 leading-none pl-1">v7.0 Registry</span>
                             </motion.div>
                         )}
                         </AnimatePresence>
@@ -136,13 +137,19 @@ export const Sidebar = () => {
                                 key={item.id}
                                 href={item.href}
                                 className={`flex items-center gap-8 p-5 rounded-[2.5rem] transition-all group relative overflow-hidden active:scale-95 ${isActive
-                                        ? 'bg-[#ff6b2b]/10 text-foreground dark:text-white shadow-inner border-2 border-[#ff6b2b]/20 hover:bg-[#ff6b2b]/15'
-                                        : 'text-foreground/40 dark:text-white/30 hover:bg-black/5 dark:hover:bg-white/[0.03] hover:text-foreground dark:hover:text-white'
+                                        ? 'bg-primary/10 text-foreground dark:text-foreground shadow-inner border-2 border-primary/20 hover:bg-primary/15'
+                                        : 'text-foreground/40 dark:text-muted-foreground/30 hover:bg-muted/5 dark:hover:bg-muted/10 hover:text-primary dark:hover:text-primary hover:shadow-[0_0_30px_rgba(var(--primary),0.1)]'
                                     }`}
                             >
-                                <div className={`min-w-[28px] transition-all duration-500 ${isActive ? 'text-[#ff6b2b] scale-110 drop-shadow-[0_0_10px_rgba(255,107,43,0.5)]' : 'group-hover:text-[#ff6b2b] group-hover:scale-110'}`}>
+                                {/* Glitch Overlay on Hover */}
+                                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                                <motion.div 
+                                    whileHover={{ x: [0, -2, 2, 0] }}
+                                    transition={{ duration: 0.2, repeat: Infinity }}
+                                    className={`min-w-[28px] transition-all duration-500 relative z-10 ${isActive ? 'text-primary scale-110 drop-shadow-[0_0_15px_rgba(var(--primary),0.6)]' : 'group-hover:text-primary group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(var(--primary),0.4)]'}`}
+                                >
                                     {React.cloneElement(item.icon as React.ReactElement, { strokeWidth: 3 })}
-                                </div>
+                                </motion.div>
                                 <AnimatePresence>
                                 {isExpanded && (
                                     <motion.div 
@@ -150,11 +157,11 @@ export const Sidebar = () => {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -20 }}
                                         transition={{ duration: 0.4 }}
-                                        className="flex flex-col shrink-0"
+                                        className="flex flex-col shrink-0 relative z-10"
                                     >
-                                        <span className={`text-[12px] font-black uppercase tracking-[0.2em] italic leading-none pt-1 ${isActive ? 'text-foreground dark:text-white' : 'text-inherit'}`}>{item.label}</span>
+                                        <span className={`text-[12px] font-black uppercase tracking-[0.2em] italic leading-none pt-1 ${isActive ? 'text-foreground dark:text-foreground' : 'text-inherit'}`}>{item.label}</span>
                                         {item.clearance && (
-                                            <span className="text-[9px] text-[#ff6b2b] font-black uppercase tracking-[0.4em] italic mt-2 leading-none pl-1 animate-pulse">
+                                            <span className="text-[9px] text-primary font-black uppercase tracking-[0.4em] italic mt-2 leading-none pl-1 animate-pulse">
                                                 CLEARANCE_{item.clearance}
                                             </span>
                                         )}
@@ -162,7 +169,7 @@ export const Sidebar = () => {
                                 )}
                                 </AnimatePresence>
                                 {isActive && (
-                                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-8 bg-[#ff6b2b] rounded-r-full shadow-[0_0_20px_#ff6b2b] z-20" />
+                                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-8 bg-primary rounded-r-full shadow-[0_0_20px_hsl(var(--primary))] z-20" />
                                 )}
                             </Link>
                         );
@@ -170,7 +177,7 @@ export const Sidebar = () => {
                 </nav>
 
                 {/* ── FOOTER / STATUS ── */}
-                <div className="p-4 md:p-6 border-t-2 border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.01] space-y-4 relative z-10 mt-auto flex flex-col items-center">
+                <div className="p-4 md:p-6 border-t-2 border-border dark:border-border bg-muted/[0.02] dark:bg-muted/10 space-y-4 relative z-10 mt-auto flex flex-col items-center">
                     
                     {/* User Profile Menu */}
                     <div className="w-full">
@@ -185,11 +192,11 @@ export const Sidebar = () => {
                     {/* Monroe Card */}
                     <Link
                         href="/monroe"
-                        className={`flex items-center p-4 rounded-[2rem] bg-black dark:bg-black group cursor-pointer border-2 border-black/10 dark:border-white/5 hover:border-[#ff6b2b]/40 transition-all w-full text-left relative overflow-hidden shadow-inner active:scale-95 ${
+                        className={`flex items-center p-4 rounded-[2rem] bg-muted dark:bg-muted group cursor-pointer border-2 border-border dark:border-border hover:border-primary/40 transition-all w-full text-left relative overflow-hidden shadow-inner active:scale-95 ${
                             isExpanded ? 'gap-5' : 'justify-center'
                         }`}
                     >
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#ff6b2b] to-[#7f2c14] border-2 border-[#ff6b2b]/40 flex items-center justify-center text-black font-black text-xl uppercase italic shrink-0 group-hover:scale-110 transition-all duration-500 shadow-2xl">
+                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary to-[#7f2c14] border-2 border-primary/40 flex items-center justify-center text-background font-black text-xl uppercase italic shrink-0 group-hover:scale-110 transition-all duration-500 shadow-2xl">
                             M
                         </div>
                         <AnimatePresence>
@@ -201,21 +208,21 @@ export const Sidebar = () => {
                                 transition={{ duration: 0.35 }}
                                 className="flex flex-col overflow-hidden shrink-0"
                             >
-                                <span className="text-[11px] font-black text-white italic tracking-tighter uppercase leading-none whitespace-nowrap">Nexus Monroe.</span>
-                                <span className="text-[9px] text-[#ff6b2b]/80 font-black tracking-[0.4em] uppercase italic mt-1.5 leading-none pl-0.5 animate-pulse whitespace-nowrap">v7.0 Sentinel</span>
+                                <span className="text-[11px] font-black text-foreground italic tracking-tighter uppercase leading-none whitespace-nowrap">Nexus Monroe.</span>
+                                <span className="text-[9px] text-primary/80 font-black tracking-[0.4em] uppercase italic mt-1.5 leading-none pl-0.5 animate-pulse whitespace-nowrap">v7.0 Sentinel</span>
                             </motion.div>
                         )}
                         </AnimatePresence>
                         <div className="absolute top-[-10px] right-[-10px] p-4 opacity-[0.05] group-hover:rotate-12 group-hover:scale-125 transition-all pointer-events-none">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ff6b2b" strokeWidth="2"><path d="m13 2-2 2.5h3L12 7" /><path d="M12 2v10" /><path d="M8.56 2.75c-4.37 1.27-7.39 5.26-7.39 9.96 0 5.52 4.48 10 10 10s10-4.48 10-10c0-4.7-3.02-8.69-7.39-9.96" /></svg>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" strokeWidth="2"><path d="m13 2-2 2.5h3L12 7" /><path d="M12 2v10" /><path d="M8.56 2.75c-4.37 1.27-7.39 5.26-7.39 9.96 0 5.52 4.48 10 10 10s10-4.48 10-10c0-4.7-3.02-8.69-7.39-9.96" /></svg>
                         </div>
                     </Link>
 
                     {/* Cluster status dot */}
                     <div className={`flex items-center gap-3 px-2 ${isExpanded ? 'justify-between' : 'justify-center'}`}>
                         {isExpanded && <span className="text-[10px] font-black uppercase tracking-[0.4em] italic text-foreground/30">Cluster Status_</span>}
-                        <div className="flex items-center gap-2 text-[#ff6b2b]">
-                            <div className="w-2 h-2 rounded-full bg-[#ff6b2b] animate-ping shrink-0" />
+                        <div className="flex items-center gap-2 text-primary">
+                            <div className="w-2 h-2 rounded-full bg-primary animate-ping shrink-0" />
                             {isExpanded && <span className="text-[10px] font-black uppercase tracking-[0.3em] italic animate-pulse">Stable</span>}
                         </div>
                     </div>
@@ -228,7 +235,7 @@ export const Sidebar = () => {
                 initial={false}
                 animate={{ left: isExpanded ? 'calc(20rem - 1.25rem)' : 'calc(7rem - 1.25rem)' }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-14 z-[200] bg-background border-2 border-border rounded-full h-10 w-10 items-center justify-center text-foreground/30 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/50 hover:scale-110 transition-colors shadow-2xl active:scale-95 hidden md:flex"
+                className="fixed top-14 z-[200] bg-background border-2 border-border rounded-full h-10 w-10 items-center justify-center text-foreground/30 hover:text-primary hover:border-primary/50 hover:scale-110 transition-colors shadow-2xl active:scale-95 hidden md:flex"
                 aria-label={isExpanded ? 'Collapse Sidebar' : 'Expand Sidebar'}
             >
                 {isExpanded ? <ChevronLeft size={20} strokeWidth={3} /> : <ChevronRight size={20} strokeWidth={3} />}
@@ -243,7 +250,7 @@ export const Sidebar = () => {
                             <Link
                                 key={item.id}
                                 href={item.href}
-                                className={`transition-all p-4 rounded-[2rem] active:scale-90 ${isActive ? 'text-[#ff6b2b] bg-[#ff6b2b]/10 shadow-[0_0_20px_rgba(255,107,43,0.3)] border-2 border-[#ff6b2b]/20' : 'text-foreground/40 dark:text-white/30 hover:text-foreground dark:hover:text-white'}`}
+                                className={`transition-all p-4 rounded-[2rem] active:scale-90 ${isActive ? 'text-primary bg-primary/10 shadow-[0_0_20px_rgba(var(--primary),0.3)] border-2 border-primary/20' : 'text-foreground/40 dark:text-muted-foreground/30 hover:text-foreground dark:hover:text-foreground'}`}
                                 aria-label={item.label}
                             >
                                 {React.cloneElement(item.icon as React.ReactElement, { size: 24, strokeWidth: 3 })}

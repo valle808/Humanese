@@ -1,22 +1,22 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Cache for 60 seconds to prevent DB connection exhaustion
 
 export async function GET() {
   try {
-    // Fetch all relevant entities from the Sovereign database
-    const [users, agents, knowledge] = await Promise.all([
-      prisma.user.findMany({
-        select: { id: true, name: true, email: true, xp: true, creationDate: true }
-      }),
-      prisma.agent.findMany({
-        select: { id: true, name: true, type: true, status: true, userId: true, createdAt: true }
-      }),
-      prisma.sovereignKnowledge.findMany({
-        select: { id: true, title: true, sourceName: true, agentId: true, ingestedAt: true }
-      })
-    ]);
+    // Fetch all relevant entities from the Sovereign database sequentially to avoid max connection limits
+    const users = await prisma.user.findMany({
+      select: { id: true, name: true, email: true, xp: true, creationDate: true }
+    });
+    
+    const agents = await prisma.agent.findMany({
+      select: { id: true, name: true, type: true, status: true, userId: true, createdAt: true }
+    });
+    
+    const knowledge = await prisma.sovereignKnowledge.findMany({
+      select: { id: true, title: true, sourceName: true, agentId: true, ingestedAt: true }
+    });
 
     const nodes: any[] = [];
     const links: any[] = [];

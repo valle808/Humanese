@@ -96,10 +96,10 @@ export function CommandPortal() {
             <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
 
             {/* ── SEARCH INPUT ── */}
-            <div className="flex items-center p-12 lg:px-16 gap-10 border-b-2 border-white/5 relative group transition-all">
+            <div className="flex items-center p-12 lg:px-16 gap-10 border-b-2 border-border relative group transition-all">
               <div className="relative">
-                 <div className="absolute inset-0 bg-[#ff6b2b]/20 blur-[30px] rounded-full group-focus-within:animate-pulse" />
-                 <Search className="relative w-12 h-12 text-[#ff6b2b] transition-all group-focus-within:scale-110" strokeWidth={3} />
+                 <div className="absolute inset-0 bg-primary/20 blur-[30px] rounded-full group-focus-within:animate-pulse" />
+                 <Search className="relative w-12 h-12 text-primary transition-all group-focus-within:scale-110" strokeWidth={3} />
               </div>
               <input
                 ref={inputRef}
@@ -107,21 +107,21 @@ export function CommandPortal() {
                 onChange={(e) => setQuery(e.target.value)}
                 autoFocus
                 placeholder="Access OMEGA Registry..."
-                className="flex-1 bg-transparent outline-none text-4xl font-black italic tracking-tighter uppercase text-white placeholder:text-white/5 leading-none h-16 pt-2"
+                className="flex-1 bg-transparent outline-none text-4xl font-black italic tracking-tighter uppercase text-foreground placeholder:text-muted-foreground/5 leading-none h-16 pt-2"
               />
-              <div className="flex items-center gap-6 px-8 py-4 bg-white/[0.03] border-2 border-white/5 rounded-[1.5rem] shadow-inner shrink-0 scale-90 md:scale-100">
-                <Command className="w-4 h-4 text-white/10" strokeWidth={3} />
-                <span className="text-[14px] font-black text-white/20 italic leading-none pt-1">K</span>
+              <div className="flex items-center gap-6 px-8 py-4 bg-muted/10 border-2 border-border rounded-[1.5rem] shadow-inner shrink-0 scale-90 md:scale-100">
+                <Command className="w-4 h-4 text-muted-foreground/10" strokeWidth={3} />
+                <span className="text-[14px] font-black text-muted-foreground/20 italic leading-none pt-1">K</span>
               </div>
             </div>
 
             {/* ── RESULTS LIST ── */}
             <div className="flex-1 max-h-[60vh] overflow-y-auto custom-scrollbar p-10 lg:px-16 space-y-10">
               <div className="px-6 flex items-center justify-between">
-                <span className="text-[12px] font-black uppercase tracking-[0.8em] text-white/5 italic leading-none pl-1">Global_Cognition_Nodes</span>
+                <span className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/5 italic leading-none pl-1">Global_Cognition_Nodes</span>
                 <div className="flex items-center gap-4">
-                   <div className="w-1.5 h-1.5 rounded-full bg-[#ff6b2b] animate-ping" />
-                   <span className="text-[11px] font-black text-[#ff6b2b]/40 uppercase tracking-[0.4em] italic leading-none">Syncing...</span>
+                   <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+                   <span className="text-[11px] font-black text-primary/40 uppercase tracking-[0.4em] italic leading-none">Syncing...</span>
                 </div>
               </div>
               
@@ -134,44 +134,44 @@ export function CommandPortal() {
                         router.push(cmd.path);
                         setIsOpen(false);
                       }}
-                      className="w-full flex items-center justify-between px-10 py-8 rounded-[2.5rem] bg-black border-2 border-white/5 hover:border-[#ff6b2b]/40 hover:bg-[#ff6b2b]/5 transition-all duration-500 group group/btn shadow-inner active:scale-95"
+                      className="w-full flex items-center justify-between px-10 py-8 rounded-[2.5rem] bg-muted border-2 border-border hover:border-primary/40 hover:bg-primary/5 transition-all duration-500 group group/btn shadow-inner active:scale-95"
                     >
                       <div className="flex items-center gap-8">
-                        <div className="w-16 h-16 bg-white/[0.02] border-2 border-white/5 rounded-2xl flex items-center justify-center text-white/10 group-hover/btn:text-[#ff6b2b] group-hover/btn:border-[#ff6b2b]/40 transition-all shadow-inner">
+                        <div className="w-16 h-16 bg-muted/10 border-2 border-border rounded-2xl flex items-center justify-center text-muted-foreground/10 group-hover/btn:text-primary group-hover/btn:border-primary/40 transition-all shadow-inner">
                             <cmd.icon size={32} strokeWidth={2.5} />
                         </div>
-                        <span className="text-3xl font-black uppercase italic tracking-tighter text-white/20 group-hover/btn:text-white transition-all leading-none pt-2">{cmd.name}</span>
+                        <span className="text-3xl font-black uppercase italic tracking-tighter text-muted-foreground/20 group-hover/btn:text-foreground transition-all leading-none pt-2">{cmd.name}</span>
                       </div>
                       <div className="flex items-center gap-6">
-                        <div className="text-[12px] font-black text-white/5 bg-white/5 px-6 py-3 rounded-xl group-hover/btn:text-[#ff6b2b] group-hover/btn:bg-[#ff6b2b]/10 transition-all uppercase italic leading-none pt-1 border border-transparent group-hover/btn:border-[#ff6b2b]/20">
+                        <div className="text-[12px] font-black text-muted-foreground/5 bg-muted/10 px-6 py-3 rounded-xl group-hover/btn:text-primary group-hover/btn:bg-primary/10 transition-all uppercase italic leading-none pt-1 border border-transparent group-hover/btn:border-primary/20">
                            ALT + {cmd.shortcut}
                         </div>
-                        <ChevronRight size={24} className="text-white/5 group-hover/btn:text-white/20 group-hover/btn:translate-x-3 transition-all" strokeWidth={3} />
+                        <ChevronRight size={24} className="text-muted-foreground/5 group-hover/btn:text-muted-foreground/20 group-hover/btn:translate-x-3 transition-all" strokeWidth={3} />
                       </div>
                     </button>
                   ))
                 ) : (
                   <div className="py-40 text-center space-y-12">
                      <div className="relative inline-block">
-                        <Terminal size={100} className="mx-auto text-white/5" strokeWidth={1} />
-                        <div className="absolute inset-0 bg-[#ff6b2b]/5 blur-[40px] rounded-full animate-pulse" />
+                        <Terminal size={100} className="mx-auto text-muted-foreground/5" strokeWidth={1} />
+                        <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                      </div>
-                     <p className="text-[12px] font-black uppercase tracking-[1em] italic leading-none pl-4 text-white/5">No resonance clusters found for query</p>
+                     <p className="text-[12px] font-black uppercase tracking-[1em] italic leading-none pl-4 text-muted-foreground/5">No resonance clusters found for query</p>
                   </div>
                 )}
               </div>
             </div>
 
             {/* ── FOOTER ── */}
-            <div className="px-12 lg:px-16 py-8 bg-white/[0.02] border-t-2 border-white/5 flex justify-between items-center text-[12px] font-black uppercase tracking-[0.6em] text-white/5 italic">
+            <div className="px-12 lg:px-16 py-8 bg-muted/10 border-t-2 border-border flex justify-between items-center text-[12px] font-black uppercase tracking-[0.6em] text-muted-foreground/5 italic">
               <div className="flex items-center gap-6 group">
-                 <Zap size={20} className="text-[#ff6b2b]/40 group-hover:text-[#ff6b2b] transition-colors" strokeWidth={3} />
-                 <span className="group-hover:text-white/20 transition-colors">Access levels verified_</span>
+                 <Zap size={20} className="text-primary/40 group-hover:text-primary transition-colors" strokeWidth={3} />
+                 <span className="group-hover:text-muted-foreground/20 transition-colors">Access levels verified_</span>
               </div>
               <div className="flex items-center gap-10">
-                 <span className="text-white/20 font-black">{filteredCommands.length} Shards Loaded_</span>
-                 <div className="flex items-center gap-4 text-white/40">
-                    <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-white/20">ESC</span> to Abort_
+                 <span className="text-muted-foreground/20 font-black">{filteredCommands.length} Shards Loaded_</span>
+                 <div className="flex items-center gap-4 text-muted-foreground/40">
+                    <span className="px-3 py-1 bg-muted/10 border border-border rounded-lg text-muted-foreground/20">ESC</span> to Abort_
                  </div>
               </div>
             </div>
@@ -181,7 +181,7 @@ export function CommandPortal() {
 
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 107, 43, 0.15); border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.15); border-radius: 20px; }
       `}</style>
     </AnimatePresence>
   );

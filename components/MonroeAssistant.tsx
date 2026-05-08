@@ -249,7 +249,7 @@ export function MonroeAssistant() {
                             setMessages((prev) => [
                                 ...prev,
                                 {
-                                    text: `<span style="color:#ff6b2b">➤ Step ${idx + 1}:</span> ${task.title}`,
+                                    text: `<span style="color:hsl(var(--primary))">➤ Step ${idx + 1}:</span> ${task.title}`,
                                     role: "bot",
                                 },
                             ]);
@@ -367,16 +367,16 @@ export function MonroeAssistant() {
     };
 
     return (
-        <div className="fixed bottom-10 right-10 z-[10000] font-sans selection:bg-[#ff6b2b]/40 selection:text-white">
+        <div className="fixed bottom-10 right-10 z-[10000] font-sans selection:bg-primary/40 selection:text-foreground">
             {/* ── TRIGGER BUTTON ── */}
             <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleChat}
                 aria-label="Toggle Monroe OMNI Assistant"
-                className="relative h-20 w-20 bg-black border-2 border-white/10 rounded-full shadow-[0_0_50px_rgba(255,107,43,0.3)] transition-all flex items-center justify-center overflow-hidden group"
+                className="relative h-20 w-20 bg-background border-2 border-border rounded-full shadow-[0_0_50px_rgba(var(--primary),0.3)] transition-all flex items-center justify-center overflow-hidden group"
             >
-                <div className="absolute inset-0 bg-[#ff6b2b]/5 group-hover:bg-[#ff6b2b]/15 transition-all duration-1000" />
+                <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/15 transition-all duration-1000" />
                 <canvas
                     ref={canvasRef}
                     width="140"
@@ -385,7 +385,7 @@ export function MonroeAssistant() {
                 />
                 <Sparkles 
                     size={32} 
-                    className={`text-white transition-opacity duration-500 z-20 ${moodIntensity > 0.4 ? "opacity-0" : "opacity-30 group-hover:opacity-100"}`}
+                    className={`text-foreground transition-opacity duration-500 z-20 ${moodIntensity > 0.4 ? "opacity-0" : "opacity-30 group-hover:opacity-100"}`}
                     strokeWidth={2.5}
                 />
             </motion.button>
@@ -398,21 +398,21 @@ export function MonroeAssistant() {
                     animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, scale: 0.9, y: 40, filter: 'blur(20px)' }}
                     transition={{ duration: 0.5, ease: "circOut" }}
-                    className="absolute bottom-24 right-0 w-[450px] h-[650px] bg-[#050505] border-2 border-white/10 rounded-[3rem] flex flex-col shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner backdrop-blur-3xl overflow-hidden z-50"
+                    className="absolute bottom-24 right-0 w-[450px] h-[650px] bg-background border-2 border-border rounded-[3rem] flex flex-col shadow-2xl shadow-inner backdrop-blur-3xl overflow-hidden z-50"
                 >
-                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none dark:opacity-[0.05]" />
                     
                     {/* Header */}
-                    <div className="relative p-10 flex items-center justify-between border-b-2 border-white/5 bg-white/[0.02]">
+                    <div className="relative p-10 flex items-center justify-between border-b-2 border-border bg-muted/10">
                         <div className="flex items-center gap-6">
-                            <div className="relative h-14 w-14 rounded-2xl bg-black border-2 border-[#ff6b2b]/40 flex items-center justify-center shadow-inner">
-                                <Brain className="w-8 h-8 text-[#ff6b2b] animate-pulse" strokeWidth={2.5} />
-                                <div className={`absolute -top-1 -right-1 h-4 w-4 rounded-full border-2 border-black transition-colors ${isTyping ? "bg-white animate-pulse" : "bg-[#ff6b2b]"}`} />
+                            <div className="relative h-14 w-14 rounded-2xl bg-background border-2 border-primary/40 flex items-center justify-center shadow-inner">
+                                <Brain className="w-8 h-8 text-primary animate-pulse" strokeWidth={2.5} />
+                                <div className={`absolute -top-1 -right-1 h-4 w-4 rounded-full border-2 border-background transition-colors ${isTyping ? "bg-foreground animate-pulse" : "bg-primary"}`} />
                             </div>
                             <div className="space-y-1">
-                                <span className="text-2xl font-black text-white italic tracking-tighter uppercase leading-none">Monroe.</span>
+                                <span className="text-2xl font-black text-foreground italic tracking-tighter uppercase leading-none">Monroe.</span>
                                 <div className="flex items-center gap-3">
-                                   <div className={`text-[10px] font-black uppercase tracking-[0.4em] italic leading-none flex items-center gap-3 ${isTyping ? "text-white animate-pulse" : "text-[#ff6b2b]/60"}`}>
+                                   <div className={`text-[10px] font-black uppercase tracking-[0.4em] italic leading-none flex items-center gap-3 ${isTyping ? "text-foreground animate-pulse" : "text-primary/60"}`}>
                                        {isTyping ? "PROCESSING_NEURAL_BUS" : "Sovereign_Omni_Intel"}
                                    </div>
                                 </div>
@@ -422,14 +422,14 @@ export function MonroeAssistant() {
                             <button
                                 onClick={() => downloadSession(messages)}
                                 title="Export Neural Log (MD)"
-                                className="text-white/10 hover:text-[#ff6b2b] transition-all p-3 bg-white/5 border border-white/10 rounded-xl hover:scale-110"
+                                className="text-muted-foreground hover:text-primary transition-all p-3 bg-muted/30 border border-border rounded-xl hover:scale-110"
                             >
                                 <Download className="w-5 h-5" strokeWidth={3} />
                             </button>
                             <button
                                 onClick={toggleChat}
                                 aria-label="Abort Interaction"
-                                className="text-white/10 hover:text-[#ff6b2b] transition-all p-3 bg-white/5 border border-white/10 rounded-xl hover:scale-110"
+                                className="text-muted-foreground hover:text-primary transition-all p-3 bg-muted/30 border border-border rounded-xl hover:scale-110"
                             >
                                 <X className="w-5 h-5" strokeWidth={3} />
                             </button>
@@ -447,8 +447,8 @@ export function MonroeAssistant() {
                             >
                                 <div
                                     className={`max-w-[90%] px-8 py-5 rounded-[2.5rem] text-lg leading-relaxed shadow-inner ${msg.role === "user"
-                                        ? "bg-[#ff6b2b] text-black font-black italic tracking-tight rounded-br-lg"
-                                        : `bg-white/[0.03] border-2 border-white/5 text-white/40 italic font-light tracking-tight rounded-bl-lg backdrop-blur-3xl group ${msg.isSovereign ? "border-[#ff6b2b]/40 bg-[#ff6b2b]/5" : ""}`
+                                        ? "bg-primary text-primary-foreground font-black italic tracking-tight rounded-br-lg"
+                                        : `bg-muted/10 border-2 border-border text-foreground/80 italic font-light tracking-tight rounded-bl-lg backdrop-blur-3xl group ${msg.isSovereign ? "border-primary/40 bg-primary/5" : ""}`
                                         }`}
                                     dangerouslySetInnerHTML={{
                                         __html: msg.text.replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\*(.*?)\*/g, "<em>$1</em>"),
@@ -459,11 +459,11 @@ export function MonroeAssistant() {
 
                         {isTyping && (
                             <div className="flex justify-start">
-                                <div className="bg-white/5 border-2 border-white/5 rounded-[2.5rem] rounded-bl-lg px-8 py-5">
+                                <div className="bg-muted/10 border-2 border-border rounded-[2.5rem] rounded-bl-lg px-8 py-5">
                                     <div className="flex gap-2 items-center">
-                                        <div className="w-2 h-2 bg-[#ff6b2b] rounded-full animate-bounce [animation-delay:0ms]" />
-                                        <div className="w-2 h-2 bg-[#ff6b2b] rounded-full animate-bounce [animation-delay:150ms]" />
-                                        <div className="w-2 h-2 bg-[#ff6b2b] rounded-full animate-bounce [animation-delay:300ms]" />
+                                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0ms]" />
+                                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:150ms]" />
+                                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:300ms]" />
                                     </div>
                                 </div>
                             </div>
@@ -473,7 +473,7 @@ export function MonroeAssistant() {
                     </div>
 
                     {/* Footer / Input */}
-                    <div className="relative p-10 border-t-2 border-white/5 space-y-8 bg-white/[0.01]">
+                    <div className="relative p-10 border-t-2 border-border space-y-8 bg-muted/5">
                         {/* Quick Prompts */}
                         {messages.length <= 1 && !isTyping && (
                             <div className="flex flex-wrap gap-3 pb-2">
@@ -484,7 +484,7 @@ export function MonroeAssistant() {
                                             setInputValue(chip);
                                             setTimeout(() => handleSend(), 50);
                                         }}
-                                        className="text-[10px] px-6 py-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white/20 hover:text-white hover:border-[#ff6b2b] hover:bg-[#ff6b2b]/10 transition-all font-black uppercase tracking-[0.4em] italic active:scale-95 leading-none"
+                                        className="text-[10px] px-6 py-2.5 rounded-full bg-muted/10 border border-border text-muted-foreground hover:text-foreground hover:border-primary hover:bg-primary/10 transition-all font-black uppercase tracking-[0.4em] italic active:scale-95 leading-none"
                                     >
                                         {chip}
                                     </button>
@@ -504,16 +504,16 @@ export function MonroeAssistant() {
                                     onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
                                     placeholder="Talk to Monroe..."
                                     disabled={isTyping}
-                                    className="w-full bg-black border-2 border-white/5 rounded-[2rem] px-8 py-5 text-xl text-white outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all placeholder:text-white/5 disabled:opacity-50 italic font-light shadow-inner"
+                                    className="w-full bg-background border-2 border-border rounded-[2rem] px-8 py-5 text-xl text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 transition-all placeholder:text-muted-foreground/30 disabled:opacity-50 italic font-light shadow-inner"
                                 />
-                                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-white/5 group-focus-within:text-[#ff6b2b] transition-all">
+                                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-all">
                                    <Terminal size={18} strokeWidth={3} />
                                 </div>
                             </div>
                             <Button
                                 onClick={handleSend}
                                 disabled={isTyping || !inputValue.trim()}
-                                className="h-[68px] w-[68px] bg-[#ff6b2b] hover:bg-[#ff6b2b]/80 text-black rounded-full shadow-[0_20px_40px_rgba(255,107,43,0.3)] transition-all hover:scale-105 active:scale-95"
+                                className="h-[68px] w-[68px] bg-primary hover:bg-primary/80 text-primary-foreground rounded-full shadow-[0_20px_40px_rgba(var(--primary),0.3)] transition-all hover:scale-105 active:scale-95 border-0"
                                 aria-label="Send Directive"
                             >
                                 <Send className="w-6 h-6" strokeWidth={3} />
@@ -526,7 +526,7 @@ export function MonroeAssistant() {
 
             <style jsx global>{`
                 .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 107, 43, 0.15); border-radius: 20px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.15); border-radius: 20px; }
             `}</style>
         </div>
     );

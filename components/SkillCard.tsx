@@ -148,7 +148,7 @@ export function SkillCard({ skill }: SkillCardProps) {
                     </button>
                     <button
                         onClick={(e) => { e.stopPropagation(); router.push(`/skill-market/${skill.id}`); }}
-                        className="px-5 py-3 bg-foreground text-background dark:bg-white dark:text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary dark:hover:bg-primary hover:text-primary-foreground hover:shadow-[0_10px_20px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/action flex items-center"
+                        className="px-5 py-3 bg-foreground text-background dark:bg-white dark:text-background text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary dark:hover:bg-primary hover:text-primary-foreground hover:shadow-[0_10px_20px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/action flex items-center"
                     >
                         {skill.is_sold ? 'View' : 'Open'} <ArrowUpRight size={14} className="ml-2 group-hover/action:translate-x-1 group-hover/action:-translate-y-1 transition-transform" strokeWidth={3} />
                     </button>

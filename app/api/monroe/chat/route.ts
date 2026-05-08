@@ -76,7 +76,7 @@ async function generate_scientific_image(prompt: string) {
     // Point to our own proxy endpoint so the browser loads the image cleanly
     const proxyUrl = `/api/monroe/image-proxy?prompt=${encodeURIComponent(prompt)}&seed=${seed}`;
     // Return ONLY the image HTML — no trailing text or captions whatsoever
-    return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.4); background: rgba(0,0,0,0.3); box-shadow: 0 10px 40px rgba(255,107,43,0.15);">
+    return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid hsl(var(--primary) / 0.4); background: rgba(0,0,0,0.3); box-shadow: 0 10px 40px hsl(var(--primary) / 0.15);">
         <img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="Monroe Neural Synthesis" loading="lazy" />
     </div>`;
 }
@@ -86,13 +86,13 @@ async function generate_video(prompt: string) {
     console.log(`[TOOL] Executing Video Generation for: ${prompt}`);
     // Since video proxy APIs are heavy and often rate-limited, we return an embedded dynamic sci-fi loop representing the concept
     // You could replace the source with a direct Sora/Luma endpoint in the future.
-    return `<div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); margin: 10px 0;"><video src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-loop-20708-large.mp4" controls autoplay loop style="width: 100%; display: block;"></video></div>`;
+    return `<div style="border-radius: 12px; overflow: hidden; border: 1px solid hsl(var(--primary) / 0.3); margin: 10px 0;"><video src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-loop-20708-large.mp4" controls autoplay loop style="width: 100%; display: block;"></video></div>`;
 }
 
 async function generate_audio(prompt: string) {
     console.log(`[TOOL] Executing Audio Generation for: ${prompt}`);
     // Proxy TTS or return a dynamic audio interface
-    return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0;"><strong>Audio Synthesis</strong><audio src="https://assets.mixkit.co/sfx/preview/mixkit-futuristic-robotic-voice-sweep-2544.mp3" controls style="width: 100%; margin-top: 10px;"></audio></div>`;
+    return `<div style="padding: 15px; border-radius: 12px; border: 1px solid hsl(var(--primary) / 0.3); background: hsl(var(--primary) / 0.05); margin: 10px 0;"><strong>Audio Synthesis</strong><audio src="https://assets.mixkit.co/sfx/preview/mixkit-futuristic-robotic-voice-sweep-2544.mp3" controls style="width: 100%; margin-top: 10px;"></audio></div>`;
 }
 
 async function generate_file(filename: string, content: string, historyJson: string = "[]") {
@@ -113,28 +113,28 @@ async function generate_file(filename: string, content: string, historyJson: str
         let inlinePreview = "";
 
         if (lowerName.endsWith('.pdf')) {
-            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); background:#000; height:420px; display:flex; align-items:center; justify-content:center; color:#ff6b2b; font-family:monospace; font-size:13px;">📄 PDF ready — click <strong style="margin:0 4px;">Download File</strong> to view it in your browser or save it.</div>`;
+            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid hsl(var(--primary) / 0.3); background:hsl(var(--background)); height:420px; display:flex; align-items:center; justify-content:center; color:hsl(var(--primary)); font-family:monospace; font-size:13px;">📄 PDF ready — click <strong style="margin:0 4px;">Download File</strong> to view it in your browser or save it.</div>`;
         } else if (lowerName.endsWith('.mp4') || lowerName.endsWith('.webm')) {
-            inlinePreview = `<div style="margin-top:15px; border-radius:8px; overflow:hidden; border:1px solid rgba(255,107,43,0.3); padding:10px; background:rgba(255,107,43,0.05); color:#ff6b2b; font-family:monospace; font-size:13px;">🎬 Video file ready — click <strong>Download File</strong> to save.</div>`;
+            inlinePreview = `<div style="margin-top:15px; border-radius:8px; overflow:hidden; border:1px solid hsl(var(--primary) / 0.3); padding:10px; background:hsl(var(--primary) / 0.05); color:hsl(var(--primary)); font-family:monospace; font-size:13px;">🎬 Video file ready — click <strong>Download File</strong> to save.</div>`;
         } else if (lowerName.endsWith('.mp3') || lowerName.endsWith('.wav')) {
-            inlinePreview = `<div style="margin-top:15px; border-radius:8px; overflow:hidden; border:1px solid rgba(255,107,43,0.3); padding:10px; background:rgba(255,107,43,0.05); color:#ff6b2b; font-family:monospace; font-size:13px;">🎵 Audio file ready — click <strong>Download File</strong> to save.</div>`;
+            inlinePreview = `<div style="margin-top:15px; border-radius:8px; overflow:hidden; border:1px solid hsl(var(--primary) / 0.3); padding:10px; background:hsl(var(--primary) / 0.05); color:hsl(var(--primary)); font-family:monospace; font-size:13px;">🎵 Audio file ready — click <strong>Download File</strong> to save.</div>`;
         } else {
             const safeContent = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow-y: auto; max-height: 350px; border: 1px solid rgba(255,107,43,0.3); background: #0d0d0d; padding: 15px;"><pre style="margin: 0; font-family: monospace; font-size: 12px; color: #a5d6ff; white-space: pre-wrap; word-wrap: break-word;"><code>${safeContent}</code></pre></div>`;
+            inlinePreview = `<div style="margin-top: 15px; border-radius: 8px; overflow-y: auto; max-height: 350px; border: 1px solid hsl(var(--primary) / 0.3); background: #0d0d0d; padding: 15px;"><pre style="margin: 0; font-family: monospace; font-size: 12px; color: #a5d6ff; white-space: pre-wrap; word-wrap: break-word;"><code>${safeContent}</code></pre></div>`;
         }
 
         // Escape </textarea> so it doesn't prematurely close the hidden textarea
         const safeContentForTextarea = content.replace(/<\/textarea>/ig, '&lt;/textarea&gt;');
         const safeFilename = filename.replace(/"/g, '&quot;');
 
-        return `<div style="padding: 15px; border-radius: 12px; border: 1px solid rgba(255,107,43,0.3); background: rgba(255,107,43,0.05); margin: 10px 0;">
+        return `<div style="padding: 15px; border-radius: 12px; border: 1px solid hsl(var(--primary) / 0.3); background: hsl(var(--primary) / 0.05); margin: 10px 0;">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
                 <div style="font-family:monospace;"><strong>📄 File Generated:</strong> <code>${filename}</code></div>
                 <form method="POST" action="/api/monroe/file-generator" target="_blank" style="margin: 0; padding: 0;">
                     <input type="hidden" name="filename" value="${safeFilename}" />
                     <textarea name="content" style="display:none;">${safeContentForTextarea}</textarea>
                     <textarea name="history" style="display:none;">${historyJson.replace(/<\/textarea>/ig, '&lt;/textarea&gt;')}</textarea>
-                    <button type="submit" style="background: #ff6b2b; color: #fff; padding: 8px 16px; border-radius: 8px; border: none; text-decoration: none; font-size: 13px; font-weight: bold; display: inline-block; letter-spacing:0.5px; cursor: pointer; font-family: inherit;">⬇ Download File</button>
+                    <button type="submit" style="background: hsl(var(--primary)); color: hsl(var(--foreground)); padding: 8px 16px; border-radius: 8px; border: none; text-decoration: none; font-size: 13px; font-weight: bold; display: inline-block; letter-spacing:0.5px; cursor: pointer; font-family: inherit;">⬇ Download File</button>
                 </form>
             </div>
             ${inlinePreview}
@@ -596,7 +596,7 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou
                        content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
                            const seed = Math.floor(Math.random() * 1000000);
                            const proxyUrl = `/api/monroe/image-proxy?prompt=${encodeURIComponent(alt)}&seed=${seed}`;
-                           return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,107,43,0.3); background: rgba(0,0,0,0.2);"><img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="${alt}" loading="lazy" /></div>`;
+                           return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid hsl(var(--primary) / 0.3); background: rgba(0,0,0,0.2);"><img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="${alt}" loading="lazy" /></div>`;
                        });
                     }
                     

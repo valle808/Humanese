@@ -30,12 +30,12 @@ export function BrandShader({ size = 'large' }: BrandShaderProps) {
     ? { height: '50px', width: '50px' }
     : { height: '320px', width: '480px' };
 
-  const backgroundColor = isDark ? '#000000' : '#FFFFFF';
+  const backgroundColor = isDark ? 'hsl(var(--background))' : '#FFFFFF';
 
   return (
     <ColorPanels
       // FLAGSHIP INTENSE ORANGE PALETTE
-      colors={['#ff6b2b', '#ff4500', '#ff8c00', '#ff6b2b', '#e65100', '#ff6b2b']}
+      colors={['hsl(var(--primary))', '#ff4500', '#ff8c00', 'hsl(var(--primary))', '#e65100', 'hsl(var(--primary))']}
       colorBack="#00000000"
       speed={0.4}
       scale={0.9}

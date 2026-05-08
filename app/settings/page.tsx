@@ -272,7 +272,7 @@ export default function SettingsPage() {
                 <Link href="/auth/recover" className="px-10 py-6 bg-muted border-2 border-border rounded-[2rem] text-[11px] font-black uppercase tracking-[0.6em] hover:border-primary/40 hover:text-primary transition-all italic text-center leading-none shadow-sm shadow-inner active:scale-95">
                   Reveal Phrase
                 </Link>
-                <button onClick={() => { localStorage.removeItem('humanese_session'); window.location.href = '/auth'; }} className="px-10 py-6 bg-red-500/10 border-2 border-red-500/20 text-red-500 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.8em] hover:bg-red-500 hover:text-white transition-all italic flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner border-red-500/20">
+                <button onClick={() => { localStorage.removeItem('humanese_session'); window.location.href = '/auth'; }} className="px-10 py-6 bg-red-500/10 border-2 border-red-500/20 text-red-500 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.8em] hover:bg-red-500 hover:text-foreground transition-all italic flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner border-red-500/20">
                   <LogOut size={20} strokeWidth={2.5} /> Disconnect
                 </button>
               </div>

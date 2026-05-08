@@ -41,13 +41,13 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
 
   const getNodeColor = (node: any) => {
     const colors: Record<number, string> = {
-      1: '#ff6b2b', // Flagship Intense Orange
+      1: 'hsl(var(--primary))', // Flagship Intense Orange
       2: '#ff8c00', // Deep Orange
       3: '#ff4500', // Flame
       4: '#7f2c14', // Burnt Amber
-      5: '#ffffff', // Stark White
+      5: 'hsl(var(--foreground))', // Stark White
     };
-    return colors[node.group] || '#ff6b2b';
+    return colors[node.group] || 'hsl(var(--primary))';
   };
 
   const gData = useMemo(() => {
@@ -77,7 +77,7 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full h-full min-h-[600px] relative overflow-hidden bg-[#050505]/40 backdrop-blur-3xl rounded-[3rem] border-2 border-white/5 shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner group">
+    <div ref={containerRef} className="w-full h-full min-h-[600px] relative overflow-hidden bg-background/40 backdrop-blur-3xl rounded-[3rem] border-2 border-border shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner group">
       <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
       
       <ForceGraph3D
@@ -94,25 +94,25 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
         warmupTicks={30}
         nodeVal={(node: any) => node.val || 12}
         nodeLabel={(node: any) => `
-          <div class="bg-[#050505] p-6 border-2 border-[#ff6b2b]/40 rounded-[2rem] space-y-3 shadow-2xl backdrop-blur-3xl min-w-[200px]">
+          <div class="bg-background p-6 border-2 border-primary/40 rounded-[2rem] space-y-3 shadow-2xl backdrop-blur-3xl min-w-[200px]">
             <div class="flex items-center gap-4">
-                <div class="w-2 h-2 rounded-full bg-[#ff6b2b] animate-ping"></div>
-                <div class="text-white font-black text-xl italic tracking-tighter uppercase whitespace-nowrap leading-none pt-1">${node.name}.</div>
+                <div class="w-2 h-2 rounded-full bg-primary animate-ping"></div>
+                <div class="text-foreground font-black text-xl italic tracking-tighter uppercase whitespace-nowrap leading-none pt-1">${node.name}.</div>
             </div>
-            <div class="text-white/20 text-[10px] font-black uppercase tracking-[0.4em] italic leading-relaxed">${node.description}</div>
-            <div class="pt-2 mt-4 border-t border-white/5 flex justify-between items-center">
-                <span class="text-[#ff6b2b]/40 text-[9px] font-black uppercase tracking-widest italic">Node Status_</span>
-                <span class="text-white/40 text-[9px] font-black uppercase italic">99.997% Pure</span>
+            <div class="text-muted-foreground/20 text-[10px] font-black uppercase tracking-[0.4em] italic leading-relaxed">${node.description}</div>
+            <div class="pt-2 mt-4 border-t border-border flex justify-between items-center">
+                <span class="text-primary/40 text-[9px] font-black uppercase tracking-widest italic">Node Status_</span>
+                <span class="text-muted-foreground/40 text-[9px] font-black uppercase italic">99.997% Pure</span>
             </div>
           </div>
         `}
         nodeColor={(node: any) => node.color}
-        linkColor={() => 'rgba(255, 107, 43, 0.4)'}
+        linkColor={() => 'hsl(var(--primary) / 0.4)'}
         linkWidth={1.5}
         linkDirectionalParticles={4}
         linkDirectionalParticleSpeed={0.008}
         nodeThreeObject={(node: any) => {
-          const colorStr = node.color || '#ff6b2b';
+          const colorStr = node.color || 'hsl(var(--primary))';
           const size = (node.val || 12) / 4;
           const geometry = new THREE.SphereGeometry(size);
           const material = new THREE.MeshPhongMaterial({
@@ -135,20 +135,20 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
       {/* ── HUD OVERLAYS ── */}
       <div className="absolute top-10 left-10 pointer-events-none space-y-4">
         <div className="flex items-center gap-4">
-           <Activity className="h-4 w-4 text-[#ff6b2b] animate-pulse" strokeWidth={3} />
-           <div className="text-[12px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] italic leading-none pl-1">Neural Lattice v7.0.4</div>
+           <Activity className="h-4 w-4 text-primary animate-pulse" strokeWidth={3} />
+           <div className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none pl-1">Neural Lattice v7.0.4</div>
         </div>
-        <div className="text-white/5 text-[10px] font-black uppercase tracking-[0.4em] italic leading-none pl-8 group-hover:text-white/10 transition-colors">Force-Directed Physics Active_</div>
+        <div className="text-muted-foreground/5 text-[10px] font-black uppercase tracking-[0.4em] italic leading-none pl-8 group-hover:text-muted-foreground/10 transition-colors">Force-Directed Physics Active_</div>
       </div>
       
       <div className="absolute bottom-10 right-10 pointer-events-none flex items-center gap-6">
           <div className="flex items-center gap-4">
-              <Database className="h-4 w-4 text-white/5" />
-              <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/5 italic">Cluster_Sync_Locked</span>
+              <Database className="h-4 w-4 text-muted-foreground/5" />
+              <span className="text-[9px] font-black uppercase tracking-[0.6em] text-muted-foreground/5 italic">Cluster_Sync_Locked</span>
           </div>
           <div className="flex items-center gap-4">
-              <Zap className="h-4 w-4 text-[#ff6b2b]/40" strokeWidth={3} />
-              <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/10 italic">10K Nodes Active</span>
+              <Zap className="h-4 w-4 text-primary/40" strokeWidth={3} />
+              <span className="text-[9px] font-black uppercase tracking-[0.6em] text-muted-foreground/10 italic">10K Nodes Active</span>
           </div>
       </div>
     </div>

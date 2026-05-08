@@ -136,7 +136,7 @@ export default function Home() {
                 <span className="relative z-10 flex items-center gap-8">
                     TALK_TO_MONROE <Sparkles size={32} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
                 </span>
-                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-muted/10 opacity-0 group-hover:opacity-100 transition-opacity" />
              </Link>
              <Link href="/admin" className="px-16 lg:px-24 py-10 lg:py-12 rounded-[3.5rem] font-black uppercase tracking-[0.6em] border-2 border-border bg-background/5 text-muted-foreground/40 hover:bg-foreground hover:text-background hover:border-foreground transition-all flex items-center gap-8 group italic backdrop-blur-3xl leading-none shadow-xl">
                 COMMAND_NEXUS <Terminal size={32} className="group-hover:translate-x-4 transition-transform" strokeWidth={2.5} />

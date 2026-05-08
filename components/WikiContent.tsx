@@ -49,7 +49,7 @@ export function WikiContent({ sections, rawMarkdown, onSectionChange, sourceUrl 
 
   const contentLayout = (
     <div className="max-w-6xl mx-auto px-12 lg:px-20 pt-10 pb-32 relative">
-      <div className="absolute left-[-100px] top-0 bottom-0 w-px bg-gradient-to-b from-white/5 via-[#ff6b2b]/5 to-transparent hidden xl:block" />
+      <div className="absolute left-[-100px] top-0 bottom-0 w-px bg-gradient-to-b from-white/5 via-primary/5 to-transparent hidden xl:block" />
       
       {processedContent ? (
         <motion.div
@@ -65,12 +65,12 @@ export function WikiContent({ sections, rawMarkdown, onSectionChange, sourceUrl 
           {sections.length === 0 ? (
             <div className="text-center py-40 space-y-10 group">
               <div className="relative inline-block">
-                 <Search className="h-24 w-24 text-white/5 mx-auto group-hover:text-[#ff6b2b]/20 transition-colors" strokeWidth={1} />
-                 <div className="absolute inset-0 bg-[#ff6b2b]/5 blur-[40px] rounded-full animate-pulse" />
+                 <Search className="h-24 w-24 text-muted-foreground/5 mx-auto group-hover:text-primary/20 transition-colors" strokeWidth={1} />
+                 <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
               </div>
               <div className="space-y-4">
-                  <p className="text-2xl font-black uppercase tracking-[0.5em] text-white/10 italic">No resonance clusters found.</p>
-                  <p className="text-[10px] text-white/5 font-black uppercase tracking-[0.4em] italic leading-none pl-1">Initiate Registry Sync_</p>
+                  <p className="text-2xl font-black uppercase tracking-[0.5em] text-muted-foreground/10 italic">No resonance clusters found.</p>
+                  <p className="text-[10px] text-muted-foreground/5 font-black uppercase tracking-[0.4em] italic leading-none pl-1">Initiate Registry Sync_</p>
               </div>
             </div>
           ) : (
@@ -111,13 +111,13 @@ function SectionRenderer({ section, index }: SectionRendererProps) {
       className="scroll-mt-40 wiki-content group/section"
     >
       <div className="relative">
-          <div className="absolute -left-20 top-2 text-[10px] font-black text-[#ff6b2b]/10 tracking-widest italic group-hover/section:text-[#ff6b2b]/40 transition-colors hidden xl:block">
+          <div className="absolute -left-20 top-2 text-[10px] font-black text-primary/10 tracking-widest italic group-hover/section:text-primary/40 transition-colors hidden xl:block">
              0{index + 1}_
           </div>
           <HeadingTag className={`font-black uppercase italic tracking-tighter mb-10 transition-colors ${
-            section.level === 2 ? 'text-8xl text-white group-hover/section:text-[#ff6b2b] pt-1 leading-none' : 
-            section.level === 3 ? 'text-5xl text-white/60 group-hover/section:text-white pt-1 leading-none' : 
-            'text-3xl text-[#ff6b2b] pt-1 leading-none'
+            section.level === 2 ? 'text-8xl text-foreground group-hover/section:text-primary pt-1 leading-none' : 
+            section.level === 3 ? 'text-5xl text-muted-foreground/60 group-hover/section:text-foreground pt-1 leading-none' : 
+            'text-3xl text-primary pt-1 leading-none'
           }`}>
             {section.title}
           </HeadingTag>
@@ -130,7 +130,7 @@ function SectionRenderer({ section, index }: SectionRendererProps) {
       )}
       
       {section.subsections && section.subsections.length > 0 && (
-        <div className="ml-12 lg:ml-20 space-y-24 border-l-2 border-[#ff6b2b]/5 pl-12 lg:pl-20 mt-20">
+        <div className="ml-12 lg:ml-20 space-y-24 border-l-2 border-primary/5 pl-12 lg:pl-20 mt-20">
           {section.subsections.map((subsection, subIdx) => (
             <SectionRenderer key={subsection.id} section={subsection} index={subIdx} />
           ))}

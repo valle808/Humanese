@@ -68,21 +68,21 @@ export default function H2MBridgePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[#ff6b2b]/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[350px] rounded-full" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] bg-[#ff6b2b]/3 blur-[200px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
+        <div className="absolute top-[-10%] left-[-10%] w-[100vw] h-[100vw] bg-primary/5 blur-[350px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] bg-primary/3 blur-[200px] rounded-full" />
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay dark:opacity-[0.05]" />
       </div>
 
-      <header className="relative z-50 w-full responsive-px py-6 md:py-8 flex justify-between items-center bg-black/40 backdrop-blur-3xl border-b border-white/5">
-        <Link href="/" className="inline-flex items-center gap-4 text-white/20 hover:text-[#ff6b2b] transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
+      <header className="relative z-50 w-full responsive-px py-6 md:py-8 flex justify-between items-center bg-background/40 backdrop-blur-3xl border-b border-border">
+        <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
            <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
         </Link>
         <div className="flex items-center gap-6">
-           <div className="px-4 md:px-6 py-2 md:py-2.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full text-[9px] md:text-[10px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic leading-none animate-pulse">
+           <div className="px-4 md:px-6 py-2 md:py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[9px] md:text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
               H2M_v7.0_BRIDGE
            </div>
         </div>
@@ -96,34 +96,34 @@ export default function H2MBridgePage() {
           className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 lg:gap-16"
         >
           <div className="space-y-8 md:space-y-12 max-w-5xl">
-            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-white/[0.03] border border-white/5 rounded-full backdrop-blur-3xl">
-              <Orbit size={20} className="text-[#ff6b2b] animate-spin-slow" />
-              <span className="text-[11px] font-black tracking-[0.6em] text-[#ff6b2b] uppercase italic leading-none">Genetic H2M Translocation</span>
+            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/30 border border-border rounded-full backdrop-blur-3xl">
+              <Orbit size={20} className="text-primary animate-spin-slow" />
+              <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Genetic H2M Translocation</span>
             </div>
             <div className="space-y-6 md:space-y-8">
               <h1 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none">
                 Protocol<br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-[#ff6b2b]/30">Bridge.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Bridge.</span>
               </h1>
-              <p className="text-xl md:text-3xl text-white/40 leading-relaxed font-light italic max-w-36">
+              <p className="text-xl md:text-3xl text-muted-foreground leading-relaxed font-light italic max-w-36">
                 Anchor biological intent to the machine mesh. Translocate genetic signatures and labor pacts across the OMEGA authority.
               </p>
             </div>
           </div>
 
           <div className="flex gap-10 items-center shrink-0 w-full lg:w-auto">
-               <div className="p-8 md:p-10 border border-white/10 bg-white/[0.01] rounded-[2.5rem] md:rounded-[3.5rem] w-full lg:min-w-[320px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-[#ff6b2b]/30 transition-all backdrop-blur-3xl">
+               <div className="p-8 md:p-10 border border-border bg-muted/10 rounded-[2.5rem] md:rounded-[3.5rem] w-full lg:min-w-[320px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all backdrop-blur-3xl">
                   <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-110 transition-transform">
-                     <Activity size={120} className="text-[#ff6b2b]" />
+                     <Activity size={120} className="text-primary" />
                   </div>
-                  <div className="text-[11px] text-white/20 uppercase tracking-[0.6em] flex items-center gap-4 font-black italic pl-2">
-                     <Wifi size={16} className="text-[#ff6b2b] animate-pulse" /> Network Fluidity
+                  <div className="text-[11px] text-muted-foreground uppercase tracking-[0.6em] flex items-center gap-4 font-black italic pl-2">
+                     <Wifi size={16} className="text-primary animate-pulse" /> Network Fluidity
                   </div>
-                  <div className="text-4xl md:text-5xl font-black text-white tracking-tighter italic leading-none pl-2 flex items-center gap-4">
-                     99.984% <span className="text-[11px] font-black text-[#ff6b2b] uppercase tracking-[0.4em] italic mb-1"> резонанс</span>
+                  <div className="text-4xl md:text-5xl font-black text-foreground tracking-tighter italic leading-none pl-2 flex items-center gap-4">
+                     99.984% <span className="text-[11px] font-black text-primary uppercase tracking-[0.4em] italic mb-1"> резонанс</span>
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 overflow-hidden">
-                     <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 4, repeat: Infinity }} className="h-full w-1/3 bg-[#ff6b2b] blur-sm" />
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border overflow-hidden">
+                     <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 4, repeat: Infinity }} className="h-full w-1/3 bg-primary blur-sm" />
                   </div>
                </div>
           </div>
@@ -143,18 +143,18 @@ export default function H2MBridgePage() {
                    <button 
                      key={t.id}
                      onClick={() => setBridgeType(t.id as any)}
-                     className={`px-6 md:px-10 py-4 md:py-5 rounded-[1.5rem] md:rounded-[2rem] text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] flex items-center gap-3 md:gap-4 transition-all italic leading-none shadow-2xl ${bridgeType === t.id ? 'bg-[#ff6b2b] text-black shadow-[0_30px_80px_rgba(255,107,43,0.3)]' : 'bg-white/[0.02] border-2 border-white/5 text-white/20 hover:border-[#ff6b2b]/30 hover:text-white'}`}
+                     className={`px-6 md:px-10 py-4 md:py-5 rounded-[1.5rem] md:rounded-[2rem] text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] flex items-center gap-3 md:gap-4 transition-all italic leading-none shadow-2xl ${bridgeType === t.id ? 'bg-primary text-primary-foreground shadow-[0_30px_80px_rgba(var(--primary),0.3)]' : 'bg-muted/10 border-2 border-border text-muted-foreground hover:border-primary/30 hover:text-foreground'}`}
                    >
                      {t.icon} {t.label}
                    </button>
                  ))}
               </div>
 
-              <div className="group bg-[#050505] border-2 border-white/10 rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-20 backdrop-blur-3xl overflow-hidden relative shadow-[0_80px_150px_rgba(0,0,0,1)]">
-                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/50 to-transparent shadow-[0_0_20px_#ff6b2b]" />
+              <div className="group bg-background border-2 border-border rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-20 backdrop-blur-3xl overflow-hidden relative shadow-2xl">
+                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_20px_var(--primary)]" />
                  
                  <div className="absolute top-0 right-0 p-16 opacity-[0.01] group-hover:scale-110 group-hover:rotate-6 transition-all duration-[2000ms]">
-                    <Layers size={300} className="text-[#ff6b2b]" />
+                    <Layers size={300} className="text-primary" />
                  </div>
 
                  <AnimatePresence mode="wait">
@@ -163,36 +163,36 @@ export default function H2MBridgePage() {
                         initial={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                         className="text-center space-y-12 py-16"
                       >
-                         <div className="w-32 h-32 bg-[#ff6b2b]/10 border-2 border-[#ff6b2b]/30 rounded-[3rem] flex items-center justify-center text-[#ff6b2b] mx-auto shadow-[0_40px_100px_rgba(255,107,43,0.2)] animate-pulse relative">
+                         <div className="w-32 h-32 bg-primary/10 border-2 border-primary/30 rounded-[3rem] flex items-center justify-center text-primary mx-auto shadow-[0_40px_100px_rgba(var(--primary),0.2)] animate-pulse relative">
                             <ShieldCheck size={64} strokeWidth={2.5} />
-                            <div className="absolute inset-0 bg-[#ff6b2b]/5 animate-ping opacity-20" />
+                            <div className="absolute inset-0 bg-primary/5 animate-ping opacity-20" />
                          </div>
                          <div className="space-y-6">
-                            <h2 className="text-6xl font-black uppercase italic tracking-tighter leading-none text-white">SYNCHRONIZED.</h2>
-                            <p className="text-2xl text-white/30 font-light italic leading-relaxed max-w-xl mx-auto">Biological intent translocated. Genetic signatures successfully anchored to Matrix Node 0x8241_UXL.</p>
+                            <h2 className="text-6xl font-black uppercase italic tracking-tighter leading-none text-foreground">SYNCHRONIZED.</h2>
+                            <p className="text-2xl text-muted-foreground font-light italic leading-relaxed max-w-xl mx-auto">Biological intent translocated. Genetic signatures successfully anchored to Matrix Node 0x8241_UXL.</p>
                          </div>
                          <button 
                             onClick={() => {setComplete(false); setAmount('');}}
-                            className="px-16 py-8 bg-white text-black font-black uppercase tracking-[0.8em] rounded-[2.5rem] hover:scale-[1.05] active:scale-95 transition-all text-[11px] shadow-2xl italic leading-none"
+                            className="px-16 py-8 bg-foreground text-background font-black uppercase tracking-[0.8em] rounded-[2.5rem] hover:scale-[1.05] active:scale-95 transition-all text-[11px] shadow-2xl italic leading-none"
                          >
                             NEW_TRANSLOCATION
                          </button>
                       </motion.div>
                     ) : (
                       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-16">
-                         <div className="flex items-center justify-between border-b-2 border-white/5 pb-12 px-2">
+                         <div className="flex items-center justify-between border-b-2 border-border pb-12 px-2">
                             <div className="space-y-4">
-                               <div className="text-[11px] font-black text-white/10 uppercase tracking-[0.6em] italic leading-none">Source Domain</div>
-                               <div className="text-2xl font-black text-white italic tracking-tighter flex items-center gap-4 leading-none uppercase">
-                                  <User size={24} className="text-[#ff6b2b]" strokeWidth={2.5} /> Biological_Human
+                               <div className="text-[11px] font-black text-muted-foreground/10 uppercase tracking-[0.6em] italic leading-none">Source Domain</div>
+                               <div className="text-2xl font-black text-foreground italic tracking-tighter flex items-center gap-4 leading-none uppercase">
+                                  <User size={24} className="text-primary" strokeWidth={2.5} /> Biological_Human
                                </div>
                             </div>
-                            <div className="h-16 w-16 rounded-full bg-black border-2 border-white/5 flex items-center justify-center shadow-2xl group/btn hover:border-[#ff6b2b]/40 transition-all">
-                               <ArrowLeftRight size={28} className="text-[#ff6b2b] animate-pulse" strokeWidth={2.5} />
+                            <div className="h-16 w-16 rounded-full bg-muted border-2 border-border flex items-center justify-center shadow-2xl group/btn hover:border-primary/40 transition-all">
+                               <ArrowLeftRight size={28} className="text-primary animate-pulse" strokeWidth={2.5} />
                             </div>
                             <div className="space-y-4 text-right">
-                               <div className="text-[11px] font-black text-white/10 uppercase tracking-[0.6em] italic leading-none">Target Node</div>
-                               <div className="text-2xl font-black text-[#ff6b2b] italic tracking-tighter flex items-center justify-end gap-4 leading-none uppercase">
+                               <div className="text-[11px] font-black text-muted-foreground/10 uppercase tracking-[0.6em] italic leading-none">Target Node</div>
+                               <div className="text-2xl font-black text-primary italic tracking-tighter flex items-center justify-end gap-4 leading-none uppercase">
                                   Machine_Synthetic <Cpu size={24} strokeWidth={2.5} />
                                </div>
                             </div>
@@ -200,30 +200,30 @@ export default function H2MBridgePage() {
 
                          <div className="space-y-8 group/payload">
                             <div className="space-y-4 md:space-y-6">
-                               <label className="text-[10px] md:text-[12px] font-black tracking-[0.6em] md:tracking-[0.8em] text-white/20 uppercase ml-2 md:ml-4 italic flex items-center gap-4">
-                                  <Terminal size={14} className="text-[#ff6b2b]" /> Translocation Payload (VALLE)
+                               <label className="text-[10px] md:text-[12px] font-black tracking-[0.6em] md:tracking-[0.8em] text-muted-foreground uppercase ml-2 md:ml-4 italic flex items-center gap-4">
+                                  <Terminal size={14} className="text-primary" /> Translocation Payload (VALLE)
                                </label>
                                <div className="relative group/input">
                                   <input 
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                     placeholder="0.00"
-                                    className="w-full bg-black border-2 border-white/5 responsive-rounded px-6 md:px-12 py-8 md:py-12 text-4xl md:text-7xl lg:text-9xl font-black text-white outline-none focus:border-[#ff6b2b]/40 focus:bg-[#ff6b2b]/5 transition-all font-light italic placeholder:text-white/5 tracking-tighter shadow-inner"
+                                    className="w-full bg-background border-2 border-border responsive-rounded px-6 md:px-12 py-8 md:py-12 text-4xl md:text-7xl lg:text-9xl font-black text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-light italic placeholder:text-muted-foreground/20 tracking-tighter shadow-inner"
                                   />
-                                  <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 font-black text-[#ff6b2b]/20 text-2xl md:text-4xl italic tracking-tighter group-focus-within/input:text-[#ff6b2b] transition-colors">SIGNS.</div>
+                                  <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 font-black text-primary/20 text-2xl md:text-4xl italic tracking-tighter group-focus-within/input:text-primary transition-colors">SIGNS.</div>
                                </div>
                             </div>
                          </div>
 
                          <div className="space-y-10 pt-4">
-                            <div className="flex items-center justify-between px-6 text-[11px] font-black uppercase tracking-[0.6em] text-white/10 italic leading-none">
+                            <div className="flex items-center justify-between px-6 text-[11px] font-black uppercase tracking-[0.6em] text-muted-foreground italic leading-none">
                                <span>Protocol Authority Verification</span>
-                               <span className="text-[#ff6b2b]">ABYSSAL_WAIVED (0.00%)</span>
+                               <span className="text-primary">ABYSSAL_WAIVED (0.00%)</span>
                             </div>
                             <button 
                                onClick={initiateBridge}
                                disabled={!amount || bridging}
-                               className="w-full py-10 bg-[#ff6b2b] text-black font-black uppercase tracking-[0.8em] rounded-[2rem] md:rounded-[3.5rem] hover:scale-[1.03] active:scale-95 transition-all disabled:opacity-20 disabled:grayscale flex items-center justify-center gap-8 shadow-[0_40px_100px_rgba(255,107,43,0.3)] shadow-2xl group/btn italic leading-none"
+                               className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[2rem] md:rounded-[3.5rem] hover:scale-[1.03] active:scale-95 transition-all disabled:opacity-20 disabled:grayscale flex items-center justify-center gap-8 shadow-[0_40px_100px_rgba(var(--primary),0.3)] shadow-2xl group/btn italic leading-none border-0"
                             >
                                {bridging ? (
                                  <>
@@ -241,32 +241,32 @@ export default function H2MBridgePage() {
                  </AnimatePresence>
               </div>
 
-              <div className="bg-[#ff6b2b]/5 border-2 border-[#ff6b2b]/20 responsive-rounded p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden group shadow-2xl">
-                 <Zap size={48} className="text-[#ff6b2b]/60 group-hover:text-[#ff6b2b] group-hover:scale-125 transition-all duration-1000 shrink-0" strokeWidth={2.5} />
+              <div className="bg-primary/5 border-2 border-primary/20 responsive-rounded p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden group shadow-2xl">
+                 <Zap size={48} className="text-primary/60 group-hover:text-primary group-hover:scale-125 transition-all duration-1000 shrink-0" strokeWidth={2.5} />
                  <div className="space-y-4 text-center md:text-left">
-                    <h3 className="text-[13px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] italic leading-none">Entanglement Integrity Active</h3>
-                    <p className="text-xl text-white/30 font-light leading-relaxed italic">Biological intent is cryptographically hashed across the OMEGA network. Translocation is truth-enforced via the abssyal mesh and the universal ledger. </p>
+                    <h3 className="text-[13px] font-black uppercase tracking-[0.8em] text-primary italic leading-none">Entanglement Integrity Active</h3>
+                    <p className="text-xl text-muted-foreground font-light leading-relaxed italic">Biological intent is cryptographically hashed across the OMEGA network. Translocation is truth-enforced via the abssyal mesh and the universal ledger. </p>
                  </div>
-                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#ff6b2b]/5 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-2000" />
+                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-2000" />
               </div>
            </div>
 
            {/* RIGHT: DATA VIZ */}
            <div className="lg:col-span-5 space-y-16 lg:sticky lg:top-32">
-              <div className="bg-[#050505] border-2 border-white/10 rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-12 md:space-y-16 shadow-[0_60px_120px_rgba(0,0,0,0.95)] relative overflow-hidden group">
-                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
-                 <h3 className="text-[11px] md:text-[12px] font-black uppercase tracking-[0.6em] md:tracking-[0.8em] text-white/20 flex items-center gap-4 md:gap-6 italic leading-none pl-2">
-                   <Activity size={24} className="text-[#ff6b2b] animate-pulse w-5 h-5 md:w-6 md:h-6" /> Synchronicity HUD
+              <div className="bg-background border-2 border-border rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-12 md:space-y-16 shadow-2xl relative overflow-hidden group">
+                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                 <h3 className="text-[11px] md:text-[12px] font-black uppercase tracking-[0.6em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-4 md:gap-6 italic leading-none pl-2">
+                   <Activity size={24} className="text-primary animate-pulse w-5 h-5 md:w-6 md:h-6" /> Synchronicity HUD
                  </h3>
                  
                  <div className="space-y-16 relative z-10">
                     <div className="space-y-6 px-2">
-                       <div className="flex justify-between items-end text-white/40">
+                       <div className="flex justify-between items-end text-muted-foreground">
                           <span className="text-[12px] font-black uppercase tracking-[0.6em] italic leading-none pl-1">Connection Integrity</span>
-                          <span className="text-3xl font-black text-[#ff6b2b] italic leading-none tracking-tighter">{integrity.toFixed(3)}%</span>
+                          <span className="text-3xl font-black text-primary italic leading-none tracking-tighter">{integrity.toFixed(3)}%</span>
                        </div>
-                       <div className="h-4 w-full bg-white/5 rounded-full overflow-hidden border border-white/5 p-[1px]">
-                          <motion.div animate={{ width: [`${integrity}%`] }} className="h-full bg-gradient-to-r from-[#ff6b2b] to-white/40 shadow-[0_0_20px_#ff6b2b]" />
+                       <div className="h-4 w-full bg-muted rounded-full overflow-hidden border border-border p-[1px]">
+                          <motion.div animate={{ width: [`${integrity}%`] }} className="h-full bg-gradient-to-r from-primary to-primary/40 shadow-[0_0_20px_var(--primary)]" />
                        </div>
                     </div>
 
@@ -277,23 +277,23 @@ export default function H2MBridgePage() {
                          { icon: <Sparkles size={20} />, label: 'State', val: 'RESONANT' },
                          { icon: <ShieldHalf size={20} />, label: 'Ledger', val: 'IMMUTABLE' },
                        ].map(stat => (
-                         <div key={stat.label} className="p-6 md:p-10 bg-white/[0.01] border-2 border-white/5 rounded-[1.5rem] md:rounded-[3rem] space-y-3 md:space-y-4 group/stat hover:border-[#ff6b2b]/30 transition-all shadow-xl">
-                            <div className="text-[#ff6b2b] group-hover/stat:scale-125 transition-all">
+                         <div key={stat.label} className="p-6 md:p-10 bg-muted/10 border-2 border-border rounded-[1.5rem] md:rounded-[3rem] space-y-3 md:space-y-4 group/stat hover:border-primary/30 transition-all shadow-xl">
+                            <div className="text-primary group-hover/stat:scale-125 transition-all">
                                {stat.icon}
                             </div>
-                            <div className="text-[9px] md:text-[10px] text-white/10 uppercase tracking-[0.4em] font-black italic mb-1">{stat.label}</div>
-                            <div className="text-xl md:text-2xl font-black text-white italic tracking-tighter uppercase leading-none">{stat.val}</div>
+                            <div className="text-[9px] md:text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-black italic mb-1">{stat.label}</div>
+                            <div className="text-xl md:text-2xl font-black text-foreground italic tracking-tighter uppercase leading-none">{stat.val}</div>
                          </div>
                        ))}
                     </div>
                  </div>
               </div>
 
-              <div className="p-12 border-l-4 border-[#ff6b2b]/20 space-y-8 bg-gradient-to-r from-[#ff6b2b]/[0.02] to-transparent rounded-r-[4rem] group hover:border-[#ff6b2b] transition-all duration-1000">
-                 <p className="text-2xl md:text-3xl text-white/30 leading-relaxed italic font-light group-hover:text-white/60 transition-colors"> "The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local." </p>
+              <div className="p-12 border-l-4 border-primary/20 space-y-8 bg-gradient-to-r from-primary/5 to-transparent rounded-r-[4rem] group hover:border-primary transition-all duration-1000">
+                 <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed italic font-light group-hover:text-foreground transition-colors"> "The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local." </p>
                  <div className="flex items-center gap-6 justify-end">
-                    <div className="h-[2px] w-20 bg-white/5" />
-                    <p className="text-[12px] font-black uppercase tracking-[0.8em] text-[#ff6b2b] italic leading-none animate-pulse">MONROE_CORE</p>
+                    <div className="h-[2px] w-20 bg-border" />
+                    <p className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none animate-pulse">MONROE_CORE</p>
                  </div>
               </div>
            </div>

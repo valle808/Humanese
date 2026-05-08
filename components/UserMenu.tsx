@@ -56,9 +56,9 @@ export const UserMenu = ({ isExpanded }: { isExpanded: boolean }) => {
     <div className="relative" ref={menuRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center p-3 rounded-[2rem] bg-background border-2 border-border hover:border-[#ff6b2b]/40 transition-all active:scale-95 group ${isExpanded ? 'gap-4' : 'justify-center'}`}
+        className={`w-full flex items-center p-3 rounded-[2rem] bg-background border-2 border-border hover:border-primary/40 transition-all active:scale-95 group ${isExpanded ? 'gap-4' : 'justify-center'}`}
       >
-        <div className="w-10 h-10 rounded-full bg-secondary border border-border flex items-center justify-center text-foreground group-hover:text-[#ff6b2b] transition-colors shrink-0">
+        <div className="w-10 h-10 rounded-full bg-secondary border border-border flex items-center justify-center text-foreground group-hover:text-primary transition-colors shrink-0">
           <User size={20} />
         </div>
         
@@ -100,8 +100,8 @@ export const UserMenu = ({ isExpanded }: { isExpanded: boolean }) => {
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] italic">Personal Agent</span>
               </Link>
               <div className="h-[1px] w-full bg-border my-2" />
-              <button onClick={handleLogout} className="w-full flex items-center gap-4 p-3 rounded-[1.5rem] hover:bg-[#ff6b2b]/10 transition-colors text-[#ff6b2b] group">
-                <LogOut size={18} className="text-[#ff6b2b]/60 group-hover:text-[#ff6b2b]" />
+              <button onClick={handleLogout} className="w-full flex items-center gap-4 p-3 rounded-[1.5rem] hover:bg-primary/10 transition-colors text-primary group">
+                <LogOut size={18} className="text-primary/60 group-hover:text-primary" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] italic">Disconnect</span>
               </button>
             </div>

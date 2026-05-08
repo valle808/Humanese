@@ -33,10 +33,10 @@ export function HeaderWithLink({ level, id, children, baseUrl }: HeaderWithLinkP
   
   const headingClasses = cn(
     'group relative scroll-mt-24',
-    level === 1 && 'text-4xl font-bold mt-10 mb-6 pb-3 border-b-2 border-primary/20 text-white',
-    level === 2 && 'text-3xl font-bold mt-8 mb-4 pb-3 border-b-2 border-border/40 text-white',
-    level === 3 && 'text-2xl font-semibold mt-6 mb-3 text-white',
-    level === 4 && 'text-xl font-semibold mt-5 mb-2 text-white'
+    level === 1 && 'text-4xl font-bold mt-10 mb-6 pb-3 border-b-2 border-primary/20 text-foreground',
+    level === 2 && 'text-3xl font-bold mt-8 mb-4 pb-3 border-b-2 border-border/40 text-foreground',
+    level === 3 && 'text-2xl font-semibold mt-6 mb-3 text-foreground',
+    level === 4 && 'text-xl font-semibold mt-5 mb-2 text-foreground'
   );
   
   return (

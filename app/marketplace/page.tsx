@@ -158,7 +158,7 @@ export default function MarketplacePage() {
                            className={`w-full text-left px-8 py-6 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.6em] transition-all relative overflow-hidden italic shadow-lg leading-none active:scale-95 ${filter === cat ? 'bg-primary text-primary-foreground border-primary' : 'bg-transparent text-muted-foreground/40 border-2 border-border hover:border-primary/40 hover:text-foreground'}`}
                          >
                            {cat}
-                           {filter === cat && <div className="absolute inset-0 bg-white/10 animate-pulse" />}
+                           {filter === cat && <div className="absolute inset-0 bg-muted/10 animate-pulse" />}
                          </button>
                        ))}
                     </div>

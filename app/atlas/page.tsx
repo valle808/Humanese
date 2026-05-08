@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -21,441 +21,323 @@ import {
   Sparkles,
   Terminal,
   Grid,
-  Radio,
-  Fingerprint,
-  RefreshCw,
-  Scan,
-  Maximize2,
-  Box,
-  Eye,
-  Lock,
-  Compass
+  Radio
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import * as THREE from 'three';
 
 // Component
 import ShardHUD from '@/components/atlas/shard-hud';
 
-// Dynamic Import for ForceGraph3D
-const ForceGraph3D = dynamic(() => import('react-force-graph-3d'), { 
+// Dynamic Import for ForceGraph2D
+const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { 
   ssr: false 
 }) as any;
 
 export default function CognitiveAtlasPage() {
   const router = useRouter();
-  const [allData, setAllData] = useState<{ nodes: any[], links: any[] }>({ nodes: [], links: [] });
+  const [graphData, setGraphData] = useState<{ nodes: any[], links: any[] }>({ nodes: [], links: [] });
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedNode, setSelectedNode] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
   const [bootSequence, setBootSequence] = useState(true);
-  const [bootProgress, setBootProgress] = useState(0);
-  const [viewAngle, setViewAngle] = useState('ORBITAL');
   const fgRef = useRef<any>(null);
 
-  const fetchGraph = useCallback(async () => {
-    setIsLoading(true);
+  const [allData, setAllData] = useState<{ nodes: any[], links: any[] }>({ nodes: [], links: [] });
+
+  const fetchGraph = async () => {
+    setIsSyncing(true);
     try {
       const res = await fetch('/api/knowledge-graph');
-      const data = await res.json();
       if (res.ok) {
+        const data = await res.json();
         setAllData(data);
+        setGraphData(data);
       }
     } catch (err) {
-      console.error('Atlas sync failure', err);
+      console.error("Atlas: Graph load failed", err);
     } finally {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsSyncing(false);
+        setBootSequence(false);
+      }, 2000);
     }
-  }, []);
-
-  useEffect(() => {
-    if (bootSequence) {
-      const interval = setInterval(() => {
-        setBootProgress(prev => {
-          if (prev >= 100) {
-            clearInterval(interval);
-            setTimeout(() => setBootSequence(false), 800);
-            return 100;
-          }
-          return prev + 4;
-        });
-      }, 40);
-      return () => clearInterval(interval);
-    }
-  }, [bootSequence]);
+  };
 
   useEffect(() => {
     fetchGraph();
-  }, [fetchGraph]);
+  }, []);
 
-  const onNodeClick = useCallback((node: any) => {
+  const onNodeClick = React.useCallback((node: any) => {
     setSelectedNode(node);
-    
-    // Smoothly focus camera on the node
-    const distance = 180;
-    const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
-    
-    if (fgRef.current) {
-      fgRef.current.cameraPosition(
-        { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, 
-        node, 
-        2500 
-      );
+    if (fgRef.current && node && node.x !== undefined) {
+      fgRef.current.centerAt(node.x, node.y, 1000);
+      fgRef.current.zoom(8, 1000);
     }
   }, []);
 
-  const filteredGraphData = useMemo(() => {
-    if (!searchTerm.trim()) return allData;
+  const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      setGraphData(allData);
+      return;
+    }
+    setIsSearching(true);
+    
     const term = searchTerm.toLowerCase();
     const matchedNodes = allData.nodes.filter((n: any) => 
       n.id.toLowerCase().includes(term) || 
       n.label.toLowerCase().includes(term)
     );
     const matchedIds = new Set(matchedNodes.map((n: any) => n.id));
-    const matchedLinks = allData.links.filter((l: any) => {
-      const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
-      const targetId = typeof l.target === 'object' ? l.target.id : l.target;
-      return matchedIds.has(sourceId) || matchedIds.has(targetId);
-    });
-    return { nodes: matchedNodes, links: matchedLinks };
-  }, [allData, searchTerm]);
+    const matchedLinks = allData.links.filter((l: any) => 
+      matchedIds.has(l.source) || matchedIds.has(l.target)
+    );
+
+    setGraphData({ nodes: matchedNodes, links: matchedLinks });
+    setTimeout(() => setIsSearching(false), 500);
+  };
 
   const formattedData = useMemo(() => ({
-    nodes: filteredGraphData.nodes.map(n => ({
+    nodes: graphData.nodes.map(n => ({
       ...n,
-      color: n.group === 'AGENT' ? '#ff6b2b' : n.group === 'USER' ? '#ffffff' : '#ff6b2b88',
-      size: n.group === 'USER' ? 10 : 6
+      color: n.group === 'AGENT' ? 'hsl(var(--primary))' : n.group === 'USER' ? 'hsl(var(--foreground))' : 'hsla(var(--primary), 0.6)',
+      size: n.group === 'USER' ? 12 : 8
     })),
-    links: filteredGraphData.links.map(l => ({
+    links: graphData.links.map(l => ({
       ...l,
-      color: 'rgba(255, 107, 43, 0.2)',
-      width: 0.8
+      color: 'hsla(var(--primary), 0.1)',
+      width: 1
     }))
-  }), [filteredGraphData]);
-
-  // Cinematic Node Rendering
-  const nodeObject = useCallback((node: any) => {
-    const geometry = new THREE.SphereGeometry(node.size || 6, 32, 32);
-    const material = new THREE.MeshStandardMaterial({
-      color: node.color,
-      emissive: node.color,
-      emissiveIntensity: 4,
-      transparent: true,
-      opacity: 0.95,
-      roughness: 0,
-      metalness: 1
-    });
-    const sphere = new THREE.Mesh(geometry, material);
-    
-    // Glowing Halo
-    const glowGeo = new THREE.SphereGeometry((node.size || 6) * 1.8, 32, 32);
-    const glowMat = new THREE.MeshBasicMaterial({
-      color: node.color,
-      transparent: true,
-      opacity: 0.1,
-      side: THREE.BackSide
-    });
-    const glow = new THREE.Mesh(glowGeo, glowMat);
-    
-    // Core Pulse Dot
-    const coreGeo = new THREE.SphereGeometry((node.size || 6) * 0.4, 16, 16);
-    const coreMat = new THREE.MeshBasicMaterial({ color: '#fff' });
-    const core = new THREE.Mesh(coreGeo, coreMat);
-    
-    const group = new THREE.Group();
-    group.add(sphere);
-    group.add(glow);
-    group.add(core);
-    return group;
-  }, []);
+  }), [graphData]);
 
   return (
-    <div className="h-screen w-full bg-[#030303] overflow-hidden relative font-sans text-foreground select-none transition-colors duration-1000">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-hidden flex flex-col transition-colors duration-700">
       
-      {/* ── CINEMATIC BOOT SEQUENCE ── */}
+      {/* ── GAMING HUD OVERLAYS ── */}
+      <div className="fixed inset-0 pointer-events-none z-20">
+        {/* Scanning Line */}
+        <motion.div 
+          animate={{ top: ['-10%', '110%'] }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+          className="absolute left-0 right-0 h-[1px] bg-primary/10 blur-sm shadow-[0_0_15px_var(--primary)] z-30"
+        />
+        
+        {/* Corner Brackets */}
+        <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-primary/20 rounded-tl-xl" />
+        <div className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-primary/20 rounded-tr-xl" />
+        <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-primary/20 rounded-bl-xl" />
+        <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-primary/20 rounded-br-xl" />
+
+        {/* Ambient Grid */}
+        <div className="absolute inset-0 neural-grid opacity-[0.03] dark:opacity-[0.05]" />
+      </div>
+
+      {/* 🌌 AMBIENT CORE */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-primary/5 blur-[350px] rounded-full animate-pulse" />
+      </div>
+
+      {/* ⚡ BOOT SEQUENCE */}
       <AnimatePresence>
         {bootSequence && (
           <motion.div 
-            exit={{ opacity: 0, scale: 1.05, filter: 'blur(40px)' }}
-            transition={{ duration: 1.2, ease: "circOut" }}
-            className="fixed inset-0 z-[500] bg-black flex flex-col items-center justify-center p-12 lg:p-24 overflow-hidden"
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-background flex flex-col items-center justify-center space-y-12 backdrop-blur-3xl"
           >
-             {/* Scanning Line in Boot */}
-             <motion.div 
-                animate={{ top: ['-10%', '110%'] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                className="absolute left-0 right-0 h-[1px] bg-[#ff6b2b]/20 blur-sm z-50"
-             />
-             <div className="absolute inset-0 neural-grid opacity-[0.05]" />
-             
-             <div className="space-y-16 max-w-4xl w-full text-center relative z-10">
-                <div className="flex flex-col items-center gap-8">
-                   <div className="relative">
-                      <div className="absolute inset-0 bg-[#ff6b2b]/20 blur-[60px] rounded-full animate-pulse" />
-                      <motion.div 
-                         animate={{ rotate: 360 }}
-                         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                         className="relative w-32 h-32 border-2 border-[#ff6b2b]/20 border-t-[#ff6b2b] rounded-full flex items-center justify-center"
-                      >
-                         <Orbit size={48} className="text-[#ff6b2b] animate-pulse" />
-                      </motion.div>
-                   </div>
-                   <div className="space-y-4">
-                      <h1 className="text-8xl lg:text-[10rem] font-black italic uppercase tracking-tighter text-white leading-none">
-                         NEURAL<br/>
-                         <span className="text-[#ff6b2b] text-shadow-orange">ATLAS.</span>
-                      </h1>
-                      <p className="text-[10px] font-black text-[#ff6b2b]/40 uppercase tracking-[1em] italic leading-none pl-2">Sovereign_Network_Calibration</p>
-                   </div>
-                </div>
-                
-                <div className="space-y-8 pt-12 max-w-md mx-auto">
-                   <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.5em] text-white/40 italic">
-                      <span>Synchronizing_Mesh</span>
-                      <span className="text-[#ff6b2b]">{bootProgress}%</span>
-                   </div>
-                   <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden p-[1px] shadow-inner">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: `${bootProgress}%` }}
-                        className="h-full bg-[#ff6b2b] shadow-[0_0_30px_#ff6b2b]"
-                      />
-                   </div>
-                   <div className="grid grid-cols-3 gap-4">
-                      {[0,1,2].map(i => (
-                        <div key={i} className={`h-1 rounded-full transition-colors duration-500 ${bootProgress > (i+1)*30 ? 'bg-[#ff6b2b]' : 'bg-white/5'}`} />
-                      ))}
-                   </div>
-                </div>
-             </div>
+            <div className="relative">
+              <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+                className="w-48 h-48 border-2 border-primary/20 border-t-primary rounded-full shadow-[0_0_50px_rgba(var(--primary),0.2)]"
+              />
+              <Orbit size={48} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary animate-pulse" />
+            </div>
+            <div className="space-y-4 text-center">
+              <h2 className="text-[11px] font-black uppercase tracking-[1em] text-primary italic leading-none pl-4">Cognitive_Atlas_Syncing</h2>
+              <div className="flex gap-2 justify-center">
+                {[1,2,3,4].map(i => (
+                  <motion.div 
+                    key={i}
+                    animate={{ opacity: [0.2, 1, 0.2] }}
+                    transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
+                    className="w-2 h-2 bg-primary rounded-full"
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* 🌌 CINEMATIC BACKGROUND */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] bg-[#ff6b2b]/5 blur-[250px] rounded-full animate-pulse-slow" />
-        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.04] mix-blend-overlay" />
-        {/* Dynamic Scan Line */}
-        <motion.div 
-          animate={{ top: ['-10%', '110%'] }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-          className="absolute left-0 right-0 h-[1px] bg-[#ff6b2b]/10 blur-[1px] z-10"
-        />
-        {/* Corner Accents */}
-        <div className="absolute top-10 left-10 w-24 h-24 border-t-2 border-l-2 border-white/5 rounded-tl-3xl" />
-        <div className="absolute top-10 right-10 w-24 h-24 border-t-2 border-r-2 border-white/5 rounded-tr-3xl" />
-        <div className="absolute bottom-10 left-10 w-24 h-24 border-b-2 border-l-2 border-white/5 rounded-bl-3xl" />
-        <div className="absolute bottom-10 right-10 w-24 h-24 border-b-2 border-r-2 border-white/5 rounded-br-3xl" />
-      </div>
-
-      <main className="relative z-10 h-full w-full flex flex-col">
+      <main className="relative z-10 flex-1 flex flex-col">
         
         {/* GRAPH CANVAS */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-80">
            {typeof window !== 'undefined' && (
-             <ForceGraph3D
+             <ForceGraph2D
                 ref={fgRef}
                 graphData={formattedData}
-                backgroundColor="rgba(0, 0, 0, 0)"
-                showNavInfo={false}
-                nodeThreeObject={nodeObject}
-                nodeThreeObjectExtend={false}
                 nodeLabel="label"
-                nodeColor={(d: any) => d.color}
-                linkColor={(l: any) => l.color}
-                linkWidth={0.8}
-                linkDirectionalParticles={4}
-                linkDirectionalParticleSpeed={0.004}
-                linkDirectionalParticleWidth={1.5}
+                nodeColor="color"
+                nodeRelSize={1}
+                nodeVal="size"
+                linkColor="color"
+                linkWidth="width"
+                backgroundColor="transparent"
                 onNodeClick={onNodeClick}
-                cooldownTicks={120}
-                onEngineStop={() => {
-                   if (formattedData.nodes.length > 0) {
-                      fgRef.current?.zoomToFit(1000, 200);
-                   }
-                }}
+                cooldownTicks={100}
+                onEngineStop={() => fgRef.current?.zoomToFit(400, 100)}
              />
            )}
         </div>
 
-        {/* ── SCI-FI HUD OVERLAY ── */}
-        <div className="absolute inset-0 pointer-events-none p-8 lg:p-14 flex flex-col z-20">
+        {/* ATLAS OVERLAY UI */}
+        <div className="relative z-10 p-6 lg:p-12 h-screen flex flex-col pointer-events-none">
           
-          {/* TOP HUD BAR */}
-          <div className="flex justify-between items-start pointer-events-auto w-full">
+          {/* HEADER NAV */}
+          <div className="flex-none flex justify-between items-start pointer-events-auto">
              <motion.div 
-               initial={{ x: -100, opacity: 0 }} 
+               initial={{ x: -50, opacity: 0 }}
                animate={{ x: 0, opacity: 1 }}
-               className="flex items-center gap-8"
+               className="flex gap-6"
              >
-                <Link href="/" className="h-16 w-16 bg-black/80 border-2 border-white/10 hover:bg-[#ff6b2b] hover:text-black hover:border-[#ff6b2b] rounded-2xl backdrop-blur-3xl transition-all flex items-center justify-center active:scale-90 group shadow-2xl">
-                   <ChevronLeft size={32} className="group-hover:-translate-x-1 transition-transform" strokeWidth={3} />
+                <Link href="/" className="h-16 w-16 bg-background/40 border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary rounded-2xl backdrop-blur-3xl shadow-2xl transition-all group flex items-center justify-center active:scale-95">
+                   <ChevronLeft size={32} className="group-hover:-translate-x-1 transition-transform" strokeWidth={2.5} />
                 </Link>
-                <div className="px-8 py-5 bg-black/80 border-2 border-white/10 rounded-2xl backdrop-blur-3xl flex flex-col justify-center gap-1 shadow-2xl relative overflow-hidden group">
-                   <div className="absolute top-0 right-0 p-3 opacity-[0.05] group-hover:rotate-12 transition-transform">
-                      <Terminal size={40} className="text-[#ff6b2b]" />
+                <div className="bg-background/40 border border-border p-6 rounded-[2.5rem] backdrop-blur-3xl space-y-2 shadow-2xl group relative overflow-hidden">
+                   <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+                   <div className="flex items-center gap-4 text-primary font-black uppercase tracking-[0.5em] text-[10px] italic leading-none animate-pulse pl-1">
+                      <Orbit size={14} className="animate-spin-slow" /> COGNITIVE_ATLAS_v7.0
                    </div>
-                   <div className="text-[9px] font-black uppercase tracking-[0.6em] text-[#ff6b2b] italic leading-none">NEURAL. ARCHIVE. V7.0</div>
-                   <div className="text-3xl font-black uppercase tracking-tighter text-white italic leading-none">Neural Atlas<span className="text-[#ff6b2b]">.</span></div>
+                   <h1 className="text-4xl font-black uppercase tracking-tighter italic leading-none whitespace-nowrap text-foreground pl-1">
+                      Neural <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-primary/40">Atlas.</span>
+                   </h1>
                 </div>
              </motion.div>
-
-             <motion.div 
-               initial={{ x: 100, opacity: 0 }} 
-               animate={{ x: 0, opacity: 1 }}
-               className="flex gap-6 items-start"
-             >
-                <div className="px-10 py-5 bg-black/80 border-2 border-white/10 rounded-2xl backdrop-blur-3xl flex flex-col items-end gap-2 shadow-2xl relative group">
-                   <div className="absolute top-0 left-0 p-3 opacity-[0.05] group-hover:-rotate-12 transition-transform">
-                      <Database size={40} className="text-[#ff6b2b]" />
-                   </div>
-                   <div className="text-[9px] font-black uppercase tracking-[0.5em] text-white/20 italic leading-none">ACTIVE_NEURAL_SHARDS</div>
-                   <div className="text-5xl font-black text-[#ff6b2b] italic leading-none tabular-nums drop-shadow-[0_0_20px_#ff6b2b88]">
-                      {allData.nodes.length || 'CALC'}
-                   </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                   <button className="h-14 w-14 bg-black/80 border-2 border-white/10 hover:border-[#ff6b2b]/40 rounded-xl backdrop-blur-3xl flex items-center justify-center text-white/20 hover:text-[#ff6b2b] transition-all active:scale-90 shadow-xl">
-                      <Maximize2 size={24} />
-                   </button>
-                   <button className="h-14 w-14 bg-black/80 border-2 border-white/10 hover:border-[#ff6b2b]/40 rounded-xl backdrop-blur-3xl flex items-center justify-center text-white/20 hover:text-[#ff6b2b] transition-all active:scale-90 shadow-xl">
-                      <Eye size={24} />
-                   </button>
-                </div>
-             </motion.div>
-          </div>
-
-          {/* LEFT TELEMETRY READOUT */}
-          <div className="mt-20 flex-1 hidden lg:block pointer-events-none">
-             <motion.div 
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="w-80 space-y-12"
-             >
-                <div className="space-y-6">
-                   <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.6em] text-[#ff6b2b] italic leading-none">
-                      <Wifi size={14} className="animate-pulse" /> Uplink_Status
-                   </div>
-                   <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden p-[1px] border border-white/5">
-                      <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 4, repeat: Infinity, ease: 'linear' }} className="h-full w-1/4 bg-[#ff6b2b] shadow-[0_0_20px_#ff6b2b]" />
-                   </div>
-                </div>
-                <div className="space-y-4 font-mono text-[9px] text-white/20 uppercase tracking-[0.2em] leading-relaxed">
-                   <div className="flex justify-between border-b border-white/5 pb-2"><span>Latency:</span> <span className="text-[#ff6b2b]">0.04ms</span></div>
-                   <div className="flex justify-between border-b border-white/5 pb-2"><span>Resonance:</span> <span className="text-[#ff6b2b]">99.82%</span></div>
-                   <div className="flex justify-between border-b border-white/5 pb-2"><span>Auth_Level:</span> <span className="text-[#ff6b2b]">OMEGA_7</span></div>
-                   <div className="flex justify-between border-b border-white/5 pb-2"><span>Enc_Key:</span> <span className="text-[#ff6b2b]">0x7F2C...14B</span></div>
-                </div>
-                <div className="p-6 bg-white/[0.02] border-2 border-white/5 rounded-2xl italic text-[11px] text-white/40 leading-relaxed shadow-inner">
-                   Scanning neural topologies for emergent singularities. Consensus protocol active.
-                </div>
-             </motion.div>
-          </div>
-
-          {/* BOTTOM CONTROLS & SEARCH */}
-          <div className="mt-auto flex flex-col md:flex-row items-end justify-between gap-12 pointer-events-auto">
              
-             {/* LEGEND / FILTERS */}
              <motion.div 
-               initial={{ y: 50, opacity: 0 }} 
-               animate={{ y: 0, opacity: 1 }}
-               className="flex gap-10 bg-black/80 border-2 border-white/10 rounded-[2.5rem] px-10 py-6 backdrop-blur-3xl shadow-[0_40px_100px_rgba(0,0,0,0.8)] border-b-[#ff6b2b]/30"
+               initial={{ x: 50, opacity: 0 }}
+               animate={{ x: 0, opacity: 1 }}
+               className="flex gap-6 pt-2"
              >
+                <div className="bg-background/40 border border-border rounded-[2.5rem] p-6 backdrop-blur-3xl space-y-2 text-right min-w-[200px] shadow-2xl relative overflow-hidden group">
+                   <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent shadow-[0_0_15px_var(--primary)]" />
+                   <div className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-black italic mb-1 opacity-40">Active Shards</div>
+                   <div className="text-4xl font-black text-primary italic leading-none tabular-nums">{graphData.nodes.length}</div>
+                </div>
+                <button className="h-20 w-20 bg-background/40 border border-border hover:bg-primary/10 rounded-[2.5rem] flex items-center justify-center transition-all group backdrop-blur-3xl shadow-2xl active:scale-95">
+                   <Maximize size={32} className="text-muted-foreground group-hover:text-primary transition-colors" strokeWidth={2.5} />
+                </button>
+             </motion.div>
+          </div>
+
+          {/* CENTRE-RIGHT SEARCH */}
+          <div className="mt-12 pointer-events-auto flex justify-center lg:justify-start">
+             <motion.div 
+               initial={{ y: 20, opacity: 0 }}
+               animate={{ y: 0, opacity: 1 }}
+               transition={{ delay: 0.2 }}
+               className="w-full max-w-xl bg-background/60 border-2 border-border rounded-[3.5rem] p-4 backdrop-blur-3xl shadow-2xl flex items-center gap-6 group hover:border-primary/40 transition-all shadow-inner"
+             >
+                <div className="h-16 w-16 bg-muted border border-border rounded-[1.8rem] flex items-center justify-center text-primary group-focus-within:bg-primary/10 group-focus-within:border-primary/30 transition-all shadow-inner">
+                   <Search size={28} strokeWidth={3} />
+                </div>
+                <input 
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                  placeholder="Locate neural signatures..."
+                  className="bg-transparent border-none outline-none text-2xl font-black italic text-foreground w-full placeholder:text-muted-foreground/20 tracking-tight"
+                />
+                <button
+                  onClick={handleSearch}
+                  className="bg-primary text-primary-foreground px-10 py-5 rounded-[2rem] font-black uppercase text-xs tracking-[0.6em] hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-primary/20 italic leading-none shrink-0 border-0"
+                >
+                  {isSearching ? <Activity className="animate-spin" size={20} strokeWidth={3} /> : 'SCAN'}
+                </button>
+             </motion.div>
+          </div>
+
+          {/* BOTTOM FILTERS BAR */}
+          <div className="mt-auto flex flex-col lg:flex-row justify-between items-end pointer-events-auto gap-12">
+             <motion.div 
+               initial={{ y: 50, opacity: 0 }}
+               animate={{ y: 0, opacity: 1 }}
+               transition={{ delay: 0.3 }}
+               className="bg-background/40 border border-border p-8 md:p-10 rounded-[3.5rem] backdrop-blur-3xl flex flex-wrap gap-12 md:gap-16 shadow-2xl relative overflow-hidden group shadow-inner"
+             >
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
                 {[
-                  { label: 'Agents', color: 'bg-[#ff6b2b]', icon: <Cpu size={14} /> },
-                  { label: 'Knowledge', color: 'bg-[#ff6b2b]/50', icon: <Database size={14} /> },
-                  { label: 'Entities', color: 'bg-white', icon: <Fingerprint size={14} /> }
-                ].map(l => (
-                  <div key={l.label} className="flex items-center gap-4 group cursor-help">
-                     <div className={`h-4 w-4 rounded-lg ${l.color} shadow-[0_0_15px_currentColor] group-hover:scale-125 transition-transform`} />
-                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40 italic group-hover:text-white transition-colors">{l.label}</span>
+                  { label: 'Agents', color: 'bg-primary', icon: Cpu },
+                  { label: 'Knowledge', color: 'bg-primary/60', icon: Database },
+                  { label: 'Entities', color: 'bg-foreground/20', icon: BrainCircuit }
+                ].map((type, i) => (
+                  <div key={i} className="flex items-center gap-6 group/filter cursor-pointer">
+                     <div className={`h-3 w-3 rounded-full ${type.color} group-hover/filter:scale-150 transition-all duration-500 shadow-[0_0_15px_currentColor] animate-pulse`} />
+                     <div className="space-y-1">
+                        <div className="text-[11px] text-muted-foreground font-black uppercase tracking-[0.4em] leading-none group-hover/filter:text-foreground transition-colors italic">{type.label}</div>
+                        <div className="text-[9px] text-muted-foreground/10 font-black uppercase tracking-[0.2em] italic leading-none">ACTIVE_SHARD</div>
+                     </div>
                   </div>
                 ))}
              </motion.div>
-
-             {/* MAIN SEARCH BAR */}
+             
              <motion.div 
-                initial={{ y: 50, opacity: 0 }} 
-                animate={{ y: 0, opacity: 1 }}
-                className="relative group w-full max-w-3xl"
+               initial={{ y: 50, opacity: 0 }}
+               animate={{ y: 0, opacity: 1 }}
+               transition={{ delay: 0.4 }}
+               className="flex gap-6"
              >
-                <div className="absolute inset-0 bg-[#ff6b2b]/15 blur-3xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-1000" />
-                <div className="relative bg-black/90 border-2 border-white/10 group-focus-within:border-[#ff6b2b]/40 rounded-[3.5rem] p-4 pl-12 flex items-center gap-8 backdrop-blur-3xl shadow-[0_60px_120px_rgba(0,0,0,0.9)] transition-all duration-700">
-                   <Search className="text-white/20 group-focus-within:text-[#ff6b2b] transition-all" size={32} />
-                   <input 
-                      type="text" 
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      placeholder="Locate neural signatures..."
-                      className="bg-transparent border-none outline-none text-3xl font-light w-full text-white placeholder:text-white/10 placeholder:italic italic tracking-tight"
-                   />
-                   <button className="h-16 px-12 bg-[#ff6b2b] text-black rounded-[2.5rem] font-black uppercase tracking-[0.6em] text-[12px] italic hover:scale-[1.05] active:scale-95 transition-all flex items-center gap-4 shadow-2xl shadow-[#ff6b2b]/20">
-                      <Scan size={20} strokeWidth={4} /> Scan
-                   </button>
-                </div>
-             </motion.div>
-
-             {/* SYNC & ACTION CLUSTER */}
-             <div className="flex items-center gap-6">
-                <motion.button 
-                   initial={{ y: 50, opacity: 0 }} 
-                   animate={{ y: 0, opacity: 1 }}
-                   onClick={fetchGraph}
-                   disabled={isLoading}
-                   className="h-24 px-12 bg-white/5 border-2 border-white/10 hover:border-[#ff6b2b]/40 text-white/40 hover:text-[#ff6b2b] rounded-[3rem] font-black uppercase tracking-[0.6em] text-[11px] italic backdrop-blur-3xl transition-all flex items-center gap-6 active:scale-95 disabled:opacity-50 group"
+                <button className="h-20 w-20 bg-background/40 border border-border rounded-[2.5rem] flex items-center justify-center transition-all hover:bg-muted hover:border-primary/40 backdrop-blur-3xl shadow-2xl active:scale-95 shadow-inner">
+                   <Filter size={32} className="text-muted-foreground/40" strokeWidth={2.5} />
+                </button>
+                <button 
+                  onClick={fetchGraph}
+                  disabled={isSyncing}
+                  className="px-16 h-20 bg-primary text-primary-foreground font-black uppercase text-[11px] tracking-[0.6em] rounded-[2.5rem] hover:scale-[1.05] active:scale-95 transition-all shadow-2xl shadow-primary/20 italic leading-none flex items-center gap-6 disabled:opacity-50 border-0"
                 >
-                   <RefreshCw size={24} className={isLoading ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-1000'} strokeWidth={3} />
-                   {isLoading ? 'Syncing...' : 'Sync_Mesh'}
-                </motion.button>
-             </div>
+                   <Wifi size={24} strokeWidth={3} className={isSyncing ? 'animate-spin' : 'animate-pulse'} /> 
+                   {isSyncing ? 'SYNCING...' : 'SYNC_MESH'}
+                </button>
+             </motion.div>
           </div>
+
         </div>
 
+        {/* SHARD INSPECTOR HUD */}
         <AnimatePresence>
-          {selectedNode && (
-            <ShardHUD 
-              node={selectedNode} 
-              graphData={allData}
-              onClose={() => setSelectedNode(null)} 
-              onSelectNode={onNodeClick}
-            />
-          )}
+           {selectedNode && (
+             <ShardHUD 
+               node={selectedNode} 
+               graphData={allData}
+               onClose={() => setSelectedNode(null)} 
+               onSelectNode={onNodeClick}
+             />
+           )}
         </AnimatePresence>
+
       </main>
 
-      {/* ── CINEMATIC DECOR OVERLAYS ── */}
-      <div className="fixed inset-0 pointer-events-none border-[30px] border-black/40 z-10" />
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none opacity-[0.02] neural-grid z-0" />
-      
-      {/* HUD WATERMARK */}
-      <div className="fixed bottom-10 right-10 opacity-[0.03] text-white pointer-events-none select-none z-0">
-          <div className="text-[12vw] font-black italic italic leading-none uppercase text-right tracking-tighter">ARCHIVE<br/>OMEGA</div>
-      </div>
-
       <style jsx global>{`
+        .animate-spin-slow { animation: spin 20s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
         .neural-grid {
-          background-image: linear-gradient(rgba(255, 107, 43, 0.1) 1px, transparent 1px), 
-                            linear-gradient(90deg, rgba(255, 107, 43, 0.1) 1px, transparent 1px);
+          background-image: linear-gradient(hsla(var(--primary), 0.05) 1px, transparent 1px), 
+                            linear-gradient(90deg, hsla(var(--primary), 0.05) 1px, transparent 1px);
           background-size: 80px 80px;
         }
-        .text-shadow-orange {
-          text-shadow: 0 0 30px rgba(255, 107, 43, 0.6);
-        }
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
-          50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
-        }
+
         .animate-pulse-slow {
-          animation: pulse-slow 12s ease-in-out infinite;
+          animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-        canvas {
-          cursor: crosshair !important;
-          opacity: 0.9;
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.1; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.1); }
         }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 107, 43, 0.2); border-radius: 10px; }
       `}</style>
     </div>
   );

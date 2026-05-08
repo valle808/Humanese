@@ -48,14 +48,14 @@ export const AgentIntelligenceFeed = () => {
     const log = logs[currentIndex];
 
     return (
-        <div className="relative bg-card border-2 border-border rounded-[3rem] p-6 md:p-8 flex flex-col gap-4 overflow-hidden group hover:border-[#ff6b2b]/20 transition-all duration-700 shadow-2xl backdrop-blur-3xl h-full">
+        <div className="relative bg-card border-2 border-border rounded-[3rem] p-6 md:p-8 flex flex-col gap-4 overflow-hidden group hover:border-primary/20 transition-all duration-700 shadow-2xl backdrop-blur-3xl h-full">
             {/* Scanner line */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ff6b2b] to-transparent z-0 opacity-20 animate-[scan_10s_linear_infinite]" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent z-0 opacity-20 animate-[scan_10s_linear_infinite]" />
 
             {/* ── HEADER ── */}
             <div className="flex justify-between items-center relative z-10 shrink-0">
                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-[1.2rem] bg-foreground/5 dark:bg-black border-2 border-border dark:border-[#ff6b2b]/20 flex items-center justify-center text-[#ff6b2b] shadow-inner group-hover:scale-110 transition-transform shrink-0">
+                    <div className="w-12 h-12 rounded-[1.2rem] bg-foreground/5 dark:bg-muted border-2 border-border dark:border-primary/20 flex items-center justify-center text-primary shadow-inner group-hover:scale-110 transition-transform shrink-0">
                         <Activity size={22} className="animate-pulse" strokeWidth={2.5} />
                     </div>
                     <div>
@@ -63,9 +63,9 @@ export const AgentIntelligenceFeed = () => {
                         <div className="text-[9px] text-foreground/30 uppercase tracking-[0.4em] italic leading-none">Collective Intel Stream</div>
                     </div>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-1.5 bg-[#ff6b2b]/10 border border-[#ff6b2b]/20 rounded-full">
-                    <div className="w-2 h-2 rounded-full bg-[#ff6b2b] animate-ping shrink-0" />
-                    <span className="text-[9px] font-black text-[#ff6b2b] uppercase tracking-[0.2em] italic">{counter + 8241} Nodes</span>
+                <div className="flex items-center gap-2 px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full">
+                    <div className="w-2 h-2 rounded-full bg-primary animate-ping shrink-0" />
+                    <span className="text-[9px] font-black text-primary uppercase tracking-[0.2em] italic">{counter + 8241} Nodes</span>
                 </div>
             </div>
 
@@ -79,15 +79,15 @@ export const AgentIntelligenceFeed = () => {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -60 }}
                             transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
-                            className="absolute inset-0 p-5 bg-foreground/5 dark:bg-black/60 border-2 border-border dark:border-white/5 rounded-[2rem] flex flex-col gap-3 hover:border-[#ff6b2b]/30 transition-colors group/card cursor-default overflow-hidden"
+                            className="absolute inset-0 p-5 bg-foreground/5 dark:bg-muted/60 border-2 border-border dark:border-border rounded-[2rem] flex flex-col gap-3 hover:border-primary/30 transition-colors group/card cursor-default overflow-hidden"
                         >
                             {/* Accent bar */}
-                            <div className="absolute inset-y-0 left-0 w-1 bg-[#ff6b2b] scale-y-0 group-hover/card:scale-y-100 transition-transform origin-top z-10 rounded-l-[2rem]" />
+                            <div className="absolute inset-y-0 left-0 w-1 bg-primary scale-y-0 group-hover/card:scale-y-100 transition-transform origin-top z-10 rounded-l-[2rem]" />
 
                             {/* Tag row */}
                             <div className="flex items-center justify-between relative z-20">
                                 <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="px-2.5 py-1 bg-[#ff6b2b]/8 border border-[#ff6b2b]/25 rounded-lg text-[9px] font-black text-[#ff6b2b] uppercase tracking-widest italic leading-none">
+                                    <span className="px-2.5 py-1 bg-primary/8 border border-primary/25 rounded-lg text-[9px] font-black text-primary uppercase tracking-widest italic leading-none">
                                         {log.action || 'INTERCEPT'}
                                     </span>
                                     <span className="text-[9px] font-black text-foreground/25 uppercase tracking-[0.15em] italic truncate max-w-[90px]">
@@ -113,7 +113,7 @@ export const AgentIntelligenceFeed = () => {
 
                             {/* Agent name */}
                             <div className="flex items-center gap-2 relative z-20 shrink-0">
-                                <Binary size={14} className="text-[#ff6b2b]/40 shrink-0" strokeWidth={2.5} />
+                                <Binary size={14} className="text-primary/40 shrink-0" strokeWidth={2.5} />
                                 <span className="text-[10px] font-black uppercase tracking-[0.3em] italic text-foreground/30">
                                     {log.agent?.name || log.agentId}
                                 </span>
@@ -140,7 +140,7 @@ export const AgentIntelligenceFeed = () => {
                             aria-label={`Slide ${i + 1}`}
                             className={`h-1 rounded-full transition-all duration-300 ${
                                 i === currentIndex
-                                    ? 'bg-[#ff6b2b] w-5 shadow-[0_0_6px_#ff6b2b]'
+                                    ? 'bg-primary w-5 shadow-[0_0_6px_hsl(var(--primary))]'
                                     : 'bg-foreground/15 w-1.5 hover:bg-foreground/35'
                             }`}
                         />
@@ -152,12 +152,12 @@ export const AgentIntelligenceFeed = () => {
             <div className="pt-4 border-t border-border flex justify-between items-center relative z-10 shrink-0 mt-auto">
                 <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map(i => (
-                        <div key={i} className="w-7 h-7 rounded-full bg-foreground/5 dark:bg-black border-2 border-border flex items-center justify-center text-[9px] font-black text-foreground/30 hover:border-[#ff6b2b] hover:text-[#ff6b2b] transition-all hover:z-20 hover:scale-125 shrink-0">
+                        <div key={i} className="w-7 h-7 rounded-full bg-foreground/5 dark:bg-muted border-2 border-border flex items-center justify-center text-[9px] font-black text-foreground/30 hover:border-primary hover:text-primary transition-all hover:z-20 hover:scale-125 shrink-0">
                             A{i}
                         </div>
                     ))}
                 </div>
-                <Link href="/neural-nexus" className="text-[10px] font-black uppercase tracking-[0.35em] text-[#ff6b2b] hover:text-foreground transition-all flex items-center gap-2 italic active:scale-95 group/link shrink-0">
+                <Link href="/neural-nexus" className="text-[10px] font-black uppercase tracking-[0.35em] text-primary hover:text-foreground transition-all flex items-center gap-2 italic active:scale-95 group/link shrink-0">
                     Open Matrix <ChevronRight size={16} className="group-hover/link:translate-x-2 transition-transform" strokeWidth={3} />
                 </Link>
             </div>

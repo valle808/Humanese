@@ -21,7 +21,7 @@ interface TopNavProps {
 
 export function TopNav({ onSearch, isLoading, showSearch = true, showExport = false, onExport, onCopyMarkdown }: TopNavProps) {
   return (
-    <div className="sticky top-0 z-50 bg-[#050505]/80 backdrop-blur-3xl border-b-2 border-white/5 transition-all duration-500">
+    <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-3xl border-b-2 border-border transition-all duration-500">
       <div className="max-w-[1800px] mx-auto px-8 lg:px-12 py-5">
         <div className="flex items-center justify-between gap-12">
           {/* ── LEFT: BRAND & NAV ── */}
@@ -33,27 +33,27 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
               <div className="flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
                 <BrandShader size="small" />
               </div>
-              <span className="font-black tracking-tighter text-4xl leading-none text-white italic group-hover:text-[#ff6b2b] transition-colors uppercase">
-                Hpedia<span className="text-[#ff6b2b]">.</span>
+              <span className="font-black tracking-tighter text-4xl leading-none text-foreground italic group-hover:text-primary transition-colors uppercase">
+                Hpedia<span className="text-primary">.</span>
               </span>
             </Link>
             
             <nav className="hidden md:flex items-center gap-8">
                 <Link
                   href="/skill-market"
-                  className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-white/20 hover:text-[#ff6b2b] transition-all bg-white/[0.03] border-2 border-white/5 hover:border-[#ff6b2b]/40 px-6 py-2.5 rounded-full italic leading-none active:scale-95"
+                  className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground/20 hover:text-primary transition-all bg-muted/10 border-2 border-border hover:border-primary/40 px-6 py-2.5 rounded-full italic leading-none active:scale-95"
                 >
                   <Zap size={14} className="group-hover:animate-pulse" strokeWidth={3} /> Skill Market
                 </Link>
                 <Link
                   href="/research"
-                  className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-white/20 hover:text-white transition-all italic leading-none active:scale-95"
+                  className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground/20 hover:text-foreground transition-all italic leading-none active:scale-95"
                 >
                   Research
                 </Link>
                 <Link
                   href="/intelligence"
-                  className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-white/20 hover:text-white transition-all italic leading-none active:scale-95"
+                  className="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground/20 hover:text-foreground transition-all italic leading-none active:scale-95"
                 >
                   Intelligence
                 </Link>
@@ -70,19 +70,19 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
           {/* ── RIGHT: ACTIONS ── */}
           <div className="flex items-center justify-end gap-6 shrink-0">
             {showExport && (
-              <div className="flex items-center gap-4 bg-white/[0.02] border border-white/5 p-2 rounded-2xl">
+              <div className="flex items-center gap-4 bg-muted/10 border border-border p-2 rounded-2xl">
                 <div className="hidden lg:flex items-center gap-2">
                    <DiscordButton />
                    <GitHubStarButton />
                 </div>
                 
-                <div className="h-6 w-px bg-white/5 mx-2 hidden lg:block" />
+                <div className="h-6 w-px bg-muted/10 mx-2 hidden lg:block" />
                 
                 {onCopyMarkdown && (
                   <button
                     aria-label="Copy Shard"
                     onClick={onCopyMarkdown}
-                    className="p-3 bg-white/5 border border-white/10 rounded-xl text-white/20 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 transition-all active:scale-95"
+                    className="p-3 bg-muted/10 border border-border rounded-xl text-muted-foreground/20 hover:text-primary hover:border-primary/40 transition-all active:scale-95"
                   >
                     <Copy className="h-5 w-5" strokeWidth={2.5} />
                   </button>
@@ -91,7 +91,7 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
                   <button
                     aria-label="Export Buffer"
                     onClick={onExport}
-                    className="p-3 bg-white/5 border border-white/10 rounded-xl text-white/20 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 transition-all active:scale-95"
+                    className="p-3 bg-muted/10 border border-border rounded-xl text-muted-foreground/20 hover:text-primary hover:border-primary/40 transition-all active:scale-95"
                   >
                     <Download className="h-5 w-5" strokeWidth={2.5} />
                   </button>
@@ -99,7 +99,7 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
               </div>
             )}
             
-            <Link href="/wallet" className="h-14 w-14 rounded-2xl bg-black border-2 border-white/5 flex items-center justify-center text-white/10 hover:text-[#ff6b2b] hover:border-[#ff6b2b]/40 transition-all shadow-inner group active:scale-95">
+            <Link href="/wallet" className="h-14 w-14 rounded-2xl bg-muted border-2 border-border flex items-center justify-center text-muted-foreground/10 hover:text-primary hover:border-primary/40 transition-all shadow-inner group active:scale-95">
                <ShieldCheck size={24} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
             </Link>
           </div>
@@ -107,7 +107,7 @@ export function TopNav({ onSearch, isLoading, showSearch = true, showExport = fa
       </div>
       
       {/* ── SCANNER LINE ── */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6b2b]/40 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
     </div>
   );
 }

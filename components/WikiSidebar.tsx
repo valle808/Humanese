@@ -37,14 +37,14 @@ export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
   };
 
   return (
-    <div className="h-full w-full bg-[#050505]/40 backdrop-blur-3xl border-l border-white/5 relative group">
+    <div className="h-full w-full bg-background/40 backdrop-blur-3xl border-l border-border relative group">
       <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
       
       <ScrollArea className="h-screen py-16 px-10">
         <div className="space-y-12">
             {/* ── HEADER ── */}
             <div className="space-y-4">
-                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-[#ff6b2b] italic">
+                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-primary italic">
                    <TargetIcon size={12} strokeWidth={3} /> Contents_
                 </div>
                 {title && (
@@ -52,10 +52,10 @@ export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
                       onClick={handleTitleClick}
                       className={cn(
                         'text-2xl font-black italic tracking-tighter uppercase transition-colors text-left leading-none pt-1',
-                        clickedSection === 'top' ? 'text-white' : 'text-white/20 hover:text-white'
+                        clickedSection === 'top' ? 'text-foreground' : 'text-muted-foreground/20 hover:text-foreground'
                       )}
                     >
-                      {title}<span className="text-[#ff6b2b]">.</span>
+                      {title}<span className="text-primary">.</span>
                     </button>
                 )}
             </div>
@@ -63,7 +63,7 @@ export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
             {/* ── NAVIGATION ── */}
             <nav className="pb-64">
               {toc.length === 0 ? (
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/5 italic">No clusters found_</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground/5 italic">No clusters found_</p>
               ) : (
                 <ul className="space-y-2">
                   {toc.map((item) => (
@@ -82,8 +82,8 @@ export function WikiSidebar({ toc, title, activeSection }: WikiSidebarProps) {
       </ScrollArea>
       
       <div className="absolute bottom-10 left-10 flex items-center gap-4">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#ff6b2b] animate-ping" />
-          <span className="text-[9px] font-black text-white/5 uppercase tracking-[0.4em] italic">Real-Time Sync Stable</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+          <span className="text-[9px] font-black text-muted-foreground/5 uppercase tracking-[0.4em] italic">Real-Time Sync Stable</span>
       </div>
     </div>
   );
@@ -117,15 +117,15 @@ function TocItemComponent({ item, clickedSection, onSectionClick, depth = 0 }: T
         onClick={handleClick}
         className={cn(
           'group flex items-center gap-4 py-2 transition-all relative',
-          isActive ? 'text-white' : 'text-white/20 hover:text-white',
-          depth > 0 && 'ml-6 border-l border-white/5 pl-6'
+          isActive ? 'text-foreground' : 'text-muted-foreground/20 hover:text-foreground',
+          depth > 0 && 'ml-6 border-l border-border pl-6'
         )}
       >
         <AnimatePresence>
         {isActive && (
             <motion.div 
                 layoutId="active-indicator"
-                className="absolute left-[-2px] w-[3px] h-full bg-[#ff6b2b] shadow-[0_0_10px_#ff6b2b]"
+                className="absolute left-[-2px] w-[3px] h-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]"
             />
         )}
         </AnimatePresence>

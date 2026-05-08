@@ -319,7 +319,7 @@ export default function FleetPage() {
                     </div>
                     <button
                       onClick={() => dispatchCommand(selectedNode.id, 'OFFLINE')}
-                      className="w-full h-16 bg-red-500/10 border-2 border-red-500/20 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.8em] italic text-red-500 hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner"
+                      className="w-full h-16 bg-red-500/10 border-2 border-red-500/20 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.8em] italic text-red-500 hover:bg-red-500 hover:text-foreground transition-all flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner"
                     >
                       <Power size={18} strokeWidth={2.5} /> Halt Node Shard
                     </button>
