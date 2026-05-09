@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useTheme } from '@/components/ThemeProvider';
 
 // Component
 import ShardHUD from '@/components/atlas/shard-hud';
@@ -98,18 +99,25 @@ export default function CognitiveAtlasPage() {
     setTimeout(() => setIsSearching(false), 500);
   };
 
-  const formattedData = useMemo(() => ({
-    nodes: graphData.nodes.map(n => ({
-      ...n,
-      color: n.group === 'AGENT' ? 'hsl(var(--primary))' : n.group === 'USER' ? 'hsl(var(--foreground))' : 'hsla(var(--primary), 0.6)',
-      size: n.group === 'USER' ? 12 : 8
-    })),
-    links: graphData.links.map(l => ({
-      ...l,
-      color: 'hsla(var(--primary), 0.1)',
-      width: 1
-    }))
-  }), [graphData]);
+  const { resolvedTheme } = useTheme();
+
+  const formattedData = useMemo(() => {
+    const isDark = resolvedTheme === 'dark';
+    const foregroundColor = isDark ? '#ffffff' : '#000000';
+    
+    return {
+      nodes: graphData.nodes.map(n => ({
+        ...n,
+        color: n.group === 'AGENT' ? '#ff6b2b' : n.group === 'USER' ? foregroundColor : 'rgba(255, 107, 43, 0.6)',
+        size: n.group === 'USER' ? 12 : 8
+      })),
+      links: graphData.links.map(l => ({
+        ...l,
+        color: 'rgba(255, 107, 43, 0.1)',
+        width: 1
+      }))
+    };
+  }, [graphData, resolvedTheme]);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-hidden flex flex-col transition-colors duration-700">

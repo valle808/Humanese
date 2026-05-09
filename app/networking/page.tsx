@@ -192,7 +192,8 @@ export default function NetworkingHub() {
 
            {/* CONTENT: DYNAMIC DISPLAY */}
            <div className="lg:col-span-8 space-y-12">
-              <AnimatePre                  {activeTab === 'COMMUNITY' && (
+              <AnimatePresence mode="wait">
+                  {activeTab === 'COMMUNITY' && (
                     <motion.div 
                       key="community"
                       initial={{ opacity: 0, y: 30, filter: 'blur(20px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: -30, filter: 'blur(20px)' }}
@@ -243,7 +244,7 @@ export default function NetworkingHub() {
                           </div>
                        </div>
                     </motion.div>
-                 )}                 )}
+                 )}
 
                  {activeTab === 'COLLABS' && (
                     <motion.div 
