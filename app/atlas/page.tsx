@@ -44,6 +44,7 @@ export default function CognitiveAtlasPage() {
   const [isSyncing, setIsSyncing] = useState(false);
   const [bootSequence, setBootSequence] = useState(true);
   const fgRef = useRef<any>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   const [allData, setAllData] = useState<{ nodes: any[], links: any[] }>({ nodes: [], links: [] });
 
@@ -67,6 +68,7 @@ export default function CognitiveAtlasPage() {
   };
 
   useEffect(() => {
+    setIsMounted(true);
     fetchGraph();
   }, []);
 
@@ -182,7 +184,7 @@ export default function CognitiveAtlasPage() {
         
         {/* GRAPH CANVAS */}
         <div className="absolute inset-0 z-0 opacity-80">
-           {typeof window !== 'undefined' && (
+           {isMounted && (
              <ForceGraph2D
                 ref={fgRef}
                 graphData={formattedData}
