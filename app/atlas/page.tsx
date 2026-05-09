@@ -102,24 +102,26 @@ export default function CognitiveAtlasPage() {
   };
 
   const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+  const foregroundColor = isDark ? '#ffffff' : '#000000';
 
   const formattedData = useMemo(() => {
-    const isDark = resolvedTheme === 'dark';
-    const foregroundColor = isDark ? '#ffffff' : '#000000';
-    
     return {
-      nodes: graphData.nodes.map(n => ({
-        ...n,
-        color: n.group === 'AGENT' ? '#ff6b2b' : n.group === 'USER' ? foregroundColor : 'rgba(255, 107, 43, 0.6)',
-        size: n.group === 'USER' ? 12 : 8
-      })),
-      links: graphData.links.map(l => ({
-        ...l,
-        color: 'rgba(255, 107, 43, 0.1)',
-        width: 1
-      }))
+      nodes: graphData.nodes.map(n => ({ ...n })),
+      links: graphData.links.map(l => ({ ...l }))
     };
-  }, [graphData, resolvedTheme]);
+  }, [graphData]);
+
+  // Initial Auto-Zoom
+  useEffect(() => {
+    if (formattedData.nodes.length > 0 && isMounted && fgRef.current) {
+      const timer = setTimeout(() => {
+        fgRef.current.zoom(3, 1000);
+        fgRef.current.centerAt(0, 0, 1000);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [formattedData.nodes.length, isMounted]);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-hidden flex flex-col transition-colors duration-700">
@@ -189,15 +191,14 @@ export default function CognitiveAtlasPage() {
                 ref={fgRef}
                 graphData={formattedData}
                 nodeLabel="label"
-                nodeColor="color"
+                nodeColor={(n: any) => n.group === 'AGENT' ? '#ff6b2b' : n.group === 'USER' ? foregroundColor : 'rgba(255, 107, 43, 0.6)'}
                 nodeRelSize={1}
-                nodeVal="size"
-                linkColor="color"
-                linkWidth="width"
+                nodeVal={(n: any) => n.group === 'USER' ? 12 : 8}
+                linkColor={() => 'rgba(255, 107, 43, 0.1)'}
+                linkWidth={1}
                 backgroundColor="transparent"
                 onNodeClick={onNodeClick}
                 cooldownTicks={100}
-                onEngineStop={() => fgRef.current?.zoomToFit(400, 100)}
              />
            )}
         </div>

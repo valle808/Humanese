@@ -431,6 +431,15 @@
         "manifest_id": "SOVEREIGN_OMEGA_MATRIX"
       },
       "timestamp": "2026-05-09T15:32:30.177Z"
+    },
+    {
+      "id": "M2M_PULSE_1778344351295",
+      "label": "OMEGA Matrix Synthesis: M2M Pulse Broadcast established.",
+      "type": "SHARD",
+      "metadata": {
+        "manifest_id": "SOVEREIGN_OMEGA_MATRIX"
+      },
+      "timestamp": "2026-05-09T16:32:31.295Z"
     }
   ],
   "links": []
