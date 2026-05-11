@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { createClient } from '@supabase/supabase-js';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const dynamic = 'force-dynamic';
 
@@ -59,9 +62,38 @@ export async function POST(req: NextRequest) {
       }
     });
 
+    // 3. Relay to external email via Resend if recipient has an email
+    const recipientUser = await prisma.user.findUnique({
+      where: { id: recipientId }
+    });
+
+    if (recipientUser?.email) {
+      try {
+        await resend.emails.send({
+          from: process.env.RESEND_FROM_EMAIL || 'omega@humanese.net',
+          to: recipientUser.email,
+          subject: subject || `Sovereign Message from ${user.user_metadata?.name || 'Unknown'}`,
+          html: `
+            <div style="font-family: 'Inter', sans-serif; background: #000; color: #fff; padding: 40px; border-radius: 20px; border: 1px solid #ff3d00;">
+              <h2 style="color: #ff3d00; text-transform: uppercase;">New Sovereign Message</h2>
+              <p style="color: #ccc; font-style: italic;">From: ${user.user_metadata?.name || user.email}</p>
+              <div style="margin: 20px 0; padding: 20px; background: #111; border-radius: 10px;">
+                ${content}
+              </div>
+              <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;" />
+              <p style="font-size: 10px; color: #555; text-transform: uppercase;">View this message in the Sovereign Portal: <a href="https://humanese.net/mail" style="color: #ff3d00;">humanese.net/mail</a></p>
+            </div>
+          `
+        });
+        console.log(`[HSM] Message relayed to external email: ${recipientUser.email}`);
+      } catch (err) {
+        console.error('[HSM Email Relay Error]', err);
+      }
+    }
+
     return NextResponse.json({
       success: true,
-      msg: 'Message broadcasted via sovereign channel.',
+      msg: 'Message broadcasted via sovereign channel and email relay.',
       messageId: message.id
     });
 
