@@ -42,7 +42,8 @@ import Link from 'next/link';
 export default function WalletPage() {
   const router = useRouter();
   const [session, setSession] = useState<any>(null);
-  const [walletData, setWalletData] = useState<any>(null);
+  const [wallets, setWallets] = useState<any[]>([]);
+  const [primaryWallet, setPrimaryWallet] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -71,7 +72,9 @@ export default function WalletPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        setWalletData(data.wallet);
+        setWallets(data.wallets);
+        setPrimaryWallet(data.primaryWallet);
+        setSession(prev => ({ ...prev, user: data.user }));
       } else {
         setError(data.error);
         if (res.status === 401) {
@@ -87,9 +90,8 @@ export default function WalletPage() {
     }
   };
 
-  const copyAddress = () => {
-    if (!walletData?.address) return;
-    navigator.clipboard.writeText(walletData.address);
+  const copyAddress = (addr: string) => {
+    navigator.clipboard.writeText(addr);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -98,6 +100,10 @@ export default function WalletPage() {
     e.preventDefault();
     if (!transferData.amount || !transferData.to) return;
     setIsProcessing(true);
+    
+    // Check if it's a coinbase transfer
+    const isCoinbase = transferData.to.toLowerCase().includes('coinbase');
+    
     try {
       const res = await fetch('/api/valle/transfer', {
         method: 'POST',
@@ -105,11 +111,14 @@ export default function WalletPage() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${session.accessToken}`
         },
-        body: JSON.stringify(transferData)
+        body: JSON.stringify({
+          ...transferData,
+          isCoinbaseRelay: isCoinbase
+        })
       });
       const data = await res.json();
       if (res.ok) {
-        alert(`Transfer Successful: ${data.hash}`);
+        alert(isCoinbase ? 'Coinbase Relay Initiated. Verification pending.' : `Transfer Successful: ${data.hash}`);
         fetchWallet(session.accessToken);
         setTransferData({ ...transferData, amount: '', to: '' });
       } else {
@@ -133,6 +142,8 @@ export default function WalletPage() {
       </div>
     );
   }
+
+  const totalBalance = wallets.reduce((acc, curr) => acc + (curr.balance || 0), 0);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-x-hidden pb-40 transition-colors duration-700">
@@ -203,7 +214,7 @@ export default function WalletPage() {
                       <Globe size={18} className="text-primary" strokeWidth={2.5} /> Multi-Chain Cluster
                   </span>
                   <div className="h-2 w-2 bg-muted rounded-full" />
-                  <span className="text-[13px] font-black text-primary uppercase tracking-[0.4em] italic leading-none">{walletData?.entityType || 'HUMAN'} IDENT_PRIME</span>
+                  <span className="text-[13px] font-black text-primary uppercase tracking-[0.4em] italic leading-none">{session?.user?.entityType?.toUpperCase() || 'HUMAN'} IDENT_PRIME</span>
               </div>
             </div>
           </div>
@@ -244,8 +255,8 @@ export default function WalletPage() {
                           <span className="text-[12px] font-black tracking-[0.8em] text-muted-foreground/40 uppercase italic leading-none pl-1">Net_Asset_Value</span>
                        </div>
                        <div className="flex items-baseline gap-10">
-                          <span className="text-8xl lg:text-[11rem] font-black tracking-tighter leading-none italic text-foreground group-hover/content:text-foreground transition-colors">${walletData?.balance?.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
-                          <span className="text-primary font-black text-3xl tracking-[0.5em] uppercase italic animate-pulse">{walletData?.currency || 'VALLE'}</span>
+                          <span className="text-8xl lg:text-[11rem] font-black tracking-tighter leading-none italic text-foreground group-hover/content:text-foreground transition-colors">${totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                          <span className="text-primary font-black text-3xl tracking-[0.5em] uppercase italic animate-pulse">VALLE_EQUIVALENT</span>
                        </div>
                     </div>
                     <div className="p-12 bg-muted border-2 border-border rounded-[3.5rem] shadow-2xl group-hover:border-primary/30 transition-all shrink-0 shadow-inner">
@@ -256,17 +267,17 @@ export default function WalletPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="p-10 bg-muted/40 border-2 border-border rounded-[3rem] space-y-6 shadow-inner group/addr hover:border-primary/20 transition-all">
                        <div className="flex items-center justify-between px-2">
-                          <span className="text-[11px] font-black text-muted-foreground/30 uppercase tracking-[0.6em] italic leading-none">Sovereign Address</span>
-                          <button onClick={copyAddress} className="text-muted-foreground/40 hover:text-primary transition-all active:scale-90 p-2">
+                          <span className="text-[11px] font-black text-muted-foreground/30 uppercase tracking-[0.6em] italic leading-none">Primary Identity Address</span>
+                          <button onClick={() => copyAddress(primaryWallet?.address)} className="text-muted-foreground/40 hover:text-primary transition-all active:scale-90 p-2">
                             {copied ? <Check size={20} strokeWidth={3} /> : <Copy size={20} strokeWidth={2.5} />}
                           </button>
                        </div>
-                       <p className="text-2xl font-black font-mono truncate text-muted-foreground/50 group-hover/addr:text-foreground transition-colors pl-2">{walletData?.address || 'GENERATING...'}</p>
+                       <p className="text-2xl font-black font-mono truncate text-muted-foreground/50 group-hover/addr:text-foreground transition-colors pl-2">{primaryWallet?.address || 'GENERATING...'}</p>
                     </div>
                     <div className="p-10 bg-primary/5 border-2 border-primary/20 rounded-[3rem] flex items-center justify-between shadow-2xl group/status hover:scale-[1.03] transition-all">
                        <div className="pl-2 space-y-4">
                           <div className="text-[11px] font-black text-primary uppercase tracking-[0.6em] italic leading-none opacity-60">Handshake Status</div>
-                          <div className="text-3xl font-black uppercase italic tracking-tighter text-foreground leading-none">Founding Member</div>
+                          <div className="text-3xl font-black uppercase italic tracking-tighter text-foreground leading-none">Sovereign Treasury Sync</div>
                        </div>
                        <CheckCircle2 size={48} className="text-primary animate-pulse shrink-0" strokeWidth={2.5} />
                     </div>
@@ -287,25 +298,20 @@ export default function WalletPage() {
                     <div className="px-6 py-2 bg-primary/10 border border-primary/20 rounded-full text-[10px] text-primary font-black uppercase tracking-[0.4em] animate-pulse italic leading-none">LIVE_SYNC</div>
                  </div>
                  <div className="p-8 lg:p-12 space-y-6">
-                    {[
-                      { name: 'VALLE (Registry Fuel)', amount: walletData?.balance || 0, price: '1.00', icon: Zap, color: 'text-primary', bg: 'bg-primary/10', border: 'border-primary/20' },
-                      { name: 'BitCoin (Wrapped)', amount: '0.00', price: '68,241.00', icon: Coins, color: 'text-muted-foreground/20', bg: 'bg-muted', border: 'border-border' },
-                      { name: 'Solana (Native)', amount: '0.00', price: '142.50', icon: Coins, color: 'text-muted-foreground/20', bg: 'bg-muted', border: 'border-border' },
-                      { name: 'Ethereum (Base)', amount: '0.00', price: '3,204.00', icon: Coins, color: 'text-muted-foreground/20', bg: 'bg-muted', border: 'border-border' },
-                    ].map((asset, i) => (
-                      <div key={i} className="flex flex-col md:flex-row items-center justify-between p-10 hover:bg-primary/5 rounded-[3.5rem] transition-all group cursor-pointer border-2 border-transparent hover:border-primary/20 shadow-xl gap-8">
+                    {wallets.map((wallet, i) => (
+                      <div key={i} className="flex flex-col md:flex-row items-center justify-between p-10 hover:bg-primary/5 rounded-[3.5rem] transition-all group cursor-pointer border-2 border-transparent hover:border-primary/20 shadow-xl gap-8" onClick={() => copyAddress(wallet.address)}>
                         <div className="flex items-center gap-10 w-full md:w-auto">
-                          <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center ${asset.bg} border-2 ${asset.border} ${asset.color} group-hover:scale-110 transition-transform shadow-2xl group-hover:border-primary/40 shrink-0 shadow-inner`}>
-                            <asset.icon size={36} strokeWidth={2.5} />
+                          <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center bg-muted border-2 border-border text-primary group-hover:scale-110 transition-transform shadow-2xl group-hover:border-primary/40 shrink-0 shadow-inner`}>
+                            <Coins size={36} strokeWidth={2.5} />
                           </div>
                           <div className="space-y-3">
-                            <div className="text-3xl font-black uppercase italic tracking-tighter text-foreground group-hover:text-primary transition-colors leading-none">{asset.name}</div>
-                            <div className="text-[11px] text-muted-foreground/10 uppercase font-black italic tracking-[0.4em] leading-none">NODE_PTH: 00{i+1} // LAYER_PRIMITIVE</div>
+                            <div className="text-3xl font-black uppercase italic tracking-tighter text-foreground group-hover:text-primary transition-colors leading-none">{wallet.network}</div>
+                            <div className="text-[11px] text-muted-foreground/10 uppercase font-black italic tracking-[0.4em] leading-none truncate max-w-[200px]">{wallet.address}</div>
                           </div>
                         </div>
                         <div className="text-right w-full md:w-auto pr-6">
-                          <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{asset.amount}</div>
-                          <div className="text-[12px] text-muted-foreground/20 font-black font-mono tracking-[0.3em] mt-3 uppercase italic leading-none group-hover:text-muted-foreground transition-colors">≈ ${(Number(asset.amount) * Number(asset.price)).toLocaleString()}</div>
+                          <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{wallet.balance}</div>
+                          <div className="text-[12px] text-muted-foreground/20 font-black font-mono tracking-[0.3em] mt-3 uppercase italic leading-none group-hover:text-muted-foreground transition-colors">{wallet.currency} UNIT</div>
                         </div>
                       </div>
                     ))}
@@ -321,18 +327,18 @@ export default function WalletPage() {
               <div className="bg-background border-2 border-border rounded-[4rem] p-16 lg:p-24 backdrop-blur-3xl text-center space-y-12 shadow-[0_80px_150px_rgba(0,0,0,0.1)] dark:shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden group shadow-inner">
                  <div className="absolute top-0 right-0 p-16 opacity-[0.01] group-hover:scale-110 transition-transform duration-2000">
                     <Building2 size={300} className="text-primary" />
-                 </div>
-                 <div className="relative z-10 w-32 h-32 bg-primary/10 border-2 border-primary/30 rounded-[3rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-primary/20 group-hover:scale-110 transition-transform shadow-inner">
-                    <Building2 size={64} className="text-primary" strokeWidth={2.5} />
-                 </div>
-                 <h3 className="text-6xl lg:text-7xl font-black uppercase italic tracking-tighter relative z-10 leading-none text-foreground/90">RWA Notarization.</h3>
-                 <p className="text-2xl text-muted-foreground/30 max-w-3xl mx-auto leading-relaxed italic relative z-10 font-light">
-                    Bridge physical assets to the OMEGA network. Legal agents notarize property titles, private equity, and luxury goods into on-chain VALLE equity.
-                 </p>
-                 <div className="pt-10 flex flex-wrap justify-center gap-10 relative z-10">
-                    <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-background hover:border-foreground italic leading-none active:scale-95 shadow-2xl">REGISTER_ASSET</button>
-                    <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-background hover:border-foreground italic leading-none active:scale-95 shadow-2xl">TOKENIZE_EQUITY</button>
-                 </div>
+                  </div>
+                  <div className="relative z-10 w-32 h-32 bg-primary/10 border-2 border-primary/30 rounded-[3rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-primary/20 group-hover:scale-110 transition-transform shadow-inner">
+                     <Building2 size={64} className="text-primary" strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-6xl lg:text-7xl font-black uppercase italic tracking-tighter relative z-10 leading-none text-foreground/90">RWA Notarization.</h3>
+                  <p className="text-2xl text-muted-foreground/30 max-w-3xl mx-auto leading-relaxed italic relative z-10 font-light">
+                     Bridge physical assets to the OMEGA network. Legal agents notarize property titles, private equity, and luxury goods into on-chain VALLE equity.
+                  </p>
+                  <div className="pt-10 flex flex-wrap justify-center gap-10 relative z-10">
+                     <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-background hover:border-foreground italic leading-none active:scale-95 shadow-2xl">REGISTER_ASSET</button>
+                     <button className="px-14 py-7 bg-muted border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.5em] transition-all hover:bg-foreground hover:text-background dark:hover:bg-white dark:hover:text-background hover:border-foreground italic leading-none active:scale-95 shadow-2xl">TOKENIZE_EQUITY</button>
+                  </div>
               </div>
            </div>
 
@@ -359,10 +365,7 @@ export default function WalletPage() {
                          onChange={e => setTransferData({...transferData, asset: e.target.value})}
                          className="w-full bg-muted border-2 border-border rounded-[2.5rem] px-10 py-8 text-xl outline-none focus:border-primary/40 focus:bg-primary/5 appearance-none font-black uppercase tracking-[0.3em] italic text-foreground/80 cursor-pointer shadow-inner"
                        >
-                         <option value="VALLE">VALLE Sovereign</option>
-                         <option value="BTC">BTC Layer-1</option>
-                         <option value="SOL">SOL Native</option>
-                         <option value="USDC">USDC Transacted</option>
+                         {wallets.map(w => <option key={w.id} value={w.currency}>{w.network} ({w.currency})</option>)}
                        </select>
                        <div className="absolute right-10 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground/20"><ChevronLeft className="-rotate-90" size={20} /></div>
                     </div>
@@ -378,6 +381,9 @@ export default function WalletPage() {
                       placeholder="HMN-USR-..."
                       className="w-full bg-muted border-2 border-border rounded-[2.5rem] px-10 py-8 text-xl outline-none focus:border-primary/40 focus:bg-primary/5 font-mono italic text-foreground placeholder:text-muted-foreground/5 shadow-inner"
                     />
+                    <div className="flex gap-4 mt-4 overflow-x-auto pb-2 scrollbar-hide">
+                        <button type="button" onClick={() => setTransferData({...transferData, to: 'COINBASE_RELAY'})} className="px-6 py-3 bg-primary/10 border border-primary/20 rounded-full text-[9px] font-black text-primary uppercase tracking-[0.3em] italic whitespace-nowrap hover:bg-primary/20 transition-all">COINBASE_OFFRAMP</button>
+                    </div>
                   </div>
 
                   <div className="space-y-4 group/input">
@@ -392,7 +398,7 @@ export default function WalletPage() {
                         placeholder="0.00"
                         className="w-full bg-muted border-2 border-border rounded-[2.5rem] px-10 py-8 text-4xl font-black italic text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 placeholder:text-muted-foreground/5 shadow-inner tracking-tighter"
                       />
-                      <button type="button" onClick={() => setTransferData({...transferData, amount: walletData?.balance || '0'})} className="absolute right-10 top-1/2 -translate-y-1/2 text-[10px] font-black text-primary uppercase tracking-[0.4em] italic hover:scale-110 transition-transform p-4 leading-none">MAX_CAP</button>
+                      <button type="button" onClick={() => setTransferData({...transferData, amount: wallets.find(w => w.currency === transferData.asset)?.balance || '0'})} className="absolute right-10 top-1/2 -translate-y-1/2 text-[10px] font-black text-primary uppercase tracking-[0.4em] italic hover:scale-110 transition-transform p-4 leading-none">MAX_CAP</button>
                     </div>
                   </div>
 

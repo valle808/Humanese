@@ -32,18 +32,18 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid or expired session.' }, { status: 401 });
     }
 
-    // 3. Fetch Wallet from Prisma
-    let wallet = await prisma.wallet.findFirst({
+    // 3. Fetch Wallets from Prisma
+    let wallets = await prisma.wallet.findMany({
       where: { userId: user.id }
     });
 
-    // 4. Create wallet if it doesn't exist (Lazy provisioning)
-    if (!wallet) {
+    // 4. Create primary wallet if none exist (Lazy provisioning)
+    if (wallets.length === 0) {
       const crypto = await import('crypto');
       const entityType = user.user_metadata?.entityType || 'human';
       const walletAddress = `HMN-${entityType.toUpperCase()}-${crypto.randomBytes(8).toString('hex').toUpperCase()}`;
       
-      wallet = await prisma.wallet.create({
+      const newWallet = await prisma.wallet.create({
         data: {
           id: `wallet-${user.id}`,
           address: walletAddress,
@@ -52,24 +52,23 @@ export async function GET(req: NextRequest) {
           userId: user.id
         }
       });
+      wallets = [newWallet];
     }
 
-    // 5. Fetch associated RWA (Real World Assets) or stakes
-    // In a future step, this would query the RWA registry for this user's address
-    
     return NextResponse.json({
       success: true,
-      wallet: {
-        address: wallet.address,
-        balance: wallet.balance,
-        currency: 'VALLE',
-        network: wallet.network,
-        entityType: user.user_metadata?.entityType || 'human',
-        lastRefreshed: new Date().toISOString()
-      },
+      wallets: wallets.map(w => ({
+        address: w.address,
+        balance: w.balance,
+        currency: w.network.includes('Bitcoin') ? 'BTC' : (w.network.includes('Solana') ? 'SOL' : (w.network.includes('Ethereum') ? 'ETH' : (w.network.includes('XRP') ? 'XRP' : (w.network.includes('BNB') ? 'BNB' : 'VALLE')))),
+        network: w.network,
+        id: w.id
+      })),
+      primaryWallet: wallets[0],
       user: {
         name: user.user_metadata?.name,
-        email: user.email
+        email: user.email,
+        entityType: user.user_metadata?.entityType || 'human',
       }
     });
 
