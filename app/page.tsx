@@ -1,39 +1,23 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState, lazy, Suspense } from 'react';
+import { motion } from 'framer-motion';
 import { 
-  Zap, 
   Activity, 
-  Cpu, 
   Globe, 
   Layers, 
   BrainCircuit, 
   ArrowUpRight,
-  ChevronRight,
-  Shield,
-  ShoppingBag,
-  Database,
   Users,
   Sparkles,
   Map as MapIcon,
-  Radio,
-  ArrowLeftRight,
-  Share2,
   Server,
   Terminal,
-  Target,
-  Orbit,
-  Wifi,
-  Grid,
-  Search,
-  ZapOff,
-  Plus,
-  ArrowRight,
-  ChevronLeft
+  Orbit
 } from 'lucide-react';
 import Link from 'next/link';
 import { AgentIntelligenceFeed } from '@/components/AgentIntelligenceFeed';
+const CrystalShard = lazy(() => import('@/components/CrystalShard'));
 
 export default function Home() {
   const [metrics, setMetrics] = useState({
@@ -113,34 +97,86 @@ export default function Home() {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "circOut" }}
-          className="relative space-y-16"
+          className="relative"
         >
-          <div className="inline-flex items-center gap-4 px-8 py-3.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl group cursor-help shadow-2xl relative overflow-hidden">
-            <Orbit size={20} className="text-primary animate-spin-slow" />
-            <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse pl-1">Sovereign OMEGA Matrix v7.0 // Stable</span>
-            <div className="absolute inset-0 bg-primary/5 animate-pulse" />
-          </div>
+          {/* Hero: Two-column layout with text left, crystal right */}
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-0 items-center min-h-[80vh]">
+            
+            {/* LEFT: Text Content */}
+            <div className="space-y-16 relative z-10">
+              <div className="inline-flex items-center gap-4 px-8 py-3.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl cursor-help shadow-2xl relative overflow-hidden">
+                <Orbit size={20} className="text-primary animate-spin-slow" />
+                <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse pl-1">Sovereign OMEGA Matrix v7.0 // Stable</span>
+                <div className="absolute inset-0 bg-primary/5 animate-pulse" />
+              </div>
 
-          <div className="space-y-10 max-w-7xl relative">
-            <h1 className="text-fluid-hero font-black tracking-tighter uppercase italic leading-[0.85] text-foreground">
-              OMEGA<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">MATRIX.</span>
-            </h1>
-            <p className="text-2xl md:text-4xl lg:text-5xl text-muted-foreground/40 max-w-5xl leading-tight font-light italic tracking-tight">
-              Absolute <span className="text-foreground/80">Sovereignty</span> achieved. A unified, autonomous ecosystem designed to amplify potential through Omni-Intelligence.
-            </p>
-          </div>
+              <div className="space-y-10 max-w-3xl">
+                <h1 className="text-fluid-hero font-black tracking-tighter uppercase italic leading-[0.85] text-foreground">
+                  OMEGA<br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">MATRIX.</span>
+                </h1>
+                <p className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground/40 max-w-2xl leading-tight font-light italic tracking-tight">
+                  Absolute <span className="text-foreground/80">Sovereignty</span> achieved. A unified, autonomous ecosystem designed to amplify potential through Omni-Intelligence.
+                </p>
+              </div>
 
-          <div className="flex flex-wrap gap-12 pt-8">
-             <Link href="/monroe" className="px-24 py-12 rounded-[3.5rem] font-black uppercase tracking-[0.6em] bg-primary text-primary-foreground hover:scale-[1.05] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center gap-8 group italic relative overflow-hidden border-0 leading-none text-lg">
-                <span className="relative z-10 flex items-center gap-8">
-                    TALK_TO_MONROE <Sparkles size={32} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
-                </span>
-                <div className="absolute inset-0 bg-muted/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-             </Link>
-             <Link href="/admin" className="px-16 lg:px-24 py-10 lg:py-12 rounded-[3.5rem] font-black uppercase tracking-[0.6em] border-2 border-border bg-background/5 text-muted-foreground/40 hover:bg-foreground hover:text-background hover:border-foreground transition-all flex items-center gap-8 group italic backdrop-blur-3xl leading-none shadow-xl">
-                COMMAND_NEXUS <Terminal size={32} className="group-hover:translate-x-4 transition-transform" strokeWidth={2.5} />
-             </Link>
+              <div className="flex flex-wrap gap-8 pt-4">
+                <Link href="/monroe" className="px-16 py-10 rounded-[3rem] font-black uppercase tracking-[0.6em] bg-primary text-primary-foreground hover:scale-[1.05] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center gap-6 group italic relative overflow-hidden border-0 leading-none text-lg">
+                  <span className="relative z-10 flex items-center gap-6">
+                    TALK_TO_MONROE <Sparkles size={28} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
+                  </span>
+                  <div className="absolute inset-0 bg-muted/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+                <Link href="/admin" className="px-12 py-10 rounded-[3rem] font-black uppercase tracking-[0.6em] border-2 border-border bg-background/5 text-muted-foreground/40 hover:bg-foreground hover:text-background hover:border-foreground transition-all flex items-center gap-6 group italic backdrop-blur-3xl leading-none shadow-xl">
+                  COMMAND_NEXUS <Terminal size={28} className="group-hover:translate-x-3 transition-transform" strokeWidth={2.5} />
+                </Link>
+              </div>
+            </div>
+
+            {/* RIGHT: 3D Crystal Shard — Sovereign Core */}
+            <div className="relative flex items-center justify-center h-[500px] lg:h-[700px]">
+              {/* Glassmorphism card behind crystal */}
+              <div className="absolute inset-[10%] rounded-[4rem] bg-muted/10 border border-border/40 backdrop-blur-sm shadow-2xl" />
+              
+              {/* Fluid gradient background blob */}
+              <motion.div
+                animate={{ 
+                  background: [
+                    'radial-gradient(circle at 30% 40%, hsla(var(--primary), 0.25) 0%, transparent 60%)',
+                    'radial-gradient(circle at 70% 60%, hsla(var(--primary), 0.20) 0%, transparent 60%)',
+                    'radial-gradient(circle at 50% 30%, hsla(var(--primary), 0.30) 0%, transparent 60%)',
+                    'radial-gradient(circle at 30% 40%, hsla(var(--primary), 0.25) 0%, transparent 60%)'
+                  ]
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-0 rounded-[4rem]"
+              />
+
+              {/* Dotted grid overlay */}
+              <div className="absolute inset-0 rounded-[4rem] overflow-hidden opacity-20" style={{ backgroundImage: 'radial-gradient(circle, hsla(var(--primary), 0.4) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
+              {/* The 3D Crystal */}
+              <div className="relative w-full h-full z-10">
+                <Suspense fallback={
+                  <div className="flex items-center justify-center h-full">
+                    <div className="w-32 h-32 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                  </div>
+                }>
+                  <CrystalShard />
+                </Suspense>
+              </div>
+
+              {/* Corner HUD decorations */}
+              <div className="absolute top-8 left-8 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl pointer-events-none" />
+              <div className="absolute top-8 right-8 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl pointer-events-none" />
+              <div className="absolute bottom-8 left-8 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-xl pointer-events-none" />
+              <div className="absolute bottom-8 right-8 w-8 h-8 border-b-2 border-r-2 border-primary/40 rounded-br-xl pointer-events-none" />
+
+              {/* Status badge */}
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-background/60 border border-primary/30 rounded-full backdrop-blur-md pointer-events-none">
+                <span className="text-[9px] font-black uppercase tracking-[0.8em] text-primary italic animate-pulse">Sovereign_Core_v7</span>
+              </div>
+            </div>
           </div>
         </motion.section>
 
