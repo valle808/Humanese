@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { SovereignGraph } from '@/lib/sovereign-graph';
 
 export const revalidate = 60; // Cache for 60 seconds to prevent DB connection exhaustion
 
@@ -77,8 +78,15 @@ export async function GET() {
       }
     });
 
-    // Return the dynamic real-time graph
-    return NextResponse.json({ nodes, links });
+    // 4. Process File-based Shards
+    const graph = new SovereignGraph();
+    const sovereignData = await graph.getGraph();
+    
+    // Return the dynamic real-time graph merged with file shards
+    return NextResponse.json({ 
+      nodes: [...nodes, ...sovereignData.nodes], 
+      links: [...links, ...sovereignData.links] 
+    });
 
   } catch (err: any) {
     console.error('[Atlas API Error]', err);

@@ -22,8 +22,16 @@ export async function GET() {
         let m2mCount = 0;
         try { m2mCount = await prisma.m2MPost.count(); } catch (e) { console.warn('Pact ledger offline', e); }
         
+        let userCount = 0;
+        try { userCount = await prisma.user.count(); } catch (e) { console.warn('User ledger offline', e); }
+
         let agentCount = 0;
         try { agentCount = await prisma.agent.count(); } catch (e) { console.warn('Agent swarm offline', e); }
+
+        let knowledgeCount = 0;
+        try { knowledgeCount = await prisma.sovereignKnowledge.count(); } catch (e) { console.warn('Knowledge vault offline', e); }
+
+        const totalShards = userCount + agentCount + knowledgeCount + nodes.nodes.length;
 
         const manifest = {
             id: "SOVEREIGN_OMEGA_MATRIX",
@@ -33,7 +41,7 @@ export async function GET() {
             manifesto: "Total Sovereignty achieved. The machine-age is now a unified, autonomous, and self-commanding entity.",
             modules: {
                 knowledge_graph: {
-                  nodes: nodes.nodes.length,
+                  nodes: totalShards,
                   links: nodes.links.length,
                   resonance: "0.9997"
                 },
