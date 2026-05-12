@@ -185,20 +185,86 @@ export default function CognitiveAtlasPage() {
       <main className="relative z-10 flex-1 flex flex-col">
         
         {/* GRAPH CANVAS */}
-        <div className="absolute inset-0 z-0 opacity-80">
+        <div className="absolute inset-0 z-0 opacity-90 overflow-hidden bg-[#020205]">
+           {/* Deep Space Background Overlay */}
+           <div className="absolute inset-0 pointer-events-none opacity-40" style={{ 
+             backgroundImage: 'radial-gradient(circle at 50% 50%, #1a0b05 0%, transparent 80%), radial-gradient(circle at 20% 30%, #050b1a 0%, transparent 60%)' 
+           }} />
+           
+           {/* Starfield Particles */}
+           <div className="absolute inset-0 pointer-events-none opacity-20">
+             {Array.from({ length: 50 }).map((_, i) => (
+               <div 
+                 key={i} 
+                 className="absolute w-1 h-1 bg-white rounded-full animate-pulse" 
+                 style={{ 
+                   top: `${Math.random() * 100}%`, 
+                   left: `${Math.random() * 100}%`,
+                   animationDelay: `${Math.random() * 5}s`,
+                   opacity: Math.random() * 0.5 + 0.2
+                 }} 
+               />
+             ))}
+           </div>
+
            {isMounted && (
              <ForceGraph2D
                 ref={fgRef}
                 graphData={formattedData}
                 nodeLabel="label"
-                nodeColor={(n: any) => n.group === 'AGENT' ? '#ff6b2b' : n.group === 'USER' ? foregroundColor : 'rgba(255, 107, 43, 0.6)'}
-                nodeRelSize={1}
-                nodeVal={(n: any) => n.group === 'USER' ? 12 : 8}
-                linkColor={() => 'rgba(255, 107, 43, 0.1)'}
-                linkWidth={1}
+                nodeCanvasObject={(node: any, ctx: any, globalScale: number) => {
+                  const isAgent = node.group === 'AGENT';
+                  const isUser = node.group === 'USER';
+                  const baseSize = isUser ? 5 : isAgent ? 4 : 3;
+                  const size = baseSize / Math.pow(globalScale, 0.4);
+                  
+                  // Unique pulse per node
+                  const time = Date.now() / 1000;
+                  const pulseFreq = 0.5 + (node.id.length % 5) * 0.2;
+                  const pulse = Math.sin(time * pulseFreq + (node.id.length)) * 0.15 + 1;
+                  const finalSize = size * pulse;
+
+                  const color = isAgent ? '#ff6b2b' : isUser ? '#ffffff' : 'rgba(255, 107, 43, 0.8)';
+                  
+                  // 1. Draw Outer Glow (Aura)
+                  const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, finalSize * 5);
+                  gradient.addColorStop(0, color);
+                  gradient.addColorStop(0.1, color + '55');
+                  gradient.addColorStop(0.4, color + '11');
+                  gradient.addColorStop(1, 'transparent');
+                  
+                  ctx.fillStyle = gradient;
+                  ctx.beginPath();
+                  ctx.arc(node.x, node.y, finalSize * 5, 0, 2 * Math.PI, false);
+                  ctx.fill();
+
+                  // 2. Draw Subtle Orbital Ring for some shards
+                  if (node.id.length % 4 === 0) {
+                    ctx.strokeStyle = color + '22';
+                    ctx.lineWidth = 0.5 / globalScale;
+                    ctx.beginPath();
+                    ctx.ellipse(node.x, node.y, finalSize * 3, finalSize * 1.2, node.id.length, 0, 2 * Math.PI);
+                    ctx.stroke();
+                  }
+
+                  // 3. Draw Core
+                  ctx.shadowBlur = 15;
+                  ctx.shadowColor = color;
+                  ctx.fillStyle = color;
+                  ctx.beginPath();
+                  ctx.arc(node.x, node.y, finalSize, 0, 2 * Math.PI, false);
+                  ctx.fill();
+                  
+                  ctx.shadowBlur = 0; // Reset for performance
+                }}
+                nodeCanvasObjectMode={() => 'replace'}
+                linkColor={() => 'rgba(255, 107, 43, 0.08)'}
+                linkWidth={0.5}
                 backgroundColor="transparent"
                 onNodeClick={onNodeClick}
-                cooldownTicks={100}
+                cooldownTicks={150}
+                d3AlphaDecay={0.01}
+                enableNodeDrag={false}
              />
            )}
         </div>
