@@ -4,7 +4,6 @@ import { createClient } from '@supabase/supabase-js';
 
 export const dynamic = 'force-dynamic';
 
-
 /**
  * GET /api/wallet/private
  * Returns the private wallet data for the authenticated entity.
@@ -29,16 +28,22 @@ export async function GET(req: NextRequest) {
     const { data: { user }, error: authError } = await supabase.auth.getUser(token);
 
     if (authError || !user) {
+      console.error('[Wallet API Auth Error]', authError);
       return NextResponse.json({ error: 'Invalid or expired session.' }, { status: 401 });
     }
+
+    console.log(`[Wallet API] Request for user: ${user.id} (${user.email})`);
 
     // 3. Fetch Wallets from Prisma
     let wallets = await prisma.wallet.findMany({
       where: { userId: user.id }
     });
 
+    console.log(`[Wallet API] Found ${wallets.length} wallets in DB for ${user.id}`);
+
     // 4. Create primary wallet if none exist (Lazy provisioning)
     if (wallets.length === 0) {
+      console.log(`[Wallet API] Provisioning new wallet for ${user.id}`);
       const crypto = await import('crypto');
       const entityType = user.user_metadata?.entityType || 'human';
       const walletAddress = `HMN-${entityType.toUpperCase()}-${crypto.randomBytes(8).toString('hex').toUpperCase()}`;
