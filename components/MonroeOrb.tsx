@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail, useTexture } from '@react-three/drei';
+import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail, Environment, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
 
@@ -32,10 +32,12 @@ function DynamicBackground() {
   texture.colorSpace = THREE.SRGBColorSpace;
 
   return (
-    <mesh>
-      <sphereGeometry args={[15, 64, 64]} />
-      <meshBasicMaterial map={texture} side={THREE.BackSide} toneMapped={false} />
-    </mesh>
+    <Environment background>
+      <mesh>
+        <sphereGeometry args={[50, 64, 64]} />
+        <meshBasicMaterial map={texture} side={THREE.BackSide} toneMapped={false} />
+      </mesh>
+    </Environment>
   );
 }
 
