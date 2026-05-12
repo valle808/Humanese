@@ -187,12 +187,12 @@ export default function AuthPage() {
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-primary/5 blur-[350px] rounded-full animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-primary/5 blur-[350px] rounded-full animate-pulse-slow" />
         
         {/* Animated Scanning Lines */}
-        <div className="absolute inset-0 opacity-[0.05]">
-           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-1/4 animate-[scan_15s_linear_infinite]" />
-           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-3/4 animate-[scan_20s_linear_infinite_reverse]" />
+        <div className="absolute inset-0 opacity-[0.03]">
+           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-1/4 animate-[scan_25s_linear_infinite]" />
+           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-3/4 animate-[scan_30s_linear_infinite_reverse]" />
         </div>
       </div>
 
@@ -308,11 +308,11 @@ export default function AuthPage() {
                     
                     {/* Name Field (Register Only) */}
                     {mode === 'register' && (
-                      <div className="space-y-3 group/input">
+                      <div className="space-y-3 group/input cursor-pointer">
                         <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Legal Identification / Agent ID</label>
-                        <div className="relative">
-                           <User size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
-                           <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="PRACTITIONER_IDENTITY"/>
+                        <div className="relative cursor-pointer">
+                           <User size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
+                           <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="PRACTITIONER_IDENTITY"/>
                         </div>
                       </div>
                     )}
@@ -327,19 +327,19 @@ export default function AuthPage() {
                       )}
 
                       {formData.useHumaneseEmail ? (
-                        <div className="space-y-3 group/input">
+                        <div className="space-y-3 group/input cursor-pointer">
                           <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Choose Ecosystem Handle</label>
-                          <div className="relative">
-                            <input required type="text" value={formData.customUsername} onChange={e => setFormData({...formData, customUsername: e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '')})} className="w-full bg-background border border-border rounded-[2rem] pl-6 pr-40 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-mono italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="username"/>
+                          <div className="relative cursor-pointer">
+                            <input required type="text" value={formData.customUsername} onChange={e => setFormData({...formData, customUsername: e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '')})} className="w-full bg-background border border-border rounded-[2rem] pl-6 pr-44 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all font-mono italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="username"/>
                             <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-primary font-mono select-none tracking-tight">@humanese.net</div>
                           </div>
                         </div>
                       ) : (
-                        <div className="space-y-3 group/input">
+                        <div className="space-y-3 group/input cursor-pointer">
                           <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">{mode === 'login' ? 'Identity Email' : 'Verification Email'}</label>
-                          <div className="relative">
-                            <Mail size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
-                            <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="ENTITY@RESONANCE.NET"/>
+                          <div className="relative cursor-pointer">
+                            <Mail size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
+                            <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="ENTITY@RESONANCE.NET"/>
                           </div>
                         </div>
                       )}
@@ -347,17 +347,17 @@ export default function AuthPage() {
 
                     {/* Phone Number (Optional) */}
                     {mode === 'register' && (
-                      <div className="space-y-3 group/input">
+                      <div className="space-y-3 group/input cursor-pointer">
                         <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Mobile Signal (+E.164)</label>
-                        <div className="relative">
-                           <Smartphone size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
-                           <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" placeholder="+1234567890"/>
+                        <div className="relative cursor-pointer">
+                           <Smartphone size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
+                           <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="+1234567890"/>
                         </div>
                       </div>
                     )}
 
                     {/* Passphrase */}
-                    <div className="space-y-3 group/input">
+                    <div className="space-y-3 group/input cursor-pointer">
                       <div className="flex items-center justify-between ml-4 mb-2">
                         <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic leading-none group-focus-within/input:text-primary transition-colors">{mode === 'login' ? 'Sovereign Passphrase' : 'New Access Token'}</label>
                         {mode === 'login' && (
@@ -366,14 +366,14 @@ export default function AuthPage() {
                           </Link>
                         )}
                       </div>
-                      <div className="relative">
-                        <Lock size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors" />
+                      <div className="relative cursor-pointer">
+                        <Lock size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
                         <input 
                           required 
                           type={showPassword ? 'text' : 'password'} 
                           value={formData.password} 
                           onChange={e => setFormData({...formData, password: e.target.value})} 
-                          className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-16 py-5 text-lg outline-none focus:border-primary/40 focus:bg-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/40 tracking-tight shadow-sm" 
+                          className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-16 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" 
                           placeholder="••••••••"
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-all p-2 active:scale-90">
@@ -535,6 +535,26 @@ export default function AuthPage() {
             </p>
         </div>
       </motion.div>
+
+      <style jsx global>{`
+        .animate-spin-slow { animation: spin 20s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.1; transform: scale(1); filter: blur(350px); }
+          50% { opacity: 0.2; transform: scale(1.05); filter: blur(400px); }
+        }
+
+        .animate-pulse-slow {
+          animation: pulse-slow 12s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes scan {
+          0% { transform: translateY(-100%); opacity: 0; }
+          50% { opacity: 0.2; }
+          100% { transform: translateY(1000%); opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 }
