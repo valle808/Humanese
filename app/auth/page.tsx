@@ -308,11 +308,11 @@ export default function AuthPage() {
                     
                     {/* Name Field (Register Only) */}
                     {mode === 'register' && (
-                      <div className="space-y-3 group/input cursor-pointer">
+                      <div className="space-y-3 group/input cursor-pointer" onClick={() => document.getElementById('reg-name')?.focus()}>
                         <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Legal Identification / Agent ID</label>
                         <div className="relative cursor-pointer">
-                           <User size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
-                           <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="PRACTITIONER_IDENTITY"/>
+                           <User size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none z-10" />
+                           <input id="reg-name" required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] px-16 py-6 text-xl text-center outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-text" placeholder="PRACTITIONER_IDENTITY"/>
                         </div>
                       </div>
                     )}
@@ -327,19 +327,19 @@ export default function AuthPage() {
                       )}
 
                       {formData.useHumaneseEmail ? (
-                        <div className="space-y-3 group/input cursor-pointer">
+                        <div className="space-y-3 group/input cursor-pointer" onClick={() => document.getElementById('reg-username')?.focus()}>
                           <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Choose Ecosystem Handle</label>
                           <div className="relative cursor-pointer">
-                            <input required type="text" value={formData.customUsername} onChange={e => setFormData({...formData, customUsername: e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '')})} className="w-full bg-background border border-border rounded-[2rem] pl-6 pr-44 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all font-mono italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="username"/>
-                            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-primary font-mono select-none tracking-tight">@humanese.net</div>
+                            <input id="reg-username" required type="text" value={formData.customUsername} onChange={e => setFormData({...formData, customUsername: e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '')})} className="w-full bg-background border border-border rounded-[2rem] px-44 py-6 text-xl text-center outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all font-mono italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-text" placeholder="username"/>
+                            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-primary font-mono select-none tracking-tight pointer-events-none">@humanese.net</div>
                           </div>
                         </div>
                       ) : (
-                        <div className="space-y-3 group/input cursor-pointer">
+                        <div className="space-y-3 group/input cursor-pointer" onClick={() => document.getElementById('auth-email')?.focus()}>
                           <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">{mode === 'login' ? 'Identity Email' : 'Verification Email'}</label>
                           <div className="relative cursor-pointer">
-                            <Mail size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
-                            <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="ENTITY@RESONANCE.NET"/>
+                            <Mail size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none z-10" />
+                            <input id="auth-email" required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] px-16 py-6 text-xl text-center outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-text" placeholder="ENTITY@RESONANCE.NET"/>
                           </div>
                         </div>
                       )}
@@ -347,36 +347,37 @@ export default function AuthPage() {
 
                     {/* Phone Number (Optional) */}
                     {mode === 'register' && (
-                      <div className="space-y-3 group/input cursor-pointer">
+                      <div className="space-y-3 group/input cursor-pointer" onClick={() => document.getElementById('reg-phone')?.focus()}>
                         <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic ml-4 leading-none group-focus-within/input:text-primary transition-colors">Mobile Signal (+E.164)</label>
                         <div className="relative cursor-pointer">
-                           <Smartphone size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
-                           <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-6 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" placeholder="+1234567890"/>
+                           <Smartphone size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none z-10" />
+                           <input id="reg-phone" type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-background border border-border rounded-[2rem] px-16 py-6 text-xl text-center outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-text" placeholder="+1234567890"/>
                         </div>
                       </div>
                     )}
 
                     {/* Passphrase */}
-                    <div className="space-y-3 group/input cursor-pointer">
+                    <div className="space-y-3 group/input cursor-pointer" onClick={() => document.getElementById('auth-pass')?.focus()}>
                       <div className="flex items-center justify-between ml-4 mb-2">
                         <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground italic leading-none group-focus-within/input:text-primary transition-colors">{mode === 'login' ? 'Sovereign Passphrase' : 'New Access Token'}</label>
                         {mode === 'login' && (
-                          <Link href="/auth/recover" className="text-[9px] font-black uppercase tracking-[0.4em] text-primary hover:underline italic leading-none">
+                          <Link href="/auth/recover" className="text-[9px] font-black uppercase tracking-[0.4em] text-primary hover:underline italic leading-none relative z-10">
                             Forgot Protocol?
                           </Link>
                         )}
                       </div>
                       <div className="relative cursor-pointer">
-                        <Lock size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none" />
+                        <Lock size={20} className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/input:text-primary transition-colors pointer-events-none z-10" />
                         <input 
+                          id="auth-pass"
                           required 
                           type={showPassword ? 'text' : 'password'} 
                           value={formData.password} 
                           onChange={e => setFormData({...formData, password: e.target.value})} 
-                          className="w-full bg-background border border-border rounded-[2rem] pl-16 pr-16 py-6 text-xl outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-pointer" 
+                          className="w-full bg-background border border-border rounded-[2rem] px-16 py-6 text-xl text-center outline-none focus:border-primary/60 focus:bg-primary/[0.02] focus:ring-4 focus:ring-primary/5 transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-sm cursor-text" 
                           placeholder="••••••••"
                         />
-                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-all p-2 active:scale-90">
+                        <button type="button" onClick={(e) => { e.stopPropagation(); setShowPassword(!showPassword); }} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-all p-2 active:scale-90 z-20">
                           {showPassword ? <EyeOff size={20} strokeWidth={2.5}/> : <Eye size={20} strokeWidth={2.5}/>}
                         </button>
                       </div>
@@ -392,10 +393,10 @@ export default function AuthPage() {
                   <button 
                     type="submit" 
                     disabled={loading}
-                    className="w-full py-6 bg-primary text-primary-foreground font-black uppercase tracking-[0.6em] text-[10px] rounded-[2rem] shadow-[0_20px_40px_rgba(var(--primary),0.2)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4 italic overflow-hidden group/btn leading-none border-0"
+                    className="w-full py-6 bg-primary text-primary-foreground font-black uppercase tracking-[0.6em] text-[10px] rounded-[2rem] shadow-[0_20px_40px_rgba(var(--primary),0.2)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-30 flex items-center justify-center gap-4 italic overflow-hidden group/btn leading-none border-0 relative"
                   >
                     {loading ? <RefreshCw className="animate-spin" size={24} strokeWidth={2.5}/> : <span className="flex items-center gap-4">{mode === 'login' ? 'Sync Matrix' : 'Establish Identity'} <ArrowRight size={20} strokeWidth={2.5} /></span>}
-                    <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
+                    <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity pointer-events-none" />
                   </button>
 
                   <div className="text-center text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground pt-2 italic leading-none">
