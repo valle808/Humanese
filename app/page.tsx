@@ -133,29 +133,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RIGHT: 3D Crystal Shard — Sovereign Core */}
+            {/* RIGHT: Monroe Orb — floats freely, no background card */}
             <div className="relative flex items-center justify-center h-[500px] lg:h-[700px]">
-              {/* Glassmorphism card behind crystal */}
-              <div className="absolute inset-[10%] rounded-[4rem] bg-muted/10 border border-border/40 backdrop-blur-sm shadow-2xl" />
-              
-              {/* Fluid gradient background blob */}
-              <motion.div
-                animate={{ 
-                  background: [
-                    'radial-gradient(circle at 30% 40%, hsla(var(--primary), 0.25) 0%, transparent 60%)',
-                    'radial-gradient(circle at 70% 60%, hsla(var(--primary), 0.20) 0%, transparent 60%)',
-                    'radial-gradient(circle at 50% 30%, hsla(var(--primary), 0.30) 0%, transparent 60%)',
-                    'radial-gradient(circle at 30% 40%, hsla(var(--primary), 0.25) 0%, transparent 60%)'
-                  ]
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-[4rem]"
-              />
-
-              {/* Dotted grid overlay */}
-              <div className="absolute inset-0 rounded-[4rem] overflow-hidden opacity-20" style={{ backgroundImage: 'radial-gradient(circle, hsla(var(--primary), 0.4) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-
-              {/* The 3D Crystal */}
+              {/* The Monroe Orb */}
               <div className="relative w-full h-full z-10">
                 <Suspense fallback={
                   <div className="flex items-center justify-center h-full">
@@ -164,17 +144,6 @@ export default function Home() {
                 }>
                   <MonroeOrb />
                 </Suspense>
-              </div>
-
-              {/* Corner HUD decorations */}
-              <div className="absolute top-8 left-8 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl pointer-events-none" />
-              <div className="absolute top-8 right-8 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl pointer-events-none" />
-              <div className="absolute bottom-8 left-8 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-xl pointer-events-none" />
-              <div className="absolute bottom-8 right-8 w-8 h-8 border-b-2 border-r-2 border-primary/40 rounded-br-xl pointer-events-none" />
-
-              {/* Status badge */}
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-background/60 border border-primary/30 rounded-full backdrop-blur-md pointer-events-none">
-                <span className="text-[9px] font-black uppercase tracking-[0.8em] text-primary italic animate-pulse">Monroe_Sim_v1</span>
               </div>
             </div>
           </div>
