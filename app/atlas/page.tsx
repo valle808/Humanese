@@ -185,23 +185,31 @@ export default function CognitiveAtlasPage() {
       <main className="relative z-10 flex-1 flex flex-col">
         
         {/* GRAPH CANVAS */}
-        <div className="absolute inset-0 z-0 opacity-90 overflow-hidden bg-[#020205]">
-           {/* Deep Space Background Overlay */}
-           <div className="absolute inset-0 pointer-events-none opacity-40" style={{ 
-             backgroundImage: 'radial-gradient(circle at 50% 50%, #1a0b05 0%, transparent 80%), radial-gradient(circle at 20% 30%, #050b1a 0%, transparent 60%)' 
-           }} />
+        <div className="absolute inset-0 z-0 bg-[#010103] overflow-hidden">
+           {/* 🌌 MOVING NEBULA EFFECT */}
+           <div className="absolute inset-0 pointer-events-none transition-opacity duration-1000">
+             <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] animate-nebula-slow opacity-30" 
+               style={{ 
+                 background: 'radial-gradient(circle at 30% 30%, #ff4500 0%, transparent 40%), radial-gradient(circle at 70% 70%, #0088ff 0%, transparent 40%), radial-gradient(circle at 50% 50%, #5500ff 0%, transparent 50%)',
+                 filter: 'blur(100px)'
+               }} 
+             />
+           </div>
            
-           {/* Starfield Particles */}
-           <div className="absolute inset-0 pointer-events-none opacity-20">
-             {Array.from({ length: 50 }).map((_, i) => (
+           {/* ✨ TWINKLING STARFIELD */}
+           <div className="absolute inset-0 pointer-events-none">
+             {Array.from({ length: 120 }).map((_, i) => (
                <div 
                  key={i} 
-                 className="absolute w-1 h-1 bg-white rounded-full animate-pulse" 
+                 className="absolute bg-white rounded-full animate-twinkle" 
                  style={{ 
+                   width: `${Math.random() * 2 + 1}px`,
+                   height: `${Math.random() * 2 + 1}px`,
                    top: `${Math.random() * 100}%`, 
                    left: `${Math.random() * 100}%`,
                    animationDelay: `${Math.random() * 5}s`,
-                   opacity: Math.random() * 0.5 + 0.2
+                   animationDuration: `${2 + Math.random() * 4}s`,
+                   opacity: Math.random() * 0.7 + 0.3
                  }} 
                />
              ))}
@@ -215,56 +223,61 @@ export default function CognitiveAtlasPage() {
                 nodeCanvasObject={(node: any, ctx: any, globalScale: number) => {
                   const isAgent = node.group === 'AGENT';
                   const isUser = node.group === 'USER';
-                  const baseSize = isUser ? 5 : isAgent ? 4 : 3;
-                  const size = baseSize / Math.pow(globalScale, 0.4);
+                  const isKnowledge = node.group === 'KNOWLEDGE';
                   
-                  // Unique pulse per node
+                  const baseSize = isUser ? 6 : isAgent ? 5 : 4;
+                  const size = baseSize / Math.pow(globalScale, 0.3);
+                  
+                  // Animation variables
                   const time = Date.now() / 1000;
-                  const pulseFreq = 0.5 + (node.id.length % 5) * 0.2;
-                  const pulse = Math.sin(time * pulseFreq + (node.id.length)) * 0.15 + 1;
+                  const pulse = Math.sin(time * 2 + (node.id.length)) * 0.15 + 1;
                   const finalSize = size * pulse;
 
-                  const color = isAgent ? '#ff6b2b' : isUser ? '#ffffff' : 'rgba(255, 107, 43, 0.8)';
+                  const color = isAgent ? '#ff6b2b' : isUser ? '#ffffff' : isKnowledge ? '#00eeff' : '#ff9900';
                   
-                  // 1. Draw Outer Glow (Aura)
-                  const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, finalSize * 5);
-                  gradient.addColorStop(0, color);
-                  gradient.addColorStop(0.1, color + '55');
-                  gradient.addColorStop(0.4, color + '11');
-                  gradient.addColorStop(1, 'transparent');
+                  // 1. Draw Stronger Glow (Multi-layered)
+                  const outerGlow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, finalSize * 6);
+                  outerGlow.addColorStop(0, color);
+                  outerGlow.addColorStop(0.2, color + '44');
+                  outerGlow.addColorStop(0.5, color + '11');
+                  outerGlow.addColorStop(1, 'transparent');
                   
-                  ctx.fillStyle = gradient;
+                  ctx.fillStyle = outerGlow;
                   ctx.beginPath();
-                  ctx.arc(node.x, node.y, finalSize * 5, 0, 2 * Math.PI, false);
+                  ctx.arc(node.x, node.y, finalSize * 6, 0, 2 * Math.PI, false);
                   ctx.fill();
 
-                  // 2. Draw Subtle Orbital Ring for some shards
-                  if (node.id.length % 4 === 0) {
-                    ctx.strokeStyle = color + '22';
-                    ctx.lineWidth = 0.5 / globalScale;
-                    ctx.beginPath();
-                    ctx.ellipse(node.x, node.y, finalSize * 3, finalSize * 1.2, node.id.length, 0, 2 * Math.PI);
-                    ctx.stroke();
-                  }
+                  // 2. Draw Visible Orbital Ring
+                  ctx.strokeStyle = color + '44';
+                  ctx.lineWidth = 0.8 / globalScale;
+                  ctx.beginPath();
+                  ctx.ellipse(node.x, node.y, finalSize * 3.5, finalSize * 1.5, node.id.length * 0.5, 0, 2 * Math.PI);
+                  ctx.stroke();
 
-                  // 3. Draw Core
-                  ctx.shadowBlur = 15;
-                  ctx.shadowColor = color;
+                  // 3. Draw Core with Sheen
                   ctx.fillStyle = color;
+                  ctx.shadowBlur = 15 / globalScale;
+                  ctx.shadowColor = color;
                   ctx.beginPath();
                   ctx.arc(node.x, node.y, finalSize, 0, 2 * Math.PI, false);
                   ctx.fill();
+                  ctx.shadowBlur = 0;
                   
-                  ctx.shadowBlur = 0; // Reset for performance
+                  // Highlight on core
+                  ctx.fillStyle = '#ffffff';
+                  ctx.beginPath();
+                  ctx.arc(node.x - finalSize * 0.3, node.y - finalSize * 0.3, finalSize * 0.2, 0, 2 * Math.PI, false);
+                  ctx.fill();
                 }}
                 nodeCanvasObjectMode={() => 'replace'}
-                linkColor={() => 'rgba(255, 107, 43, 0.08)'}
+                linkColor={() => 'rgba(255, 107, 43, 0.15)'}
                 linkWidth={0.5}
                 backgroundColor="transparent"
                 onNodeClick={onNodeClick}
                 cooldownTicks={150}
                 d3AlphaDecay={0.01}
                 enableNodeDrag={false}
+                warmupTicks={50}
              />
            )}
         </div>
@@ -401,6 +414,25 @@ export default function CognitiveAtlasPage() {
         .animate-spin-slow { animation: spin 20s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
+        @keyframes nebula-slow {
+          0% { transform: translate(-5%, -5%) rotate(0deg); }
+          50% { transform: translate(5%, 5%) rotate(180deg); }
+          100% { transform: translate(-5%, -5%) rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .animate-nebula-slow {
+          animation: nebula-slow 60s linear infinite;
+        }
+
+        .animate-twinkle {
+          animation: twinkle var(--duration, 3s) ease-in-out infinite;
+        }
+
         .neural-grid {
           background-image: linear-gradient(hsla(var(--primary), 0.05) 1px, transparent 1px), 
                             linear-gradient(90deg, hsla(var(--primary), 0.05) 1px, transparent 1px);
