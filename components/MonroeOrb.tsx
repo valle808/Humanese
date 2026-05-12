@@ -1,10 +1,40 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail } from '@react-three/drei';
+import { useRef, useState, useEffect, useMemo, Suspense } from 'react';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
+
+const AI_PROMPTS = [
+  "futuristic cyberpunk city neon lights reflection highly detailed",
+  "expanding universe galaxy stars nebula vibrant colors",
+  "microscopic cellular process glowing dna double helix",
+  "molecular structure atoms bonds chemistry glowing",
+  "fairy tale magical forest landscape glowing mushrooms",
+  "alien world surreal environment strange plants",
+  "majestic animal face close up lion highly detailed",
+  "human face cybernetic futuristic neon",
+  "ancient pyramids past civilization sunset",
+  "future utopia flying cars bright sky",
+  "natural process volcanic eruption lava flowing",
+  "deep ocean bioluminescent creatures jellyfish"
+];
+
+function DynamicEnvironment() {
+  const imageUrl = useMemo(() => {
+    const randomPrompt = AI_PROMPTS[Math.floor(Math.random() * AI_PROMPTS.length)];
+    const seed = Math.floor(Math.random() * 1000000);
+    // 2:1 ratio is best for equirectangular environment maps
+    return `https://image.pollinations.ai/prompt/${encodeURIComponent(randomPrompt)}?width=1024&height=512&nologo=true&seed=${seed}`;
+  }, []);
+
+  const texture = useLoader(THREE.TextureLoader, imageUrl);
+  texture.mapping = THREE.EquirectangularReflectionMapping;
+  texture.colorSpace = THREE.SRGBColorSpace;
+
+  return <Environment map={texture} />;
+}
 
 function OrbCore({ hovered }: { hovered: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -23,7 +53,7 @@ function OrbCore({ hovered }: { hovered: boolean }) {
       <MeshDistortMaterial
         color="#ff1a1a"
         emissive="#ff0000"
-        emissiveIntensity={hovered ? 6 : 4}
+        emissiveIntensity={hovered ? 5 : 3}
         distort={0.8}
         speed={5}
         roughness={0.2}
@@ -46,20 +76,18 @@ function OrbShell({ hovered }: { hovered: boolean }) {
   return (
     <Sphere ref={meshRef} args={[1.2, 64, 64]}>
       <MeshDistortMaterial
-        color={hovered ? "#00ffff" : "#00bfff"}
-        emissive="#0088ff"
-        emissiveIntensity={hovered ? 1.5 : 0.8}
-        distort={0.25}
-        speed={1.5}
-        roughness={0.05}
-        metalness={0.8}
+        color={hovered ? "#e0ffff" : "#ffffff"}
+        distort={0.15}
+        speed={1}
+        roughness={0.0}
+        metalness={1.0}
         transmission={0.9}
         ior={1.5}
         thickness={1.5}
         clearcoat={1}
-        clearcoatRoughness={0.05}
+        clearcoatRoughness={0.0}
         transparent={true}
-        opacity={0.6}
+        opacity={1}
       />
     </Sphere>
   );
@@ -102,14 +130,18 @@ function NeuralPaths() {
 function Scene({ hovered }: { hovered: boolean }) {
   return (
     <>
+      <Suspense fallback={null}>
+        {/* AI Generated Reflection Map */}
+        <DynamicEnvironment />
+      </Suspense>
+      
       <ambientLight intensity={1.5} color="#ffffff" />
       <directionalLight position={[5, 5, 5]} intensity={4} color="#00ffff" />
       <directionalLight position={[-5, -5, -2]} intensity={3} color="#ff0000" />
       <pointLight position={[0, 0, 0]} intensity={hovered ? 6 : 4} color="#ff3300" distance={6} />
 
       <Float speed={1.5} rotationIntensity={0.6} floatIntensity={0.4}>
-        {/* SIGNIFICANTLY SCALED DOWN to center perfectly inside the white box container */}
-        <group scale={0.4}>
+        <group scale={0.45}>
           <OrbCore hovered={hovered} />
           <OrbShell hovered={hovered} />
           <NeuralPaths />
@@ -143,7 +175,6 @@ export default function MonroeOrb() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Ambient outer glow tightened around the smaller sphere */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500">
         <div
           className={`w-[140px] h-[140px] rounded-full transition-all duration-700 ${hovered ? 'scale-110 opacity-70' : 'scale-100 opacity-40'}`}
@@ -164,7 +195,6 @@ export default function MonroeOrb() {
         <Scene hovered={hovered} />
       </Canvas>
 
-      {/* HUD label */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none transition-all duration-300 z-10">
         <div className={`text-[9px] font-black uppercase tracking-[1em] italic flex flex-col items-center gap-1 ${hovered ? 'text-primary' : 'text-primary/40'}`}>
           <span className={hovered ? 'animate-pulse' : ''}>Monroe_Simulation // Active</span>
