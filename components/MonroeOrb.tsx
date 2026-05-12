@@ -1,12 +1,12 @@
 'use client';
 
-import { useRef, useState, useEffect, Suspense } from 'react';
+import { useRef, useState, useEffect, Suspense, Component, ReactNode } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
 
-// 30 diverse prompt categories — never repeats the same world twice
+// 30 diverse prompt categories — unique seed per mount guarantees a different image
 const AI_PROMPTS = [
   "A glowing molecular structure floating in a futuristic lab, neon colors, ultra detailed 8k",
   "A breathtaking galaxy cluster with colorful nebulae and supernovas, cinematic space photography",
@@ -40,19 +40,32 @@ const AI_PROMPTS = [
   "A coral reef teeming with tropical fish in crystal clear water, underwater photography"
 ];
 
-// Inner world sphere — visible THROUGH the glass shell via refraction
+// ─── Error Boundary ───────────────────────────────────────────────────────────
+// Catches any 3D/WebGL crash and renders a safe fallback instead of crashing the page
+interface EBState { hasError: boolean }
+class OrbErrorBoundary extends Component<{ children: ReactNode; fallback: ReactNode }, EBState> {
+  state: EBState = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(err: Error) { console.warn('[MonroeOrb] 3D error caught, using fallback:', err.message); }
+  render() {
+    if (this.state.hasError) return this.props.fallback;
+    return this.props.children;
+  }
+}
+
+// ─── Inner World Sphere ───────────────────────────────────────────────────────
+// Renders the AI image on an inner sphere — glass shell refracts it
 function InnerWorld({ url }: { url: string }) {
   const texture = useTexture(url);
   texture.colorSpace = THREE.SRGBColorSpace;
   return (
-    // Slightly smaller than OrbCore so it sits at the heart of the orb
-    // BackSide so it's visible from outside (seen through the glass)
     <Sphere args={[0.88, 64, 64]}>
       <meshBasicMaterial map={texture} side={THREE.FrontSide} toneMapped={false} />
     </Sphere>
   );
 }
 
+// ─── Orb Core (glowing red plasma) ────────────────────────────────────────────
 function OrbCore({ hovered }: { hovered: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null!);
   useFrame(({ clock }) => {
@@ -77,6 +90,7 @@ function OrbCore({ hovered }: { hovered: boolean }) {
   );
 }
 
+// ─── Glass Shell ──────────────────────────────────────────────────────────────
 function OrbShell({ hovered }: { hovered: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null!);
   useFrame(({ clock }) => {
@@ -87,7 +101,6 @@ function OrbShell({ hovered }: { hovered: boolean }) {
   });
   return (
     <Sphere ref={meshRef} args={[1.2, 64, 64]}>
-      {/* Pure refractive glass — will distort/bend what's inside */}
       <MeshDistortMaterial
         color={hovered ? '#e0f8ff' : '#ffffff'}
         distort={0.25}
@@ -104,6 +117,7 @@ function OrbShell({ hovered }: { hovered: boolean }) {
   );
 }
 
+// ─── Neural light trails ──────────────────────────────────────────────────────
 function NeuralPaths() {
   const groupRef = useRef<THREE.Group>(null!);
   useFrame(({ clock }) => {
@@ -116,26 +130,24 @@ function NeuralPaths() {
     <group ref={groupRef}>
       <Trail width={1.5} length={10} color="#00ffff" attenuation={(t) => t * t}>
         <mesh position={[1.4, 0.2, 0]}>
-          <sphereGeometry args={[0.02]} />
-          <meshBasicMaterial color="#ffffff" />
+          <sphereGeometry args={[0.02]} /><meshBasicMaterial color="#ffffff" />
         </mesh>
       </Trail>
       <Trail width={1.5} length={10} color="#ff0055" attenuation={(t) => t * t}>
         <mesh position={[-1.3, -0.2, 0.5]}>
-          <sphereGeometry args={[0.02]} />
-          <meshBasicMaterial color="#ffffff" />
+          <sphereGeometry args={[0.02]} /><meshBasicMaterial color="#ffffff" />
         </mesh>
       </Trail>
       <Trail width={1.2} length={8} color="#0088ff" attenuation={(t) => t * t}>
         <mesh position={[0, 1.4, -0.2]}>
-          <sphereGeometry args={[0.02]} />
-          <meshBasicMaterial color="#ffffff" />
+          <sphereGeometry args={[0.02]} /><meshBasicMaterial color="#ffffff" />
         </mesh>
       </Trail>
     </group>
   );
 }
 
+// ─── Scene ────────────────────────────────────────────────────────────────────
 function Scene({ hovered, envUrl }: { hovered: boolean; envUrl: string }) {
   return (
     <>
@@ -146,7 +158,7 @@ function Scene({ hovered, envUrl }: { hovered: boolean; envUrl: string }) {
 
       <Float speed={1.5} rotationIntensity={0.6} floatIntensity={0.4}>
         <group scale={0.4}>
-          {/* InnerWorld: AI image painted on inner sphere, visible through glass */}
+          {/* Wrapped in Suspense+ErrorBoundary — if image fails, silently skip */}
           {envUrl && (
             <Suspense fallback={null}>
               <InnerWorld url={envUrl} />
@@ -158,18 +170,30 @@ function Scene({ hovered, envUrl }: { hovered: boolean; envUrl: string }) {
         </group>
       </Float>
 
-      <Sparkles
-        count={hovered ? 100 : 50}
-        scale={2.5}
-        size={1.5}
-        speed={0.6}
-        opacity={0.8}
-        color={hovered ? '#00ffff' : '#ff3300'}
-      />
+      <Sparkles count={hovered ? 100 : 50} scale={2.5} size={1.5} speed={0.6} opacity={0.8}
+        color={hovered ? '#00ffff' : '#ff3300'} />
     </>
   );
 }
 
+// ─── CSS fallback orb (shown when WebGL crashes) ──────────────────────────────
+function CSSFallbackOrb({ onClick }: { onClick: () => void }) {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center cursor-pointer" onClick={onClick}>
+      <div className="w-48 h-48 rounded-full animate-pulse"
+        style={{
+          background: 'radial-gradient(circle at 35% 35%, rgba(255,200,150,0.95) 0%, rgba(255,100,30,0.9) 40%, rgba(200,50,10,0.85) 100%)',
+          boxShadow: '0 0 60px rgba(255,100,30,0.4), inset 0 0 40px rgba(255,200,100,0.3)',
+        }}
+      />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[9px] font-black uppercase tracking-[1em] italic text-primary/40">
+        Monroe_Simulation // Active
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Export ──────────────────────────────────────────────────────────────
 export default function MonroeOrb() {
   const [mounted, setMounted] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -180,6 +204,7 @@ export default function MonroeOrb() {
     const prompt = AI_PROMPTS[Math.floor(Math.random() * AI_PROMPTS.length)];
     const seed = Math.floor(Math.random() * 999999);
     const encoded = encodeURIComponent(prompt);
+    // Use crossOrigin-friendly URL via pollinations (no API key needed)
     setEnvUrl(
       `https://image.pollinations.ai/prompt/${encoded}?width=512&height=512&nologo=true&seed=${seed}&model=flux`
     );
@@ -189,39 +214,33 @@ export default function MonroeOrb() {
   if (!mounted) return null;
 
   return (
-    // No background — orb floats freely on the page
     <div
       className="relative w-full h-full cursor-pointer group flex items-center justify-center"
       onClick={() => router.push('/monroe')}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Canvas fully transparent — white page shows through */}
-      <Canvas
-        camera={{ position: [0, 0, 4.5], fov: 35 }}
-        gl={{
-          antialias: true,
-          alpha: true,
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.2,
-        }}
-        style={{ background: 'transparent' }}
-        className="w-full h-full"
-      >
-        <Scene hovered={hovered} envUrl={envUrl} />
-      </Canvas>
-
-      {/* Minimal HUD label — no background pill */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none z-10">
-        <div
-          className={`text-[9px] font-black uppercase tracking-[1em] italic flex flex-col items-center gap-1 transition-colors duration-300 ${
-            hovered ? 'text-primary' : 'text-primary/40'
-          }`}
+      {/* OrbErrorBoundary catches any WebGL/Three.js crash — page never goes blank */}
+      <OrbErrorBoundary fallback={<CSSFallbackOrb onClick={() => router.push('/monroe')} />}>
+        <Canvas
+          camera={{ position: [0, 0, 4.5], fov: 35 }}
+          gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
+          style={{ background: 'transparent' }}
+          className="w-full h-full"
+          onCreated={({ gl }) => {
+            // Prevent uncaught WebGL errors from bubbling to React
+            gl.domElement.addEventListener('webglcontextlost', (e) => { e.preventDefault(); }, false);
+          }}
         >
+          <Scene hovered={hovered} envUrl={envUrl} />
+        </Canvas>
+      </OrbErrorBoundary>
+
+      {/* HUD label */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none z-10">
+        <div className={`text-[9px] font-black uppercase tracking-[1em] italic flex flex-col items-center gap-1 transition-colors duration-300 ${hovered ? 'text-primary' : 'text-primary/40'}`}>
           <span className={hovered ? 'animate-pulse' : ''}>Monroe_Simulation // Active</span>
-          {hovered && (
-            <span className="text-[7px] text-primary/60 tracking-[0.5em]">Click to Interface</span>
-          )}
+          {hovered && <span className="text-[7px] text-primary/60 tracking-[0.5em]">Click to Interface</span>}
         </div>
       </div>
     </div>
