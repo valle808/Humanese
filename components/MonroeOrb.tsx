@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail, Environment } from '@react-three/drei';
+import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail } from '@react-three/drei';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
 
@@ -26,7 +26,7 @@ function OrbCore({ hovered }: { hovered: boolean }) {
         emissiveIntensity={hovered ? 6 : 4}
         distort={0.8}
         speed={5}
-        roughness={0.4}
+        roughness={0.2}
         metalness={0.2}
       />
     </Sphere>
@@ -45,19 +45,21 @@ function OrbShell({ hovered }: { hovered: boolean }) {
 
   return (
     <Sphere ref={meshRef} args={[1.2, 64, 64]}>
-      {/* Realistic highly-refractive glass shader settings */}
       <MeshDistortMaterial
-        color={hovered ? "#e0ffff" : "#ffffff"}
+        color={hovered ? "#00ffff" : "#00bfff"}
+        emissive="#0088ff"
+        emissiveIntensity={hovered ? 1.5 : 0.8}
         distort={0.25}
         speed={1.5}
         roughness={0.05}
-        metalness={0.1}
-        transmission={1}
-        ior={1.52}
+        metalness={0.8}
+        transmission={0.9}
+        ior={1.5}
         thickness={1.5}
         clearcoat={1}
         clearcoatRoughness={0.05}
-        transparent={false}
+        transparent={true}
+        opacity={0.6}
       />
     </Sphere>
   );
@@ -100,15 +102,14 @@ function NeuralPaths() {
 function Scene({ hovered }: { hovered: boolean }) {
   return (
     <>
-      <Environment preset="city" />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[5, 5, 5]} intensity={2} color="#00ffff" />
-      <directionalLight position={[-5, -5, -2]} intensity={2} color="#ff0000" />
-      <pointLight position={[0, 0, 0]} intensity={hovered ? 4 : 2} color="#ff3300" distance={6} />
+      <ambientLight intensity={1.5} color="#ffffff" />
+      <directionalLight position={[5, 5, 5]} intensity={4} color="#00ffff" />
+      <directionalLight position={[-5, -5, -2]} intensity={3} color="#ff0000" />
+      <pointLight position={[0, 0, 0]} intensity={hovered ? 6 : 4} color="#ff3300" distance={6} />
 
-      <Float speed={1.5} rotationIntensity={0.6} floatIntensity={0.6}>
-        {/* SCALED DOWN to fit inside the white box container perfectly */}
-        <group scale={0.75}>
+      <Float speed={1.5} rotationIntensity={0.6} floatIntensity={0.4}>
+        {/* SIGNIFICANTLY SCALED DOWN to center perfectly inside the white box container */}
+        <group scale={0.4}>
           <OrbCore hovered={hovered} />
           <OrbShell hovered={hovered} />
           <NeuralPaths />
@@ -116,9 +117,9 @@ function Scene({ hovered }: { hovered: boolean }) {
       </Float>
 
       <Sparkles
-        count={hovered ? 120 : 60}
-        scale={3.5}
-        size={1.2}
+        count={hovered ? 100 : 50}
+        scale={2.5}
+        size={1.5}
         speed={0.6}
         opacity={0.8}
         color={hovered ? "#00ffff" : "#ff3300"}
@@ -137,7 +138,7 @@ export default function MonroeOrb() {
 
   return (
     <div 
-      className="relative w-full h-full min-h-[360px] cursor-pointer group flex items-center justify-center"
+      className="relative w-full h-full cursor-pointer group flex items-center justify-center"
       onClick={() => router.push('/monroe')}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -145,25 +146,26 @@ export default function MonroeOrb() {
       {/* Ambient outer glow tightened around the smaller sphere */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500">
         <div
-          className={`w-[180px] h-[180px] rounded-full transition-all duration-700 ${hovered ? 'scale-110 opacity-70' : 'scale-100 opacity-50'}`}
+          className={`w-[140px] h-[140px] rounded-full transition-all duration-700 ${hovered ? 'scale-110 opacity-70' : 'scale-100 opacity-40'}`}
           style={{
-            background: 'radial-gradient(circle, rgba(0,255,255,0.25) 0%, rgba(255,0,0,0.15) 50%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(0,255,255,0.2) 0%, rgba(255,0,0,0.1) 50%, transparent 70%)',
             animation: 'pulse 4s ease-in-out infinite',
-            filter: 'blur(24px)'
+            filter: 'blur(16px)'
           }}
         />
       </div>
 
       <Canvas
-        camera={{ position: [0, 0, 4.5], fov: 40 }}
+        camera={{ position: [0, 0, 4.5], fov: 35 }}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
         style={{ background: 'transparent' }}
+        className="w-full h-full"
       >
         <Scene hovered={hovered} />
       </Canvas>
 
       {/* HUD label */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 pointer-events-none select-none transition-all duration-300">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none transition-all duration-300 z-10">
         <div className={`text-[9px] font-black uppercase tracking-[1em] italic flex flex-col items-center gap-1 ${hovered ? 'text-primary' : 'text-primary/40'}`}>
           <span className={hovered ? 'animate-pulse' : ''}>Monroe_Simulation // Active</span>
           {hovered && <span className="text-[7px] text-primary/80 tracking-[0.5em]">Click to Interface</span>}
