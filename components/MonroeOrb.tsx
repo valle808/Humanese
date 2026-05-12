@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useState, useEffect, useMemo, Suspense } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail, Environment, useTexture } from '@react-three/drei';
+import { Float, Sparkles, MeshDistortMaterial, Sphere, Trail, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { useRouter } from 'next/navigation';
 
@@ -20,17 +20,45 @@ const AI_PROMPTS = [
 ];
 
 function DynamicBackground() {
-  // Select a random prompt and seed once per mount
   const prompt = useMemo(() => AI_PROMPTS[Math.floor(Math.random() * AI_PROMPTS.length)], []);
   const seed = useMemo(() => Math.floor(Math.random() * 1000000), []);
   
-  const encodedPrompt = encodeURIComponent(prompt);
-  // Using Pollinations.ai for instant, free, no-key AI image generation
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&seed=${seed}`;
-  
-  const texture = useTexture(imageUrl);
-  texture.colorSpace = THREE.SRGBColorSpace;
+  const [texture, setTexture] = useState<THREE.Texture | null>(null);
+  const [failed, setFailed] = useState(false);
 
+  useEffect(() => {
+    let isMounted = true;
+    const encodedPrompt = encodeURIComponent(prompt);
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&seed=${seed}`;
+    
+    new THREE.TextureLoader().load(
+      imageUrl,
+      (tex) => {
+        if (isMounted) {
+          tex.colorSpace = THREE.SRGBColorSpace;
+          setTexture(tex);
+        }
+      },
+      undefined,
+      (err) => {
+        console.warn("AI Background rate limited or failed, falling back to preset.", err);
+        if (isMounted) setFailed(true);
+      }
+    );
+    return () => { isMounted = false; };
+  }, [prompt, seed]);
+
+  // If the AI image fails (e.g. 429 Too Many Requests), fallback to a reliable preset
+  if (failed) {
+    return <Environment preset="city" background />;
+  }
+
+  // While generating the AI image, show a default environment so the glass doesn't look like a solid blob
+  if (!texture) {
+    return <Environment preset="city" background />;
+  }
+
+  // Once the AI image is ready, render it as the environment
   return (
     <Environment background>
       <mesh>
@@ -47,7 +75,6 @@ function OrbCore({ hovered }: { hovered: boolean }) {
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
     const t = clock.getElapsedTime();
-    // Complex unpredictable rotation and organic pulsating
     meshRef.current.rotation.x = Math.sin(t * 0.4) * Math.PI;
     meshRef.current.rotation.y = Math.cos(t * 0.3) * Math.PI;
     meshRef.current.scale.setScalar(0.75 + Math.sin(t * 3) * 0.08);
@@ -80,7 +107,6 @@ function OrbShell({ hovered }: { hovered: boolean }) {
 
   return (
     <Sphere ref={meshRef} args={[1.2, 64, 64]}>
-      {/* Restored pure glass settings to refract the new AI background */}
       <MeshDistortMaterial
         color={hovered ? "#e0ffff" : "#ffffff"}
         emissive="#000000"
@@ -141,9 +167,7 @@ function Scene({ hovered }: { hovered: boolean }) {
       <directionalLight position={[-5, -5, -2]} intensity={3} color="#ff0000" />
       <pointLight position={[0, 0, 0]} intensity={hovered ? 6 : 4} color="#ff3300" distance={6} />
 
-      <Suspense fallback={null}>
-        <DynamicBackground />
-      </Suspense>
+      <DynamicBackground />
 
       <Float speed={1.5} rotationIntensity={0.6} floatIntensity={0.4}>
         <group scale={0.4}>
@@ -180,6 +204,17 @@ export default function MonroeOrb() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500">
+        <div
+          className={`w-[140px] h-[140px] rounded-full transition-all duration-700 ${hovered ? 'scale-110 opacity-70' : 'scale-100 opacity-40'}`}
+          style={{
+            background: 'radial-gradient(circle, rgba(0,255,255,0.2) 0%, rgba(255,0,0,0.1) 50%, transparent 70%)',
+            animation: 'pulse 4s ease-in-out infinite',
+            filter: 'blur(16px)'
+          }}
+        />
+      </div>
+
       <Canvas
         camera={{ position: [0, 0, 4.5], fov: 35 }}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
@@ -189,7 +224,6 @@ export default function MonroeOrb() {
         <Scene hovered={hovered} />
       </Canvas>
 
-      {/* HUD label */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none transition-all duration-300 z-10 bg-background/50 backdrop-blur-md px-4 py-2 rounded-full border border-primary/20">
         <div className={`text-[9px] font-black uppercase tracking-[1em] italic flex flex-col items-center gap-1 ${hovered ? 'text-primary' : 'text-primary/70'}`}>
           <span className={hovered ? 'animate-pulse' : ''}>Monroe_Simulation // Active</span>
