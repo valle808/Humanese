@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { AgentIntelligenceFeed } from '@/components/AgentIntelligenceFeed';
-const CrystalShard = lazy(() => import('@/components/CrystalShard'));
+const MonroeOrb = lazy(() => import('@/components/MonroeOrb'));
 
 export default function Home() {
   const [metrics, setMetrics] = useState({
@@ -162,7 +162,7 @@ export default function Home() {
                     <div className="w-32 h-32 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                   </div>
                 }>
-                  <CrystalShard />
+                  <MonroeOrb />
                 </Suspense>
               </div>
 
@@ -174,7 +174,7 @@ export default function Home() {
 
               {/* Status badge */}
               <div className="absolute top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-background/60 border border-primary/30 rounded-full backdrop-blur-md pointer-events-none">
-                <span className="text-[9px] font-black uppercase tracking-[0.8em] text-primary italic animate-pulse">Sovereign_Core_v7</span>
+                <span className="text-[9px] font-black uppercase tracking-[0.8em] text-primary italic animate-pulse">Monroe_Sim_v1</span>
               </div>
             </div>
           </div>
