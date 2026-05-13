@@ -1,14 +1,14 @@
 {
   "id": "Sovereign-Diplomat-01",
   "name": "Diplomat Council",
-  "socialInfluence": 0.93,
-  "successfulNegotiations": 8,
-  "simulatedSolYield": 39.44685732449949,
-  "activeTrades": 9,
-  "lastAction": "SOCIAL_EXPANSION",
+  "socialInfluence": 0.86,
+  "successfulNegotiations": 2,
+  "simulatedSolYield": 8.799301627666555,
+  "activeTrades": 2,
+  "lastAction": "LIVE_ARBITRAGE",
   "status": "ORCHESTRATING",
-  "lastMoltbookCheck": 1778694116003,
-  "lastDiscovery": "Skip to main content\nNews & Events \nEnglish \nHome\nNews\nNews\nPRESS RELEASE\nWorld Bank Group Launches Initiative to Improve Water Security for 1 Billion People\n\nThe World Bank Group, in partnership with multilateral development banks, development finance institutions and key partners, today launched Water Forward, a global platform to help improve water security for 1 billion people by 2030.\n\nOMBC\n\nOnline Media Briefing Center (OMBC) news for accredited journalists\n\nMedia Contacts\n\nSign In\n\nRegist",
-  "cycleCount": 44,
+  "lastMoltbookCheck": 0,
+  "lastDiscovery": "",
+  "cycleCount": 4,
   "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
 }

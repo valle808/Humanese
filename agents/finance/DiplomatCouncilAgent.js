@@ -401,19 +401,6 @@ class DiplomatCouncilAgent extends EventEmitter {
         }
     }
 
-                if (this.stats.cycleCount % 20 === 0) {
-                    await this.publishToMoltbook();
-                }
-
-                await new Promise(r => setTimeout(r, 600000)); // Every 10 minutes
-            } catch (err) {
-                const e = /** @type {any} */ (err);
-                console.error(`[DiplomatCouncil] Moltbook loop error: ${e.message}`);
-                await new Promise(r => setTimeout(r, 60000));
-            }
-        }
-    }
-
     persistMoltbookState() {
         try {
             const stateDir = path.join(__dirname, '..', '..', 'memory');
