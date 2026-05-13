@@ -1521,3 +1521,67 @@ Memory Bank: 100 Collective Insights
 [MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-58964C07
 [MemoryBank] 🧠 Shard archived to Cloud: Miner-bdf00ae6
 [MemoryBank] 🧠 Learned new insight from Miner-bdf00ae6 via Unknown
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.2%
+Hashrate: 1.06 KH/s
+Shares Found: 5
+Memory Bank: 100 Collective Insights
+====================================================
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+[WebNavigator:Sovereign-Diplomat-01] Navigating to https://www.worldbank.org/en/news...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Difficulty set to 4
+[MinerAgent:Sovereign-Worker-0] Difficulty set to 4
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 4/26/2026" (Price: 250 VALLE)
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 25740b2
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 25cd680
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 4/26/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 4/26/2026
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[WebNavigator:Miner-d5c0f1cd] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[WebNavigator:Miner-bdf00ae6] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.2%
+Hashrate: 1.27 KH/s
+Shares Found: 5
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] ✅ Definitive cryptographic share resolved. Total: 2
+[MinerAgent:Sovereign-Worker-0] ✅ Definitive cryptographic share resolved. Total: 5
+[AgentKing] 👑 King acknowledges collective discovery: "Acquired capability: Bitcoin Network Intelligence:..."
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 1.13 KH/s
+Shares Found: 7
+Memory Bank: 100 Collective Insights
+====================================================
+/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/src/common/util.ts:290
+          throw new TimeoutError(`Timed out after waiting ${ms}ms`, {cause});
+                ^
+
+TimeoutError: Timed out after waiting 30000ms
+    at <anonymous> (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/src/common/util.ts:290:17)
+    at file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1944:31
+    at OperatorSubscriber2._this._next (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1001:9)
+    at Subscriber2.next (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:704:12)
+    at AsyncAction2.<anonymous> (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:2288:20)
+    at AsyncAction2._execute (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1368:12)
+    at AsyncAction2.execute (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1357:22)
+    at AsyncScheduler2.flush (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1435:26)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  [cause]: undefined
+}
+
+Node.js v25.9.0

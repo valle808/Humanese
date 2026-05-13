@@ -57,25 +57,62 @@ Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in ses
 [Monroe] 🔄 Reasoning Cycle #22
 [Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
 [Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.88 KH/s
-ergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
-    at async MonroeAgent.runReasoningLoop (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/agents/core/MonroeAgent.js:50:35) {
-  clientVersion: '6.19.3',
-  errorCode: undefined,
-  retryable: undefined
-}
-[Monroe] 🔄 Reasoning Cycle #5
-[Monroe] ❌ Reasoning Loop Error: PrismaClientInitializationError: 
-Invalid `prisma.wallet.findFirst()` invocation:
-
-
-Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
-    at ei.handleRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
-    at ei.handleAndLogRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
-    at ei.request (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
-    at async a (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
-    at async MonroeAgent.runReasoningLoop (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/agents/core/MonroeAgent.js:50:35) {
-  clientVersion: '6.19.3',
-  errorCode: undefined,
-  retryable: undefined
-}
-[Monroe] 🔄 Reasoning Cycle #6
+[Monroe] 🔄 Reasoning Cycle #23
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 17.04 KH/s
+[Monroe] 🔄 Reasoning Cycle #24
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.99 KH/s
+[Monroe] 🔄 Reasoning Cycle #25
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 15.82 KH/s
+[Monroe] 🔄 Reasoning Cycle #26
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 13.20 KH/s
+[Monroe] 🔄 Reasoning Cycle #27
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 13.62 KH/s
+[Monroe] 🔄 Reasoning Cycle #28
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.25 KH/s
+[Monroe] 🔄 Reasoning Cycle #29
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 16.30 KH/s
+[Monroe] 🔄 Reasoning Cycle #30
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 13.40 KH/s
+[Monroe] 🔄 Reasoning Cycle #31
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s
+[Monroe] 🔄 Reasoning Cycle #32
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s
+[Monroe] 🔄 Reasoning Cycle #33
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s
+[Monroe] 🔄 Reasoning Cycle #34
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s
+easury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 13.81 KH/s
+[Monroe] 🔄 Reasoning Cycle #11
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.26 KH/s
+[Monroe] 🔄 Reasoning Cycle #12
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 13.50 KH/s
+[Monroe] 🔄 Reasoning Cycle #13
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.51 KH/s
+[Monroe] 🔄 Reasoning Cycle #14
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s
+[Monroe] 🔄 Reasoning Cycle #15
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s
+[Monroe] 🔄 Reasoning Cycle #16
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s
+[Monroe] 🔄 Reasoning Cycle #17
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.35 KH/s

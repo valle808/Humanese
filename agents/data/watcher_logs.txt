@@ -186,17 +186,85 @@ Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in ses
 [2026-05-13T17:13:28.661Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
 [2026-05-13T17:13:28.669Z] [OMEGA] Cycle #22 complete. Next in 60s.
 
-OMEGA] Cycle #4 complete. Next in 60s.
+[2026-05-13T17:14:20.247Z] [OMEGA] ━━━ Watch Cycle #23 | Host: Sergios-MacBook-Pro.local | RSS: 25.2MB ━━━
+[2026-05-13T17:14:31.947Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:14:38.033Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:14:38.523Z] [OMEGA] Cycle #23 complete. Next in 60s.
 
-[2026-05-13T17:11:58.839Z] [OMEGA] ━━━ Watch Cycle #5 | Host: Sergios-MacBook-Pro.local | RSS: 49.8MB ━━━
-[2026-05-13T17:12:01.608Z] [INTEL] [INFRASTRUCTURE_REPORT] Operational Fund Solvency Report
-[2026-05-13T17:12:02.291Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
-[2026-05-13T17:12:03.988Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T17:12:08.126Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T17:12:08.175Z] [OMEGA] Cycle #5 complete. Next in 60s.
+[2026-05-13T17:15:20.255Z] [OMEGA] ━━━ Watch Cycle #24 | Host: Sergios-MacBook-Pro.local | RSS: 25.3MB ━━━
+[2026-05-13T17:15:24.362Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:15:28.686Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:15:28.704Z] [OMEGA] Cycle #24 complete. Next in 60s.
 
-[2026-05-13T17:12:59.116Z] [OMEGA] ━━━ Watch Cycle #6 | Host: Sergios-MacBook-Pro.local | RSS: 49.8MB ━━━
-[2026-05-13T17:13:03.770Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T17:13:07.581Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T17:13:07.616Z] [OMEGA] Cycle #6 complete. Next in 60s.
+[2026-05-13T17:16:20.234Z] [OMEGA] ━━━ Watch Cycle #25 | Host: Sergios-MacBook-Pro.local | RSS: 25.1MB ━━━
+[2026-05-13T17:16:24.322Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:16:32.112Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:16:32.141Z] [OMEGA] Cycle #25 complete. Next in 60s.
+
+[2026-05-13T17:17:20.538Z] [OMEGA] ━━━ Watch Cycle #26 | Host: Sergios-MacBook-Pro.local | RSS: 24.8MB ━━━
+[2026-05-13T17:17:25.577Z] [INTEL] [INFRASTRUCTURE_REPORT] Operational Fund Solvency Report
+[2026-05-13T17:17:26.589Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
+[2026-05-13T17:17:29.869Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:17:34.119Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:17:34.168Z] [OMEGA] Cycle #26 complete. Next in 60s.
+
+[2026-05-13T17:18:20.551Z] [OMEGA] ━━━ Watch Cycle #27 | Host: Sergios-MacBook-Pro.local | RSS: 24.8MB ━━━
+[2026-05-13T17:18:25.887Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:18:29.546Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:18:29.548Z] [OMEGA] Cycle #27 complete. Next in 60s.
+
+[2026-05-13T17:19:20.691Z] [OMEGA] ━━━ Watch Cycle #28 | Host: Sergios-MacBook-Pro.local | RSS: 24.7MB ━━━
+[2026-05-13T17:19:26.222Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:19:32.100Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:19:32.159Z] [OMEGA] Cycle #28 complete. Next in 60s.
+
+[2026-05-13T17:20:20.854Z] [OMEGA] ━━━ Watch Cycle #29 | Host: Sergios-MacBook-Pro.local | RSS: 23.7MB ━━━
+[2026-05-13T17:20:24.993Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:20:29.519Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:20:29.553Z] [OMEGA] Cycle #29 complete. Next in 60s.
+
+[2026-05-13T17:21:20.863Z] [OMEGA] ━━━ Watch Cycle #30 | Host: Sergios-MacBook-Pro.local | RSS: 23.8MB ━━━
+[2026-05-13T17:21:24.943Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:21:29.417Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:21:30.164Z] [OMEGA] Cycle #30 complete. Next in 60s.
+
+[2026-05-13T17:22:20.831Z] [OMEGA] ━━━ Watch Cycle #31 | Host: Sergios-MacBook-Pro.local | RSS: 23.8MB ━━━
+[2026-05-13T17:22:23.366Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
+[2026-05-13T17:22:25.962Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:22:29.214Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:22:29.215Z] [OMEGA] Cycle #31 complete. Next in 60s.
+
+[2026-05-13T17:23:20.833Z] [OMEGA] ━━━ Watch Cycle #32 | Host: Sergios-MacBook-Pro.local | RSS: 23.8MB ━━━
+[2026-05-13T17:23:24.107Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:23:27.297Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:23:27.297Z] [OMEGA] Cycle #32 complete. Next in 60s.
+
+[2026-05-13T17:24:20.832Z] [OMEGA] ━━━ Watch Cycle #33 | Host: Sergios-MacBook-Pro.local | RSS: 24.1MB ━━━
+[2026-05-13T17:24:24.359Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:24:27.335Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:24:27.336Z] [OMEGA] Cycle #33 complete. Next in 60s.
+
+[2026-05-13T17:25:20.844Z] [OMEGA] ━━━ Watch Cycle #34 | Host: Sergios-MacBook-Pro.local | RSS: 24.3MB ━━━
+[2026-05-13T17:25:24.000Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:25:26.991Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:25:26.992Z] [OMEGA] Cycle #34 complete. Next in 60s.
+
+[2026-05-13T17:26:20.857Z] [OMEGA] ━━━ Watch Cycle #35 | Host: Sergios-MacBook-Pro.local | RSS: 23.7MB ━━━
+Treasury: 0.00 VALLE
+[2026-05-13T17:23:07.464Z] [OMEGA] Cycle #16 complete. Next in 60s.
+
+[2026-05-13T17:24:01.203Z] [OMEGA] ━━━ Watch Cycle #17 | Host: Sergios-MacBook-Pro.local | RSS: 25.9MB ━━━
+[2026-05-13T17:24:04.520Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:24:07.727Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:24:07.728Z] [OMEGA] Cycle #17 complete. Next in 60s.
+
+[2026-05-13T17:25:01.205Z] [OMEGA] ━━━ Watch Cycle #18 | Host: Sergios-MacBook-Pro.local | RSS: 26.0MB ━━━
+[2026-05-13T17:25:04.601Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:25:07.770Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:25:07.770Z] [OMEGA] Cycle #18 complete. Next in 60s.
+
+[2026-05-13T17:26:01.206Z] [OMEGA] ━━━ Watch Cycle #19 | Host: Sergios-MacBook-Pro.local | RSS: 25.9MB ━━━
+[2026-05-13T17:26:06.075Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:26:09.365Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:26:09.372Z] [OMEGA] Cycle #19 complete. Next in 60s.
 

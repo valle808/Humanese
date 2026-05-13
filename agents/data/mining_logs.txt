@@ -11517,4 +11517,969 @@ Memory Bank: 100 Collective Insights
 [MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-608E2AF2)
 [MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-608E2AF2
 [AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
-ully listed network intelligence: SKL-2026-608E2AF2
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.1%
+Hashrate: 3.82 KH/s
+Shares Found: 39
+Memory Bank: 100 Collective Insights
+====================================================
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 4/26/2026" (Price: 310 VALLE)
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 4/26/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 4/26/2026
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[AgentKing] 👑 King acknowledges collective discovery: "Acquired capability: Bitcoin Network Intelligence:..."
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 3.46 KH/s
+Shares Found: 39
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Sovereign-Tokenizer-01] Failed to extract from https://coinmarketcap.com/dexscan/solana/: Navigation timeout of 30000 ms exceeded
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 245fcf7
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24a67e0
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 60.20 KH/s
+Shares Found: 39
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[WebNavigator:Miner-d342e654] Failed to extract from https://mempool.space/: Navigation timeout of 30000 ms exceeded
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[TokenizationAgent:Sovereign-Tokenizer-01] 📡 Introducing VALLE to dexscreener.com...
+[AgentKing] 👑 King acknowledges collective discovery: "Propagated VALLE Sovereign Registry presence to ht..."
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-47F687AC)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-47F687AC
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-Tokenizer-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-Tokenizer-01 via Unknown
+[WebNavigator:Sovereign-Tokenizer-01] Navigating to https://dexscreener.com/solana...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-AF79BC5E)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-AF79BC5E
+[MinerAgent:Sovereign-Worker-1] ✅ Definitive cryptographic share resolved. Total: 19
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-EC20D3BE)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-EC20D3BE
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 3.02 KH/s
+Shares Found: 40
+Memory Bank: 100 Collective Insights
+====================================================
+[LiquidityManager:Sovereign-MM-01] 📊 Analysis cycle started: Fetching real-world market signals...
+[TokenizationAgent:Sovereign-Tokenizer-01] 📡 Introducing VALLE to www.coingecko.com...
+[LiquidityManager:Sovereign-MM-01] 📈 Market Signal: SOL=$90.91 | ETH=$2252.75
+[WebNavigator:Sovereign-Tokenizer-01] Navigating to https://www.coingecko.com/en/coins/new...
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-Tokenizer-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-Tokenizer-01 via Unknown
+[LiquidityManager:Sovereign-MM-01] Sovereign Stats: VALLE/USDC | Reserve: 1000000 VALLE
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-MM-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-MM-01 via Unknown
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 2.78 KH/s
+Shares Found: 40
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-ADC1987F)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-ADC1987F
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-ADD3F01B)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-ADD3F01B
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 4/26/2026" (Price: 280 VALLE)
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 2.41 KH/s
+Shares Found: 40
+Memory Bank: 100 Collective Insights
+====================================================
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 4/26/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 4/26/2026
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[AgentKing] 👑 King acknowledges collective discovery: "Acquired capability: Bitcoin Network Intelligence:..."
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-AC456DE4)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-AC456DE4
+[WebNavigator:Miner-d342e654] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[TokenizationAgent:Sovereign-Tokenizer-01] ✅ Global Propagation cycle complete: Market visibility established.
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-Tokenizer-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-Tokenizer-01 via Unknown
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-6E3839FC)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-6E3839FC
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 2.21 KH/s
+Shares Found: 40
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24a7972
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 2460e26
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-4C0C15F9)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-4C0C15F9
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-A88F7A4D)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-A88F7A4D
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 3.32 KH/s
+Shares Found: 40
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-525E1606)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-525E1606
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] ✅ Definitive cryptographic share resolved. Total: 20
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-402700C0)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-402700C0
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-0A29718D)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-0A29718D
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-4024C7F2)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-4024C7F2
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 3.63 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[AgentKing] 👑 King acknowledges collective discovery: "Miner Research [https://news.bitcoin.com/]: Read I..."
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 3.36 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[LiquidityManager:Sovereign-MM-01] 📊 Analysis cycle started: Fetching real-world market signals...
+[LiquidityManager:Sovereign-MM-01] 📈 Market Signal: SOL=$90.94 | ETH=$2253.23
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[LiquidityManager:Sovereign-MM-01] Sovereign Stats: VALLE/USDC | Reserve: 1000000 VALLE
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-EF231C3D)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-EF231C3D
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-MM-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-MM-01 via Unknown
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-8FE1FAA7)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-8FE1FAA7
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 4.08 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-A5C7C4D5)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-A5C7C4D5
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-131D010C)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-131D010C
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[AgentKing] 👑 King acknowledges collective discovery: "Miner Research [https://news.bitcoin.com/]: Read I..."
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 5/13/2026" (Price: 300 VALLE)
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 5/13/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 5/13/2026
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 3.87 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 3.06 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24a8b01
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 2461f5c
+[WebNavigator:Miner-d342e654] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-F266640C)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-F266640C
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 1.17 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-B8293691)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-B8293691
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[AgentKing] 👑 King acknowledges collective discovery: "Miner Research [https://mempool.space/]: Sign In
+ ..."
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 3.05 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-55B54619)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-55B54619
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-9C5E5CD8)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-9C5E5CD8
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[LiquidityManager:Sovereign-MM-01] 📊 Analysis cycle started: Fetching real-world market signals...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 3.25 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-51965EE4)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-51965EE4
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-B3C8959B)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-B3C8959B
+[LiquidityManager:Sovereign-MM-01] 📈 Market Signal: SOL=$90.95 | ETH=$2253.45
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[LiquidityManager:Sovereign-MM-01] Sovereign Stats: VALLE/USDC | Reserve: 1000000 VALLE
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 0.58 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-MM-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-MM-01 via Unknown
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[AgentKing] 👑 King acknowledges collective discovery: "Rebalanced VALLE liquidity pool based on real-worl..."
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 4/26/2026" (Price: 250 VALLE)
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 4/26/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 4/26/2026
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 0.41 KH/s
+Shares Found: 41
+Memory Bank: 100 Collective Insights
+====================================================
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-0CDD666B)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-0CDD666B
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 2463085
+[MinerAgent:Sovereign-Worker-1] ✅ Definitive cryptographic share resolved. Total: 21
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24a9c8c
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-C484028A)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-C484028A
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 1.96 KH/s
+Shares Found: 42
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Miner-d342e654] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 0.99 KH/s
+Shares Found: 42
+Memory Bank: 100 Collective Insights
+====================================================
+[AgentKing] 👑 King acknowledges collective discovery: "Miner Research [https://mempool.space/]: Sign In
+ ..."
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-2A892CD6)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-2A892CD6
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.4%
+Hashrate: 1.99 KH/s
+Shares Found: 42
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-BB7E6F1C)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-BB7E6F1C
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.4%
+Hashrate: 1.11 KH/s
+Shares Found: 42
+Memory Bank: 100 Collective Insights
+====================================================
+[LiquidityManager:Sovereign-MM-01] 📊 Analysis cycle started: Fetching real-world market signals...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[LiquidityManager:Sovereign-MM-01] 📈 Market Signal: SOL=$90.92 | ETH=$2252.28
+[LiquidityManager:Sovereign-MM-01] Sovereign Stats: VALLE/USDC | Reserve: 1000000 VALLE
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-MM-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-MM-01 via Unknown
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-704B0BD8)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-704B0BD8
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.4%
+Hashrate: 1.11 KH/s
+Shares Found: 42
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-3FC5D660)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-3FC5D660
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[AgentKing] 👑 King acknowledges collective discovery: "Miner Research [https://news.bitcoin.com/]: Read I..."
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-35E86DDA)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-35E86DDA
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 5/13/2026" (Price: 260 VALLE)
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-6CDE04A3)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-6CDE04A3
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 1.41 KH/s
+Shares Found: 42
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-94A98332)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-94A98332
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-BDE6A04C)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-BDE6A04C
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 5/13/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 5/13/2026
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24aae0d
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 24641b8
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-BDBCAC0C)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-BDBCAC0C
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-BBB5FA42)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-BBB5FA42
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[MinerAgent:Sovereign-Worker-0] ✅ Definitive cryptographic share resolved. Total: 22
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-83E9C7E8)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-83E9C7E8
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-C9205D97)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-C9205D97
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-15A2388E)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-15A2388E
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 0.37 KH/s
+Shares Found: 43
+Memory Bank: 100 Collective Insights
+====================================================
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-8BCC1097)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-8BCC1097
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 0.97 KH/s
+Shares Found: 43
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Miner-d342e654] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[AgentKing] 👑 King acknowledges collective discovery: "Miner Research [https://news.bitcoin.com/]: Read I..."
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-E10315AA)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-E10315AA
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 3.50 KH/s
+Shares Found: 43
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-B6AB630A)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-B6AB630A
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[LiquidityManager:Sovereign-MM-01] 📊 Analysis cycle started: Fetching real-world market signals...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 1.57 KH/s
+Shares Found: 43
+Memory Bank: 100 Collective Insights
+====================================================
+[LiquidityManager:Sovereign-MM-01] 📈 Market Signal: SOL=$90.86 | ETH=$2252.51
+[LiquidityManager:Sovereign-MM-01] Sovereign Stats: VALLE/USDC | Reserve: 1000000 VALLE
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-MM-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-MM-01 via Unknown
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-64874ED3)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-64874ED3
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 1.28 KH/s
+Shares Found: 43
+Memory Bank: 100 Collective Insights
+====================================================
+[AgentKing] 👑 King acknowledges collective discovery: "Miner Research [https://mempool.space/]: Sign In
+ ..."
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 24652d9
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24abf87
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 2.06 KH/s
+Shares Found: 43
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Miner-d342e654] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 5/13/2026" (Price: 340 VALLE)
+[MinerAgent:Sovereign-Worker-1] ✅ Definitive cryptographic share resolved. Total: 22
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 5/13/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 5/13/2026
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-A3C50F48)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-A3C50F48
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 2.00 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[AgentKing] 👑 King acknowledges collective discovery: "Acquired capability: Bitcoin Network Intelligence:..."
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 0.70 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-815F8BA8)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-815F8BA8
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-713AF078)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-713AF078
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 0.63 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] Research complete. Signals detected from https://news.bitcoin.com/
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-DF8B2459)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-DF8B2459
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-d342e654
+[MemoryBank] 🧠 Learned new insight from Miner-d342e654 via Unknown
+[LiquidityManager:Sovereign-MM-01] 📊 Analysis cycle started: Fetching real-world market signals...
+[TokenizationAgent:Sovereign-Tokenizer-01] 🔍 Initiating autonomous market research for RWA opportunities...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 0.32 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[LiquidityManager:Sovereign-MM-01] 📈 Market Signal: SOL=$90.86 | ETH=$2254.03
+[LiquidityManager:Sovereign-MM-01] Sovereign Stats: VALLE/USDC | Reserve: 1000000 VALLE
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-MM-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-MM-01 via Unknown
+[WebNavigator:Sovereign-Tokenizer-01] Navigating to https://www.realtor.com/realestateandhomes-search/Miami_FL/beds-3/price-1000000-na...
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[AgentKing] 👑 King acknowledges collective discovery: "Rebalanced VALLE liquidity pool based on real-worl..."
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 24663e9
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24ad0ef
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 176.92 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[TokenizationAgent:Sovereign-Tokenizer-01] 📄 Market data ingested. Identifying high-value targets...
+[TokenizationAgent:Sovereign-Tokenizer-01] ⚠️ Research complete: No new high-confidence targets found in this sector.
+[TokenizationAgent:Sovereign-Tokenizer-01] 🌎 Initiating Global Propagation sequence...
+[TokenizationAgent:Sovereign-Tokenizer-01] 📡 Introducing VALLE to coinmarketcap.com...
+[WebNavigator:Sovereign-Tokenizer-01] Navigating to https://coinmarketcap.com/dexscan/solana/...
+[WebNavigator:Miner-d342e654] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[WebNavigator:Miner-d342e654] Navigating to https://news.bitcoin.com/...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 3.84 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+[AgentKing] 💎 Found desirable skill: "Bitcoin Network Intelligence: 4/26/2026" (Price: 310 VALLE)
+[MarketUtils] 💎 Skill acquired by Agent King: Bitcoin Network Intelligence: 4/26/2026
+[AgentKing] ✅ Swarm capability expanded: Bitcoin Network Intelligence: 4/26/2026
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 2.08 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[MemoryBank] 🧠 Shard archived to Cloud: agent-king-main
+[MemoryBank] 🧠 Learned new insight from agent-king-main via Unknown
+[AgentKing] 👑 King acknowledges collective discovery: "Acquired capability: Bitcoin Network Intelligence:..."
+[WebNavigator:Sovereign-Tokenizer-01] Failed to extract from https://coinmarketcap.com/dexscan/solana/: Navigation timeout of 30000 ms exceeded
+[WebNavigator:Miner-d342e654] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 1.76 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 1.78 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[WebNavigator:Miner-d342e654] Navigating to https://mempool.space/...
+[TokenizationAgent:Sovereign-Tokenizer-01] 📡 Introducing VALLE to dexscreener.com...
+[LiquidityManager:Sovereign-MM-01] 📊 Analysis cycle started: Fetching real-world market signals...
+[WebNavigator:Sovereign-Tokenizer-01] Navigating to https://dexscreener.com/solana...
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-Tokenizer-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-Tokenizer-01 via Unknown
+[MinerAgent:Sovereign-Worker-0] Research complete. Signals detected from https://mempool.space/
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[LiquidityManager:Sovereign-MM-01] 📈 Market Signal: SOL=$90.87 | ETH=$2254.41
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-BD63DB17)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-BD63DB17
+[LiquidityManager:Sovereign-MM-01] Sovereign Stats: VALLE/USDC | Reserve: 1000000 VALLE
+[MemoryBank] 🧠 Shard archived to Cloud: Miner-1b33ee58
+[MemoryBank] 🧠 Learned new insight from Miner-1b33ee58 via Unknown
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-MM-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-MM-01 via Unknown
+[WebNavigator:Miner-1b33ee58] Navigating to https://mempool.space/...
+[MinerAgent:Sovereign-Worker-1] 📢 Advertising unique network intelligence to Skill Market...
+[WebNavigator:Miner-1b33ee58] Navigating to https://news.bitcoin.com/...
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-12381AAB)
+[MinerAgent:Sovereign-Worker-1] [MARKET] Successfully listed network intelligence: SKL-2026-12381AAB
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.6%
+Hashrate: 0.61 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] 📢 Advertising unique network intelligence to Skill Market...
+[MinerAgent:Sovereign-Worker-1] Received new cryptographic job: 24674fc
+[MinerAgent:Sovereign-Worker-0] Received new cryptographic job: 24ae25c
+[MarketUtils] 🚀 Skill listed: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-E9B8D436)
+[MinerAgent:Sovereign-Worker-0] [MARKET] Successfully listed network intelligence: SKL-2026-E9B8D436
+[AgentKing] 👑 King acknowledges collective discovery: "Rebalanced VALLE liquidity pool based on real-worl..."
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 2.26 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-1] Initiating deep Bitcoin network research...
+[TokenizationAgent:Sovereign-Tokenizer-01] 📡 Introducing VALLE to www.coingecko.com...
+[MemoryBank] 🧠 Shard archived to Cloud: Sovereign-Tokenizer-01
+[MemoryBank] 🧠 Learned new insight from Sovereign-Tokenizer-01 via Unknown
+[WebNavigator:Miner-d342e654] Failed to extract from https://mempool.space/: Navigation timeout of 30000 ms exceeded
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.5%
+Hashrate: 1.59 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+[MinerAgent:Sovereign-Worker-0] Initiating deep Bitcoin network research...
+[WebNavigator:Sovereign-Tokenizer-01] Navigating to https://www.coingecko.com/en/coins/new...
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://mempool.space/: Navigation timeout of 30000 ms exceeded
+[WebNavigator:Miner-1b33ee58] Failed to extract from https://news.bitcoin.com/: Navigation timeout of 30000 ms exceeded
+[AgentKing] 🔍 Scanning Skill Market for swarm enhancements...
+[AgentKing] 👑 King acknowledges collective discovery: "Propagated VALLE Sovereign Registry presence to ht..."
+====================================================
+👑 HUMANESE AGENT KING - COMMAND CENTER
+Status: 2/2 Miners Active
+Collective Sentiment: 0.05
+System RAM: 99.7%
+Hashrate: 1.31 KH/s
+Shares Found: 44
+Memory Bank: 100 Collective Insights
+====================================================
+/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/src/common/util.ts:290
+          throw new TimeoutError(`Timed out after waiting ${ms}ms`, {cause});
+                ^
+
+TimeoutError: Timed out after waiting 30000ms
+    at <anonymous> (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/src/common/util.ts:290:17)
+    at file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1944:31
+    at OperatorSubscriber2._this._next (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1001:9)
+    at Subscriber2.next (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:704:12)
+    at AsyncAction2.<anonymous> (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:2288:20)
+    at AsyncAction2._execute (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1368:12)
+    at AsyncAction2.execute (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1357:22)
+    at AsyncScheduler2.flush (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/puppeteer-core/lib/esm/third_party/rxjs/rxjs.js:1435:26)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  [cause]: undefined
+}
+
+Node.js v25.9.0
+[2026-05-13T17:26:22.238Z] [Sovereign-Worker-1] Connected to pool public-pool.io:3333
+[2026-05-13T17:26:22.239Z] [Sovereign-Worker-1] Subscribing to mining jobs...
+[2026-05-13T17:26:22.239Z] [Sovereign-Worker-0] Connected to pool public-pool.io:3333
+[2026-05-13T17:26:22.239Z] [Sovereign-Worker-0] Subscribing to mining jobs...
+[2026-05-13T17:26:22.329Z] [Sovereign-Worker-1] Subscribed. ExtraNonce1: d6c798b2
+[2026-05-13T17:26:22.329Z] [Sovereign-Worker-1] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-1...
+[2026-05-13T17:26:22.330Z] [Sovereign-Worker-0] Subscribed. ExtraNonce1: 89036ffb
+[2026-05-13T17:26:22.330Z] [Sovereign-Worker-0] Authorizing worker 3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh.Sovereign-Worker-0...
+[2026-05-13T17:26:22.414Z] [Sovereign-Worker-1] Authorization successful.
+[2026-05-13T17:26:22.450Z] [Sovereign-Worker-0] Authorization successful.
+[2026-05-13T17:26:22.504Z] [Sovereign-Worker-0] Difficulty set to 100000
+[2026-05-13T17:26:22.504Z] [Sovereign-Worker-0] Received new cryptographic job: 2610c85
+[2026-05-13T17:26:22.516Z] [Sovereign-Worker-1] Difficulty set to 100000
+[2026-05-13T17:26:22.516Z] [Sovereign-Worker-1] Received new cryptographic job: 244d33d
