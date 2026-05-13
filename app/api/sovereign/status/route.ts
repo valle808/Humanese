@@ -3,6 +3,8 @@ import { SovereignGraph } from '@/lib/sovereign-graph';
 import { FleetOrchestrator } from '@/lib/fleet-orchestrator';
 import { valleCore } from '@/lib/valle-crypto';
 import { prisma } from '@/lib/prisma';
+import fs from 'fs';
+import path from 'path';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,6 +32,14 @@ export async function GET() {
 
         let knowledgeCount = 0;
         try { knowledgeCount = await prisma.sovereignKnowledge.count(); } catch (e) { console.warn('Knowledge vault offline', e); }
+
+        let monroeState = { status: 'OFFLINE', stats: { cycles: 0, lastLogicResult: 'PENDING' } };
+        try {
+            const statePath = path.join(process.cwd(), 'agents/data/monroe_state.json');
+            if (fs.existsSync(statePath)) {
+                monroeState = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+            }
+        } catch (e) { console.warn('Monroe state error', e); }
 
         const totalShards = userCount + agentCount + knowledgeCount + nodes.nodes.length;
 
@@ -65,6 +75,11 @@ export async function GET() {
                 agent_swarm: {
                   active_agents: agentCount,
                   consciousness_level: "OMEGA"
+                },
+                monroe_intelligence: {
+                    status: monroeState.status,
+                    audit_result: monroeState.stats?.lastLogicResult || "PENDING",
+                    reasoning_cycles: monroeState.stats?.cycles || 0
                 }
             },
             access_points: [

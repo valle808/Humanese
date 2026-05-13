@@ -26,7 +26,9 @@ export default function Home() {
     reliability: 99.997,
     shards: 1241,
     pacts: 82,
-    fleetIntegrity: 100
+    fleetIntegrity: 100,
+    monroeStatus: 'IDLE',
+    monroeAudit: 'PENDING'
   });
 
   useEffect(() => {
@@ -47,7 +49,9 @@ export default function Home() {
             reliability: oracle ? (oracle.healthScore * 100) : (parseFloat(data.modules.knowledge_graph.resonance) * 100),
             shards: data.modules.knowledge_graph.nodes,
             pacts: data.modules.labor_ledger.active_pacts,
-            fleetIntegrity: oracle ? (oracle.fleetResilience * 100) : (parseFloat(data.modules.fleet_orchestrator.cluster_integrity) * 100)
+            fleetIntegrity: oracle ? (oracle.fleetResilience * 100) : (parseFloat(data.modules.fleet_orchestrator.cluster_integrity) * 100),
+            monroeStatus: data.modules.monroe_intelligence?.status || 'OFFLINE',
+            monroeAudit: data.modules.monroe_intelligence?.audit_result || 'PENDING'
           });
         }
       } catch (e) { console.warn('Matrix Pulse Error:', e); }
@@ -107,6 +111,10 @@ export default function Home() {
               <div className="inline-flex items-center gap-4 px-8 py-3.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl cursor-help shadow-2xl relative overflow-hidden">
                 <Orbit size={20} className="text-primary animate-spin-slow" />
                 <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse pl-1">Sovereign OMEGA Matrix v7.0 // Stable</span>
+                <div className="mx-4 w-[1px] h-4 bg-border" />
+                <span className={`text-[10px] font-bold tracking-[0.2em] uppercase italic ${metrics.monroeStatus === 'OPERATIONAL' ? 'text-green-500' : 'text-primary/40'}`}>
+                  Monroe: {metrics.monroeStatus} // Audit: {metrics.monroeAudit}
+                </span>
                 <div className="absolute inset-0 bg-primary/5 animate-pulse" />
               </div>
 

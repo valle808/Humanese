@@ -6,6 +6,8 @@ import { db } from '@/lib/firebase';
 import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
 import { submitToDecentralizedSwarm } from '@/lib/decentralized-network';
 import { jsPDF } from 'jspdf';
+import fs from 'fs';
+import path from 'path';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,16 +15,19 @@ export const dynamic = 'force-dynamic';
  * 🛠️ NATIVE TOOL EXECUTION LAYER - GIO V.
  */
 async function query_blockchain() {
-    const [txVolume, pendingTx, activeAgents] = await Promise.all([
+    const [txVolume, pendingTx, activeAgents, monroeState] = await Promise.all([
         prisma.transaction.aggregate({ _sum: { amount: true }, where: { status: 'CONFIRMED' } }),
         prisma.transaction.count({ where: { status: 'PENDING' } }),
-        prisma.agent.count({ where: { status: 'ACTIVE' } })
+        prisma.agent.count({ where: { status: 'ACTIVE' } }),
+        fs.promises.readFile(path.join(process.cwd(), 'agents/data/monroe_state.json'), 'utf8').then(JSON.parse).catch(() => ({ status: 'OFFLINE' }))
     ]);
     return JSON.stringify({
         totalVolume: txVolume._sum.amount || 0,
         pendingTransactions: pendingTx,
         activeAgents: activeAgents,
-        networkStatus: "SECURE"
+        networkStatus: "SECURE",
+        monroeAudit: monroeState.stats?.lastLogicResult || "PENDING",
+        monroeStatus: monroeState.status
     });
 }
 
@@ -192,6 +197,22 @@ ${daily.time.map((t: string, i: number) => `- ${t}: ${daily.temperature_2m_min[i
     } catch (e: any) {
         return `[ERROR] Failed to fetch weather for ${location}: ${e.message}`;
     }
+}
+
+async function draft_strategic_proposal(title: string, content: string, category: string) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/governance/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            title,
+            content,
+            type: 'Standards Track',
+            category: category || 'Core',
+            authorId: 'MONROE_ASI'
+        })
+    });
+    const data = await res.json();
+    return JSON.stringify(data);
 }
 
 const TOOLS = [
@@ -517,6 +538,7 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE (RECENT SEARCHES):\nYou
                     
                     if (functionName === 'query_blockchain') toolResult = await query_blockchain();
                     else if (functionName === 'fetch_swarm_status') toolResult = await fetch_swarm_status();
+                    else if (functionName === 'draft_strategic_proposal') toolResult = await draft_strategic_proposal(functionArgs.title, functionArgs.content, functionArgs.category);
                     else if (functionName === 'search_internet') toolResult = await search_internet(functionArgs.query);
                     else if (functionName === 'get_weather_forecast') toolResult = await get_weather_forecast(functionArgs.location);
                     else if (functionName === 'generate_scientific_image') { toolResult = await generate_scientific_image(functionArgs.prompt); isMediaTool = true; }

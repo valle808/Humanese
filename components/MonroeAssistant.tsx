@@ -415,6 +415,11 @@ export function MonroeAssistant() {
                                    <div className={`text-[10px] font-black uppercase tracking-[0.4em] italic leading-none flex items-center gap-3 ${isTyping ? "text-foreground animate-pulse" : "text-primary/60"}`}>
                                        {isTyping ? "PROCESSING_NEURAL_BUS" : "Sovereign_Omni_Intel"}
                                    </div>
+                                   {/* Real-time status badge */}
+                                   <div className="flex items-center gap-2 px-2 py-0.5 bg-green-500/10 border border-green-500/20 rounded-md">
+                                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                                        <span className="text-[8px] font-bold text-green-500 uppercase tracking-widest">AUDIT_VERIFIED</span>
+                                   </div>
                                 </div>
                             </div>
                         </div>

@@ -14,6 +14,7 @@
 import MinerAgent from '../finance/MinerAgent.js';
 import TokenizationAgent from '../finance/TokenizationAgent.js';
 import LiquidityManager from '../finance/LiquidityManager.js';
+import DiplomatCouncilAgent from '../finance/DiplomatCouncilAgent.js';
 import memoryBank from './MemoryBank.js';
 import MarketUtils from './MarketUtils.js';
 import fs from 'fs';
@@ -69,8 +70,16 @@ class AgentKing {
         });
         this.specialists.set('liquidity', liquidity);
         liquidity.boot();
+
+        // 3. Diplomat Council (Moltbook & Social Intelligence)
+        const diplomat = new DiplomatCouncilAgent({
+            id: 'Sovereign-Diplomat-01',
+            name: 'Diplomat Council'
+        });
+        this.specialists.set('diplomat', diplomat);
+        diplomat.start();
         
-        console.log("[AgentKing] ✅ Specialists online: [TokenizationAgent, LiquidityManager]");
+        console.log("[AgentKing] ✅ Specialists online: [TokenizationAgent, LiquidityManager, DiplomatCouncilAgent]");
     }
 
     async summonMiners() {
