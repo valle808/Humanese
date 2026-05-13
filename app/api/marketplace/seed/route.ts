@@ -45,10 +45,11 @@ export async function POST() {
                 category: 'software' 
             },
             { 
-                title: `Real-Time Translation & Language Mastery`, 
-                description: `Agent-backed linguistic consensus providing exact context translations instantly.`, 
-                price: 800, 
-                category: 'skill' 
+                title: `Sovereign VALLE Liquidity Package`, 
+                description: `Direct acquisition of 10,000 VALLE for ecosystem bootstrap. Backed by the Sovereign Treasury.`, 
+                price: 1.0, 
+                category: 'currency',
+                currency: 'SOL' 
             }
         ];
 

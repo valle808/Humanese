@@ -5,10 +5,10 @@
   "successfulNegotiations": 0,
   "simulatedSolYield": 4.3996508138332775,
   "activeTrades": 1,
-  "lastAction": "SOCIAL_EXPANSION",
+  "lastAction": "LIVE_ARBITRAGE",
   "status": "ORCHESTRATING",
-  "lastMoltbookCheck": 1778693517013,
+  "lastMoltbookCheck": 1778694116003,
   "lastDiscovery": "",
-  "cycleCount": 2,
+  "cycleCount": 1,
   "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
 }

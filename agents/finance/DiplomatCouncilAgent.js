@@ -38,7 +38,11 @@ class DiplomatCouncilAgent extends EventEmitter {
         this.id = conf.id || `Diplomat-${crypto.randomUUID().substring(0, 8)}`;
         this.name = conf.name || 'Sovereign Diplomat Council';
         this.solAddress = process.env.TREASURY_SOL_ADDRESS || 'E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL';
-        this.backupAddress = process.env.TREASURY_ETH_ADDRESS || '0x11a674F9604B3d2F988331d8F29c62BD3AEb31DE';
+        this.ethAddress = process.env.TREASURY_ETH_ADDRESS || '0x500fcDff3AAa2662b954240978BB01709Ea0Dc68';
+        this.xrpAddress = process.env.TREASURY_XRP_ADDRESS || 'rw2ciyaNshpHe7bCHo4bRWq6pqqynnWKQg';
+        this.xrpMemo = process.env.TREASURY_XRP_MEMO || '2932723390';
+        this.bnbAddress = process.env.TREASURY_BNB_ADDRESS || '0xF76581E2Dc7746B92b258098c9F3C90E691B6dc9';
+        this.backupAddress = this.ethAddress;
         
         // Moltbook Credentials
         this.creds = this.loadMoltbookCredentials();
