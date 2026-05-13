@@ -69,7 +69,7 @@ class InvestigatorAgent {
         const vault = await prisma.wallet.findUnique({ where: { id: 'sovereign_aid_vault' } });
         if (!vault) return;
 
-        await prisma.\$transaction([
+        await prisma.$transaction([
             prisma.wallet.update({
                 where: { id: vault.id },
                 data: { balance: { decrement: 1000 } } // Disburse 1000 VALLE

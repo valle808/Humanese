@@ -1,24 +1,24 @@
 {
-  "totalHashrate": 21164,
+  "totalHashrate": 19057,
   "totalShares": 0,
   "activeWorkers": 2,
-  "startTime": 1778693182100,
+  "startTime": 1778693516988,
   "environment": {
     "cpuUsage": 0,
-    "ramUsage": 98.91624450683594,
+    "ramUsage": 98.75411987304688,
     "sentiment": 0.05
   },
   "workers": [
     {
       "name": "Sovereign-Worker-0",
       "status": "MINING",
-      "hashrate": 10526,
+      "hashrate": 9512,
       "shares": 0
     },
     {
       "name": "Sovereign-Worker-1",
       "status": "MINING",
-      "hashrate": 10638,
+      "hashrate": 9545,
       "shares": 0
     }
   ]

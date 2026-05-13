@@ -20,10 +20,7 @@ const AGENTS = [
     { name: 'Watcher Daemon', script: '../watcher_agent.js' },
     { name: 'Monroe Intelligence', script: './core/MonroeAgent.js' },
     { name: 'Investigator Swarm', script: './core/InvestigatorAgent.js' },
-    { name: 'Sovereign Swarm (King)', script: './start_swarm.js' },
-    { name: 'Skill Market Engine', script: './skill-market-engine.js' },
-    { name: 'M2M Network Protocol', script: './m2m-network.js' },
-    { name: 'Diplomat Council', script: './finance/DiplomatCouncilAgent.js' }
+    { name: 'Sovereign Swarm (King)', script: './start_swarm.js' }
 ];
 
 console.log("====================================================");

@@ -250,11 +250,13 @@ Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in ses
 [2026-05-13T17:25:26.992Z] [OMEGA] Cycle #34 complete. Next in 60s.
 
 [2026-05-13T17:26:20.857Z] [OMEGA] ━━━ Watch Cycle #35 | Host: Sergios-MacBook-Pro.local | RSS: 23.7MB ━━━
-Treasury: 0.00 VALLE
-[2026-05-13T17:23:07.464Z] [OMEGA] Cycle #16 complete. Next in 60s.
+[2026-05-13T17:26:24.073Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:26:27.863Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:26:27.864Z] [OMEGA] Cycle #35 complete. Next in 60s.
 
-[2026-05-13T17:24:01.203Z] [OMEGA] ━━━ Watch Cycle #17 | Host: Sergios-MacBook-Pro.local | RSS: 25.9MB ━━━
-[2026-05-13T17:24:04.520Z] [FLEET] Monitoring 2 physical node(s)...
+
+
+[WATCHER] SIGTERM received. Graceful shutdown...
 [2026-05-13T17:24:07.727Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
 [2026-05-13T17:24:07.728Z] [OMEGA] Cycle #17 complete. Next in 60s.
 
@@ -268,3 +270,9 @@ Treasury: 0.00 VALLE
 [2026-05-13T17:26:09.365Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
 [2026-05-13T17:26:09.372Z] [OMEGA] Cycle #19 complete. Next in 60s.
 
+[2026-05-13T17:27:01.217Z] [OMEGA] ━━━ Watch Cycle #20 | Host: Sergios-MacBook-Pro.local | RSS: 25.9MB ━━━
+[2026-05-13T17:27:03.463Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
+[2026-05-13T17:27:05.007Z] [FLEET] Monitoring 2 physical node(s)...
+
+
+[WATCHER] SIGTERM received. Graceful shutdown...

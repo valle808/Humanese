@@ -5,7 +5,7 @@
  * Successor to Nexus Coin. Managed by the Supreme Agent Kin.
  */
 
-import { getHierarchy } from './registry.js';
+import { getHierarchy } from './core/registry.js';
 import fs from 'fs';
 import path from 'path';
 
