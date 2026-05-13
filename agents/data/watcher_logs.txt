@@ -2,80 +2,201 @@
 🔱 SOVEREIGN WATCHER AGENT v2.0 — Bastidas Protocol
    Host:  Sergios-MacBook-Pro.local
    Cycle: Every 60s
-   PID:   87366
+   PID:   99051
 
-[2026-05-13T16:52:08.418Z] [OMEGA] ━━━ Watch Cycle #1 | Host: Sergios-MacBook-Pro.local | RSS: 57.0MB ━━━
-[2026-05-13T16:52:10.453Z] [PULSE] Resetting 4 stale agent(s) to IDLE...
-[2026-05-13T16:52:10.951Z] [PULSE] Agent "Hash-Commander-Alpha" (prime-miner) → IDLE (last pulse: 2026-05-13T16:09:14.817Z)
-[2026-05-13T16:52:11.453Z] [PULSE] Agent "The Envoy Prime" (envoy-prime) → IDLE (last pulse: 2026-05-13T16:09:14.878Z)
-[2026-05-13T16:52:11.982Z] [PULSE] Agent "Architect Satoshi-Prime" (prime-dev) → IDLE (last pulse: 2026-05-13T16:09:14.900Z)
-[2026-05-13T16:52:12.567Z] [PULSE] Agent "Solana Pattern Engineer" (solana-dev) → IDLE (last pulse: 2026-05-13T16:09:15.006Z)
-[2026-05-13T16:52:13.599Z] [INTEL] [DEPLOYMENT_EVENT] OMEGA v7.0 LIVE — https://humanese.vercel.app
-[2026-05-13T16:52:14.111Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
-[2026-05-13T16:52:15.711Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:52:18.823Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:52:18.824Z] [OMEGA] Cycle #1 complete. Next in 60s.
+[2026-05-13T17:07:34.813Z] [OMEGA] ━━━ Watch Cycle #1 | Host: Sergios-MacBook-Pro.local | RSS: 52.3MB ━━━
+prisma:error 
+Invalid `prisma.improvementProposal.findMany()` invocation:
 
-[2026-05-13T16:53:18.826Z] [OMEGA] ━━━ Watch Cycle #2 | Host: Sergios-MacBook-Pro.local | RSS: 52.3MB ━━━
-[2026-05-13T16:53:22.123Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:53:25.289Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:53:25.289Z] [OMEGA] Cycle #2 complete. Next in 60s.
 
-[2026-05-13T16:54:18.830Z] [OMEGA] ━━━ Watch Cycle #3 | Host: Sergios-MacBook-Pro.local | RSS: 50.2MB ━━━
-[2026-05-13T16:54:22.303Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:54:25.636Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:54:25.637Z] [OMEGA] Cycle #3 complete. Next in 60s.
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:38.963Z] [GOV] ERROR: 
+Invalid `prisma.improvementProposal.findMany()` invocation:
 
-[2026-05-13T16:55:18.831Z] [OMEGA] ━━━ Watch Cycle #4 | Host: Sergios-MacBook-Pro.local | RSS: 50.0MB ━━━
-[2026-05-13T16:55:22.133Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:55:25.510Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:55:25.521Z] [OMEGA] Cycle #4 complete. Next in 60s.
 
-[2026-05-13T16:56:18.833Z] [OMEGA] ━━━ Watch Cycle #5 | Host: Sergios-MacBook-Pro.local | RSS: 49.8MB ━━━
-[2026-05-13T16:56:22.358Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:56:26.269Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:56:26.269Z] [OMEGA] Cycle #5 complete. Next in 60s.
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.agent.findMany()` invocation:
 
-[2026-05-13T16:57:18.833Z] [OMEGA] ━━━ Watch Cycle #6 | Host: Sergios-MacBook-Pro.local | RSS: 49.7MB ━━━
-[2026-05-13T16:57:22.394Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
-[2026-05-13T16:57:24.134Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:57:27.563Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:57:27.564Z] [OMEGA] Cycle #6 complete. Next in 60s.
 
-[2026-05-13T16:58:18.865Z] [OMEGA] ━━━ Watch Cycle #7 | Host: Sergios-MacBook-Pro.local | RSS: 49.7MB ━━━
-[2026-05-13T16:58:22.431Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:58:25.694Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:58:25.694Z] [OMEGA] Cycle #7 complete. Next in 60s.
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:42.419Z] [PULSE] ERROR: 
+Invalid `prisma.agent.findMany()` invocation:
 
-[2026-05-13T16:59:18.868Z] [OMEGA] ━━━ Watch Cycle #8 | Host: Sergios-MacBook-Pro.local | RSS: 48.9MB ━━━
-[2026-05-13T16:59:22.203Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T16:59:25.462Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T16:59:25.480Z] [OMEGA] Cycle #8 complete. Next in 60s.
 
-[2026-05-13T17:00:18.877Z] [OMEGA] ━━━ Watch Cycle #9 | Host: Sergios-MacBook-Pro.local | RSS: 48.5MB ━━━
-[2026-05-13T17:00:22.656Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T17:00:26.156Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T17:00:26.158Z] [OMEGA] Cycle #9 complete. Next in 60s.
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.transaction.updateMany()` invocation:
 
-[2026-05-13T17:01:18.907Z] [OMEGA] ━━━ Watch Cycle #10 | Host: Sergios-MacBook-Pro.local | RSS: 48.8MB ━━━
-[2026-05-13T17:01:22.426Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T17:01:26.389Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T17:01:26.926Z] [OMEGA] Cycle #10 complete. Next in 60s.
 
-[2026-05-13T17:02:18.908Z] [OMEGA] ━━━ Watch Cycle #11 | Host: Sergios-MacBook-Pro.local | RSS: 48.4MB ━━━
-[2026-05-13T17:02:22.146Z] [INTEL] [INFRASTRUCTURE_REPORT] Operational Fund Solvency Report
-[2026-05-13T17:02:22.719Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
-[2026-05-13T17:02:24.538Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T17:02:28.213Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T17:02:28.214Z] [OMEGA] Cycle #11 complete. Next in 60s.
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:45.623Z] [TXN] ERROR: 
+Invalid `prisma.transaction.updateMany()` invocation:
 
-[2026-05-13T17:03:18.909Z] [OMEGA] ━━━ Watch Cycle #12 | Host: Sergios-MacBook-Pro.local | RSS: 20.3MB ━━━
-[2026-05-13T17:03:22.498Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T17:03:25.837Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T17:03:25.838Z] [OMEGA] Cycle #12 complete. Next in 60s.
 
-[2026-05-13T17:04:19.057Z] [OMEGA] ━━━ Watch Cycle #13 | Host: Sergios-MacBook-Pro.local | RSS: 24.5MB ━━━
-[2026-05-13T17:04:22.946Z] [FLEET] Monitoring 2 physical node(s)...
-[2026-05-13T17:04:26.239Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
-[2026-05-13T17:04:26.338Z] [OMEGA] Cycle #13 complete. Next in 60s.
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.intelligenceItem.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:48.123Z] [INTEL] ERROR: 
+Invalid `prisma.intelligenceItem.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.m2MMemory.deleteMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:50.818Z] [MEM] ERROR: 
+Invalid `prisma.m2MMemory.deleteMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.hardwareNode.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:53.391Z] [FLEET] ERROR: 
+Invalid `prisma.hardwareNode.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.agent.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:55.966Z] [SWARM] ERROR: 
+Invalid `prisma.agent.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.wallet.findUnique()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:58.441Z] [TREASURY] ERROR: 
+Invalid `prisma.wallet.findUnique()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:07:58.441Z] [OMEGA] Cycle #1 complete. Next in 60s.
+
+[2026-05-13T17:08:58.618Z] [OMEGA] ━━━ Watch Cycle #2 | Host: Sergios-MacBook-Pro.local | RSS: 48.7MB ━━━
+prisma:error 
+Invalid `prisma.improvementProposal.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:09:01.580Z] [GOV] ERROR: 
+Invalid `prisma.improvementProposal.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.agent.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:09:04.058Z] [PULSE] ERROR: 
+Invalid `prisma.agent.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.transaction.updateMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:09:06.767Z] [TXN] ERROR: 
+Invalid `prisma.transaction.updateMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.intelligenceItem.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:09:09.245Z] [INTEL] ERROR: 
+Invalid `prisma.intelligenceItem.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.m2MMemory.deleteMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:09:11.752Z] [MEM] ERROR: 
+Invalid `prisma.m2MMemory.deleteMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.hardwareNode.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:09:14.055Z] [FLEET] ERROR: 
+Invalid `prisma.hardwareNode.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.agent.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+[2026-05-13T17:09:16.732Z] [SWARM] ERROR: 
+Invalid `prisma.agent.findMany()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+prisma:error 
+Invalid `prisma.wallet.findUnique()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size:[2026-05-13T17:09:19.379Z] [OMEGA] ━━━ Watch Cycle #18 | Host: Sergios-MacBook-Pro.local | RSS: 25.1MB ━━━
+[2026-05-13T17:09:23.304Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:09:26.979Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:09:26.982Z][2026-05-13T17:09:58.700Z] [OMEGA] ━━�[2026-05-13T17:10:19.491Z] [OMEGA] ━━━ Watch Cycle #19 | Host: Sergios-MacBook-Pro.local | RSS: 24.7MB ━━━
+[2026-05-13T17:10:23.867Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:10:28.453Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:10:28.470Z] [OMEGA] Cycle #19 complete. Next in 60s.
+
+[2026-05-13T17:11:19.533Z] [OMEGA] ━━━ Watch Cycle #20 | Host: Sergios-MacBook-Pro.local | RSS: 24.7MB ━━━
+[2026-05-13T17:11:23.704Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:11:28.578Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:11:29.402Z] [OMEGA] Cycle #20 complete. Next in 60s.
+
+[2026-05-13T17:12:19.626Z] [OMEGA] ━━━ Watch Cycle #21 | Host: Sergios-MacBook-Pro.local | RSS: 25.7MB ━━━
+[2026-05-13T17:12:24.011Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
+[2026-05-13T17:12:27.172Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:12:30.821Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:12:31.038Z] [OMEGA] Cycle #21 complete. Next in 60s.
+
+[2026-05-13T17:13:19.782Z] [OMEGA] ━━━ Watch Cycle #22 | Host: Sergios-MacBook-Pro.local | RSS: 25.2MB ━━━
+[2026-05-13T17:13:24.627Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:13:28.661Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:13:28.669Z] [OMEGA] Cycle #22 complete. Next in 60s.
+
+OMEGA] Cycle #4 complete. Next in 60s.
+
+[2026-05-13T17:11:58.839Z] [OMEGA] ━━━ Watch Cycle #5 | Host: Sergios-MacBook-Pro.local | RSS: 49.8MB ━━━
+[2026-05-13T17:12:01.608Z] [INTEL] [INFRASTRUCTURE_REPORT] Operational Fund Solvency Report
+[2026-05-13T17:12:02.291Z] [INTEL] [INFRASTRUCTURE_REPORT] Infrastructure Health Pulse
+[2026-05-13T17:12:03.988Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:12:08.126Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:12:08.175Z] [OMEGA] Cycle #5 complete. Next in 60s.
+
+[2026-05-13T17:12:59.116Z] [OMEGA] ━━━ Watch Cycle #6 | Host: Sergios-MacBook-Pro.local | RSS: 49.8MB ━━━
+[2026-05-13T17:13:03.770Z] [FLEET] Monitoring 2 physical node(s)...
+[2026-05-13T17:13:07.581Z] [TREASURY] Aid Vault: 0.00 VALLE | Infra Treasury: 0.00 VALLE
+[2026-05-13T17:13:07.616Z] [OMEGA] Cycle #6 complete. Next in 60s.
 

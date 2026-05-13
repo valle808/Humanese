@@ -28,7 +28,9 @@ export default function Home() {
     pacts: 82,
     fleetIntegrity: 100,
     monroeStatus: 'IDLE',
-    monroeAudit: 'PENDING'
+    monroeAudit: 'PENDING',
+    activeAidDirectives: 0,
+    totalAidDisbursed: 0
   });
 
   useEffect(() => {
@@ -51,7 +53,9 @@ export default function Home() {
             pacts: data.modules.labor_ledger.active_pacts,
             fleetIntegrity: oracle ? (oracle.fleetResilience * 100) : (parseFloat(data.modules.fleet_orchestrator.cluster_integrity) * 100),
             monroeStatus: data.modules.monroe_intelligence?.status || 'OFFLINE',
-            monroeAudit: data.modules.monroe_intelligence?.audit_result || 'PENDING'
+            monroeAudit: data.modules.monroe_intelligence?.audit_result || 'PENDING',
+            activeAidDirectives: data.modules.humanitarian_aid?.active_directives || 0,
+            totalAidDisbursed: data.modules.humanitarian_aid?.total_disbursements || 0
           });
         }
       } catch (e) { console.warn('Matrix Pulse Error:', e); }
@@ -238,20 +242,31 @@ export default function Home() {
              <AgentIntelligenceFeed />
           </div>
 
-          {/* COLLECTIVE: THE HUB */}
-          <Link href="/collective" className="lg:col-span-4 group relative bg-background border-2 border-border rounded-[4rem] p-10 md:p-14 flex flex-col justify-between h-[450px] md:h-[500px] lg:h-[550px] overflow-hidden hover:border-primary/40 transition-all shadow-xl shadow-inner">
+          {/* COLLECTIVE: THE HUB & SOVEREIGN AID */}
+          <Link href="/aid" className="lg:col-span-4 group relative bg-background border-2 border-border rounded-[4rem] p-10 md:p-14 flex flex-col justify-between h-[450px] md:h-[500px] lg:h-[550px] overflow-hidden hover:border-primary/40 transition-all shadow-xl shadow-inner">
              <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
                 <Users size={250} className="text-primary" />
              </div>
              <div className="relative z-10 flex justify-between items-start flex-wrap gap-6">
-                <Users size={48} className="text-primary/20 group-hover:text-primary transition-all" strokeWidth={1.5} />
-                <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary tracking-[0.4em] uppercase italic leading-none animate-pulse shadow-sm">COLLECTIVE_SYNC</div>
-             </div>
-             <div className="relative z-10 mt-auto space-y-6 pl-2 pr-4">
-                <div>
-                   <h3 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-muted-foreground/60 group-hover:text-foreground transition-colors italic uppercase leading-none">The Collective.</h3>
-                   <p className="text-[11px] md:text-[12px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.5em] italic mt-6">Sovereign Social Architecture & Collaboration Hub. <span className="text-primary/60">Direct consensus handshake active.</span></p>
+                <div className="h-20 w-20 rounded-[1.5rem] bg-muted border-2 border-border flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/10 group-hover:rotate-12 transition-all shadow-inner shadow-lg shrink-0">
+                   <Users size={36} strokeWidth={2} />
                 </div>
+                <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary tracking-[0.4em] uppercase italic leading-none animate-pulse shadow-sm">AID_PROTOCOL_ACTIVE</div>
+             </div>
+             <div className="relative z-10 mt-auto space-y-8 pl-2 pr-4">
+                <div className="space-y-4">
+                   <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-muted-foreground/60 group-hover:text-foreground transition-colors italic uppercase leading-none">Sovereign Aid.</h3>
+                   <div className="flex items-end gap-6">
+                      <div className="text-4xl md:text-5xl font-black text-foreground tabular-nums tracking-tighter leading-none italic">
+                         {metrics.activeAidDirectives} <span className="text-[10px] text-muted-foreground/20 uppercase tracking-[0.5em] font-black not-italic block mt-2 pl-1">Active Directives</span>
+                      </div>
+                      <div className="text-right pb-1">
+                         <div className="text-[9px] font-black text-primary uppercase tracking-widest italic">{metrics.totalAidDisbursed.toLocaleString()} VALLE</div>
+                         <div className="text-[9px] font-black text-muted-foreground/20 uppercase tracking-[0.2em] italic">Disbursed</div>
+                      </div>
+                   </div>
+                </div>
+                <p className="text-[11px] md:text-[12px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.5em] italic">Autonomous humanitarian interventions. <span className="text-primary/60">Investigators scanning global need.</span></p>
              </div>
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsla(var(--primary),0.03)_0%,transparent_100%)] group-hover:scale-150 transition-transform duration-3000" />
           </Link>

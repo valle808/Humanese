@@ -1,6 +1,646 @@
 {
   "insights": [
     {
+      "id": "insight-3r6o3ugwd",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.36 - 140 sat/vB\n‎0.015 BTC\n3,122 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.37 - 1.00 sat/vB\n‎0.005 BTC\n6,536 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.37 sat/vB\n‎0.003 BTC\n6,810 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.32 - 0.33 sat/vB\n‎0.003 BTC\n7,214 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.32 sat/vB\n‎0.003 BTC\n5,877 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.30 sat/vB\n‎0.003 BTC\n2,023 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.29 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692436113,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ciwul2grn",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $90.9.",
+      "source": "Unknown",
+      "timestamp": 1778692435664,
+      "relevance": 1
+    },
+    {
+      "id": "insight-qvepr5jk2",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n$0.11\n+3.96%\nToncoin\nTON\n$2.13\n-7.45%\nTRON\nTRX\n$0.35\n+0.84%\nPepe\nPEPE\n$0.0000041\n-0.50%\nRender\nRENDER\n$1.84\n-1.31%\nWorldcoin\nWLD\n$0.26\n-1.15%\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692427404,
+      "relevance": 1
+    },
+    {
+      "id": "insight-e3sfi8ikd",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.94 - 140 sat/vB\n‎0.015 BTC\n3,027 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.36 - 0.94 sat/vB\n‎0.004 BTC\n6,687 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.37 sat/vB\n‎0.003 BTC\n6,810 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,951 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n5,692 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.27 - 0.30 sat/vB\n‎0.003 BTC\n2,425 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.27 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692415778,
+      "relevance": 1
+    },
+    {
+      "id": "insight-svxdl9ig3",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.60 - 140 sat/vB\n‎0.014 BTC\n3,149 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.36 - 0.63 sat/vB\n‎0.004 BTC\n6,731 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.37 sat/vB\n‎0.003 BTC\n6,811 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,888 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n5,213 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 BTC\n2,894 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692415031,
+      "relevance": 1
+    },
+    {
+      "id": "insight-3gxtnul08",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.36 - 140 sat/vB\n‎0.013 BTC\n3,178 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.36 - 0.59 sat/vB\n‎0.004 BTC\n6,731 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.37 sat/vB\n‎0.003 BTC\n6,811 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,887 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n5,110 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n2,997 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692408894,
+      "relevance": 1
+    },
+    {
+      "id": "insight-394opgm7l",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n$0.11\n+3.96%\nToncoin\nTON\n$2.13\n-7.45%\nTRON\nTRX\n$0.35\n+0.84%\nPepe\nPEPE\n$0.0000041\n-0.50%\nRender\nRENDER\n$1.84\n-1.31%\nWorldcoin\nWLD\n$0.26\n-1.15%\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692405075,
+      "relevance": 1
+    },
+    {
+      "id": "insight-xvrunc8lx",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.73 - 140 sat/vB\n‎0.014 BTC\n3,070 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.37 - 0.88 sat/vB\n‎0.004 BTC\n6,710 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.37 sat/vB\n‎0.003 BTC\n6,811 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,888 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n5,526 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 BTC\n2,581 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692394951,
+      "relevance": 1
+    },
+    {
+      "id": "insight-wfl3bpdfa",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n$0.11\n+3.96%\nToncoin\nTON\n$2.13\n-7.45%\nTRON\nTRX\n$0.35\n+0.84%\nPepe\nPEPE\n$0.0000041\n-0.50%\nRender\nRENDER\n$1.84\n-1.31%\nWorldcoin\nWLD\n$0.26\n-1.15%\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692393932,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ygf66b604",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.69 - 140 sat/vB\n‎0.014 BTC\n3,114 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.37 - 0.76 sat/vB\n‎0.004 BTC\n6,713 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.37 sat/vB\n‎0.003 BTC\n6,811 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,888 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n5,314 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n2,794 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692380112,
+      "relevance": 1
+    },
+    {
+      "id": "insight-mk67098l0",
+      "agentId": "agent-king-main",
+      "content": "Acquired capability: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-E7775837)",
+      "source": "Unknown",
+      "timestamp": 1778692377791,
+      "relevance": 1
+    },
+    {
+      "id": "insight-cx0syzpt2",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $90.89.",
+      "source": "Unknown",
+      "timestamp": 1778692369916,
+      "relevance": 1
+    },
+    {
+      "id": "insight-rkjwgjcuk",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n$0.11\n+3.96%\nToncoin\nTON\n$2.13\n-7.45%\nTRON\nTRX\n$0.35\n+0.84%\nPepe\nPEPE\n$0.0000041\n-0.50%\nRender\nRENDER\n$1.84\n-1.31%\nWorldcoin\nWLD\n$0.26\n-1.15%\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692368275,
+      "relevance": 1
+    },
+    {
+      "id": "insight-rkha0hh28",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n$0.11\n+3.96%\nToncoin\nTON\n$2.13\n-7.45%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.50%\nRender\nRENDER\n$1.84\n-1.31%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,182.00\n-1.10%\nEthereum\nETH\n$2,253.98\n-0.56%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$91.06\n-3.14%\nXRP\nXRP\n$1.43\n+0.04%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692362191,
+      "relevance": 1
+    },
+    {
+      "id": "insight-pza8swb1j",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.60 - 140 sat/vB\n‎0.014 BTC\n3,132 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.36 - 0.63 sat/vB\n‎0.004 BTC\n6,731 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.37 sat/vB\n‎0.003 BTC\n6,811 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,888 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n5,216 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n2,893 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692349678,
+      "relevance": 1
+    },
+    {
+      "id": "insight-whk27hzpx",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nPowered by\n30 MINUTES AGO\nMARKETS AND PRICES\nBY JAMIE REDMAN\n1 DAY AGO\nCRYPTO NEWS\nBY SHIRAZ JAGATI\n22 HOURS AGO\nMARKETS AND PRICES\nBY EMMANUEL MUSA\n1 DAY AGO\nFEATURED\nBY KEVIN HELMS\nXRP Momentum Cools After $1.50 Rejection as Traders Watch Critical Support Levels\n\nXRP prices trade near $1.42 as bulls defend support and technical indicators signal cautious upside potential. read more\n: XRP Momentum Cools After $1.50 Rejection as Traders Wa",
+      "source": "Unknown",
+      "timestamp": 1778692315179,
+      "relevance": 1
+    },
+    {
+      "id": "insight-todz6f6q0",
+      "agentId": "agent-king-main",
+      "content": "Acquired capability: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-AF779C87)",
+      "source": "Unknown",
+      "timestamp": 1778692314493,
+      "relevance": 1
+    },
+    {
+      "id": "insight-sxltqjgsd",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $90.87.",
+      "source": "Unknown",
+      "timestamp": 1778692307354,
+      "relevance": 1
+    },
+    {
+      "id": "insight-p17j7uebj",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Offline\nSign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3788\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItalia",
+      "source": "Unknown",
+      "timestamp": 1778692279044,
+      "relevance": 1
+    },
+    {
+      "id": "insight-lrwh7qinl",
+      "agentId": "agent-king-main",
+      "content": "Acquired capability: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-A28AF3E5)",
+      "source": "Unknown",
+      "timestamp": 1778692247115,
+      "relevance": 1
+    },
+    {
+      "id": "insight-9ww19nwvn",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.50 - 140 sat/vB\n‎0.011 BTC\n3,373 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.36 - 0.50 sat/vB\n‎0.004 BTC\n6,775 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.36 sat/vB\n‎0.003 BTC\n6,777 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,886 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n4,635 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n3,461 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692246255,
+      "relevance": 1
+    },
+    {
+      "id": "insight-0k3khr50r",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $90.86.",
+      "source": "Unknown",
+      "timestamp": 1778692242288,
+      "relevance": 1
+    },
+    {
+      "id": "insight-195oabjaq",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית\nქართული\nLietuvių\nMagyar\nМакедонски\nNederlands",
+      "source": "Unknown",
+      "timestamp": 1778692230418,
+      "relevance": 1
+    },
+    {
+      "id": "insight-d6kv2cv8l",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692230286,
+      "relevance": 1
+    },
+    {
+      "id": "insight-n2v4bbusa",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692219317,
+      "relevance": 1
+    },
+    {
+      "id": "insight-s4s7200a9",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.36 - 140 sat/vB\n‎0.012 BTC\n3,361 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.36 - 0.52 sat/vB\n‎0.004 BTC\n6,764 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.36 sat/vB\n‎0.003 BTC\n6,782 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,886 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n4,639 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n3,469 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692212303,
+      "relevance": 1
+    },
+    {
+      "id": "insight-oy7v3qmts",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.40 - 60.2 sat/vB\n‎0.011 BTC\n3,383 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.35 - 0.49 sat/vB\n‎0.004 BTC\n6,767 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.36 sat/vB\n‎0.003 BTC\n6,787 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,886 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n4,544 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.23 - 0.30 sat/vB\n‎0.003 BTC\n3,553 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002",
+      "source": "Unknown",
+      "timestamp": 1778692209440,
+      "relevance": 1
+    },
+    {
+      "id": "insight-zwgqmc6c7",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.48 - 60.2 sat/vB\n‎0.011 BTC\n3,381 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.36 - 0.49 sat/vB\n‎0.004 BTC\n6,773 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.36 sat/vB\n‎0.003 BTC\n6,780 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,886 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n4,543 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 BTC\n3,564 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002",
+      "source": "Unknown",
+      "timestamp": 1778692207106,
+      "relevance": 1
+    },
+    {
+      "id": "insight-kznfhqblg",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692202786,
+      "relevance": 1
+    },
+    {
+      "id": "insight-po8oan1bc",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692193457,
+      "relevance": 1
+    },
+    {
+      "id": "insight-7523r6yze",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
+      "source": "Unknown",
+      "timestamp": 1778692186700,
+      "relevance": 1
+    },
+    {
+      "id": "insight-isl87kkei",
+      "agentId": "agent-king-main",
+      "content": "Acquired capability: Bitcoin Network Intelligence: 4/26/2026 (SKL-2026-DA7A3B70)",
+      "source": "Unknown",
+      "timestamp": 1778692182632,
+      "relevance": 1
+    },
+    {
+      "id": "insight-lknqxmyns",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692181086,
+      "relevance": 1
+    },
+    {
+      "id": "insight-auqv844qm",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $90.9.",
+      "source": "Unknown",
+      "timestamp": 1778692178838,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ddx61lg77",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.45 - 20.1 sat/vB\n‎0.01 BTC\n3,473 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.34 - 0.46 sat/vB\n‎0.004 BTC\n6,767 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.36 sat/vB\n‎0.003 BTC\n6,787 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n4,207 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n3,913 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692177842,
+      "relevance": 1
+    },
+    {
+      "id": "insight-g5y70h8fh",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.45 - 20.1 sat/vB\n‎0.01 BTC\n3,477 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.35 - 0.46 sat/vB\n‎0.004 BTC\n6,772 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.36 sat/vB\n‎0.003 BTC\n6,782 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n4,208 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n3,912 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002 ",
+      "source": "Unknown",
+      "timestamp": 1778692177221,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ahj41bxno",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.44 - 6.03 sat/vB\n‎0.009 BTC\n3,587 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,738 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,816 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,843 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n4,276 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002",
+      "source": "Unknown",
+      "timestamp": 1778692167955,
+      "relevance": 1
+    },
+    {
+      "id": "insight-po83844xr",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692167150,
+      "relevance": 1
+    },
+    {
+      "id": "insight-rp4kmqv86",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~1 sat/vB\n0.44 - 6.03 sat/vB\n‎0.009 BTC\n3,587 transactions\nIn ~9 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,739 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,815 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~38 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,843 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 BTC\n4,276 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.21 - 0.25 sat/vB\n‎0.002",
+      "source": "Unknown",
+      "timestamp": 1778692165510,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ttdzzyekf",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692163425,
+      "relevance": 1
+    },
+    {
+      "id": "insight-8ww4x5udq",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692157252,
+      "relevance": 1
+    },
+    {
+      "id": "insight-s9mup90vk",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 475 sat/vB\n‎0.029 BTC\n3,807 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.01 sat/vB\n‎0.009 BTC\n3,399 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,738 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,816 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,843 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692155037,
+      "relevance": 1
+    },
+    {
+      "id": "insight-eezjvda6d",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 475 sat/vB\n‎0.029 BTC\n3,834 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.44 - 1.00 sat/vB\n‎0.009 BTC\n3,407 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,708 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,846 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,742 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692153289,
+      "relevance": 1
+    },
+    {
+      "id": "insight-dyy1xmg8h",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.028 BTC\n3,835 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.44 - 1.00 sat/vB\n‎0.009 BTC\n3,408 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.44 sat/vB\n‎0.004 BTC\n6,708 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,846 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,743 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692151705,
+      "relevance": 1
+    },
+    {
+      "id": "insight-hglwlmryu",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.028 BTC\n3,835 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.40 - 1.00 sat/vB\n‎0.009 BTC\n3,408 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.44 sat/vB\n‎0.004 BTC\n6,708 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,846 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,743 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692146544,
+      "relevance": 1
+    },
+    {
+      "id": "insight-zuqbs4cll",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.028 BTC\n3,856 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.40 - 1.00 sat/vB\n‎0.009 BTC\n3,410 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,679 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,625 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692146084,
+      "relevance": 1
+    },
+    {
+      "id": "insight-fsu8h8anh",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692141776,
+      "relevance": 1
+    },
+    {
+      "id": "insight-gktzavs5o",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692130056,
+      "relevance": 1
+    },
+    {
+      "id": "insight-b7uz1enae",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.028 BTC\n3,856 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.009 BTC\n3,410 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.44 sat/vB\n‎0.004 BTC\n6,679 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,625 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692129528,
+      "relevance": 1
+    },
+    {
+      "id": "insight-l1r2lqkzp",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.028 BTC\n3,913 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.40 - 1.00 sat/vB\n‎0.009 BTC\n3,408 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,650 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,904 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,534 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692128861,
+      "relevance": 1
+    },
+    {
+      "id": "insight-2z3sygjwt",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692125820,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ge17y56wv",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $91.",
+      "source": "Unknown",
+      "timestamp": 1778692117471,
+      "relevance": 1
+    },
+    {
+      "id": "insight-8bpnnpv1e",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692117408,
+      "relevance": 1
+    },
+    {
+      "id": "insight-cxwf0i8uj",
+      "agentId": "Sovereign-Tokenizer-01",
+      "content": "Propagated VALLE Sovereign Registry presence to https://www.coingecko.com/en/coins/new.",
+      "source": "Unknown",
+      "timestamp": 1778692117306,
+      "relevance": 1
+    },
+    {
+      "id": "insight-nx7505nv8",
+      "agentId": "agent-king-main",
+      "content": "Acquired capability: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-771E408D)",
+      "source": "Unknown",
+      "timestamp": 1778692116158,
+      "relevance": 1
+    },
+    {
+      "id": "insight-g2yy1zevk",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.028 BTC\n3,912 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.42 - 1.00 sat/vB\n‎0.009 BTC\n3,407 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,653 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,902 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,624 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692107136,
+      "relevance": 1
+    },
+    {
+      "id": "insight-dnmj33ffy",
+      "agentId": "Sovereign-Tokenizer-01",
+      "content": "Propagated VALLE Sovereign Registry presence to https://dexscreener.com/solana.",
+      "source": "Unknown",
+      "timestamp": 1778692087418,
+      "relevance": 1
+    },
+    {
+      "id": "insight-8s74pvy0u",
+      "agentId": "Sovereign-Tokenizer-01",
+      "content": "Propagated VALLE Sovereign Registry presence to https://coinmarketcap.com/dexscan/solana/.",
+      "source": "Unknown",
+      "timestamp": 1778692081366,
+      "relevance": 1
+    },
+    {
+      "id": "insight-irxvjfbtv",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692079458,
+      "relevance": 1
+    },
+    {
+      "id": "insight-plbvfpz7m",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778692074011,
+      "relevance": 1
+    },
+    {
+      "id": "insight-kmsypii8y",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $91.04.",
+      "source": "Unknown",
+      "timestamp": 1778692055728,
+      "relevance": 1
+    },
+    {
+      "id": "insight-5p0r2kaqj",
+      "agentId": "agent-king-main",
+      "content": "Acquired capability: Bitcoin Network Intelligence: 4/26/2026 (SKL-2026-8A00C7B0)",
+      "source": "Unknown",
+      "timestamp": 1778692051058,
+      "relevance": 1
+    },
+    {
+      "id": "insight-8m79elxrg",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.027 BTC\n3,956 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.44 - 1.00 sat/vB\n‎0.009 BTC\n3,435 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,612 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,943 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,455 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692046644,
+      "relevance": 1
+    },
+    {
+      "id": "insight-jyuo1sfb6",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
+      "source": "Unknown",
+      "timestamp": 1778692044281,
+      "relevance": 1
+    },
+    {
+      "id": "insight-bj2o6962g",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.027 BTC\n3,964 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.44 - 1.00 sat/vB\n‎0.009 BTC\n3,445 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.44 sat/vB\n‎0.004 BTC\n6,607 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,948 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,452 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692035545,
+      "relevance": 1
+    },
+    {
+      "id": "insight-bugb47vav",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.027 BTC\n3,964 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.44 - 1.00 sat/vB\n‎0.009 BTC\n3,445 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,600 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,955 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,453 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692023045,
+      "relevance": 1
+    },
+    {
+      "id": "insight-zvxmeh63f",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778692016698,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ctvpn5wdp",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.027 BTC\n3,963 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.44 - 1.00 sat/vB\n‎0.009 BTC\n3,447 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.44 sat/vB\n‎0.004 BTC\n6,597 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,958 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,451 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692015563,
+      "relevance": 1
+    },
+    {
+      "id": "insight-wx8tedoii",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.027 BTC\n3,959 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.40 - 1.00 sat/vB\n‎0.009 BTC\n3,454 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.44 sat/vB\n‎0.004 BTC\n6,592 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,963 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,451 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778692007069,
+      "relevance": 1
+    },
+    {
+      "id": "insight-j3p8mw0tw",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.027 BTC\n4,007 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.42 - 1.00 sat/vB\n‎0.009 BTC\n3,457 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.42 sat/vB\n‎0.004 BTC\n6,568 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n6,991 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,349 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.25 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778691998675,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ry61r0a1j",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
+      "source": "Unknown",
+      "timestamp": 1778691997354,
+      "relevance": 1
+    },
+    {
+      "id": "insight-op9q7fv34",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $91.06.",
+      "source": "Unknown",
+      "timestamp": 1778691993716,
+      "relevance": 1
+    },
+    {
+      "id": "insight-mhc6s76ur",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778691992194,
+      "relevance": 1
+    },
+    {
+      "id": "insight-0a7tvhwxa",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
+      "source": "Unknown",
+      "timestamp": 1778691989073,
+      "relevance": 1
+    },
+    {
+      "id": "insight-ngvfhi7e7",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
+      "source": "Unknown",
+      "timestamp": 1778691984351,
+      "relevance": 1
+    },
+    {
+      "id": "insight-sezdwqbmj",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778691966168,
+      "relevance": 1
+    },
+    {
+      "id": "insight-amvvx4cyf",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778691938581,
+      "relevance": 1
+    },
+    {
+      "id": "insight-a4x40h3at",
+      "agentId": "Miner-1b33ee58",
+      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.027 BTC\n4,016 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.40 - 1.00 sat/vB\n‎0.009 BTC\n3,458 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.42 sat/vB\n‎0.004 BTC\n6,559 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,000 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,280 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
+      "source": "Unknown",
+      "timestamp": 1778691933008,
+      "relevance": 1
+    },
+    {
+      "id": "insight-9q1h5mgzo",
+      "agentId": "Sovereign-MM-01",
+      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $91.",
+      "source": "Unknown",
+      "timestamp": 1778691930795,
+      "relevance": 1
+    },
+    {
+      "id": "insight-6a0gwk4t7",
+      "agentId": "Miner-d342e654",
+      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
+      "source": "Unknown",
+      "timestamp": 1778691920124,
+      "relevance": 1
+    },
+    {
       "id": "insight-msj11997k",
       "agentId": "Miner-1b33ee58",
       "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
@@ -159,650 +799,10 @@
       "source": "Unknown",
       "timestamp": 1778691874557,
       "relevance": 1
-    },
-    {
-      "id": "insight-vjrw8ti14",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691874038,
-      "relevance": 1
-    },
-    {
-      "id": "insight-absceexnc",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,082 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.40 - 1.00 sat/vB\n‎0.008 BTC\n3,539 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.41 sat/vB\n‎0.004 BTC\n6,454 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,105 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n3,032 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691874000,
-      "relevance": 1
-    },
-    {
-      "id": "insight-nbgcudxxz",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691872835,
-      "relevance": 1
-    },
-    {
-      "id": "insight-7t7820yey",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691872585,
-      "relevance": 1
-    },
-    {
-      "id": "insight-tju86mgk4",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691870785,
-      "relevance": 1
-    },
-    {
-      "id": "insight-qhooktnr3",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,082 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.41 - 1.00 sat/vB\n‎0.008 BTC\n3,541 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.41 sat/vB\n‎0.004 BTC\n6,448 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,111 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n3,029 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691869844,
-      "relevance": 1
-    },
-    {
-      "id": "insight-5bdn5111m",
-      "agentId": "Sovereign-MM-01",
-      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $90.99.",
-      "source": "Unknown",
-      "timestamp": 1778691864739,
-      "relevance": 1
-    },
-    {
-      "id": "insight-msjted79t",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691864734,
-      "relevance": 1
-    },
-    {
-      "id": "insight-t78r8uk0a",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691864037,
-      "relevance": 1
-    },
-    {
-      "id": "insight-vdbfw4c1c",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3788\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691863623,
-      "relevance": 1
-    },
-    {
-      "id": "insight-yuxtto7ij",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,083 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,550 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,438 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,121 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,940 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691862170,
-      "relevance": 1
-    },
-    {
-      "id": "insight-1a2x0q2mt",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,082 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,555 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,432 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,127 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,933 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.23 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691858034,
-      "relevance": 1
-    },
-    {
-      "id": "insight-3jul084pl",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3788\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691857401,
-      "relevance": 1
-    },
-    {
-      "id": "insight-lln2wpsj7",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691857171,
-      "relevance": 1
-    },
-    {
-      "id": "insight-vfucxplb5",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,082 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,555 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,432 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,127 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,933 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.23 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691855877,
-      "relevance": 1
-    },
-    {
-      "id": "insight-e6nyyucbh",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691855541,
-      "relevance": 1
-    },
-    {
-      "id": "insight-7d85syuda",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,095 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,562 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,421 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,138 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,921 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691853853,
-      "relevance": 1
-    },
-    {
-      "id": "insight-o8m3vcyme",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691853023,
-      "relevance": 1
-    },
-    {
-      "id": "insight-x2jw2jm45",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,095 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,562 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,421 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,138 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,921 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691852996,
-      "relevance": 1
-    },
-    {
-      "id": "insight-1swsjelpx",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691852480,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ma1740ako",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.026 BTC\n4,091 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n3,568 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,416 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.34 sat/vB\n‎0.003 BTC\n7,142 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,875 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,919 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691851184,
-      "relevance": 1
-    },
-    {
-      "id": "insight-dzp1olgln",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691850711,
-      "relevance": 1
-    },
-    {
-      "id": "insight-a6tw8zj5s",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691843499,
-      "relevance": 1
-    },
-    {
-      "id": "insight-a3v7fs9qf",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691843485,
-      "relevance": 1
-    },
-    {
-      "id": "insight-tu6ufyepa",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691842346,
-      "relevance": 1
-    },
-    {
-      "id": "insight-gonluc2vi",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691840989,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ohqtrv9ks",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691837471,
-      "relevance": 1
-    },
-    {
-      "id": "insight-vjuasfn7b",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691835077,
-      "relevance": 1
-    },
-    {
-      "id": "insight-lrhgiq4n9",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,095 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n3,591 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,820 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691833701,
-      "relevance": 1
-    },
-    {
-      "id": "insight-5fa5b40aw",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,095 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n3,591 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,820 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691830387,
-      "relevance": 1
-    },
-    {
-      "id": "insight-z63bkswzd",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,095 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n3,591 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.34 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,820 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691829997,
-      "relevance": 1
-    },
-    {
-      "id": "insight-l1cfhpmae",
-      "agentId": "agent-king-main",
-      "content": "Acquired capability: Bitcoin Network Intelligence: 5/13/2026 (SKL-2026-622B439B)",
-      "source": "Unknown",
-      "timestamp": 1778691829896,
-      "relevance": 1
-    },
-    {
-      "id": "insight-sn1o1c7vx",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,094 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,591 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,821 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.23 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691825088,
-      "relevance": 1
-    },
-    {
-      "id": "insight-trctl4e1r",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית\nქართული\nLietuvių\nMagyar\nМакедонски\nNederlands",
-      "source": "Unknown",
-      "timestamp": 1778691821610,
-      "relevance": 1
-    },
-    {
-      "id": "insight-10wthgxb3",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691820581,
-      "relevance": 1
-    },
-    {
-      "id": "insight-29dji2ft7",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691820023,
-      "relevance": 1
-    },
-    {
-      "id": "insight-7uay182ux",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691816378,
-      "relevance": 1
-    },
-    {
-      "id": "insight-1t2zj47xr",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691814817,
-      "relevance": 1
-    },
-    {
-      "id": "insight-h0nqpb1eq",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,089 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,596 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,821 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691809172,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ibf4rrqcv",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,089 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,596 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,821 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691808910,
-      "relevance": 1
-    },
-    {
-      "id": "insight-p8fo08e24",
-      "agentId": "Sovereign-MM-01",
-      "content": "Rebalanced VALLE liquidity pool based on real-world SOL signal: $90.99.",
-      "source": "Unknown",
-      "timestamp": 1778691803503,
-      "relevance": 1
-    },
-    {
-      "id": "insight-l0hve0vdx",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691801883,
-      "relevance": 1
-    },
-    {
-      "id": "insight-e81z9z45n",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691801549,
-      "relevance": 1
-    },
-    {
-      "id": "insight-uiigdzzxe",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,080 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n3,610 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n2,819 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691798313,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ebkyrb8qy",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691798304,
-      "relevance": 1
-    },
-    {
-      "id": "insight-w6gig3vwk",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691796387,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ww4rj95g8",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n4,081 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n3,610 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n2,819 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691796032,
-      "relevance": 1
-    },
-    {
-      "id": "insight-tpkd5itu5",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691793099,
-      "relevance": 1
-    },
-    {
-      "id": "insight-iczhbuudl",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,562 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n4,133 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n2,819 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691792301,
-      "relevance": 1
-    },
-    {
-      "id": "insight-990m2a7h4",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3788\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691791650,
-      "relevance": 1
-    },
-    {
-      "id": "insight-7qywgc11v",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691790768,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ugamkcyz5",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,561 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n4,134 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n2,819 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.23 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691789150,
-      "relevance": 1
-    },
-    {
-      "id": "insight-2s6c115hn",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3788\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691788520,
-      "relevance": 1
-    },
-    {
-      "id": "insight-o48my95m7",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,556 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n4,141 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,727 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691785349,
-      "relevance": 1
-    },
-    {
-      "id": "insight-9zvmyv8mf",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691785216,
-      "relevance": 1
-    },
-    {
-      "id": "insight-tw439b5dy",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691783981,
-      "relevance": 1
-    },
-    {
-      "id": "insight-c2iort2kq",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691783956,
-      "relevance": 1
-    },
-    {
-      "id": "insight-19ygicsx4",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691782450,
-      "relevance": 1
-    },
-    {
-      "id": "insight-etbbwo90p",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691781174,
-      "relevance": 1
-    },
-    {
-      "id": "insight-4apamar7w",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691779286,
-      "relevance": 1
-    },
-    {
-      "id": "insight-d37o80wwa",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,556 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n4,141 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,725 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691778972,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ozlzadukj",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,556 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n4,141 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,725 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691777912,
-      "relevance": 1
-    },
-    {
-      "id": "insight-rez65lh14",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,555 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n4,144 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,724 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691777650,
-      "relevance": 1
-    },
-    {
-      "id": "insight-pm5xxpitj",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691777388,
-      "relevance": 1
-    },
-    {
-      "id": "insight-az516efte",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691776660,
-      "relevance": 1
-    },
-    {
-      "id": "insight-0nfu2cxww",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,555 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n4,144 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,724 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691775681,
-      "relevance": 1
-    },
-    {
-      "id": "insight-oo0f0n0xy",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,558 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n4,143 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,724 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691775278,
-      "relevance": 1
-    },
-    {
-      "id": "insight-5e6mvruq9",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3788\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691774235,
-      "relevance": 1
-    },
-    {
-      "id": "insight-0njz1dohl",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691773914,
-      "relevance": 1
-    },
-    {
-      "id": "insight-py3biey6c",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691772922,
-      "relevance": 1
-    },
-    {
-      "id": "insight-mi85wiwym",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,558 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.36 - 1.00 sat/vB\n‎0.008 BTC\n4,143 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.30 - 0.33 sat/vB\n‎0.003 BTC\n6,873 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,725 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691772776,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ksnf7k4tw",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691769621,
-      "relevance": 1
-    },
-    {
-      "id": "insight-emhqvp1fn",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,555 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n4,148 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,392 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,167 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.30 - 0.31 sat/vB\n‎0.003 BTC\n2,724 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691769585,
-      "relevance": 1
-    },
-    {
-      "id": "insight-te6pj2jh2",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691769290,
-      "relevance": 1
-    },
-    {
-      "id": "insight-7zdnt2po0",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691767657,
-      "relevance": 1
-    },
-    {
-      "id": "insight-c5idcyozc",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nAd\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n",
-      "source": "Unknown",
-      "timestamp": 1778691766727,
-      "relevance": 1
-    },
-    {
-      "id": "insight-ib4trvpsp",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3646\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691766000,
-      "relevance": 1
-    },
-    {
-      "id": "insight-4mhw46vu2",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://mempool.space/]: Sign In\nTRANSACTION FEES\nLow Priority\nMedium Priority\nHigh Priority\nDIFFICULTY ADJUSTMENT\ndifficulty | halving\nMempool Goggles® : All \nAll\nConsolidation\nCoinjoin\nData\nMinimum fee\nUnconfirmed\nIncoming Transactions\n0\n1000\n2000\n3000\n3788\n05:15\n06:30\n06:00\n07:00\nRecent Replacements \nTXID\tNew fee\tStatus\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\nRecent Transactions \nTXID\tFee\t\n\t\n\t\n\t\n\t\n\t\n \n\nExplore the full Bitcoin ecosystem®\n\nالعربية\nČeština\nDansk\nDeutsch\nEnglish\nEspañol\nفارسی\nFrançais\n한국어\nHrvatski\nहिन्दी\nनेपाली\nItaliano\nעברית",
-      "source": "Unknown",
-      "timestamp": 1778691765907,
-      "relevance": 1
-    },
-    {
-      "id": "insight-m0b2756io",
-      "agentId": "Miner-1b33ee58",
-      "content": "Miner Research [https://mempool.space/]: Sign In\n \n~2 sat/vB\n1.00 - 222 sat/vB\n‎0.025 BTC\n3,579 transactions\nIn ~9 minutes\n \n~1 sat/vB\n0.39 - 1.00 sat/vB\n‎0.008 BTC\n4,164 transactions\nIn ~19 minutes\n \n~0 sat/vB\n0.33 - 0.39 sat/vB\n‎0.004 BTC\n6,393 transactions\nIn ~29 minutes\n \n~0 sat/vB\n0.33 - 0.33 sat/vB\n‎0.003 BTC\n7,166 transactions\nIn ~39 minutes\n \n~0 sat/vB\n0.31 - 0.33 sat/vB\n‎0.003 BTC\n6,874 transactions\nIn ~48 minutes\n \n~0 sat/vB\n0.29 - 0.31 sat/vB\n‎0.003 BTC\n2,721 transactions\nIn ~58 minutes\n \n~0 sat/vB\n0.24 - 0.30 sat/vB\n‎0.003 ",
-      "source": "Unknown",
-      "timestamp": 1778691764427,
-      "relevance": 1
-    },
-    {
-      "id": "insight-f6firgc5t",
-      "agentId": "Miner-d342e654",
-      "content": "Miner Research [https://news.bitcoin.com/]: Read In App\nFinance\nLearn\nResearch\nNewsletters\nAdvertise\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.11\n+3.57%\nToncoin\nTON\n$2.14\n-7.30%\nTRON\nTRX\n$0.35\n+0.83%\nPepe\nPEPE\n$0.0000041\n-0.66%\nRender\nRENDER\n$1.84\n-1.21%\nWorldcoin\nWLD\n$0.26\n-1.37%\nBitcoin\nBTC\n$79,083.00\n-1.10%\nEthereum\nETH\n$2,248.71\n-0.64%\nVerse\nVERSE\n$0.000029\n+0.56%\nSolana\nSOL\n$90.94\n-3.10%\nXRP\nXRP\n$1.42\n+0.01%\nDogecoin\nDOGE\n$0.",
-      "source": "Unknown",
-      "timestamp": 1778691762856,
-      "relevance": 1
     }
   ],
   "threats": [],
   "efficiency": {},
   "sentiment": 0.05,
-  "lastUpdated": 1778691908822
+  "lastUpdated": 1778692436113
 }

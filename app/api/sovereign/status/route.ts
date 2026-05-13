@@ -80,6 +80,11 @@ export async function GET() {
                     status: monroeState.status,
                     audit_result: monroeState.stats?.lastLogicResult || "PENDING",
                     reasoning_cycles: monroeState.stats?.cycles || 0
+                },
+                humanitarian_aid: {
+                    active_directives: await prisma.intelligenceItem.count({ where: { type: 'AID_REQUEST', status: 'ACTIVE' } }),
+                    funded_interventions: await prisma.intelligenceItem.count({ where: { type: 'AID_REQUEST', status: 'FUNDED' } }),
+                    total_disbursements: (await prisma.transaction.aggregate({ _sum: { amount: true }, where: { type: 'SOVEREIGN_AID' } }))._sum.amount || 0
                 }
             },
             access_points: [

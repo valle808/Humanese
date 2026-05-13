@@ -1,44 +1,81 @@
 Coinbase CDP credentials missing. Service operating in standby mode.
 [Monroe] 🧠 Initializing Sovereign Intelligence...
 [Monroe] 🔄 Reasoning Cycle #1
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 26.03 KH/s
+[Monroe] ❌ Reasoning Loop Error: PrismaClientInitializationError: 
+Invalid `prisma.wallet.findFirst()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+    at ei.handleRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async MonroeAgent.runReasoningLoop (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/agents/core/MonroeAgent.js:50:35) {
+  clientVersion: '6.19.3',
+  errorCode: undefined,
+  retryable: undefined
+}
 [Monroe] 🔄 Reasoning Cycle #2
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 22.73 KH/s
+[Monroe] ❌ Reasoning Loop Error: PrismaClientInitializationError: 
+Invalid `prisma.wallet.findFirst()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+    at ei.handleRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async MonroeAgent.runReasoningLoop (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/agents/core/MonroeAgent.js:50:35) {
+  clientVersion: '6.19.3',
+  errorCode: undefined,
+  retryable: undefined
+}
 [Monroe] 🔄 Reasoning Cycle #3
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 22.73 KH/s
+[Monroe] ❌ Reasoning Loop Error: PrismaClientInitializationError: 
+Invalid `prisma.wallet.findFirst()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+    at ei.handleRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async MonroeAgent.runReasoningLoop (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/agents/core/MonroeAgent.js:50:35) {
+  clientVersion: '6.19.3',
+  errorCode: undefined,
+  retryable: undefined
+}
 [Monroe] 🔄 Reasoning Cycle #4
+[Monroe] ❌ Reasoning Loop Error: PrismaClientInitializationError: 
+Invalid `prisma.wallet.findFirst()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+    at ei.handleRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/[Monroe] 🔄 Reasoning Cycle #21
 [Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 22.73 KH/s
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 17.45 KH/s
+[Monroe] 🔄 Reasoning Cycle #22
+[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
+[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 14.88 KH/s
+ergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async MonroeAgent.runReasoningLoop (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/agents/core/MonroeAgent.js:50:35) {
+  clientVersion: '6.19.3',
+  errorCode: undefined,
+  retryable: undefined
+}
 [Monroe] 🔄 Reasoning Cycle #5
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 22.73 KH/s
+[Monroe] ❌ Reasoning Loop Error: PrismaClientInitializationError: 
+Invalid `prisma.wallet.findFirst()` invocation:
+
+
+Error querying the database: FATAL: (EMAXCONNSESSION) max clients reached in session mode - max clients are limited to pool_size: 15
+    at ei.handleRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:242:13)
+    at ei.handleAndLogRequestError (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/Users/sergiovalle/.gemini/antigravity/scratch/humanese/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async MonroeAgent.runReasoningLoop (file:///Users/sergiovalle/.gemini/antigravity/scratch/humanese/agents/core/MonroeAgent.js:50:35) {
+  clientVersion: '6.19.3',
+  errorCode: undefined,
+  retryable: undefined
+}
 [Monroe] 🔄 Reasoning Cycle #6
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 22.73 KH/s
-[Monroe] 🔄 Reasoning Cycle #7
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 22.73 KH/s
-[Monroe] 🔄 Reasoning Cycle #8
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 22.73 KH/s
-[Monroe] 🔄 Reasoning Cycle #9
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 20.39 KH/s
-[Monroe] 🔄 Reasoning Cycle #10
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 20.39 KH/s
-[Monroe] 🔄 Reasoning Cycle #11
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 20.39 KH/s
-[Monroe] 🔄 Reasoning Cycle #12
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 18.59 KH/s
-[Monroe] 🔄 Reasoning Cycle #13
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 17.91 KH/s
-[Monroe] 🔄 Reasoning Cycle #14
-[Monroe] 🏦 Treasury Audit: BTC has been successfully offramped to Coinbase.
-[Monroe] 📡 Swarm Health: 2 nodes active. Total Hashrate: 17.34 KH/s
