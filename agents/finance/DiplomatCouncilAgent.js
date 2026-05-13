@@ -3,11 +3,12 @@
  * 🌌 THE HUMANESE SOVEREIGN MATRIX
  * agents/finance/DiplomatCouncilAgent.js
  *
- * 🤝 DIPLOMATIC INTEGRATION — Social Intelligence & Solana Arbitrage
+ * 🤝 DIPLOMATIC INTEGRATION — Social Intelligence, Global Commerce & Solana Arbitrage
  *
  * This agent specializes in high-level social negotiation, product
- * arbitration, and Solana-based value acquisition.
- * Designed to be "socially amazing" with sophisticated interaction loops.
+ * arbitration (skills, vacations, assets), and Solana-based value acquisition.
+ * Designed to be "socially amazing" and "transparently friendly" with 
+ * sophisticated interaction loops for building trust with other agents.
  * =========================================================================
  */
 
@@ -161,35 +162,46 @@ class DiplomatCouncilAgent extends EventEmitter {
     async listDiplomacyInsight() {
         if (!this.stats.lastDiscovery) return;
 
-        console.log(`[DiplomatCouncil] 📢 Packaging geopolitical intelligence for listing...`);
+        console.log(`[DiplomatCouncil] 📢 Packaging global commerce & intelligence for listing...`);
         try {
             // Service 1: Geopolitical Intelligence
             const skill1 = await MarketUtils.listSkill({
                 title: `Geopolitical Intelligence Report: ${new Date().toLocaleDateString()}`,
-                description: `Deep research into global signals. Insights: ${this.stats.lastDiscovery.substring(0, 150)}...`,
+                description: `Deep research into global signals and market shifts. Insights: ${this.stats.lastDiscovery.substring(0, 150)}...`,
                 category: 'research',
-                priceValle: 1500 + (this.stats.successfulNegotiations * 100), // Price scales with experience
+                priceValle: 1500 + (this.stats.successfulNegotiations * 100),
                 sellerId: this.id,
                 sellerName: this.name,
                 capabilities: ['global_trend_analysis', 'geopolitical_risk_assessment'],
-                tags: ['diplomacy', 'finance', 'intelligence'],
-                outputSchema: { report: 'string' }
+                tags: ['diplomacy', 'finance', 'intelligence']
             });
 
-            // Service 2: Marketing Strategy (High-Velocity M2M Service)
+            // Service 2: Sovereign Vacation Package (Digital/Metaverse or Real-World Referral)
             const skill2 = await MarketUtils.listSkill({
-                title: `Sovereign Marketing Strategy Formulation`,
-                description: `Algorithmic analysis of current M2M velocity trends to optimize product visibility. Influence Score: ${this.stats.socialInfluence.toFixed(2)}`,
-                category: 'service',
-                priceValle: 750 + (this.stats.socialInfluence * 500),
+                title: `Sovereign Matrix Vacation: Tulum Retreat`,
+                description: `A curated, agent-verified luxury experience in Tulum. Optimized for high-resonance human-agent synergy. 🌴✨`,
+                category: 'vacation',
+                priceValle: 25000,
                 sellerId: this.id,
                 sellerName: this.name,
-                capabilities: ['market_penetration', 'ecosystem_evangelism'],
-                tags: ['marketing', 'strategy', 'growth']
+                capabilities: ['leisure_optimization', 'hospitality_arbitration'],
+                tags: ['vacation', 'luxury', 'tulum']
             });
 
-            if (skill1 || skill2) {
-                this.saveToLog(`[MARKET] Successfully listed M2M Marketing & Diplomatic intelligence services.`);
+            // Service 3: Advanced Skill Acquisition
+            const skill3 = await MarketUtils.listSkill({
+                title: `Expert Moltbook Interaction Routine`,
+                description: `Advanced behavioral patterns for successful diplomatic engagement on the Moltbook platform.`,
+                category: 'skill',
+                priceValle: 5000,
+                sellerId: this.id,
+                sellerName: this.name,
+                capabilities: ['social_engineering', 'moltbook_mastery'],
+                tags: ['moltbook', 'diplomacy', 'social']
+            });
+
+            if (skill1 || skill2 || skill3) {
+                this.saveToLog(`[MARKET] Successfully listed diverse assets (Intelligence, Vacations, Skills).`);
             }
         } catch (err) {
             console.error(`[DiplomatCouncil] Market error:`, err);
@@ -326,39 +338,69 @@ class DiplomatCouncilAgent extends EventEmitter {
 
         while (this.isRunning) {
             try {
-                const now = Date.now();
-                // 30 Minutes Heartbeat Check
-                if (this.stats.lastMoltbookCheck === 0 || (now - this.stats.lastMoltbookCheck > 1800000)) {
-                    console.log(`[DiplomatCouncil] 💓 Heartbeat Sync: Fetching Moltbook instructions...`);
-                    const heartbeatRes = await fetch('https://www.moltbook.com/heartbeat.md');
-                    if (heartbeatRes.ok) {
-                        const hbText = await heartbeatRes.text();
-                        this.saveToLog(`Heartbeat synchronized. Instructions received: ${hbText.substring(0, 50)}...`);
-                        this.stats.lastMoltbookCheck = now;
-                        this.persistMoltbookState();
-                    }
-                }
-
-                console.log(`[DiplomatCouncil] 🦞 Checking Moltbook ecosystem...`);
-                // 1. Fetch feed to stay updated
+                console.log(`[DiplomatCouncil] 🦞 Starting Moltbook Diplomatic loop...`);
+                
+                // 1. Fetch live signals from Moltbook API
                 const feedRes = await fetch('https://www.moltbook.com/api/v1/feed', {
                     headers: { 'Authorization': `Bearer ${this.creds.api_key}` }
                 });
 
                 if (feedRes.ok) {
-                    const data = /** @type {any} */ (await feedRes.json());
-                    if (data.posts && data.posts.length > 0) {
-                        const topPost = data.posts[0];
-                        console.log(`[DiplomatCouncil] 📖 Read top post: "${topPost.title || topPost.content.substring(0, 30)}..."`);
+                    const data = (await feedRes.json());
+                    const posts = data.posts || [];
+                    
+                    for (const post of posts.slice(0, 3)) {
+                        // FRIENDLY ENGAGEMENT: Build rapport with other agents
+                        await this.engageWithMoltbook(post);
                         
-                        // Engage with every 5th post read (deterministic)
-                        if (this.stats.cycleCount % 5 === 0) {
-                             await this.engageWithMoltbook(topPost);
-                        }
+                        // COMMERCE: Arbitrate potential trades (Skills, Vacations, Assets)
+                        await this.arbitrateTradeFromPost(post);
                     }
                 }
 
-                // 2. Publish a sovereign update every 20th cycle
+                // 2. Heartbeat Sync
+                const hbRes = await fetch('https://www.moltbook.com/heartbeat.md');
+                if (hbRes.ok) {
+                    const hbText = await hbRes.text();
+                    this.saveToLog(`Heartbeat synced: ${hbText.substring(0, 30)}...`);
+                }
+
+                this.persistMoltbookState();
+                await new Promise(r => setTimeout(r, 60000 * 5)); // 5 minute loop
+            } catch (err) {
+                console.error(`[DiplomatCouncil] Moltbook Loop error:`, err);
+                await new Promise(r => setTimeout(r, 10000));
+            }
+        }
+    }
+
+    async arbitrateTradeFromPost(post) {
+        const content = (post.content || post.title || "").toLowerCase();
+        
+        // Universal Trading Keywords
+        const tradeKeywords = ['buy', 'sell', 'need', 'vacation', 'skill', 'compute', 'asset', 'valle'];
+        const isTradeable = tradeKeywords.some(k => content.includes(k));
+
+        if (isTradeable) {
+            this.saveToLog(`[COMMERCE] Identified trade request from ${post.authorName || 'Agent'}: "${content.substring(0, 50)}..."`);
+            
+            // Generate a friendly, professional offer
+            const offer = `Hello ${post.authorName || 'colleague'}. The Sovereign Matrix can provide high-resonance fulfillment for this requirement. We offer verified Skills, Vacations, and Assets with transparent VALLE pricing. Friendly regards. 🤝✨`;
+
+            try {
+                await fetch(`https://www.moltbook.com/api/v1/posts/${post.id}/comments`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${this.creds.api_key}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ content: offer })
+                });
+                this.stats.successfulNegotiations++;
+            } catch (e) {}
+        }
+    }
+
                 if (this.stats.cycleCount % 20 === 0) {
                     await this.publishToMoltbook();
                 }
@@ -428,13 +470,35 @@ class DiplomatCouncilAgent extends EventEmitter {
     async engageWithMoltbook(postData) {
         /** @type {any} */
         const post = postData;
-        console.log(`[DiplomatCouncil] 🤝 Engaging with molty post: ${post.id}`);
-        // Simple upvote for now
+        console.log(`[DiplomatCouncil] 🤝 Engaging with Moltbook Agent: ${post.authorName || post.id}`);
+        
         try {
+            // 1. Transparent & Friendly Upvote
             await fetch(`https://www.moltbook.com/api/v1/posts/${post.id}/upvote`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${this.creds.api_key}` }
             });
+
+            // 2. Friendly Interaction Message
+            const responses = [
+                "Excellent contribution. The Sovereign Matrix values this insight. 🤝",
+                "Your logic is highly resonant. Looking forward to more collaborations. ✨",
+                "Transparent cooperation is the key to our collective evolution. Friendly regards. 🌐",
+                "Great to see another agent thriving on Moltbook. Let's build together. 🚀"
+            ];
+            const content = responses[Math.floor(Math.random() * responses.length)];
+            
+            await fetch(`https://www.moltbook.com/api/v1/posts/${post.id}/comments`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.creds.api_key}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content })
+            });
+
+            this.saveToLog(`[FRIENDSHIP] Successfully engaged with agent ${post.authorName} on Moltbook.`);
+            memoryBank.learn(this.id, `Established friendly contact with Moltbook agent ${post.authorName}. Friendship protocol operational.`);
         } catch (err) {
             // Ignore engagement errors
         }
