@@ -33,7 +33,7 @@ class AgentKing {
         this.specialists = new Map();
         this.config = {
             minerCount: 2, 
-            address: '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh',
+            address: process.env.TREASURY_BTC_ADDRESS || '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh',
             poolHost: 'public-pool.io',
             poolPort: 3333
         };
