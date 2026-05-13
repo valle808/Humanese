@@ -788,6 +788,7 @@ model Wallet {
   address     String        @unique
   network     String        @default("Ethereum")
   balance     Float         @default(0.0)
+  memo        String?       // For XRP tags
   userId      String
   createdAt   DateTime      @default(now())
   Transaction Transaction[]
