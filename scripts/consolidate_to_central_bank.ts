@@ -12,13 +12,13 @@ const CENTRAL_BANK = {
   XRP: 'rw2ciyaNshpHe7bCHo4bRWq6pqqynnWKQg',
   XRP_MEMO: '2932723390',
   BNB: '0xF76581E2Dc7746B92b258098c9F3C90E691B6dc9',
-  GENESIS_TREASURY_BTC: 'bc1qdf6dfd6d5c29cbbf3cfcfa153158708f34b340'
+  GENESIS_TREASURY_BTC: 'bc1qdf6dfd6d5c29cbbf3cfcfa153158708f34b340',
+  HMN: 'HMN-VALLE-928EA932'
 };
 
 async function main() {
-  console.log(`Starting Global Fund Consolidation to Admin: ${ADMIN_EMAIL}...`);
+  console.log(`Starting TOTAL Global Fund Consolidation to Admin: ${ADMIN_EMAIL}...`);
 
-  // 1. Find the admin user
   const admin = await prisma.user.findUnique({
     where: { email: ADMIN_EMAIL },
   });
@@ -28,86 +28,78 @@ async function main() {
     process.exit(1);
   }
 
-  const currencies = [
-    { name: 'SOL', address: CENTRAL_BANK.SOL, networkTags: ['Solana', 'SOL'] },
-    { name: 'BTC', address: CENTRAL_BANK.BTC, networkTags: ['Bitcoin', 'BTC'], extraAddresses: [CENTRAL_BANK.GENESIS_TREASURY_BTC] },
-    { name: 'ETH', address: CENTRAL_BANK.ETH, networkTags: ['Ethereum', 'ETH'] },
-    { name: 'XRP', address: CENTRAL_BANK.XRP, memo: CENTRAL_BANK.XRP_MEMO, networkTags: ['XRP'] },
-    { name: 'BNB', address: CENTRAL_BANK.BNB, networkTags: ['BNB', 'BSC', 'Binance'] },
-  ];
+  // 1. Get ALL unique networks in the system
+  const wallets = await prisma.wallet.findMany();
+  const networks = Array.from(new Set(wallets.map(w => w.network)));
 
-  for (const cur of currencies) {
-    console.log(`\nConsolidating ${cur.name}...`);
-    
-    // Find all wallets for this currency (including extra addresses like Genesis)
-    const allWallets = await prisma.wallet.findMany({
+  console.log(`Found ${networks.length} unique networks: ${networks.join(', ')}`);
+
+  for (const network of networks) {
+    console.log(`\nConsolidating network: ${network}...`);
+
+    // Determine target address for admin
+    let targetAddress = '';
+    let targetMemo: string | null = null;
+
+    if (network.includes('Bitcoin') || network === 'BTC') targetAddress = CENTRAL_BANK.BTC;
+    else if (network.includes('Solana') || network === 'SOL') targetAddress = CENTRAL_BANK.SOL;
+    else if (network.includes('Ethereum') || network === 'ETH') targetAddress = CENTRAL_BANK.ETH;
+    else if (network === 'XRP') { targetAddress = CENTRAL_BANK.XRP; targetMemo = CENTRAL_BANK.XRP_MEMO; }
+    else if (network === 'BNB' || network === 'BSC') targetAddress = CENTRAL_BANK.BNB;
+    else if (network.includes('Humanese')) targetAddress = CENTRAL_BANK.HMN;
+    else {
+      // For other networks, try to find the admin's existing address or use a placeholder
+      const existing = await prisma.wallet.findFirst({ where: { userId: admin.id, network } });
+      targetAddress = existing ? existing.address : `ADMIN-${network.toUpperCase()}-${uuidv4().substring(0,8)}`;
+    }
+
+    // Special case for Genesis Treasury BTC address (ensure it's included in aggregation)
+    const extraAddrs = (network.includes('Bitcoin') || network === 'BTC') ? [CENTRAL_BANK.GENESIS_TREASURY_BTC] : [];
+
+    const allWalletsForNetwork = await prisma.wallet.findMany({
       where: {
         OR: [
-          ...cur.networkTags.map(tag => ({ network: tag })),
-          ...(cur.extraAddresses || []).map(addr => ({ address: addr }))
+          { network },
+          { address: { in: extraAddrs } }
         ]
       }
     });
 
     let totalBalance = 0;
-    for (const w of allWallets) {
+    for (const w of allWalletsForNetwork) {
       totalBalance += w.balance;
-      console.log(`Aggregating wallet ${w.address} (Balance: ${w.balance})`);
     }
 
-    // Setup/Update Admin Wallet
-    let adminWallet = await prisma.wallet.findFirst({
-      where: {
+    // Update or Create Admin Wallet
+    const adminWallet = await prisma.wallet.upsert({
+      where: { address: targetAddress },
+      update: { balance: totalBalance, memo: targetMemo },
+      create: {
+        id: `wallet_${network.replace(/\s+/g, '_').toLowerCase()}_${uuidv4()}`,
         userId: admin.id,
-        network: cur.networkTags[0]
+        network,
+        address: targetAddress,
+        memo: targetMemo,
+        balance: totalBalance
       }
     });
 
-    if (adminWallet) {
-      console.log(`Updating Admin's ${cur.name} wallet...`);
-      adminWallet = await prisma.wallet.update({
-        where: { id: adminWallet.id },
-        data: {
-          address: cur.address,
-          memo: cur.memo || null,
-          balance: totalBalance
-        }
-      });
-    } else {
-      console.log(`Creating Admin's ${cur.name} wallet...`);
-      adminWallet = await prisma.wallet.create({
-        data: {
-          id: `wallet_${cur.name.toLowerCase()}_${uuidv4()}`,
-          userId: admin.id,
-          network: cur.networkTags[0],
-          address: cur.address,
-          memo: cur.memo || null,
-          balance: totalBalance
-        }
-      });
-    }
+    console.log(`Consolidated Admin Wallet: ${adminWallet.address} (${network}) | Total: ${adminWallet.balance}`);
 
-    console.log(`Consolidated Admin ${cur.name} Wallet: ${adminWallet.address} | Total: ${adminWallet.balance}`);
-
-    // Zero out other wallets
-    const others = allWallets.filter(w => w.address !== cur.address);
-    for (const w of others) {
-      await prisma.wallet.update({
-        where: { id: w.id },
-        data: { balance: 0 }
-      });
-      console.log(`Zeroed out ${w.address}`);
+    // Zero out everyone else
+    for (const w of allWalletsForNetwork) {
+      if (w.address !== targetAddress) {
+        await prisma.wallet.update({
+          where: { id: w.id },
+          data: { balance: 0 }
+        });
+      }
     }
   }
 
-  console.log('\nGlobal Consolidation Complete.');
+  console.log('\n--- ALL FUNDS CONSOLIDATED TO ADMIN ---');
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .catch(e => { console.error(e); process.exit(1); })
+  .finally(() => prisma.$disconnect());
