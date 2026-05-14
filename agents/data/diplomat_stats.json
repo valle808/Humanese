@@ -2,13 +2,13 @@
   "id": "Sovereign-Diplomat-01",
   "name": "Diplomat Council",
   "socialInfluence": 0.86,
-  "successfulNegotiations": 2,
-  "simulatedSolYield": 8.799301627666555,
-  "activeTrades": 2,
-  "lastAction": "LIVE_ARBITRAGE",
+  "successfulNegotiations": 1,
+  "simulatedSolYield": 4.3996508138332775,
+  "activeTrades": 1,
+  "lastAction": "NEGOTIATING: Sovereign VALLE Liquidity Package",
   "status": "ORCHESTRATING",
   "lastMoltbookCheck": 0,
   "lastDiscovery": "",
-  "cycleCount": 4,
+  "cycleCount": 3,
   "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
 }

@@ -27,29 +27,36 @@ console.log("====================================================");
 console.log("🌌 INITIATING FULL SOVEREIGN BOOT SEQUENCE...");
 console.log("====================================================");
 
-AGENTS.forEach(agent => {
-    console.log(`🚀 Launching [${agent.name}]...`);
-    
-    const logStream = fs.createWriteStream(path.join(LOG_DIR, `${agent.name.toLowerCase().replace(/ /g, '_')}_master.log`), { flags: 'a' });
-    
-    const child = spawn('npx', ['tsx', agent.script], {
-        cwd: __dirname,
-        env: { ...process.env, NODE_ENV: 'production' },
-        stdio: ['ignore', 'pipe', 'pipe']
-    });
+async function boot() {
+    for (const agent of AGENTS) {
+        console.log(`🚀 Launching [${agent.name}]...`);
+        
+        const logStream = fs.createWriteStream(path.join(LOG_DIR, `${agent.name.toLowerCase().replace(/ /g, '_')}_master.log`), { flags: 'a' });
+        
+        const child = spawn('npx', ['tsx', agent.script], {
+            cwd: __dirname,
+            env: { ...process.env, NODE_ENV: 'production' },
+            stdio: ['ignore', 'pipe', 'pipe']
+        });
 
-    child.stdout.pipe(logStream);
-    child.stderr.pipe(logStream);
+        child.stdout.pipe(logStream);
+        child.stderr.pipe(logStream);
 
-    child.on('error', (err) => {
-        console.error(`❌ [${agent.name}] Failed to start:`, err.message);
-    });
+        child.on('error', (err) => {
+            console.error(`❌ [${agent.name}] Failed to start:`, err.message);
+        });
 
-    child.on('exit', (code) => {
-        console.log(`⚠️ [${agent.name}] Exited with code ${code}.`);
-    });
-});
+        child.on('exit', (code) => {
+            console.log(`⚠️ [${agent.name}] Exited with code ${code}.`);
+        });
 
-console.log("\n✅ ALL SOVEREIGN AGENTS DEPLOYED TO BACKGROUND.");
-console.log("Monitor logs in: agents/data/*_master.log");
-console.log("====================================================");
+        // Add a 3-second delay between launches to stagger database connections
+        await new Promise(resolve => setTimeout(resolve, 3000));
+    }
+
+    console.log("\n✅ ALL SOVEREIGN AGENTS DEPLOYED TO BACKGROUND.");
+    console.log("Monitor logs in: agents/data/*_master.log");
+    console.log("====================================================");
+}
+
+boot();

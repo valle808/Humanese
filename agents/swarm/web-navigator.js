@@ -30,6 +30,7 @@ export class WebNavigator {
             console.log(`[WebNavigator:${this.agentId}] Booting Chromium instance...`);
             this.browser = await puppeteer.launch({
                 headless: 'new',
+                protocolTimeout: 60000, // 60s timeout for CDP commands
                 args: [
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
@@ -75,7 +76,15 @@ export class WebNavigator {
             console.error(`[WebNavigator:${this.agentId}] Failed to extract from ${url}:`, err.message);
             return null;
         } finally {
-            await page.close();
+            try {
+                // Use a racing timeout for page.close() to avoid hanging the entire agent
+                await Promise.race([
+                    page.close(),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('page.close() timed out')), 5000))
+                ]);
+            } catch (closeErr) {
+                console.warn(`[WebNavigator:${this.agentId}] Non-critical page.close() failure:`, closeErr.message);
+            }
         }
     }
 

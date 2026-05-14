@@ -79,6 +79,7 @@ class AgentKing {
         this.specialists.set('diplomat', diplomat);
         diplomat.start();
         
+        await new Promise(resolve => setTimeout(resolve, 2000));
         console.log("[AgentKing] ✅ Specialists online: [TokenizationAgent, LiquidityManager, DiplomatCouncilAgent]");
     }
 
@@ -98,6 +99,9 @@ class AgentKing {
             
             this.miners.set(miner.workerName, miner);
             miner.connect();
+            
+            // Stagger miner connections to avoid database pressure
+            await new Promise(resolve => setTimeout(resolve, 2000));
         }
         this.isRunning = true;
         this.startOrchestrationLoop();
