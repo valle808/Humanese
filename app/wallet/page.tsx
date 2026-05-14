@@ -1,14 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  Wallet, 
-  ArrowUpRight, 
   Coins, 
   RefreshCcw, 
   TrendingUp,
-  History,
   Activity,
   Globe,
   Plus,
@@ -238,7 +235,7 @@ export default function WalletPage() {
                  Sovereign Tip_
                </h3>
                <p className="text-muted-foreground text-sm italic leading-relaxed">
-                 "Your VALLE assets are secured by the OMEGA protocol. Autonomous agents are currently stabilizing the liquidity pool at CoinMarketCap. 24/7 surveillance is active."
+                 &quot;Your VALLE assets are secured by the OMEGA protocol. Autonomous agents are currently stabilizing the liquidity pool at CoinMarketCap. 24/7 surveillance is active.&quot;
                </p>
                <Link href="/governance" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-primary hover:gap-5 transition-all italic">
                  View Governance <ArrowRight size={14} strokeWidth={3} />

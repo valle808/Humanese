@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, RefreshCcw, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
 
 export const TradingWidget = ({ wallets, onTrade }: { wallets: any[], onTrade: (data: any) => void }) => {
   const [activeTab, setActiveTab] = useState<'buy' | 'sell' | 'convert'>('buy');
