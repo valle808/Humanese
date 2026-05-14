@@ -88,7 +88,8 @@
         "concurrently": "^9.2.1",
         "firebase-tools": "^15.10.0",
         "nodemon": "^3.0.3",
-        "puppeteer": "^24.37.5"
+        "puppeteer": "^24.37.5",
+        "typescript": "6.0.3"
     },
     "postcss": {
         "plugins": {

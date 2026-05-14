@@ -241,26 +241,51 @@ export const Sidebar = () => {
                 {isExpanded ? <ChevronLeft size={20} strokeWidth={3} /> : <ChevronRight size={20} strokeWidth={3} />}
             </motion.button>
 
-            {/* Mobile Navigation Dock */}
-            <div className="md:hidden fixed bottom-4 left-4 right-4 z-[1000]">
-                <div className="bg-background/95 backdrop-blur-3xl border-2 border-border rounded-[3.5rem] flex justify-around items-center p-4 max-w-sm mx-auto shadow-[0_40px_100px_rgba(0,0,0,0.3)] dark:shadow-[0_40px_100px_rgba(0,0,0,1)] shadow-inner">
-                    {navItems.slice(0, 6).map((item, index) => {
-                        const isActive = pathname === item.href;
-                        return (
-                            <Link
-                                key={item.id}
-                                href={item.href}
-                                className={`transition-all p-4 rounded-[2rem] active:scale-90 ${isActive ? 'text-primary bg-primary/10 shadow-[0_0_20px_rgba(var(--primary),0.3)] border-2 border-primary/20' : 'text-foreground/40 dark:text-muted-foreground/30 hover:text-foreground dark:hover:text-foreground'}`}
-                                aria-label={item.label}
-                            >
-                                {React.cloneElement(item.icon as React.ReactElement, { size: 24, strokeWidth: 3 })}
-                            </Link>
-                        );
-                    })}
-                    <div className="flex items-center justify-center pl-2">
-                        <ThemeToggle />
-                    </div>
-                </div>
+            {/* Mobile Navigation - Retractable Menu */}
+            <div className="md:hidden">
+                {/* Mobile Toggle Button */}
+                <button 
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="fixed top-4 right-4 z-[1001] w-14 h-14 bg-background/80 backdrop-blur-xl border-2 border-border rounded-2xl flex flex-col items-center justify-center gap-1.5 shadow-2xl active:scale-95 transition-all group"
+                >
+                    <motion.div animate={{ rotate: isExpanded ? 45 : 0, y: isExpanded ? 8 : 0 }} className="w-8 h-1 bg-primary rounded-full transition-all" />
+                    <motion.div animate={{ opacity: isExpanded ? 0 : 1 }} className="w-8 h-1 bg-primary rounded-full transition-all" />
+                    <motion.div animate={{ rotate: isExpanded ? -45 : 0, y: isExpanded ? -8 : 0 }} className="w-8 h-1 bg-primary rounded-full transition-all" />
+                </button>
+
+                {/* Mobile Sidebar Overlay */}
+                <AnimatePresence>
+                    {isExpanded && (
+                        <motion.div
+                            initial={{ opacity: 0, x: '100%' }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: '100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            className="fixed inset-0 z-[1000] bg-background/95 backdrop-blur-3xl flex flex-col p-8 pt-24"
+                        >
+                            <div className="flex-1 space-y-4 overflow-y-auto no-scrollbar">
+                                {navItems.map((item) => {
+                                    const isActive = pathname === item.href;
+                                    return (
+                                        <Link
+                                            key={item.id}
+                                            href={item.href}
+                                            onClick={() => setIsExpanded(false)}
+                                            className={`flex items-center gap-6 p-6 rounded-[2.5rem] transition-all active:scale-95 border-2 ${isActive ? 'bg-primary/10 border-primary/20 text-foreground' : 'border-transparent text-muted-foreground'}`}
+                                        >
+                                            {React.cloneElement(item.icon as React.ReactElement, { size: 28, strokeWidth: 3, className: isActive ? 'text-primary' : '' })}
+                                            <span className="text-xl font-black uppercase tracking-[0.2em] italic">{item.label}</span>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                            <div className="pt-8 border-t-2 border-border flex justify-between items-center px-4">
+                                <ThemeToggle />
+                                <UserMenu isExpanded={true} />
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
 
             <style jsx global>{`
@@ -268,11 +293,6 @@ export const Sidebar = () => {
                     body {
                         padding-left: ${isExpanded ? '20rem' : '7rem'} !important;
                         transition: padding-left 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
-                    }
-                }
-                @media (max-width: 767px) {
-                    body {
-                        padding-bottom: 9rem !important;
                     }
                 }
                 .no-scrollbar::-webkit-scrollbar { display: none; }

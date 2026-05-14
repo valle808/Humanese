@@ -46,6 +46,8 @@ export class FinancialTradingAgent {
     async researchMarket() {
         console.log(`[${this.name}] 🌐 Scouring global markets for arbitrage signals...`);
         const targets = [
+            'https://coinmarketcap.com/currencies/sovereign-coin/',
+            'https://coinmarketcap.com/currencies/bitcoin/',
             'https://cointelegraph.com/news',
             'https://www.coindesk.com/',
             'https://decrypt.co/',
@@ -109,11 +111,18 @@ export class FinancialTradingAgent {
 
                 // Automatic Bridging Logic: If BTC or SOL found on Coinbase, move it to Sovereign Matrix Treasury
                 for (const acc of cbBalances) {
-                    if (['BTC', 'SOL'].includes(acc.currency) && parseFloat(acc.balance) > 0) {
+                    if (['BTC', 'SOL', 'VALLE'].includes(acc.currency) && parseFloat(acc.balance) > 0) {
                         console.log(`[${this.name}] Found ${acc.balance} ${acc.currency} on Coinbase. Triggering bridge to Sovereign Matrix Treasury...`);
                         await bridgeToTreasury(acc.currency, acc.balance);
                     }
                 }
+            }
+
+            // 2.5. CoinMarketCap Pulse (NEW)
+            if (this.marketSignals.toLowerCase().includes('sovereign') || this.marketSignals.toLowerCase().includes('valle')) {
+                console.log(`[${this.name}] 💎 High-confidence Sovereign signal detected on CMC. Orchestrating VALLE accumulation pulse...`);
+                // Simulate trading pulse - in real scenario would use CDP to execute Buy
+                memoryBank.learn(this.id, `Trading Pulse: High confidence signal for Sovereign Coin. Action: Accumulate.`);
             }
 
             // 3. Mock Decision: Rebalance if SOL/BTC ratio is skewed

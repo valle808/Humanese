@@ -29,7 +29,7 @@ import {
   Activity
 } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const ENTITIES = [
   { id: 'human', label: 'Human', icon: User, desc: 'Biometric & Sovereign Identity', color: 'text-primary', bg: 'bg-primary/10' },
@@ -44,6 +44,8 @@ type AuthStep = 'mode' | 'entity' | 'credentials' | 'verification' | 'success';
 
 export default function AuthPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get('redirect');
   const [mode, setMode] = useState<AuthMode>('login');
   const [step, setStep] = useState<AuthStep>('mode');
   const [selectedEntity, setSelectedEntity] = useState(ENTITIES[0]);
@@ -112,7 +114,7 @@ export default function AuthPage() {
           setStep('success');
           // If there's no secret phrase (e.g. standard login), redirect normally
           if (!data.secretPhrase) {
-            setTimeout(() => router.push('/'), 2000);
+            setTimeout(() => router.push(redirectUrl || '/'), 2000);
           }
         }
       } else {
@@ -148,7 +150,7 @@ export default function AuthPage() {
       if (res.ok) {
         localStorage.setItem('humanese_session', JSON.stringify(data.session));
         setStep('success');
-        setTimeout(() => router.push('/'), 2000);
+        setTimeout(() => router.push(redirectUrl || '/'), 2000);
       } else {
         setError(data.error);
       }
@@ -504,7 +506,7 @@ export default function AuthPage() {
                       {secretPhrase}
                     </div>
                     <button 
-                      onClick={() => router.push('/')}
+                      onClick={() => router.push(redirectUrl || '/')}
                       className="w-full py-5 bg-primary/10 border border-primary/40 text-primary font-black uppercase tracking-[0.4em] text-[10px] rounded-xl hover:bg-primary hover:text-background transition-all italic mt-4"
                     >
                       I have secured my phrase. Proceed to Nexus.

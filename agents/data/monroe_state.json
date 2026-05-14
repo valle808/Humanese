@@ -2,9 +2,9 @@
   "id": "monroe-prime",
   "status": "OPERATIONAL",
   "stats": {
-    "cycles": 1,
+    "cycles": 12,
     "lastLogicResult": "TREASURY_OFFRAMP_VERIFIED",
-    "startTime": 1778773572369
+    "startTime": 1778774149466
   },
-  "timestamp": "2026-05-14T15:46:14.143Z"
+  "timestamp": "2026-05-14T16:07:07.863Z"
 }
