@@ -23,6 +23,7 @@ export default function WalletPage() {
   const router = useRouter();
   const [session, setSession] = useState<any>(null);
   const [wallets, setWallets] = useState<any[]>([]);
+  const [transactions, setTransactions] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,6 +48,7 @@ export default function WalletPage() {
       const data = await res.json();
       if (res.ok) {
         setWallets(data.wallets || []);
+        setTransactions(data.transactions || []);
       } else {
         setError(data.error);
         if (res.status === 401) {
@@ -196,13 +198,36 @@ export default function WalletPage() {
             </div>
 
             {/* TRANSACTION HISTORY */}
-            <TransactionHistory />
+            <TransactionHistory transactions={transactions} />
 
           </div>
 
           {/* RIGHT COLUMN: TRADING DESK */}
           <div className="lg:col-span-4 space-y-12 lg:sticky lg:top-28">
-            <TradingWidget wallets={wallets} onTrade={(data) => console.log('Trade Executed:', data)} />
+            <TradingWidget 
+              wallets={wallets} 
+              onTrade={async (data) => {
+                try {
+                  const res = await fetch('/api/trading/ops', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      userId: session?.user?.id || 'unknown',
+                      action: data.type,
+                      amount: parseFloat(data.amount),
+                      asset: data.asset
+                    })
+                  });
+                  if (res.ok) {
+                    fetchWallet(session?.accessToken); // Refresh data
+                  } else {
+                    alert('Trade failed.');
+                  }
+                } catch (e) {
+                  alert('Network error during trade.');
+                }
+              }} 
+            />
             
             {/* SOVEREIGN TIPS */}
             <div className="p-10 bg-primary/5 border-2 border-primary/20 rounded-[3rem] space-y-6 relative overflow-hidden group shadow-xl">

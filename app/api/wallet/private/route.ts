@@ -36,7 +36,8 @@ export async function GET(req: NextRequest) {
 
     // 3. Fetch Wallets from Prisma
     let wallets = await prisma.wallet.findMany({
-      where: { userId: user.id }
+      where: { userId: user.id },
+      include: { Transaction: true }
     });
 
     console.log(`[Wallet API] Found ${wallets.length} wallets in DB for ${user.id}`);
@@ -57,8 +58,22 @@ export async function GET(req: NextRequest) {
           userId: user.id
         }
       });
-      wallets = [newWallet];
+      wallets = [{ ...newWallet, Transaction: [] }];
     }
+
+    // Collect all transactions
+    const allTransactions = wallets.flatMap((w: any) => 
+      (w.Transaction || []).map((t: any) => ({
+        id: t.id,
+        type: t.type.toLowerCase(),
+        amount: t.amount,
+        currency: w.network.includes('Bitcoin') ? 'BTC' : (w.network.includes('Solana') ? 'SOL' : (w.network.includes('Ethereum') ? 'ETH' : (w.network.includes('XRP') ? 'XRP' : (w.network.includes('BNB') ? 'BNB' : 'VALLE')))),
+        status: t.status.toLowerCase(),
+        date: t.createdAt.toLocaleDateString(),
+        hash: t.hash,
+        network: w.network
+      }))
+    ).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return NextResponse.json({
       success: true,
@@ -69,6 +84,7 @@ export async function GET(req: NextRequest) {
         network: w.network,
         id: w.id
       })),
+      transactions: allTransactions,
       primaryWallet: wallets[0],
       user: {
         name: user.user_metadata?.name,

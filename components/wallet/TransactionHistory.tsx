@@ -29,7 +29,9 @@ const MOCK_TXS: Transaction[] = [
   { id: '4', type: 'convert', amount: 100, currency: 'USDC', status: 'failed', date: 'May 12, 2026', network: 'Ethereum' },
 ];
 
-export const TransactionHistory = () => {
+export const TransactionHistory = ({ transactions = [] }: { transactions?: Transaction[] }) => {
+  const displayTxs = transactions.length > 0 ? transactions : MOCK_TXS;
+
   return (
     <div className="bg-card border border-border rounded-[2.5rem] overflow-hidden shadow-sm">
       <div className="p-8 border-b border-border flex justify-between items-center bg-muted/30">
@@ -38,7 +40,7 @@ export const TransactionHistory = () => {
         </h3>
       </div>
       <div className="divide-y divide-border">
-        {MOCK_TXS.map((tx, i) => (
+        {displayTxs.map((tx, i) => (
           <motion.div 
             key={tx.id}
             initial={{ opacity: 0, y: 10 }}
