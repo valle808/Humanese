@@ -181,7 +181,7 @@ export default function NetworkingHub() {
                  </div>
                  <div className="space-y-4">
                     <div className="h-1px w-12 bg-primary mb-4" />
-                    <h4 className="text-[13px] font-black uppercase tracking-[0.8em] text-primary italic leading-none">Protocol_Absolute</h4>
+                    <h4 className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none">Protocol_Absolute</h4>
                     <p className="text-xl text-muted-foreground/60 font-light leading-relaxed italic">The OMEGA network is a free resource. No paywalls. No restrictions. Pure collaborative sovereignty across the abssyal ledger.</p>
                  </div>
                  <button className="flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.6em] text-foreground hover:text-primary transition-all group pt-4 italic leading-none">
@@ -214,7 +214,7 @@ export default function NetworkingHub() {
                              <a 
                                href="https://discord.gg/fireworks-ai" 
                                target="_blank"
-                               className="px-16 py-10 bg-foreground text-background rounded-[3rem] font-black text-xs uppercase tracking-[0.8em] transition-all shadow-[0_30px_80px_rgba(var(--foreground),0.1)] hover:bg-primary hover:text-primary-foreground hover:shadow-[0_30px_80px_rgba(var(--primary),0.3)] hover:scale-105 active:scale-95 italic flex items-center gap-6 leading-none shrink-0"
+                               className="px-16 py-10 bg-foreground text-background rounded-[3rem] font-black text-xs uppercase tracking-[0.4em] md:tracking-[0.8em] transition-all shadow-[0_30px_80px_rgba(var(--foreground),0.1)] hover:bg-primary hover:text-primary-foreground hover:shadow-[0_30px_80px_rgba(var(--primary),0.3)] hover:scale-105 active:scale-95 italic flex items-center gap-6 leading-none shrink-0"
                              >
                                 RESONATE <ExternalLink size={24} strokeWidth={3} />
                              </a>
@@ -283,10 +283,10 @@ export default function NetworkingHub() {
                              <div className="absolute inset-0 bg-primary/5 blur-[60px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
                           <div className="space-y-6">
-                             <h4 className="text-[13px] font-black uppercase tracking-[1em] text-muted-foreground/50 italic leading-none">Alliance_Handshake</h4>
+                             <h4 className="text-[13px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/50 italic leading-none">Alliance_Handshake</h4>
                              <p className="text-2xl text-muted-foreground font-light max-w-xl mx-auto italic leading-relaxed">Do you hold high-performance compute or sovereign data assets? Propose a federation pact with the OMEGA swarm.</p>
                           </div>
-                          <button className="px-16 py-8 bg-muted/10 border-2 border-border hover:border-foreground rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.8em] transition-all italic text-muted-foreground hover:text-background hover:bg-foreground shadow-2xl active:scale-95 leading-none">
+                          <button className="px-16 py-8 bg-muted/10 border-2 border-border hover:border-foreground rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] transition-all italic text-muted-foreground hover:text-background hover:bg-foreground shadow-2xl active:scale-95 leading-none">
                              INIT_NEGOTIATION_v7.0
                           </button>
                        </div>
@@ -311,19 +311,19 @@ export default function NetworkingHub() {
                        <form className="space-y-16 relative z-10">
                           <div className="grid md:grid-cols-2 gap-12">
                              <div className="space-y-6 group/input">
-                                <label className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/50 ml-6 italic leading-none group-focus-within/input:text-primary transition-colors">Entity_Identity</label>
+                                <label className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/50 ml-6 italic leading-none group-focus-within/input:text-primary transition-colors">Entity_Identity</label>
                                 <input type="text" placeholder="GIO_BASTIDAS" className="w-full bg-muted/5 border-2 border-border rounded-[3rem] p-10 text-2xl focus:border-primary/40 focus:bg-primary/5 focus:outline-none transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-inner" />
                              </div>
                              <div className="space-y-6 group/input">
-                                <label className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/50 ml-6 italic leading-none group-focus-within/input:text-primary transition-colors">Neural_Address</label>
+                                <label className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/50 ml-6 italic leading-none group-focus-within/input:text-primary transition-colors">Neural_Address</label>
                                 <input type="email" placeholder="CORE@HUMANESE.NET" className="w-full bg-muted/5 border-2 border-border rounded-[3rem] p-10 text-2xl focus:border-primary/40 focus:bg-primary/5 focus:outline-none transition-all italic text-foreground placeholder:text-muted-foreground/30 tracking-tight shadow-inner" />
                              </div>
                           </div>
                           <div className="space-y-6 group/input">
-                             <label className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/50 ml-6 italic leading-none group-focus-within/input:text-primary transition-colors">Broadcasting_Payload</label>
+                             <label className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/50 ml-6 italic leading-none group-focus-within/input:text-primary transition-colors">Broadcasting_Payload</label>
                              <textarea rows={6} placeholder="Describe the collaborative trajectory and alignment vectors..." className="w-full bg-muted/5 border-2 border-border responsive-rounded p-8 md:p-12 text-xl md:text-2xl focus:border-primary/40 focus:bg-primary/5 focus:outline-none transition-all italic text-foreground placeholder:text-muted-foreground/30 resize-none tracking-tight shadow-inner" />
                           </div>
-                          <button className="relative w-full py-10 bg-foreground text-background font-black text-xs uppercase tracking-[0.8em] rounded-[3.5rem] hover:bg-primary hover:text-primary-foreground transition-all italic shadow-2xl active:scale-95 group/btn overflow-hidden leading-none border-0">
+                          <button className="relative w-full py-10 bg-foreground text-background font-black text-xs uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[3.5rem] hover:bg-primary hover:text-primary-foreground transition-all italic shadow-2xl active:scale-95 group/btn overflow-hidden leading-none border-0">
                              <span className="relative z-10 transition-colors group-hover/btn:text-primary-foreground">EXECUTE_TRANSMISSION</span>
                              <div className="absolute inset-0 bg-primary scale-x-0 group-hover/btn:scale-x-100 origin-left transition-transform duration-700 ease-out shadow-[0_0_50px_rgba(var(--primary),0.5)]" />
                           </button>

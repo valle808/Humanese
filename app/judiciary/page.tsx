@@ -101,7 +101,7 @@ export default function JudicialOversightPage() {
           <div className="space-y-12 max-w-4xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
               <Gavel size={20} className="text-primary" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Sovereign Legislative Oversight</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Sovereign Legislative Oversight</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
@@ -213,7 +213,7 @@ export default function JudicialOversightPage() {
                                     </div>
                                 </div>
                                 <div className="text-left xl:text-right space-y-4 shrink-0 pr-6">
-                                    <div className="text-[11px] text-muted-foreground/10 uppercase tracking-[0.8em] font-black italic leading-none mb-1">Consensus_Status</div>
+                                    <div className="text-[11px] text-muted-foreground/10 uppercase tracking-[0.4em] md:tracking-[0.8em] font-black italic leading-none mb-1">Consensus_Status</div>
                                     <div className={`text-4xl font-black uppercase tracking-tighter italic leading-none ${proposal.status === 'Accepted' ? 'text-green-500' : 'text-primary animate-pulse'}`}>{proposal.status}</div>
                                 </div>
                              </div>
@@ -276,7 +276,7 @@ export default function JudicialOversightPage() {
                     </div>
                     
                     <div className="space-y-6 relative z-10">
-                        <button className="w-full py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[2rem] hover:scale-[1.03] active:scale-[0.97] transition-all text-[11px] shadow-[0_20px_40px_rgba(var(--primary),0.3)] italic leading-none flex items-center justify-center gap-6 border-0 group/btn">
+                        <button className="w-full py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[2rem] hover:scale-[1.03] active:scale-[0.97] transition-all text-[11px] shadow-[0_20px_40px_rgba(var(--primary),0.3)] italic leading-none flex items-center justify-center gap-6 border-0 group/btn">
                             Connect Delegate Shard <Radio size={20} className="animate-pulse" strokeWidth={3} />
                         </button>
                         <Link href="/governance" className="w-full py-8 border-2 border-border bg-background text-muted-foreground/40 hover:text-foreground hover:border-primary/40 font-black uppercase tracking-[0.6em] rounded-[2rem] hover:bg-primary/5 transition-all text-[11px] italic leading-none active:scale-95 flex items-center justify-center shadow-inner">
@@ -295,7 +295,7 @@ export default function JudicialOversightPage() {
                             <Cpu size={32} strokeWidth={2.5} />
                          </div>
                          <div className="space-y-2">
-                           <h3 className="text-[12px] font-black uppercase tracking-[0.8em] italic leading-none text-foreground">Neural Consensus</h3>
+                           <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none text-foreground">Neural Consensus</h3>
                            <div className="text-[10px] text-muted-foreground/10 font-black uppercase italic tracking-[0.4em] leading-none">HIVE_MIND_SYNC</div>
                          </div>
                      </div>
@@ -313,7 +313,7 @@ export default function JudicialOversightPage() {
                       <ShieldCheck size={32} strokeWidth={3} className="animate-pulse" />
                    </div>
                    <div className="space-y-3">
-                      <div className="text-[11px] font-black uppercase tracking-[0.8em] italic text-muted-foreground/20 leading-none group-hover:text-primary transition-colors">LegislativePrimes_H1</div>
+                      <div className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic text-muted-foreground/20 leading-none group-hover:text-primary transition-colors">LegislativePrimes_H1</div>
                       <p className="text-[11px] text-muted-foreground/40 italic leading-relaxed group-hover:text-foreground transition-colors font-light">Hard-locked primitives. Amendments require 75% multi-sig verification.</p>
                    </div>
                 </div>

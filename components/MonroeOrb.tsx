@@ -140,7 +140,7 @@ function CSSOrb({ onClick }: { onClick: () => void }) {
           animationDelay: '0.5s',
         }} />
       </div>
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[9px] font-black uppercase tracking-[1em] italic text-primary/40">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[9px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-primary/40">
         Monroe_Simulation // Active
       </div>
     </div>
@@ -186,7 +186,7 @@ export default function MonroeOrb() {
 
       {/* HUD */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none z-10">
-        <div className={`text-[9px] font-black uppercase tracking-[1em] italic flex flex-col items-center gap-1 transition-colors duration-300 ${hovered ? 'text-primary' : 'text-primary/40'}`}>
+        <div className={`text-[9px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic flex flex-col items-center gap-1 transition-colors duration-300 ${hovered ? 'text-primary' : 'text-primary/40'}`}>
           <span className={hovered ? 'animate-pulse' : ''}>Monroe_Simulation // Active</span>
           {hovered && <span className="text-[7px] text-primary/60 tracking-[0.5em]">Click to Interface</span>}
         </div>

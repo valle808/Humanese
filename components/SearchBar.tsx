@@ -98,7 +98,7 @@ export function SearchBar({ onSearch, isLoading = false, variant = 'default' }: 
           <button
             type="submit"
             disabled={isLoading || !query.trim()}
-            className="h-20 px-10 bg-primary text-primary-foreground text-xs font-black uppercase tracking-[0.8em] rounded-[1.5rem] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(var(--primary),0.3)] disabled:opacity-50 italic pt-1 leading-none border-0"
+            className="h-20 px-10 bg-primary text-primary-foreground text-xs font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[1.5rem] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(var(--primary),0.3)] disabled:opacity-50 italic pt-1 leading-none border-0"
           >
             {isLoading ? (
               <Loader2 className="h-8 w-8 animate-spin mx-auto" strokeWidth={3} />

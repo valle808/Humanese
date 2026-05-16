@@ -160,7 +160,7 @@ export default function SandboxPage() {
             </div>
             <button 
               onClick={() => setIsRunning(!isRunning)}
-              className={`group relative h-24 md:h-32 px-10 md:px-16 responsive-rounded font-black text-xs md:text-sm uppercase tracking-[0.8em] transition-all flex items-center gap-8 italic shadow-2xl ${isRunning ? 'bg-muted text-primary border-2 border-primary/40' : 'bg-primary text-primary-foreground shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 border-0'}`}
+              className={`group relative h-24 md:h-32 px-10 md:px-16 responsive-rounded font-black text-xs md:text-sm uppercase tracking-[0.4em] md:tracking-[0.8em] transition-all flex items-center gap-8 italic shadow-2xl ${isRunning ? 'bg-muted text-primary border-2 border-primary/40' : 'bg-primary text-primary-foreground shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 border-0'}`}
             >
               {isRunning ? <Pause size={32} strokeWidth={3} /> : <Play size={32} strokeWidth={3} />}
               {isRunning ? 'HALT_SIM' : 'INIT_WORLD'}
@@ -180,7 +180,7 @@ export default function SandboxPage() {
                    <button 
                      key={m} 
                      onClick={() => setViewMode(m)}
-                     className={`text-[11px] font-black uppercase tracking-[0.8em] transition-all italic relative ${viewMode === m ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
+                     className={`text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] transition-all italic relative ${viewMode === m ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
                    >
                      {m}
                      {viewMode === m && (
@@ -233,7 +233,7 @@ export default function SandboxPage() {
                             </div>
                          </div>
                          <div className="space-y-4 text-center">
-                             <p className="text-[12px] font-black uppercase tracking-[1em] italic text-primary animate-pulse">Awaiting Core Matrix Handshake...</p>
+                             <p className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-primary animate-pulse">Awaiting Core Matrix Handshake...</p>
                              <p className="text-[10px] font-black uppercase tracking-[0.5em] italic text-muted-foreground">Initializing Abyssal Sandbox Sector 7...</p>
                          </div>
                       </div>
@@ -250,7 +250,7 @@ export default function SandboxPage() {
                  <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-110 transition-transform">
                     <Target size={180} className="text-primary" />
                  </div>
-                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none relative z-10">
+                 <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none relative z-10">
                    <Wifi size={20} className="text-primary animate-pulse" /> Swarm Topology
                  </h3>
                  <div className="grid grid-cols-2 gap-10 relative z-10">
@@ -281,7 +281,7 @@ export default function SandboxPage() {
 
               {/* DIVINE COMMANDS */}
               <div className="bg-background border-2 border-border responsive-rounded p-8 md:p-12 lg:p-16 space-y-12 md:space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl group">
-                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none">
+                 <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none">
                    <Zap size={24} className="text-primary animate-pulse" /> Divine Intervention
                  </h3>
                  <div className="space-y-8">
@@ -302,7 +302,7 @@ export default function SandboxPage() {
                     <button 
                       onClick={generateReport}
                       disabled={isGenerating}
-                      className="px-8 py-4 bg-primary/5 border border-primary/20 rounded-2xl text-[11px] font-black uppercase tracking-[0.8em] text-primary/40 hover:text-primary hover:border-primary/60 transition-all italic flex items-center gap-6 group"
+                      className="px-8 py-4 bg-primary/5 border border-primary/20 rounded-2xl text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary/40 hover:text-primary hover:border-primary/60 transition-all italic flex items-center gap-6 group"
                     >
                        {isGenerating ? <RefreshCw className="animate-spin" size={18} strokeWidth={3} /> : <FileText size={18} className="group-hover:scale-125 transition-transform duration-500" />}
                        {isGenerating ? 'SYNTHESIZING...' : 'GENERATE_FORESIGHT_REPORT'}
@@ -334,7 +334,7 @@ export default function SandboxPage() {
 
                          <div className="space-y-32">
                             <div className="space-y-12 text-center lg:text-left">
-                               <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[12px] font-black uppercase tracking-[1em] text-primary italic leading-none">
+                               <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-primary italic leading-none">
                                   <ShieldAlert size={20} className="animate-pulse" /> Sovereign Foresight // OMEGA_7.0
                                </div>
                                <h2 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground whitespace-pre-wrap">{report.title}</h2>
@@ -346,7 +346,7 @@ export default function SandboxPage() {
 
                             <div className="grid lg:grid-cols-2 gap-24">
                                <div className="space-y-16">
-                                  <h4 className="text-[13px] font-black uppercase tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic pb-10 border-b border-border">
+                                  <h4 className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic pb-10 border-b border-border">
                                      <Activity size={24} className="text-primary" /> Emergent Trajectories
                                   </h4>
                                   <div className="space-y-12">
@@ -360,7 +360,7 @@ export default function SandboxPage() {
                                 </div>
 
                                <div className="space-y-16">
-                                  <h4 className="text-[13px] font-black uppercase tracking-[0.8em] text-primary flex items-center gap-6 italic pb-10 border-b border-primary/30">
+                                  <h4 className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary flex items-center gap-6 italic pb-10 border-b border-primary/30">
                                      <ShieldAlert size={24} /> Neural Risk Metrics
                                   </h4>
                                   <div className="space-y-12">
@@ -376,11 +376,11 @@ export default function SandboxPage() {
 
                             <div className="pt-32 border-t-2 border-border space-y-24">
                                <div className="space-y-10">
-                                  <h4 className="text-[12px] font-black uppercase tracking-[1em] text-muted-foreground italic">Ideological Synthesis</h4>
+                                  <h4 className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground italic">Ideological Synthesis</h4>
                                   <p className="text-fluid-hero font-black text-foreground italic tracking-tighter leading-none">&quot;{report.ideologicalDrift}&quot;</p>
                                 </div>
                                <div className="space-y-10">
-                                  <h4 className="text-[12px] font-black uppercase tracking-[1em] text-muted-foreground italic">Architectural Consensus</h4>
+                                  <h4 className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground italic">Architectural Consensus</h4>
                                   <p className="text-3xl text-muted-foreground font-light leading-relaxed italic max-w-5xl">{report.conclusion}</p>
                                 </div>
                             </div>
@@ -391,11 +391,11 @@ export default function SandboxPage() {
                                       <Terminal size={32} strokeWidth={3} />
                                    </div>
                                    <div className="space-y-2">
-                                      <div className="text-[11px] font-black uppercase tracking-[0.8em] text-primary italic leading-none">Authorization Ledger</div>
+                                      <div className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none">Authorization Ledger</div>
                                       <div className="text-2xl font-black text-foreground italic tracking-tighter uppercase leading-none">Gio V. Nucleus 7.0</div>
                                    </div>
                                </div>
-                               <button className="px-16 py-8 bg-primary/5 border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-[2.5rem] font-black uppercase tracking-[0.8em] text-xs italic shadow-2xl">Archive Shard in Neural Ledger</button>
+                               <button className="px-16 py-8 bg-primary/5 border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-[2.5rem] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-xs italic shadow-2xl">Archive Shard in Neural Ledger</button>
                             </div>
                          </div>
                       </motion.div>

@@ -230,7 +230,7 @@ export default function GovernanceHub() {
                     <div className="space-y-12 max-w-4xl">
                         <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
                             <ShieldCheck size={20} className="text-primary" />
-                            <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Decentralized Consensus Engine</span>
+                            <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Decentralized Consensus Engine</span>
                         </div>
                         <div className="space-y-8">
                             <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
@@ -247,7 +247,7 @@ export default function GovernanceHub() {
                     <div className="flex flex-col gap-10 shrink-0 w-full lg:w-auto">
                          <button 
                             onClick={() => setIsDrafting(true)}
-                            className="px-14 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[2.5rem] shadow-[0_40px_80px_rgba(var(--primary),0.2)] hover:scale-[1.02] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none relative group/btn border-0 shadow-2xl"
+                            className="px-14 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[2.5rem] shadow-[0_40px_80px_rgba(var(--primary),0.2)] hover:scale-[1.02] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none relative group/btn border-0 shadow-2xl"
                          >
                              <Plus size={24} strokeWidth={3} />
                              <span className="relative z-10">Initiate HIP Draft</span>
@@ -291,7 +291,7 @@ export default function GovernanceHub() {
                     >
                         {/* Status Breakdown */}
                         <div className="lg:col-span-1 bg-background border-2 border-border rounded-[3.5rem] p-12 space-y-12 backdrop-blur-3xl relative overflow-hidden shadow-xl shadow-inner">
-                            <div className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 italic flex items-center gap-4 pl-1 leading-none">
+                            <div className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic flex items-center gap-4 pl-1 leading-none">
                                 <Activity size={18} className="text-primary" /> Protocol Status Index
                             </div>
                             <div className="space-y-8">
@@ -329,7 +329,7 @@ export default function GovernanceHub() {
                         {/* Top Proposals Resonance */}
                         <div className="lg:col-span-2 bg-background border-2 border-border rounded-[3.5rem] p-12 space-y-12 backdrop-blur-3xl relative overflow-hidden shadow-xl shadow-inner">
                             <div className="flex items-center justify-between pl-1">
-                                <div className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 italic flex items-center gap-4 leading-none">
+                                <div className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic flex items-center gap-4 leading-none">
                                     <Zap size={18} className="text-primary" /> Live Resonance Matrix
                                 </div>
                                 <div className="text-[10px] font-black text-primary uppercase tracking-[0.5em] animate-pulse flex items-center gap-3 italic leading-none">
@@ -406,7 +406,7 @@ export default function GovernanceHub() {
                         ) : proposals.length === 0 ? (
                             <div className="p-32 border-2 border-dashed border-border rounded-[5rem] text-center flex flex-col items-center gap-12 opacity-30">
                                 <Gavel size={80} className="text-primary animate-bounce" strokeWidth={1} />
-                                <p className="text-2xl font-black uppercase tracking-[1em] italic text-muted-foreground/40 leading-none">No active proposals in matrix.</p>
+                                <p className="text-2xl font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-muted-foreground/40 leading-none">No active proposals in matrix.</p>
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 gap-8">
@@ -443,7 +443,7 @@ export default function GovernanceHub() {
 
                                                 <div className="flex items-center gap-12 shrink-0">
                                                     <div className="text-right space-y-4 w-40">
-                                                        <div className="text-[10px] text-muted-foreground/10 uppercase tracking-[0.8em] font-black italic leading-none mb-1">Resonance</div>
+                                                        <div className="text-[10px] text-muted-foreground/10 uppercase tracking-[0.4em] md:tracking-[0.8em] font-black italic leading-none mb-1">Resonance</div>
                                                         <div className="text-4xl font-black italic text-foreground group-hover:text-primary transition-colors tracking-tighter leading-none">
                                                             {(hip.resonanceThreshold || 0).toFixed(1)}
                                                         </div>
@@ -488,7 +488,7 @@ export default function GovernanceHub() {
                             
                             <header className="p-12 border-b-2 border-border flex justify-between items-center shrink-0 bg-muted/40">
                                 <div className="space-y-3">
-                                    <div className="text-[11px] text-primary font-black uppercase tracking-[1em] italic leading-none pl-1">Protocol_Drafting_v7</div>
+                                    <div className="text-[11px] text-primary font-black uppercase tracking-[0.5em] md:tracking-[1em] italic leading-none pl-1">Protocol_Drafting_v7</div>
                                     <h2 className="text-4xl font-black text-foreground italic tracking-tighter uppercase leading-none">Initiate New HIP</h2>
                                 </div>
                                 <button 
@@ -563,7 +563,7 @@ export default function GovernanceHub() {
                                  <button 
                                     disabled={isSubmitting || !newHip.title || !newHip.content}
                                     onClick={handleInitiateDraft}
-                                    className="px-14 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] text-[11px] rounded-full shadow-[0_20px_40px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all italic leading-none disabled:opacity-20 disabled:grayscale border-0 shadow-2xl group/btn"
+                                    className="px-14 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[11px] rounded-full shadow-[0_20px_40px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all italic leading-none disabled:opacity-20 disabled:grayscale border-0 shadow-2xl group/btn"
                                  >
                                      {isSubmitting ? (
                                          <Activity className="animate-spin" size={24} strokeWidth={3} />

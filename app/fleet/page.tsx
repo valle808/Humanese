@@ -135,7 +135,7 @@ export default function FleetPage() {
           <div className="space-y-12 max-w-4xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
               <Orbit size={20} className="text-primary animate-spin-slow" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Physical Infrastructure Layer</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Physical Infrastructure Layer</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
@@ -173,7 +173,7 @@ export default function FleetPage() {
               <h2 className="text-fluid-title font-black uppercase tracking-tight italic flex items-center gap-8 text-muted-foreground/40 leading-none">
                 <Server size={40} className="text-primary" strokeWidth={2.5} /> Global Cluster Nodes
               </h2>
-              <span className="text-[11px] text-primary font-black uppercase tracking-[0.8em] italic animate-pulse leading-none">
+              <span className="text-[11px] text-primary font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic animate-pulse leading-none">
                 ACTIVE_NODES: {nodes.length}
               </span>
             </div>
@@ -262,7 +262,7 @@ export default function FleetPage() {
                   <div className="space-y-8 relative z-10 border-b-2 border-border pb-10">
                     <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-primary shadow-sm">
                       <BarChart3 size={18} strokeWidth={2.5} />
-                      <span className="text-[11px] font-black uppercase tracking-[0.8em] italic leading-none pl-1">Telemetry HUD</span>
+                      <span className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none pl-1">Telemetry HUD</span>
                     </div>
                     <div className="space-y-4">
                         <h3 className="text-fluid-title font-black italic tracking-tighter uppercase leading-tight text-foreground group-hover:text-primary transition-colors break-words">
@@ -300,7 +300,7 @@ export default function FleetPage() {
                   </AnimatePresence>
 
                   <div className="border-t-2 border-border pt-10 space-y-8 relative z-10">
-                    <h4 className="text-[10px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic flex items-center gap-4 pl-1 leading-none">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic flex items-center gap-4 pl-1 leading-none">
                       <Terminal size={18} className="text-primary" strokeWidth={2.5} /> Fleet Command
                     </h4>
                     <div className="grid grid-cols-2 gap-6">
@@ -319,7 +319,7 @@ export default function FleetPage() {
                     </div>
                     <button
                       onClick={() => dispatchCommand(selectedNode.id, 'OFFLINE')}
-                      className="w-full h-16 bg-red-500/10 border-2 border-red-500/20 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.8em] italic text-red-500 hover:bg-red-500 hover:text-foreground transition-all flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner"
+                      className="w-full h-16 bg-red-500/10 border-2 border-red-500/20 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic text-red-500 hover:bg-red-500 hover:text-foreground transition-all flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner"
                     >
                       <Power size={18} strokeWidth={2.5} /> Halt Node Shard
                     </button>
@@ -334,7 +334,7 @@ export default function FleetPage() {
                     <Target size={56} className="text-muted-foreground/20 group-hover:text-primary transition-colors animate-pulse" strokeWidth={1} />
                   </div>
                   <div className="space-y-6">
-                    <p className="text-[12px] font-black uppercase tracking-[1em] italic text-muted-foreground/40 leading-none">Initialize Link</p>
+                    <p className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-muted-foreground/40 leading-none">Initialize Link</p>
                     <p className="text-2xl text-muted-foreground/40 italic font-light leading-relaxed max-w-xs mx-auto tracking-tight">Select a physical node from the cluster to establish <span className="text-primary/60">telemetry resonance</span>.</p>
                   </div>
                 </motion.div>
@@ -376,7 +376,7 @@ export default function FleetPage() {
 
               <div className="space-y-16 relative z-10">
                 <div className="space-y-8">
-                  <div className="text-[11px] font-black text-primary uppercase tracking-[1em] italic leading-none pl-1">Intelligence Synthesis Report</div>
+                  <div className="text-[11px] font-black text-primary uppercase tracking-[0.5em] md:tracking-[1em] italic leading-none pl-1">Intelligence Synthesis Report</div>
                   <h2 className="text-fluid-hero font-black italic tracking-tighter uppercase leading-[0.9] text-foreground">{report.title}</h2>
                   <div className="text-[11px] text-muted-foreground/40 uppercase tracking-[0.5em] italic font-black flex items-center gap-4 leading-none pl-1">
                     <Clock size={18} strokeWidth={2.5} /> {new Date(report.timestamp).toLocaleString()}
@@ -385,7 +385,7 @@ export default function FleetPage() {
 
                 <div className="grid md:grid-cols-2 gap-16">
                   <div className="space-y-10">
-                    <h4 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground italic flex items-center gap-6 leading-none pl-1">
+                    <h4 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground italic flex items-center gap-6 leading-none pl-1">
                       <Target size={20} className="text-primary" strokeWidth={2.5} /> Resonance Trajectories
                     </h4>
                     <div className="space-y-6">
@@ -398,7 +398,7 @@ export default function FleetPage() {
                   </div>
                   <div className="space-y-12">
                     <div className="space-y-8">
-                      <h4 className="text-[12px] font-black uppercase tracking-[0.8em] text-red-500 italic flex items-center gap-6 leading-none pl-1">
+                      <h4 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-red-500 italic flex items-center gap-6 leading-none pl-1">
                         <ShieldAlert size={20} className="animate-pulse" strokeWidth={2.5} /> Emergent Risks
                       </h4>
                       <div className="space-y-4">
@@ -408,7 +408,7 @@ export default function FleetPage() {
                       </div>
                     </div>
                     <div className="space-y-8">
-                      <h4 className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic flex items-center gap-6 leading-none pl-1">
+                      <h4 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic flex items-center gap-6 leading-none pl-1">
                         <Orbit size={20} className="animate-spin-slow" strokeWidth={2.5} /> Ideological Drift
                       </h4>
                       <div className="p-10 bg-primary/5 border-2 border-primary/20 rounded-[3rem] text-3xl font-black italic leading-[1.1] text-foreground tracking-tighter shadow-inner">
@@ -419,7 +419,7 @@ export default function FleetPage() {
                 </div>
 
                 <div className="pt-16 border-t-2 border-border space-y-8">
-                  <div className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic leading-none pl-1">Final Conclusion</div>
+                  <div className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic leading-none pl-1">Final Conclusion</div>
                   <p className="text-3xl font-light italic text-muted-foreground/60 leading-relaxed tracking-tight max-w-4xl">&quot;{report.conclusion}&quot;</p>
                 </div>
               </div>

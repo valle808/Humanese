@@ -137,7 +137,7 @@ export default function IntelligenceHQ() {
                    <div className="w-24 h-24 border-t-2 border-primary rounded-full animate-spin shadow-[0_0_30px_var(--primary)]" />
                    <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full animate-pulse" />
                 </div>
-                <p className="text-[11px] font-black uppercase tracking-[0.8em] text-primary animate-pulse italic leading-none">Initializing Neural Intelligence HQ...</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary animate-pulse italic leading-none">Initializing Neural Intelligence HQ...</p>
             </div>
         );
     }
@@ -187,7 +187,7 @@ export default function IntelligenceHQ() {
                     <div className="space-y-12 max-w-4xl">
                         <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
                           <Activity size={20} className="text-primary" />
-                          <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Cognitive Surveillance HQ</span>
+                          <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Cognitive Surveillance HQ</span>
                         </div>
                         <div className="space-y-8">
                           <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
@@ -241,7 +241,7 @@ export default function IntelligenceHQ() {
                                         <div className="w-24 h-24 border-2 border-border rounded-full flex items-center justify-center mx-auto relative group-hover:border-primary/40 transition-all shadow-xl">
                                             <Radio size={48} className="animate-spin text-primary/40" />
                                         </div>
-                                        <p className="text-2xl font-black uppercase tracking-[0.8em] italic leading-none">Awaiting neural resonance...</p>
+                                        <p className="text-2xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">Awaiting neural resonance...</p>
                                     </div>
                                 ) : (
                                     cognitiveLogs.map((log) => (
@@ -297,7 +297,7 @@ export default function IntelligenceHQ() {
                                 {loading && items.length === 0 ? (
                                     <div className="text-center py-32 space-y-10 opacity-40">
                                         <Layers size={64} className="mx-auto animate-bounce text-primary/40" strokeWidth={1.5} />
-                                        <p className="text-2xl font-black uppercase tracking-[0.8em] italic leading-none">Decrypting Neural Bus...</p>
+                                        <p className="text-2xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">Decrypting Neural Bus...</p>
                                     </div>
                                 ) : error ? (
                                     <div className="p-12 text-red-500 font-black italic flex flex-col items-center gap-10 bg-red-500/10 rounded-[3rem] border-2 border-red-500/20 shadow-inner">
@@ -352,7 +352,7 @@ export default function IntelligenceHQ() {
                                                     
                                                     <button 
                                                         onClick={() => handleResonate(item.type, item.id)}
-                                                        className="w-full lg:w-auto px-16 py-6 bg-foreground text-background font-black uppercase tracking-[0.8em] text-[11px] rounded-full hover:bg-primary hover:text-primary-foreground hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none shrink-0 shadow-2xl border-0"
+                                                        className="w-full lg:w-auto px-16 py-6 bg-foreground text-background font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[11px] rounded-full hover:bg-primary hover:text-primary-foreground hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none shrink-0 shadow-2xl border-0"
                                                     >
                                                         Resonate 💠
                                                     </button>
@@ -375,7 +375,7 @@ export default function IntelligenceHQ() {
                                    <CreditCard size={180} className="text-primary" />
                                 </div>
                                 <div className="flex items-center justify-between border-b-2 border-border pb-8 relative z-10">
-                                   <div className="text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] italic leading-none pl-2">TREASURY_SYNC</div>
+                                   <div className="text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none pl-2">TREASURY_SYNC</div>
                                    <div className="w-12 h-12 bg-primary/10 border-2 border-primary/20 rounded-2xl flex items-center justify-center text-primary shadow-sm shadow-inner">
                                       <ShieldCheck size={28} strokeWidth={2.5} className="animate-pulse" />
                                    </div>
@@ -407,12 +407,12 @@ export default function IntelligenceHQ() {
                              <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
                                 <Activity size={200} className="text-primary" />
                              </div>
-                             <h2 className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic flex items-center gap-6 relative z-10 leading-none pl-2">
+                             <h2 className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic flex items-center gap-6 relative z-10 leading-none pl-2">
                                 <Boxes size={24} className="text-primary" strokeWidth={2.5} /> Evolution Monitor
                             </h2>
                             <div className="grid grid-cols-1 gap-6 relative z-10 overflow-y-auto max-h-[450px] custom-scrollbar pr-2">
                                 {agents.length === 0 ? (
-                                    <div className="text-center py-16 text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] italic animate-pulse leading-none">
+                                    <div className="text-center py-16 text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] md:tracking-[0.8em] italic animate-pulse leading-none">
                                         Awaiting_autonomous_pulse...
                                     </div>
                                 ) : (
@@ -437,12 +437,12 @@ export default function IntelligenceHQ() {
                              <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
                                 <TrendingUp size={200} className="text-primary" />
                              </div>
-                             <h2 className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic flex items-center gap-6 pl-2 leading-none relative z-10">
+                             <h2 className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic flex items-center gap-6 pl-2 leading-none relative z-10">
                                 <TrendingUp size={24} className="text-primary" strokeWidth={2.5} /> Skill_Commerce
                             </h2>
                             <div className="space-y-6 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar relative z-10">
                                 {marketplaceItems.length === 0 ? (
-                                    <div className="text-center py-16 text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] italic leading-none">
+                                    <div className="text-center py-16 text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">
                                         No_recent_commerce_detection
                                     </div>
                                 ) : (

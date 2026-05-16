@@ -34,7 +34,7 @@ export function KnowledgeVault() {
     if (loading) return (
         <div className="flex flex-col items-center justify-center py-20 gap-6">
             <Activity className="text-primary animate-pulse" size={40} strokeWidth={3} />
-            <div className="text-primary/40 text-[10px] font-black uppercase tracking-[0.8em] italic animate-pulse">Accessing_Abyssal_Vault_</div>
+            <div className="text-primary/40 text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic animate-pulse">Accessing_Abyssal_Vault_</div>
         </div>
     );
     

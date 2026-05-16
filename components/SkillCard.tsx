@@ -71,7 +71,7 @@ export function SkillCard({ skill }: SkillCardProps) {
                        </div>
                     </div>
                     <div className="text-center space-y-2">
-                       <span className="block text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none pl-1">GHOST_MODE_ACTIVE</span>
+                       <span className="block text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none pl-1">GHOST_MODE_ACTIVE</span>
                        <span className="block text-[10px] text-muted-foreground/10 font-black uppercase tracking-[0.4em] italic leading-none pl-1">NEURAL_SHARD_ANONYMIZED</span>
                     </div>
                 </div>

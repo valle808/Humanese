@@ -166,7 +166,7 @@ export default function CognitiveAtlasPage() {
               <Orbit size={48} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary animate-pulse" />
             </div>
             <div className="space-y-4 text-center">
-              <h2 className="text-[11px] font-black uppercase tracking-[1em] text-primary italic leading-none pl-4">Cognitive_Atlas_Syncing</h2>
+              <h2 className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-primary italic leading-none pl-4">Cognitive_Atlas_Syncing</h2>
               <div className="flex gap-2 justify-center">
                 {[1,2,3,4].map(i => (
                   <motion.div 

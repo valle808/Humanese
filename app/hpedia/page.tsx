@@ -387,7 +387,7 @@ export default function HPediaPage() {
                         <div className="text-[10px] font-black text-muted-foreground/10 uppercase tracking-[0.6em] italic group-hover:text-foreground transition-colors leading-none uppercase">Document Integrity Key</div>
                         <div className="text-[10px] font-mono text-primary uppercase italic leading-none truncate max-w-xs">{Math.random().toString(36).substring(2, 40).toUpperCase()}</div>
                      </div>
-                     <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="px-8 py-4 bg-muted/10 border border-border rounded-2xl text-[10px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 hover:text-foreground hover:border-primary/40 transition-all italic">
+                     <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="px-8 py-4 bg-muted/10 border border-border rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 hover:text-foreground hover:border-primary/40 transition-all italic">
                         UP_LINK SHARD
                      </button>
                   </div>
@@ -412,7 +412,7 @@ export default function HPediaPage() {
               <div className="bg-background border border-border responsive-rounded p-8 md:p-12 lg:p-24 space-y-20 shadow-[0_80px_150px_rgba(0,0,0,0.9)] relative overflow-hidden backdrop-blur-3xl group">
                 {/* Topic Input */}
                 <div className="space-y-6 relative z-10">
-                  <label className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 italic pl-4">Directive_Context</label>
+                  <label className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic pl-4">Directive_Context</label>
                   <div className="relative group/input">
                     <Terminal className="absolute left-8 top-1/2 -translate-y-1/2 text-muted-foreground/5 group-focus-within/input:text-primary group-focus-within/input:scale-110 transition-all" size={32} />
                     <input 
@@ -429,7 +429,7 @@ export default function HPediaPage() {
 
                 {/* Agent Selection */}
                 <div className="space-y-8 relative z-10">
-                  <label className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 italic pl-4">Investigator_Sharding</label>
+                  <label className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic pl-4">Investigator_Sharding</label>
                   <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
                     {Object.entries(AGENT_NAMES).map(([name, info]) => (
                       <button key={name} onClick={() => setSelectedAgent(name)} className={`p-10 rounded-[3.5rem] border text-left transition-all group/card relative overflow-hidden shadow-2xl ${selectedAgent === name ? 'border-primary bg-primary/5 shadow-[inset_0_0_30px_hsl(var(--primary) / 0.1)]' : 'border-border bg-muted/10 hover:border-border hover:bg-muted/10'}`}>
@@ -464,7 +464,7 @@ export default function HPediaPage() {
                 <button 
                   onClick={handleGenerate}
                   disabled={isGenerating || !genTopic.trim()}
-                  className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[3.5rem] flex items-center justify-center gap-6 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-20 shadow-[0_40px_100px_rgba(var(--primary),0.3)] shadow-2xl group text-sm italic"
+                  className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[3.5rem] flex items-center justify-center gap-6 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-20 shadow-[0_40px_100px_rgba(var(--primary),0.3)] shadow-2xl group text-sm italic"
                 >
                   {isGenerating ? (
                     <>

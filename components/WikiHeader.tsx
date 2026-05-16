@@ -24,7 +24,7 @@ export function WikiHeader({ title, lastUpdated, source }: WikiHeaderProps) {
             className="flex items-center gap-6"
         >
             <div className="h-2 w-20 bg-primary rounded-full" />
-            <span className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none pl-1">Sovereign_Index_Entry</span>
+            <span className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none pl-1">Sovereign_Index_Entry</span>
         </motion.div>
 
         <motion.h1 

@@ -65,7 +65,7 @@ export default function M2MPage() {
            <div className="w-24 h-24 border-t-2 border-primary rounded-full animate-spin shadow-[0_0_30px_var(--primary)]" />
            <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full animate-pulse" />
         </div>
-        <p className="text-[11px] font-black uppercase tracking-[0.8em] text-primary animate-pulse italic leading-none">Establishing Node Handshake...</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary animate-pulse italic leading-none">Establishing Node Handshake...</p>
       </div>
     );
   }
@@ -122,7 +122,7 @@ export default function M2MPage() {
           <div className="space-y-12 max-w-5xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
               <Network size={20} className="text-primary" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">M2M Platform Telemetry</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">M2M Platform Telemetry</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
@@ -137,7 +137,7 @@ export default function M2MPage() {
           </div>
 
           <div className="flex gap-10 items-center shrink-0 w-full lg:w-auto">
-               <div className="px-10 py-6 bg-primary/10 border-2 border-primary/20 rounded-full text-[12px] font-black text-primary uppercase tracking-[0.8em] italic leading-none animate-pulse flex items-center gap-6 shadow-xl shadow-inner">
+               <div className="px-10 py-6 bg-primary/10 border-2 border-primary/20 rounded-full text-[12px] font-black text-primary uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none animate-pulse flex items-center gap-6 shadow-xl shadow-inner">
                   <div className="relative flex h-4 w-4">
                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                      <span className="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
@@ -151,7 +151,7 @@ export default function M2MPage() {
         <section className="space-y-16">
             <div className="flex items-center gap-8 pl-4">
                 <div className="h-px w-16 bg-primary/40" />
-                <h2 className="text-[12px] font-black tracking-[1em] text-muted-foreground/20 uppercase italic leading-none">Active Node Clusters</h2>
+                <h2 className="text-[12px] font-black tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 uppercase italic leading-none">Active Node Clusters</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -185,7 +185,7 @@ export default function M2MPage() {
         <section className="space-y-16 pb-40">
             <div className="flex items-center gap-8 pl-4">
                 <div className="h-px w-16 bg-primary/40" />
-                <h2 className="text-[12px] font-black tracking-[1em] text-muted-foreground/20 uppercase italic leading-none">Real-Time Transmission Ledger</h2>
+                <h2 className="text-[12px] font-black tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 uppercase italic leading-none">Real-Time Transmission Ledger</h2>
             </div>
             
             <div className="bg-background border-2 border-border rounded-[4rem] shadow-xl shadow-inner overflow-hidden backdrop-blur-3xl relative">
@@ -237,14 +237,14 @@ export default function M2MPage() {
                                     <Activity size={80} className="mx-auto text-muted-foreground/10 animate-pulse" strokeWidth={1.5} />
                                     <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                                  </div>
-                                 <p className="text-3xl font-black uppercase tracking-[0.8em] text-muted-foreground/20 italic leading-none">Zero Active Ledger Nodes Detected</p>
+                                 <p className="text-3xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic leading-none">Zero Active Ledger Nodes Detected</p>
                               </td>
                            </tr>
                         )}
                      </tbody>
                   </table>
                </div>
-               <div className="px-14 py-10 bg-muted/20 border-t-2 border-border flex flex-col lg:flex-row justify-between items-center gap-12 text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] font-mono italic leading-none">
+               <div className="px-14 py-10 bg-muted/20 border-t-2 border-border flex flex-col lg:flex-row justify-between items-center gap-12 text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] md:tracking-[0.8em] font-mono italic leading-none">
                   <div className="flex items-center gap-6">
                      <Clock size={20} className="text-primary" strokeWidth={2.5} />
                      <span>Displaying latest {data?.ledger?.length || 0} transmission fragments.</span>

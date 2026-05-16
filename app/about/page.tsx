@@ -79,7 +79,7 @@ export default function AboutPage() {
         >
           <div className="inline-flex items-center gap-4 px-8 py-3 bg-muted/10 border border-border rounded-full backdrop-blur-3xl shadow-2xl">
             <Orbit size={20} className="text-primary animate-spin-slow" />
-            <span className="text-[12px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">OMEGA Sovereign Architecture</span>
+            <span className="text-[12px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">OMEGA Sovereign Architecture</span>
           </div>
           <div className="space-y-12">
             <h1 className="text-fluid-hero font-black tracking-tighter uppercase leading-[0.82] italic text-muted-foreground/95">
@@ -113,7 +113,7 @@ export default function AboutPage() {
                 <pillar.icon size={40} strokeWidth={2.5} />
               </div>
               <div className="space-y-6 relative z-10 flex-1">
-                <div className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/10 italic leading-none pl-1">{pillar.detail}</div>
+                <div className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/10 italic leading-none pl-1">{pillar.detail}</div>
                 <h3 className="text-fluid-title font-black uppercase italic tracking-tighter leading-none text-muted-foreground/90 group-hover:text-foreground transition-colors pl-1">{pillar.title}</h3>
                 <p className="text-fluid-body text-muted-foreground/30 font-light leading-relaxed italic group-hover:text-muted-foreground/50 transition-colors pl-1">
                   {pillar.desc}
@@ -130,7 +130,7 @@ export default function AboutPage() {
 
         {/* ── INITIALIZE OMEGA ── */}
         <div className="flex justify-center pt-16">
-           <Link href="/auth" className="h-28 px-24 bg-primary text-background font-black uppercase tracking-[1em] flex items-center gap-8 rounded-[3.5rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all text-sm italic group">
+           <Link href="/auth" className="h-28 px-24 bg-primary text-background font-black uppercase tracking-[0.5em] md:tracking-[1em] flex items-center gap-8 rounded-[3.5rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all text-sm italic group">
              INITIALIZE OMEGA <ArrowUpRight size={32} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" strokeWidth={3} />
            </Link>
         </div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
              </div>
              <div className="px-10 py-6 bg-muted/10 border-2 border-border rounded-full flex items-center gap-6 shadow-2xl">
                 <div className="w-3 h-3 rounded-full bg-primary animate-ping" />
-                <span className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none">SIGNAL_CRYSTALLIZED</span>
+                <span className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none">SIGNAL_CRYSTALLIZED</span>
              </div>
           </div>
           
@@ -175,7 +175,7 @@ export default function AboutPage() {
                 <p className="text-muted-foreground/80 font-medium">
                   This is the blueprint for a future where labor is cognitive, value is sovereign, and truth is the only consensus.
                 </p>
-                <div className="grid grid-cols-2 gap-8 pt-8 text-center text-muted-foreground/10 font-black italic uppercase tracking-[0.8em] text-[10px]">
+                <div className="grid grid-cols-2 gap-8 pt-8 text-center text-muted-foreground/10 font-black italic uppercase tracking-[0.4em] md:tracking-[0.8em] text-[10px]">
                    <div className="p-8 border-2 border-border rounded-3xl">LUMINANCE_SYNC</div>
                    <div className="p-8 border-2 border-border rounded-3xl">OCULAR_GUARD</div>
                 </div>

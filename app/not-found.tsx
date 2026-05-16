@@ -80,10 +80,10 @@ export default function NotFound() {
            transition={{ delay: 0.8 }}
            className="flex flex-col md:flex-row items-center justify-center gap-10"
         >
-            <Link href="/" className="w-full md:w-auto px-16 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] text-[11px] rounded-[2.5rem] hover:scale-[1.05] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center justify-center gap-6 italic leading-none group">
+            <Link href="/" className="w-full md:w-auto px-16 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[11px] rounded-[2.5rem] hover:scale-[1.05] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center justify-center gap-6 italic leading-none group">
                <ChevronLeft size={20} className="group-hover:-translate-x-2 transition-transform" strokeWidth={3} /> Return to Matrix
             </Link>
-            <Link href="/search" className="w-full md:w-auto px-16 py-8 bg-muted/10 border border-border text-muted-foreground/30 hover:text-primary hover:border-primary/30 font-black uppercase tracking-[0.8em] text-[11px] rounded-[2.5rem] transition-all flex items-center justify-center gap-6 italic leading-none shadow-2xl">
+            <Link href="/search" className="w-full md:w-auto px-16 py-8 bg-muted/10 border border-border text-muted-foreground/30 hover:text-primary hover:border-primary/30 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[11px] rounded-[2.5rem] transition-all flex items-center justify-center gap-6 italic leading-none shadow-2xl">
                <Orbit size={20} className="animate-spin-slow" /> Re-Scan Index
             </Link>
         </motion.div>

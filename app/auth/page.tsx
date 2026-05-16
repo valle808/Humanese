@@ -535,7 +535,7 @@ function AuthContent() {
               <Link href="/legal" className="hover:text-primary transition-colors">Digital Constitution</Link>
               <Link href="/faq" className="hover:text-primary transition-colors">Node Support</Link>
             </div>
-            <p className="text-[9px] font-black text-muted-foreground/40 tracking-[0.8em] uppercase select-none leading-none">
+            <p className="text-[9px] font-black text-muted-foreground/40 tracking-[0.4em] md:tracking-[0.8em] uppercase select-none leading-none">
               Nexus Matrix Integration v7.0.0-OMEGA · Signed by Gio Bastidas
             </p>
         </div>

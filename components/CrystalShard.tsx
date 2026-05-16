@@ -202,7 +202,7 @@ export default function CrystalShard() {
 
       {/* HUD label */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none select-none">
-        <div className="text-[9px] font-black uppercase tracking-[1em] text-primary/50 italic animate-pulse">
+        <div className="text-[9px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-primary/50 italic animate-pulse">
           Sovereign_Core // Active
         </div>
       </div>

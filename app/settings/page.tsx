@@ -58,7 +58,7 @@ export default function SettingsPage() {
              <div className="w-24 h-24 border-t-2 border-primary rounded-full animate-spin shadow-[0_0_30px_var(--primary)]" />
              <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full animate-pulse" />
           </div>
-          <p className="text-[11px] font-black uppercase tracking-[0.8em] text-primary animate-pulse italic leading-none">Syncing Identity Stream...</p>
+          <p className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary animate-pulse italic leading-none">Syncing Identity Stream...</p>
       </div>
     );
   }
@@ -108,7 +108,7 @@ export default function SettingsPage() {
           <div className="space-y-12 max-w-4xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
               <Settings2 size={20} className="text-primary" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Identity Control Nexus</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Identity Control Nexus</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
@@ -239,7 +239,7 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <button className="w-full mt-12 py-8 bg-foreground text-background border-0 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.8em] hover:bg-primary hover:text-primary-foreground hover:scale-[1.03] transition-all italic relative z-10 shadow-2xl leading-none active:scale-95">
+              <button className="w-full mt-12 py-8 bg-foreground text-background border-0 rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] hover:bg-primary hover:text-primary-foreground hover:scale-[1.03] transition-all italic relative z-10 shadow-2xl leading-none active:scale-95">
                 Configure Agent 💠
               </button>
             </div>
@@ -272,7 +272,7 @@ export default function SettingsPage() {
                 <Link href="/auth/recover" className="px-10 py-6 bg-muted border-2 border-border rounded-[2rem] text-[11px] font-black uppercase tracking-[0.6em] hover:border-primary/40 hover:text-primary transition-all italic text-center leading-none shadow-sm shadow-inner active:scale-95">
                   Reveal Phrase
                 </Link>
-                <button onClick={() => { localStorage.removeItem('humanese_session'); window.location.href = '/auth'; }} className="px-10 py-6 bg-red-500/10 border-2 border-red-500/20 text-red-500 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.8em] hover:bg-red-500 hover:text-foreground transition-all italic flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner border-red-500/20">
+                <button onClick={() => { localStorage.removeItem('humanese_session'); window.location.href = '/auth'; }} className="px-10 py-6 bg-red-500/10 border-2 border-red-500/20 text-red-500 rounded-[2rem] text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] hover:bg-red-500 hover:text-foreground transition-all italic flex items-center justify-center gap-4 active:scale-95 leading-none shadow-inner border-red-500/20">
                   <LogOut size={20} strokeWidth={2.5} /> Disconnect
                 </button>
               </div>

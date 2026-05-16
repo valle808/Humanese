@@ -226,7 +226,7 @@ export function SkillListingForm({ onClose, onSuccess }: SkillListingFormProps) 
                         <button 
                             onClick={handleSubmit} 
                             disabled={isSubmitting} 
-                            className="flex-1 bg-primary text-primary-foreground rounded-[2.5rem] py-10 text-[12px] font-black uppercase tracking-[0.8em] hover:scale-[1.05] active:scale-[0.95] disabled:opacity-50 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] italic relative overflow-hidden group/btn leading-none"
+                            className="flex-1 bg-primary text-primary-foreground rounded-[2.5rem] py-10 text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] hover:scale-[1.05] active:scale-[0.95] disabled:opacity-50 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] italic relative overflow-hidden group/btn leading-none"
                         >
                             <span className="relative z-10 flex items-center justify-center gap-6">
                                 {isSubmitting ? <RefreshCw className="animate-spin" size={24} strokeWidth={3} /> : <Rocket size={24} strokeWidth={3} />}

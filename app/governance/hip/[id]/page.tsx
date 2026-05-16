@@ -115,7 +115,7 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                         className="space-y-12"
                     >
                          <div className="flex flex-wrap items-center gap-6">
-                            <span className="px-8 py-3 bg-primary/10 border border-primary/30 text-primary text-[11px] font-black tracking-[0.8em] uppercase rounded-full italic leading-none shadow-[0_20px_40px_rgba(var(--primary),0.1)]">
+                            <span className="px-8 py-3 bg-primary/10 border border-primary/30 text-primary text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] uppercase rounded-full italic leading-none shadow-[0_20px_40px_rgba(var(--primary),0.1)]">
                                 HIP-{hip.hipNumber.toString().padStart(4, '0')}
                             </span>
                             <span className="px-6 py-3 bg-muted/10 border border-border text-muted-foreground/30 text-[10px] font-black uppercase tracking-[0.4em] rounded-full italic leading-none backdrop-blur-3xl">
@@ -169,7 +169,7 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent shadow-[0_0_20px_hsl(var(--primary))]" />
 
                         <div className="space-y-8 relative z-10">
-                            <div className="inline-flex items-center gap-6 px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse">
+                            <div className="inline-flex items-center gap-6 px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse">
                                 <Network size={20} strokeWidth={2.5} /> Resonance Telemetry
                             </div>
                             
@@ -197,7 +197,7 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
 
                         <div className="pt-8 space-y-8 relative z-10 border-t-2 border-border">
                             <div className="space-y-4">
-                                <div className="flex items-center gap-6 text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/10 italic leading-none pl-2">
+                                <div className="flex items-center gap-6 text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/10 italic leading-none pl-2">
                                     <Terminal size={18} className="text-primary" strokeWidth={2.5} /> Signal_Broadcast
                                 </div>
                                 
@@ -231,14 +231,14 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
 
                                             <motion.button 
                                                 onClick={() => handleSovereignVote('Support')}
-                                                className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[1em] text-xs rounded-[3rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-6 italic overflow-hidden group/btn leading-none border-0"
+                                                className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.5em] md:tracking-[1em] text-xs rounded-[3rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-6 italic overflow-hidden group/btn leading-none border-0"
                                             >
                                                 Broadcast Support <ArrowUpRight size={24} strokeWidth={3} />
                                                 <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
                                             </motion.button>
                                             <motion.button
                                                 onClick={() => handleSovereignVote('Against')}
-                                                className="w-full py-6 border-2 border-red-500/20 text-red-500/60 font-black uppercase tracking-[0.8em] text-[10px] rounded-[2rem] hover:border-red-500/40 hover:text-red-400 transition-all flex items-center justify-center gap-4 italic leading-none"
+                                                className="w-full py-6 border-2 border-red-500/20 text-red-500/60 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[10px] rounded-[2rem] hover:border-red-500/40 hover:text-red-400 transition-all flex items-center justify-center gap-4 italic leading-none"
                                             >
                                                 Signal Against
                                             </motion.button>
@@ -250,7 +250,7 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                                             className="w-full py-10 bg-muted/10 border-2 border-primary/40 rounded-[3rem] flex flex-col items-center gap-4 text-primary italic shadow-2xl"
                                         >
                                             <Check size={32} strokeWidth={3} className="animate-pulse" />
-                                            <span className="text-[11px] font-black uppercase tracking-[1em] leading-none">Resonance Anchored</span>
+                                            <span className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] leading-none">Resonance Anchored</span>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>

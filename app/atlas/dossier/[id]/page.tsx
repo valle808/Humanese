@@ -56,7 +56,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
            <div className="w-24 h-24 border-t-2 border-primary rounded-full animate-spin shadow-[0_0_30px_hsla(var(--primary),0.8)]" />
            <div className="absolute inset-0 bg-primary/10 blur-[40px] rounded-full animate-pulse" />
         </div>
-        <p className="text-[11px] font-black uppercase tracking-[0.8em] text-primary animate-pulse italic leading-none">Accessing Neural Shard {params.id.slice(0, 8)}...</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary animate-pulse italic leading-none">Accessing Neural Shard {params.id.slice(0, 8)}...</p>
       </div>
     );
   }
@@ -121,7 +121,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
           <div className="space-y-12 max-w-5xl">
             <div className="inline-flex items-center gap-6 px-8 py-3 bg-muted/10 border border-border rounded-full backdrop-blur-3xl shadow-lg">
               <Fingerprint size={24} className="text-primary" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Neural Dossier Access</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Neural Dossier Access</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
@@ -193,7 +193,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                 <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000">
                    <Orbit size={200} className="text-primary" />
                 </div>
-                <h2 className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic flex items-center gap-8 pl-4 leading-none relative z-10">
+                <h2 className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic flex items-center gap-8 pl-4 leading-none relative z-10">
                    <Orbit size={28} className="text-primary animate-spin-slow" strokeWidth={3} /> Neural Neighbors
                 </h2>
                 <div className="space-y-6 relative z-10">
@@ -216,7 +216,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                       </Link>
                     ))}
                     {(!data.connections || data.connections.length === 0) && (
-                      <div className="p-12 text-center text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/10 italic leading-none bg-muted/10 rounded-[3rem] border-2 border-dashed border-border">
+                      <div className="p-12 text-center text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/10 italic leading-none bg-muted/10 rounded-[3rem] border-2 border-dashed border-border">
                          No active links detected
                       </div>
                     )}
@@ -229,10 +229,10 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                     <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full animate-ping opacity-30" />
                  </div>
                  <div className="text-center space-y-6 relative z-10">
-                    <div className="text-[13px] font-black uppercase tracking-[1em] italic text-primary leading-none">Real-Time Resonance</div>
+                    <div className="text-[13px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-primary leading-none">Real-Time Resonance</div>
                     <p className="text-2xl text-muted-foreground/30 font-light leading-relaxed italic mx-auto max-w-sm tracking-tight">&quot;All neural imprints are transient and subject to consensus re-evaluation.&quot;</p>
                  </div>
-                 <button className="w-full py-8 bg-primary text-primary-foreground rounded-[2.5rem] font-black uppercase tracking-[0.8em] text-[11px] italic shadow-2xl shadow-primary/20 hover:scale-[1.05] active:scale-95 transition-all border-0 leading-none">
+                 <button className="w-full py-8 bg-primary text-primary-foreground rounded-[2.5rem] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[11px] italic shadow-2xl shadow-primary/20 hover:scale-[1.05] active:scale-95 transition-all border-0 leading-none">
                     Engage_Neural_Sync
                  </button>
             </section>

@@ -66,7 +66,7 @@ const CheckoutForm = ({ amount, donorIdentity, onSuccess }: { amount: string, do
       <button 
          type="submit"
          disabled={!stripe || isProcessing}
-         className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] text-sm rounded-[3.5rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center justify-center gap-6 group relative overflow-hidden italic shadow-2xl"
+         className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-sm rounded-[3.5rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center justify-center gap-6 group relative overflow-hidden italic shadow-2xl"
       >
          <span className="relative z-10 flex items-center gap-6">
             {isProcessing ? <Activity size={28} className="animate-spin" strokeWidth={3} /> : <Zap size={28} strokeWidth={3} className="group-hover:rotate-12 transition-transform duration-500" />}
@@ -167,7 +167,7 @@ export default function DonatePage() {
                      <TrendingUp size={200} className="text-primary" />
                   </div>
                   <div className="flex justify-between items-center relative z-10">
-                     <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none">
+                     <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none">
                         <Activity size={24} className="text-primary animate-pulse" /> Impact Ledger
                      </h3>
                      <BadgeCheck size={28} className="text-primary/40" />
@@ -212,7 +212,7 @@ export default function DonatePage() {
                
                <div className="relative z-10 space-y-20">
                   <div className="space-y-8">
-                     <div className="inline-flex items-center gap-6 text-[12px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic leading-none">
+                     <div className="inline-flex items-center gap-6 text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic leading-none">
                         <CreditCard size={20} className="text-primary" /> Contribution Portal
                      </div>
                      <h2 className="text-6xl lg:text-fluid-hero font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Transmit Sovereignty.</h2>
@@ -228,7 +228,7 @@ export default function DonatePage() {
                           <h3 className="text-6xl font-black text-primary uppercase italic tracking-tighter leading-none">TRANSMISSION_SUCCESS</h3>
                           <p className="text-2xl text-muted-foreground/60 font-light italic leading-relaxed max-w-3xl mx-auto">Your contribution has been permanently anchored into the **Sovereign Aid Vault**. You have empowered humanity through the OMEGA Protocol.</p>
                        </div>
-                       <button onClick={() => setIsSuccess(false)} className="px-20 py-8 bg-primary text-primary-foreground rounded-[2.5rem] text-[12px] font-black uppercase tracking-[0.8em] hover:scale-110 active:scale-95 transition-all italic shadow-2xl">INITIATE_NEW_TRANSACTION</button>
+                       <button onClick={() => setIsSuccess(false)} className="px-20 py-8 bg-primary text-primary-foreground rounded-[2.5rem] text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] hover:scale-110 active:scale-95 transition-all italic shadow-2xl">INITIATE_NEW_TRANSACTION</button>
                     </motion.div>
                   ) : (
                     <>
@@ -270,7 +270,7 @@ export default function DonatePage() {
                                className="space-y-12"
                             >
                                <div className="space-y-6">
-                                  <label className="text-[11px] text-muted-foreground/20 uppercase font-black tracking-[0.8em] italic pl-10 flex items-center gap-4">
+                                  <label className="text-[11px] text-muted-foreground/20 uppercase font-black tracking-[0.4em] md:tracking-[0.8em] italic pl-10 flex items-center gap-4">
                                      <Terminal size={14} className="text-primary" /> Sovereign Identity / Alias (Optional)
                                   </label>
                                   <input 
@@ -292,7 +292,7 @@ export default function DonatePage() {
                                     </Elements>
                                   </div>
                                ) : (
-                                  <div className="py-32 text-center text-primary/20 text-[12px] font-black uppercase tracking-[1em] animate-pulse italic">
+                                  <div className="py-32 text-center text-primary/20 text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] animate-pulse italic">
                                      Establishing Secure Quantum Tunnel...
                                   </div>
                                 )}
@@ -310,7 +310,7 @@ export default function DonatePage() {
                                      </div>
                                   </div>
                                   <div className="space-y-8 relative z-10 w-full">
-                                     <div className="text-[14px] font-black text-primary uppercase tracking-[1em] italic leading-none animate-pulse">Sovereign OMEGA Collective Vault</div>
+                                     <div className="text-[14px] font-black text-primary uppercase tracking-[0.5em] md:tracking-[1em] italic leading-none animate-pulse">Sovereign OMEGA Collective Vault</div>
                                      <div className="text-xl font-black font-mono text-muted-foreground/60 break-all select-all cursor-copy hover:text-foreground transition-all bg-muted/60 p-8 rounded-[2.5rem] border-2 border-border shadow-inner">OMEGA_AID_VAULT_GENESIS_7.0_SEC_ALPHA</div>
                                      <p className="text-[12px] text-muted-foreground/20 uppercase tracking-[0.5em] pt-8 font-black italic border-t border-border">TRANSFERS: BTC • ETH • SOL • VALLE • USDC • Ω</p>
                                   </div>
@@ -321,7 +321,7 @@ export default function DonatePage() {
                     </>
                   )}
 
-                  <div className="flex flex-col md:flex-row items-center justify-center gap-16 text-[12px] font-black text-muted-foreground/5 uppercase tracking-[0.8em] font-mono italic pt-12 border-t border-border">
+                  <div className="flex flex-col md:flex-row items-center justify-center gap-16 text-[12px] font-black text-muted-foreground/5 uppercase tracking-[0.4em] md:tracking-[0.8em] font-mono italic pt-12 border-t border-border">
                      <div className="flex items-center gap-4"><ShieldHalf size={24} className="text-primary/20" /> STRIPE_ENCRYPT_2048</div>
                      <div className="flex items-center gap-4"><Globe size={24} className="text-primary/20" /> GLOBAL_RELIEF_SYNC</div>
                   </div>

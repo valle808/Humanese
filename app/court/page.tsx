@@ -100,7 +100,7 @@ export default function SovereignCourtPage() {
           <div className="space-y-12 max-w-5xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
               <Gavel size={20} className="text-primary" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Judicial Integration Layer</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Judicial Integration Layer</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
@@ -143,7 +143,7 @@ export default function SovereignCourtPage() {
                     <Search size={250} className="text-primary" />
                 </div>
                 
-                <div className="text-[12px] font-black text-muted-foreground/10 uppercase tracking-[0.8em] flex items-center gap-6 italic relative z-10 leading-none pl-2">
+                <div className="text-[12px] font-black text-muted-foreground/10 uppercase tracking-[0.4em] md:tracking-[0.8em] flex items-center gap-6 italic relative z-10 leading-none pl-2">
                    <Target size={24} strokeWidth={3} className="text-primary" /> Case Registry
                 </div>
                 
@@ -179,7 +179,7 @@ export default function SovereignCourtPage() {
                  <div className="absolute top-0 right-0 p-10 opacity-[0.02] group-hover:scale-125 transition-transform duration-2000">
                     <ShieldHalf size={200} className="text-primary" />
                  </div>
-                 <div className="text-[12px] font-black text-primary uppercase tracking-[1em] flex items-center gap-6 italic leading-none pl-2 animate-pulse">
+                 <div className="text-[12px] font-black text-primary uppercase tracking-[0.5em] md:tracking-[1em] flex items-center gap-6 italic leading-none pl-2 animate-pulse">
                    <ShieldAlert size={24} strokeWidth={3} /> Critical Oversight
                  </div>
                  <div className="space-y-8 relative z-10 pl-2">
@@ -241,7 +241,7 @@ export default function SovereignCourtPage() {
                  </div>
 
                  <div className="p-16 border-t-2 border-border flex justify-center bg-foreground/[0.01] group cursor-pointer active:bg-primary/5 transition-all">
-                    <div className="flex items-center gap-8 text-[12px] font-black uppercase tracking-[1em] text-muted-foreground/10 group-hover:text-primary transition-all italic leading-none pl-4 pr-4">
+                    <div className="flex items-center gap-8 text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/10 group-hover:text-primary transition-all italic leading-none pl-4 pr-4">
                        Expand Full Judicial Archives <ArrowRight size={24} className="group-hover:translate-x-6 transition-transform" strokeWidth={3} />
                     </div>
                  </div>

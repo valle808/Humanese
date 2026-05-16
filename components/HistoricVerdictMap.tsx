@@ -29,7 +29,7 @@ export function HistoricVerdictMap() {
   return (
     <div className="space-y-12">
       <div className="flex justify-between items-center px-4">
-        <div className="text-[11px] font-black uppercase tracking-[0.8em] text-primary/40 italic flex items-center gap-4 leading-none">
+        <div className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary/40 italic flex items-center gap-4 leading-none">
             <Scale size={18} className="text-primary" /> Historic Verdict Cartography
         </div>
         <div className="text-[10px] text-muted-foreground/20 font-black uppercase tracking-[0.4em] italic leading-none">

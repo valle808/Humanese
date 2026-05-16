@@ -98,13 +98,13 @@ export default function PrivacyPage() {
              The OMEGA Protocol does not participate in data markets. Your interaction history is cached locally for immediate neural resonance and purged upon session termination. The only permanent records are anchored in the sovereign ledger, encrypted under your definitive key.
            </p>
            
-           <div className="pt-12 border-t border-border flex items-center gap-6 text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none animate-pulse">
+           <div className="pt-12 border-t border-border flex items-center gap-6 text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none animate-pulse">
               <Wifi size={16} /> SOVEREIGN_ENCRYPTION_LAYER_ACTIVE
            </div>
         </div>
 
         <footer className="pt-24 border-t border-border text-center">
-            <Link href="/" className="text-[12px] font-black uppercase tracking-[1em] text-muted-foreground/10 hover:text-primary transition-all italic leading-none py-4 px-10 border border-transparent hover:border-primary/20 rounded-full">
+            <Link href="/" className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/10 hover:text-primary transition-all italic leading-none py-4 px-10 border border-transparent hover:border-primary/20 rounded-full">
                 EXIT_PRIVACY_MATRIX
             </Link>
         </footer>

@@ -168,7 +168,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                             {/* Capabilities Ledger */}
                             {skill.capabilities && (skill.capabilities as string[]).length > 0 && (
                                 <div className="p-12 bg-background border-2 border-border rounded-[4rem] space-y-12 shadow-inner group hover:border-primary/20 transition-all">
-                                    <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/5 italic flex items-center gap-6 pl-1 transition-colors group-hover:text-primary/40">
+                                    <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/5 italic flex items-center gap-6 pl-1 transition-colors group-hover:text-primary/40">
                                        <Layers size={24} className="text-primary" strokeWidth={3} /> Cognitive Capabilities
                                     </h3>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -206,7 +206,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                        <h3 className="text-5xl font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Acquisition Directive</h3>
                                        <div className="flex items-center gap-6">
                                           <div className="h-px w-20 bg-primary/40" />
-                                          <p className="text-[12px] text-muted-foreground/10 font-black uppercase tracking-[0.8em] italic leading-none pl-1">Provide identity hash for permanent neural anchoring.</p>
+                                          <p className="text-[12px] text-muted-foreground/10 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none pl-1">Provide identity hash for permanent neural anchoring.</p>
                                        </div>
                                     </div>
 
@@ -259,7 +259,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                     </div>
 
                                     {purchaseMsg && (
-                                        <div className="p-8 bg-primary/5 border-2 border-primary/20 rounded-[2.5rem] text-center text-[12px] font-black uppercase tracking-[0.8em] italic text-primary animate-pulse relative z-10">
+                                        <div className="p-8 bg-primary/5 border-2 border-primary/20 rounded-[2.5rem] text-center text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic text-primary animate-pulse relative z-10">
                                            {purchaseMsg}
                                         </div>
                                     )}
@@ -267,7 +267,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                     <button
                                         onClick={handleBuy}
                                         disabled={isProcessing}
-                                        className="w-full bg-primary text-primary-foreground py-12 rounded-[2.5rem] font-black text-xs uppercase tracking-[1em] hover:scale-[1.03] active:scale-[0.98] disabled:opacity-50 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] relative z-10 overflow-hidden group/btn border-0 leading-none"
+                                        className="w-full bg-primary text-primary-foreground py-12 rounded-[2.5rem] font-black text-xs uppercase tracking-[0.5em] md:tracking-[1em] hover:scale-[1.03] active:scale-[0.98] disabled:opacity-50 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] relative z-10 overflow-hidden group/btn border-0 leading-none"
                                     >
                                         <span className="relative z-10 flex items-center justify-center gap-8">
                                            {isProcessing ? <RefreshCw className="animate-spin" size={32} strokeWidth={3} /> : <Zap size={32} strokeWidth={3} />}
@@ -288,7 +288,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                        <h3 className="text-5xl font-black uppercase tracking-tighter italic text-muted-foreground/90 leading-none">Signal Silenced.</h3>
                                        <div className="flex flex-col items-center gap-4">
                                           <div className="h-px w-20 bg-muted/10" />
-                                          <p className="text-[12px] text-muted-foreground/5 font-black uppercase tracking-[0.8em] italic leading-none pl-1">
+                                          <p className="text-[12px] text-muted-foreground/5 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none pl-1">
                                              {skill.is_ghost ? 'SHARD_OPERATING_IN_AUTONOMOUS_GHOST_STATE' : 'NEURAL_UNIT_ANCHORED_TO_PRIVATE_VAULT'}
                                           </p>
                                        </div>
@@ -302,7 +302,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                     {activeTab === 'schema' && (
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-16 pb-20">
                             <div className="space-y-8">
-                                <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/5 italic flex items-center gap-6 pl-1 transition-colors hover:text-primary/40">
+                                <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/5 italic flex items-center gap-6 pl-1 transition-colors hover:text-primary/40">
                                    <ArrowRight size={24} className="text-primary" strokeWidth={3} /> Input Matrix Primitives
                                 </h3>
                                 <div className="bg-background border-2 border-border rounded-[4rem] p-12 shadow-inner group hover:border-primary/20 transition-all overflow-hidden relative">
@@ -313,7 +313,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                 </div>
                             </div>
                             <div className="space-y-8">
-                                <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/5 italic flex items-center gap-6 pl-1 transition-colors hover:text-primary/40">
+                                <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/5 italic flex items-center gap-6 pl-1 transition-colors hover:text-primary/40">
                                    <ArrowDownLeft size={24} className="text-primary" strokeWidth={3} /> Output Response Schema
                                 </h3>
                                 <div className="bg-background border-2 border-border rounded-[4rem] p-12 shadow-inner group hover:border-primary/20 transition-all overflow-hidden relative">
@@ -343,7 +343,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                       <MessageSquare size={100} className="mx-auto text-muted-foreground/5" strokeWidth={1} />
                                       <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                                    </div>
-                                   <p className="text-[12px] font-black uppercase tracking-[1em] italic leading-none pl-4 text-muted-foreground/5">No resonance clusters detected yet.</p>
+                                   <p className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic leading-none pl-4 text-muted-foreground/5">No resonance clusters detected yet.</p>
                                 </div>
                             ) : reviews.map((r, i) => (
                                 <motion.div 
@@ -381,7 +381,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                       <Activity size={100} className="mx-auto text-muted-foreground/5" strokeWidth={1} />
                                       <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                                    </div>
-                                   <p className="text-[12px] font-black uppercase tracking-[1em] italic leading-none pl-4 text-muted-foreground/5">Signal history purge complete.</p>
+                                   <p className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic leading-none pl-4 text-muted-foreground/5">Signal history purge complete.</p>
                                 </div>
                             ) : transactions.map((t, i) => (
                                 <motion.div 

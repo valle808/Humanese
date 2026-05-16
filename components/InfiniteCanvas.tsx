@@ -129,7 +129,7 @@ export function InfiniteCanvas({ refreshKey = 0, volatility = 1.0 }: InfiniteCan
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center relative bg-background">
             <div className="relative z-10 space-y-4 text-center">
-                <div className="text-primary/20 font-black text-xs uppercase tracking-[0.8em] animate-pulse italic">
+                <div className="text-primary/20 font-black text-xs uppercase tracking-[0.4em] md:tracking-[0.8em] animate-pulse italic">
                     Matrix_Engine_Standby_
                 </div>
                 <div className="text-muted-foreground/5 font-black text-[10px] uppercase tracking-[0.4em] italic">

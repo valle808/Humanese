@@ -140,7 +140,7 @@ export default function CollectiveHUD() {
             
             <button 
               onClick={handleAuthorize}
-              className="w-full py-6 md:py-8 bg-primary text-primary-foreground font-black text-sm uppercase tracking-[0.8em] rounded-[2rem] md:rounded-[2.5rem] hover:scale-[1.03] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] relative overflow-hidden italic group/btn border-0"
+              className="w-full py-6 md:py-8 bg-primary text-primary-foreground font-black text-sm uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[2rem] md:rounded-[2.5rem] hover:scale-[1.03] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] relative overflow-hidden italic group/btn border-0"
             >
               <span className="relative z-10 flex items-center justify-center gap-4 md:gap-6">
                 Enter Swarm Presence <ChevronLeft size={24} className="group-hover/btn:-translate-x-2 transition-transform rotate-180" strokeWidth={3} />
@@ -291,7 +291,7 @@ export default function CollectiveHUD() {
                           <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse" />
                       </div>
                       <div className="text-center space-y-4">
-                          <p className="text-[13px] font-black uppercase tracking-[1em] italic text-primary animate-pulse leading-none">Establishing Mesh Sync...</p>
+                          <p className="text-[13px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-primary animate-pulse leading-none">Establishing Mesh Sync...</p>
                           <p className="text-[10px] text-muted-foreground font-black uppercase tracking-[0.5em] italic leading-none">Connecting to Universal Exchange Layer</p>
                       </div>
                   </div>
@@ -305,7 +305,7 @@ export default function CollectiveHUD() {
                  <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-110 transition-all duration-1000">
                     <BrainCircuit size={200} className="text-primary" />
                  </div>
-                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none relative z-10">
+                 <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none relative z-10">
                    <Wifi size={20} className="text-primary animate-pulse" /> Mesh Consensus
                  </h3>
                  <div className="space-y-16 relative z-10">
@@ -331,7 +331,7 @@ export default function CollectiveHUD() {
               </div>
 
               <div className="bg-background border-2 border-border rounded-[5rem] p-12 lg:p-16 space-y-16 shadow-[0_50px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl group">
-                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none">
+                 <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-6 italic leading-none">
                    <Zap size={24} className="text-primary animate-pulse" /> Ideology Pulse
                  </h3>
                  <div className="grid gap-6">

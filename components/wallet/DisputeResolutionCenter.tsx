@@ -114,7 +114,7 @@ export const DisputeResolutionCenter = ({ isOpen, onClose, transaction }: Disput
                   <button 
                     onClick={startAnalysis}
                     disabled={isAnalyzing}
-                    className="w-full py-8 bg-primary text-background rounded-[2rem] font-black uppercase tracking-[0.8em] italic text-sm shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-6"
+                    className="w-full py-8 bg-primary text-background rounded-[2rem] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic text-sm shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-6"
                   >
                     {isAnalyzing ? (
                       <>Analyzing Evidence <Activity className="animate-spin" size={24} /></>

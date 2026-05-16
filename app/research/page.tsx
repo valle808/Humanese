@@ -195,7 +195,7 @@ export default function ResearchHubPage() {
           <div className="space-y-12 max-w-5xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/10 border border-border rounded-full backdrop-blur-3xl shadow-2xl">
               <Microscope size={20} className="text-primary" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Scientific Sovereignty Hub</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Scientific Sovereignty Hub</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] italic pl-1 text-muted-foreground/95">
@@ -210,7 +210,7 @@ export default function ResearchHubPage() {
           </div>
 
           <div className="flex gap-8 items-center shrink-0">
-               <div className="px-10 py-6 bg-primary/10 border-2 border-primary/20 rounded-full text-[12px] font-black text-primary uppercase tracking-[0.8em] italic leading-none animate-pulse flex items-center gap-6">
+               <div className="px-10 py-6 bg-primary/10 border-2 border-primary/20 rounded-full text-[12px] font-black text-primary uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none animate-pulse flex items-center gap-6">
                   <Activity size={24} strokeWidth={3} /> Quantum_Bridge: ACTIVE
                </div>
           </div>
@@ -272,7 +272,7 @@ export default function ResearchHubPage() {
                      </div>
                   </div>
                   <div className="text-center space-y-4">
-                     <div className="text-[12px] font-black tracking-[1em] text-primary/40 uppercase italic leading-none">Molecular Resonance</div>
+                     <div className="text-[12px] font-black tracking-[0.5em] md:tracking-[1em] text-primary/40 uppercase italic leading-none">Molecular Resonance</div>
                      <div className="text-fluid-title font-black italic tracking-tighter text-muted-foreground/90 leading-none group-hover:text-primary transition-colors">{activeResonance * 100}% MATCH</div>
                      <div className="text-[10px] text-muted-foreground/5 font-black uppercase tracking-[0.5em] italic leading-none">CORE_SYNTHESIS_LOCK</div>
                   </div>
@@ -290,7 +290,7 @@ export default function ResearchHubPage() {
                   <h2 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none text-muted-foreground/90">Sovereign Knowledge Hub</h2>
                   <div className="flex items-center gap-6">
                      <div className="h-px w-16 bg-primary/40" />
-                     <p className="text-[12px] text-muted-foreground/10 uppercase tracking-[1em] font-black italic leading-none pl-1">Primary Sovereign Directives</p>
+                     <p className="text-[12px] text-muted-foreground/10 uppercase tracking-[0.5em] md:tracking-[1em] font-black italic leading-none pl-1">Primary Sovereign Directives</p>
                   </div>
                </div>
                
@@ -319,7 +319,7 @@ export default function ResearchHubPage() {
                         <Atom size={100} className="mx-auto text-muted-foreground/5 animate-[spin_10s_linear_infinite]" strokeWidth={1} />
                         <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                     </div>
-                    <p className="text-2xl font-black uppercase tracking-[1em] text-muted-foreground/10 italic leading-none">No active research detected in this sector.</p>
+                    <p className="text-2xl font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/10 italic leading-none">No active research detected in this sector.</p>
                  </div>
                ) : (
                  articles.map((article, i) => (
@@ -328,7 +328,7 @@ export default function ResearchHubPage() {
                      initial={{ opacity: 0, y: 40 }}
                      animate={{ opacity: 1, y: 0 }}
                      transition={{ duration: 0.6, delay: i * 0.05, ease: "circOut" }}
-                     className="group p-12 lg:p-14 bg-background border-2 border-border rounded-[5rem] space-y-10 hover:border-primary/40 transition-all duration-700 relative overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner flex flex-col h-[500px]"
+                     className="group p-12 lg:p-14 bg-background border-2 border-border rounded-[5rem] space-y-10 hover:border-primary/40 transition-all duration-700 relative overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)] shadow-inner flex flex-col min-h-[500px]"
                    >
                       <div className="absolute inset-y-0 left-0 w-2 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top z-10" />
                       

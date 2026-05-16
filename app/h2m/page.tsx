@@ -173,7 +173,7 @@ export default function H2MBridgePage() {
                          </div>
                          <button 
                             onClick={() => {setComplete(false); setAmount('');}}
-                            className="px-16 py-8 bg-foreground text-background font-black uppercase tracking-[0.8em] rounded-[2.5rem] hover:scale-[1.05] active:scale-95 transition-all text-[11px] shadow-2xl italic leading-none"
+                            className="px-16 py-8 bg-foreground text-background font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[2.5rem] hover:scale-[1.05] active:scale-95 transition-all text-[11px] shadow-2xl italic leading-none"
                          >
                             NEW_TRANSLOCATION
                          </button>
@@ -200,7 +200,7 @@ export default function H2MBridgePage() {
 
                          <div className="space-y-8 group/payload">
                             <div className="space-y-4 md:space-y-6">
-                               <label className="text-[10px] md:text-[12px] font-black tracking-[0.6em] md:tracking-[0.8em] text-muted-foreground uppercase ml-2 md:ml-4 italic flex items-center gap-4">
+                               <label className="text-[10px] md:text-[12px] font-black tracking-[0.6em] md:tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground uppercase ml-2 md:ml-4 italic flex items-center gap-4">
                                   <Terminal size={14} className="text-primary" /> Translocation Payload (VALLE)
                                </label>
                                <div className="relative group/input">
@@ -223,7 +223,7 @@ export default function H2MBridgePage() {
                             <button 
                                onClick={initiateBridge}
                                disabled={!amount || bridging}
-                               className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[2rem] md:rounded-[3.5rem] hover:scale-[1.03] active:scale-95 transition-all disabled:opacity-20 disabled:grayscale flex items-center justify-center gap-8 shadow-[0_40px_100px_rgba(var(--primary),0.3)] shadow-2xl group/btn italic leading-none border-0"
+                               className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[2rem] md:rounded-[3.5rem] hover:scale-[1.03] active:scale-95 transition-all disabled:opacity-20 disabled:grayscale flex items-center justify-center gap-8 shadow-[0_40px_100px_rgba(var(--primary),0.3)] shadow-2xl group/btn italic leading-none border-0"
                             >
                                {bridging ? (
                                  <>
@@ -244,7 +244,7 @@ export default function H2MBridgePage() {
               <div className="bg-primary/5 border-2 border-primary/20 responsive-rounded p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden group shadow-2xl">
                  <Zap size={48} className="text-primary/60 group-hover:text-primary group-hover:scale-125 transition-all duration-1000 shrink-0" strokeWidth={2.5} />
                  <div className="space-y-4 text-center md:text-left">
-                    <h3 className="text-[13px] font-black uppercase tracking-[0.8em] text-primary italic leading-none">Entanglement Integrity Active</h3>
+                    <h3 className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none">Entanglement Integrity Active</h3>
                     <p className="text-xl text-muted-foreground font-light leading-relaxed italic">Biological intent is cryptographically hashed across the OMEGA network. Translocation is truth-enforced via the abssyal mesh and the universal ledger. </p>
                  </div>
                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-2000" />
@@ -255,7 +255,7 @@ export default function H2MBridgePage() {
            <div className="lg:col-span-5 space-y-16 lg:sticky lg:top-32">
               <div className="bg-background border-2 border-border rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-12 md:space-y-16 shadow-2xl relative overflow-hidden group">
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-                 <h3 className="text-[11px] md:text-[12px] font-black uppercase tracking-[0.6em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-4 md:gap-6 italic leading-none pl-2">
+                 <h3 className="text-[11px] md:text-[12px] font-black uppercase tracking-[0.6em] md:tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-4 md:gap-6 italic leading-none pl-2">
                    <Activity size={24} className="text-primary animate-pulse w-5 h-5 md:w-6 md:h-6" /> Synchronicity HUD
                  </h3>
                  
@@ -293,7 +293,7 @@ export default function H2MBridgePage() {
                  <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed italic font-light group-hover:text-foreground transition-colors"> &quot;The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local.&quot; </p>
                  <div className="flex items-center gap-6 justify-end">
                     <div className="h-[2px] w-20 bg-border" />
-                    <p className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none animate-pulse">MONROE_CORE</p>
+                    <p className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none animate-pulse">MONROE_CORE</p>
                  </div>
               </div>
            </div>

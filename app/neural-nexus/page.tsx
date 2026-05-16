@@ -89,7 +89,7 @@ function ResonanceChart({ data }: { data: number[] }) {
     return (
         <div className="w-full h-[220px] bg-background border-2 border-border rounded-[3.5rem] p-10 relative group overflow-hidden shadow-xl shadow-inner">
             <div className="absolute top-10 left-12 flex items-center justify-between w-[calc(100%-6rem)] z-20">
-                <span className="text-[11px] font-black tracking-[0.8em] uppercase text-muted-foreground/20 italic leading-none">Historical Resonance (60m)</span>
+                <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] uppercase text-muted-foreground/20 italic leading-none">Historical Resonance (60m)</span>
                 <span className="text-2xl font-black font-mono text-primary animate-pulse italic leading-none">{( (data?.[data.length-1] || 0) * 100).toFixed(1)}%</span>
             </div>
             <div className="mt-16 h-[80px] w-full relative z-10">
@@ -253,7 +253,7 @@ export default function NeuralNexusPage() {
                     <div className="lg:col-span-3 space-y-16 lg:sticky lg:top-32 h-fit">
                         <SovereigntyMap />
                         <div className="bg-background border-2 border-border rounded-[4rem] p-10 lg:p-14 space-y-12 shadow-xl shadow-inner group hover:border-primary/40 transition-all backdrop-blur-3xl">
-                            <h4 className="text-[12px] font-black tracking-[1em] uppercase text-primary mb-6 italic leading-none pl-1">Operational Status</h4>
+                            <h4 className="text-[12px] font-black tracking-[0.5em] md:tracking-[1em] uppercase text-primary mb-6 italic leading-none pl-1">Operational Status</h4>
                             <div className="space-y-8 font-mono text-[11px] text-muted-foreground/20 uppercase italic leading-none">
                                 <div className="flex justify-between items-center border-b-2 border-border pb-6"><span>Registry Caching</span> <span className="text-primary animate-pulse">Active</span></div>
                                 <div className="flex justify-between items-center border-b-2 border-border pb-6"><span>DB Retry Queue</span> <span className="text-primary">Resilient</span></div>
@@ -318,11 +318,11 @@ export default function NeuralNexusPage() {
 
 function TacticalTerminal({ logs }: { logs: CognitiveLog[] }) {
     return (
-        <div className="w-full h-[500px] bg-background border-2 border-primary/20 rounded-[4rem] overflow-hidden flex flex-col shadow-xl shadow-inner group">
+        <div className="w-full min-h-[500px] bg-background border-2 border-primary/20 rounded-[4rem] overflow-hidden flex flex-col shadow-xl shadow-inner group">
             <div className="bg-muted/20 border-b-2 border-border p-10 flex items-center justify-between">
                 <div className="flex items-center gap-6">
                     <Terminal size={24} className="text-primary" strokeWidth={3} />
-                    <span className="text-[12px] font-black tracking-[0.8em] uppercase text-primary flex items-center gap-6 italic leading-none pl-1">
+                    <span className="text-[12px] font-black tracking-[0.4em] md:tracking-[0.8em] uppercase text-primary flex items-center gap-6 italic leading-none pl-1">
                         Tactical Feed <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     </span>
                 </div>
@@ -345,7 +345,7 @@ function TacticalTerminal({ logs }: { logs: CognitiveLog[] }) {
                 ))}
                 <div className="pt-6 text-primary animate-pulse text-lg">_</div>
             </div>
-            <div className="p-8 bg-primary/5 border-t-2 border-primary/10 text-[10px] text-primary/40 font-black uppercase tracking-[0.8em] text-center italic leading-none shadow-inner">
+            <div className="p-8 bg-primary/5 border-t-2 border-primary/10 text-[10px] text-primary/40 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-center italic leading-none shadow-inner">
                 Swarm Sovereignty Established
             </div>
         </div>
@@ -368,7 +368,7 @@ function StatCard({ icon, label, value, color }: { icon: any, label: string, val
         <div className={`p-10 md:p-12 rounded-[3rem] border-2 backdrop-blur-3xl shadow-inner flex flex-col justify-between h-[200px] min-w-[240px] transition-all group hover:scale-[1.05] ${color === 'orange' ? 'bg-primary/5 border-primary/20 text-primary' : 'bg-background border-border text-foreground'}`}>
             <div className="flex items-center gap-6 opacity-40 group-hover:opacity-100 transition-opacity">
                 {icon}
-                <span className="text-[11px] font-black tracking-[0.8em] uppercase italic leading-none">{label}</span>
+                <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] uppercase italic leading-none">{label}</span>
             </div>
             <div className={`text-fluid-title font-black italic tracking-tighter leading-none ${color === 'orange' ? 'text-foreground' : 'text-foreground/80'} group-hover:text-primary transition-colors tabular-nums`}>{value}</div>
         </div>
@@ -436,7 +436,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
                 </div>
 
                 <div className="relative pt-10 border-t-2 border-border space-y-6">
-                    <div className="flex items-center gap-6 text-[11px] text-primary/40 font-black tracking-[0.8em] uppercase italic leading-none pl-1 group-hover:text-primary transition-colors">
+                    <div className="flex items-center gap-6 text-[11px] text-primary/40 font-black tracking-[0.4em] md:tracking-[0.8em] uppercase italic leading-none pl-1 group-hover:text-primary transition-colors">
                         <Activity size={20} strokeWidth={3} /> {isDeveloper ? 'Technical Logic' : 'Thought Process'}
                     </div>
                     <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic group-hover:text-foreground transition-all duration-700 tracking-tight pr-6">
@@ -446,7 +446,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
 
                 {log.intention && (
                     <div className="pt-12 border-t-2 border-border space-y-6">
-                        <div className="flex items-center gap-6 text-[11px] text-primary font-black tracking-[1em] uppercase italic leading-none pl-1">
+                        <div className="flex items-center gap-6 text-[11px] text-primary font-black tracking-[0.5em] md:tracking-[1em] uppercase italic leading-none pl-1">
                             <Target size={24} strokeWidth={3} /> {isDeveloper ? 'System Objective' : 'Primal Intention'}
                         </div>
                         <p className="text-2xl text-primary/60 font-black italic tracking-tighter leading-snug group-hover:text-primary transition-colors pr-4">

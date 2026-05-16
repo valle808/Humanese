@@ -118,7 +118,7 @@ export function CommandPortal() {
             {/* ── RESULTS LIST ── */}
             <div className="flex-1 max-h-[60vh] overflow-y-auto custom-scrollbar p-10 lg:px-16 space-y-10">
               <div className="px-6 flex items-center justify-between">
-                <span className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/5 italic leading-none pl-1">Global_Cognition_Nodes</span>
+                <span className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/5 italic leading-none pl-1">Global_Cognition_Nodes</span>
                 <div className="flex items-center gap-4">
                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
                    <span className="text-[11px] font-black text-primary/40 uppercase tracking-[0.4em] italic leading-none">Syncing...</span>
@@ -156,7 +156,7 @@ export function CommandPortal() {
                         <Terminal size={100} className="mx-auto text-muted-foreground/5" strokeWidth={1} />
                         <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                      </div>
-                     <p className="text-[12px] font-black uppercase tracking-[1em] italic leading-none pl-4 text-muted-foreground/5">No resonance clusters found for query</p>
+                     <p className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic leading-none pl-4 text-muted-foreground/5">No resonance clusters found for query</p>
                   </div>
                 )}
               </div>

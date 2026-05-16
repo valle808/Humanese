@@ -183,7 +183,7 @@ export default function PredictorPage() {
                     </motion.span>
                   ))}
                   {variables.length === 0 && (
-                      <div className="w-full flex items-center justify-center p-10 border border-dashed border-border rounded-[2rem] text-muted-foreground/30 font-black uppercase tracking-[0.8em] italic select-none">
+                      <div className="w-full flex items-center justify-center p-10 border border-dashed border-border rounded-[2rem] text-muted-foreground/30 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic select-none">
                          NO_VARIABLES_INJECTED
                       </div>
                   )}
@@ -273,7 +273,7 @@ export default function PredictorPage() {
                      <div className="absolute top-0 right-0 p-20 opacity-[0.02] group-hover/report:scale-110 transition-transform duration-1000">
                         <Activity className="text-foreground animate-pulse" size={180} />
                      </div>
-                     <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/50 mb-16 pb-8 border-b border-border italic">
+                     <div className="flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/50 mb-16 pb-8 border-b border-border italic">
                         <BrainCircuit size={20} className="text-primary animate-pulse" /> Synthetic Trajectory Report_v7.0
                      </div>
                      
@@ -284,8 +284,8 @@ export default function PredictorPage() {
                              <div className="h-10 w-3/4 bg-muted rounded-3xl animate-pulse [animation-delay:200ms]" />
                              <div className="h-10 w-5/6 bg-muted rounded-3xl animate-pulse [animation-delay:400ms]" />
                              <div className="flex flex-col gap-4 pt-10">
-                                <div className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/30 italic">Synthesizing parallel sandboxes...</div>
-                                <div className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/30 italic animate-pulse">Computing emergent risk vectors...</div>
+                                <div className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/30 italic">Synthesizing parallel sandboxes...</div>
+                                <div className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/30 italic animate-pulse">Computing emergent risk vectors...</div>
                              </div>
                           </div>
                         ) : (

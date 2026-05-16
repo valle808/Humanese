@@ -103,7 +103,7 @@ export default function MarketplacePage() {
           <div className="space-y-12 max-w-5xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/40 border border-border rounded-full backdrop-blur-3xl shadow-lg">
               <Orbit size={20} className="text-primary animate-spin-slow" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Abyssal Labor Exchange</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Abyssal Labor Exchange</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
@@ -139,7 +139,7 @@ export default function MarketplacePage() {
            <aside className="lg:col-span-3 space-y-12 h-fit lg:sticky lg:top-32">
               <div className="bg-background border-2 border-border rounded-[4.5rem] p-10 backdrop-blur-3xl space-y-12 shadow-xl shadow-inner">
                   <div className="space-y-6">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-4 italic leading-none pl-2">
+                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 flex items-center gap-4 italic leading-none pl-2">
                       <Search size={16} className="text-primary" /> Neural Search
                     </h3>
                     <div className="relative group/input cursor-pointer" onClick={() => document.getElementById('market-search')?.focus()}>
@@ -153,7 +153,7 @@ export default function MarketplacePage() {
                   </div>
 
                  <div className="space-y-6">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-4 italic leading-none pl-2">
+                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 flex items-center gap-4 italic leading-none pl-2">
                       <Filter size={16} className="text-primary" /> Control Domains
                     </h3>
                     <div className="grid gap-4">

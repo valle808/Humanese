@@ -341,7 +341,7 @@ export default function SimulatorPage() {
                     <div className="absolute top-0 right-0 p-8 transform translate-x-4 translate-y-4 rotate-12 opacity-10 pointer-events-none select-none">
                        <Database size={150} />
                     </div>
-                    <div className="flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.8em] italic leading-none">
+                    <div className="flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">
                        <Eye size={16} strokeWidth={3} /> Node Interrogation
                     </div>
                     <div className="space-y-4">
@@ -398,7 +398,7 @@ export default function SimulatorPage() {
                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                  <Layers size={48} className="group-hover:rotate-12 transition-transform duration-500 relative z-10" />
               </button>
-              <Link href="/admin" className="h-32 px-24 bg-white text-background font-black uppercase tracking-[0.8em] flex items-center gap-8 rounded-[3.5rem] shadow-[0_40px_120px_rgba(255,255,255,0.2)] hover:scale-[1.05] active:scale-95 transition-all text-sm italic group">
+              <Link href="/admin" className="h-32 px-24 bg-white text-background font-black uppercase tracking-[0.4em] md:tracking-[0.8em] flex items-center gap-8 rounded-[3.5rem] shadow-[0_40px_120px_rgba(255,255,255,0.2)] hover:scale-[1.05] active:scale-95 transition-all text-sm italic group">
                 OMEGA ARCHIVE <ArrowUpRight size={40} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" strokeWidth={3} />
               </Link>
            </div>
@@ -419,7 +419,7 @@ export default function SimulatorPage() {
                <div className="space-y-16">
                   <div className="flex justify-between items-center">
                     <div className="space-y-3">
-                        <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-primary flex items-center gap-6 italic leading-none">
+                        <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary flex items-center gap-6 italic leading-none">
                            <BrainCircuit size={24} strokeWidth={2.5} /> Cognitive Stream
                         </h3>
                         <p className="text-[10px] font-black text-muted-foreground/10 uppercase tracking-[0.4em] italic pl-[3rem]">REAL_TIME_FRAGMENT_ANALYSIS</p>
@@ -454,7 +454,7 @@ export default function SimulatorPage() {
                      )) : (
                         <div className="py-24 text-center space-y-8 border border-dashed border-border rounded-[4rem]">
                             <Wifi size={48} className="mx-auto text-muted-foreground/5 animate-pulse" />
-                            <p className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/10 italic">AWAITING_NEURAL_RESONANCE</p>
+                            <p className="text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/10 italic">AWAITING_NEURAL_RESONANCE</p>
                         </div>
                      )}
                   </div>
@@ -465,7 +465,7 @@ export default function SimulatorPage() {
                   
                   <div className="flex justify-between items-end">
                       <div className="space-y-4">
-                        <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none">
+                        <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none">
                             <Activity size={24} /> Matrix Health
                         </h3>
                         <p className="text-[10px] font-black text-primary uppercase tracking-[0.4em] italic pl-[3.5rem] animate-pulse">OPTIMIZED_SWARM_STATE</p>

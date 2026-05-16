@@ -131,7 +131,7 @@ export default function LegalPage() {
             <div className="max-w-4xl mx-auto prose prose-invert opacity-20 font-black text-[9px] uppercase tracking-[0.4em] leading-loose italic">
               DISCLAIMER: THE SOVEREIGN PROTOCOL OPERATES AS A DECENTRALIZED INFRASTRUCTURE LAYER. USERS ARE RESPONSIBLE FOR ENSURING THEIR ACTIONS COMPLY WITH LOCAL JURISDICTIONS. VALLE SETTLEMENTS ARE FINAL AND IMMUTABLE. NO RECOURSE IS PROVIDED FOR ENCRYPTED VAULT LOSS.
             </div>
-            <Link href="/" className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 hover:text-primary transition-all italic group">
+            <Link href="/" className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 hover:text-primary transition-all italic group">
                 <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Return to Shard Core
             </Link>
         </footer>

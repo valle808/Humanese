@@ -136,7 +136,7 @@ export function MatrixMindmap({ onNodeClick }: MatrixMindmapProps) {
       <div className="absolute top-10 left-10 pointer-events-none space-y-4">
         <div className="flex items-center gap-4">
            <Activity className="h-4 w-4 text-primary animate-pulse" strokeWidth={3} />
-           <div className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none pl-1">Neural Lattice v7.0.4</div>
+           <div className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none pl-1">Neural Lattice v7.0.4</div>
         </div>
         <div className="text-muted-foreground/5 text-[10px] font-black uppercase tracking-[0.4em] italic leading-none pl-8 group-hover:text-muted-foreground/10 transition-colors">Force-Directed Physics Active_</div>
       </div>

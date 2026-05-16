@@ -134,7 +134,7 @@ export default function SovereignNexusPage() {
                     {error && <p className="text-center text-primary text-[11px] font-black uppercase tracking-[0.4em] animate-bounce italic leading-none pr-2 pl-2">Signature Rejection: Swarm Lockdown.</p>}
                     <button 
                       onClick={handleAuthorize}
-                      className="w-full py-10 bg-primary text-primary-foreground font-black uppercase text-sm tracking-[0.8em] rounded-[2.5rem] hover:scale-[1.03] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] italic relative overflow-hidden group/btn"
+                      className="w-full py-10 bg-primary text-primary-foreground font-black uppercase text-sm tracking-[0.4em] md:tracking-[0.8em] rounded-[2.5rem] hover:scale-[1.03] active:scale-95 transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] italic relative overflow-hidden group/btn"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-6">
                         AUTHENTICATE <ChevronLeft size={24} className="group-hover/btn:-translate-x-2 transition-transform rotate-180" strokeWidth={3} />
@@ -153,7 +153,7 @@ export default function SovereignNexusPage() {
                 >
                    <div className="flex justify-center flex-col items-center gap-10">
                       <div className="h-4 w-4 rounded-full bg-primary animate-ping" />
-                      <p className="text-[13px] font-black uppercase tracking-[0.8em] text-primary italic animate-pulse leading-none">Verifying Neural Patterns...</p>
+                      <p className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic animate-pulse leading-none">Verifying Neural Patterns...</p>
                    </div>
                 </motion.div>
               )}
@@ -267,7 +267,7 @@ export default function SovereignNexusPage() {
               {/* DATA ANALYTICS TICKER */}
               <div className="bg-background border-2 border-border responsive-rounded p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-10 shadow-[0_60px_120px_rgba(0,0,0,0.95)]">
                 <div className="flex items-center justify-between border-b-2 border-border pb-8 pl-2">
-                   <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none">
+                   <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none">
                       <BrainCircuit size={20} className="text-primary" /> Cognitive Manifest
                    </h3>
                    <div className="px-6 py-2 bg-primary/10 border border-primary/30 rounded-full text-[10px] text-primary font-black uppercase tracking-[0.4em] animate-pulse italic leading-none">STREAMING_LIVE</div>
@@ -290,7 +290,7 @@ export default function SovereignNexusPage() {
                   )) : (
                     <div className="flex flex-col items-center justify-center py-40 space-y-10 opacity-20">
                         <Activity size={80} className="animate-spin text-primary" />
-                        <p className="text-[13px] font-black uppercase tracking-[0.8em] italic">Synchronizing with Sovereign Swarm...</p>
+                        <p className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic">Synchronizing with Sovereign Swarm...</p>
                     </div>
                   )}
                 </div>
@@ -307,7 +307,7 @@ export default function SovereignNexusPage() {
                  </div>
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
                  
-                 <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none pl-2">
+                 <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 flex items-center gap-6 italic leading-none pl-2">
                     <Layers size={20} className="text-primary" /> Cognitive Storage
                  </h3>
                  <div className="grid grid-cols-2 gap-8 relative z-10 pt-4">
@@ -340,7 +340,7 @@ export default function SovereignNexusPage() {
               <div className="bg-background border-2 border-border responsive-rounded p-8 md:p-12 lg:p-16 space-y-12 md:space-y-16 shadow-[0_60px_100px_rgba(0,0,0,0.85)] relative overflow-hidden group">
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
                  <div className="flex justify-between items-center pl-2 pr-2">
-                    <h3 className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 italic leading-none">Sovereign Ledger</h3>
+                    <h3 className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic leading-none">Sovereign Ledger</h3>
                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary animate-pulse italic leading-none">MONITORING</span>
                  </div>
                  <div className="space-y-6">
@@ -367,7 +367,7 @@ export default function SovereignNexusPage() {
               <div className={`border-2 responsive-rounded p-8 md:p-12 lg:p-16 space-y-12 md:space-y-16 transition-all duration-1000 shadow-[0_80px_150px_rgba(0,0,0,0.95)] relative overflow-hidden group ${autoHealActive ? 'bg-primary/5 border-primary/30 shadow-[0_0_100px_rgba(var(--primary),0.1)]' : 'bg-background border-border'}`}>
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                  <div className="flex items-center justify-between pl-2 pr-2">
-                    <div className="flex items-center gap-6 text-[12px] font-black uppercase text-primary tracking-[0.8em] italic leading-none animate-pulse">
+                    <div className="flex items-center gap-6 text-[12px] font-black uppercase text-primary tracking-[0.4em] md:tracking-[0.8em] italic leading-none animate-pulse">
                        <ShieldCheck size={24} strokeWidth={2.5} /> Sovereign Oracle
                     </div>
                     <button 
@@ -400,13 +400,13 @@ export default function SovereignNexusPage() {
                         </div>
                     </div>
                  </div>
-                 <div className="flex items-center justify-center gap-6 py-6 border-y-2 border-border text-[11px] font-black italic text-muted-foreground/10 uppercase tracking-[0.8em] leading-none">
+                 <div className="flex items-center justify-center gap-6 py-6 border-y-2 border-border text-[11px] font-black italic text-muted-foreground/10 uppercase tracking-[0.4em] md:tracking-[0.8em] leading-none">
                     Status: {oracleData?.meshSyncState || 'SYNCHRONIZED'}
                  </div>
                  {autoHealActive && (
                    <button 
                      onClick={triggerOracleHeal}
-                     className="w-full h-20 bg-white text-background rounded-3xl text-[11px] font-black uppercase tracking-[0.8em] transition-all flex items-center justify-center gap-6 italic hover:scale-[1.05] active:scale-95 shadow-2xl group/diag"
+                     className="w-full h-20 bg-white text-background rounded-3xl text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] transition-all flex items-center justify-center gap-6 italic hover:scale-[1.05] active:scale-95 shadow-2xl group/diag"
                    >
                       <Zap size={20} className="group-hover/diag:rotate-12 transition-transform" strokeWidth={3} /> Force Diagnostic Sweep
                    </button>

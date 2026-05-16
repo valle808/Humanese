@@ -108,7 +108,7 @@ export default function Home() {
             <div className="space-y-10 md:space-y-16 relative z-10 text-center lg:text-left">
               <div className="inline-flex items-center gap-4 px-6 md:px-8 py-3 bg-muted/40 border border-border rounded-full backdrop-blur-3xl cursor-help shadow-2xl relative overflow-hidden flex-wrap justify-center lg:justify-start">
                 <Orbit size={18} className="text-primary animate-spin-slow" />
-                <span className="text-[10px] md:text-[11px] font-black tracking-[0.6em] md:tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse pl-1">Sovereign OMEGA v7.0</span>
+                <span className="text-[10px] md:text-[11px] font-black tracking-[0.6em] md:tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse pl-1">Sovereign OMEGA v7.0</span>
                 <div className="hidden md:block mx-4 w-[1px] h-4 bg-border" />
                 <span className={`text-[9px] md:text-[10px] font-bold tracking-[0.2em] uppercase italic ${metrics.monroeStatus === 'OPERATIONAL' ? 'text-green-500' : 'text-primary/40'}`}>
                   Monroe: {metrics.monroeStatus}
@@ -137,7 +137,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative flex items-center justify-center h-[400px] md:h-[500px] lg:h-[700px] overflow-visible">
+            <div className="relative flex items-center justify-center h-[400px] md:min-h-[500px] lg:h-[700px] overflow-visible">
               <div className="relative w-full h-full z-10 scale-75 md:scale-100">
                 <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="w-20 h-20 border-2 border-primary/30 border-t-primary rounded-full animate-spin" /></div>}>
                   <MonroeOrb />
@@ -155,7 +155,7 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-6 md:gap-8"
         >
           {/* SIMULATOR */}
-          <Link href="/simulator" className="xl:col-span-8 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all duration-1000 min-h-[400px] md:h-[500px] flex flex-col justify-between shadow-xl shadow-inner">
+          <Link href="/simulator" className="xl:col-span-8 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all duration-1000 min-h-[400px] md:min-h-[500px] flex flex-col justify-between shadow-xl shadow-inner">
              <div className="absolute top-0 right-0 p-8 md:p-16 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Layers size={300} className="text-primary md:w-[400px] md:h-[400px]" />
              </div>
@@ -179,7 +179,7 @@ export default function Home() {
           </Link>
 
           {/* OMEGA FLEET */}
-          <Link href="/fleet" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all duration-1000 flex flex-col justify-between shadow-xl shadow-inner min-h-[400px] md:h-[500px]">
+          <Link href="/fleet" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all duration-1000 flex flex-col justify-between shadow-xl shadow-inner min-h-[400px] md:min-h-[500px]">
              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Server size={200} className="text-primary md:w-[300px] md:h-[300px]" />
              </div>
@@ -203,7 +203,7 @@ export default function Home() {
           </Link>
 
           {/* ABYSSAL SANDBOX */}
-          <Link href="/sandbox" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all min-h-[400px] md:h-[550px] flex flex-col justify-between shadow-xl shadow-inner">
+          <Link href="/sandbox" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all min-h-[400px] md:min-h-[550px] flex flex-col justify-between shadow-xl shadow-inner">
              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Globe size={200} className="text-primary md:w-[250px] md:h-[250px]" />
              </div>
@@ -218,12 +218,12 @@ export default function Home() {
           </Link>
 
           {/* INVESTIGATOR SWARM FEED */}
-          <div className="xl:col-span-4 min-h-[400px] md:h-[550px] w-full overflow-hidden border-2 border-border rounded-[3rem] shadow-xl shadow-inner">
+          <div className="xl:col-span-4 min-h-[400px] md:min-h-[550px] w-full overflow-hidden border-2 border-border rounded-[3rem] shadow-xl shadow-inner">
              <AgentIntelligenceFeed />
           </div>
 
           {/* SOVEREIGN AID */}
-          <Link href="/aid" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[400px] md:h-[550px] overflow-hidden hover:border-primary/40 transition-all shadow-xl shadow-inner">
+          <Link href="/aid" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[400px] md:min-h-[550px] overflow-hidden hover:border-primary/40 transition-all shadow-xl shadow-inner">
              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Users size={200} className="text-primary md:w-[250px] md:h-[250px]" />
              </div>
@@ -282,7 +282,7 @@ export default function Home() {
                <h4 className="text-fluid-title font-black italic tracking-tighter uppercase text-muted-foreground/20">Sovereign Matrix <span className="text-primary">Ω</span></h4>
                <p className="text-[9px] md:text-[11px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.4em] md:tracking-[0.6em] italic">The world&apos;s flagship decentralized, autonomous Omni-Intelligence ecosystem.</p>
             </div>
-            <div className="flex flex-wrap justify-center lg:justify-end gap-6 md:gap-10 text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic">
+            <div className="flex flex-wrap justify-center lg:justify-end gap-6 md:gap-10 text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic">
                <Link href="/h2m" className="hover:text-primary transition-all">H2M</Link>
                <Link href="/legal" className="hover:text-primary transition-all">Law</Link>
                <Link href="/privacy" className="hover:text-primary transition-all">Privacy</Link>

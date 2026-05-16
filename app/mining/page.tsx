@@ -269,7 +269,7 @@ export default function MiningPage() {
           <div className="space-y-12 max-w-5xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/10 border border-border rounded-full backdrop-blur-3xl shadow-2xl">
               <Cpu size={20} className="text-primary" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Quantum Resource Allocation</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Quantum Resource Allocation</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] pl-1 text-muted-foreground/95">
@@ -283,7 +283,7 @@ export default function MiningPage() {
             </div>
           </div>
           <div className="flex gap-10 items-center shrink-0">
-               <div className="px-10 py-8 bg-primary/10 border-2 border-primary/20 rounded-full text-[12px] font-black text-primary uppercase tracking-[0.8em] italic leading-none animate-pulse flex items-center gap-8 shadow-2xl">
+               <div className="px-10 py-8 bg-primary/10 border-2 border-primary/20 rounded-full text-[12px] font-black text-primary uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none animate-pulse flex items-center gap-8 shadow-2xl">
                   <Activity size={32} strokeWidth={3} className="animate-pulse" />
                   Global_Ledger_Sync: ACTIVE
                </div>
@@ -328,7 +328,7 @@ export default function MiningPage() {
                     <ShieldCheck size={250} className="text-primary" />
                 </div>
                 
-                <div className="text-[12px] font-black text-primary uppercase tracking-[0.8em] flex items-center gap-6 italic relative z-10 leading-none pl-2 animate-pulse">
+                <div className="text-[12px] font-black text-primary uppercase tracking-[0.4em] md:tracking-[0.8em] flex items-center gap-6 italic relative z-10 leading-none pl-2 animate-pulse">
                    <Target size={24} strokeWidth={3} /> Initializer Rig
                 </div>
                 
@@ -369,7 +369,7 @@ export default function MiningPage() {
                       
                       <button 
                         onClick={toggleMining}
-                        className={`w-full py-10 rounded-[3rem] font-black uppercase tracking-[1em] text-xs transition-all italic leading-none active:scale-95 shadow-2xl relative overflow-hidden group/btn border-0 ${isMining ? 'bg-red-500 text-foreground shadow-[0_40px_80px_rgba(239,68,68,0.3)]' : 'bg-primary text-primary-foreground shadow-[0_40px_80px_rgba(var(--primary),0.3)]'}`}
+                        className={`w-full py-10 rounded-[3rem] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-xs transition-all italic leading-none active:scale-95 shadow-2xl relative overflow-hidden group/btn border-0 ${isMining ? 'bg-red-500 text-foreground shadow-[0_40px_80px_rgba(239,68,68,0.3)]' : 'bg-primary text-primary-foreground shadow-[0_40px_80px_rgba(var(--primary),0.3)]'}`}
                       >
                          <span className="relative z-10 flex items-center justify-center gap-6">
                             {isMining ? 'Halt Computation' : 'Initialize Rig'}
@@ -406,7 +406,7 @@ export default function MiningPage() {
                       
                       <div ref={dataMatrixRef} className="absolute inset-0 p-12 lg:p-16 flex flex-col justify-end font-mono text-[11px] leading-relaxed text-primary/50 break-all overflow-hidden z-20 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 blur-[2px] transition-all duration-1000">
                          <div className="mb-8 flex items-center gap-6 text-muted-foreground/10 border-b-2 border-border pb-8">
-                            <Code size={24} strokeWidth={3} /> <span className="text-[14px] font-black uppercase tracking-[0.8em] italic">Live_Hash_Resonance_Stream</span> 
+                            <Code size={24} strokeWidth={3} /> <span className="text-[14px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic">Live_Hash_Resonance_Stream</span> 
                          </div>
                          <div className="space-y-1">
                            {Array.from({length: 10}).map((_, i) => (

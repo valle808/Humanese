@@ -218,11 +218,11 @@ export default function FAQPage() {
                <div className="h-px w-32 bg-muted/10 mx-auto" />
             </div>
             <div className="flex flex-col lg:flex-row justify-center gap-10">
-                <Link href="/monroe" className="px-16 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[3rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none border-0 overflow-hidden relative group/btn">
+                <Link href="/monroe" className="px-16 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[3rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none border-0 overflow-hidden relative group/btn">
                     <span className="relative z-10 flex items-center gap-6">Consult Abyssal Sentinel <ArrowRight size={20} className="group-hover/btn:translate-x-3 transition-transform" strokeWidth={3} /></span>
                     <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
                 </Link>
-                <Link href="/hpedia" className="px-16 py-8 border-2 border-border bg-muted text-muted-foreground/30 hover:text-foreground font-black uppercase tracking-[0.8em] rounded-[3rem] hover:bg-muted/10 hover:border-border transition-all text-[11px] flex items-center justify-center italic leading-none active:scale-95 group/btn">
+                <Link href="/hpedia" className="px-16 py-8 border-2 border-border bg-muted text-muted-foreground/30 hover:text-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] rounded-[3rem] hover:bg-muted/10 hover:border-border transition-all text-[11px] flex items-center justify-center italic leading-none active:scale-95 group/btn">
                     Open Protocol Technicals
                 </Link>
             </div>

@@ -230,7 +230,7 @@ export default function AgentsPage() {
           <div className="space-y-12 max-w-5xl">
             <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/10 border border-border rounded-full backdrop-blur-3xl shadow-2xl">
               <Orbit size={20} className="text-primary animate-spin-slow" />
-              <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Autonomous Intelligence Swarm</span>
+              <span className="text-[11px] font-black tracking-[0.4em] md:tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Autonomous Intelligence Swarm</span>
             </div>
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] italic pl-1 text-muted-foreground/95">
@@ -288,7 +288,7 @@ export default function AgentsPage() {
                 </div>
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-primary/40 shadow-[0_0_20px_hsl(var(--primary))]" />
                 
-                <div className="text-[12px] font-black text-primary uppercase tracking-[0.8em] flex items-center gap-6 italic relative z-10 leading-none pl-2 animate-pulse">
+                <div className="text-[12px] font-black text-primary uppercase tracking-[0.4em] md:tracking-[0.8em] flex items-center gap-6 italic relative z-10 leading-none pl-2 animate-pulse">
                    <Zap size={24} strokeWidth={3} /> Strategic Directive
                 </div>
                 
@@ -307,7 +307,7 @@ export default function AgentsPage() {
 
               {/* DIPLOMATIC YIELD */}
               <div className="bg-background border-2 border-border p-12 rounded-[5rem] backdrop-blur-3xl space-y-12 shadow-[0_60px_120px_rgba(0,0,0,0.95)] group hover:border-primary/30 transition-all relative overflow-hidden shadow-inner">
-                 <div className="text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.8em] flex items-center gap-6 italic leading-none pl-2">
+                 <div className="text-[12px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] md:tracking-[0.8em] flex items-center gap-6 italic leading-none pl-2">
                    <Globe size={24} className="text-primary" strokeWidth={2.5} /> Diplomatic Ledger
                  </div>
                  <div className="space-y-8 relative z-10 pl-2">
@@ -327,7 +327,7 @@ export default function AgentsPage() {
                  <div className="absolute top-0 right-0 p-10 opacity-[0.02] group-hover:scale-150 transition-transform duration-3000">
                     <Activity size={200} className={remoteQuantum.connected ? 'text-primary' : 'text-red-500'} />
                  </div>
-                 <div className={`text-[12px] font-black ${remoteQuantum.connected ? 'text-primary' : 'text-red-500'} uppercase tracking-[1em] flex items-center gap-6 italic leading-none pl-2 animate-pulse`}>
+                 <div className={`text-[12px] font-black ${remoteQuantum.connected ? 'text-primary' : 'text-red-500'} uppercase tracking-[0.5em] md:tracking-[1em] flex items-center gap-6 italic leading-none pl-2 animate-pulse`}>
                    <Activity size={24} strokeWidth={3} /> Quantum Core
                  </div>
                  <div className="flex flex-col gap-8 items-start relative z-10 pl-2">
@@ -450,7 +450,7 @@ export default function AgentsPage() {
                     </div>
                     <div className="text-left md:text-right space-y-4 pr-4">
                        <div className="text-primary font-black text-fluid-hero italic tracking-tighter leading-none">{miningStats.totalHashrate.toFixed(2)} KH/s</div>
-                       <div className="text-[12px] text-muted-foreground/10 font-black uppercase tracking-[0.8em] italic leading-none pl-2">COMBINED_SWARM_POWER</div>
+                       <div className="text-[12px] text-muted-foreground/10 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none pl-2">COMBINED_SWARM_POWER</div>
                     </div>
                  </div>
 
