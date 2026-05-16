@@ -230,7 +230,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                  </div>
                  <div className="text-center space-y-6 relative z-10">
                     <div className="text-[13px] font-black uppercase tracking-[1em] italic text-primary leading-none">Real-Time Resonance</div>
-                    <p className="text-2xl text-muted-foreground/30 font-light leading-relaxed italic mx-auto max-w-sm tracking-tight">"All neural imprints are transient and subject to consensus re-evaluation."</p>
+                    <p className="text-2xl text-muted-foreground/30 font-light leading-relaxed italic mx-auto max-w-sm tracking-tight">&quot;All neural imprints are transient and subject to consensus re-evaluation.&quot;</p>
                  </div>
                  <button className="w-full py-8 bg-primary text-primary-foreground rounded-[2.5rem] font-black uppercase tracking-[0.8em] text-[11px] italic shadow-2xl shadow-primary/20 hover:scale-[1.05] active:scale-95 transition-all border-0 leading-none">
                     Engage_Neural_Sync

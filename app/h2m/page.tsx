@@ -290,7 +290,7 @@ export default function H2MBridgePage() {
               </div>
 
               <div className="p-12 border-l-4 border-primary/20 space-y-8 bg-gradient-to-r from-primary/5 to-transparent rounded-r-[4rem] group hover:border-primary transition-all duration-1000">
-                 <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed italic font-light group-hover:text-foreground transition-colors"> "The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local." </p>
+                 <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed italic font-light group-hover:text-foreground transition-colors"> &quot;The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local.&quot; </p>
                  <div className="flex items-center gap-6 justify-end">
                     <div className="h-[2px] w-20 bg-border" />
                     <p className="text-[12px] font-black uppercase tracking-[0.8em] text-primary italic leading-none animate-pulse">MONROE_CORE</p>
