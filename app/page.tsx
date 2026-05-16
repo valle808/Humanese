@@ -152,10 +152,10 @@ export default function Home() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-12 gap-6 md:gap-8"
         >
           {/* SIMULATOR */}
-          <Link href="/simulator" className="lg:col-span-8 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-8 md:p-14 lg:p-16 overflow-hidden hover:border-primary/40 transition-all duration-1000 min-h-[400px] md:h-[500px] flex flex-col justify-between shadow-xl shadow-inner">
+          <Link href="/simulator" className="xl:col-span-8 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all duration-1000 min-h-[400px] md:h-[500px] flex flex-col justify-between shadow-xl shadow-inner">
              <div className="absolute top-0 right-0 p-8 md:p-16 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Layers size={300} className="text-primary md:w-[400px] md:h-[400px]" />
              </div>
@@ -179,7 +179,7 @@ export default function Home() {
           </Link>
 
           {/* OMEGA FLEET */}
-          <Link href="/fleet" className="lg:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-8 md:p-14 overflow-hidden hover:border-primary/40 transition-all duration-1000 flex flex-col justify-between shadow-xl shadow-inner min-h-[400px] md:h-[500px]">
+          <Link href="/fleet" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[4rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all duration-1000 flex flex-col justify-between shadow-xl shadow-inner min-h-[400px] md:h-[500px]">
              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Server size={200} className="text-primary md:w-[300px] md:h-[300px]" />
              </div>
@@ -203,7 +203,7 @@ export default function Home() {
           </Link>
 
           {/* ABYSSAL SANDBOX */}
-          <Link href="/sandbox" className="lg:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-8 md:p-14 overflow-hidden hover:border-primary/40 transition-all min-h-[400px] md:h-[550px] flex flex-col justify-between shadow-xl shadow-inner">
+          <Link href="/sandbox" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-6 md:p-8 lg:p-10 overflow-hidden hover:border-primary/40 transition-all min-h-[400px] md:h-[550px] flex flex-col justify-between shadow-xl shadow-inner">
              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Globe size={200} className="text-primary md:w-[250px] md:h-[250px]" />
              </div>
@@ -213,17 +213,17 @@ export default function Home() {
              </div>
              <div className="relative z-10 mt-auto space-y-4 md:space-y-6">
                 <h3 className="text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-muted-foreground/60 group-hover:text-foreground transition-colors">Sandbox.</h3>
-                <p className="text-[10px] md:text-[12px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.3em] md:tracking-[0.5em] italic mt-4">Rehearse future societal trajectories via synthetic seed synthesis and <span className="text-primary/60">cognitive rehearsal</span>.</p>
+                <p className="text-[10px] md:text-[11px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.2em] md:tracking-[0.3em] italic mt-4 break-words">Rehearse future societal trajectories via synthetic seed synthesis and <span className="text-primary/60">cognitive rehearsal</span>.</p>
              </div>
           </Link>
 
           {/* INVESTIGATOR SWARM FEED */}
-          <div className="lg:col-span-4 min-h-[400px] md:h-[550px] w-full overflow-hidden border-2 border-border rounded-[3rem] shadow-xl shadow-inner">
+          <div className="xl:col-span-4 min-h-[400px] md:h-[550px] w-full overflow-hidden border-2 border-border rounded-[3rem] shadow-xl shadow-inner">
              <AgentIntelligenceFeed />
           </div>
 
           {/* SOVEREIGN AID */}
-          <Link href="/aid" className="lg:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-8 md:p-14 flex flex-col justify-between min-h-[400px] md:h-[550px] overflow-hidden hover:border-primary/40 transition-all shadow-xl shadow-inner">
+          <Link href="/aid" className="xl:col-span-4 group relative bg-background border-2 border-border rounded-[3rem] p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[400px] md:h-[550px] overflow-hidden hover:border-primary/40 transition-all shadow-xl shadow-inner">
              <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-3000 pointer-events-none">
                 <Users size={200} className="text-primary md:w-[250px] md:h-[250px]" />
              </div>
@@ -246,12 +246,12 @@ export default function Home() {
                       </div>
                    </div>
                 </div>
-                <p className="text-[10px] md:text-[12px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.3em] md:tracking-[0.5em] italic">Autonomous humanitarian interventions. <span className="text-primary/60">Investigators scanning need.</span></p>
+                <p className="text-[10px] md:text-[11px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.2em] md:tracking-[0.3em] italic break-words mt-4">Autonomous humanitarian interventions. <span className="text-primary/60">Investigators scanning need.</span></p>
              </div>
           </Link>
 
           {/* NEURAL ATLAS */}
-          <Link href="/atlas" className="lg:col-span-12 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-8 md:p-16 lg:p-24 overflow-hidden hover:border-primary/40 transition-all duration-1000 shadow-xl shadow-inner min-h-[500px]">
+          <Link href="/atlas" className="xl:col-span-12 group relative bg-background border-2 border-border rounded-[3rem] md:rounded-[5rem] p-6 md:p-12 lg:p-16 overflow-hidden hover:border-primary/40 transition-all duration-1000 shadow-xl shadow-inner min-h-[500px]">
              <div className="absolute top-0 right-0 p-12 md:p-20 opacity-[0.02] group-hover:scale-125 transition-transform duration-5000 pointer-events-none">
                 <MapIcon size={400} className="text-primary md:w-[600px] md:h-[600px]" strokeWidth={1} />
              </div>

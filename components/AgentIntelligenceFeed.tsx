@@ -122,7 +122,7 @@ export const AgentIntelligenceFeed = () => {
                     ) : (
                         <motion.div
                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                            className="absolute inset-0 flex items-center justify-center opacity-20 italic text-sm"
+                            className="absolute inset-0 flex items-center justify-center opacity-20 italic text-sm text-center px-6 break-words whitespace-normal"
                         >
                             Waiting for neural synchronization...
                         </motion.div>
