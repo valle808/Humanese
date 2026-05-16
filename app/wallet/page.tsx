@@ -188,7 +188,7 @@ export default function WalletPage() {
 
             <div className="space-y-8">
               <div className="flex items-center justify-between px-2">
-                <h2 className="text-2xl md:text-3xl font-black uppercase italic tracking-tighter text-foreground">My Assets_</h2>
+                <h2 className="text-fluid-title font-black uppercase italic tracking-tighter text-foreground">My Assets_</h2>
                 <button className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-primary hover:text-primary/80 transition-all italic">View All</button>
               </div>
               <div className="grid gap-4 md:gap-6">
@@ -203,7 +203,7 @@ export default function WalletPage() {
                         <Coins size={24} md:size={32} strokeWidth={2.5} />
                       </div>
                       <div className="space-y-1">
-                        <div className="text-xl md:text-2xl font-black uppercase italic tracking-tighter text-foreground group-hover:text-primary transition-colors leading-none">{wallet.currency}</div>
+                        <div className="text-fluid-title font-black uppercase italic tracking-tighter text-foreground group-hover:text-primary transition-colors leading-none">{wallet.currency}</div>
                         <div className="flex items-center gap-2">
                            <span className="text-[9px] text-muted-foreground uppercase font-black tracking-widest">{wallet.network}</span>
                            <div className="w-1 h-1 rounded-full bg-muted-foreground/30" />
@@ -212,7 +212,7 @@ export default function WalletPage() {
                       </div>
                     </div>
                     <div className="text-left sm:text-right relative z-10">
-                      <div className="text-2xl md:text-3xl font-black text-foreground italic tracking-tight">{wallet.balance.toLocaleString()} <span className="text-xs text-muted-foreground/40">{wallet.currency}</span></div>
+                      <div className="text-fluid-title font-black text-foreground italic tracking-tight">{wallet.balance.toLocaleString()} <span className="text-xs text-muted-foreground/40">{wallet.currency}</span></div>
                       <div className="text-[10px] text-primary font-black uppercase tracking-[0.2em] italic mt-1 flex items-center sm:justify-end gap-2">
                         ≈ ${wallet.usdValue?.toLocaleString() || '0.00'}
                       </div>

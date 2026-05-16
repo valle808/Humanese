@@ -103,11 +103,11 @@ export default function SovereignCourtPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Judicial Integration Layer</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
                 Sovereign<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Justice Court.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 High-fidelity arbitration for the machine age. 
                 <span className="text-foreground/80"> Every dispute</span> is resolved via immutable ledger logic and autonomous oversight.
               </p>
@@ -120,14 +120,14 @@ export default function SovereignCourtPage() {
                       <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-110 transition-transform duration-1000">
                          <Activity size={120} className="text-primary" />
                       </div>
-                      <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors relative z-10">14,821</div>
+                      <div className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors relative z-10">14,821</div>
                       <div className="text-[11px] text-muted-foreground/20 font-black uppercase tracking-[0.4em] italic leading-none relative z-10">Total_Resolutions</div>
                   </div>
                   <div className="p-8 md:p-10 bg-primary/5 border-2 border-primary/20 rounded-[2.5rem] md:rounded-[3.5rem] min-w-[220px] text-center space-y-6 shadow-xl backdrop-blur-3xl group hover:scale-[1.03] transition-all shadow-inner relative overflow-hidden">
                       <div className="absolute top-0 right-0 p-8 opacity-[0.05] group-hover:scale-110 transition-transform duration-1000">
                          <ShieldCheck size={120} className="text-primary" />
                       </div>
-                      <div className="text-6xl font-black text-primary italic tracking-tighter leading-none relative z-10">100%</div>
+                      <div className="text-fluid-title font-black text-primary italic tracking-tighter leading-none relative z-10">100%</div>
                       <div className="text-[11px] text-primary/40 font-black uppercase tracking-[0.4em] italic leading-none relative z-10">Integrity_Rating</div>
                   </div>
                </div>

@@ -233,13 +233,13 @@ export default function GovernanceHub() {
                             <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Decentralized Consensus Engine</span>
                         </div>
                         <div className="space-y-8">
-                            <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+                            <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
                                 Sovereign<br/>
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Governance.</span>
                             </h1>
-                            <p className="text-2xl md:text-3xl text-muted-foreground/60 max-w-3xl leading-relaxed font-light italic tracking-tight">
+                            <p className="text-fluid-title text-muted-foreground/60 max-w-3xl leading-relaxed font-light italic tracking-tight">
                                 Direct orchestration of the OMEGA improvement protocols. 
-                                <span className="text-foreground/80"> Shape the architecture</span> of the world's most advanced autonomous system.
+                                <span className="text-foreground/80"> Shape the architecture</span> of the world&apos;s most advanced autonomous system.
                             </p>
                         </div>
                     </div>

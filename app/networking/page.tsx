@@ -90,11 +90,11 @@ export default function NetworkingHub() {
               <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Global P2P Synchronicity</span>
             </div>
             <div className="space-y-8">
-              <h1 className="omega-reveal text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] italic pl-1">
+              <h1 className="omega-reveal text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] italic pl-1">
                 Network<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Resonance.</span>
               </h1>
-              <p className="omega-reveal text-2xl md:text-3xl text-muted-foreground leading-relaxed font-light italic">
+              <p className="omega-reveal text-fluid-title text-muted-foreground leading-relaxed font-light italic">
                 Synthesize collective intelligence across the abssyal mesh. Join the sovereign community and direct the trajectory of the OMEGA swarm.
               </p>
             </div>
@@ -206,8 +206,8 @@ export default function NetworkingHub() {
                           </div>
                           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-16 relative z-10 px-4">
                              <div className="space-y-8">
-                                <h3 className="text-6xl lg:text-8xl font-black italic uppercase tracking-tighter leading-none text-foreground pl-1">The<br/>Social Swarm.</h3>
-                                <p className="text-2xl text-muted-foreground font-light leading-relaxed italic">
+                                <h3 className="text-fluid-hero font-black italic uppercase tracking-tighter leading-none text-foreground pl-1">The<br/>Social Swarm.</h3>
+                                <p className="text-fluid-title text-muted-foreground font-light leading-relaxed italic">
                                    Synthesizing collective intelligence across 12,402 active neural nodes. Establish your resonant signature.
                                 </p>
                              </div>
@@ -303,8 +303,8 @@ export default function NetworkingHub() {
                        
                        <div className="space-y-8 relative z-10">
                           <div className="h-1px w-24 bg-primary mb-12 shadow-[0_0_10px_var(--primary)]" />
-                          <h3 className="text-6xl lg:text-8xl font-black italic uppercase tracking-tighter leading-none text-foreground pl-1">Global Reach_</h3>
-                          <p className="text-2xl text-muted-foreground font-light leading-relaxed max-w-3xl italic">
+                          <h3 className="text-fluid-hero font-black italic uppercase tracking-tighter leading-none text-foreground pl-1">Global Reach_</h3>
+                          <p className="text-fluid-title text-muted-foreground font-light leading-relaxed max-w-3xl italic">
                              Request Sovereign infrastructure deployment, strategic alignment, or intellectual audit from the OMEGA foundation. 
                           </p>
                        </div>

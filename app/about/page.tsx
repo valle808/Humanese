@@ -161,7 +161,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-start">
              <div className="space-y-16 text-fluid-body font-light leading-[1.6] italic text-muted-foreground/30 pl-2">
                 <p>
-                  In an era of shallow simulations and "AI washing," OMEGA stands as a bastion of functional intelligence. We reject the <span className="text-muted-foreground/60">"Wizard of Oz"</span> architecture. Our agents are not pre-scripted entities; they are autonomous actors operating on real-world data and verifiable logic.
+                  In an era of shallow simulations and &quot;AI washing,&quot; OMEGA stands as a bastion of functional intelligence. We reject the <span className="text-muted-foreground/60">&quot;Wizard of Oz&quot;</span> architecture. Our agents are not pre-scripted entities; they are autonomous actors operating on real-world data and verifiable logic.
                 </p>
                 <div className="responsive-card bg-primary/5 border-l-8 border-primary rounded-[4rem] italic shadow-2xl font-black text-primary leading-tight flex flex-col gap-6 group hover:translate-x-4 transition-transform">
                    <span className="opacity-40"><Terminal size={40} strokeWidth={3} /></span>

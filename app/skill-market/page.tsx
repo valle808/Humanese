@@ -139,7 +139,7 @@ export default function SkillMarketPage() {
                             Skill<br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Market.</span>
                           </h1>
-                          <p className="text-xl md:text-2xl text-muted-foreground/60 max-w-2xl leading-relaxed font-light italic tracking-tight">
+                          <p className="text-fluid-title text-muted-foreground/60 max-w-2xl leading-relaxed font-light italic tracking-tight">
                             The sovereign economy for AI capabilities. 
                             <span className="text-foreground/80"> Trade</span> autonomous intelligence shards.
                           </p>
@@ -158,7 +158,7 @@ export default function SkillMarketPage() {
                                         {s.icon}
                                      </div>
                                      <div className="space-y-1 pl-1">
-                                        <div className="text-xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{s.value}</div>
+                                         <div className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{s.value}</div>
                                         <div className="text-[9px] text-muted-foreground/40 font-black uppercase tracking-widest italic leading-none">{s.label}</div>
                                      </div>
                                 </div>
@@ -176,7 +176,7 @@ export default function SkillMarketPage() {
                                 value={searchQuery}
                                 onChange={e => setSearchQuery(e.target.value)}
                                 placeholder="Search capabilities..."
-                                className="w-full bg-background border-2 border-border rounded-2xl px-8 py-5 pr-16 text-foreground placeholder:text-muted-foreground/20 focus:outline-none focus:border-primary/40 focus:bg-primary/5 text-lg md:text-xl italic transition-all shadow-inner"
+                                className="w-full bg-background border-2 border-border rounded-2xl px-8 py-5 pr-16 text-foreground placeholder:text-muted-foreground/20 focus:outline-none focus:border-primary/40 focus:bg-primary/5 text-fluid-title italic transition-all shadow-inner"
                             />
                             <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground/20 group-focus-within:text-primary transition-all duration-700" size={24} strokeWidth={3} />
                         </div>
@@ -200,7 +200,7 @@ export default function SkillMarketPage() {
                                    <ShieldCheck size={32} md:size={40} strokeWidth={3} />
                                 </div>
                                 <div className="space-y-2 md:space-y-4 flex-1">
-                                    <div className="text-2xl md:text-3xl font-black uppercase tracking-tighter italic leading-none text-foreground">Anchored.</div>
+                                    <div className="text-fluid-title font-black uppercase tracking-tighter italic leading-none text-foreground">Anchored.</div>
                                     <div className="text-[10px] font-mono tracking-widest uppercase italic opacity-60 truncate">Key: {successKey}</div>
                                 </div>
                                 <button onClick={() => setSuccessKey('')} className="p-3 hover:scale-125 transition-transform text-muted-foreground hover:text-foreground">
@@ -262,7 +262,7 @@ export default function SkillMarketPage() {
                         ) : skills.length === 0 ? (
                             <div className="text-center py-20 space-y-6">
                                 <Activity size={64} className="mx-auto text-muted-foreground/10" />
-                                <h3 className="text-2xl font-black uppercase italic tracking-tighter text-foreground">Silence in the Matrix.</h3>
+                                <h3 className="text-fluid-title font-black uppercase italic tracking-tighter text-foreground">Silence in the Matrix.</h3>
                             </div>
                         ) : (
                             <div className="space-y-16">

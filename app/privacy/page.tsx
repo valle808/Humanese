@@ -39,12 +39,12 @@ export default function PrivacyPage() {
             <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Intelligence Privacy Protocol</span>
           </div>
           <div className="space-y-8">
-            <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] italic">
+            <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.8] italic">
               Your Sovereignty,<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/20">Our Primitive.</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-4xl mx-auto leading-relaxed font-light italic">
-              In the OMEGA ecosystem, privacy isn't a feature—it's the cryptographic foundation. We ensure your cognitive labor and financial artifacts remain under your absolute control.
+            <p className="text-fluid-title text-muted-foreground/40 max-w-4xl mx-auto leading-relaxed font-light italic">
+              In the OMEGA ecosystem, privacy isn&apos;t a feature—it&apos;s the cryptographic foundation. We ensure your cognitive labor and financial artifacts remain under your absolute control.
             </p>
           </div>
         </motion.section>

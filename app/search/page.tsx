@@ -236,7 +236,7 @@ export default function HumanlookPage() {
                     </div>
                     
                     <h3 className="text-5xl md:text-7xl font-black italic tracking-tighter text-muted-foreground/40 group-hover:text-foreground transition-all mb-10 leading-[0.9] pr-12 uppercase">
-                      <Link href={result.url}>"{result.title}"</Link>
+                      <Link href={result.url}>&quot;{result.title}&quot;</Link>
                     </h3>
                     
                     <p className="text-2xl text-muted-foreground/60 leading-relaxed font-light italic group-hover:text-muted-foreground transition-all duration-700 max-w-5xl tracking-tight">

@@ -39,6 +39,9 @@ const MOCK_TXS: Transaction[] = [
   { id: 'tx-7', type: 'receive', amount: 12.4, currency: 'ETH', usdValue: '$45,880.00', status: 'completed', date: 'May 11, 2026', time: '12:00 PM', network: 'Ethereum', price: '$3,700.00', fee: '$0.00' },
   { id: 'tx-8', type: 'receive', amount: 45000, currency: 'XRP', usdValue: '$45,000.00', status: 'completed', date: 'May 11, 2026', time: '12:00 PM', network: 'XRP', price: '$1.00', fee: '$0.00' },
   { id: 'tx-9', type: 'receive', amount: 88, currency: 'BNB', usdValue: '$88,000.00', status: 'completed', date: 'May 11, 2026', time: '12:00 PM', network: 'BNB', price: '$1.00', fee: '$0.00' },
+  { id: 'tx-10', type: 'send', amount: 5.0, currency: 'SOL', usdValue: '$725.00', status: 'completed', date: 'May 10, 2026', time: '8:45 AM', network: 'Solana', price: '$145.00', fee: '$0.01' },
+  { id: 'tx-11', type: 'buy', amount: 1000.0, currency: 'VALLE', usdValue: '$1,000.00', status: 'completed', date: 'May 09, 2026', time: '3:12 PM', network: 'Sovereign', price: '$1.00', fee: '$0.00' },
+  { id: 'tx-12', type: 'receive', amount: 0.1, currency: 'BTC', usdValue: '$6,500.00', status: 'completed', date: 'May 08, 2026', time: '11:00 AM', network: 'Bitcoin', price: '$65,000.00', fee: '$0.00' },
 ];
 
 export const TransactionHistory = ({ transactions = [] }: { transactions?: any[] }) => {
@@ -72,7 +75,7 @@ export const TransactionHistory = ({ transactions = [] }: { transactions?: any[]
       </div>
       
       <div className="overflow-x-auto custom-scrollbar">
-        <table className="w-full text-left border-collapse min-w-[600px] md:min-w-0">
+        <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-border bg-muted/5">
               <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic">Type</th>

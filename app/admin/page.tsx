@@ -99,7 +99,7 @@ export default function SovereignNexusPage() {
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_20px_hsl(var(--primary))]" />
           
           <div className="text-center space-y-4">
-             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-foreground italic leading-[0.85] pl-1">
+             <h1 className="text-fluid-hero font-black uppercase tracking-tighter text-foreground italic leading-[0.9] md:leading-[0.85] pl-1">
                 Sovereign<br/> <span className="text-primary">Nexus.</span>
              </h1>
              <p className="text-[11px] text-muted-foreground/20 uppercase tracking-[0.6em] font-black italic leading-none pt-4">Neural Interface Protocol v7.0</p>
@@ -216,11 +216,11 @@ export default function SovereignNexusPage() {
               <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Omni-Intelligence Ops Terminal</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] italic">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8]">
                 Nexus<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Command.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 leading-relaxed font-light italic">
+              <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic">
                 Direct orchestration of the OMEGA swarm. Absolute transparency over all cognitive transmissions and architectural shifts.
               </p>
             </div>
@@ -236,7 +236,7 @@ export default function SovereignNexusPage() {
                 </div>
                 <div>
                    <div className="text-[11px] text-muted-foreground/20 uppercase tracking-[0.6em] font-black italic mb-1">Neural Stability</div>
-                   <div className="text-4xl font-black text-primary italic leading-none tracking-tighter">99.982%</div>
+                   <div className="text-fluid-title font-black text-primary italic leading-none tracking-tighter">99.982%</div>
                 </div>
              </div>
              <div className="px-10 py-8 bg-background border-2 border-border rounded-[3.5rem] flex items-center gap-8 group shadow-[0_40px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl relative overflow-hidden">
@@ -248,7 +248,7 @@ export default function SovereignNexusPage() {
                 </div>
                 <div>
                    <div className="text-[11px] text-muted-foreground/20 uppercase tracking-[0.6em] font-black italic mb-1">Global Reach</div>
-                   <div className="text-4xl font-black text-foreground italic leading-none tracking-tighter">{systemData?.metrics?.reach || '4.2M'}</div>
+                   <div className="text-fluid-title font-black text-foreground italic leading-none tracking-tighter">{systemData?.metrics?.reach || '4.2M'}</div>
                 </div>
              </div>
           </div>
@@ -280,7 +280,7 @@ export default function SovereignNexusPage() {
                           <span className="text-[11px] font-black font-mono text-muted-foreground/10 tabular-nums uppercase tracking-widest italic leading-none">[{new Date(log.timestamp).toLocaleTimeString()}]</span>
                           <span className="px-4 py-1.5 bg-muted border-2 border-border text-[9px] text-primary font-black rounded-xl uppercase tracking-[0.3em] italic leading-none">{log.agentName}</span>
                        </div>
-                       <p className="text-2xl text-muted-foreground/40 leading-relaxed font-light group-hover:text-muted-foreground/80 transition-colors italic tracking-tight">"{log.thought}"</p>
+                       <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light group-hover:text-muted-foreground/80 transition-colors italic tracking-tight">&quot;{log.thought}&quot;</p>
                        {log.action && (
                          <div className="mt-4 text-primary text-[11px] font-black uppercase tracking-[0.5em] flex items-center gap-4 italic leading-none pl-1">
                             <Zap size={14} strokeWidth={3} className="animate-pulse" /> EXECUTION: {log.action}
@@ -312,11 +312,11 @@ export default function SovereignNexusPage() {
                  </h3>
                  <div className="grid grid-cols-2 gap-8 relative z-10 pt-4">
                     <div className="bg-background border-2 border-border p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] text-center space-y-4 shadow-2xl group-hover:border-primary/20 transition-all">
-                       <div className="text-5xl font-black text-primary tracking-tighter italic leading-none">{systemData?.metrics?.knowledge_shards || '1,241'}</div>
+                       <div className="text-fluid-title font-black text-primary tracking-tighter italic leading-none">{systemData?.metrics?.knowledge_shards || '1,241'}</div>
                        <div className="text-[10px] text-muted-foreground/10 uppercase tracking-[0.4em] font-black italic">SHARDS_VALID</div>
                     </div>
                     <div className="bg-background border-2 border-border p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] text-center space-y-4 shadow-2xl group-hover:border-primary/20 transition-all">
-                       <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none">{systemData?.metrics?.neural_links || '8.2M'}</div>
+                       <div className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none">{systemData?.metrics?.neural_links || '8.2M'}</div>
                        <div className="text-[10px] text-muted-foreground/10 uppercase tracking-[0.4em] font-black italic">NEURAL_LINKS</div>
                     </div>
                  </div>
@@ -384,7 +384,7 @@ export default function SovereignNexusPage() {
                  <div className="space-y-12 relative z-10">
                     <div className="flex justify-between items-center pl-2 pr-2">
                        <span className="text-[12px] text-muted-foreground/30 uppercase tracking-[0.6em] font-black italic leading-none">Health Score</span>
-                       <span className="text-5xl font-black text-primary italic tracking-tighter leading-none">{(oracleData?.healthScore * 100 || 99.99).toFixed(2)}%</span>
+                       <span className="text-fluid-title font-black text-primary italic tracking-tighter leading-none">{(oracleData?.healthScore * 100 || 99.99).toFixed(2)}%</span>
                     </div>
                     <div className="space-y-6 pt-4">
                         <div className="flex justify-between text-[11px] font-black italic uppercase tracking-[0.5em] text-muted-foreground/20 pl-2 pr-2 leading-none">

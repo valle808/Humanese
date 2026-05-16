@@ -138,11 +138,11 @@ export default function FleetPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Physical Infrastructure Layer</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
                 OMEGA<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Fleet.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
                 Monitor and orchestrate the global <span className="text-foreground/80">physical node cluster</span>. Direct machine hardware from the cognitive interface.
               </p>
             </div>
@@ -154,7 +154,7 @@ export default function FleetPage() {
                      <Wifi size={120} className="text-primary" />
                   </div>
                   <div className="text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.6em] italic leading-none pl-1">Cluster Integrity</div>
-                  <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors flex items-baseline gap-4 pl-1">
+                  <div className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors flex items-baseline gap-4 pl-1">
                     99.99% <span className="text-xs text-primary uppercase tracking-[0.4em] font-black italic">Stable</span>
                   </div>
                   <div className="h-3 w-full bg-muted border-2 border-border rounded-full overflow-hidden shadow-inner p-[1px] relative z-20">
@@ -170,7 +170,7 @@ export default function FleetPage() {
           {/* LEFT: NODE CLUSTER */}
           <div className="lg:col-span-8 space-y-16">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 border-b-2 border-border pb-12 pl-4">
-              <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight italic flex items-center gap-8 text-muted-foreground/40 leading-none">
+              <h2 className="text-fluid-title font-black uppercase tracking-tight italic flex items-center gap-8 text-muted-foreground/40 leading-none">
                 <Server size={40} className="text-primary" strokeWidth={2.5} /> Global Cluster Nodes
               </h2>
               <span className="text-[11px] text-primary font-black uppercase tracking-[0.8em] italic animate-pulse leading-none">
@@ -265,7 +265,7 @@ export default function FleetPage() {
                       <span className="text-[11px] font-black uppercase tracking-[0.8em] italic leading-none pl-1">Telemetry HUD</span>
                     </div>
                     <div className="space-y-4">
-                        <h3 className="text-4xl font-black italic tracking-tighter uppercase leading-tight text-foreground group-hover:text-primary transition-colors break-words">
+                        <h3 className="text-fluid-title font-black italic tracking-tighter uppercase leading-tight text-foreground group-hover:text-primary transition-colors break-words">
                         {selectedNode.name}
                         </h3>
                         <div className="text-[10px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] italic flex items-center gap-4 leading-none pl-1">
@@ -285,7 +285,7 @@ export default function FleetPage() {
                         <div className={`text-[10px] font-black uppercase tracking-[0.6em] italic flex items-center gap-4 leading-none ${warn ? 'text-red-500' : 'text-muted-foreground/40 group-hover/stat:text-foreground'}`}>
                           <span className="text-primary">{icon}</span>{label}
                         </div>
-                        <div className={`text-3xl font-black italic tracking-tighter tabular-nums leading-none ${warn ? 'text-red-400 animate-pulse' : 'text-foreground'}`}>{value}</div>
+                        <div className={`text-fluid-title font-black italic tracking-tighter tabular-nums leading-none ${warn ? 'text-red-400 animate-pulse' : 'text-foreground'}`}>{value}</div>
                       </div>
                     ))}
                   </div>
@@ -377,7 +377,7 @@ export default function FleetPage() {
               <div className="space-y-16 relative z-10">
                 <div className="space-y-8">
                   <div className="text-[11px] font-black text-primary uppercase tracking-[1em] italic leading-none pl-1">Intelligence Synthesis Report</div>
-                  <h2 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.9] text-foreground">{report.title}</h2>
+                  <h2 className="text-fluid-hero font-black italic tracking-tighter uppercase leading-[0.9] text-foreground">{report.title}</h2>
                   <div className="text-[11px] text-muted-foreground/40 uppercase tracking-[0.5em] italic font-black flex items-center gap-4 leading-none pl-1">
                     <Clock size={18} strokeWidth={2.5} /> {new Date(report.timestamp).toLocaleString()}
                   </div>
@@ -420,7 +420,7 @@ export default function FleetPage() {
 
                 <div className="pt-16 border-t-2 border-border space-y-8">
                   <div className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic leading-none pl-1">Final Conclusion</div>
-                  <p className="text-3xl font-light italic text-muted-foreground/60 leading-relaxed tracking-tight max-w-4xl">"{report.conclusion}"</p>
+                  <p className="text-3xl font-light italic text-muted-foreground/60 leading-relaxed tracking-tight max-w-4xl">&quot;{report.conclusion}&quot;</p>
                 </div>
               </div>
             </motion.div>

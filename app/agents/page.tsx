@@ -233,11 +233,11 @@ export default function AgentsPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Autonomous Intelligence Swarm</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] italic pl-1 text-muted-foreground/95">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] italic pl-1 text-muted-foreground/95">
                 Sovereign<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Swarm.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Real-time collective consciousness and distributed resource acquisition across the OMEGA network.
               </p>
             </div>
@@ -246,11 +246,11 @@ export default function AgentsPage() {
           <div className="flex gap-10 items-center shrink-0">
                <div className="grid grid-cols-2 gap-8">
                   <div className="p-10 bg-background border-2 border-border rounded-[3.5rem] min-w-[220px] text-center space-y-4 shadow-[0_40px_80px_rgba(0,0,0,0.8)] backdrop-blur-3xl group hover:border-primary/30 transition-all">
-                      <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{metrics.agents}</div>
+                      <div className="text-fluid-hero font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{metrics.agents}</div>
                       <div className="text-[11px] text-muted-foreground/20 font-black uppercase tracking-[0.4em] italic leading-none">Active_Units</div>
                   </div>
                   <div className="p-10 bg-primary/5 border-2 border-primary/20 rounded-[3.5rem] min-w-[220px] text-center space-y-4 shadow-[0_40px_80px_rgba(var(--primary),0.1)] backdrop-blur-3xl group hover:scale-[1.03] transition-all">
-                      <div className="text-6xl font-black text-primary italic tracking-tighter leading-none">{metrics.quantumDepth}</div>
+                      <div className="text-fluid-hero font-black text-primary italic tracking-tighter leading-none">{metrics.quantumDepth}</div>
                       <div className="text-[11px] text-primary/40 font-black uppercase tracking-[0.4em] italic leading-none">Qubit_Depth</div>
                   </div>
                </div>
@@ -271,7 +271,7 @@ export default function AgentsPage() {
                 <span className="text-primary">{stat.icon}</span> {stat.label}
               </div>
               <div className="space-y-4 pl-1 relative z-10">
-                <div className={`text-4xl lg:text-5xl font-black italic tracking-tighter leading-none ${stat.label === 'Strategic Mode' ? 'text-primary' : 'text-foreground'}`}>{stat.val}</div>
+                <div className={`text-fluid-title font-black italic tracking-tighter leading-none ${stat.label === 'Strategic Mode' ? 'text-primary' : 'text-foreground'}`}>{stat.val}</div>
                 <div className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground/5 italic">{stat.detail}</div>
               </div>
             </div>
@@ -312,7 +312,7 @@ export default function AgentsPage() {
                  </div>
                  <div className="space-y-8 relative z-10 pl-2">
                     <div className="flex flex-col gap-2">
-                       <span className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{(diplomatStats?.simulatedSolYield || 0).toFixed(4)} <span className="text-xl text-muted-foreground/20 uppercase tracking-[0.2em] font-black">SOL</span></span>
+                       <span className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{(diplomatStats?.simulatedSolYield || 0).toFixed(4)} <span className="text-xl text-muted-foreground/20 uppercase tracking-[0.2em] font-black">SOL</span></span>
                        <span className="text-[12px] font-black uppercase tracking-[0.6em] text-muted-foreground/5 italic">ACQUISITION_YIELD</span>
                     </div>
                     <div className="p-8 bg-muted border-2 border-border rounded-[2.5rem] space-y-4 shadow-inner">
@@ -333,7 +333,7 @@ export default function AgentsPage() {
                  <div className="flex flex-col gap-8 items-start relative z-10 pl-2">
                    <div className="space-y-4">
                       <div className="text-[12px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] italic leading-none">Heartbeat_Cluster</div>
-                      <div className="text-5xl font-black text-foreground italic tracking-tighter flex items-center gap-6 leading-none">
+                      <div className="text-fluid-hero font-black text-foreground italic tracking-tighter flex items-center gap-6 leading-none">
                          {remoteQuantum.status} <span className="text-xl text-muted-foreground/20 font-black font-mono italic">({remoteQuantum.latency}ms)</span>
                       </div>
                    </div>
@@ -449,7 +449,7 @@ export default function AgentsPage() {
                        </div>
                     </div>
                     <div className="text-left md:text-right space-y-4 pr-4">
-                       <div className="text-primary font-black text-7xl lg:text-8xl italic tracking-tighter leading-none">{miningStats.totalHashrate.toFixed(2)} KH/s</div>
+                       <div className="text-primary font-black text-fluid-hero italic tracking-tighter leading-none">{miningStats.totalHashrate.toFixed(2)} KH/s</div>
                        <div className="text-[12px] text-muted-foreground/10 font-black uppercase tracking-[0.8em] italic leading-none pl-2">COMBINED_SWARM_POWER</div>
                     </div>
                  </div>

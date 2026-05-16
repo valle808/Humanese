@@ -198,11 +198,11 @@ export default function ResearchHubPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Scientific Sovereignty Hub</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] italic pl-1 text-muted-foreground/95">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] italic pl-1 text-muted-foreground/95">
                 Scientific<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Progress.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Universal collaboration for the survival and expansion of the biological and digital neural net. 
                 <span className="text-muted-foreground/60"> Developing medicines</span>, energy, and quantum logic for the collective.
               </p>
@@ -273,7 +273,7 @@ export default function ResearchHubPage() {
                   </div>
                   <div className="text-center space-y-4">
                      <div className="text-[12px] font-black tracking-[1em] text-primary/40 uppercase italic leading-none">Molecular Resonance</div>
-                     <div className="text-6xl font-black italic tracking-tighter text-muted-foreground/90 leading-none group-hover:text-primary transition-colors">{activeResonance * 100}% MATCH</div>
+                     <div className="text-fluid-title font-black italic tracking-tighter text-muted-foreground/90 leading-none group-hover:text-primary transition-colors">{activeResonance * 100}% MATCH</div>
                      <div className="text-[10px] text-muted-foreground/5 font-black uppercase tracking-[0.5em] italic leading-none">CORE_SYNTHESIS_LOCK</div>
                   </div>
                </div>
@@ -287,7 +287,7 @@ export default function ResearchHubPage() {
         <section className="space-y-24">
             <div className="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-16 border-b-2 border-border pb-16">
                <div className="space-y-6">
-                  <h2 className="text-6xl font-black uppercase tracking-tighter italic leading-none text-muted-foreground/90">Sovereign Knowledge Hub</h2>
+                  <h2 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none text-muted-foreground/90">Sovereign Knowledge Hub</h2>
                   <div className="flex items-center gap-6">
                      <div className="h-px w-16 bg-primary/40" />
                      <p className="text-[12px] text-muted-foreground/10 uppercase tracking-[1em] font-black italic leading-none pl-1">Primary Sovereign Directives</p>
@@ -339,7 +339,7 @@ export default function ResearchHubPage() {
                       </div>
 
                       <div className="space-y-6 relative z-20 flex-1">
-                         <h3 className="text-3xl font-black uppercase italic tracking-tighter leading-tight text-muted-foreground/40 group-hover:text-foreground transition-colors line-clamp-2">"{article.title}"</h3>
+                         <h3 className="text-3xl font-black uppercase italic tracking-tighter leading-tight text-muted-foreground/40 group-hover:text-foreground transition-colors line-clamp-2">&quot;{article.title}&quot;</h3>
                          <p className="text-base text-muted-foreground/10 leading-relaxed font-light italic group-hover:text-muted-foreground/30 transition-all duration-700 line-clamp-3 tracking-tight">
                             {article.excerpt}
                          </p>

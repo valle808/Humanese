@@ -135,11 +135,11 @@ export default function SandboxPage() {
               <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Social Rehearsal Environment</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8]">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8]">
                 Abyssal<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Sandbox.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed font-light italic">
+              <p className="text-fluid-title text-muted-foreground leading-relaxed font-light italic">
                 Simulate population dynamics. Test ideological drifts. Predict societal shifts before they anchor in reality.
               </p>
             </div>
@@ -153,7 +153,7 @@ export default function SandboxPage() {
                <div className="text-[11px] text-muted-foreground uppercase tracking-[0.6em] flex items-center gap-4 font-black italic pl-2">
                   <Terminal size={16} className="text-primary" /> Temporal Cycle
                </div>
-               <div className="text-7xl font-black text-foreground tracking-tighter italic leading-none pl-2">#{currentStep}</div>
+               <div className="text-fluid-hero font-black text-foreground tracking-tighter italic leading-none pl-2">#{currentStep}</div>
                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border overflow-hidden">
                   <motion.div animate={{ x: ['-100%', '100%'] }} transition={{ duration: 4, repeat: Infinity }} className="h-full w-1/3 bg-primary blur-sm" />
                </div>
@@ -337,7 +337,7 @@ export default function SandboxPage() {
                                <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[12px] font-black uppercase tracking-[1em] text-primary italic leading-none">
                                   <ShieldAlert size={20} className="animate-pulse" /> Sovereign Foresight // OMEGA_7.0
                                </div>
-                               <h2 className="text-7xl lg:text-[11rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground whitespace-pre-wrap">{report.title}</h2>
+                               <h2 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground whitespace-pre-wrap">{report.title}</h2>
                                <div className="flex flex-wrap justify-center lg:justify-start gap-10 pt-10">
                                   <div className="px-10 py-5 bg-primary text-primary-foreground rounded-[2rem] text-[12px] font-black uppercase tracking-[0.4em] italic shadow-2xl">RESONANCE_INDEX: {report.resonance}</div>
                                   <div className="px-10 py-5 bg-muted/10 border-2 border-border rounded-[2rem] text-[12px] font-black text-muted-foreground uppercase tracking-[0.4em] tabular-nums italic">{report.timestamp}</div>
@@ -377,7 +377,7 @@ export default function SandboxPage() {
                             <div className="pt-32 border-t-2 border-border space-y-24">
                                <div className="space-y-10">
                                   <h4 className="text-[12px] font-black uppercase tracking-[1em] text-muted-foreground italic">Ideological Synthesis</h4>
-                                  <p className="text-5xl lg:text-8xl font-black text-foreground italic tracking-tighter leading-none">"{report.ideologicalDrift}"</p>
+                                  <p className="text-fluid-hero font-black text-foreground italic tracking-tighter leading-none">&quot;{report.ideologicalDrift}&quot;</p>
                                 </div>
                                <div className="space-y-10">
                                   <h4 className="text-[12px] font-black uppercase tracking-[1em] text-muted-foreground italic">Architectural Consensus</h4>

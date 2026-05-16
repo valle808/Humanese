@@ -123,7 +123,7 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                             </span>
                         </div>
 
-                        <h1 className="text-6xl md:text-[8rem] font-black uppercase tracking-tighter italic leading-[0.85] text-foreground italic">
+                        <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.85] text-foreground italic">
                             {hip.title}
                         </h1>
 

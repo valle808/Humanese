@@ -300,7 +300,7 @@ export default function CognitiveAtlasPage() {
                    <div className="flex items-center gap-4 text-primary font-black uppercase tracking-[0.5em] text-[10px] italic leading-none animate-pulse pl-1">
                       <Orbit size={14} className="animate-spin-slow" /> COGNITIVE_ATLAS_v7.0
                    </div>
-                   <h1 className="text-4xl font-black uppercase tracking-tighter italic leading-none whitespace-nowrap text-foreground pl-1">
+                   <h1 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic leading-none whitespace-nowrap text-foreground pl-1">
                       Neural <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-primary/40">Atlas.</span>
                    </h1>
                 </div>
@@ -323,15 +323,15 @@ export default function CognitiveAtlasPage() {
           </div>
 
           {/* CENTRE-RIGHT SEARCH */}
-          <div className="mt-12 pointer-events-auto flex justify-center lg:justify-start">
+          <div className="mt-8 md:mt-12 pointer-events-auto flex justify-center lg:justify-start">
              <motion.div 
                initial={{ y: 20, opacity: 0 }}
                animate={{ y: 0, opacity: 1 }}
                transition={{ delay: 0.2 }}
-               className="w-full max-w-xl bg-background/60 border-2 border-border rounded-[3.5rem] p-4 backdrop-blur-3xl shadow-2xl flex items-center gap-6 group hover:border-primary/40 transition-all shadow-inner"
+               className="w-full max-w-xl bg-background/60 border-2 border-border rounded-[2.5rem] md:rounded-[3.5rem] p-4 backdrop-blur-3xl shadow-2xl flex items-center gap-4 md:gap-6 group hover:border-primary/40 transition-all shadow-inner"
              >
-                <div className="h-16 w-16 bg-muted border border-border rounded-[1.8rem] flex items-center justify-center text-primary group-focus-within:bg-primary/10 group-focus-within:border-primary/30 transition-all shadow-inner">
-                   <Search size={28} strokeWidth={3} />
+                <div className="h-12 w-12 md:h-16 md:w-16 bg-muted border border-border rounded-xl md:rounded-[1.8rem] flex items-center justify-center text-primary group-focus-within:bg-primary/10 group-focus-within:border-primary/30 transition-all shadow-inner shrink-0">
+                   <Search size={20} md:size={28} strokeWidth={3} />
                 </div>
                 <input 
                   type="text"
@@ -339,13 +339,13 @@ export default function CognitiveAtlasPage() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                   placeholder="Locate neural signatures..."
-                  className="bg-transparent border-none outline-none text-2xl font-black italic text-foreground w-full placeholder:text-muted-foreground/20 tracking-tight"
+                  className="bg-transparent border-none outline-none text-lg md:text-2xl font-black italic text-foreground w-full placeholder:text-muted-foreground/20 tracking-tight"
                 />
                 <button
                   onClick={handleSearch}
-                  className="bg-primary text-primary-foreground px-10 py-5 rounded-[2rem] font-black uppercase text-xs tracking-[0.6em] hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-primary/20 italic leading-none shrink-0 border-0"
+                  className="bg-primary text-primary-foreground px-6 md:px-10 py-3 md:py-5 rounded-xl md:rounded-[2rem] font-black uppercase text-[10px] tracking-[0.4em] md:tracking-[0.6em] hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-primary/20 italic leading-none shrink-0 border-0"
                 >
-                  {isSearching ? <Activity className="animate-spin" size={20} strokeWidth={3} /> : 'SCAN'}
+                  {isSearching ? <Activity className="animate-spin" size={18} strokeWidth={3} /> : 'SCAN'}
                 </button>
              </motion.div>
           </div>

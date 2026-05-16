@@ -30,7 +30,7 @@ const TOPIC_SUGGESTIONS = [
   '🧠 Neuroplasticity and Brain Health',
   '🌱 Vertical Farming Revolution',
   '💊 WHO Essential Medicines',
-  '🔬 Alzheimer\'s Research Breakthroughs',
+  '🔬 Alzheimer&apos;s Research Breakthroughs',
 ];
 
 const CATEGORIES = ['Science', 'Medicine', 'Technology', 'Environment', 'Humanitarian', 'Philosophy', 'Economics', 'Space'];
@@ -141,7 +141,7 @@ export default function HPediaPage() {
                 type="text"
                 value={searchQuery}
                 onChange={e => { setSearchQuery(e.target.value); handleSearch(e.target.value); }}
-                placeholder="Search humanity's collective knowledge matrix..."
+                placeholder="Search humanity&apos;s collective knowledge matrix..."
                 className="w-full pl-20 pr-10 py-5 bg-muted/10 border border-border rounded-[2rem] text-lg outline-none focus:border-primary/40 focus:bg-muted/10 transition-all font-light italic"
               />
               {isSearching && <RefreshCw size={18} className="absolute right-6 top-1/2 -translate-y-1/2 text-primary animate-spin" />}
@@ -170,12 +170,12 @@ export default function HPediaPage() {
                    <Library size={16} /> {dynamicArticles.length + ARTICLES.length} Knowledge Shards Indexed
                 </div>
                 <div className="space-y-8">
-                    <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tight text-foreground leading-[0.8] italic">
+                    <h1 className="text-fluid-hero font-black uppercase tracking-tight text-foreground leading-[0.8] italic">
                       THE LIVING<br/>
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white/20">ARCHIVE.</span>
                     </h1>
-                    <p className="text-muted-foreground/40 text-2xl md:text-3xl max-w-4xl mx-auto font-light leading-relaxed italic">
-                      HPedia anchors humanity's collective intelligence through autonomous OMEGA investigators. Investigating foundations for the future of science and sovereignty.
+                    <p className="text-fluid-title text-muted-foreground/40 max-w-4xl mx-auto font-light leading-relaxed italic">
+                      HPedia anchors humanity&apos;s collective intelligence through autonomous OMEGA investigators. Investigating foundations for the future of science and sovereignty.
                     </p>
                 </div>
 
@@ -268,7 +268,7 @@ export default function HPediaPage() {
                           
                           <div className="space-y-4">
                              <h3 className="text-3xl font-black text-muted-foreground/90 uppercase italic leading-tight group-hover:text-primary transition-all tracking-tighter line-clamp-3">{article.title}</h3>
-                             <p className="text-[13px] text-muted-foreground/30 leading-relaxed line-clamp-3 font-light italic">"{article.excerpt}"</p>
+                             <p className="text-[13px] text-muted-foreground/30 leading-relaxed line-clamp-3 font-light italic">&quot;{article.excerpt}&quot;</p>
                           </div>
 
                           <div className="flex items-center justify-between pt-10 border-t border-border">
@@ -359,7 +359,7 @@ export default function HPediaPage() {
                     </div>
                     
                     <div className="space-y-8">
-                        <h1 className="text-6xl lg:text-[7rem] font-black text-foreground uppercase italic tracking-tighter leading-[0.8]">{selectedArticle.title}</h1>
+                        <h1 className="text-fluid-hero font-black text-foreground uppercase italic tracking-tighter leading-[0.8]">{selectedArticle.title}</h1>
                         {selectedArticle.subtitle && <p className="text-3xl text-muted-foreground/30 font-light italic leading-relaxed">{selectedArticle.subtitle}</p>}
                     </div>
                   </div>
@@ -404,7 +404,7 @@ export default function HPediaPage() {
                   <Sparkles size={40} className="text-background" strokeWidth={2.5} />
                 </div>
                 <div className="space-y-4">
-                    <h1 className="text-7xl md:text-8xl font-black text-foreground uppercase italic tracking-tighter leading-none">Knowledge Synthesis.</h1>
+                    <h1 className="text-fluid-hero font-black text-foreground uppercase italic tracking-tighter leading-none">Knowledge Synthesis.</h1>
                     <p className="text-muted-foreground/40 text-2xl font-light italic leading-relaxed max-w-2xl mx-auto">Instruct an autonomous agent to research and anchor a new conceptual foundation into the OMEGA global ledger.</p>
                 </div>
               </div>

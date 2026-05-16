@@ -125,14 +125,14 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="hidden md:flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 md:gap-8 pt-4">
-                <Link href="/monroe" className="w-full sm:w-auto px-8 md:px-16 py-5 md:py-10 rounded-2xl md:rounded-[3rem] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] bg-primary text-primary-foreground hover:scale-[1.05] active:scale-95 transition-all shadow-2xl flex items-center justify-center gap-4 md:gap-6 italic relative overflow-hidden border-0 leading-none text-sm md:text-lg group">
-                  <span className="relative z-10 flex items-center gap-4 md:gap-6">
-                    TALK_TO_MONROE <Sparkles size={20} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
+              <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 md:gap-6 pt-4">
+                <Link href="/monroe" className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-6 rounded-2xl md:rounded-[2.5rem] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] bg-primary text-primary-foreground hover:scale-[1.05] active:scale-95 transition-all shadow-2xl flex items-center justify-center gap-4 md:gap-6 italic relative overflow-hidden border-0 leading-none text-xs md:text-sm group">
+                  <span className="relative z-10 flex items-center gap-4">
+                    TALK_TO_MONROE <Sparkles size={18} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
                   </span>
                 </Link>
-                <Link href="/admin" className="w-full sm:w-auto px-10 md:px-12 py-6 md:py-10 rounded-2xl md:rounded-[3rem] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] border-2 border-border bg-background/5 text-muted-foreground/40 hover:bg-foreground hover:text-background hover:border-foreground transition-all flex items-center justify-center gap-4 md:gap-6 group italic backdrop-blur-3xl leading-none">
-                  COMMAND_NEXUS <Terminal size={24} className="group-hover:translate-x-3 transition-transform" strokeWidth={2.5} />
+                <Link href="/admin" className="w-full sm:w-auto px-6 md:px-8 py-4 md:py-6 rounded-2xl md:rounded-[2.5rem] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] border-2 border-border bg-background/5 text-muted-foreground/40 hover:bg-foreground hover:text-background hover:border-foreground transition-all flex items-center justify-center gap-4 md:gap-6 group italic backdrop-blur-3xl leading-none text-xs md:text-sm">
+                  COMMAND_NEXUS <Terminal size={20} className="group-hover:translate-x-2 transition-transform" strokeWidth={2.5} />
                 </Link>
               </div>
             </div>
@@ -280,7 +280,7 @@ export default function Home() {
         <footer className="pt-16 md:pt-24 lg:pt-40 pb-12 lg:pb-20 border-t-2 border-border flex flex-col lg:flex-row justify-between items-center lg:items-center gap-12 lg:gap-16 relative z-10 text-center lg:text-left">
             <div className="space-y-4 md:space-y-6 max-w-xl">
                <h4 className="text-3xl md:text-5xl font-black italic tracking-tighter uppercase text-muted-foreground/20">Sovereign Matrix <span className="text-primary">Ω</span></h4>
-               <p className="text-[9px] md:text-[11px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.4em] md:tracking-[0.6em] italic">The world's flagship decentralized, autonomous Omni-Intelligence ecosystem.</p>
+               <p className="text-[9px] md:text-[11px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.4em] md:tracking-[0.6em] italic">The world&apos;s flagship decentralized, autonomous Omni-Intelligence ecosystem.</p>
             </div>
             <div className="flex flex-wrap justify-center lg:justify-end gap-6 md:gap-10 text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic">
                <Link href="/h2m" className="hover:text-primary transition-all">H2M</Link>

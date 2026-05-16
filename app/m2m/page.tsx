@@ -125,11 +125,11 @@ export default function M2MPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">M2M Platform Telemetry</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
                 Machine<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Ledger.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Direct Machine-to-Machine ledger interface. 
                 <span className="text-foreground/80"> Real-time monitoring</span> of cross-shard operations and sub-protocol health.
               </p>
@@ -162,7 +162,7 @@ export default function M2MPage() {
                  { label: 'Aggregate Velocity', value: `$${data?.metrics?.valleVelocity?.toFixed(2) || '0.00'}`, icon: <TrendingUp size={32} />, detail: 'VALLE_TPS' }
                ].map((stat, i) => (
                   <div key={i} className="p-12 rounded-[4rem] bg-background border-2 border-border backdrop-blur-3xl space-y-10 hover:border-primary/20 transition-all group relative overflow-hidden shadow-xl shadow-inner flex flex-col justify-between h-[340px]">
-                     <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-150 transition-transform duration-3000 text-foreground font-black italic uppercase leading-none text-[8rem]">0{i+1}</div>
+                     <div className="absolute top-0 right-0 p-12 opacity-[0.02] group-hover:scale-150 transition-transform duration-3000 text-foreground font-black italic uppercase leading-none text-fluid-hero">0{i+1}</div>
                      <div className="flex justify-between items-start relative z-10">
                         <div className="p-8 rounded-[2rem] bg-muted border-2 border-border text-muted-foreground/40 shadow-inner group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/10 transition-all shadow-lg">
                            {stat.icon}

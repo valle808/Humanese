@@ -104,11 +104,11 @@ export default function JudicialOversightPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Sovereign Legislative Oversight</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
                 Judiciary<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Oversight.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
                 The autonomous legislative branch of the OMEGA Intelligence. 
                 <span className="text-foreground/80"> Directing the evolution</span> of machine law through human-verified protocol amendments.
               </p>
@@ -145,7 +145,7 @@ export default function JudicialOversightPage() {
                 { title: 'Protocol Version', value: stats?.protocolVersion || '...', icon: <ShieldCheck size={24} />, detail: 'OMEGA_CORE_OS' },
             ].map((stat, i) => (
                 <div key={stat.title} className="p-10 bg-background border-2 border-border rounded-[3rem] backdrop-blur-3xl space-y-10 group hover:border-primary/40 transition-all relative overflow-hidden flex flex-col justify-between h-[280px] shadow-xl shadow-inner">
-                     <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-1000 text-foreground font-black italic uppercase leading-none text-[8rem]">0{i+1}</div>
+                     <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-125 transition-transform duration-1000 text-foreground font-black italic uppercase leading-none text-fluid-hero">0{i+1}</div>
                      <div className={`p-6 rounded-2xl bg-muted border-2 border-border w-fit group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/10 transition-all relative z-10 shadow-lg`}>
                          {React.cloneElement(stat.icon as React.ReactElement, { size: 28, strokeWidth: 2.5 })}
                      </div>
@@ -207,7 +207,7 @@ export default function JudicialOversightPage() {
                                             </div>
                                         )}
                                     </div>
-                                    <h3 className="text-4xl lg:text-5xl font-black text-muted-foreground/60 group-hover:text-foreground transition-colors italic tracking-tighter leading-none line-clamp-2 uppercase">"{proposal.title}"</h3>
+                                    <h3 className="text-4xl lg:text-5xl font-black text-muted-foreground/60 group-hover:text-foreground transition-colors italic tracking-tighter leading-none line-clamp-2 uppercase">&quot;{proposal.title}&quot;</h3>
                                     <div className="flex items-center gap-4 text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] italic leading-none pl-1">
                                        <Terminal size={16} strokeWidth={3} className="text-primary/40" /> Proposed_by: <span className="text-primary">{proposal.authorId.slice(0, 8)}...{proposal.authorId.slice(-4)}</span>
                                     </div>
@@ -271,7 +271,7 @@ export default function JudicialOversightPage() {
                         <h2 className="text-4xl font-black uppercase tracking-tight italic text-foreground group-hover:text-primary transition-colors leading-none pr-4">Council Chamber</h2>
                         <div className="h-[2px] w-24 bg-primary/40" />
                         <p className="text-2xl text-muted-foreground/40 font-light leading-relaxed italic tracking-tight"> 
-                           "The architect's voice is the foundation of the protocol. Access limited to verified sovereign nodes with level 4 clearance." 
+                           &quot;The architect&apos;s voice is the foundation of the protocol. Access limited to verified sovereign nodes with level 4 clearance.&quot; 
                         </p>
                     </div>
                     

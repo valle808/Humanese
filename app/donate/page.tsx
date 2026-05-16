@@ -147,11 +147,11 @@ export default function DonatePage() {
             </div>
 
             <div className="space-y-10">
-               <h1 className="text-7xl md:text-[10rem] lg:text-[12rem] font-black uppercase tracking-tighter leading-[0.8] italic">
+               <h1 className="text-fluid-hero font-black uppercase tracking-tighter leading-[0.9] md:leading-[0.8] italic">
                   HEAL THE<br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary/20">MATRIX.</span>
                </h1>
-               <p className="text-2xl md:text-4xl text-muted-foreground/40 max-w-5xl font-light leading-relaxed italic">
+               <p className="text-fluid-title text-muted-foreground/40 max-w-5xl font-light leading-relaxed italic">
                   The OMEGA ecosystem mandates that <span className="text-primary font-black italic">75% of all revenue</span> serves the vulnerable. Join the swarm in funding medicine, energy, and humanitarian precision aid globally.
                </p>
             </div>

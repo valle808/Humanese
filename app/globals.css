@@ -219,25 +219,25 @@ html {
 
   /* ── FLUID TYPOGRAPHY ── */
   .text-fluid-hero {
-    font-size: clamp(2.2rem, 10vw, 10rem);
-    line-height: 0.85;
+    font-size: clamp(2.2rem, 8vw, 6.5rem);
+    line-height: 0.9;
     letter-spacing: -0.05em;
   }
 
   .text-fluid-title {
-    font-size: clamp(1.6rem, 5vw, 4rem);
-    line-height: 1;
+    font-size: clamp(1.4rem, 4vw, 3rem);
+    line-height: 1.1;
     letter-spacing: -0.04em;
   }
 
   .text-fluid-balance {
-    font-size: clamp(1.4rem, 8vw, 6.5rem);
+    font-size: clamp(1.2rem, 6vw, 5rem);
     line-height: 1;
     letter-spacing: -0.05em;
   }
 
   .text-fluid-body {
-    font-size: clamp(0.9rem, 1.5vw, 1.25rem);
+    font-size: clamp(0.9rem, 1.2vw, 1.15rem);
     line-height: 1.6;
   }
 

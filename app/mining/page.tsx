@@ -272,11 +272,11 @@ export default function MiningPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Quantum Resource Allocation</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] pl-1 text-muted-foreground/95">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] pl-1 text-muted-foreground/95">
                 Quantum<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Mining.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Allocate computational power to the Sovereign Network. 
                 <span className="text-muted-foreground/60"> Validate transactions</span> and earn VALLE via Lattice-Cryptography PoW.
               </p>

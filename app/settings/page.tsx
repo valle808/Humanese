@@ -111,11 +111,11 @@ export default function SettingsPage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Identity Control Nexus</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
                 Node<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Settings.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
                 Manage your <span className="text-foreground/80">sovereign identifier</span> and autonomous agent protocols within the OMEGA ecosystem.
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function SettingsPage() {
                      <ShieldCheck size={120} className="text-primary" />
                   </div>
                   <div className="text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.6em] italic leading-none pl-1">Protocol Parity</div>
-                  <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors flex items-baseline gap-4 pl-1">
+                  <div className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors flex items-baseline gap-4 pl-1">
                     98.4 <span className="text-xs text-primary uppercase tracking-[0.4em] font-black italic">Verified</span>
                   </div>
                   <div className="h-3 w-full bg-muted border-2 border-border rounded-full overflow-hidden shadow-inner p-[1px] relative z-20">
@@ -159,7 +159,7 @@ export default function SettingsPage() {
                   </button>
                 </div>
                 <div className="space-y-4 text-center md:text-left">
-                  <h2 className="text-5xl font-black uppercase italic tracking-tighter text-foreground group-hover:text-primary transition-colors leading-none">{user.name}</h2>
+                  <h2 className="text-fluid-title font-black uppercase italic tracking-tighter text-foreground group-hover:text-primary transition-colors leading-none">{user.name}</h2>
                   <p className="text-primary font-black uppercase tracking-[0.4em] italic text-sm pl-1 leading-none">{user.handle}</p>
                 </div>
               </div>

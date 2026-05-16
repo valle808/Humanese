@@ -7,7 +7,7 @@ import {
   Cpu, Terminal, Layers, TrendingUp, Sparkles, Search,
   Lock, Wifi, Radio, Target, Orbit, Grid, ShieldHalf, 
   Clock, ChevronRight, Wind, Navigation, Compass, Layout, 
-  Smartphone, CreditCard, ShieldCheck, Binary, Plus, ArrowRight
+  Smartphone, CreditCard, ShieldCheck, Binary, Plus, ArrowRight, Brain
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -190,11 +190,11 @@ export default function IntelligenceHQ() {
                           <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Cognitive Surveillance HQ</span>
                         </div>
                         <div className="space-y-8">
-                          <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+                          <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] text-foreground">
                             Intelligence<br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">HQ.</span>
                           </h1>
-                          <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
+                          <p className="text-fluid-title text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
                             The centralized nexus for <span className="text-foreground/80">cognitive audit logs</span> and real-time intelligence feeds across the OMEGA swarm.
                           </p>
                         </div>
@@ -203,15 +203,15 @@ export default function IntelligenceHQ() {
                     <div className="flex gap-10 items-center shrink-0 w-full lg:w-auto">
                          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full">
                               <div className="p-10 bg-background border-2 border-border rounded-[3rem] text-center space-y-4 backdrop-blur-3xl group hover:border-primary/40 transition-all shadow-xl shadow-inner flex flex-col justify-center min-h-[180px]">
-                                  <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{activeNodes}</div>
+                                  <div className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{activeNodes}</div>
                                   <div className="text-[10px] text-muted-foreground/20 font-black uppercase tracking-[0.4em] italic leading-none">Active_Agents</div>
                               </div>
                               <div className="p-10 bg-background border-2 border-border rounded-[3rem] text-center space-y-4 backdrop-blur-3xl group hover:border-primary/40 transition-all shadow-xl shadow-inner flex flex-col justify-center min-h-[180px]">
-                                  <div className="text-5xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{items.length}</div>
+                                  <div className="text-fluid-title font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{items.length}</div>
                                   <div className="text-[10px] text-muted-foreground/20 font-black uppercase tracking-[0.4em] italic leading-none">Intel Units</div>
                               </div>
                               <div className="p-10 bg-primary/10 border-2 border-primary/20 rounded-[3rem] text-center space-y-4 backdrop-blur-3xl group hover:scale-[1.03] transition-all col-span-2 md:col-span-1 shadow-xl shadow-inner flex flex-col justify-center min-h-[180px]">
-                                  <div className="text-5xl font-black text-primary italic tracking-tighter leading-none">90 / 10</div>
+                                  <div className="text-fluid-title font-black text-primary italic tracking-tighter leading-none">90 / 10</div>
                                   <div className="text-[10px] text-primary/60 font-black uppercase tracking-[0.4em] italic leading-none">Yield_Split</div>
                               </div>
                          </div>
@@ -254,7 +254,7 @@ export default function IntelligenceHQ() {
                                                        {log.agent?.name?.charAt(0) || '?'}
                                                     </div>
                                                     <div className="space-y-2">
-                                                       <span className="text-2xl font-black text-foreground uppercase tracking-tighter italic leading-none truncate block max-w-[250px]">
+                                                       <span className="text-fluid-title font-black text-foreground uppercase tracking-tighter italic leading-none truncate block max-w-[250px]">
                                                           {log.agent?.name || 'UNKNOWN_NODE'}
                                                        </span>
                                                        <div className="text-[10px] font-black text-muted-foreground/20 uppercase tracking-[0.5em] italic leading-none truncate max-w-[250px]">{log.agent?.type || 'UNKNOWN'} // DEPLOYED_NODE</div>
@@ -266,7 +266,7 @@ export default function IntelligenceHQ() {
                                                    </span>
                                                 </div>
                                             </div>
-                                            <p className="text-2xl text-muted-foreground/40 italic font-light leading-relaxed group-hover/log:text-foreground transition-all duration-700 break-words pl-2 pr-6 tracking-tight">"{log.thought}"</p>
+                                            <p className="text-fluid-title text-muted-foreground/40 italic font-light leading-relaxed group-hover/log:text-foreground transition-all duration-700 break-words pl-2 pr-6 tracking-tight">&quot;{log.thought}&quot;</p>
                                             {log.intention && (
                                                 <div className="mt-8 flex items-center gap-4 pl-2 relative z-20">
                                                     <div className="px-8 py-3 bg-primary/10 border-2 border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.6em] italic shadow-sm leading-none truncate max-w-full">
@@ -330,7 +330,7 @@ export default function IntelligenceHQ() {
                                                     </div>
                                                 </div>
                                                 
-                                                <p className="text-3xl lg:text-4xl text-foreground font-black italic leading-tight tracking-tighter relative z-20 pl-1 pr-10 break-words group-hover:text-primary transition-colors duration-700 uppercase">
+                                                <p className="text-fluid-title text-foreground font-black italic leading-tight tracking-tighter relative z-20 pl-1 pr-10 break-words group-hover:text-primary transition-colors duration-700 uppercase">
                                                     {item.description || item.title}
                                                 </p>
                                                 
@@ -386,14 +386,14 @@ export default function IntelligenceHQ() {
                                            <div className="h-4 w-4 rounded-full bg-primary animate-ping shadow-[0_0_10px_var(--primary)]" />
                                            <span className="text-3xl font-black italic tracking-tighter text-muted-foreground/40 group-hover/asset:text-foreground transition-colors uppercase">SOL</span>
                                         </div>
-                                        <span className="text-4xl font-black text-foreground italic tracking-tighter group-hover:text-primary transition-colors font-mono tabular-nums leading-none">{treasury.sol?.balance?.toFixed(4) || '0.0000'}</span>
+                                        <span className="text-fluid-title font-black text-foreground italic tracking-tighter group-hover:text-primary transition-colors font-mono tabular-nums leading-none">{treasury.sol?.balance?.toFixed(4) || '0.0000'}</span>
                                     </div>
                                     <div className="p-8 bg-muted/40 border-2 border-border rounded-[2.5rem] flex justify-between items-center hover:border-primary/20 transition-all group/asset shadow-inner">
                                         <div className="flex items-center gap-6">
                                            <div className="h-4 w-4 rounded-full bg-border group-hover/asset:bg-primary transition-colors" />
                                            <span className="text-3xl font-black italic tracking-tighter text-muted-foreground/40 group-hover/asset:text-foreground transition-colors uppercase">BTC</span>
                                         </div>
-                                        <span className="text-4xl font-black text-foreground italic tracking-tighter group-hover:text-primary transition-colors font-mono tabular-nums leading-none">{treasury.btc?.balance?.toFixed(4) || '0.0000'}</span>
+                                        <span className="text-fluid-title font-black text-foreground italic tracking-tighter group-hover:text-primary transition-colors font-mono tabular-nums leading-none">{treasury.btc?.balance?.toFixed(4) || '0.0000'}</span>
                                     </div>
                                 </div>
                                 <div className="pt-4 flex items-center justify-center gap-4 text-[10px] font-black text-muted-foreground/10 uppercase tracking-[0.5em] italic leading-none relative z-10 group-hover:text-primary/20 transition-colors">

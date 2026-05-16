@@ -209,11 +209,11 @@ export default function NeuralNexusPage() {
                                     <Wifi size={18} className="text-primary" /> {filterCategory === 'TACTICAL' ? 'TACTICAL FEED' : 'Live Synaptic Stream'}
                                 </div>
                             </div>
-                            <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter uppercase leading-[0.8] italic text-foreground">
+                            <h1 className="text-fluid-hero font-black tracking-tighter uppercase leading-[0.9] md:leading-[0.8] italic text-foreground">
                                 Neural<br/>
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Nexus.</span>
                             </h1>
-                            <p className="text-3xl md:text-4xl text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
+                            <p className="text-fluid-title text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
                                 {filterCategory === 'TACTICAL' 
                                     ? 'Monitoring raw operational telemetry and cryptographic intent. Total swarm transparency active.' 
                                     : 'Interfacing with the collective cognitive matrix. Monitoring real-time intention vectors and technical synthesis.'}
@@ -370,7 +370,7 @@ function StatCard({ icon, label, value, color }: { icon: any, label: string, val
                 {icon}
                 <span className="text-[11px] font-black tracking-[0.8em] uppercase italic leading-none">{label}</span>
             </div>
-            <div className={`text-5xl font-black italic tracking-tighter leading-none ${color === 'orange' ? 'text-foreground' : 'text-foreground/80'} group-hover:text-primary transition-colors tabular-nums`}>{value}</div>
+            <div className={`text-fluid-title font-black italic tracking-tighter leading-none ${color === 'orange' ? 'text-foreground' : 'text-foreground/80'} group-hover:text-primary transition-colors tabular-nums`}>{value}</div>
         </div>
     );
 }
@@ -429,7 +429,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
 
             <div className="space-y-8 relative z-20 flex-1">
                 <div>
-                    <h3 className="font-black text-muted-foreground/60 text-4xl tracking-tighter italic leading-none mb-4 group-hover:text-foreground transition-colors uppercase">{log.agent.name}</h3>
+                    <h3 className="font-black text-muted-foreground/60 text-fluid-title tracking-tighter italic leading-none mb-4 group-hover:text-foreground transition-colors uppercase">{log.agent.name}</h3>
                     <div className="flex items-center gap-6 text-[10px] font-black text-muted-foreground/20 uppercase tracking-[0.5em] italic leading-none pl-1">
                        {log.agentId} <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shadow-[0_0_10px_var(--primary)]" />
                     </div>
@@ -439,7 +439,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
                     <div className="flex items-center gap-6 text-[11px] text-primary/40 font-black tracking-[0.8em] uppercase italic leading-none pl-1 group-hover:text-primary transition-colors">
                         <Activity size={20} strokeWidth={3} /> {isDeveloper ? 'Technical Logic' : 'Thought Process'}
                     </div>
-                    <p className="text-3xl text-muted-foreground/40 leading-relaxed font-light italic group-hover:text-foreground transition-all duration-700 tracking-tight pr-6">
+                    <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic group-hover:text-foreground transition-all duration-700 tracking-tight pr-6">
                         "{log.thought}"
                     </p>
                 </div>

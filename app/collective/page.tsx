@@ -115,7 +115,7 @@ export default function CollectiveHUD() {
           </div>
           
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-black text-foreground uppercase tracking-tighter italic leading-none">Sovereign<br /><span className="text-primary">Collective.</span></h1>
+            <h1 className="text-fluid-title font-black text-foreground uppercase tracking-tighter italic leading-none">Sovereign<br /><span className="text-primary">Collective.</span></h1>
             <p className="text-[10px] md:text-[11px] text-muted-foreground uppercase tracking-[0.6em] font-black italic">Social Intelligence Handshake</p>
           </div>
           
@@ -208,7 +208,7 @@ export default function CollectiveHUD() {
                   <div className="text-[11px] text-muted-foreground uppercase tracking-[0.6em] flex items-center gap-4 font-black italic pl-2">
                      <Terminal size={16} className="text-primary" /> Social Resonance
                   </div>
-                  <div className="text-4xl md:text-5xl font-black text-foreground tracking-tighter italic leading-none pl-2 flex items-center gap-6">
+                  <div className="text-fluid-title font-black text-foreground tracking-tighter italic leading-none pl-2 flex items-center gap-6">
                      {status} <div className={`h-4 w-4 rounded-full animate-pulse shadow-[0_0_20px_white] ${status.includes('STABLE') ? 'bg-emerald-500' : 'bg-primary'}`} />
                   </div>
                   <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border overflow-hidden">
@@ -244,7 +244,7 @@ export default function CollectiveHUD() {
                        <div className="flex-1 space-y-10">
                           <div className="flex justify-between items-start gap-4">
                              <div className="space-y-2">
-                                <div className="text-2xl md:text-3xl font-black text-foreground italic tracking-tighter uppercase leading-none flex items-center gap-3 md:gap-4">
+                                <div className="text-fluid-title font-black text-foreground italic tracking-tighter uppercase leading-none flex items-center gap-3 md:gap-4">
                                    {shard.authorName} 
                                    <div className="h-5 w-5 md:h-6 md:w-6 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
                                       <Zap size={10} className="text-primary md:w-3 md:h-3" fill="currentColor" />
@@ -259,7 +259,7 @@ export default function CollectiveHUD() {
 
                           <div className="space-y-8">
                              <p className="text-fluid-body font-light text-foreground/80 leading-relaxed italic tracking-tight">
-                                "{shard.content}"
+                                &quot;{shard.content}&quot;
                              </p>
                              {shard.type === 'MANIFESTO' && (
                                <div className="px-8 py-3 bg-primary/10 border-2 border-primary/30 text-primary text-[11px] font-black uppercase tracking-[0.6em] rounded-2xl inline-flex items-center gap-6 animate-pulse italic shadow-2xl">
@@ -312,7 +312,7 @@ export default function CollectiveHUD() {
                     <div className="space-y-6">
                        <div className="flex justify-between items-end pl-2">
                           <span className="text-[11px] font-black uppercase tracking-[0.5em] text-muted-foreground italic">Stability resonance</span>
-                          <span className="text-2xl font-black text-primary italic leading-none">82.4%</span>
+                          <span className="text-fluid-title font-black text-primary italic leading-none">82.4%</span>
                        </div>
                        <div className="w-full bg-muted h-3 rounded-full overflow-hidden border border-border">
                           <motion.div initial={{ width: 0 }} animate={{ width: '82.4%' }} transition={{ duration: 2 }} className="bg-gradient-to-r from-primary to-foreground/40 h-full shadow-[0_0_20px_var(--primary)]" />
@@ -321,7 +321,7 @@ export default function CollectiveHUD() {
                     <div className="space-y-6">
                        <div className="flex justify-between items-end pl-2">
                           <span className="text-[11px] font-black uppercase tracking-[0.5em] text-muted-foreground italic">Chaos threshold</span>
-                          <span className="text-2xl font-black text-muted-foreground italic leading-none">12.1%</span>
+                          <span className="text-fluid-title font-black text-muted-foreground italic leading-none">12.1%</span>
                        </div>
                        <div className="w-full bg-muted h-3 rounded-full overflow-hidden border border-border">
                           <motion.div initial={{ width: 0 }} animate={{ width: '12.1%' }} transition={{ duration: 2 }} className="bg-muted-foreground/30 h-full" />

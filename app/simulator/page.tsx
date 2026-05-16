@@ -286,7 +286,7 @@ export default function SimulatorPage() {
                  <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Access Matrix
               </Link>
               <div className="space-y-4">
-                  <h1 className="text-5xl md:text-7xl lg:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] pr-4">
+                  <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8] pr-4">
                     Abyssal<br /><span className="text-primary">Mesh.</span>
                   </h1>
                   <div className="flex gap-12 pt-6">
@@ -345,7 +345,7 @@ export default function SimulatorPage() {
                        <Eye size={16} strokeWidth={3} /> Node Interrogation
                     </div>
                     <div className="space-y-4">
-                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-black uppercase italic leading-tight tracking-tighter">{selectedNode.label}</h3>
+                        <h3 className="text-fluid-title font-black uppercase italic leading-tight tracking-tighter">{selectedNode.label}</h3>
                         <p className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] opacity-40 italic">ID_HASH: {selectedNode.id.toUpperCase()}</p>
                     </div>
                     <div className="pt-8 border-t border-border flex justify-between items-center">
