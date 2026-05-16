@@ -79,7 +79,7 @@ export const TransactionHistory = ({ transactions = [] }: { transactions?: any[]
               <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic text-right">Amount</th>
               <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic text-right hidden sm:table-cell">Price</th>
               <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic text-right hidden md:table-cell">Fee</th>
-              <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic text-right">Total</th>
+              <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic text-right hidden sm:table-cell">Total</th>
               <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic text-right hidden lg:table-cell">Status</th>
               <th className="px-4 md:px-10 py-5 text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground italic text-right">Action</th>
             </tr>
@@ -123,7 +123,7 @@ export const TransactionHistory = ({ transactions = [] }: { transactions?: any[]
                 <td className="px-4 md:px-10 py-6 md:py-8 text-right font-black italic text-muted-foreground/60 text-xs md:text-sm hidden md:table-cell">
                   {tx.fee}
                 </td>
-                <td className="px-4 md:px-10 py-6 md:py-8 text-right">
+                <td className="px-4 md:px-10 py-6 md:py-8 text-right hidden sm:table-cell">
                   <div className="text-sm md:text-xl font-black italic text-foreground">
                     {tx.usdValue}
                   </div>

@@ -138,11 +138,11 @@ export default function WalletPage() {
                     <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
                     Live Pulse Integration
                   </div>
-                  <h1 className="text-fluid-balance font-black tracking-tighter leading-none italic text-foreground group-hover:text-primary transition-colors">
+                  <h1 className="text-fluid-balance font-black tracking-tighter leading-none italic text-foreground group-hover:text-primary transition-colors break-words max-w-full">
                     ${totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </h1>
-                  <div className="flex items-center gap-4 text-green-500 font-black text-lg md:text-xl italic tracking-tight">
-                    <TrendingUp size={20} md:size={24} strokeWidth={3} /> +12.4% <span className="text-muted-foreground/40 text-[9px] md:text-sm uppercase tracking-[0.2em] ml-2 font-black italic">Resonance</span>
+                  <div className="flex items-center gap-3 text-green-500 font-black text-lg md:text-xl italic tracking-tight flex-wrap">
+                    <TrendingUp size={20} md:size={24} strokeWidth={3} /> +12.4% <span className="text-muted-foreground/40 text-[9px] md:text-sm uppercase tracking-[0.2em] font-black italic">Resonance</span>
                   </div>
                 </div>
                 

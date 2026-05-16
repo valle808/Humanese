@@ -16,16 +16,16 @@ export const TradingWidget = ({ wallets, onTrade }: { wallets: any[], onTrade: (
   };
 
   return (
-    <div className="bg-card border-2 border-border rounded-[3rem] p-8 lg:p-10 shadow-2xl relative overflow-hidden group backdrop-blur-3xl">
+    <div className="bg-card border-2 border-border rounded-[3rem] p-6 md:p-8 lg:p-10 shadow-2xl relative overflow-hidden group backdrop-blur-3xl">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent shadow-[0_0_15px_hsl(var(--primary))]" />
       
       {/* Tabs */}
-      <div className="flex gap-2 p-1.5 bg-muted/40 border border-border rounded-full mb-10">
+      <div className="flex gap-1.5 p-1.5 bg-muted/40 border border-border rounded-full mb-8 md:mb-10 flex-wrap sm:flex-nowrap">
         {(['buy', 'sell', 'convert'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.4em] rounded-full transition-all italic ${
+            className={`flex-1 min-w-[80px] py-2.5 md:py-3 text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] rounded-full transition-all italic ${
               activeTab === tab ? 'bg-primary text-primary-foreground shadow-lg' : 'text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -34,7 +34,7 @@ export const TradingWidget = ({ wallets, onTrade }: { wallets: any[], onTrade: (
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
         <div className="space-y-3">
           <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground/40 italic ml-4">
             Amount_
@@ -47,9 +47,9 @@ export const TradingWidget = ({ wallets, onTrade }: { wallets: any[], onTrade: (
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0.00"
-              className="w-full bg-background border-2 border-border rounded-[2.5rem] px-10 py-8 text-5xl font-black italic text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 placeholder:text-muted-foreground/10 tracking-tighter cursor-text"
+              className="w-full bg-background border-2 border-border rounded-[2.5rem] px-6 md:px-10 py-6 md:py-8 text-2xl md:text-5xl font-black italic text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 placeholder:text-muted-foreground/10 tracking-tighter cursor-text"
             />
-            <div className="absolute right-10 top-1/2 -translate-y-1/2 text-2xl font-black text-muted-foreground/20 italic pointer-events-none">
+            <div className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 text-lg md:text-2xl font-black text-muted-foreground/20 italic pointer-events-none">
               USD
             </div>
           </div>
@@ -67,22 +67,22 @@ export const TradingWidget = ({ wallets, onTrade }: { wallets: any[], onTrade: (
               id="trade-asset"
               value={selectedAsset}
               onChange={(e) => setSelectedAsset(e.target.value)}
-              className="w-full bg-background border-2 border-border rounded-[2.5rem] px-10 py-6 text-xl font-black uppercase italic tracking-widest text-foreground outline-none focus:border-primary/40 appearance-none cursor-pointer"
+              className="w-full bg-background border-2 border-border rounded-[2.5rem] px-6 md:px-10 py-5 md:py-6 text-sm md:text-xl font-black uppercase italic tracking-widest text-foreground outline-none focus:border-primary/40 appearance-none cursor-pointer"
             >
               {wallets.length > 0 ? wallets.map(w => (
                 <option key={w.id} value={w.currency}>{w.network} ({w.currency})</option>
               )) : <option value="VALLE">Sovereign (VALLE)</option>}
             </select>
-            <ChevronDown size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+            <ChevronDown size={20} className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
           </div>
         </div>
 
         <button 
           type="submit"
-          className="w-full py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] text-[11px] rounded-[2.5rem] shadow-[0_20px_40px_rgba(var(--primary),0.3)] hover:scale-[1.02] active:scale-95 transition-all group/btn italic relative overflow-hidden"
+          className="w-full py-6 md:py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[10px] md:text-[11px] rounded-[2.5rem] shadow-[0_20px_40px_rgba(var(--primary),0.3)] hover:scale-[1.02] active:scale-95 transition-all group/btn italic relative overflow-hidden"
         >
           <span className="relative z-10 flex items-center justify-center gap-4">
-            {activeTab.toUpperCase()} {selectedAsset} <ArrowUpRight size={24} strokeWidth={3} />
+            {activeTab.toUpperCase()} {selectedAsset} <ArrowUpRight size={20} md:size={24} strokeWidth={3} />
           </span>
           <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
         </button>
