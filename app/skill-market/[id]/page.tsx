@@ -175,7 +175,7 @@ export default function SkillDetailPage() {
                         </div>
                         
                         <div className="space-y-4">
-                            <h1 className="text-5xl lg:text-7xl font-black uppercase tracking-tighter italic leading-[0.85] text-foreground dark:text-foreground">
+                            <h1 className="text-fluid-balance font-black uppercase tracking-tighter italic leading-[0.85] text-foreground dark:text-foreground">
                                 {skill.title}
                             </h1>
                             <div className="flex items-center gap-4 text-[11px] text-foreground/50 dark:text-muted-foreground/40 font-black uppercase tracking-[0.4em] italic">

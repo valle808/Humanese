@@ -145,7 +145,7 @@ export default function HumanlookPage() {
                  </div>
               </div>
               <div className="space-y-8">
-                <h2 className="text-8xl md:text-[12rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground/95">
+                <h2 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.8] text-foreground/95">
                   OMEGA<br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Optical.</span>
                 </h2>
@@ -235,7 +235,7 @@ export default function HumanlookPage() {
                        <Link href={result.url} className="hover:text-primary transition-colors">{new URL(result.url).hostname}</Link>
                     </div>
                     
-                    <h3 className="text-5xl md:text-7xl font-black italic tracking-tighter text-muted-foreground/40 group-hover:text-foreground transition-all mb-10 leading-[0.9] pr-12 uppercase">
+                    <h3 className="text-fluid-balance font-black italic tracking-tighter text-muted-foreground/40 group-hover:text-foreground transition-all mb-10 leading-[0.9] pr-12 uppercase">
                       <Link href={result.url}>&quot;{result.title}&quot;</Link>
                     </h3>
                     
@@ -262,7 +262,7 @@ export default function HumanlookPage() {
       {/* DECOR */}
       {!results.length && (
          <div className="fixed bottom-0 right-0 p-16 opacity-[0.03] text-foreground pointer-events-none select-none z-0">
-            <div className="text-[30vw] font-black italic leading-none uppercase">INDEX</div>
+            <div className="text-fluid-hero font-black italic leading-none uppercase">INDEX</div>
          </div>
       )}
 

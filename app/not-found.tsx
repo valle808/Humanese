@@ -39,7 +39,7 @@ export default function NotFound() {
             </motion.div>
 
             <div className="space-y-8">
-                <h1 className="text-[12rem] lg:text-[22rem] font-black uppercase tracking-tighter italic leading-[0.7] italic">
+                <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.7] italic">
                    Void.<br />
                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Null.</span>
                 </h1>
@@ -92,7 +92,7 @@ export default function NotFound() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 right-0 p-12 opacity-[0.02] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic italic leading-none uppercase">404</div>
+          <div className="text-fluid-hero font-black italic italic leading-none uppercase">404</div>
       </div>
       
       <style jsx global>{`

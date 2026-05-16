@@ -238,7 +238,7 @@ export default function FAQPage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 right-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic leading-none uppercase">KNOWLEDGE</div>
+          <div className="text-fluid-hero font-black italic leading-none uppercase">KNOWLEDGE</div>
       </div>
 
       <style jsx global>{`

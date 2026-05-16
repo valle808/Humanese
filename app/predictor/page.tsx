@@ -320,7 +320,7 @@ export default function PredictorPage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 right-0 p-12 opacity-[0.02] pointer-events-none select-none z-0 text-foreground">
-          <div className="text-[25vw] font-black italic leading-none uppercase">PREDICT</div>
+          <div className="text-fluid-hero font-black italic leading-none uppercase">PREDICT</div>
       </div>
       
       <style jsx global>{`

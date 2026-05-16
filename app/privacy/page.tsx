@@ -88,7 +88,7 @@ export default function PrivacyPage() {
            </div>
            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent shadow-[0_0_20px_hsl(var(--primary))]" />
            
-           <h2 className="text-5xl lg:text-7xl font-black uppercase italic tracking-tighter flex items-center gap-8 relative z-10 leading-none">
+           <h2 className="text-fluid-balance font-black uppercase italic tracking-tighter flex items-center gap-8 relative z-10 leading-none">
              <div className="h-20 w-20 bg-primary text-primary-foreground rounded-[2rem] flex items-center justify-center shadow-2xl">
                 <FileLock size={40} strokeWidth={3} />
              </div>
@@ -112,7 +112,7 @@ export default function PrivacyPage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 right-0 p-12 opacity-[0.02] pointer-events-none select-none z-0">
-          <div className="text-[25vw] font-black italic italic leading-none uppercase">PRIVACY</div>
+          <div className="text-fluid-hero font-black italic italic leading-none uppercase">PRIVACY</div>
       </div>
       
       <style jsx global>{`

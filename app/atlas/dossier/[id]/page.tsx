@@ -124,7 +124,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Neural Dossier Access</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[11rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
                 {data.label}<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">{data.group}.</span>
               </h1>

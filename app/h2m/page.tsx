@@ -208,7 +208,7 @@ export default function H2MBridgePage() {
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                     placeholder="0.00"
-                                    className="w-full bg-background border-2 border-border responsive-rounded px-6 md:px-12 py-8 md:py-12 text-4xl md:text-7xl lg:text-9xl font-black text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-light italic placeholder:text-muted-foreground/20 tracking-tighter shadow-inner"
+                                    className="w-full bg-background border-2 border-border responsive-rounded px-6 md:px-12 py-8 md:py-12 text-fluid-hero font-black text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-light italic placeholder:text-muted-foreground/20 tracking-tighter shadow-inner"
                                   />
                                   <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 font-black text-primary/20 text-2xl md:text-4xl italic tracking-tighter group-focus-within/input:text-primary transition-colors">SIGNS.</div>
                                </div>
@@ -304,7 +304,7 @@ export default function H2MBridgePage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 right-0 p-12 opacity-[0.01] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic italic leading-none uppercase">H2M</div>
+          <div className="text-fluid-hero font-black italic italic leading-none uppercase">H2M</div>
       </div>
       
       <style jsx global>{`

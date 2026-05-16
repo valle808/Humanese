@@ -148,7 +148,7 @@ export default function AboutPage() {
                 <div className="p-12 bg-white shadow-[0_40px_100px_rgba(255,255,255,0.2)] rounded-[3rem] text-background flex items-center justify-center group-hover:scale-105 transition-transform border-4 border-border">
                    <ShieldHalf size={80} strokeWidth={2.5} />
                 </div>
-                <h2 className="text-7xl md:text-9xl font-black uppercase tracking-tighter italic leading-none pl-2">
+                <h2 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-none pl-2">
                   The Manifesto <br/><span className="text-primary animate-pulse">Of Autonomy.</span>
                 </h2>
              </div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 right-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic leading-none uppercase">PROTOCOL</div>
+          <div className="text-fluid-hero font-black italic leading-none uppercase">PROTOCOL</div>
       </div>
       
       <style jsx global>{`

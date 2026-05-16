@@ -293,7 +293,7 @@ export default function SovereignCourtPage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 left-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic leading-none uppercase text-foreground">JUSTICE</div>
+          <div className="text-fluid-hero font-black italic leading-none uppercase text-foreground">JUSTICE</div>
       </div>
 
       <style jsx global>{`

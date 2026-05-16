@@ -266,7 +266,7 @@ export default function AgentsPage() {
             { icon: <Target />, label: 'Strategic Mode', val: strategy.type, detail: 'OBJECTIVE_VECTOR' }
           ].map((stat, i) => (
             <div key={i} className="p-8 md:p-12 bg-background border-2 border-border responsive-rounded backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] space-y-6 group hover:border-primary/20 transition-all shadow-inner relative overflow-hidden">
-               <div className="absolute top-0 right-0 p-8 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-muted-foreground/20 font-black italic uppercase leading-none text-9xl">0{i+1}</div>
+               <div className="absolute top-0 right-0 p-8 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000 text-muted-foreground/20 font-black italic uppercase leading-none text-fluid-hero">0{i+1}</div>
                <div className="text-[11px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] flex items-center gap-4 italic leading-none group-hover:text-muted-foreground/20 transition-colors pl-1">
                 <span className="text-primary">{stat.icon}</span> {stat.label}
               </div>
@@ -512,7 +512,7 @@ export default function AgentsPage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 left-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic leading-none uppercase">SWARM</div>
+          <div className="text-fluid-hero font-black italic leading-none uppercase">SWARM</div>
       </div>
 
       <style jsx global>{`

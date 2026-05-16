@@ -176,15 +176,15 @@ export default function DonatePage() {
                   <div className="grid grid-cols-1 gap-16 relative z-10">
                      <div className="space-y-4">
                         <div className="text-[11px] text-primary uppercase tracking-[0.6em] font-black italic leading-none">AID_DISTRIBUTED_VALLE</div>
-                        <div className="text-7xl font-black text-foreground italic tracking-tighter leading-none">{impactMetrics.aidDistributed.toLocaleString()}</div>
+                        <div className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none">{impactMetrics.aidDistributed.toLocaleString()}</div>
                      </div>
                      <div className="space-y-4">
                         <div className="text-[11px] text-primary uppercase tracking-[0.6em] font-black italic leading-none">LIVES_INTERVENED</div>
-                        <div className="text-7xl font-black text-primary italic tracking-tighter leading-none">{impactMetrics.livesImpacted.toLocaleString()}</div>
+                        <div className="text-fluid-balance font-black text-primary italic tracking-tighter leading-none">{impactMetrics.livesImpacted.toLocaleString()}</div>
                      </div>
                      <div className="space-y-4">
                         <div className="text-[11px] text-primary uppercase tracking-[0.6em] font-black italic leading-none">ACTIVE_RELIEF_CLUSTERS</div>
-                        <div className="text-7xl font-black text-foreground italic tracking-tighter leading-none">{impactMetrics.countriesActive}</div>
+                        <div className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none">{impactMetrics.countriesActive}</div>
                      </div>
                   </div>
 
@@ -215,7 +215,7 @@ export default function DonatePage() {
                      <div className="inline-flex items-center gap-6 text-[12px] font-black uppercase tracking-[1em] text-muted-foreground/20 italic leading-none">
                         <CreditCard size={20} className="text-primary" /> Contribution Portal
                      </div>
-                     <h2 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Transmit Sovereignty.</h2>
+                     <h2 className="text-6xl lg:text-fluid-hero font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Transmit Sovereignty.</h2>
                   </div>
 
                   {isSuccess ? (
@@ -338,7 +338,7 @@ export default function DonatePage() {
 
       {/* BACKGROUND DECOR */}
       <div className="fixed bottom-0 right-0 p-12 opacity-[0.02] pointer-events-none select-none z-0">
-          <div className="text-[25vw] font-black italic italic leading-none uppercase">OMEGA</div>
+          <div className="text-fluid-hero font-black italic italic leading-none uppercase">OMEGA</div>
       </div>
       
       <style jsx global>{`

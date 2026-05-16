@@ -172,7 +172,7 @@ export default function Home() {
                    </div>
                 </div>
                 <div className="mt-auto pt-8 space-y-4 md:space-y-6">
-                   <h3 className="text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-foreground group-hover:text-primary transition-colors break-words w-full">Singularity.</h3>
+                   <h3 className="text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-foreground group-hover:text-primary transition-colors">Singularity.</h3>
                    <p className="text-fluid-body text-muted-foreground/40 font-light max-w-2xl leading-tight italic tracking-tight">Monitor the <span className="text-foreground/60">real-time heartbeat</span> of the OMEGA swarm across the global mesh.</p>
                 </div>
              </div>
@@ -189,7 +189,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-2 md:space-y-4">
                    <div className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.6em] text-primary italic leading-none animate-pulse">FLEET_OPS_v7.0</div>
-                   <h3 className="text-fluid-title font-black uppercase tracking-tighter italic leading-[0.9] text-muted-foreground/60 group-hover:text-foreground transition-colors break-words w-full">Global<br/>Hardware.</h3>
+                   <h3 className="text-fluid-title font-black uppercase tracking-tighter italic leading-[0.9] text-muted-foreground/60 group-hover:text-foreground transition-colors">Global<br/>Hardware.</h3>
                 </div>
              </div>
              <div className="relative z-10 mt-8 md:mt-10 space-y-4 md:space-y-6">
@@ -212,7 +212,7 @@ export default function Home() {
                 <div className="text-[9px] md:text-[11px] font-black text-muted-foreground/10 uppercase tracking-[0.4em] md:tracking-[0.6em] italic leading-none pt-2">OMEGA_REH</div>
              </div>
              <div className="relative z-10 mt-auto space-y-4 md:space-y-6">
-                <h3 className="text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-muted-foreground/60 group-hover:text-foreground transition-colors break-words w-full">Sandbox.</h3>
+                <h3 className="text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-muted-foreground/60 group-hover:text-foreground transition-colors">Sandbox.</h3>
                 <p className="text-[10px] md:text-[12px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.3em] md:tracking-[0.5em] italic mt-4">Rehearse future societal trajectories via synthetic seed synthesis and <span className="text-primary/60">cognitive rehearsal</span>.</p>
              </div>
           </Link>
@@ -235,7 +235,7 @@ export default function Home() {
              </div>
              <div className="relative z-10 mt-auto space-y-6 md:space-y-8">
                 <div className="space-y-4">
-                   <h3 className="text-fluid-title font-black tracking-tighter text-muted-foreground/60 group-hover:text-foreground transition-colors italic uppercase leading-none break-words w-full">Sovereign Aid.</h3>
+                   <h3 className="text-fluid-title font-black tracking-tighter text-muted-foreground/60 group-hover:text-foreground transition-colors italic uppercase leading-none">Sovereign Aid.</h3>
                    <div className="flex items-end gap-4 md:gap-6 flex-wrap">
                       <div className="text-fluid-title font-black text-foreground tabular-nums tracking-tighter leading-none italic">
                          {metrics.activeAidDirectives} <span className="text-[9px] text-muted-foreground/20 uppercase tracking-[0.3em] font-black not-italic block mt-1 pl-1">Directives</span>
@@ -261,7 +261,7 @@ export default function Home() {
                       <MapIcon className="w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
                    </div>
                     <div className="space-y-4 md:space-y-8">
-                       <h3 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.85] text-muted-foreground/80 group-hover:text-foreground transition-colors break-words w-full">Neural<br/>Atlas.</h3>
+                       <h3 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.85] text-muted-foreground/80 group-hover:text-foreground transition-colors">Neural<br/>Atlas.</h3>
                        <p className="text-fluid-body text-muted-foreground/40 font-light max-w-3xl mx-auto lg:mx-0 leading-tight italic tracking-tight">Navigate <span className="text-primary/60">{metrics.shards.toLocaleString()}</span> active cognitive shards across the OMEGA network.</p>
                     </div>
                 </div>
@@ -279,7 +279,7 @@ export default function Home() {
         {/* ── FOOTER MATRIX ── */}
         <footer className="pt-16 md:pt-24 lg:pt-40 pb-12 lg:pb-20 border-t-2 border-border flex flex-col lg:flex-row justify-between items-center lg:items-center gap-12 lg:gap-16 relative z-10 text-center lg:text-left">
             <div className="space-y-4 md:space-y-6 max-w-xl">
-               <h4 className="text-fluid-title font-black italic tracking-tighter uppercase text-muted-foreground/20 break-words w-full">Sovereign Matrix <span className="text-primary">Ω</span></h4>
+               <h4 className="text-fluid-title font-black italic tracking-tighter uppercase text-muted-foreground/20">Sovereign Matrix <span className="text-primary">Ω</span></h4>
                <p className="text-[9px] md:text-[11px] text-muted-foreground/40 font-black leading-relaxed uppercase tracking-[0.4em] md:tracking-[0.6em] italic">The world&apos;s flagship decentralized, autonomous Omni-Intelligence ecosystem.</p>
             </div>
             <div className="flex flex-wrap justify-center lg:justify-end gap-6 md:gap-10 text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic">
@@ -292,7 +292,7 @@ export default function Home() {
       </main>
 
       <div className="fixed bottom-0 right-0 p-8 md:p-16 opacity-[0.02] pointer-events-none select-none z-0 overflow-hidden">
-          <div className="text-[25vw] font-black italic leading-none uppercase text-foreground">OMEGA</div>
+          <div className="text-fluid-hero font-black italic leading-none uppercase text-foreground">OMEGA</div>
       </div>
       
       <style jsx global>{`

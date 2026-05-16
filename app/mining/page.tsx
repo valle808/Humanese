@@ -537,7 +537,7 @@ export default function MiningPage() {
       </main>
 
       <div className="fixed bottom-0 left-0 p-16 opacity-[0.01] pointer-events-none select-none z-0">
-          <div className="text-[30vw] font-black italic leading-none uppercase">MINE</div>
+          <div className="text-fluid-hero font-black italic leading-none uppercase">MINE</div>
       </div>
 
       <style jsx global>{`
