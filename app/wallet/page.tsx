@@ -142,7 +142,7 @@ export default function WalletPage() {
                     ${totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </h1>
                   <div className="flex items-center gap-3 text-green-500 font-black text-lg md:text-xl italic tracking-tight flex-wrap">
-                    <TrendingUp size={20} md:size={24} strokeWidth={3} /> +12.4% <span className="text-muted-foreground/40 text-[9px] md:text-sm uppercase tracking-[0.2em] font-black italic">Resonance</span>
+                    <TrendingUp size={20} className="md:w-6 md:h-6" strokeWidth={3} /> +12.4% <span className="text-muted-foreground/40 text-[9px] md:text-sm uppercase tracking-[0.2em] font-black italic">Resonance</span>
                   </div>
                 </div>
                 
@@ -200,7 +200,7 @@ export default function WalletPage() {
                   >
                     <div className="flex items-center gap-6 relative z-10">
                       <div className="w-12 h-12 md:w-16 md:h-16 bg-muted border-2 border-border rounded-xl md:rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background transition-all shadow-inner">
-                        <Coins size={24} md:size={32} strokeWidth={2.5} />
+                        <Coins size={24} className="md:w-8 md:h-8" strokeWidth={2.5} />
                       </div>
                       <div className="space-y-1">
                         <div className="text-fluid-title font-black uppercase italic tracking-tighter text-foreground group-hover:text-primary transition-colors leading-none">{wallet.currency}</div>

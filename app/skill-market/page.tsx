@@ -197,7 +197,7 @@ export default function SkillMarketPage() {
                                 className="bg-primary/10 border-2 border-primary/40 text-primary rounded-[2.5rem] p-8 md:p-12 text-sm flex items-center gap-8 md:gap-10 shadow-2xl backdrop-blur-3xl"
                             >
                                 <div className="w-16 h-16 md:w-20 md:h-20 bg-primary rounded-full flex items-center justify-center text-primary-foreground shrink-0 shadow-lg">
-                                   <ShieldCheck size={32} md:size={40} strokeWidth={3} />
+                                   <ShieldCheck size={32} className="md:w-10 md:h-10" strokeWidth={3} />
                                 </div>
                                 <div className="space-y-2 md:space-y-4 flex-1">
                                     <div className="text-fluid-title font-black uppercase tracking-tighter italic leading-none text-foreground">Anchored.</div>

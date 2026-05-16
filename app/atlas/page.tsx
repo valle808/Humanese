@@ -331,7 +331,7 @@ export default function CognitiveAtlasPage() {
                className="w-full max-w-xl bg-background/60 border-2 border-border rounded-[2.5rem] md:rounded-[3.5rem] p-4 backdrop-blur-3xl shadow-2xl flex items-center gap-4 md:gap-6 group hover:border-primary/40 transition-all shadow-inner"
              >
                 <div className="h-12 w-12 md:h-16 md:w-16 bg-muted border border-border rounded-xl md:rounded-[1.8rem] flex items-center justify-center text-primary group-focus-within:bg-primary/10 group-focus-within:border-primary/30 transition-all shadow-inner shrink-0">
-                   <Search size={20} md:size={28} strokeWidth={3} />
+                   <Search size={20} className="md:w-7 md:h-7" strokeWidth={3} />
                 </div>
                 <input 
                   type="text"

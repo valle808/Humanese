@@ -82,7 +82,7 @@ export const TradingWidget = ({ wallets, onTrade }: { wallets: any[], onTrade: (
           className="w-full py-6 md:py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[10px] md:text-[11px] rounded-[2.5rem] shadow-[0_20px_40px_rgba(var(--primary),0.3)] hover:scale-[1.02] active:scale-95 transition-all group/btn italic relative overflow-hidden"
         >
           <span className="relative z-10 flex items-center justify-center gap-4">
-            {activeTab.toUpperCase()} {selectedAsset} <ArrowUpRight size={20} md:size={24} strokeWidth={3} />
+            {activeTab.toUpperCase()} {selectedAsset} <ArrowUpRight size={20} className="md:w-6 md:h-6" strokeWidth={3} />
           </span>
           <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
         </button>
