@@ -17,7 +17,10 @@ import {
     Gavel,
     Menu,
     X,
-    MessageSquare
+    MessageSquare,
+    Sparkles,
+    Terminal,
+    User
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -287,8 +290,30 @@ export const Sidebar = () => {
                                     </div>
                                 </div>
                                 
-                                {/* Navigation Items - Scrollable Area */}
+                                 {/* Navigation Items - Scrollable Area */}
                                 <nav className="flex-1 px-6 space-y-2 overflow-y-auto custom-scrollbar pt-4 pb-20">
+                                    {/* Priority Mobile Links */}
+                                    <div className="mb-8 space-y-3">
+                                        <Link 
+                                            href="/monroe" 
+                                            onClick={() => setIsExpanded(false)}
+                                            className="flex items-center gap-6 p-6 rounded-[2.5rem] bg-primary text-primary-foreground font-black uppercase italic tracking-[0.2em] shadow-xl active:scale-95 transition-all"
+                                        >
+                                            <Sparkles size={24} strokeWidth={3} />
+                                            <span className="text-xs">Monroe Interface</span>
+                                        </Link>
+                                        <Link 
+                                            href="/admin" 
+                                            onClick={() => setIsExpanded(false)}
+                                            className="flex items-center gap-6 p-6 rounded-[2.5rem] bg-muted border-2 border-border text-foreground font-black uppercase italic tracking-[0.2em] active:scale-95 transition-all shadow-inner"
+                                        >
+                                            <Terminal size={24} strokeWidth={3} />
+                                            <span className="text-xs">Command Nexus</span>
+                                        </Link>
+                                    </div>
+
+                                    <div className="w-full h-[1px] bg-border/50 mb-6" />
+
                                     {navItems.map((item) => {
                                         const isActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
                                         return (

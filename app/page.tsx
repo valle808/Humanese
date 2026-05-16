@@ -125,7 +125,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 md:gap-8 pt-4">
+              <div className="hidden md:flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 md:gap-8 pt-4">
                 <Link href="/monroe" className="w-full sm:w-auto px-8 md:px-16 py-5 md:py-10 rounded-2xl md:rounded-[3rem] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] bg-primary text-primary-foreground hover:scale-[1.05] active:scale-95 transition-all shadow-2xl flex items-center justify-center gap-4 md:gap-6 italic relative overflow-hidden border-0 leading-none text-sm md:text-lg group">
                   <span className="relative z-10 flex items-center gap-4 md:gap-6">
                     TALK_TO_MONROE <Sparkles size={20} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
