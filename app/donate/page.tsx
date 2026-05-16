@@ -66,7 +66,7 @@ const CheckoutForm = ({ amount, donorIdentity, onSuccess }: { amount: string, do
       <button 
          type="submit"
          disabled={!stripe || isProcessing}
-         className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-sm rounded-[3.5rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center justify-center gap-6 group relative overflow-hidden italic shadow-2xl"
+         className="w-full py-10 bg-primary text-primary-foreground font-black uppercase tracking-widest md:tracking-[0.4em] text-sm rounded-[3.5rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_40px_100px_rgba(var(--primary),0.3)] flex items-center justify-center gap-6 group relative overflow-hidden italic shadow-2xl"
       >
          <span className="relative z-10 flex items-center gap-6">
             {isProcessing ? <Activity size={28} className="animate-spin" strokeWidth={3} /> : <Zap size={28} strokeWidth={3} className="group-hover:rotate-12 transition-transform duration-500" />}

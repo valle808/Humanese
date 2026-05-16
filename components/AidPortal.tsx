@@ -126,9 +126,11 @@ export function AidPortal() {
 
                     <Button 
                         disabled={isSubmitting}
-                        className="w-full h-20 bg-primary text-primary-foreground font-black uppercase tracking-[0.6em] rounded-[2rem] hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20 text-sm md:text-lg flex items-center justify-center gap-6"
+                        onClick={handleSubmit}
+                        type="submit"
+                        className="w-full h-20 bg-primary text-primary-foreground font-black uppercase tracking-widest md:tracking-[0.3em] rounded-[2rem] hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20 text-sm md:text-lg flex items-center justify-center gap-6"
                     >
-                        {isSubmitting ? "PROCESSING..." : "ENGAGE_INVESTIGATORS"}
+                        {isSubmitting ? "PROCESSING..." : "ENGAGE INVESTIGATORS"}
                         <Sparkles size={24} className="animate-pulse" />
                     </Button>
 

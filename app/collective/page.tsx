@@ -341,7 +341,7 @@ export default function CollectiveHUD() {
                         href={`/hpedia?query=${tag}`}
                         className="flex items-center justify-between p-8 bg-muted/5 border-2 border-border rounded-[2.5rem] group cursor-pointer hover:bg-primary/5 hover:border-primary/30 transition-all shadow-xl"
                       >
-                         <span className="text-sm font-black text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-[0.4em] italic leading-none">{tag}</span>
+                         <span className="text-sm font-black text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-widest md:tracking-[0.4em] italic leading-none truncate min-w-0 pr-2">{tag}</span>
                          <LinkIcon size={20} className="text-muted-foreground/30 group-hover:text-primary group-hover:rotate-45 transition-all" />
                       </Link>
                     ))}
