@@ -243,23 +243,43 @@ export const Sidebar = () => {
                         </div>
                     </Link>
                     
-                    <button 
-                        onClick={() => setIsExpanded(!isExpanded)}
-                        className="w-14 h-14 bg-muted border-2 border-border rounded-2xl flex items-center justify-center text-primary shadow-inner active:scale-90 transition-all relative overflow-hidden"
-                        aria-label={isExpanded ? 'Close Menu' : 'Open Menu'}
-                    >
-                        <AnimatePresence mode="wait">
-                            {isExpanded ? (
-                                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
-                                    <X size={28} strokeWidth={3} />
-                                </motion.div>
-                            ) : (
-                                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-                                    <Menu size={28} strokeWidth={3} />
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </button>
+                    <div className="flex items-center gap-3">
+                        {/* Mobile User Icon */}
+                        <Link 
+                            href="/wallet" 
+                            className="w-11 h-11 bg-muted border border-border rounded-xl flex items-center justify-center text-muted-foreground hover:text-primary transition-all active:scale-90"
+                            title="Sovereign Profile"
+                        >
+                            <User size={20} strokeWidth={2.5} />
+                        </Link>
+                        
+                        {/* Mobile Monroe Icon */}
+                        <Link 
+                            href="/monroe" 
+                            className="w-11 h-11 bg-primary/10 border border-primary/40 rounded-xl flex items-center justify-center text-primary animate-pulse transition-all active:scale-90"
+                            title="Talk to Monroe"
+                        >
+                            <Sparkles size={20} strokeWidth={2.5} />
+                        </Link>
+
+                        <button 
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className="w-12 h-12 bg-muted border-2 border-border rounded-2xl flex items-center justify-center text-primary shadow-inner active:scale-90 transition-all relative overflow-hidden"
+                            aria-label={isExpanded ? 'Close Menu' : 'Open Menu'}
+                        >
+                            <AnimatePresence mode="wait">
+                                {isExpanded ? (
+                                    <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                                        <X size={28} strokeWidth={3} />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                                        <Menu size={28} strokeWidth={3} />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </button>
+                    </div>
                 </div>
 
                 {/* Mobile Drawer */}

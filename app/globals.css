@@ -200,27 +200,50 @@ html {
     background-size: 80px 80px;
   }
 
+   /* ── RESPONSIVE LAYOUT UTILITIES ── */
+  .responsive-container {
+    @apply w-full max-w-[1800px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20;
+  }
+
+  .responsive-p {
+    @apply p-4 sm:p-6 md:p-10 lg:p-16;
+  }
+
+  .mobile-stack {
+    @apply flex flex-col lg:flex-row;
+  }
+
+  .mobile-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+
   /* ── FLUID TYPOGRAPHY ── */
   .text-fluid-hero {
-    font-size: clamp(2rem, 10vw, 10rem);
+    font-size: clamp(2.2rem, 10vw, 10rem);
     line-height: 0.85;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
   }
 
   .text-fluid-title {
-    font-size: clamp(1.8rem, 5vw, 4.5rem);
+    font-size: clamp(1.6rem, 5vw, 4rem);
     line-height: 1;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
+  }
+
+  .text-fluid-balance {
+    font-size: clamp(1.4rem, 8vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
   }
 
   .text-fluid-body {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.25rem);
     line-height: 1.6;
   }
 
-  /* ── RESPONSIVE PADDING ── */
-  .responsive-p {
-    @apply p-6 md:p-12 lg:p-20;
+  .text-fluid-sm {
+    font-size: clamp(0.7rem, 1vw, 0.95rem);
+    line-height: 1.5;
   }
 
   .responsive-px {

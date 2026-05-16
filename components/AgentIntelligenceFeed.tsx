@@ -101,11 +101,11 @@ export const AgentIntelligenceFeed = () => {
 
                             {/* Content */}
                             <div className="flex flex-col gap-2 relative z-20 flex-1 min-h-0 overflow-y-auto no-scrollbar">
-                                <p className="text-base font-black text-foreground/70 tracking-tight italic leading-snug group-hover/card:text-foreground transition-colors">
+                                <p className="text-fluid-sm font-black text-foreground/70 tracking-tight italic leading-snug group-hover/card:text-foreground transition-colors">
                                     &ldquo;{log.intention || log.thought}&rdquo;
                                 </p>
                                 {log.thought && log.intention && (
-                                    <p className="text-[12px] text-foreground/35 font-light italic leading-relaxed">
+                                    <p className="text-[10px] text-foreground/35 font-light italic leading-relaxed">
                                         {log.thought}
                                     </p>
                                 )}

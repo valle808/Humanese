@@ -108,7 +108,7 @@ export default function Home() {
             <div className="space-y-10 md:space-y-16 relative z-10 text-center lg:text-left">
               <div className="inline-flex items-center gap-4 px-6 md:px-8 py-3 bg-muted/40 border border-border rounded-full backdrop-blur-3xl cursor-help shadow-2xl relative overflow-hidden flex-wrap justify-center lg:justify-start">
                 <Orbit size={18} className="text-primary animate-spin-slow" />
-                <span className="text-[9px] md:text-[11px] font-black tracking-[0.6em] md:tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse pl-1">Sovereign OMEGA v7.0</span>
+                <span className="text-[10px] md:text-[11px] font-black tracking-[0.6em] md:tracking-[0.8em] text-primary uppercase italic leading-none animate-pulse pl-1">Sovereign OMEGA v7.0</span>
                 <div className="hidden md:block mx-4 w-[1px] h-4 bg-border" />
                 <span className={`text-[9px] md:text-[10px] font-bold tracking-[0.2em] uppercase italic ${metrics.monroeStatus === 'OPERATIONAL' ? 'text-green-500' : 'text-primary/40'}`}>
                   Monroe: {metrics.monroeStatus}
@@ -120,7 +120,7 @@ export default function Home() {
                   OMEGA<br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">MATRIX.</span>
                 </h1>
-                <p className="text-xl md:text-3xl lg:text-4xl text-muted-foreground/40 max-w-2xl mx-auto lg:mx-0 leading-tight font-light italic tracking-tight">
+                <p className="text-fluid-title text-muted-foreground/40 max-w-2xl mx-auto lg:mx-0 leading-tight font-light italic tracking-tight">
                   Absolute <span className="text-foreground/80">Sovereignty</span> achieved. A unified, autonomous ecosystem designed to amplify potential.
                 </p>
               </div>

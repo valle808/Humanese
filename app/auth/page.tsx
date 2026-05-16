@@ -211,7 +211,7 @@ function AuthContent() {
             <ShieldCheck size={40} className="text-background" strokeWidth={2.5} />
           </Link>
           <div className="text-center space-y-3">
-            <h1 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic leading-none">
+            <h1 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none">
               Sovereign<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/40">Portal.</span>
             </h1>
@@ -233,8 +233,8 @@ function AuthContent() {
             {step === 'mode' && (
               <motion.div key="mode" initial={{ opacity: 0, x: -20, filter: 'blur(5px)' }} animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, x: 20, filter: 'blur(5px)' }} className="space-y-10 py-2">
                 <div className="space-y-3 text-center">
-                  <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tight italic leading-none text-foreground">Initialize Access_</h2>
-                  <p className="text-lg text-muted-foreground font-light italic">Choose your trajectory into the OMEGA swarm.</p>
+                  <h2 className="text-fluid-title font-black uppercase tracking-tight italic leading-none text-foreground">Initialize Access_</h2>
+                  <p className="text-fluid-sm text-muted-foreground font-light italic">Choose your trajectory into the OMEGA swarm.</p>
                 </div>
                 
                 <div className="grid grid-cols-1 gap-5 pt-2">
