@@ -202,13 +202,15 @@ html {
 
   /* ── FLUID TYPOGRAPHY ── */
   .text-fluid-hero {
-    font-size: clamp(3rem, 15vw, 12rem);
-    line-height: 0.8;
+    font-size: clamp(2rem, 10vw, 10rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
   }
 
   .text-fluid-title {
-    font-size: clamp(2.5rem, 10vw, 8rem);
-    line-height: 0.9;
+    font-size: clamp(1.8rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
   }
 
   .text-fluid-body {

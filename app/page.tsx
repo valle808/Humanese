@@ -126,9 +126,9 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 md:gap-8 pt-4">
-                <Link href="/monroe" className="w-full sm:w-auto px-10 md:px-16 py-6 md:py-10 rounded-2xl md:rounded-[3rem] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] bg-primary text-primary-foreground hover:scale-[1.05] active:scale-95 transition-all shadow-2xl flex items-center justify-center gap-4 md:gap-6 italic relative overflow-hidden border-0 leading-none text-base md:text-lg group">
+                <Link href="/monroe" className="w-full sm:w-auto px-8 md:px-16 py-5 md:py-10 rounded-2xl md:rounded-[3rem] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] bg-primary text-primary-foreground hover:scale-[1.05] active:scale-95 transition-all shadow-2xl flex items-center justify-center gap-4 md:gap-6 italic relative overflow-hidden border-0 leading-none text-sm md:text-lg group">
                   <span className="relative z-10 flex items-center gap-4 md:gap-6">
-                    TALK_TO_MONROE <Sparkles size={24} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
+                    TALK_TO_MONROE <Sparkles size={20} className="group-hover:rotate-12 transition-transform duration-500" strokeWidth={3} />
                   </span>
                 </Link>
                 <Link href="/admin" className="w-full sm:w-auto px-10 md:px-12 py-6 md:py-10 rounded-2xl md:rounded-[3rem] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] border-2 border-border bg-background/5 text-muted-foreground/40 hover:bg-foreground hover:text-background hover:border-foreground transition-all flex items-center justify-center gap-4 md:gap-6 group italic backdrop-blur-3xl leading-none">
@@ -162,13 +162,13 @@ export default function Home() {
              <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start flex-wrap gap-4">
                    <div className="h-16 w-16 md:h-24 md:w-24 rounded-[1.5rem] md:rounded-[2rem] bg-muted border-2 border-border flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all shadow-inner shrink-0">
-                      <Layers size={32} md:size={48} strokeWidth={2} />
+                      <Layers className="w-8 h-8 md:w-12 md:h-12" strokeWidth={2} />
                    </div>
                    <div className="flex flex-col items-end gap-2 md:gap-3 text-[9px] md:text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] md:tracking-[0.6em] italic leading-none pt-2">
                       <div className="flex items-center gap-2 md:gap-4 truncate max-w-[200px]">
                         <Activity size={16} className="text-primary animate-pulse" strokeWidth={2.5} /> {metrics.reliability.toFixed(3)}%
                       </div>
-                      <ArrowUpRight size={24} md:size={32} className="text-muted-foreground/10 group-hover:text-primary transition-all" strokeWidth={3} />
+                      <ArrowUpRight className="text-muted-foreground/10 group-hover:text-primary transition-all" strokeWidth={3} />
                    </div>
                 </div>
                 <div className="mt-auto pt-8 space-y-4 md:space-y-6">
@@ -185,7 +185,7 @@ export default function Home() {
              </div>
              <div className="relative z-10 space-y-6 md:space-y-8">
                 <div className="h-14 w-14 md:h-20 md:w-20 rounded-xl md:rounded-[1.5rem] bg-muted border-2 border-border flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:rotate-12 transition-all shadow-inner shrink-0">
-                   <Server size={28} md:size={36} strokeWidth={2} />
+                   <Server className="w-7 h-7 md:w-9 md:h-9" strokeWidth={2} />
                 </div>
                 <div className="space-y-2 md:space-y-4">
                    <div className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.6em] text-primary italic leading-none animate-pulse">FLEET_OPS_v7.0</div>
@@ -208,7 +208,7 @@ export default function Home() {
                 <Globe size={200} className="text-primary md:w-[250px] md:h-[250px]" />
              </div>
              <div className="relative z-10 flex justify-between items-start">
-                <Globe size={40} md:size={48} className="text-primary/20 group-hover:text-primary group-hover:rotate-12 transition-all duration-700" strokeWidth={1.5} />
+                <Globe className="w-10 h-10 md:w-12 md:h-12 text-primary/20 group-hover:text-primary group-hover:rotate-12 transition-all duration-700" strokeWidth={1.5} />
                 <div className="text-[9px] md:text-[11px] font-black text-muted-foreground/10 uppercase tracking-[0.4em] md:tracking-[0.6em] italic leading-none pt-2">OMEGA_REH</div>
              </div>
              <div className="relative z-10 mt-auto space-y-4 md:space-y-6">
@@ -229,7 +229,7 @@ export default function Home() {
              </div>
              <div className="relative z-10 flex justify-between items-start flex-wrap gap-4">
                 <div className="h-16 w-16 md:h-20 md:w-20 rounded-[1.5rem] bg-muted border-2 border-border flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:rotate-12 transition-all shadow-inner shrink-0">
-                   <Users size={28} md:size={36} strokeWidth={2} />
+                   <Users className="w-7 h-7 md:w-9 md:h-9" strokeWidth={2} />
                 </div>
                 <div className="px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-[9px] font-black text-primary tracking-[0.3em] uppercase italic leading-none animate-pulse">AID_ACTIVE</div>
              </div>
@@ -258,7 +258,7 @@ export default function Home() {
              <div className="relative z-10 grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-32 items-center">
                 <div className="space-y-8 md:space-y-12 text-center lg:text-left">
                    <div className="h-20 w-20 md:h-28 md:w-28 lg:h-32 lg:w-32 rounded-[2rem] bg-muted border-2 border-border flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 transition-all shadow-xl shadow-inner shrink-0 mx-auto lg:mx-0">
-                      <MapIcon size={40} md:size={64} strokeWidth={1.5} />
+                      <MapIcon className="w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
                    </div>
                    <div className="space-y-4 md:space-y-8">
                       <h3 className="text-5xl md:text-7xl lg:text-[100px] font-black uppercase tracking-tighter italic leading-[0.85] text-muted-foreground/80 group-hover:text-foreground transition-colors">Neural<br/>Atlas.</h3>
