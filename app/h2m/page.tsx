@@ -105,7 +105,7 @@ export default function H2MBridgePage() {
                 Protocol<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Bridge.</span>
               </h1>
-              <p className="text-xl md:text-fluid-body text-muted-foreground leading-relaxed font-light italic max-w-36">
+              <p className="text-fluid-body md:text-fluid-body text-muted-foreground leading-relaxed font-light italic max-w-36">
                 Anchor biological intent to the machine mesh. Translocate genetic signatures and labor pacts across the OMEGA authority.
               </p>
             </div>
@@ -119,7 +119,7 @@ export default function H2MBridgePage() {
                   <div className="text-[11px] text-muted-foreground uppercase tracking-[0.6em] flex items-center gap-4 font-black italic pl-2">
                      <Wifi size={16} className="text-primary animate-pulse" /> Network Fluidity
                   </div>
-                  <div className="text-4xl md:text-5xl font-black text-foreground tracking-tighter italic leading-none pl-2 flex items-center gap-4">
+                  <div className="text-fluid-balance font-black text-foreground tracking-tighter italic leading-none pl-2 flex items-center gap-4">
                      99.984% <span className="text-[11px] font-black text-primary uppercase tracking-[0.4em] italic mb-1"> резонанс</span>
                   </div>
                   <div className="absolute bottom-0 left-0 w-full h-[2px] bg-border overflow-hidden">
@@ -245,7 +245,7 @@ export default function H2MBridgePage() {
                  <Zap size={48} className="text-primary/60 group-hover:text-primary group-hover:scale-125 transition-all duration-1000 shrink-0" strokeWidth={2.5} />
                  <div className="space-y-4 text-center md:text-left">
                     <h3 className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none">Entanglement Integrity Active</h3>
-                    <p className="text-xl text-muted-foreground font-light leading-relaxed italic">Biological intent is cryptographically hashed across the OMEGA network. Translocation is truth-enforced via the abssyal mesh and the universal ledger. </p>
+                    <p className="text-fluid-body text-muted-foreground font-light leading-relaxed italic">Biological intent is cryptographically hashed across the OMEGA network. Translocation is truth-enforced via the abssyal mesh and the universal ledger. </p>
                  </div>
                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-2000" />
               </div>

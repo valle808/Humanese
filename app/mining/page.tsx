@@ -460,7 +460,7 @@ export default function MiningPage() {
                           ) : leaderboard.length === 0 ? (
                             <div className="text-center py-24 space-y-6">
                               <Award size={80} className="mx-auto text-muted-foreground/5" />
-                              <p className="text-muted-foreground/20 font-black uppercase italic tracking-tight text-xl">No blocks mined yet. Initialize your rig.</p>
+                              <p className="text-muted-foreground/20 font-black uppercase italic tracking-tight text-fluid-body">No blocks mined yet. Initialize your rig.</p>
                             </div>
                           ) : leaderboard.map((entry, i) => (
                             <motion.div
@@ -493,7 +493,7 @@ export default function MiningPage() {
                           ) : recentBlocks.length === 0 ? (
                             <div className="text-center py-24 space-y-6">
                               <Database size={80} className="mx-auto text-muted-foreground/5" />
-                              <p className="text-muted-foreground/20 font-black uppercase italic tracking-tight text-xl">Ledger is empty. Mine the first block.</p>
+                              <p className="text-muted-foreground/20 font-black uppercase italic tracking-tight text-fluid-body">Ledger is empty. Mine the first block.</p>
                             </div>
                           ) : recentBlocks.map((block, i) => (
                             <motion.div

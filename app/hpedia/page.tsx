@@ -213,7 +213,7 @@ export default function HPediaPage() {
               <div className="space-y-16">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 px-6">
                   <div className="space-y-4">
-                     <h2 className="text-5xl font-black uppercase tracking-tighter italic text-foreground leading-none">
+                     <h2 className="text-fluid-balance font-black uppercase tracking-tighter italic text-foreground leading-none">
                        {searchResults !== null ? `Search results for "${searchQuery}"` : 'Sovereign Knowledge Ledger'}
                      </h2>
                      <div className="text-[11px] font-black tracking-[0.6em] text-muted-foreground/20 uppercase italic leading-none">Universal_Knowledge_Access_Protocol_Active</div>

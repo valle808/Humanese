@@ -269,7 +269,7 @@ function AuthContent() {
               <motion.div key="entity" initial={{ opacity: 0, x: -20, filter: 'blur(5px)' }} animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, x: 20, filter: 'blur(5px)' }} className="space-y-8">
                 <div className="flex items-center gap-5">
                   <button onClick={() => setStep('mode')} className="w-12 h-12 bg-secondary border border-border rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all active:scale-90"><ChevronLeft size={24} strokeWidth={2.5}/></button>
-                  <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tight italic leading-none text-foreground">Select Entity_</h2>
+                  <h2 className="text-3xl lg:text-fluid-title font-black uppercase tracking-tight italic leading-none text-foreground">Select Entity_</h2>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                   {ENTITIES.map((entity) => (
@@ -302,7 +302,7 @@ function AuthContent() {
                     ) : (
                       <button onClick={() => { setMode('register'); setStep('mode'); }} className="w-12 h-12 bg-secondary border border-border rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all active:scale-90"><ChevronLeft size={24} strokeWidth={2.5}/></button>
                     )}
-                    <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tight italic leading-none text-foreground">{mode === 'login' ? 'Nexus Login_' : 'Establish ID_'}</h2>
+                    <h2 className="text-3xl lg:text-fluid-title font-black uppercase tracking-tight italic leading-none text-foreground">{mode === 'login' ? 'Nexus Login_' : 'Establish ID_'}</h2>
                   </div>
                   <div className={`px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.3em] italic leading-none border shadow-sm ${selectedEntity.bg} ${selectedEntity.color} border-primary/20`}>{selectedEntity.label}</div>
                 </div>
@@ -422,7 +422,7 @@ function AuthContent() {
                    <div className="absolute inset-0 bg-primary/20 blur-[40px] rounded-full animate-pulse opacity-40" />
                 </div>
                 <div className="space-y-4">
-                  <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tight italic leading-none text-foreground">Verify Identity_</h2>
+                  <h2 className="text-3xl lg:text-fluid-title font-black uppercase tracking-tight italic leading-none text-foreground">Verify Identity_</h2>
                   <p className="text-base text-muted-foreground font-light italic leading-relaxed">
                     A 6-digit synchronization code was sent to <br/>
                     <span className="text-primary font-mono font-black">{formData.useHumaneseEmail ? `${formData.customUsername}@humanese.net` : formData.email}</span>
@@ -492,8 +492,8 @@ function AuthContent() {
                 </div>
                 
                 <div className="space-y-4">
-                  <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight italic leading-none text-foreground">Identity Synchronized.</h2>
-                  <p className="text-xl text-muted-foreground font-black uppercase tracking-[0.4em] italic leading-none">Welcome to the Swarm.</p>
+                  <h2 className="text-fluid-title lg:text-fluid-balance font-black uppercase tracking-tight italic leading-none text-foreground">Identity Synchronized.</h2>
+                  <p className="text-fluid-body text-muted-foreground font-black uppercase tracking-[0.4em] italic leading-none">Welcome to the Swarm.</p>
                 </div>
 
                 {secretPhrase && (

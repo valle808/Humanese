@@ -185,7 +185,7 @@ export default function SkillDetailPage() {
                             </div>
                         </div>
 
-                        <p className="text-xl text-foreground/60 dark:text-muted-foreground/40 leading-relaxed font-light italic max-w-3xl">
+                        <p className="text-fluid-body text-foreground/60 dark:text-muted-foreground/40 leading-relaxed font-light italic max-w-3xl">
                             {skill.description}
                         </p>
                     </div>

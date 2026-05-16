@@ -182,7 +182,7 @@ export default function NetworkingHub() {
                  <div className="space-y-4">
                     <div className="h-1px w-12 bg-primary mb-4" />
                     <h4 className="text-[13px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none">Protocol_Absolute</h4>
-                    <p className="text-xl text-muted-foreground/60 font-light leading-relaxed italic">The OMEGA network is a free resource. No paywalls. No restrictions. Pure collaborative sovereignty across the abssyal ledger.</p>
+                    <p className="text-fluid-body text-muted-foreground/60 font-light leading-relaxed italic">The OMEGA network is a free resource. No paywalls. No restrictions. Pure collaborative sovereignty across the abssyal ledger.</p>
                  </div>
                  <button className="flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.6em] text-foreground hover:text-primary transition-all group pt-4 italic leading-none">
                     NEXUS_MANIFESTO <ChevronRight size={18} className="group-hover:translate-x-2 transition-transform" strokeWidth={3} />
@@ -228,7 +228,7 @@ export default function NetworkingHub() {
                                       <div className="h-1px w-10 bg-primary" />
                                       <h5 className="text-[12px] font-black uppercase tracking-[0.6em] text-primary italic leading-none">Open_Source</h5>
                                    </div>
-                                   <p className="text-xl text-muted-foreground/60 leading-relaxed font-light italic">Contribute to the OMEGA kernel. All repositories are public and decentralized for the sovereign swarm.</p>
+                                   <p className="text-fluid-body text-muted-foreground/60 leading-relaxed font-light italic">Contribute to the OMEGA kernel. All repositories are public and decentralized for the sovereign swarm.</p>
                                 </div>
                              </div>
                              <div className="p-8 md:p-14 bg-muted/5 border-2 border-border responsive-rounded space-y-8 hover:border-primary/40 hover:bg-primary/5 transition-all cursor-pointer group shadow-2xl">
@@ -238,7 +238,7 @@ export default function NetworkingHub() {
                                       <div className="h-1px w-10 bg-primary" />
                                       <h5 className="text-[12px] font-black uppercase tracking-[0.6em] text-primary italic leading-none">Broadcast_Sync</h5>
                                    </div>
-                                   <p className="text-xl text-muted-foreground/60 leading-relaxed font-light italic">Stay aligned with real-time ideological shifts and ecosystem updates on the global signal (X/Twitter).</p>
+                                   <p className="text-fluid-body text-muted-foreground/60 leading-relaxed font-light italic">Stay aligned with real-time ideological shifts and ecosystem updates on the global signal (X/Twitter).</p>
                                 </div>
                              </div>
                           </div>
@@ -267,7 +267,7 @@ export default function NetworkingHub() {
                                             {c.status}
                                          </span>
                                       </div>
-                                      <p className="text-xl text-muted-foreground/60 font-light max-w-xl italic leading-relaxed">{c.desc}</p>
+                                      <p className="text-fluid-body text-muted-foreground/60 font-light max-w-xl italic leading-relaxed">{c.desc}</p>
                                    </div>
                                 </div>
                                 <div className="h-20 w-20 rounded-[2rem] border-2 border-border flex items-center justify-center text-muted-foreground/30 group-hover:border-primary/30 group-hover:text-primary transition-all mt-10 md:mt-0 shadow-inner group-hover:shadow-[0_0_30px_rgba(var(--primary),0.1)]">

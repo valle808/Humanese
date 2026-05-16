@@ -120,8 +120,8 @@ export default function LegalPage() {
                </div>
             </div>
             <div className="space-y-6 relative z-10">
-               <h3 className="text-4xl font-black uppercase italic tracking-tighter">Prohibitions on Misuse</h3>
-               <p className="text-xl md:text-fluid-body text-muted-foreground/60 font-light leading-relaxed italic">
+               <h3 className="text-fluid-title font-black uppercase italic tracking-tighter">Prohibitions on Misuse</h3>
+               <p className="text-fluid-body md:text-fluid-body text-muted-foreground/60 font-light leading-relaxed italic">
                  The Sovereign Protocol strictly prohibits the use of its infrastructure for "AI Washing" or the creation of "Wizard of Oz" systems. Entities caught deploying simulated intelligence as autonomous agency will have their VALLE stake slashed and their identity node revoked from the swarm.
                </p>
             </div>

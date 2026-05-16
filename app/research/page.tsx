@@ -251,7 +251,7 @@ export default function ResearchHubPage() {
                         <p className="text-[10px] text-muted-foreground/10 font-black uppercase tracking-[0.4em] italic leading-none">OMNI_INTELLIGENCE_INTERFACE</p>
                       </div>
                    </div>
-                   <p className="text-xl text-muted-foreground/20 font-light italic leading-relaxed tracking-tight group-hover:text-muted-foreground/40 transition-colors">
+                   <p className="text-fluid-body text-muted-foreground/20 font-light italic leading-relaxed tracking-tight group-hover:text-muted-foreground/40 transition-colors">
                       Sync your local research shards with the OMEGA Omni-Intelligence. 
                       Unlock advanced simulations for bio-architecture, molecular synthesis, and zero-point thermal dynamics.
                    </p>

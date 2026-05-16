@@ -385,7 +385,7 @@ export default function GovernanceHub() {
                 {/* ── HIP DIRECTORY ── */}
                 <section className="space-y-16">
                     <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-border pb-12 gap-8 group">
-                        <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight italic text-muted-foreground/40 group-hover:text-foreground transition-colors flex items-center gap-8 leading-none pl-2">
+                        <h2 className="text-fluid-title md:text-fluid-balance font-black uppercase tracking-tight italic text-muted-foreground/40 group-hover:text-foreground transition-colors flex items-center gap-8 leading-none pl-2">
                             <FileText size={36} className="text-primary" strokeWidth={2.5} /> Improvement Index_
                         </h2>
                         <div className="flex items-center gap-10">
@@ -435,7 +435,7 @@ export default function GovernanceHub() {
                                                             </span>
                                                         )}
                                                     </div>
-                                                    <h3 className="text-4xl lg:text-5xl font-black text-foreground italic group-hover:text-primary transition-colors tracking-tighter leading-none pr-4 truncate uppercase">{hip.title}</h3>
+                                                    <h3 className="text-fluid-title lg:text-fluid-balance font-black text-foreground italic group-hover:text-primary transition-colors tracking-tighter leading-none pr-4 truncate uppercase">{hip.title}</h3>
                                                     <div className="text-[11px] text-muted-foreground/20 font-black uppercase tracking-[0.6em] italic leading-none pt-2 flex items-center justify-center lg:justify-start gap-4 truncate">
                                                         <Users size={16} strokeWidth={3} className="text-primary/40" /> Author: <span className="text-primary font-black">{hip.authorId}</span>
                                                     </div>
@@ -489,7 +489,7 @@ export default function GovernanceHub() {
                             <header className="p-12 border-b-2 border-border flex justify-between items-center shrink-0 bg-muted/40">
                                 <div className="space-y-3">
                                     <div className="text-[11px] text-primary font-black uppercase tracking-[0.5em] md:tracking-[1em] italic leading-none pl-1">Protocol_Drafting_v7</div>
-                                    <h2 className="text-4xl font-black text-foreground italic tracking-tighter uppercase leading-none">Initiate New HIP</h2>
+                                    <h2 className="text-fluid-title font-black text-foreground italic tracking-tighter uppercase leading-none">Initiate New HIP</h2>
                                 </div>
                                 <button 
                                     onClick={() => setIsDrafting(false)}

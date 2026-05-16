@@ -136,7 +136,7 @@ export const DisputeResolutionCenter = ({ isOpen, onClose, transaction }: Disput
                       />
                    </div>
                    <div className="space-y-4 max-w-lg">
-                      <h3 className="text-4xl font-black uppercase italic tracking-tighter text-foreground">Verdict_Pending.</h3>
+                      <h3 className="text-fluid-title font-black uppercase italic tracking-tighter text-foreground">Verdict_Pending.</h3>
                       <p className="text-muted-foreground italic leading-relaxed text-sm">
                         The specialized agents have successfully scanned the transaction shards on the Sovereign Node. 
                         Initial resonance suggests protocol compliance, but a manual review by the <span className="text-primary">Judicial Oversight Committee</span> has been flagged. 

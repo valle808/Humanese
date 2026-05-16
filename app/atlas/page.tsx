@@ -300,7 +300,7 @@ export default function CognitiveAtlasPage() {
                    <div className="flex items-center gap-4 text-primary font-black uppercase tracking-[0.5em] text-[10px] italic leading-none animate-pulse pl-1">
                       <Orbit size={14} className="animate-spin-slow" /> COGNITIVE_ATLAS_v7.0
                    </div>
-                   <h1 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic leading-none whitespace-nowrap text-foreground pl-1">
+                   <h1 className="text-2xl md:text-fluid-title font-black uppercase tracking-tighter italic leading-none whitespace-nowrap text-foreground pl-1">
                       Neural <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-primary/40">Atlas.</span>
                    </h1>
                 </div>

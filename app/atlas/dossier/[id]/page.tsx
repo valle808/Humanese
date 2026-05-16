@@ -67,8 +67,8 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
         <div className="p-10 bg-red-500/10 border-2 border-red-500/20 rounded-[3rem] text-red-500">
            <Radio size={80} className="animate-pulse" />
         </div>
-        <h1 className="text-5xl font-black uppercase italic tracking-tighter text-foreground">Signature_Lost.</h1>
-        <p className="text-xl text-muted-foreground/40 italic font-light max-w-xl">{error || 'The requested neural signature does not exist in the OMEGA registry.'}</p>
+        <h1 className="text-fluid-balance font-black uppercase italic tracking-tighter text-foreground">Signature_Lost.</h1>
+        <p className="text-fluid-body text-muted-foreground/40 italic font-light max-w-xl">{error || 'The requested neural signature does not exist in the OMEGA registry.'}</p>
         <Link href="/atlas" className="px-12 py-6 bg-muted/10 border-2 border-border rounded-full text-[11px] font-black uppercase tracking-[0.6em] text-muted-foreground/40 hover:bg-muted/10 hover:text-foreground transition-all italic leading-none active:scale-95">
            Return to Atlas
         </Link>
@@ -152,7 +152,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                     <Database size={250} className="text-primary" />
                 </div>
                 <div className="p-12 lg:px-16 border-b-2 border-border flex justify-between items-center bg-muted/10 relative z-10">
-                    <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-4xl italic text-muted-foreground/40 leading-none pl-2">
+                    <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-fluid-title italic text-muted-foreground/40 leading-none pl-2">
                         <Activity size={40} className="text-primary" strokeWidth={2.5} /> Neural Metadata
                     </h2>
                 </div>

@@ -440,7 +440,7 @@ export default function MailPage() {
               >
               <div className="p-8 md:p-12 border-b-2 border-border flex justify-between items-center bg-foreground/[0.02] z-10 shrink-0">
                  <div className="space-y-2">
-                    <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter leading-none flex items-center gap-6 text-foreground">
+                    <h2 className="text-3xl md:text-fluid-balance font-black uppercase italic tracking-tighter leading-none flex items-center gap-6 text-foreground">
                       <Terminal size={32} className="text-primary" /> Transmit
                     </h2>
                     <p className="text-[9px] text-muted-foreground font-black uppercase tracking-[0.4em] italic leading-none">Sovereign_Relay_Active</p>

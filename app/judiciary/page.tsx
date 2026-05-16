@@ -163,7 +163,7 @@ export default function JudicialOversightPage() {
             {/* LEFT: AMENDMENTS GRID */}
             <div className="lg:col-span-8 space-y-16">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 border-b-2 border-border pb-12">
-                    <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tight italic flex items-center gap-8 text-muted-foreground/40 leading-none pl-4">
+                    <h2 className="text-fluid-title lg:text-fluid-balance font-black uppercase tracking-tight italic flex items-center gap-8 text-muted-foreground/40 leading-none pl-4">
                         <Activity size={40} className="text-primary animate-pulse" strokeWidth={2.5} /> Active Amendments
                     </h2>
                     <div className="flex flex-wrap gap-4">
@@ -207,7 +207,7 @@ export default function JudicialOversightPage() {
                                             </div>
                                         )}
                                     </div>
-                                    <h3 className="text-4xl lg:text-5xl font-black text-muted-foreground/60 group-hover:text-foreground transition-colors italic tracking-tighter leading-none line-clamp-2 uppercase">&quot;{proposal.title}&quot;</h3>
+                                    <h3 className="text-fluid-title lg:text-fluid-balance font-black text-muted-foreground/60 group-hover:text-foreground transition-colors italic tracking-tighter leading-none line-clamp-2 uppercase">&quot;{proposal.title}&quot;</h3>
                                     <div className="flex items-center gap-4 text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] italic leading-none pl-1">
                                        <Terminal size={16} strokeWidth={3} className="text-primary/40" /> Proposed_by: <span className="text-primary">{proposal.authorId.slice(0, 8)}...{proposal.authorId.slice(-4)}</span>
                                     </div>
@@ -245,7 +245,7 @@ export default function JudicialOversightPage() {
                         <Plus size={48} className="text-muted-foreground/20 group-hover:text-primary" strokeWidth={3} />
                      </div>
                      <div className="space-y-6 relative z-10">
-                        <h3 className="text-4xl font-black uppercase italic tracking-tighter leading-none text-muted-foreground/40 group-hover:text-foreground transition-colors">Draft Amendment</h3>
+                        <h3 className="text-fluid-title font-black uppercase italic tracking-tighter leading-none text-muted-foreground/40 group-hover:text-foreground transition-colors">Draft Amendment</h3>
                         <p className="text-muted-foreground/40 text-fluid-body font-light leading-relaxed italic max-w-2xl mx-auto tracking-tight">
                            Initialize a new protocol directive for the OMEGA ecosystem. 
                            <span className="text-primary/60"> Security deposit</span> of 1,000 $VALLE required.
@@ -268,7 +268,7 @@ export default function JudicialOversightPage() {
                     <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
                     
                     <div className="space-y-6 relative z-10">
-                        <h2 className="text-4xl font-black uppercase tracking-tight italic text-foreground group-hover:text-primary transition-colors leading-none pr-4">Council Chamber</h2>
+                        <h2 className="text-fluid-title font-black uppercase tracking-tight italic text-foreground group-hover:text-primary transition-colors leading-none pr-4">Council Chamber</h2>
                         <div className="h-[2px] w-24 bg-primary/40" />
                         <p className="text-fluid-body text-muted-foreground/40 font-light leading-relaxed italic tracking-tight"> 
                            &quot;The architect&apos;s voice is the foundation of the protocol. Access limited to verified sovereign nodes with level 4 clearance.&quot; 

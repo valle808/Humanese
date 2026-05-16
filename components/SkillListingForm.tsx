@@ -110,7 +110,7 @@ export function SkillListingForm({ onClose, onSuccess }: SkillListingFormProps) 
                                 <Plus size={40} strokeWidth={4} />
                             </div>
                             <div className="space-y-1">
-                                <h2 className="text-5xl font-black text-foreground italic tracking-tighter uppercase leading-none">List <span className="text-primary">Shard.</span></h2>
+                                <h2 className="text-fluid-balance font-black text-foreground italic tracking-tighter uppercase leading-none">List <span className="text-primary">Shard.</span></h2>
                                 <p className="text-[11px] font-black uppercase tracking-[0.5em] text-muted-foreground/5 italic leading-none pl-1">Your skill will receive a unique sovereign key</p>
                             </div>
                         </div>

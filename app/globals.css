@@ -102,7 +102,7 @@ html {
 
 /* ── WIKI CONTENT FLAGSHIP STYLES ── */
 .wiki-content p {
-  @apply mb-10 leading-[1.8] text-2xl font-light italic tracking-tight;
+  @apply mb-10 leading-[1.8] text-fluid-sm font-light italic tracking-tight;
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -111,7 +111,7 @@ html {
 }
 
 .wiki-content h1 { @apply text-fluid-hero text-white; }
-.wiki-content h2 { @apply text-5xl text-white/60; }
+.wiki-content h2 { @apply text-fluid-balance text-white/60; }
 .wiki-content h3 { @apply text-3xl text-[hsl(var(--primary))]; }
 
 .wiki-content ul, .wiki-content ol {
@@ -119,7 +119,7 @@ html {
 }
 
 .wiki-content li {
-  @apply text-2xl font-light italic text-white/20 leading-relaxed tracking-tight relative;
+  @apply text-fluid-sm font-light italic text-white/20 leading-relaxed tracking-tight relative;
 }
 
 .wiki-content li::before {
@@ -140,7 +140,7 @@ html {
 }
 
 .wiki-content blockquote {
-  @apply border-l-8 border-[hsl(var(--primary))] pl-16 pr-12 py-12 italic my-20 bg-gradient-to-br from-[hsl(var(--primary))]/10 to-transparent rounded-r-[4rem] text-4xl font-black text-white/90 tracking-tighter uppercase leading-[0.9];
+  @apply border-l-8 border-[hsl(var(--primary))] pl-16 pr-12 py-12 italic my-20 bg-gradient-to-br from-[hsl(var(--primary))]/10 to-transparent rounded-r-[4rem] text-fluid-title font-black text-white/90 tracking-tighter uppercase leading-[0.9];
 }
 
 .wiki-content table {

@@ -197,7 +197,7 @@ export default function SovereignCourtPage() {
            <div className="lg:col-span-8 space-y-16">
               <div className="bg-background border-2 border-border rounded-[5rem] overflow-hidden shadow-xl shadow-inner">
                  <div className="p-12 lg:px-16 border-b-2 border-border flex justify-between items-center bg-foreground/[0.01]">
-                    <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic flex items-center gap-8 text-muted-foreground/20 leading-none pl-4">
+                    <h2 className="text-fluid-title lg:text-fluid-balance font-black uppercase tracking-tighter italic flex items-center gap-8 text-muted-foreground/20 leading-none pl-4">
                       <Scale size={40} className="text-primary" strokeWidth={2.5} /> Judicial Ledger
                     </h2>
                     <div className="px-8 py-3 bg-primary/10 border border-primary/20 rounded-full text-[11px] text-primary font-black uppercase tracking-[0.5em] animate-pulse italic leading-none">LIVE_AUDIT_STREAM</div>

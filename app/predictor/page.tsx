@@ -264,7 +264,7 @@ export default function PredictorPage() {
                         <div className="flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-primary italic">
                            <ShieldAlert size={16} /> Analysis Sector
                         </div>
-                        <p className="text-xl text-muted-foreground font-light italic leading-relaxed relative z-10">Predictive data formatted for immediate synchronization with the Sovereign Swarm via the OMEGA Protocol standard.</p>
+                        <p className="text-fluid-body text-muted-foreground font-light italic leading-relaxed relative z-10">Predictive data formatted for immediate synchronization with the Sovereign Swarm via the OMEGA Protocol standard.</p>
                      </div>
                   </div>
 

@@ -77,7 +77,7 @@ export function PromoPopup() {
                 <p className="text-sm font-medium text-gray-700">What's New - October, 2025</p>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              <h2 className="text-3xl md:text-fluid-title font-bold text-gray-900">
                 Introducing DeepGrok
               </h2>
               

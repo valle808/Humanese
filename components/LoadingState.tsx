@@ -42,7 +42,7 @@ export function LoadingState() {
                 className="flex items-center justify-center gap-6"
             >
                 <div className="h-px w-12 bg-primary/40" />
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase text-foreground leading-none pt-1">
+                <h2 className="text-fluid-title font-black italic tracking-tighter uppercase text-foreground leading-none pt-1">
                   Synchronizing{dots}
                 </h2>
                 <div className="h-px w-12 bg-primary/40" />

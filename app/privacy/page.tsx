@@ -73,8 +73,8 @@ export default function PrivacyPage() {
                 </div>
                 <span>{item.label}</span>
               </div>
-              <h3 className="text-4xl font-black uppercase italic tracking-tighter text-muted-foreground/90 group-hover:text-primary transition-colors leading-tight">{item.title}</h3>
-              <p className="text-muted-foreground/30 font-light leading-relaxed italic text-xl mt-6">
+              <h3 className="text-fluid-title font-black uppercase italic tracking-tighter text-muted-foreground/90 group-hover:text-primary transition-colors leading-tight">{item.title}</h3>
+              <p className="text-muted-foreground/30 font-light leading-relaxed italic text-fluid-body mt-6">
                 {item.desc}
               </p>
             </motion.div>

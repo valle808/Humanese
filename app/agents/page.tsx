@@ -349,7 +349,7 @@ export default function AgentsPage() {
            <div className="lg:col-span-8 space-y-16">
               <div className="bg-background border-2 border-border rounded-[5rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)]">
                  <div className="p-12 lg:px-16 border-b-2 border-border flex justify-between items-center bg-muted/10">
-                    <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic flex items-center gap-8 text-muted-foreground/40 leading-none pl-4">
+                    <h2 className="text-fluid-title lg:text-fluid-balance font-black uppercase tracking-tighter italic flex items-center gap-8 text-muted-foreground/40 leading-none pl-4">
                       <Boxes size={40} className="text-primary" strokeWidth={2.5} /> Active Shard Roster
                     </h2>
                     <div className="px-8 py-3 bg-primary/10 border border-primary/20 rounded-full text-[11px] text-primary font-black uppercase tracking-[0.5em] animate-pulse italic leading-none">REALTIME_CONSCIOUSNESS</div>
@@ -440,7 +440,7 @@ export default function AgentsPage() {
               <div className="bg-background border-2 border-border rounded-[5rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)]">
                  <div className="p-12 lg:px-16 border-b-2 border-border flex flex-col md:flex-row md:items-end justify-between gap-12 bg-muted/10">
                     <div className="space-y-6">
-                       <h2 className="text-5xl lg:text-fluid-balance font-black uppercase tracking-tighter italic flex items-center gap-10 leading-none text-foreground pl-4">
+                       <h2 className="text-fluid-balance lg:text-fluid-balance font-black uppercase tracking-tighter italic flex items-center gap-10 leading-none text-foreground pl-4">
                          <Zap size={48} className="text-primary animate-pulse" strokeWidth={3} /> Mining Core
                        </h2>
                        <div className="flex items-center gap-6 pl-4">

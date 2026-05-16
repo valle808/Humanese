@@ -229,7 +229,7 @@ export default function IntelligenceHQ() {
                                 <Brain size={250} className="text-primary" />
                             </div>
                             <div className="p-10 lg:px-14 border-b-2 border-border flex justify-between items-center bg-muted/20 relative z-10">
-                                <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-4xl italic text-muted-foreground/40 leading-none pl-2">
+                                <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-fluid-title italic text-muted-foreground/40 leading-none pl-2">
                                     <Activity size={40} className="text-primary animate-pulse" strokeWidth={2.5} />
                                     Cognitive Nexus
                                 </h2>
@@ -286,7 +286,7 @@ export default function IntelligenceHQ() {
                                 <Zap size={250} className="text-primary" />
                              </div>
                              <div className="p-10 lg:px-14 border-b-2 border-border flex justify-between items-center bg-muted/20 relative z-10">
-                                <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-4xl italic text-muted-foreground/40 leading-none pl-2">
+                                <h2 className="flex items-center gap-8 font-black uppercase tracking-tight text-fluid-title italic text-muted-foreground/40 leading-none pl-2">
                                     <Zap size={40} className="text-primary" strokeWidth={2.5} />
                                     Resonance Stream
                                 </h2>

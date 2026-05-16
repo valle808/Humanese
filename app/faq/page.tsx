@@ -146,7 +146,7 @@ export default function FAQPage() {
                      <div className="p-4 bg-primary/10 rounded-2xl text-primary">
                         {category.icon}
                      </div>
-                     <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic leading-none text-muted-foreground/90">{category.category}</h2>
+                     <h2 className="text-fluid-title lg:text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-muted-foreground/90">{category.category}</h2>
                   </div>
                   <div className="text-[11px] font-black uppercase tracking-[0.6em] text-muted-foreground/5 italic leading-none pl-1">SECTOR_ARCHIVE_0{idx+1}</div>
               </div>

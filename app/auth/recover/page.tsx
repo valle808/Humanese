@@ -79,7 +79,7 @@ export default function RecoverPage() {
             <KeyRound size={40} className="text-primary" strokeWidth={2.5} />
           </div>
           <div className="text-center space-y-3">
-            <h1 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic leading-none text-foreground">
+            <h1 className="text-fluid-title lg:text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-foreground">
               Recovery<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/40">Protocol.</span>
             </h1>

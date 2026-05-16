@@ -96,7 +96,7 @@ export default function ShardHUD({ node, graphData, onClose, onSelectNode }: Sha
                   <Database size={40} strokeWidth={2.5} />}
               </div>
               <div className="space-y-2">
-                <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-foreground italic leading-none">{node.label}</h2>
+                <h2 className="text-3xl lg:text-fluid-title font-black uppercase tracking-tighter text-foreground italic leading-none">{node.label}</h2>
                 <div className="flex items-center gap-3">
                    <Fingerprint size={12} className="text-primary" />
                    <div className="text-[10px] text-primary font-black uppercase tracking-[0.4em] italic leading-none">
@@ -151,7 +151,7 @@ export default function ShardHUD({ node, graphData, onClose, onSelectNode }: Sha
             </h3>
             <div className="bg-background/40 border-2 border-border p-8 rounded-[2.5rem] relative shadow-inner">
                <div className="absolute -top-3 -left-3 h-8 w-8 border-t-2 border-l-2 border-primary" />
-               <p className="text-xl text-muted-foreground/80 leading-relaxed font-light italic min-h-[120px]">
+               <p className="text-fluid-body text-muted-foreground/80 leading-relaxed font-light italic min-h-[120px]">
                   {displayedReport}<span className="inline-block w-2 h-5 bg-primary ml-1 animate-pulse" />
                </p>
             </div>

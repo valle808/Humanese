@@ -264,7 +264,7 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-3xl font-black uppercase italic tracking-tighter text-foreground leading-none">Security & Protocol</h3>
-                  <p className="text-xl text-muted-foreground/40 italic font-light max-w-2xl leading-relaxed tracking-tight">Manage your recovery vectors, view audit logs, and enforce multi-factor authentication for absolute sovereignty.</p>
+                  <p className="text-fluid-body text-muted-foreground/40 italic font-light max-w-2xl leading-relaxed tracking-tight">Manage your recovery vectors, view audit logs, and enforce multi-factor authentication for absolute sovereignty.</p>
                 </div>
               </div>
 

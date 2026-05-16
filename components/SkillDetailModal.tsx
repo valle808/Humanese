@@ -99,7 +99,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                 {meta.icon}
                             </div>
                             <div className="space-y-2">
-                                <h2 className="text-5xl font-black text-foreground italic tracking-tighter uppercase leading-none">{skill.title}</h2>
+                                <h2 className="text-fluid-balance font-black text-foreground italic tracking-tighter uppercase leading-none">{skill.title}</h2>
                                 <div className="flex items-center gap-6 text-[11px] font-black text-muted-foreground/5 uppercase tracking-[0.6em] italic leading-none pl-1">
                                     <span>By {skill.seller_name}</span>
                                     <div className="h-2 w-2 bg-muted/10 rounded-full" />
@@ -203,7 +203,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                     </div>
                                     
                                     <div className="space-y-6 relative z-10">
-                                       <h3 className="text-5xl font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Acquisition Directive</h3>
+                                       <h3 className="text-fluid-balance font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Acquisition Directive</h3>
                                        <div className="flex items-center gap-6">
                                           <div className="h-px w-20 bg-primary/40" />
                                           <p className="text-[12px] text-muted-foreground/10 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none pl-1">Provide identity hash for permanent neural anchoring.</p>
@@ -242,7 +242,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                             <div className="font-black text-3xl flex items-center gap-6 italic group-hover/ghost:text-primary transition-colors leading-none text-muted-foreground/60">
                                                 <Ghost size={32} className="text-primary" strokeWidth={3} /> Ghost Mode_
                                             </div>
-                                            <p className="text-xl text-muted-foreground/5 font-light italic max-w-2xl leading-relaxed tracking-tight group-hover/ghost:text-muted-foreground/20 transition-colors">
+                                            <p className="text-fluid-body text-muted-foreground/5 font-light italic max-w-2xl leading-relaxed tracking-tight group-hover/ghost:text-muted-foreground/20 transition-colors">
                                                 Shard becomes autonomous and invisible from the public ledger after successful handshake protocol completion.
                                             </p>
                                         </div>
@@ -285,7 +285,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                         </div>
                                     </div>
                                     <div className="space-y-6">
-                                       <h3 className="text-5xl font-black uppercase tracking-tighter italic text-muted-foreground/90 leading-none">Signal Silenced.</h3>
+                                       <h3 className="text-fluid-balance font-black uppercase tracking-tighter italic text-muted-foreground/90 leading-none">Signal Silenced.</h3>
                                        <div className="flex flex-col items-center gap-4">
                                           <div className="h-px w-20 bg-muted/10" />
                                           <p className="text-[12px] text-muted-foreground/5 font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none pl-1">
@@ -325,8 +325,8 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                             </div>
                             <div className="p-16 border-2 border-primary/20 bg-primary/5 rounded-[4rem] space-y-8 shadow-inner relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.05] mix-blend-overlay" />
-                                <h3 className="text-4xl font-black uppercase italic tracking-tighter leading-none text-muted-foreground/95 relative z-10">Cryptographic Sovereignty</h3>
-                                <p className="text-xl text-muted-foreground/20 font-light italic leading-relaxed tracking-tight relative z-10">Unique definitive identifier anchored to the OMEGA network. This key is immutable and globally unique across the autonomous ecosystem.</p>
+                                <h3 className="text-fluid-title font-black uppercase italic tracking-tighter leading-none text-muted-foreground/95 relative z-10">Cryptographic Sovereignty</h3>
+                                <p className="text-fluid-body text-muted-foreground/20 font-light italic leading-relaxed tracking-tight relative z-10">Unique definitive identifier anchored to the OMEGA network. This key is immutable and globally unique across the autonomous ecosystem.</p>
                                 <div className="p-10 bg-muted border-2 border-border rounded-3xl font-mono text-primary text-3xl font-black tracking-[0.2em] select-all text-center relative z-10 group-hover:border-primary/40 transition-all duration-700 active:scale-[0.98]">
                                    {skill.skill_key}
                                 </div>
