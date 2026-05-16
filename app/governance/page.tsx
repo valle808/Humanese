@@ -507,14 +507,15 @@ export default function GovernanceHub() {
                                 )}
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                                    <div className="space-y-4">
-                                        <label className="text-[11px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] italic leading-none pl-6">Proposal Title_</label>
+                                    <div className="space-y-4 cursor-pointer group/field" onClick={() => document.getElementById('hip-title')?.focus()}>
+                                        <label htmlFor="hip-title" className="text-[11px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] italic leading-none pl-6 group-focus-within/field:text-primary transition-colors cursor-pointer">Proposal Title_</label>
                                         <input 
+                                            id="hip-title"
                                             type="text" 
                                             value={newHip.title}
                                             onChange={(e) => setNewHip({...newHip, title: e.target.value})}
                                             placeholder="Sovereign Expansion Protocol..."
-                                            className="w-full p-8 bg-muted/50 border-2 border-border rounded-[2rem] text-foreground font-black italic tracking-tight focus:border-primary/40 focus:bg-primary/5 transition-all outline-none text-lg shadow-inner placeholder:text-muted-foreground/5"
+                                            className="w-full p-8 bg-muted/50 border-2 border-border rounded-[2rem] text-foreground font-black italic tracking-tight focus:border-primary/40 focus:bg-primary/5 transition-all outline-none text-lg shadow-inner placeholder:text-muted-foreground/5 cursor-text"
                                         />
                                     </div>
                                     <div className="space-y-4">
@@ -532,26 +533,28 @@ export default function GovernanceHub() {
                                             <div className="absolute right-8 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground/10"><ChevronLeft className="-rotate-90" size={20} /></div>
                                         </div>
                                     </div>
-                                    <div className="space-y-4">
-                                        <label className="text-[11px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] italic leading-none pl-6">Network Layer_</label>
+                                    <div className="space-y-4 cursor-pointer group/field" onClick={() => document.getElementById('hip-layer')?.focus()}>
+                                        <label htmlFor="hip-layer" className="text-[11px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] italic leading-none pl-6 group-focus-within/field:text-primary transition-colors cursor-pointer">Network Layer_</label>
                                         <input 
+                                            id="hip-layer"
                                             type="text" 
                                             value={newHip.layer}
                                             onChange={(e) => setNewHip({...newHip, layer: e.target.value})}
                                             placeholder="Consensus / API / UX"
-                                            className="w-full p-8 bg-muted/50 border-2 border-border rounded-[2rem] text-foreground font-black italic tracking-tight focus:border-primary/40 focus:bg-primary/5 transition-all outline-none text-lg shadow-inner placeholder:text-muted-foreground/5"
+                                            className="w-full p-8 bg-muted/50 border-2 border-border rounded-[2rem] text-foreground font-black italic tracking-tight focus:border-primary/40 focus:bg-primary/5 transition-all outline-none text-lg shadow-inner placeholder:text-muted-foreground/5 cursor-text"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="space-y-4">
-                                    <label className="text-[11px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] italic leading-none pl-10">Protocol Specification (Markdown)_</label>
+                                <div className="space-y-4 cursor-pointer group/field" onClick={() => document.getElementById('hip-content')?.focus()}>
+                                    <label htmlFor="hip-content" className="text-[11px] text-muted-foreground/10 font-black uppercase tracking-[0.6em] italic leading-none pl-10 group-focus-within/field:text-primary transition-colors cursor-pointer">Protocol Specification (Markdown)_</label>
                                     <textarea 
+                                        id="hip-content"
                                         rows={10}
                                         value={newHip.content}
                                         onChange={(e) => setNewHip({...newHip, content: e.target.value})}
                                         placeholder={"## Abstract\nDescribe the systemic intent...\n\n## Motivation\n\n## Specification\n\n## Rationale"}
-                                        className="w-full p-10 bg-muted/50 border-2 border-border rounded-[3rem] text-foreground font-mono text-base leading-relaxed focus:border-primary/40 focus:bg-primary/5 transition-all outline-none shadow-inner placeholder:text-muted-foreground/5 scrollbar-hide"
+                                        className="w-full p-10 bg-muted/50 border-2 border-border rounded-[3rem] text-foreground font-mono text-base leading-relaxed focus:border-primary/40 focus:bg-primary/5 transition-all outline-none shadow-inner placeholder:text-muted-foreground/5 scrollbar-hide cursor-text"
                                     />
                                 </div>
                             </div>

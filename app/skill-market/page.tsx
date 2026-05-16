@@ -216,14 +216,18 @@ export default function SkillMarketPage() {
                 {/* ── SEARCH & ACTIONS ── */}
                 <section className="space-y-8">
                     <div className="flex flex-col lg:flex-row gap-4">
-                        <div className="flex-1 relative group">
+                        <div 
+                          className="flex-1 relative group cursor-pointer pointer-events-auto"
+                          onClick={() => document.getElementById('skill-search')?.focus()}
+                        >
                             <input
+                                id="skill-search"
                                 value={searchQuery}
                                 onChange={e => setSearchQuery(e.target.value)}
                                 placeholder="Search capabilities..."
-                                className="w-full bg-background border-2 border-border rounded-full px-8 py-5 pr-16 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/40 focus:bg-primary/5 text-lg italic transition-all shadow-md shadow-inner"
+                                className="w-full bg-background border-2 border-border rounded-full px-8 py-5 pr-16 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/40 focus:bg-primary/5 text-lg italic transition-all shadow-md shadow-inner cursor-text"
                             />
-                            <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground/20 group-focus-within:text-primary transition-all duration-700" size={24} strokeWidth={3} />
+                            <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground/20 group-focus-within:text-primary transition-all duration-700 pointer-events-none" size={24} strokeWidth={3} />
                         </div>
                         <button
                             onClick={() => setShowListingForm(true)}

@@ -117,7 +117,10 @@ export default function PredictorPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             
             {/* Seed Section */}
-            <div className="p-8 md:p-12 border border-border bg-muted/5 responsive-rounded space-y-10 group hover:border-primary/30 transition-all shadow-2xl relative overflow-hidden backdrop-blur-xl shadow-inner">
+            <div 
+              className="p-8 md:p-12 border border-border bg-muted/5 responsive-rounded space-y-10 group hover:border-primary/30 transition-all shadow-2xl relative overflow-hidden backdrop-blur-xl shadow-inner cursor-pointer"
+              onClick={() => document.getElementById('predictor-seed')?.focus()}
+            >
               <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-110 transition-transform">
                  <Target size={180} className="text-primary" />
               </div>
@@ -131,7 +134,8 @@ export default function PredictorPage() {
                 </div>
               </div>
               <textarea 
-                className="w-full bg-background border border-border rounded-[2.5rem] p-10 text-xl text-foreground focus:outline-none focus:border-primary/50 transition-all min-h-[300px] relative z-10 italic font-light scrollbar-hide"
+                id="predictor-seed"
+                className="w-full bg-background border border-border rounded-[2.5rem] p-10 text-xl text-foreground focus:outline-none focus:border-primary/50 transition-all min-h-[300px] relative z-10 italic font-light scrollbar-hide cursor-text"
                 placeholder="Inject raw data, news telemetry, or complex scenarios..."
                 value={seedText}
                 onChange={e => setSeedText(e.target.value)}
@@ -154,14 +158,17 @@ export default function PredictorPage() {
               </div>
               <div className="space-y-10 relative z-10">
                 <div className="flex flex-col md:flex-row gap-6">
-                  <input 
-                    type="text"
-                    className="flex-1 bg-background border border-border rounded-2xl px-8 py-6 text-lg text-foreground focus:outline-none focus:border-primary/50 transition-all font-black uppercase tracking-widest placeholder:opacity-30 italic"
-                    placeholder="God's-eye variable..."
-                    value={currentVar}
-                    onChange={e => setCurrentVar(e.target.value)}
-                    onKeyPress={e => e.key === 'Enter' && handleAddVariable()}
-                  />
+                  <div className="flex-1 relative cursor-pointer" onClick={() => document.getElementById('predictor-var')?.focus()}>
+                    <input 
+                      id="predictor-var"
+                      type="text"
+                      className="w-full bg-background border border-border rounded-2xl px-8 py-6 text-lg text-foreground focus:outline-none focus:border-primary/50 transition-all font-black uppercase tracking-widest placeholder:opacity-30 italic cursor-text"
+                      placeholder="God's-eye variable..."
+                      value={currentVar}
+                      onChange={e => setCurrentVar(e.target.value)}
+                      onKeyPress={e => e.key === 'Enter' && handleAddVariable()}
+                    />
+                  </div>
                   <button onClick={handleAddVariable} className="bg-primary text-primary-foreground px-12 py-6 rounded-2xl font-black uppercase text-xs tracking-[0.4em] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_40px_rgba(var(--primary),0.3)] italic">Inject</button>
                 </div>
                 <div className="flex flex-wrap gap-4 min-h-[140px] content-start">

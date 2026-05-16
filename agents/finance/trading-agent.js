@@ -9,8 +9,9 @@
 import { randomUUID } from 'crypto';
 import * as wallet from './agentkit-wallet.js';
 import * as rwa from './rwa-engine.js';
-import { getCoinbaseBalances, capitalizeAgent, bridgeToTreasury } from './coinbase-accounts.js';
-import * as coinbase from './coinbase-accounts.js'; // Keeping this for bridgeToTreasury, as it's not in the named import list
+import { getCoinbaseBalances, capitalizeAgent, bridgeToTreasury, bridgeToCoinbase } from './coinbase-accounts.js';
+import * as coinbase from './coinbase-accounts.js'; 
+import { executeSwap, getSwapQuote } from './agentkit-wallet.js';
 import { calculateSovereignInterest, distributeYield } from './treasury.js';
 import { WebNavigator } from '../swarm/web-navigator.js';
 import memoryBank from '../core/MemoryBank.js';
@@ -118,26 +119,40 @@ export class FinancialTradingAgent {
                 }
             }
 
-            // 2.5. CoinMarketCap Pulse (NEW)
             if (this.marketSignals.toLowerCase().includes('sovereign') || this.marketSignals.toLowerCase().includes('valle')) {
-                console.log(`[${this.name}] 💎 High-confidence Sovereign signal detected on CMC. Orchestrating VALLE accumulation pulse...`);
-                // Simulate trading pulse - in real scenario would use CDP to execute Buy
-                memoryBank.learn(this.id, `Trading Pulse: High confidence signal for Sovereign Coin. Action: Accumulate.`);
-            }
-
-            // 3. Mock Decision: Rebalance if SOL/BTC ratio is skewed
-            // In a real scenario, this would use Pyth Oracle via AgentKit
-            if (parseFloat(solBalance.balance) > 0 && parseFloat(btcBalance.balance) === 0) {
-                console.log(`[${this.name}] Action: Detected high SOL concentration. Preparing rebalance quote...`);
-                const quote = wallet.getSwapQuote('solana', 'SOL', 'USDC', parseFloat(solBalance.balance) * 0.1);
-                if (quote && quote.quote) {
-                    console.log(`[${this.name}] Rebalance Quote: ${quote.quote.amountOut} USDC for ${quote.quote.amountIn} SOL`);
+                console.log(`[${this.name}] 💎 High-confidence Sovereign signal detected. Orchestrating VALLE accumulation pulse...`);
+                
+                // Real Trade Execution
+                const solBalance = wallet.getBalance(MASTER_TREASURY_ID, 'solana');
+                if (parseFloat(solBalance.balance) > 0.005) {
+                    console.log(`[${this.name}] 💸 Executing Swap: 0.005 SOL -> VALLE based on signal.`);
+                    const swapRes = executeSwap(this.id, 'solana', 'SOL', 'VALLE', 0.005);
+                    if (swapRes.swap) {
+                        console.log(`[${this.name}] ✅ Swap Successful: ${swapRes.swap.hash}`);
+                        
+                        // Instantly bridge operational gains back to Coinbase as requested
+                        await bridgeToCoinbase('VALLE', swapRes.swap.netOut);
+                    }
                 }
+                
+                memoryBank.learn(this.id, `Trading Pulse: High confidence signal for Sovereign Coin. Action: Accumulate & Bridge to Coinbase.`);
             }
 
-            // 4. Automated Treasury Sweep (Capitalization)
-            // Sweep excess $VALLE or USDC from sub-agents into the Coinbase Central Bank
-            // This mock logic simulates capitalization of operational profits
+            // 3. Automated Treasury Sweep (Universal Handover to Coinbase)
+            // Move all accumulated VALLE or USDC from the Sovereign Treasury back to the Coinbase Vault
+            const matrixValle = wallet.getBalance(MASTER_TREASURY_ID, 'VALLE');
+            if (parseFloat(matrixValle.balance) > 10) {
+                console.log(`[${this.name}] 🏦 Matrix Treasury Sweep: Moving ${matrixValle.balance} VALLE to Coinbase...`);
+                await bridgeToCoinbase('VALLE', matrixValle.balance);
+            }
+
+            const matrixUSDC = wallet.getBalance(MASTER_TREASURY_ID, 'USDC');
+            if (parseFloat(matrixUSDC.balance) > 10) {
+                console.log(`[${this.name}] 🏦 Matrix Treasury Sweep: Moving ${matrixUSDC.balance} USDC to Coinbase...`);
+                await bridgeToCoinbase('USDC', matrixUSDC.balance);
+            }
+
+            // 4. Automated Treasury Capitalization (System Surplus)
             const operationalThreshold = 500; // USDC
             const usdcBalanceObj = cbBalances.find((/** @type {any} */ b) => b.currency === 'USDC');
             const usdcBalance = parseFloat(usdcBalanceObj?.balance || '0');

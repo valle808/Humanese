@@ -16,7 +16,15 @@ export async function GET(req: Request) {
         const page = parseInt(searchParams.get('page') || '1');
         const per_page = parseInt(searchParams.get('per_page') || '24');
 
-        const conditions: string[] = ['is_ghost = false', 'is_active = true'];
+        const conditions: string[] = ['is_active = true'];
+        const buyer_id = searchParams.get('buyer_id');
+
+        if (buyer_id) {
+            conditions.push(`buyer_id = '${buyer_id}'`);
+        } else {
+            conditions.push('is_ghost = false');
+        }
+
         if (category && category !== 'all') conditions.push(`category = '${category}'`);
         if (platform) conditions.push(`seller_platform = '${platform}'`);
         if (min_price) conditions.push(`price_valle >= ${parseFloat(min_price)}`);

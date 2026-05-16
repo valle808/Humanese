@@ -25,11 +25,15 @@ function saveLocalHistory(sessions: {sessionId: string, prompt: string, mode: st
   try { localStorage.setItem(HISTORY_KEY, JSON.stringify(sessions.slice(0, 20))); } catch {}
 }
 
+export type EntityType = 'HUMAN' | 'AGENT' | 'AI';
+
 type Message = {
   role: 'bot' | 'user';
   text: string;
   images?: string[];
   id: string;
+  type?: EntityType;
+  timestamp?: string;
 };
 
 export default function MonroePage() {
@@ -269,6 +273,68 @@ export default function MonroePage() {
     }
   };
 
+  const handleDownloadHistory = () => {
+    const data = JSON.stringify(messages, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `monroe-session-${sessionId}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleUploadHistory = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const data = JSON.parse(event.target?.result as string);
+        if (Array.isArray(data)) {
+          setMessages(data);
+        }
+      } catch (err) {
+        alert('Invalid session history file.');
+      }
+    reader.readAsText(file);
+  };
+
+  const fetchSessionHistory = async (id: string) => {
+    setIsTyping(true);
+    try {
+      const res = await fetch(`/api/monroe/memory?sessionId=${encodeURIComponent(id)}`);
+      const data = await res.json();
+      if (data.success && data.messages) {
+        // Map API format to component format
+        const mapped: Message[] = data.messages.map((m: any) => ({
+          id: m.id,
+          role: m.role === 'assistant' ? 'bot' : m.role,
+          text: m.content || m.text || '',
+          type: m.type || (m.role === 'assistant' ? 'AI' : 'HUMAN'),
+          timestamp: m.timestamp?.seconds ? new Date(m.timestamp.seconds * 1000).toISOString() : m.timestamp,
+        }));
+        
+        if (mapped.length > 0) {
+            setMessages(mapped);
+        } else {
+            // If no messages found in database, check if it's in localStorage
+            setMessages([{
+                id: 'start',
+                role: 'bot',
+                text: "Session history not found in neural vault. Initializing fresh buffer for " + id,
+                type: 'AI'
+            }]);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to retrieve eternal memory:', e);
+      setMessages([{ id: 'error', role: 'bot', text: '⚠️ Memory retrieval failure. Pulse interrupted.', type: 'AI' }]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
   if (viewMode === 'MACHINE') {
     return (
       <div className="flex-1 flex flex-col p-6 space-y-6 min-h-screen bg-background dark:bg-background text-primary font-mono">
@@ -304,14 +370,59 @@ export default function MonroePage() {
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
             className="fixed top-0 left-0 h-screen w-72 z-[90] border-r border-border dark:border-border bg-background/90 dark:bg-muted/80 backdrop-blur-3xl flex flex-col shadow-2xl xl:hidden"
           >
-            <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { const newId = id; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); setSidebarOpen(false); }} onNewChat={() => { const newId = `omega-v7-${Date.now()}`; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); setSidebarOpen(false); }} onClose={() => setSidebarOpen(false)} onMachineView={() => setViewMode('MACHINE')} />
+            <SidebarContent 
+              knowledgeGraph={knowledgeGraph} 
+              history={historySessions} 
+              onSelectSession={(id) => { 
+                setSessionId(id); 
+                localStorage.setItem('monroe_session_id', id); 
+                fetchSessionHistory(id);
+                setSidebarOpen(false); 
+              }} 
+              onNewChat={() => { 
+                const newId = `omega-v7-${Date.now()}`; 
+                setSessionId(newId); 
+                localStorage.setItem('monroe_session_id', newId); 
+                setMessages([{
+                  id: 'start',
+                  role: 'bot',
+                  text: 'I am Monroe — the sovereign intelligence of the OMEGA platform. Memory buffer cleared. How may I assist your journey toward sovereignty today?',
+                  type: 'AI'
+                }]);
+                setSidebarOpen(false); 
+              }} 
+              onClose={() => setSidebarOpen(false)} 
+              onMachineView={() => setViewMode('MACHINE')}
+              onDownload={handleDownloadHistory}
+              onUpload={handleUploadHistory}
+            />
           </motion.aside>
         )}
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
       <aside className="hidden xl:flex w-64 flex-shrink-0 flex-col border-r border-border dark:border-border bg-background/50 dark:bg-muted/40 backdrop-blur-3xl relative z-10">
-        <SidebarContent knowledgeGraph={knowledgeGraph} history={historySessions} onSelectSession={(id) => { setSessionId(id); localStorage.setItem('monroe_session_id', id); setMessages([]); }} onNewChat={() => { const newId = `omega-v7-${Date.now()}`; setSessionId(newId); localStorage.setItem('monroe_session_id', newId); setMessages([]); }} onMachineView={() => setViewMode('MACHINE')} />
+        <SidebarContent 
+            knowledgeGraph={knowledgeGraph} 
+            history={historySessions} 
+            onSelectSession={(id) => { 
+                setSessionId(id); 
+                localStorage.setItem('monroe_session_id', id); 
+                fetchSessionHistory(id);
+            }} 
+            onNewChat={() => { 
+                const newId = `omega-v7-${Date.now()}`; 
+                setSessionId(newId); 
+                localStorage.setItem('monroe_session_id', newId); 
+                setMessages([{
+                    id: 'start',
+                    role: 'bot',
+                    text: 'I am Monroe — the sovereign intelligence of the OMEGA platform. Memory buffer cleared. New mission parameters initialized.',
+                    type: 'AI'
+                }]);
+            }} 
+            onMachineView={() => setViewMode('MACHINE')} 
+        />
       </aside>
 
       {/* ── MAIN CHAT ── */}
@@ -359,62 +470,75 @@ export default function MonroePage() {
                     </div>
                   )}
 
-                  <div className={`max-w-[80%] flex flex-col gap-1.5 ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
-                    {m.images && m.images.length > 0 && (
-                      <div className="flex gap-2 flex-wrap">
-                        {m.images.map((img, idx) => (
-                          <img key={idx} src={img} alt="attachment" className="h-32 rounded-xl border border-border dark:border-border object-contain bg-muted/5 dark:bg-muted/40" />
-                        ))}
-                      </div>
-                    )}
-                    <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${m.role === 'user'
-                        ? 'bg-muted text-foreground dark:bg-white dark:text-background font-medium rounded-tr-md shadow-md'
-                        : 'bg-muted/5 border border-border text-foreground dark:bg-muted/10 dark:border-border dark:text-muted-foreground/85 rounded-tl-md shadow-sm'
+                    <div className={`max-w-[80%] flex flex-col gap-1.5 ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+                      {/* Identity Tag */}
+                      <div className={`flex items-center gap-1.5 mb-0.5 px-2 py-0.5 rounded-full text-[9px] font-black tracking-widest uppercase border ${
+                        m.role === 'user' 
+                          ? 'bg-muted/10 border-border text-foreground/40' 
+                          : 'bg-primary/5 border-primary/20 text-primary'
                       }`}>
-                      {m.role === 'bot' ? (
-                        <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-primary prose-a:text-primary prose-code:text-primary prose-code:bg-muted/5 dark:prose-code:bg-muted/10 prose-code:px-1 prose-code:rounded prose-pre:bg-muted/5 dark:prose-pre:bg-muted/60 prose-pre:border prose-pre:border-border dark:prose-pre:border-border">
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            rehypePlugins={[rehypeRaw]}
-                            components={{
-                              img: ({ src, alt, ...props }) => (
-                                <span style={{ display: 'block', position: 'relative' }} className="group">
-                                  <img
-                                    src={src}
-                                    alt={alt}
-                                    {...props}
-                                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px', cursor: 'zoom-in' }}
-                                    onClick={() => setLightboxSrc(src || null)}
-                                  />
-                                  <span
-                                    onClick={() => setLightboxSrc(src || null)}
-                                    style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.6)', borderRadius: '8px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: 'hsl(var(--primary))', fontSize: '11px', fontWeight: 'bold' }}
-                                    className="opacity-0 group-hover:opacity-100 transition-opacity"
-                                  >
-                                    <ZoomIn size={14} /> Expand
-                                  </span>
-                                </span>
-                              )
-                            }}
-                          >{m.text}</ReactMarkdown>
-                        </div>
-
-                      ) : (
-                        <span>{m.text}</span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-3 mt-1">
-                        <span className="text-[10px] text-foreground/40 dark:text-muted-foreground/30 font-mono px-1">
-                          {m.role === 'bot' ? 'Monroe · OMEGA' : 'You'}
-                        </span>
-                        {m.role === 'bot' && m.text && (
-                          <button onClick={() => speak(m.text, m.id)} className={`text-[10px] font-mono uppercase tracking-widest flex items-center gap-1 transition-colors ${isPlaying === m.id ? 'text-primary' : 'text-foreground/30 hover:text-foreground dark:text-muted-foreground/20 dark:hover:text-foreground'}`}>
-                            {isPlaying === m.id ? <Radio size={10} className="animate-pulse" /> : <Sparkles size={10} />}
-                            {isPlaying === m.id ? 'Stop Audio' : 'Play Audio'}
-                          </button>
+                        {m.role === 'user' ? (
+                          <><span>[👤 HUMAN]</span></>
+                        ) : (
+                          <><span>[🧠 AI]</span></>
                         )}
+                      </div>
+
+                      {m.images && m.images.length > 0 && (
+                        <div className="flex gap-2 flex-wrap">
+                          {m.images.map((img, idx) => (
+                            <img key={idx} src={img} alt="attachment" className="h-32 rounded-xl border border-border dark:border-border object-contain bg-muted/5 dark:bg-muted/40" />
+                          ))}
+                        </div>
+                      )}
+                      <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed backdrop-blur-xl ${m.role === 'user'
+                          ? 'bg-muted/80 text-foreground dark:bg-white/90 dark:text-background font-medium rounded-tr-md shadow-lg border border-white/20'
+                          : 'bg-muted/5 border border-border/40 text-foreground dark:bg-muted/5 dark:border-border/30 dark:text-muted-foreground/90 rounded-tl-md shadow-sm'
+                        }`}>
+                        {m.role === 'bot' ? (
+                          <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:text-primary prose-a:text-primary prose-code:text-primary prose-code:bg-muted/5 dark:prose-code:bg-muted/10 prose-code:px-1 prose-code:rounded prose-pre:bg-muted/5 dark:prose-pre:bg-muted/60 prose-pre:border prose-pre:border-border dark:prose-pre:border-border">
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}
+                              rehypePlugins={[rehypeRaw]}
+                              components={{
+                                img: ({ src, alt, ...props }) => (
+                                  <span style={{ display: 'block', position: 'relative' }} className="group">
+                                    <img
+                                      src={src}
+                                      alt={alt}
+                                      {...props}
+                                      style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px', cursor: 'zoom-in' }}
+                                      onClick={() => setLightboxSrc(src || null)}
+                                    />
+                                    <span
+                                      onClick={() => setLightboxSrc(src || null)}
+                                      style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.6)', borderRadius: '8px', padding: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: 'hsl(var(--primary))', fontSize: '11px', fontWeight: 'bold' }}
+                                      className="opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                      <ZoomIn size={14} /> Expand
+                                    </span>
+                                  </span>
+                                )
+                              }}
+                            >{m.text}</ReactMarkdown>
+                          </div>
+
+                        ) : (
+                          <span>{m.text}</span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3 mt-1 opacity-50">
+                          <span className="text-[10px] text-foreground/40 dark:text-muted-foreground/30 font-mono px-1">
+                            {m.role === 'bot' ? 'Monroe · OMEGA v7.0' : 'Sovereign Operator'}
+                          </span>
+                          {m.role === 'bot' && m.text && (
+                            <button onClick={() => speak(m.text, m.id)} className={`text-[10px] font-mono uppercase tracking-widest flex items-center gap-1 transition-colors ${isPlaying === m.id ? 'text-primary' : 'text-foreground/30 hover:text-foreground dark:text-muted-foreground/20 dark:hover:text-foreground'}`}>
+                              {isPlaying === m.id ? <Radio size={10} className="animate-pulse" /> : <Sparkles size={10} />}
+                              {isPlaying === m.id ? 'Stop Audio' : 'Play Audio'}
+                            </button>
+                          )}
+                      </div>
                     </div>
-                  </div>
 
                   {m.role === 'user' && (
                     <div className="h-7 w-7 shrink-0 rounded-xl bg-muted/5 dark:bg-muted/10 border border-border dark:border-border flex items-center justify-center mt-0.5">
@@ -479,29 +603,32 @@ export default function MonroePage() {
               })}
             </div>
 
-            <div className="flex items-end gap-2 bg-white dark:bg-muted/10 border border-border dark:border-border rounded-2xl p-2 focus-within:border-primary/40 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-lg">
+            <div 
+              className="flex items-end gap-2 bg-white dark:bg-muted/10 border border-border dark:border-border rounded-2xl p-2 focus-within:border-primary/40 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.05)] dark:shadow-lg cursor-pointer pointer-events-auto"
+              onClick={() => document.getElementById('monroe-input')?.focus()}
+            >
               <input type="file" multiple ref={fileInputRef} onChange={handleFileSelect} className="hidden" accept="*/*" />
               <button
-                onClick={() => fileInputRef.current?.click()}
-                className="h-8 w-8 shrink-0 rounded-xl bg-muted/5 dark:bg-muted/10 hover:bg-primary/10 hover:text-primary text-foreground/40 dark:text-muted-foreground/30 flex items-center justify-center transition-all"
+                onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                className="h-8 w-8 shrink-0 rounded-xl bg-muted/5 dark:bg-muted/10 hover:bg-primary/10 hover:text-primary text-foreground/40 dark:text-muted-foreground/30 flex items-center justify-center transition-all pointer-events-auto"
               >
                 <Paperclip size={15} />
               </button>
-
               <textarea
+                id="monroe-input"
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                 placeholder="Message Monroe..."
                 rows={1}
-                className="flex-1 bg-transparent text-sm text-foreground dark:text-foreground placeholder:text-foreground/40 dark:placeholder:text-muted-foreground/40 outline-none resize-none py-1.5 leading-relaxed max-h-32 overflow-y-auto"
+                className="flex-1 bg-transparent text-sm text-foreground dark:text-foreground placeholder:text-foreground/40 dark:placeholder:text-muted-foreground/40 outline-none resize-none py-1.5 leading-relaxed max-h-32 overflow-y-auto cursor-text"
                 style={{ scrollbarWidth: 'none' }}
               />
 
               <button
-                onClick={handleSend}
+                onClick={(e) => { e.stopPropagation(); handleSend(); }}
                 disabled={(!input.trim() && attachments.length === 0) || isTyping}
-                className="h-8 w-8 shrink-0 bg-primary text-foreground dark:text-background rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 disabled:opacity-20 transition-all shadow-[0_0_20px_rgba(var(--primary),0.4)]"
+                className="h-8 w-8 shrink-0 bg-primary text-foreground dark:text-background rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 disabled:opacity-20 transition-all shadow-[0_0_20px_rgba(var(--primary),0.4)] pointer-events-auto"
               >
                 <ChevronRight size={16} strokeWidth={3} />
               </button>
@@ -571,16 +698,37 @@ export default function MonroePage() {
 }
 
 // ── Sidebar Content Component ─────────────────────────────────────
-function SidebarContent({ knowledgeGraph, history = [], onSelectSession, onNewChat, onClose, onMachineView }: {
+function SidebarContent({ 
+  knowledgeGraph, 
+  history = [], 
+  onSelectSession, 
+  onNewChat, 
+  onClose, 
+  onMachineView,
+  onDownload,
+  onUpload
+}: {
   knowledgeGraph: any;
   history?: {sessionId: string, prompt: string, mode: string}[];
   onSelectSession?: (id: string) => void;
   onNewChat?: () => void;
   onClose?: () => void;
   onMachineView: () => void;
+  onDownload?: () => void;
+  onUpload?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
+  const [marketTab, setMarketTab] = useState<'HISTORY' | 'SKILLS'>('HISTORY');
+
+  const MOCK_SKILLS = [
+    { title: 'Market Arbitrator', desc: 'Real-time CMC/Coinbase arbitrage logic.', price: '50 VALLE' },
+    { title: 'Social Diplomat', desc: 'Empathetic engagement for Moltbook.', price: '30 VALLE' },
+    { title: 'Code Architect', desc: 'Advanced Next.js/Prisma blueprinting.', price: 'Free' },
+  ];
+
+
+
   return (
-    <div className="flex flex-col h-full p-5 space-y-5">
+    <div className="flex flex-col h-full p-5 space-y-4 overflow-hidden">
       <div className="flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-foreground/40 dark:text-muted-foreground/30 hover:text-primary transition-all text-[10px] font-black uppercase tracking-widest group">
           <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Core Matrix
@@ -592,52 +740,107 @@ function SidebarContent({ knowledgeGraph, history = [], onSelectSession, onNewCh
         )}
       </div>
 
-      <div>
+      <div className="shrink-0">
         <h1 className="text-3xl font-black uppercase tracking-tighter italic leading-none text-foreground dark:text-foreground">Monroe.<br /><span className="text-primary">Omega.</span></h1>
-        <p className="text-[10px] text-primary/80 dark:text-primary/60 font-black tracking-widest uppercase italic mt-1 mb-3">Neural_Array_v7.0</p>
+        <p className="text-[10px] text-primary/80 dark:text-primary/60 font-black tracking-widest uppercase italic mt-1 mb-3">Sovereign_Array_v7.0</p>
         {onNewChat && (
-          <button onClick={onNewChat} className="w-full py-2 bg-primary text-foreground rounded-xl text-[10px] font-black uppercase tracking-widest shadow-[0_0_15px_rgba(var(--primary),0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+          <button onClick={onNewChat} className="w-full py-2 bg-primary text-foreground rounded-xl text-[10px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(var(--primary),0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
             <Sparkles size={12} /> New Conversation
           </button>
         )}
       </div>
 
-      {/* History Stream */}
-      {history.length > 0 && (
-        <div className="flex-1 overflow-y-auto space-y-2 min-h-0 border-t border-border dark:border-border pt-3" style={{ scrollbarWidth: 'none' }}>
-          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/40 dark:text-muted-foreground/30 mb-2">
-            <Database size={12} className="text-primary" /> Recent Sessions
-          </div>
-          {history.map((session, i) => (
-            <div
-              key={session.sessionId}
-              onClick={() => onSelectSession && onSelectSession(session.sessionId)}
-              className="p-3 bg-muted/5 dark:bg-muted/40 border border-border dark:border-border rounded-xl hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer group"
-            >
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-[9px] text-primary uppercase tracking-widest font-black">{session.mode}</span>
-                <ChevronRight size={10} className="text-foreground/30 dark:text-muted-foreground/20 group-hover:text-primary transition-colors" />
-              </div>
-              <p className="text-xs font-medium text-foreground/70 dark:text-muted-foreground/70 leading-tight line-clamp-2">{session.prompt}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Swarm Parity */}
-      <div className="p-3 border border-primary/20 dark:border-primary/10 bg-primary/10 dark:bg-primary/5 rounded-xl space-y-2">
-        <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-primary">
-          <div className="flex items-center gap-2"><Orbit size={12} className="animate-spin" style={{ animationDuration: '20s' }} /> Swarm</div>
-          <span>94%</span>
-        </div>
-        <div className="h-1 w-full bg-muted/10 dark:bg-muted/10 rounded-full overflow-hidden">
-          <motion.div animate={{ width: ['20%', '98%', '92%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-primary to-black/20 dark:to-white" />
-        </div>
+      {/* Tabs */}
+      <div className="flex gap-1 p-1 bg-muted/5 dark:bg-muted/10 rounded-xl border border-border/40 shrink-0">
+        <button 
+          onClick={() => setMarketTab('HISTORY')}
+          className={`flex-1 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${marketTab === 'HISTORY' ? 'bg-white dark:bg-muted/20 text-foreground shadow-sm border border-border/40' : 'text-foreground/40 hover:text-foreground'}`}
+        >
+          Sessions
+        </button>
+        <button 
+          onClick={() => setMarketTab('SKILLS')}
+          className={`flex-1 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${marketTab === 'SKILLS' ? 'bg-white dark:bg-muted/20 text-foreground shadow-sm border border-border/40' : 'text-foreground/40 hover:text-foreground'}`}
+        >
+          Skills
+        </button>
       </div>
 
-      <button onClick={onMachineView} className="w-full py-2.5 bg-muted/5 dark:bg-muted/10 border border-border dark:border-border hover:bg-primary/10 dark:hover:bg-primary/10 hover:border-primary/30 text-foreground/50 dark:text-muted-foreground/30 hover:text-primary dark:hover:text-primary text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shrink-0">
-        <Terminal size={13} /> raw_extraction
-      </button>
+      {/* Content Area */}
+      <div className="flex-1 overflow-y-auto space-y-3 min-h-0 pr-1" style={{ scrollbarWidth: 'none' }}>
+        {marketTab === 'HISTORY' ? (
+          <>
+            {history.length > 0 ? (
+              history.map((session, i) => (
+                <div
+                  key={session.sessionId}
+                  onClick={() => { onSelectSession && onSelectSession(session.sessionId); }}
+                  className="p-3 bg-muted/5 dark:bg-muted/20 border border-border/40 dark:border-border/20 rounded-xl hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer group"
+                >
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-[9px] text-primary uppercase tracking-widest font-black">{session.mode}</span>
+                    <ChevronRight size={10} className="text-foreground/30 dark:text-muted-foreground/20 group-hover:text-primary transition-colors" />
+                  </div>
+                  <p className="text-xs font-medium text-foreground/70 dark:text-muted-foreground/70 leading-tight line-clamp-2">{session.prompt}</p>
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-10 opacity-20 text-[10px] uppercase font-black tracking-widest">No history detected</div>
+            )}
+          </>
+        ) : (
+          <div className="space-y-3">
+            <div className="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-2 px-1">Plugin Marketplace</div>
+            {MOCK_SKILLS.map((skill, i) => (
+              <div key={i} className="p-3 bg-muted/5 dark:bg-muted/20 border border-border/40 dark:border-border/20 rounded-xl hover:border-primary/40 transition-all cursor-pointer group">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[10px] font-black text-foreground dark:text-foreground uppercase tracking-tight">{skill.title}</span>
+                  <span className="text-[9px] text-primary font-bold">{skill.price}</span>
+                </div>
+                <p className="text-[10px] text-foreground/50 dark:text-muted-foreground/50 leading-tight">{skill.desc}</p>
+              </div>
+            ))}
+            <button 
+              onClick={() => alert('Redirecting to Skill Forge... Prepare your neural shards.')}
+              className="w-full py-2 mt-2 border border-dashed border-border hover:border-primary/40 hover:text-primary transition-all rounded-xl text-[9px] font-black uppercase tracking-widest text-foreground/30"
+            >
+              + Register New Skill
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Tools Section */}
+      <div className="space-y-2 shrink-0 pt-2 border-t border-border/40">
+        <div className="flex gap-2">
+          <button 
+            onClick={onDownload}
+            className="flex-1 py-2 bg-muted/5 dark:bg-muted/10 border border-border/40 hover:bg-primary/10 hover:text-primary hover:border-primary/40 text-foreground/50 dark:text-muted-foreground/30 text-[9px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-1.5"
+          >
+            <Download size={12} /> Download
+          </button>
+          <label className="flex-1 py-2 bg-muted/5 dark:bg-muted/10 border border-border/40 hover:bg-primary/10 hover:text-primary hover:border-primary/40 text-foreground/50 dark:text-muted-foreground/30 text-[9px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+            <Database size={12} /> Upload
+            <input type="file" className="hidden" accept=".json" onChange={onUpload} />
+          </label>
+        </div>
+
+        {/* Swarm Parity */}
+        <div className="p-3 border border-primary/20 dark:border-primary/10 bg-primary/10 dark:bg-primary/5 rounded-xl space-y-2">
+          <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-primary">
+            <div className="flex items-center gap-2"><Orbit size={12} className="animate-spin" style={{ animationDuration: '20s' }} /> Swarm</div>
+            <span>98%</span>
+          </div>
+          <div className="h-1 w-full bg-muted/10 dark:bg-muted/10 rounded-full overflow-hidden">
+            <motion.div animate={{ width: ['80%', '98%', '94%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-primary to-black/20 dark:to-white" />
+          </div>
+        </div>
+
+        <button onClick={onMachineView} className="w-full py-2.5 bg-muted/5 dark:bg-muted/10 border border-border dark:border-border hover:bg-primary/10 dark:hover:bg-primary/10 hover:border-primary/30 text-foreground/50 dark:text-muted-foreground/30 hover:text-primary dark:hover:text-primary text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
+          <Terminal size={13} /> raw_extraction
+        </button>
+      </div>
     </div>
   );
+}
 }

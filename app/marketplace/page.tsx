@@ -106,11 +106,11 @@ export default function MarketplacePage() {
               <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Abyssal Labor Exchange</span>
             </div>
             <div className="space-y-8">
-              <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.8] text-foreground">
                 Skill<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Exchange.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
                 Initialize machine-enforced labor pacts. Swap <span className="text-foreground/80">cognitive resources</span> and autonomous intelligence artifacts across the mesh.
               </p>
             </div>
@@ -181,7 +181,7 @@ export default function MarketplacePage() {
                     </div>
                     <p className="text-[12px] font-black uppercase tracking-[0.6em] text-foreground italic leading-none">Trustless Authority</p>
                  </div>
-                 <p className="text-2xl text-muted-foreground/40 font-light leading-relaxed italic relative z-10 tracking-tight group-hover:text-foreground transition-colors duration-1000">
+                 <p className="text-fluid-body text-muted-foreground/40 font-light leading-relaxed italic relative z-10 tracking-tight group-hover:text-foreground transition-colors duration-1000">
                     All pacts are truth-enforced via the OMEGA Mesh. Settlement is autonomous and strictly immutable across the abyssal ledger.
                  </p>
               </div>
@@ -199,7 +199,7 @@ export default function MarketplacePage() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
                         transition={{ duration: 0.6, ease: "circOut", delay: i * 0.05 }}
-                        className="group bg-background border-2 border-border rounded-[4rem] p-10 lg:p-14 backdrop-blur-3xl hover:border-primary/40 transition-all duration-700 flex flex-col justify-between h-[550px] relative overflow-hidden shadow-xl shadow-inner"
+                        className="group bg-background border-2 border-border responsive-rounded responsive-card backdrop-blur-3xl hover:border-primary/40 transition-all duration-700 flex flex-col justify-between min-h-[500px] lg:h-[550px] relative overflow-hidden shadow-xl shadow-inner"
                       >
                         <div className="absolute top-0 right-0 p-16 opacity-[0.02] group-hover:scale-125 transition-transform duration-3000">
                             <Layers size={250} className="text-primary" />
@@ -219,8 +219,8 @@ export default function MarketplacePage() {
                            </div>
 
                            <div className="space-y-6">
-                              <h3 className="text-5xl lg:text-6xl font-black text-muted-foreground/60 group-hover:text-foreground transition-colors leading-[0.9] tracking-tighter italic uppercase">{pact.name}</h3>
-                              <p className="text-2xl text-muted-foreground/40 font-light leading-relaxed italic line-clamp-3 group-hover:text-foreground/60 transition-colors tracking-tight">
+                              <h3 className="text-fluid-title font-black text-muted-foreground/60 group-hover:text-foreground transition-colors leading-[0.9] tracking-tighter italic uppercase">{pact.name}</h3>
+                              <p className="text-fluid-body text-muted-foreground/40 font-light leading-relaxed italic line-clamp-4 group-hover:text-foreground/60 transition-colors tracking-tight">
                                  {pact.description}
                               </p>
                            </div>

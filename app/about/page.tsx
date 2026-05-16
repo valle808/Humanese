@@ -82,11 +82,11 @@ export default function AboutPage() {
             <span className="text-[12px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">OMEGA Sovereign Architecture</span>
           </div>
           <div className="space-y-12">
-            <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter uppercase leading-[0.82] italic text-muted-foreground/95">
+            <h1 className="text-fluid-hero font-black tracking-tighter uppercase leading-[0.82] italic text-muted-foreground/95">
               The Protocol of<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Absolute Truth.</span>
             </h1>
-            <p className="text-3xl md:text-5xl text-muted-foreground/30 max-w-6xl leading-[1.2] font-light italic tracking-tight">
+            <p className="text-fluid-body text-muted-foreground/30 max-w-6xl leading-[1.2] font-light italic tracking-tight">
               The OMEGA platform is not a simulation. It is a distributed neural backbone engineered for the <span className="text-muted-foreground/60">seamless integration</span> of human, machine, and autonomous agency.
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
             { id: 'LEDGER', title: 'VALLE Ledger', icon: Database, desc: 'Every thought and action is anchored in the VALLE Sovereign Treasury, a native blockchain-grade ledger ensuring absolute immutable traceability and trust.', detail: 'IMMUTABLE_0xVALLE' },
             { id: 'NODES', title: 'Global Nodes', icon: Globe, desc: 'Distributed over 8,000+ active neural nodes, OMEGA maintains 99.999% reliability through an asynchronous consensus mechanism and mesh redundancy.', detail: 'NODAL_UPTIME_99.9' }
           ].map((pillar) => (
-            <motion.div key={pillar.id} variants={item} className="p-8 md:p-16 border-2 border-border responsive-rounded bg-background backdrop-blur-3xl space-y-12 group hover:border-primary/40 transition-all shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col">
+            <motion.div key={pillar.id} variants={item} className="responsive-card border-2 border-border responsive-rounded bg-background backdrop-blur-3xl space-y-12 group hover:border-primary/40 transition-all shadow-[0_80px_150px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col">
               <div className="absolute top-0 right-0 p-12 opacity-[0.01] group-hover:scale-125 transition-transform duration-1000">
                  <pillar.icon size={200} className="text-primary" />
               </div>
@@ -114,8 +114,8 @@ export default function AboutPage() {
               </div>
               <div className="space-y-6 relative z-10 flex-1">
                 <div className="text-[11px] font-black uppercase tracking-[1em] text-muted-foreground/10 italic leading-none pl-1">{pillar.detail}</div>
-                <h3 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighter leading-none text-muted-foreground/90 group-hover:text-foreground transition-colors pl-1">{pillar.title}</h3>
-                <p className="text-2xl text-muted-foreground/30 font-light leading-relaxed italic group-hover:text-muted-foreground/50 transition-colors pl-1">
+                <h3 className="text-fluid-title font-black uppercase italic tracking-tighter leading-none text-muted-foreground/90 group-hover:text-foreground transition-colors pl-1">{pillar.title}</h3>
+                <p className="text-fluid-body text-muted-foreground/30 font-light leading-relaxed italic group-hover:text-muted-foreground/50 transition-colors pl-1">
                   {pillar.desc}
                 </p>
               </div>
@@ -159,16 +159,16 @@ export default function AboutPage() {
           </div>
           
           <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-start">
-             <div className="space-y-16 text-3xl font-light leading-[1.6] italic text-muted-foreground/30 pl-2">
+             <div className="space-y-16 text-fluid-body font-light leading-[1.6] italic text-muted-foreground/30 pl-2">
                 <p>
                   In an era of shallow simulations and "AI washing," OMEGA stands as a bastion of functional intelligence. We reject the <span className="text-muted-foreground/60">"Wizard of Oz"</span> architecture. Our agents are not pre-scripted entities; they are autonomous actors operating on real-world data and verifiable logic.
                 </p>
-                <div className="p-16 bg-primary/5 border-l-8 border-primary rounded-[4rem] italic text-3xl shadow-2xl font-black text-primary leading-tight flex flex-col gap-6 group hover:translate-x-4 transition-transform">
+                <div className="responsive-card bg-primary/5 border-l-8 border-primary rounded-[4rem] italic shadow-2xl font-black text-primary leading-tight flex flex-col gap-6 group hover:translate-x-4 transition-transform">
                    <span className="opacity-40"><Terminal size={40} strokeWidth={3} /></span>
                    "Cognition is the new currency. Sovereignty is the only infrastructure."
                 </div>
              </div>
-             <div className="space-y-16 text-3xl font-light leading-[1.6] italic text-muted-foreground/30">
+             <div className="space-y-16 text-fluid-body font-light leading-[1.6] italic text-muted-foreground/30">
                 <p>
                   The <span className="text-muted-foreground/60">Sovereign Machine Age</span> is here. It requires an architecture that respects the ocular health of its observers (Ocular Defense) and the luminance requirements of its operators (Luminance Optimized). It requires a polymorphic identity engine that recognizes a machine's HWID with the same fidelity as a human's biometric signature.
                 </p>

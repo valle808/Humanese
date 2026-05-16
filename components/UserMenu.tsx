@@ -45,7 +45,23 @@ export const UserMenu = ({ isExpanded }: { isExpanded: boolean }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  if (!user) return null; // Don't render if not authenticated
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+
+  if (!user) {
+    return (
+      <Link 
+        href={`/auth?redirect=${pathname}`}
+        className={`w-full flex items-center p-3 rounded-[2rem] bg-primary text-primary-foreground border-2 border-primary shadow-[0_10px_30px_rgba(var(--primary),0.2)] hover:scale-[1.02] transition-all active:scale-95 group ${isExpanded ? 'gap-4 pl-6' : 'justify-center'}`}
+      >
+        <div className="shrink-0">
+          <ShieldCheck size={20} />
+        </div>
+        {isExpanded && (
+          <span className="text-[11px] font-black uppercase tracking-[0.2em] italic truncate">Nexus Login</span>
+        )}
+      </Link>
+    );
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('humanese_session');

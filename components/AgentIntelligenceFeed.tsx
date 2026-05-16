@@ -69,8 +69,8 @@ export const AgentIntelligenceFeed = () => {
                 </div>
             </div>
 
-            {/* ── SLIDE VIEWPORT — fixed pixel height, clips overflow ── */}
-            <div className="relative z-10 shrink-0 h-[200px] md:h-[220px] overflow-hidden rounded-[2rem]">
+            {/* ── SLIDE VIEWPORT — flexible height, handles overflow ── */}
+            <div className="relative z-10 shrink-0 min-h-[220px] overflow-hidden rounded-[2rem]">
                 <AnimatePresence mode="wait">
                     {log ? (
                         <motion.div
@@ -100,19 +100,19 @@ export const AgentIntelligenceFeed = () => {
                             </div>
 
                             {/* Content */}
-                            <div className="flex flex-col gap-2 relative z-20 flex-1 min-h-0">
-                                <p className="text-base font-black text-foreground/70 tracking-tight italic leading-snug line-clamp-2 group-hover/card:text-foreground transition-colors">
+                            <div className="flex flex-col gap-2 relative z-20 flex-1 min-h-0 overflow-y-auto no-scrollbar">
+                                <p className="text-base font-black text-foreground/70 tracking-tight italic leading-snug group-hover/card:text-foreground transition-colors">
                                     &ldquo;{log.intention || log.thought}&rdquo;
                                 </p>
                                 {log.thought && log.intention && (
-                                    <p className="text-[12px] text-foreground/35 font-light italic leading-relaxed line-clamp-3">
+                                    <p className="text-[12px] text-foreground/35 font-light italic leading-relaxed">
                                         {log.thought}
                                     </p>
                                 )}
                             </div>
 
                             {/* Agent name */}
-                            <div className="flex items-center gap-2 relative z-20 shrink-0">
+                            <div className="flex items-center gap-2 relative z-20 shrink-0 pt-2">
                                 <Binary size={14} className="text-primary/40 shrink-0" strokeWidth={2.5} />
                                 <span className="text-[10px] font-black uppercase tracking-[0.3em] italic text-foreground/30">
                                     {log.agent?.name || log.agentId}

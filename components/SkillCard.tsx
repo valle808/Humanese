@@ -20,7 +20,9 @@ import {
   Binary,
   Layers,
   Activity,
-  ArrowUpRight
+  ArrowUpRight,
+  Download,
+  Share2
 } from 'lucide-react';
 
 interface SkillCardProps {
@@ -139,19 +141,46 @@ export function SkillCard({ skill }: SkillCardProps) {
                     </div>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                    <button
-                        onClick={handleCopyKey}
-                        className="p-3 bg-muted border-2 border-border rounded-xl hover:border-primary/40 hover:bg-primary/5 transition-all text-muted-foreground/40 hover:text-primary shadow-sm active:scale-95 group/copy"
-                        title="Copy Skill Key"
-                    >
-                        {copied ? <Check size={18} strokeWidth={3} className="text-primary animate-bounce" /> : <Copy size={18} strokeWidth={3} className="group-hover/copy:rotate-12 transition-transform" />}
-                    </button>
-                    <button
-                        onClick={(e) => { e.stopPropagation(); router.push(`/skill-market/${skill.id}`); }}
-                        className="px-5 py-3 bg-foreground text-background dark:bg-white dark:text-background text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary dark:hover:bg-primary hover:text-primary-foreground hover:shadow-[0_10px_20px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/action flex items-center"
-                    >
-                        {skill.is_sold ? 'View' : 'Open'} <ArrowUpRight size={14} className="ml-2 group-hover/action:translate-x-1 group-hover/action:-translate-y-1 transition-transform" strokeWidth={3} />
-                    </button>
+                    {skill.is_sold ? (
+                        <div className="flex gap-2">
+                             <button
+                                onClick={(e) => { e.stopPropagation(); alert('Downloading skill shard...'); }}
+                                className="p-3 bg-primary/10 border-2 border-primary/20 rounded-xl hover:bg-primary hover:text-background transition-all text-primary shadow-sm active:scale-95 group/down"
+                                title="Download Skill"
+                            >
+                                <Download size={18} strokeWidth={3} className="group-hover/down:translate-y-0.5 transition-transform" />
+                            </button>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); alert('Initiating transfer...'); }}
+                                className="p-3 bg-muted border-2 border-border rounded-xl hover:border-primary/40 transition-all text-muted-foreground/40 hover:text-primary shadow-sm active:scale-95"
+                                title="Transfer Skill"
+                            >
+                                <Share2 size={18} strokeWidth={3} />
+                            </button>
+                             <button
+                                onClick={(e) => { e.stopPropagation(); alert('Listing for resale...'); }}
+                                className="px-5 py-3 bg-secondary border-2 border-border text-[10px] font-black uppercase tracking-widest rounded-xl hover:border-primary/40 hover:text-primary transition-all italic leading-none active:scale-95"
+                            >
+                                Sell
+                            </button>
+                        </div>
+                    ) : (
+                        <>
+                            <button
+                                onClick={handleCopyKey}
+                                className="p-3 bg-muted border-2 border-border rounded-xl hover:border-primary/40 hover:bg-primary/5 transition-all text-muted-foreground/40 hover:text-primary shadow-sm active:scale-95 group/copy"
+                                title="Copy Skill Key"
+                            >
+                                {copied ? <Check size={18} strokeWidth={3} className="text-primary animate-bounce" /> : <Copy size={18} strokeWidth={3} className="group-hover/copy:rotate-12 transition-transform" />}
+                            </button>
+                            <button
+                                onClick={(e) => { e.stopPropagation(); router.push(`/skill-market/${skill.id}`); }}
+                                className="px-5 py-3 bg-foreground text-background dark:bg-white dark:text-background text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary dark:hover:bg-primary hover:text-primary-foreground hover:shadow-[0_10px_20px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-[0.95] transition-all italic leading-none border-0 group/action flex items-center"
+                            >
+                                Open <ArrowUpRight size={14} className="ml-2 group-hover/action:translate-x-1 group-hover/action:-translate-y-1 transition-transform" strokeWidth={3} />
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
             

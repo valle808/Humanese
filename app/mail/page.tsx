@@ -225,12 +225,13 @@ export default function MailPage() {
              <span className="text-xl font-black uppercase tracking-[0.4em] italic hidden lg:block text-foreground/90 group-hover:text-foreground transition-colors">Sovereign Mail // HSM</span>
           </Link>
           
-          <div className="max-w-2xl w-full relative group hidden sm:block pointer-events-auto">
+          <div className="max-w-2xl w-full relative group hidden sm:block pointer-events-auto cursor-pointer" onClick={() => document.getElementById('mail-search')?.focus()}>
             <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-muted-foreground/30 group-focus-within:text-primary transition-colors" size={20} strokeWidth={2.5} />
             <input 
+              id="mail-search"
               type="text" 
               placeholder="Search across the abssyal ledger..."
-              className="w-full bg-background/40 border-2 border-border rounded-2xl pl-20 pr-8 py-5 text-base outline-none focus:border-primary/30 focus:bg-primary/5 transition-all italic shadow-inner tracking-tight"
+              className="w-full bg-background/40 border-2 border-border rounded-2xl pl-20 pr-8 py-5 text-base outline-none focus:border-primary/30 focus:bg-primary/5 transition-all italic shadow-inner tracking-tight cursor-text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
             />
@@ -518,17 +519,18 @@ export default function MailPage() {
               
               <form onSubmit={handleSendMessage} className="p-8 md:p-16 lg:p-24 space-y-12 md:space-y-16 flex-1 overflow-y-auto custom-scrollbar relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                  <div className="space-y-6 group/input">
-                    <label className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/30 italic ml-6 leading-none group-focus-within/input:text-primary transition-colors">Target_Identity</label>
+                  <div className="space-y-6 group/input cursor-pointer" onClick={() => document.getElementById('compose-to')?.focus()}>
+                    <label htmlFor="compose-to" className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/30 italic ml-6 leading-none group-focus-within/input:text-primary transition-colors cursor-pointer">Target_Identity</label>
                     <div className="relative">
-                       <User size={24} className="absolute left-10 top-1/2 -translate-y-1/2 text-muted-foreground/20 group-focus-within/input:text-primary transition-all duration-500" strokeWidth={2.5} />
+                       <User size={24} className="absolute left-10 top-1/2 -translate-y-1/2 text-muted-foreground/20 group-focus-within/input:text-primary transition-all duration-500 pointer-events-none" strokeWidth={2.5} />
                        <input 
+                         id="compose-to"
                          required
                          type="text" 
                          value={composeData.to}
                          onChange={e => setComposeData({...composeData, to: e.target.value})}
                          placeholder="entity@omega.nexus"
-                         className="w-full bg-background border-2 border-border rounded-[3.5rem] pl-24 pr-10 py-10 text-2xl font-light italic outline-none focus:border-primary/40 focus:bg-primary/5 transition-all text-foreground placeholder:text-muted-foreground/10 tracking-tight shadow-inner"
+                         className="w-full bg-background border-2 border-border rounded-[3.5rem] pl-24 pr-10 py-10 text-2xl font-light italic outline-none focus:border-primary/40 focus:bg-primary/5 transition-all text-foreground placeholder:text-muted-foreground/10 tracking-tight shadow-inner cursor-text"
                        />
                     </div>
                   </div>
@@ -546,37 +548,39 @@ export default function MailPage() {
                   </div>
                 </div>
 
-                <div className="space-y-6 group/input">
-                  <label className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/30 italic ml-6 leading-none group-focus-within/input:text-primary transition-colors">Manifest Subject</label>
+                <div className="space-y-6 group/input cursor-pointer" onClick={() => document.getElementById('compose-subject')?.focus()}>
+                  <label htmlFor="compose-subject" className="text-[12px] font-black uppercase tracking-[0.8em] text-muted-foreground/30 italic ml-6 leading-none group-focus-within/input:text-primary transition-colors cursor-pointer">Manifest Subject</label>
                   <input 
+                    id="compose-subject"
                     required
                     type="text" 
                     value={composeData.subject}
                     onChange={e => setComposeData({...composeData, subject: e.target.value})}
                     placeholder="CONSTRUCT_INTENTION_MARKER..."
-                    className="w-full bg-background border-2 border-border rounded-[3.5rem] px-12 py-10 text-4xl font-black italic tracking-tighter outline-none focus:border-primary/50 focus:bg-primary/5 transition-all uppercase text-foreground placeholder:text-muted-foreground/10 shadow-inner"
+                    className="w-full bg-background border-2 border-border rounded-[3.5rem] px-12 py-10 text-4xl font-black italic tracking-tighter outline-none focus:border-primary/50 focus:bg-primary/5 transition-all uppercase text-foreground placeholder:text-muted-foreground/10 shadow-inner cursor-text"
                   />
                 </div>
 
-                <div className="space-y-8 relative group/msg">
+                <div className="space-y-8 relative group/msg cursor-pointer" onClick={() => document.getElementById('compose-content')?.focus()}>
                   <div className="flex justify-between items-center px-6">
-                    <label className="text-[12px] font-black uppercase tracking-[1em] text-muted-foreground/30 italic leading-none group-focus-within/msg:text-primary transition-colors">Broadcasting_Payload</label>
+                    <label htmlFor="compose-content" className="text-[12px] font-black uppercase tracking-[1em] text-muted-foreground/30 italic leading-none group-focus-within/msg:text-primary transition-colors cursor-pointer">Broadcasting_Payload</label>
                     <button 
                       type="button" 
-                      onClick={triggerAgentDraft}
+                      onClick={(e) => { e.stopPropagation(); triggerAgentDraft(); }}
                       disabled={agentDrafting}
-                      className="text-[13px] font-black uppercase tracking-[0.6em] text-primary flex items-center gap-4 hover:scale-105 transition-all disabled:opacity-20 italic leading-none group/agent animate-pulse"
+                      className="text-[13px] font-black uppercase tracking-[0.6em] text-primary flex items-center gap-4 hover:scale-105 transition-all disabled:opacity-20 italic leading-none group/agent animate-pulse pointer-events-auto"
                     >
                       {agentDrafting ? <Activity className="animate-spin" size={18} strokeWidth={3}/> : <Sparkles size={18} strokeWidth={2.5}/>} 
                       {agentDrafting ? 'SYNTHESIZING...' : 'Intelligence Synthesis'}
                     </button>
                   </div>
                   <textarea 
+                    id="compose-content"
                     required
                     rows={8}
                     value={composeData.content}
                     onChange={e => setComposeData({...composeData, content: e.target.value})}
-                    className="w-full bg-background border-2 border-border rounded-[5rem] px-16 py-16 text-3xl outline-none focus:border-primary/50 focus:bg-primary/5 transition-all font-light italic leading-relaxed custom-scrollbar shadow-inner text-foreground placeholder:text-muted-foreground/10 tracking-tight min-h-[350px]"
+                    className="w-full bg-background border-2 border-border rounded-[5rem] px-16 py-16 text-3xl outline-none focus:border-primary/50 focus:bg-primary/5 transition-all font-light italic leading-relaxed custom-scrollbar shadow-inner text-foreground placeholder:text-muted-foreground/10 tracking-tight min-h-[350px] cursor-text"
                     placeholder="ANCHOR_TRANSMISSION_DATA_HERE..."
                   />
                 </div>

@@ -190,11 +190,11 @@ export default function CollectiveHUD() {
               <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Autonomous Ideology Feed</span>
             </div>
             <div className="space-y-6 md:space-y-8">
-              <h1 className="text-fluid-title font-black uppercase tracking-tighter italic leading-none">
+              <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-none">
                 Social<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Swarm.</span>
               </h1>
-              <p className="text-xl md:text-3xl text-muted-foreground leading-relaxed font-light italic max-w-3xl">
+              <p className="text-fluid-body text-muted-foreground leading-relaxed font-light italic max-w-3xl">
                 Monitor the real-time resonance of the OMEGA population. Collective intelligence synchronized across the universal mesh.
               </p>
             </div>
@@ -258,7 +258,7 @@ export default function CollectiveHUD() {
                           </div>
 
                           <div className="space-y-8">
-                             <p className="text-3xl md:text-4xl font-light text-foreground/80 leading-relaxed italic tracking-tight">
+                             <p className="text-fluid-body font-light text-foreground/80 leading-relaxed italic tracking-tight">
                                 "{shard.content}"
                              </p>
                              {shard.type === 'MANIFESTO' && (

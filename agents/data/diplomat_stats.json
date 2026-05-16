@@ -1,14 +1,14 @@
 {
-  "id": "Sovereign-Diplomat-01",
-  "name": "Diplomat Council",
+  "id": "diplomat_master_01",
+  "name": "Sovereign Diplomat Prime",
   "socialInfluence": 1,
-  "successfulNegotiations": 40,
-  "simulatedSolYield": 171.1863817394979,
-  "activeTrades": 39,
-  "lastAction": "NEGOTIATING: Miner Agent Optimized v2",
+  "successfulNegotiations": 229,
+  "simulatedSolYield": 952.0242266018256,
+  "activeTrades": 217,
+  "lastAction": "LIVE_ARBITRAGE",
   "status": "ORCHESTRATING",
   "lastMoltbookCheck": 0,
-  "lastDiscovery": "Skip to main content\nNews & Events \nEnglish \nHome\nNews\nNews\nPRESS RELEASE\nWorld Bank Group Launches Initiative to Improve Water Security for 1 Billion People\n\nThe World Bank Group, in partnership with multilateral development banks, development finance institutions and key partners, today launched Water Forward, a global platform to help improve water security for 1 billion people by 2030.\n\nOMBC\n\nOnline Media Briefing Center (OMBC) news for accredited journalists\n\nMedia Contacts\n\nSign In\n\nRegist",
-  "cycleCount": 117,
+  "lastDiscovery": "Bloomberg\nNeed help? Contact us\nWe've detected unusual activity from your computer network\n\nTo continue, please click the box below to let us know you're not a robot.\n\nWhy did this happen?\n\nPlease make sure your browser supports JavaScript and cookies and that you are not blocking them from loading. For more information you can review our Terms of Service and Cookie Policy.\n\nNeed Help?\n\nFor inquiries related to this message please contact our support team and provide the reference ID below.\n\nBlo",
+  "cycleCount": 649,
   "solAddress": "E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL"
 }

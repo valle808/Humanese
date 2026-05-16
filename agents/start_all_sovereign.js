@@ -21,7 +21,8 @@ const AGENTS = [
     { name: 'Monroe Intelligence', script: './core/MonroeAgent.js' },
     { name: 'Investigator Swarm', script: './core/InvestigatorAgent.js' },
     { name: 'Sovereign Swarm (King)', script: './start_swarm.js' },
-    { name: 'Financial Trading Agent', script: './finance/trading-agent-wrapper.js' }
+    { name: 'Financial Trading Agent', script: './finance/trading-agent-wrapper.js' },
+    { name: 'Diplomat Council', script: './finance/diplomat-council-wrapper.js' }
 ];
 
 console.log("====================================================");
@@ -57,7 +58,15 @@ async function boot() {
 
     console.log("\n✅ ALL SOVEREIGN AGENTS DEPLOYED TO BACKGROUND.");
     console.log("Monitor logs in: agents/data/*_master.log");
+    console.log("----------------------------------------------------");
+    console.log("⏱️  AUTONOMOUS WINDOW: 2 HOURS. Shutdown scheduled.");
     console.log("====================================================");
+
+    // 2-Hour Shutdown Timer
+    setTimeout(() => {
+        console.log("\n🛑 2-HOUR WINDOW EXPIRED. Terminating Sovereign Swarm...");
+        process.exit(0);
+    }, 1000 * 60 * 60 * 2);
 }
 
 boot();

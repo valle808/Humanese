@@ -162,7 +162,8 @@ export default function HumanlookPage() {
         <motion.form 
           layout
           onSubmit={handleSearch} 
-          className="w-full relative group max-w-6xl"
+          className="w-full relative group max-w-6xl pointer-events-auto cursor-pointer"
+          onClick={() => inputRef.current?.focus()}
         >
           <div className="absolute inset-y-0 left-12 flex items-center pointer-events-none z-20">
             {isSearching ? (
@@ -177,13 +178,13 @@ export default function HumanlookPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search the global matrix..."
-            className="w-full bg-background border-2 border-border rounded-[4rem] py-8 md:py-12 px-10 md:pl-32 md:pr-32 text-4xl md:text-5xl text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 transition-all duration-700 shadow-[0_40px_100px_rgba(0,0,0,0.05)] dark:shadow-[0_40px_100px_rgba(0,0,0,1)] group-hover:border-border/60 dark:group-hover:border-border placeholder:text-muted-foreground/20 italic font-light shadow-inner"
+            className="w-full bg-background border-2 border-border rounded-[4rem] py-8 md:py-12 px-10 md:pl-32 md:pr-32 text-4xl md:text-5xl text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 transition-all duration-700 shadow-[0_40px_100px_rgba(0,0,0,0.05)] dark:shadow-[0_40px_100px_rgba(0,0,0,1)] group-hover:border-border/60 dark:group-hover:border-border placeholder:text-muted-foreground/20 italic font-light shadow-inner cursor-text"
           />
           {query && (
             <button 
               type="button" 
-              onClick={() => { setQuery(''); setResults([]); inputRef.current?.focus(); }}
-              className="absolute inset-y-0 right-16 flex items-center text-muted-foreground/20 hover:text-primary transition-all z-20 hover:scale-125"
+              onClick={(e) => { e.stopPropagation(); setQuery(''); setResults([]); inputRef.current?.focus(); }}
+              className="absolute inset-y-0 right-16 flex items-center text-muted-foreground/20 hover:text-primary transition-all z-20 hover:scale-125 pointer-events-auto"
             >
               <X size={40} strokeWidth={3} />
             </button>

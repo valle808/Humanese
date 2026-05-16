@@ -102,11 +102,11 @@ export default function FAQPage() {
             <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none pl-1">Knowledge Nexus Protocol</span>
           </div>
           <div className="space-y-8">
-            <h1 className="text-7xl md:text-[9rem] font-black tracking-tighter uppercase leading-[0.8] italic">
+            <h1 className="text-fluid-hero font-black tracking-tighter uppercase leading-[0.8] italic">
               Humanese<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Intelligence Base.</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic">
+            <p className="text-fluid-body text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic">
               Access the distributed ledger of operational truth. Query the swarm. Anchor your understanding of the OMEGA architecture.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function FAQPage() {
                id="faq-search"
                type="text" 
                placeholder="Query the Abyssal Knowledge Graph..."
-               className="flex-1 bg-transparent border-none outline-none px-10 text-3xl font-light italic text-foreground placeholder:text-muted-foreground/10 tracking-tight cursor-text"
+               className="flex-1 bg-transparent border-none outline-none px-10 text-fluid-body font-light italic text-foreground placeholder:text-muted-foreground/10 tracking-tight cursor-text"
                value={searchQuery}
                onChange={e => setSearchQuery(e.target.value)}
              />
@@ -159,7 +159,7 @@ export default function FAQPage() {
                               className="w-full px-12 lg:px-16 py-10 flex justify-between items-center text-left relative z-10"
                           >
                               <div className="space-y-2 pr-12">
-                                 <span className="text-2xl lg:text-3xl font-black uppercase italic tracking-tighter text-muted-foreground/60 group-hover:text-primary transition-colors leading-tight pl-1">{item.q}</span>
+                                 <span className="text-fluid-body font-black uppercase italic tracking-tighter text-muted-foreground/60 group-hover:text-primary transition-colors leading-tight pl-1">{item.q}</span>
                               </div>
                               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-muted/10 border-2 border-border transition-all duration-500 overflow-hidden shrink-0 ${activeItem === item.q ? 'bg-primary border-primary rotate-180' : 'group-hover:border-primary/40'}`}>
                                  <ChevronDown size={28} className={activeItem === item.q ? 'text-background' : 'text-muted-foreground/20'} strokeWidth={3} />

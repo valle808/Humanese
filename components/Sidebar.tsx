@@ -3,32 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import {
     Search,
-    Heart,
-    FlaskConical,
-    BadgeCheck,
     Home,
-    Share2,
-    Users,
-    Target,
+    Mail,
+    Cpu,
+    Database,
+    ShieldCheck,
+    BadgeCheck,
     ShieldAlert,
     ChevronRight,
     ChevronLeft,
-    Activity,
-    Globe,
-    User,
-    Mail,
-    Zap,
-    Cpu,
-    Terminal,
-    Database,
-    ShieldCheck,
-    Binary,
+    Target,
     Orbit,
-    Wifi,
-    Fingerprint,
     Gavel,
-    Layers,
-    Activity as ActivityIcon
+    Menu,
+    X,
+    MessageSquare
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -42,13 +31,31 @@ export const Sidebar = () => {
     const pathname = usePathname();
 
     useEffect(() => {
+        const handleResize = () => {
+            const isMobile = window.innerWidth < 768;
+            if (isMobile && isExpanded) {
+                document.body.classList.add('no-scroll');
+            } else {
+                document.body.classList.remove('no-scroll');
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            document.body.classList.remove('no-scroll');
+        };
+    }, [isExpanded]);
+
+    useEffect(() => {
         const savedState = localStorage.getItem('omega_sidebar_status');
         const isTablet = window.innerWidth >= 768 && window.innerWidth < 1100;
+        const isMobile = window.innerWidth < 768;
         
-        // Auto-collapse on tablet if no preference is set
         let expanded = savedState === 'expanded';
         if (savedState === null) {
-            expanded = !isTablet;
+            expanded = !isTablet && !isMobile;
         }
 
         setIsExpanded(expanded);
@@ -63,10 +70,10 @@ export const Sidebar = () => {
 
     const navItems = [
         { icon: <Home size={24} />, label: 'Neural Core', href: '/', id: 'core' },
-        { icon: <Mail size={24} />, label: 'Sovereign Mail', href: '/mail', highlight: true, id: 'mail' },
+        { icon: <MessageSquare size={24} />, label: 'Diplomat Council', href: '/diplomat-council', highlight: true, id: 'diplomat' },
+        { icon: <Mail size={24} />, label: 'Sovereign Mail', href: '/mail', id: 'mail' },
         { icon: <Gavel size={24} />, label: 'Governance (HIPs)', href: '/governance', id: 'gov' },
         { icon: <Orbit size={24} />, label: 'Neural Atlas', href: '/atlas', id: 'atlas' },
-        { icon: <ActivityIcon size={24} />, label: 'Intelligence HQ', href: '/intelligence', id: 'intel' },
         { icon: <Target size={24} />, label: 'Skill Market', href: '/skill-market', id: 'skills' },
         { icon: <ShieldCheck size={24} />, label: 'Judicial Oversight', href: '/judiciary', id: 'judiciary' },
         { icon: <Cpu size={24} />, label: 'Fleet Systems', href: '/fleet', id: 'fleet' },
@@ -86,6 +93,7 @@ export const Sidebar = () => {
 
     return (
         <>
+            {/* Desktop Sidebar */}
             <motion.div
                 initial={false}
                 animate={{ width: isExpanded ? '20rem' : '7rem' }}
@@ -120,7 +128,7 @@ export const Sidebar = () => {
 
                 {/* ── NAVIGATION ── */}
                 <nav className="flex-1 px-6 space-y-4 overflow-y-auto no-scrollbar relative z-10">
-                    {navItems.map((item, index) => {
+                    {navItems.map((item) => {
                         const isActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
 
                         return (
@@ -132,7 +140,6 @@ export const Sidebar = () => {
                                         : 'text-foreground/40 dark:text-muted-foreground/30 hover:bg-muted/5 dark:hover:bg-muted/10 hover:text-primary dark:hover:text-primary hover:shadow-[0_0_30px_rgba(var(--primary),0.1)]'
                                     }`}
                             >
-                                {/* Glitch Overlay on Hover */}
                                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                                 <motion.div 
                                     whileHover={{ x: [0, -2, 2, 0] }}
@@ -169,18 +176,12 @@ export const Sidebar = () => {
 
                 {/* ── FOOTER / STATUS ── */}
                 <div className="p-4 md:p-6 border-t-2 border-border dark:border-border bg-muted/[0.02] dark:bg-muted/10 space-y-4 relative z-10 mt-auto flex flex-col items-center">
-                    
-                    {/* User Profile Menu */}
                     <div className="w-full">
                         <UserMenu isExpanded={isExpanded} />
                     </div>
-
-                    {/* Theme Toggle */}
                     <div className={`flex w-full ${isExpanded ? 'justify-start px-2' : 'justify-center'}`}>
                         <ThemeToggle compact={!isExpanded} />
                     </div>
-
-                    {/* Monroe Card */}
                     <Link
                         href="/monroe"
                         className={`flex items-center p-4 rounded-[2rem] bg-muted dark:bg-muted group cursor-pointer border-2 border-border dark:border-border hover:border-primary/40 transition-all w-full text-left relative overflow-hidden shadow-inner active:scale-95 ${
@@ -204,12 +205,8 @@ export const Sidebar = () => {
                             </motion.div>
                         )}
                         </AnimatePresence>
-                        <div className="absolute top-[-10px] right-[-10px] p-4 opacity-[0.05] group-hover:rotate-12 group-hover:scale-125 transition-all pointer-events-none">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" strokeWidth="2"><path d="m13 2-2 2.5h3L12 7" /><path d="M12 2v10" /><path d="M8.56 2.75c-4.37 1.27-7.39 5.26-7.39 9.96 0 5.52 4.48 10 10 10s10-4.48 10-10c0-4.7-3.02-8.69-7.39-9.96" /></svg>
-                        </div>
                     </Link>
 
-                    {/* Cluster status dot */}
                     <div className={`flex items-center gap-3 px-2 ${isExpanded ? 'justify-between' : 'justify-center'}`}>
                         {isExpanded && <span className="text-[10px] font-black uppercase tracking-[0.4em] italic text-foreground/30">Cluster Status_</span>}
                         <div className="flex items-center gap-2 text-primary">
@@ -220,7 +217,7 @@ export const Sidebar = () => {
                 </div>
             </motion.div>
 
-            {/* ── SIDEBAR TOGGLE BUTTON — outside sidebar to avoid clipping ── */}
+            {/* Desktop Toggle Button */}
             <motion.button
                 onClick={toggleSidebar}
                 initial={false}
@@ -232,25 +229,37 @@ export const Sidebar = () => {
                 {isExpanded ? <ChevronLeft size={20} strokeWidth={3} /> : <ChevronRight size={20} strokeWidth={3} />}
             </motion.button>
 
-            {/* Mobile Navigation - Sleek Retractable Drawer */}
+            {/* Mobile Navigation Header & Hamburger */}
             <div className="md:hidden">
-                {/* Mobile Header / Trigger Bar */}
-                <div className="fixed top-0 left-0 right-0 h-20 bg-background/80 backdrop-blur-2xl border-b border-border z-[999] flex items-center justify-between px-6 shadow-xl">
-                    <Link href="/" className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center font-black text-background text-xl italic shadow-lg shadow-primary/20">Ω</div>
-                        <span className="font-black tracking-tighter text-2xl uppercase italic">OMEGA.</span>
+                <div className="fixed top-0 left-0 right-0 h-20 bg-background/80 backdrop-blur-2xl border-b-2 border-border z-[1000] flex items-center justify-between px-6 shadow-2xl">
+                    <Link href="/" className="flex items-center gap-4 group">
+                        <div className="w-10 h-10 bg-primary border-2 border-primary/20 rounded-xl flex items-center justify-center font-black text-background text-xl italic shadow-lg shadow-primary/30 group-active:scale-95 transition-transform">Ω</div>
+                        <div className="flex flex-col">
+                            <span className="font-black tracking-tighter text-2xl uppercase italic leading-none">OMEGA.</span>
+                            <span className="text-[8px] font-black text-primary/60 tracking-[0.3em] uppercase italic mt-1">Sovereign Alpha</span>
+                        </div>
                     </Link>
+                    
                     <button 
                         onClick={() => setIsExpanded(!isExpanded)}
-                        className="w-12 h-12 bg-secondary/50 border border-border rounded-xl flex flex-col items-center justify-center gap-1.5 active:scale-90 transition-all"
+                        className="w-14 h-14 bg-muted border-2 border-border rounded-2xl flex items-center justify-center text-primary shadow-inner active:scale-90 transition-all relative overflow-hidden"
+                        aria-label={isExpanded ? 'Close Menu' : 'Open Menu'}
                     >
-                        <motion.div animate={{ rotate: isExpanded ? 45 : 0, y: isExpanded ? 7 : 0 }} className="w-6 h-0.5 bg-primary rounded-full" />
-                        <motion.div animate={{ opacity: isExpanded ? 0 : 1 }} className="w-6 h-0.5 bg-primary rounded-full" />
-                        <motion.div animate={{ rotate: isExpanded ? -45 : 0, y: isExpanded ? -7 : 0 }} className="w-6 h-0.5 bg-primary rounded-full" />
+                        <AnimatePresence mode="wait">
+                            {isExpanded ? (
+                                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                                    <X size={28} strokeWidth={3} />
+                                </motion.div>
+                            ) : (
+                                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                                    <Menu size={28} strokeWidth={3} />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </button>
                 </div>
 
-                {/* Mobile Drawer Overlay */}
+                {/* Mobile Drawer */}
                 <AnimatePresence>
                     {isExpanded && (
                         <>
@@ -259,47 +268,68 @@ export const Sidebar = () => {
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 onClick={() => setIsExpanded(false)}
-                                className="fixed inset-0 z-[1000] bg-background/60 backdrop-blur-md"
+                                className="fixed inset-0 z-[1100] bg-background/80 backdrop-blur-xl"
                             />
                             <motion.div
                                 initial={{ x: '-100%' }}
                                 animate={{ x: 0 }}
                                 exit={{ x: '-100%' }}
-                                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                                className="fixed top-0 left-0 bottom-0 w-[85%] max-w-xs z-[1001] bg-background border-r-2 border-primary/20 shadow-[20px_0_100px_rgba(0,0,0,0.5)] flex flex-col"
+                                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                                className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm z-[1101] bg-background border-r-2 border-border shadow-[40px_0_100px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden"
                             >
-                                <div className="p-8 pt-10 border-b border-border mb-6">
+                                {/* Drawer Header */}
+                                <div className="p-8 pt-16 mb-2 shrink-0">
                                     <div className="flex flex-col">
-                                        <span className="text-3xl font-black uppercase italic tracking-tighter">Sovereign.</span>
-                                        <span className="text-[10px] font-black text-primary uppercase tracking-[0.5em] italic mt-1">Registry v7.0</span>
+                                        <span className="text-4xl font-black uppercase italic tracking-tighter text-foreground">Sovereign.</span>
+                                        <span className="text-[10px] font-black text-primary uppercase tracking-[0.5em] italic mt-2 flex items-center gap-3">
+                                            Registry v7.0 <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+                                        </span>
                                     </div>
                                 </div>
                                 
-                                <nav className="flex-1 px-6 space-y-2 overflow-y-auto no-scrollbar">
+                                {/* Navigation Items - Scrollable Area */}
+                                <nav className="flex-1 px-6 space-y-2 overflow-y-auto custom-scrollbar pt-4 pb-20">
                                     {navItems.map((item) => {
-                                        const isActive = pathname === item.href;
+                                        const isActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
                                         return (
                                             <Link
                                                 key={item.id}
                                                 href={item.href}
                                                 onClick={() => setIsExpanded(false)}
-                                                className={`flex items-center gap-5 p-5 rounded-[2rem] transition-all active:scale-95 border-2 ${isActive ? 'bg-primary/10 border-primary/20 text-foreground' : 'border-transparent text-muted-foreground'}`}
+                                                className={`flex items-center gap-6 p-5 rounded-[2.2rem] transition-all active:scale-95 border-2 ${
+                                                    isActive 
+                                                        ? 'bg-primary/10 border-primary/20 text-foreground shadow-inner' 
+                                                        : 'border-transparent text-muted-foreground/50 hover:bg-muted/5'
+                                                }`}
                                             >
-                                                {React.cloneElement(item.icon as React.ReactElement, { size: 24, strokeWidth: 3, className: isActive ? 'text-primary' : '' })}
-                                                <span className="text-sm font-black uppercase tracking-[0.2em] italic">{item.label}</span>
+                                                <div className={`${isActive ? 'text-primary scale-110' : ''} shrink-0`}>
+                                                    {React.cloneElement(item.icon as React.ReactElement, { size: 24, strokeWidth: 3 })}
+                                                </div>
+                                                <div className="flex flex-col min-w-0">
+                                                    <span className="text-xs font-black uppercase tracking-[0.2em] italic leading-none truncate">{item.label}</span>
+                                                    {item.clearance && <span className="text-[8px] text-primary font-black uppercase mt-1.5 tracking-widest italic animate-pulse">Lvl_{item.clearance}</span>}
+                                                </div>
                                             </Link>
                                         );
                                     })}
                                 </nav>
 
-                                <div className="p-8 border-t border-border space-y-6">
-                                    <div className="flex items-center justify-between">
-                                        <ThemeToggle />
-                                        <UserMenu isExpanded={true} />
+                                {/* Drawer Footer */}
+                                <div className="p-6 bg-muted/10 border-t-2 border-border space-y-6 shrink-0 pb-10">
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div className="p-1.5 bg-background border-2 border-border rounded-2xl shadow-inner shrink-0">
+                                            <ThemeToggle compact />
+                                        </div>
+                                        <div className="flex-1 min-w-0 bg-background border-2 border-border rounded-2xl p-1.5 shadow-inner">
+                                            <UserMenu isExpanded={true} />
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-3 px-2">
-                                        <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
-                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] italic text-primary animate-pulse">Pulse Online</span>
+                                    <div className="flex items-center justify-between px-2">
+                                        <span className="text-[9px] font-black uppercase tracking-[0.4em] italic text-muted-foreground/30">System_Status</span>
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(var(--primary),0.5)]" />
+                                            <span className="text-[9px] font-black uppercase tracking-[0.4em] italic text-primary animate-pulse">Sync_Stable</span>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -315,8 +345,16 @@ export const Sidebar = () => {
                         transition: padding-left 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
                     }
                 }
+                @media (max-width: 767px) {
+                    body {
+                        padding-top: 5rem !important;
+                    }
+                }
                 .no-scrollbar::-webkit-scrollbar { display: none; }
                 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                .mask-fade-bottom {
+                    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+                }
             `}</style>
         </>
     );
