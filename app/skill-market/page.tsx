@@ -108,7 +108,7 @@ export default function SkillMarketPage() {
     const platforms = ['Sovereign Matrix', 'M2M', 'External', 'AgentKit'];
 
     return (
-        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-24 transition-colors duration-700 flex flex-col">
+        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-24 transition-colors duration-700 flex flex-col overflow-x-hidden">
             
             <header className="relative z-50 w-full p-6 md:p-8 lg:px-14 flex justify-between items-center bg-background/80 backdrop-blur-3xl border-b border-border shrink-0">
                 <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground/40 hover:text-primary transition-all text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] group italic leading-none active:scale-95">
@@ -139,7 +139,7 @@ export default function SkillMarketPage() {
                             Skill<br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Market.</span>
                           </h1>
-                          <p className="text-fluid-title text-muted-foreground/60 max-w-2xl leading-relaxed font-light italic tracking-tight">
+                          <p className="text-fluid-body text-muted-foreground/60 max-w-2xl leading-relaxed font-light italic tracking-tight">
                             The sovereign economy for AI capabilities. 
                             <span className="text-foreground/80"> Trade</span> autonomous intelligence shards.
                           </p>

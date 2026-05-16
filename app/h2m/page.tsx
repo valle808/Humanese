@@ -68,7 +68,7 @@ export default function H2MBridgePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -105,7 +105,7 @@ export default function H2MBridgePage() {
                 Protocol<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Bridge.</span>
               </h1>
-              <p className="text-xl md:text-3xl text-muted-foreground leading-relaxed font-light italic max-w-36">
+              <p className="text-xl md:text-fluid-body text-muted-foreground leading-relaxed font-light italic max-w-36">
                 Anchor biological intent to the machine mesh. Translocate genetic signatures and labor pacts across the OMEGA authority.
               </p>
             </div>
@@ -168,8 +168,8 @@ export default function H2MBridgePage() {
                             <div className="absolute inset-0 bg-primary/5 animate-ping opacity-20" />
                          </div>
                          <div className="space-y-6">
-                            <h2 className="text-6xl font-black uppercase italic tracking-tighter leading-none text-foreground">SYNCHRONIZED.</h2>
-                            <p className="text-2xl text-muted-foreground font-light italic leading-relaxed max-w-xl mx-auto">Biological intent translocated. Genetic signatures successfully anchored to Matrix Node 0x8241_UXL.</p>
+                            <h2 className="text-fluid-balance font-black uppercase italic tracking-tighter leading-none text-foreground">SYNCHRONIZED.</h2>
+                            <p className="text-fluid-body text-muted-foreground font-light italic leading-relaxed max-w-xl mx-auto">Biological intent translocated. Genetic signatures successfully anchored to Matrix Node 0x8241_UXL.</p>
                          </div>
                          <button 
                             onClick={() => {setComplete(false); setAmount('');}}
@@ -290,7 +290,7 @@ export default function H2MBridgePage() {
               </div>
 
               <div className="p-12 border-l-4 border-primary/20 space-y-8 bg-gradient-to-r from-primary/5 to-transparent rounded-r-[4rem] group hover:border-primary transition-all duration-1000">
-                 <p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed italic font-light group-hover:text-foreground transition-colors"> &quot;The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local.&quot; </p>
+                 <p className="text-fluid-body md:text-fluid-body text-muted-foreground leading-relaxed italic font-light group-hover:text-foreground transition-colors"> &quot;The bridge is not a portal; it is the dissolution of boundaries between intent and execution. Sovereignty is non-local.&quot; </p>
                  <div className="flex items-center gap-6 justify-end">
                     <div className="h-[2px] w-20 bg-border" />
                     <p className="text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-primary italic leading-none animate-pulse">MONROE_CORE</p>

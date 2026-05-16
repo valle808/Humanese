@@ -71,7 +71,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">
@@ -120,7 +120,7 @@ export default function Home() {
                   OMEGA<br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">MATRIX.</span>
                 </h1>
-                <p className="text-fluid-title text-muted-foreground/40 max-w-2xl mx-auto lg:mx-0 leading-tight font-light italic tracking-tight">
+                <p className="text-fluid-body text-muted-foreground/40 max-w-2xl mx-auto lg:mx-0 leading-tight font-light italic tracking-tight">
                   Absolute <span className="text-foreground/80">Sovereignty</span> achieved. A unified, autonomous ecosystem designed to amplify potential.
                 </p>
               </div>

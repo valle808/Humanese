@@ -52,7 +52,7 @@ export default function NetworkingHub() {
   ];
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+    <div ref={containerRef} className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -94,7 +94,7 @@ export default function NetworkingHub() {
                 Network<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Resonance.</span>
               </h1>
-              <p className="omega-reveal text-fluid-title text-muted-foreground leading-relaxed font-light italic">
+              <p className="omega-reveal text-fluid-body text-muted-foreground leading-relaxed font-light italic">
                 Synthesize collective intelligence across the abssyal mesh. Join the sovereign community and direct the trajectory of the OMEGA swarm.
               </p>
             </div>
@@ -207,7 +207,7 @@ export default function NetworkingHub() {
                           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-16 relative z-10 px-4">
                              <div className="space-y-8">
                                 <h3 className="text-fluid-hero font-black italic uppercase tracking-tighter leading-none text-foreground pl-1">The<br/>Social Swarm.</h3>
-                                <p className="text-fluid-title text-muted-foreground font-light leading-relaxed italic">
+                                <p className="text-fluid-body text-muted-foreground font-light leading-relaxed italic">
                                    Synthesizing collective intelligence across 12,402 active neural nodes. Establish your resonant signature.
                                 </p>
                              </div>
@@ -284,7 +284,7 @@ export default function NetworkingHub() {
                           </div>
                           <div className="space-y-6">
                              <h4 className="text-[13px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/50 italic leading-none">Alliance_Handshake</h4>
-                             <p className="text-2xl text-muted-foreground font-light max-w-xl mx-auto italic leading-relaxed">Do you hold high-performance compute or sovereign data assets? Propose a federation pact with the OMEGA swarm.</p>
+                             <p className="text-fluid-body text-muted-foreground font-light max-w-xl mx-auto italic leading-relaxed">Do you hold high-performance compute or sovereign data assets? Propose a federation pact with the OMEGA swarm.</p>
                           </div>
                           <button className="px-16 py-8 bg-muted/10 border-2 border-border hover:border-foreground rounded-[2.5rem] text-[11px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] transition-all italic text-muted-foreground hover:text-background hover:bg-foreground shadow-2xl active:scale-95 leading-none">
                              INIT_NEGOTIATION_v7.0
@@ -304,7 +304,7 @@ export default function NetworkingHub() {
                        <div className="space-y-8 relative z-10">
                           <div className="h-1px w-24 bg-primary mb-12 shadow-[0_0_10px_var(--primary)]" />
                           <h3 className="text-fluid-hero font-black italic uppercase tracking-tighter leading-none text-foreground pl-1">Global Reach_</h3>
-                          <p className="text-fluid-title text-muted-foreground font-light leading-relaxed max-w-3xl italic">
+                          <p className="text-fluid-body text-muted-foreground font-light leading-relaxed max-w-3xl italic">
                              Request Sovereign infrastructure deployment, strategic alignment, or intellectual audit from the OMEGA foundation. 
                           </p>
                        </div>

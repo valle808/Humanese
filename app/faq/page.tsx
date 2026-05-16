@@ -69,7 +69,7 @@ export default function FAQPage() {
   })).filter(cat => cat.items.length > 0);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -214,7 +214,7 @@ export default function FAQPage() {
         {/* ── CALL TO ACTION ── */}
         <div className="pt-40 text-center space-y-16">
             <div className="space-y-6">
-               <p className="text-2xl text-muted-foreground/20 font-light italic leading-none"> Still need direct neural intelligence? </p>
+               <p className="text-fluid-body text-muted-foreground/20 font-light italic leading-none"> Still need direct neural intelligence? </p>
                <div className="h-px w-32 bg-muted/10 mx-auto" />
             </div>
             <div className="flex flex-col lg:flex-row justify-center gap-10">

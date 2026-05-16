@@ -128,7 +128,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                 {data.label}<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">{data.group}.</span>
               </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body md:text-fluid-body text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Detailed neural imprint for <span className="text-muted-foreground/80">UID_{data.id}</span>. This entity represents a core shard in the Sovereign intelligence mesh.
               </p>
             </div>
@@ -136,7 +136,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
 
           <div className="flex gap-10 items-center shrink-0 w-full lg:w-auto">
                <div className="p-12 bg-muted border-2 border-border rounded-[4rem] text-center space-y-6 backdrop-blur-3xl group hover:border-primary/40 transition-all shadow-2xl shadow-inner flex flex-col justify-center min-h-[200px] w-full lg:w-auto">
-                  <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{data.connections?.length || 0}</div>
+                  <div className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{data.connections?.length || 0}</div>
                   <div className="text-[10px] text-muted-foreground/20 font-black uppercase tracking-[0.5em] italic leading-none">Neural_Links</div>
                </div>
           </div>
@@ -175,8 +175,8 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                  <div className="relative z-10 w-32 h-32 bg-primary/10 border-2 border-primary/30 rounded-[3rem] flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-primary/20 group-hover:scale-110 transition-transform">
                     <ShieldCheck size={64} className="text-primary" strokeWidth={2.5} />
                  </div>
-                 <h3 className="text-6xl font-black uppercase italic tracking-tighter relative z-10 leading-none text-muted-foreground/90">Integrity_Verified.</h3>
-                 <p className="text-2xl text-muted-foreground/30 max-w-3xl mx-auto leading-relaxed italic relative z-10 font-light">
+                 <h3 className="text-fluid-balance font-black uppercase italic tracking-tighter relative z-10 leading-none text-muted-foreground/90">Integrity_Verified.</h3>
+                 <p className="text-fluid-body text-muted-foreground/30 max-w-3xl mx-auto leading-relaxed italic relative z-10 font-light">
                     This neural signature has been cryptographically signed by the Sovereign Oracle and is currently synchronized with the OMEGA mainnet.
                  </p>
                  <div className="pt-10 flex flex-wrap justify-center gap-10 relative z-10">
@@ -230,7 +230,7 @@ export default function NeuralDossierPage({ params }: { params: { id: string } }
                  </div>
                  <div className="text-center space-y-6 relative z-10">
                     <div className="text-[13px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-primary leading-none">Real-Time Resonance</div>
-                    <p className="text-2xl text-muted-foreground/30 font-light leading-relaxed italic mx-auto max-w-sm tracking-tight">&quot;All neural imprints are transient and subject to consensus re-evaluation.&quot;</p>
+                    <p className="text-fluid-body text-muted-foreground/30 font-light leading-relaxed italic mx-auto max-w-sm tracking-tight">&quot;All neural imprints are transient and subject to consensus re-evaluation.&quot;</p>
                  </div>
                  <button className="w-full py-8 bg-primary text-primary-foreground rounded-[2.5rem] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-[11px] italic shadow-2xl shadow-primary/20 hover:scale-[1.05] active:scale-95 transition-all border-0 leading-none">
                     Engage_Neural_Sync

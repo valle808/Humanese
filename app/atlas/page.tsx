@@ -124,7 +124,7 @@ export default function CognitiveAtlasPage() {
   }, [formattedData.nodes.length, isMounted]);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-hidden flex flex-col transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-hidden flex flex-col transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">

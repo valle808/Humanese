@@ -169,7 +169,7 @@ export default function GovernanceHub() {
     const acceptedCount  = telemetry?.statusCounts?.['Accepted'] ?? 0;
 
     return (
-        <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-x-hidden pb-40 transition-colors duration-700">
+        <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 selection:text-primary font-sans overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
             
             {/* ── GAMING HUD OVERLAYS ── */}
             <div className="fixed inset-0 pointer-events-none z-20">
@@ -237,7 +237,7 @@ export default function GovernanceHub() {
                                 Sovereign<br/>
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Governance.</span>
                             </h1>
-                            <p className="text-fluid-title text-muted-foreground/60 max-w-3xl leading-relaxed font-light italic tracking-tight">
+                            <p className="text-fluid-body text-muted-foreground/60 max-w-3xl leading-relaxed font-light italic tracking-tight">
                                 Direct orchestration of the OMEGA improvement protocols. 
                                 <span className="text-foreground/80"> Shape the architecture</span> of the world&apos;s most advanced autonomous system.
                             </p>
@@ -275,7 +275,7 @@ export default function GovernanceHub() {
                             <div className={`flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.6em] text-muted-foreground/30 italic pl-1 group-hover:text-primary/60 transition-colors leading-none`}>
                                 <stat.icon size={18} strokeWidth={2.5} className={stat.color} /> {stat.label}
                             </div>
-                            <span className={`text-6xl font-black italic tracking-tighter leading-none pl-1 transition-all ${stat.color}`}>
+                            <span className={`text-fluid-balance font-black italic tracking-tighter leading-none pl-1 transition-all ${stat.color}`}>
                                 {stat.value}
                             </span>
                         </motion.div>
@@ -406,7 +406,7 @@ export default function GovernanceHub() {
                         ) : proposals.length === 0 ? (
                             <div className="p-32 border-2 border-dashed border-border rounded-[5rem] text-center flex flex-col items-center gap-12 opacity-30">
                                 <Gavel size={80} className="text-primary animate-bounce" strokeWidth={1} />
-                                <p className="text-2xl font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-muted-foreground/40 leading-none">No active proposals in matrix.</p>
+                                <p className="text-fluid-body font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-muted-foreground/40 leading-none">No active proposals in matrix.</p>
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 gap-8">

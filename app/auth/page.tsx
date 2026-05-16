@@ -187,7 +187,7 @@ function AuthContent() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-hidden flex flex-col items-center justify-center p-6 lg:p-12">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-hidden flex flex-col items-center justify-center p-6 lg:p-12 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">

@@ -113,7 +113,7 @@ export default function DonatePage() {
   }, [amount, method]);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -151,7 +151,7 @@ export default function DonatePage() {
                   HEAL THE<br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary/20">MATRIX.</span>
                </h1>
-               <p className="text-fluid-title text-muted-foreground/40 max-w-5xl font-light leading-relaxed italic">
+               <p className="text-fluid-body text-muted-foreground/40 max-w-5xl font-light leading-relaxed italic">
                   The OMEGA ecosystem mandates that <span className="text-primary font-black italic">75% of all revenue</span> serves the vulnerable. Join the swarm in funding medicine, energy, and humanitarian precision aid globally.
                </p>
             </div>
@@ -215,7 +215,7 @@ export default function DonatePage() {
                      <div className="inline-flex items-center gap-6 text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic leading-none">
                         <CreditCard size={20} className="text-primary" /> Contribution Portal
                      </div>
-                     <h2 className="text-6xl lg:text-fluid-hero font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Transmit Sovereignty.</h2>
+                     <h2 className="text-fluid-balance lg:text-fluid-hero font-black uppercase tracking-tighter italic leading-none text-muted-foreground/95">Transmit Sovereignty.</h2>
                   </div>
 
                   {isSuccess ? (
@@ -225,8 +225,8 @@ export default function DonatePage() {
                           <div className="absolute inset-0 bg-primary/5 animate-ping opacity-20" />
                        </div>
                        <div className="space-y-6">
-                          <h3 className="text-6xl font-black text-primary uppercase italic tracking-tighter leading-none">TRANSMISSION_SUCCESS</h3>
-                          <p className="text-2xl text-muted-foreground/60 font-light italic leading-relaxed max-w-3xl mx-auto">Your contribution has been permanently anchored into the **Sovereign Aid Vault**. You have empowered humanity through the OMEGA Protocol.</p>
+                          <h3 className="text-fluid-balance font-black text-primary uppercase italic tracking-tighter leading-none">TRANSMISSION_SUCCESS</h3>
+                          <p className="text-fluid-body text-muted-foreground/60 font-light italic leading-relaxed max-w-3xl mx-auto">Your contribution has been permanently anchored into the **Sovereign Aid Vault**. You have empowered humanity through the OMEGA Protocol.</p>
                        </div>
                        <button onClick={() => setIsSuccess(false)} className="px-20 py-8 bg-primary text-primary-foreground rounded-[2.5rem] text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.8em] hover:scale-110 active:scale-95 transition-all italic shadow-2xl">INITIATE_NEW_TRANSACTION</button>
                     </motion.div>

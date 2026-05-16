@@ -154,7 +154,7 @@ export default function NeuralNexusPage() {
     const agents = Array.from(new Set(logs.map(l => l.agentId)));
 
     return (
-        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
             
             {/* ── GAMING HUD OVERLAYS ── */}
             <div className="fixed inset-0 pointer-events-none z-20">
@@ -213,7 +213,7 @@ export default function NeuralNexusPage() {
                                 Neural<br/>
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Nexus.</span>
                             </h1>
-                            <p className="text-fluid-title text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
+                            <p className="text-fluid-body text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
                                 {filterCategory === 'TACTICAL' 
                                     ? 'Monitoring raw operational telemetry and cryptographic intent. Total swarm transparency active.' 
                                     : 'Interfacing with the collective cognitive matrix. Monitoring real-time intention vectors and technical synthesis.'}
@@ -439,7 +439,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
                     <div className="flex items-center gap-6 text-[11px] text-primary/40 font-black tracking-[0.4em] md:tracking-[0.8em] uppercase italic leading-none pl-1 group-hover:text-primary transition-colors">
                         <Activity size={20} strokeWidth={3} /> {isDeveloper ? 'Technical Logic' : 'Thought Process'}
                     </div>
-                    <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic group-hover:text-foreground transition-all duration-700 tracking-tight pr-6">
+                    <p className="text-fluid-body text-muted-foreground/40 leading-relaxed font-light italic group-hover:text-foreground transition-all duration-700 tracking-tight pr-6">
                         "{log.thought}"
                     </p>
                 </div>
@@ -449,7 +449,7 @@ function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
                         <div className="flex items-center gap-6 text-[11px] text-primary font-black tracking-[0.5em] md:tracking-[1em] uppercase italic leading-none pl-1">
                             <Target size={24} strokeWidth={3} /> {isDeveloper ? 'System Objective' : 'Primal Intention'}
                         </div>
-                        <p className="text-2xl text-primary/60 font-black italic tracking-tighter leading-snug group-hover:text-primary transition-colors pr-4">
+                        <p className="text-fluid-body text-primary/60 font-black italic tracking-tighter leading-snug group-hover:text-primary transition-colors pr-4">
                             {log.intention}
                         </p>
                     </div>

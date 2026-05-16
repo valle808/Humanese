@@ -84,7 +84,7 @@ export default function FleetPage() {
     s === 'ONLINE' ? 'bg-primary shadow-[0_0_12px_var(--primary)]' : s === 'CRITICAL' ? 'bg-red-500 animate-pulse' : 'bg-yellow-500';
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">
@@ -142,7 +142,7 @@ export default function FleetPage() {
                 OMEGA<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Fleet.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
                 Monitor and orchestrate the global <span className="text-foreground/80">physical node cluster</span>. Direct machine hardware from the cognitive interface.
               </p>
             </div>
@@ -191,7 +191,7 @@ export default function FleetPage() {
                 <div className="p-10 bg-background border-2 border-border rounded-[2.5rem] text-muted-foreground/20">
                     <Database size={64} strokeWidth={1} />
                 </div>
-                <p className="text-2xl text-muted-foreground/40 italic font-light tracking-tight uppercase leading-none">No physical shards detected in ledger.</p>
+                <p className="text-fluid-body text-muted-foreground/40 italic font-light tracking-tight uppercase leading-none">No physical shards detected in ledger.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
@@ -335,7 +335,7 @@ export default function FleetPage() {
                   </div>
                   <div className="space-y-6">
                     <p className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] italic text-muted-foreground/40 leading-none">Initialize Link</p>
-                    <p className="text-2xl text-muted-foreground/40 italic font-light leading-relaxed max-w-xs mx-auto tracking-tight">Select a physical node from the cluster to establish <span className="text-primary/60">telemetry resonance</span>.</p>
+                    <p className="text-fluid-body text-muted-foreground/40 italic font-light leading-relaxed max-w-xs mx-auto tracking-tight">Select a physical node from the cluster to establish <span className="text-primary/60">telemetry resonance</span>.</p>
                   </div>
                 </motion.div>
               )}
@@ -420,7 +420,7 @@ export default function FleetPage() {
 
                 <div className="pt-16 border-t-2 border-border space-y-8">
                   <div className="text-[11px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/20 italic leading-none pl-1">Final Conclusion</div>
-                  <p className="text-3xl font-light italic text-muted-foreground/60 leading-relaxed tracking-tight max-w-4xl">&quot;{report.conclusion}&quot;</p>
+                  <p className="text-fluid-body font-light italic text-muted-foreground/60 leading-relaxed tracking-tight max-w-4xl">&quot;{report.conclusion}&quot;</p>
                 </div>
               </div>
             </motion.div>

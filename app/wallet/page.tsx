@@ -91,7 +91,7 @@ export default function WalletPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans overflow-x-hidden transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans overflow-x-hidden transition-colors duration-700 overflow-x-hidden">
       
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 w-full h-full neural-grid opacity-[0.03]" />

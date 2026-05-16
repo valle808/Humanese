@@ -64,7 +64,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">
@@ -115,7 +115,7 @@ export default function SettingsPage() {
                 Node<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Settings.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/40 leading-relaxed font-light italic tracking-tight">
                 Manage your <span className="text-foreground/80">sovereign identifier</span> and autonomous agent protocols within the OMEGA ecosystem.
               </p>
             </div>

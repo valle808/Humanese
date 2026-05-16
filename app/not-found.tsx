@@ -43,7 +43,7 @@ export default function NotFound() {
                    Void.<br />
                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Null.</span>
                 </h1>
-                <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-2xl mx-auto leading-relaxed font-light italic">
+                <p className="text-fluid-body md:text-fluid-body text-muted-foreground/40 max-w-2xl mx-auto leading-relaxed font-light italic">
                    The requested neural node does not exist within the OMEGA index. Either the shard has been purged or the coordinates are invalid.
                 </p>
             </div>

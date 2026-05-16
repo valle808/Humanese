@@ -447,7 +447,7 @@ export default function SimulatorPage() {
                              <span className="tabular-nums opacity-60">SYNC: 100%</span>
                           </div>
                           <div className="space-y-4">
-                             <p className={`text-2xl font-black italic tracking-tighter uppercase leading-tight ${selectedNode?.label === shard.label ? 'text-background' : 'text-muted-foreground/80'} group-hover:scale-[1.02] transition-transform origin-left`}>{shard.label}</p>
+                             <p className={`text-fluid-body font-black italic tracking-tighter uppercase leading-tight ${selectedNode?.label === shard.label ? 'text-background' : 'text-muted-foreground/80'} group-hover:scale-[1.02] transition-transform origin-left`}>{shard.label}</p>
                              <p className={`text-[10px] font-mono uppercase tracking-widest ${selectedNode?.label === shard.label ? 'text-background/30' : 'text-muted-foreground/10'}`}>{new Date(shard.timestamp).toISOString()}</p>
                           </div>
                        </motion.div>

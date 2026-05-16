@@ -158,7 +158,7 @@ export default function ResearchHubPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -202,7 +202,7 @@ export default function ResearchHubPage() {
                 Scientific<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Progress.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Universal collaboration for the survival and expansion of the biological and digital neural net. 
                 <span className="text-muted-foreground/60"> Developing medicines</span>, energy, and quantum logic for the collective.
               </p>
@@ -319,7 +319,7 @@ export default function ResearchHubPage() {
                         <Atom size={100} className="mx-auto text-muted-foreground/5 animate-[spin_10s_linear_infinite]" strokeWidth={1} />
                         <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                     </div>
-                    <p className="text-2xl font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/10 italic leading-none">No active research detected in this sector.</p>
+                    <p className="text-fluid-body font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground/10 italic leading-none">No active research detected in this sector.</p>
                  </div>
                ) : (
                  articles.map((article, i) => (

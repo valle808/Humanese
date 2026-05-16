@@ -85,7 +85,7 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
     if (!hip) return <div className="min-h-screen bg-muted flex items-center justify-center text-foreground font-black uppercase tracking-widest italic">Protocol ID Not Found in Matrix</div>;
 
     return (
-        <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+        <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
             
             {/* 🌌 AMBIENT CORE */}
             <div className="fixed inset-0 pointer-events-none z-0">
@@ -177,7 +177,7 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-end px-2">
                                         <div className="text-[11px] text-muted-foreground/20 uppercase tracking-[0.6em] font-black italic">Consensus Weight</div>
-                                        <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none">{hip.resonanceThreshold >= 1000 ? 'Accepted' : hip.resonanceThreshold.toFixed(1)}</div>
+                                        <div className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none">{hip.resonanceThreshold >= 1000 ? 'Accepted' : hip.resonanceThreshold.toFixed(1)}</div>
                                     </div>
                                     <div className="h-3 w-full bg-muted/10 rounded-full overflow-hidden border border-border p-1">
                                         <motion.div 

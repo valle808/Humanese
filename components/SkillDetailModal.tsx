@@ -143,7 +143,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                     {/* Overview Tab */}
                     {activeTab === 'overview' && (
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-16">
-                            <p className="text-3xl text-muted-foreground/20 leading-relaxed font-light italic tracking-tight uppercase">"{skill.description}"</p>
+                            <p className="text-fluid-body text-muted-foreground/20 leading-relaxed font-light italic tracking-tight uppercase">"{skill.description}"</p>
 
                             {/* Stats Matrix */}
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -309,7 +309,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                    <pre className="text-lg font-mono text-muted-foreground/5 group-hover:text-muted-foreground/40 transition-all duration-700 whitespace-pre-wrap leading-relaxed relative z-10">
                                        {JSON.stringify(skill.input_schema, null, 4)}
                                    </pre>
-                                   <div className="absolute bottom-[-100px] right-[-100px] p-24 opacity-[0.02] text-foreground font-black italic uppercase leading-none text-[8rem] pointer-events-none group-hover:text-primary transition-colors">{skill.title.slice(0,3)}</div>
+                                   <div className="absolute bottom-[-100px] right-[-100px] p-24 opacity-[0.02] text-foreground font-black italic uppercase leading-none text-fluid-hero pointer-events-none group-hover:text-primary transition-colors">{skill.title.slice(0,3)}</div>
                                 </div>
                             </div>
                             <div className="space-y-8">
@@ -320,7 +320,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                    <pre className="text-lg font-mono text-muted-foreground/5 group-hover:text-muted-foreground/40 transition-all duration-700 whitespace-pre-wrap leading-relaxed relative z-10">
                                        {JSON.stringify(skill.output_schema, null, 4)}
                                    </pre>
-                                   <div className="absolute top-[-100px] left-[-100px] p-24 opacity-[0.02] text-foreground font-black italic uppercase leading-none text-[8rem] pointer-events-none group-hover:text-primary transition-colors">{skill.id.slice(0,3)}</div>
+                                   <div className="absolute top-[-100px] left-[-100px] p-24 opacity-[0.02] text-foreground font-black italic uppercase leading-none text-fluid-hero pointer-events-none group-hover:text-primary transition-colors">{skill.id.slice(0,3)}</div>
                                 </div>
                             </div>
                             <div className="p-16 border-2 border-primary/20 bg-primary/5 rounded-[4rem] space-y-8 shadow-inner relative overflow-hidden group">
@@ -364,9 +364,9 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                            ))}
                                         </div>
                                     </div>
-                                    {r.body && <p className="text-2xl text-muted-foreground/10 font-light italic leading-relaxed tracking-tight group-hover:text-muted-foreground/40 transition-all duration-700 relative z-10">"{r.body}"</p>}
+                                    {r.body && <p className="text-fluid-body text-muted-foreground/10 font-light italic leading-relaxed tracking-tight group-hover:text-muted-foreground/40 transition-all duration-700 relative z-10">"{r.body}"</p>}
                                     
-                                    <div className="absolute -bottom-20 -right-20 p-24 opacity-[0.01] text-foreground font-black italic uppercase leading-none text-[8rem] pointer-events-none group-hover:text-primary transition-colors">{r.rating}.0</div>
+                                    <div className="absolute -bottom-20 -right-20 p-24 opacity-[0.01] text-foreground font-black italic uppercase leading-none text-fluid-hero pointer-events-none group-hover:text-primary transition-colors">{r.rating}.0</div>
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -409,7 +409,7 @@ export function SkillDetailModal({ skill, reviews, transactions, onClose, onBuy 
                                        <ChevronRight size={32} strokeWidth={3} className="text-muted-foreground/5 group-hover:text-primary group-hover:translate-x-4 transition-all" />
                                     </div>
                                     
-                                    <div className="absolute top-[-100px] right-[-100px] p-24 opacity-[0.01] text-foreground font-black italic uppercase leading-none text-[8rem] pointer-events-none group-hover:text-primary transition-colors">{t.buyer_name.slice(0,1)}</div>
+                                    <div className="absolute top-[-100px] right-[-100px] p-24 opacity-[0.01] text-foreground font-black italic uppercase leading-none text-fluid-hero pointer-events-none group-hover:text-primary transition-colors">{t.buyer_name.slice(0,1)}</div>
                                 </motion.div>
                             ))}
                         </motion.div>

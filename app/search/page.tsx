@@ -79,7 +79,7 @@ export default function HumanlookPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">
@@ -149,7 +149,7 @@ export default function HumanlookPage() {
                   OMEGA<br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Optical.</span>
                 </h2>
-                <p className="max-w-4xl mx-auto text-3xl text-muted-foreground/40 font-light italic leading-relaxed tracking-tight">
+                <p className="max-w-4xl mx-auto text-fluid-body text-muted-foreground/40 font-light italic leading-relaxed tracking-tight">
                    Accessing the Sovereign Optical Index. Deciphering the global matrix with 
                    <span className="text-foreground/80"> zero censorship</span> and near-zero latency operations.
                 </p>
@@ -239,7 +239,7 @@ export default function HumanlookPage() {
                       <Link href={result.url}>&quot;{result.title}&quot;</Link>
                     </h3>
                     
-                    <p className="text-2xl text-muted-foreground/60 leading-relaxed font-light italic group-hover:text-muted-foreground transition-all duration-700 max-w-5xl tracking-tight">
+                    <p className="text-fluid-body text-muted-foreground/60 leading-relaxed font-light italic group-hover:text-muted-foreground transition-all duration-700 max-w-5xl tracking-tight">
                       {result.snippet}
                     </p>
                     

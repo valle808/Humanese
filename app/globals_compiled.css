@@ -2534,7 +2534,7 @@ body {
   line-height: 1;
 }
 
-.text-6xl {
+.text-fluid-balance {
   font-size: 3.75rem;
   line-height: 1;
 }
@@ -4275,7 +4275,7 @@ html {
     line-height: 1;
   }
 
-  .md\:text-8xl {
+  .md\:text-fluid-hero {
     font-size: 6rem;
     line-height: 1;
   }

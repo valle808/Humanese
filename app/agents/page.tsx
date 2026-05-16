@@ -193,7 +193,7 @@ export default function AgentsPage() {
   }, [agents.length]);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -237,7 +237,7 @@ export default function AgentsPage() {
                 Sovereign<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Swarm.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Real-time collective consciousness and distributed resource acquisition across the OMEGA network.
               </p>
             </div>
@@ -293,7 +293,7 @@ export default function AgentsPage() {
                 </div>
                 
                 <div className="space-y-8 relative z-10 pl-2">
-                   <p className="text-3xl font-light text-muted-foreground/60 italic leading-relaxed group-hover:text-foreground transition-colors duration-700">
+                   <p className="text-fluid-body font-light text-muted-foreground/60 italic leading-relaxed group-hover:text-foreground transition-colors duration-700">
                      "{strategy.reason}"
                    </p>
                    <div className="flex flex-wrap gap-4">
@@ -370,7 +370,7 @@ export default function AgentsPage() {
 
                         <div className="flex justify-between items-start relative z-10 w-full">
                           <div className="flex items-center gap-10">
-                            <div className="w-24 h-24 bg-white border-4 border-border rounded-[2.5rem] flex items-center justify-center text-6xl group-hover:scale-110 transition-transform shadow-[0_40px_80px_rgba(var(--primary),0.3)] shadow-inner">
+                            <div className="w-24 h-24 bg-white border-4 border-border rounded-[2.5rem] flex items-center justify-center text-fluid-balance group-hover:scale-110 transition-transform shadow-[0_40px_80px_rgba(var(--primary),0.3)] shadow-inner">
                                {agent.emoji}
                             </div>
                             <div className="space-y-4 pt-2">
@@ -414,7 +414,7 @@ export default function AgentsPage() {
                           </div>
 
                           <div className="bg-muted border-2 border-border rounded-[3rem] p-10 h-32 overflow-hidden relative shadow-inner group-hover/card:bg-muted/80 transition-all">
-                            <p className="text-2xl text-muted-foreground/20 leading-relaxed font-light italic group-hover:text-muted-foreground/40 transition-colors duration-1000 pl-1 group-hover:pl-2">
+                            <p className="text-fluid-body text-muted-foreground/20 leading-relaxed font-light italic group-hover:text-muted-foreground/40 transition-colors duration-1000 pl-1 group-hover:pl-2">
                               {agent.article?.text}
                               <span className="inline-block w-4 h-6 bg-primary ml-2 animate-pulse align-middle" />
                             </p>
@@ -440,7 +440,7 @@ export default function AgentsPage() {
               <div className="bg-background border-2 border-border rounded-[5rem] overflow-hidden shadow-[0_80px_150px_rgba(0,0,0,1)]">
                  <div className="p-12 lg:px-16 border-b-2 border-border flex flex-col md:flex-row md:items-end justify-between gap-12 bg-muted/10">
                     <div className="space-y-6">
-                       <h2 className="text-5xl lg:text-6xl font-black uppercase tracking-tighter italic flex items-center gap-10 leading-none text-foreground pl-4">
+                       <h2 className="text-5xl lg:text-fluid-balance font-black uppercase tracking-tighter italic flex items-center gap-10 leading-none text-foreground pl-4">
                          <Zap size={48} className="text-primary animate-pulse" strokeWidth={3} /> Mining Core
                        </h2>
                        <div className="flex items-center gap-6 pl-4">
@@ -472,7 +472,7 @@ export default function AgentsPage() {
                          </div>
                          
                          <div className="space-y-6 relative z-10 px-1">
-                            <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{worker.hashrate.toFixed(2)} <span className="text-xl text-muted-foreground/10 font-bold uppercase italic tracking-widest pl-2 group-hover:text-muted-foreground/30 transition-colors">KH/S</span></div>
+                            <div className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{worker.hashrate.toFixed(2)} <span className="text-xl text-muted-foreground/10 font-bold uppercase italic tracking-widest pl-2 group-hover:text-muted-foreground/30 transition-colors">KH/S</span></div>
                             <div className="h-3 bg-muted border-2 border-border rounded-full overflow-hidden shadow-inner p-[2px]">
                               <div className={`h-full w-full animate-shimmer opacity-30 rounded-full ${worker.name.includes('Quantum') ? 'bg-primary' : 'bg-white'}`} style={{ width: '100%' }} />
                             </div>

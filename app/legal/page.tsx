@@ -24,7 +24,7 @@ import Link from 'next/link';
 
 export default function LegalPage() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT BACKGROUND */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -56,11 +56,11 @@ export default function LegalPage() {
             <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Autonomous Legal Framework</span>
           </div>
           <div className="space-y-8">
-            <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter uppercase leading-[0.85] italic">
+            <h1 className="text-fluid-hero font-black tracking-tighter uppercase leading-[0.85] italic">
               Computational Law.<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Human Rights.</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic">
+            <p className="text-fluid-body text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic">
               We bridge the gap between traditional legal systems and the speed of machine-to-machine interaction. The OMEGA Autonomous Legal (HAL) framework ensures every transaction is binding and compliant.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function LegalPage() {
             </div>
             <div className="space-y-6 relative z-10">
                <h3 className="text-4xl font-black uppercase italic tracking-tighter">Prohibitions on Misuse</h3>
-               <p className="text-xl md:text-2xl text-muted-foreground/60 font-light leading-relaxed italic">
+               <p className="text-xl md:text-fluid-body text-muted-foreground/60 font-light leading-relaxed italic">
                  The Sovereign Protocol strictly prohibits the use of its infrastructure for "AI Washing" or the creation of "Wizard of Oz" systems. Entities caught deploying simulated intelligence as autonomous agency will have their VALLE stake slashed and their identity node revoked from the swarm.
                </p>
             </div>

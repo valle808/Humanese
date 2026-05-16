@@ -110,7 +110,7 @@ html {
   @apply font-black uppercase tracking-tighter italic mb-12 mt-24 leading-none;
 }
 
-.wiki-content h1 { @apply text-8xl text-white; }
+.wiki-content h1 { @apply text-fluid-hero text-white; }
 .wiki-content h2 { @apply text-5xl text-white/60; }
 .wiki-content h3 { @apply text-3xl text-[hsl(var(--primary))]; }
 

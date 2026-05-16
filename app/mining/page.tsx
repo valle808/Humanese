@@ -235,7 +235,7 @@ export default function MiningPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -276,7 +276,7 @@ export default function MiningPage() {
                 Quantum<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Mining.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Allocate computational power to the Sovereign Network. 
                 <span className="text-muted-foreground/60"> Validate transactions</span> and earn VALLE via Lattice-Cryptography PoW.
               </p>

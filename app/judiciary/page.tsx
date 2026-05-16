@@ -52,7 +52,7 @@ export default function JudicialOversightPage() {
   });
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">
@@ -108,7 +108,7 @@ export default function JudicialOversightPage() {
                 Judiciary<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Oversight.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
                 The autonomous legislative branch of the OMEGA Intelligence. 
                 <span className="text-foreground/80"> Directing the evolution</span> of machine law through human-verified protocol amendments.
               </p>
@@ -121,7 +121,7 @@ export default function JudicialOversightPage() {
                      <Scale size={120} className="text-primary" />
                   </div>
                   <div className="text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.6em] italic leading-none pl-1">Network Consensus Integrity</div>
-                  <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors flex items-baseline gap-4 pl-1">
+                  <div className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors flex items-baseline gap-4 pl-1">
                     {stats?.integrityRating || 99.98}% <span className="text-xs text-primary uppercase tracking-[0.4em] font-black italic">Stable</span>
                   </div>
                   <div className="h-3 w-full bg-muted border-2 border-border rounded-full overflow-hidden shadow-inner p-[1px] relative z-20">
@@ -246,7 +246,7 @@ export default function JudicialOversightPage() {
                      </div>
                      <div className="space-y-6 relative z-10">
                         <h3 className="text-4xl font-black uppercase italic tracking-tighter leading-none text-muted-foreground/40 group-hover:text-foreground transition-colors">Draft Amendment</h3>
-                        <p className="text-muted-foreground/40 text-2xl font-light leading-relaxed italic max-w-2xl mx-auto tracking-tight">
+                        <p className="text-muted-foreground/40 text-fluid-body font-light leading-relaxed italic max-w-2xl mx-auto tracking-tight">
                            Initialize a new protocol directive for the OMEGA ecosystem. 
                            <span className="text-primary/60"> Security deposit</span> of 1,000 $VALLE required.
                         </p>
@@ -270,7 +270,7 @@ export default function JudicialOversightPage() {
                     <div className="space-y-6 relative z-10">
                         <h2 className="text-4xl font-black uppercase tracking-tight italic text-foreground group-hover:text-primary transition-colors leading-none pr-4">Council Chamber</h2>
                         <div className="h-[2px] w-24 bg-primary/40" />
-                        <p className="text-2xl text-muted-foreground/40 font-light leading-relaxed italic tracking-tight"> 
+                        <p className="text-fluid-body text-muted-foreground/40 font-light leading-relaxed italic tracking-tight"> 
                            &quot;The architect&apos;s voice is the foundation of the protocol. Access limited to verified sovereign nodes with level 4 clearance.&quot; 
                         </p>
                     </div>
@@ -299,7 +299,7 @@ export default function JudicialOversightPage() {
                            <div className="text-[10px] text-muted-foreground/10 font-black uppercase italic tracking-[0.4em] leading-none">HIVE_MIND_SYNC</div>
                          </div>
                      </div>
-                     <p className="text-2xl text-muted-foreground/40 leading-relaxed italic font-light relative z-10 tracking-tight group-hover:text-foreground transition-colors duration-1000"> 
+                     <p className="text-fluid-body text-muted-foreground/40 leading-relaxed italic font-light relative z-10 tracking-tight group-hover:text-foreground transition-colors duration-1000"> 
                         Real-time neural consensus is achieved through the entanglement of 58,000+ individual cognitive shards, ensuring the protocol remains immutable yet adaptive. 
                      </p>
                      <div className="flex items-center gap-6 pt-4 text-[11px] font-black uppercase tracking-[0.6em] text-primary italic relative z-10 animate-pulse leading-none">

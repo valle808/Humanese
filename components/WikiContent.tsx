@@ -69,7 +69,7 @@ export function WikiContent({ sections, rawMarkdown, onSectionChange, sourceUrl 
                  <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
               </div>
               <div className="space-y-4">
-                  <p className="text-2xl font-black uppercase tracking-[0.5em] text-muted-foreground/10 italic">No resonance clusters found.</p>
+                  <p className="text-fluid-body font-black uppercase tracking-[0.5em] text-muted-foreground/10 italic">No resonance clusters found.</p>
                   <p className="text-[10px] text-muted-foreground/5 font-black uppercase tracking-[0.4em] italic leading-none pl-1">Initiate Registry Sync_</p>
               </div>
             </div>
@@ -115,7 +115,7 @@ function SectionRenderer({ section, index }: SectionRendererProps) {
              0{index + 1}_
           </div>
           <HeadingTag className={`font-black uppercase italic tracking-tighter mb-10 transition-colors ${
-            section.level === 2 ? 'text-8xl text-foreground group-hover/section:text-primary pt-1 leading-none' : 
+            section.level === 2 ? 'text-fluid-hero text-foreground group-hover/section:text-primary pt-1 leading-none' : 
             section.level === 3 ? 'text-5xl text-muted-foreground/60 group-hover/section:text-foreground pt-1 leading-none' : 
             'text-3xl text-primary pt-1 leading-none'
           }`}>

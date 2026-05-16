@@ -101,7 +101,7 @@ export default function SandboxPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -139,13 +139,13 @@ export default function SandboxPage() {
                 Abyssal<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Sandbox.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground leading-relaxed font-light italic">
+              <p className="text-fluid-body text-muted-foreground leading-relaxed font-light italic">
                 Simulate population dynamics. Test ideological drifts. Predict societal shifts before they anchor in reality.
               </p>
             </div>
           </div>
 
-          <div className="flex gap-10 items-center shrink-0">
+          <div className="flex flex-wrap gap-6 md:gap-10 items-center shrink-0">
             <div className="p-8 md:p-10 border border-border bg-muted/10 responsive-rounded min-w-[300px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all backdrop-blur-3xl">
                <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-110 transition-transform">
                   <Activity size={100} className="text-primary" />
@@ -216,7 +216,7 @@ export default function SandboxPage() {
                             </div>
                             <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest pt-4">{event.timestamp}</div>
                          </div>
-                         <p className={`text-2xl lg:text-3xl leading-[1.6] italic relative z-10 tracking-tight ${event.type === 'SHOCK_EVENT' ? 'text-foreground font-black' : 'text-muted-foreground font-light'}`}>
+                         <p className={`text-fluid-body lg:text-fluid-body leading-[1.6] italic relative z-10 tracking-tight ${event.type === 'SHOCK_EVENT' ? 'text-foreground font-black' : 'text-muted-foreground font-light'}`}>
                             "{event.content}"
                          </p>
                          {event.type === 'SHOCK_EVENT' && (
@@ -255,11 +255,11 @@ export default function SandboxPage() {
                  </h3>
                  <div className="grid grid-cols-2 gap-10 relative z-10">
                     <div className="p-8 md:p-10 bg-muted/5 border border-border responsive-rounded text-center space-y-4 shadow-inner">
-                       <div className="text-6xl font-black text-primary tracking-tighter italic leading-none">100</div>
+                       <div className="text-fluid-balance font-black text-primary tracking-tighter italic leading-none">100</div>
                        <div className="text-[11px] text-muted-foreground uppercase font-black tracking-[0.4em] italic leading-none">Nodes</div>
                     </div>
                     <div className="p-8 md:p-10 bg-muted/5 border border-border responsive-rounded text-center space-y-4 shadow-inner">
-                       <div className="text-6xl font-black text-foreground/80 tracking-tighter italic leading-none">92%</div>
+                       <div className="text-fluid-balance font-black text-foreground/80 tracking-tighter italic leading-none">92%</div>
                        <div className="text-[11px] text-muted-foreground uppercase font-black tracking-[0.4em] italic leading-none">Stability</div>
                     </div>
                  </div>
@@ -353,7 +353,7 @@ export default function SandboxPage() {
                                      {report.trajectories.map((t, i) => (
                                        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }} key={i} className="flex gap-10 items-start group">
                                           <div className="mt-4 h-4 w-4 bg-primary rounded-full group-hover:scale-150 transition-all shadow-[0_0_30px_var(--primary)]" />
-                                          <p className="text-3xl text-foreground/60 font-light leading-relaxed group-hover:text-foreground transition-colors italic tracking-tight">{t}</p>
+                                          <p className="text-fluid-body text-foreground/60 font-light leading-relaxed group-hover:text-foreground transition-colors italic tracking-tight">{t}</p>
                                        </motion.div>
                                      ))}
                                   </div>
@@ -367,7 +367,7 @@ export default function SandboxPage() {
                                      {report.emergentRisks.map((t, i) => (
                                        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }} key={i} className="flex gap-10 items-start group">
                                           <div className="mt-4 h-4 w-4 bg-primary/40 rounded-full group-hover:bg-primary group-hover:scale-150 transition-all shadow-[0_0_30px_var(--primary)]" />
-                                          <p className="text-3xl text-muted-foreground font-light leading-relaxed group-hover:text-primary transition-colors italic tracking-tight">{t}</p>
+                                          <p className="text-fluid-body text-muted-foreground font-light leading-relaxed group-hover:text-primary transition-colors italic tracking-tight">{t}</p>
                                        </motion.div>
                                      ))}
                                   </div>
@@ -381,7 +381,7 @@ export default function SandboxPage() {
                                 </div>
                                <div className="space-y-10">
                                   <h4 className="text-[12px] font-black uppercase tracking-[0.5em] md:tracking-[1em] text-muted-foreground italic">Architectural Consensus</h4>
-                                  <p className="text-3xl text-muted-foreground font-light leading-relaxed italic max-w-5xl">{report.conclusion}</p>
+                                  <p className="text-fluid-body text-muted-foreground font-light leading-relaxed italic max-w-5xl">{report.conclusion}</p>
                                 </div>
                             </div>
 

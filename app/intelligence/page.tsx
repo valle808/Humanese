@@ -143,7 +143,7 @@ export default function IntelligenceHQ() {
     }
 
     return (
-        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
             
             {/* ── GAMING HUD OVERLAYS ── */}
             <div className="fixed inset-0 pointer-events-none z-20">
@@ -194,7 +194,7 @@ export default function IntelligenceHQ() {
                             Intelligence<br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">HQ.</span>
                           </h1>
-                          <p className="text-fluid-title text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
+                          <p className="text-fluid-body text-muted-foreground/40 max-w-3xl leading-relaxed font-light italic tracking-tight">
                             The centralized nexus for <span className="text-foreground/80">cognitive audit logs</span> and real-time intelligence feeds across the OMEGA swarm.
                           </p>
                         </div>
@@ -241,7 +241,7 @@ export default function IntelligenceHQ() {
                                         <div className="w-24 h-24 border-2 border-border rounded-full flex items-center justify-center mx-auto relative group-hover:border-primary/40 transition-all shadow-xl">
                                             <Radio size={48} className="animate-spin text-primary/40" />
                                         </div>
-                                        <p className="text-2xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">Awaiting neural resonance...</p>
+                                        <p className="text-fluid-body font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">Awaiting neural resonance...</p>
                                     </div>
                                 ) : (
                                     cognitiveLogs.map((log) => (
@@ -266,7 +266,7 @@ export default function IntelligenceHQ() {
                                                    </span>
                                                 </div>
                                             </div>
-                                            <p className="text-fluid-title text-muted-foreground/40 italic font-light leading-relaxed group-hover/log:text-foreground transition-all duration-700 break-words pl-2 pr-6 tracking-tight">&quot;{log.thought}&quot;</p>
+                                            <p className="text-fluid-body text-muted-foreground/40 italic font-light leading-relaxed group-hover/log:text-foreground transition-all duration-700 break-words pl-2 pr-6 tracking-tight">&quot;{log.thought}&quot;</p>
                                             {log.intention && (
                                                 <div className="mt-8 flex items-center gap-4 pl-2 relative z-20">
                                                     <div className="px-8 py-3 bg-primary/10 border-2 border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.6em] italic shadow-sm leading-none truncate max-w-full">
@@ -297,7 +297,7 @@ export default function IntelligenceHQ() {
                                 {loading && items.length === 0 ? (
                                     <div className="text-center py-32 space-y-10 opacity-40">
                                         <Layers size={64} className="mx-auto animate-bounce text-primary/40" strokeWidth={1.5} />
-                                        <p className="text-2xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">Decrypting Neural Bus...</p>
+                                        <p className="text-fluid-body font-black uppercase tracking-[0.4em] md:tracking-[0.8em] italic leading-none">Decrypting Neural Bus...</p>
                                     </div>
                                 ) : error ? (
                                     <div className="p-12 text-red-500 font-black italic flex flex-col items-center gap-10 bg-red-500/10 rounded-[3rem] border-2 border-red-500/20 shadow-inner">
@@ -330,7 +330,7 @@ export default function IntelligenceHQ() {
                                                     </div>
                                                 </div>
                                                 
-                                                <p className="text-fluid-title text-foreground font-black italic leading-tight tracking-tighter relative z-20 pl-1 pr-10 break-words group-hover:text-primary transition-colors duration-700 uppercase">
+                                                <p className="text-fluid-body text-foreground font-black italic leading-tight tracking-tighter relative z-20 pl-1 pr-10 break-words group-hover:text-primary transition-colors duration-700 uppercase">
                                                     {item.description || item.title}
                                                 </p>
                                                 

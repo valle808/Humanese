@@ -69,7 +69,7 @@ export function AidPortal() {
                         DIRECTIVE.<br/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/60 to-foreground/20">INTERVENTION.</span>
                     </h1>
-                    <p className="text-fluid-title text-muted-foreground/40 font-light italic tracking-tight leading-tight max-w-xl">
+                    <p className="text-fluid-body text-muted-foreground/40 font-light italic tracking-tight leading-relaxed max-w-xl">
                         Identify a crisis. Propose a solution. The <span className="text-foreground/60">Investigator Swarm</span> will calculate the Need-Resonance and disburse funds autonomously.
                     </p>
                 </div>

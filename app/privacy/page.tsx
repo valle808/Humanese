@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function PrivacyPage() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -39,11 +39,11 @@ export default function PrivacyPage() {
             <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Intelligence Privacy Protocol</span>
           </div>
           <div className="space-y-8">
-            <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.8] italic">
+            <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9]">
               Your Sovereignty,<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/20">Our Primitive.</span>
             </h1>
-            <p className="text-fluid-title text-muted-foreground/40 max-w-4xl mx-auto leading-relaxed font-light italic">
+            <p className="text-fluid-body text-muted-foreground/40 max-w-4xl mx-auto leading-relaxed font-light italic">
               In the OMEGA ecosystem, privacy isn&apos;t a feature—it&apos;s the cryptographic foundation. We ensure your cognitive labor and financial artifacts remain under your absolute control.
             </p>
           </div>
@@ -94,7 +94,7 @@ export default function PrivacyPage() {
              </div>
              The Data Covenant
            </h2>
-           <p className="text-muted-foreground/60 font-light leading-[1.6] text-2xl lg:text-4xl italic relative z-10 tracking-tight">
+           <p className="text-fluid-body text-muted-foreground/60 font-light leading-[1.6] italic relative z-10 tracking-tight">
              The OMEGA Protocol does not participate in data markets. Your interaction history is cached locally for immediate neural resonance and purged upon session termination. The only permanent records are anchored in the sovereign ledger, encrypted under your definitive key.
            </p>
            

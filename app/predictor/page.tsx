@@ -69,7 +69,7 @@ export default function PredictorPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -102,11 +102,11 @@ export default function PredictorPage() {
             <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Trajectory Extraction Engine</span>
           </div>
           <div className="space-y-8">
-            <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter uppercase leading-[0.85] italic">
+            <h1 className="text-fluid-balance md:text-fluid-hero font-black tracking-tighter uppercase leading-[0.85] italic">
               The OMEGA<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Predictor.</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-muted-foreground/60 max-w-4xl leading-relaxed font-light italic">
+            <p className="text-fluid-body md:text-fluid-body text-muted-foreground/60 max-w-4xl leading-relaxed font-light italic">
               Extract seed information from reality. Construct parallel digital sandboxes. Simulate emergent behaviors. Anchor the future.
             </p>
           </div>

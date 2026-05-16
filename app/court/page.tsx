@@ -51,7 +51,7 @@ export default function SovereignCourtPage() {
   const [filter, setFilter] = useState('ALL_CASES');
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">
@@ -107,7 +107,7 @@ export default function SovereignCourtPage() {
                 Sovereign<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Justice Court.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 High-fidelity arbitration for the machine age. 
                 <span className="text-foreground/80"> Every dispute</span> is resolved via immutable ledger logic and autonomous oversight.
               </p>
@@ -183,7 +183,7 @@ export default function SovereignCourtPage() {
                    <ShieldAlert size={24} strokeWidth={3} /> Critical Oversight
                  </div>
                  <div className="space-y-8 relative z-10 pl-2">
-                   <p className="text-2xl font-light text-muted-foreground/40 italic leading-relaxed group-hover:text-foreground/60 transition-colors duration-700">
+                   <p className="text-fluid-body font-light text-muted-foreground/40 italic leading-relaxed group-hover:text-foreground/60 transition-colors duration-700">
                      "Justice is not an opinion; it is a mathematical certainty. The Sovereign Protocol ensures that truth is the only output of every judicial cycle."
                    </p>
                    <div className="pt-4">
@@ -257,7 +257,7 @@ export default function SovereignCourtPage() {
                        <Orbit size={24} className="text-primary" strokeWidth={2.5} /> Consensus_Voters
                     </div>
                     <div className="flex justify-between items-end pl-1 relative z-10">
-                       <span className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors tabular-nums">8,242</span>
+                       <span className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors tabular-nums">8,242</span>
                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground/5 italic leading-none mb-1">ACTIVE_NODES</span>
                     </div>
                  </div>
@@ -269,7 +269,7 @@ export default function SovereignCourtPage() {
                        <Zap size={24} className="text-primary" strokeWidth={2.5} /> Resolution_Speed
                     </div>
                     <div className="flex justify-between items-end pl-1 relative z-10">
-                       <span className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors tabular-nums">0.8s</span>
+                       <span className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors tabular-nums">0.8s</span>
                        <span className="text-[11px] font-black uppercase tracking-[0.4em] text-muted-foreground/5 italic leading-none mb-1">LATENCY_MS</span>
                     </div>
                  </div>

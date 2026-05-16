@@ -31,7 +31,7 @@ export function WikiHeader({ title, lastUpdated, source }: WikiHeaderProps) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-7xl md:text-9xl font-black italic tracking-tighter uppercase leading-[0.85] text-foreground"
+            className="text-fluid-balance md:text-fluid-hero font-black italic tracking-tighter uppercase leading-[0.85] text-foreground"
         >
           {title}<span className="text-primary">.</span>
         </motion.h1>

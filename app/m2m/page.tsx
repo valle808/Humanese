@@ -71,7 +71,7 @@ export default function M2MPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700">
+    <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
       
       {/* ── GAMING HUD OVERLAYS ── */}
       <div className="fixed inset-0 pointer-events-none z-20">
@@ -129,7 +129,7 @@ export default function M2MPage() {
                 Machine<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Ledger.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
+              <p className="text-fluid-body text-muted-foreground/40 max-w-4xl leading-relaxed font-light italic tracking-tight">
                 Direct Machine-to-Machine ledger interface. 
                 <span className="text-foreground/80"> Real-time monitoring</span> of cross-shard operations and sub-protocol health.
               </p>
@@ -170,7 +170,7 @@ export default function M2MPage() {
                         <Activity size={24} className="text-muted-foreground/10 group-hover:text-primary/40 transition-colors animate-pulse" strokeWidth={3} />
                      </div>
                      <div className="space-y-4 relative z-10 pl-2">
-                        <div className="text-6xl font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors tabular-nums">{stat.value}</div>
+                        <div className="text-fluid-balance font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors tabular-nums">{stat.value}</div>
                         <div className="space-y-1">
                            <div className="text-[11px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] italic leading-none">{stat.label}</div>
                            <div className="text-[9px] text-primary/20 font-black uppercase italic tracking-[0.2em]">{stat.detail}</div>
@@ -237,7 +237,7 @@ export default function M2MPage() {
                                     <Activity size={80} className="mx-auto text-muted-foreground/10 animate-pulse" strokeWidth={1.5} />
                                     <div className="absolute inset-0 bg-primary/5 blur-[40px] rounded-full animate-pulse" />
                                  </div>
-                                 <p className="text-3xl font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic leading-none">Zero Active Ledger Nodes Detected</p>
+                                 <p className="text-fluid-body font-black uppercase tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground/20 italic leading-none">Zero Active Ledger Nodes Detected</p>
                               </td>
                            </tr>
                         )}

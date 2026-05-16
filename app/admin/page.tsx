@@ -182,7 +182,7 @@ export default function SovereignNexusPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-primary/40 font-sans overflow-x-hidden pb-40 overflow-x-hidden">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -220,7 +220,7 @@ export default function SovereignNexusPage() {
                 Nexus<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Command.</span>
               </h1>
-              <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light italic">
+              <p className="text-fluid-body text-muted-foreground/40 leading-relaxed font-light italic">
                 Direct orchestration of the OMEGA swarm. Absolute transparency over all cognitive transmissions and architectural shifts.
               </p>
             </div>
@@ -280,7 +280,7 @@ export default function SovereignNexusPage() {
                           <span className="text-[11px] font-black font-mono text-muted-foreground/10 tabular-nums uppercase tracking-widest italic leading-none">[{new Date(log.timestamp).toLocaleTimeString()}]</span>
                           <span className="px-4 py-1.5 bg-muted border-2 border-border text-[9px] text-primary font-black rounded-xl uppercase tracking-[0.3em] italic leading-none">{log.agentName}</span>
                        </div>
-                       <p className="text-fluid-title text-muted-foreground/40 leading-relaxed font-light group-hover:text-muted-foreground/80 transition-colors italic tracking-tight">&quot;{log.thought}&quot;</p>
+                       <p className="text-fluid-body text-muted-foreground/40 leading-relaxed font-light group-hover:text-muted-foreground/80 transition-colors italic tracking-tight">&quot;{log.thought}&quot;</p>
                        {log.action && (
                          <div className="mt-4 text-primary text-[11px] font-black uppercase tracking-[0.5em] flex items-center gap-4 italic leading-none pl-1">
                             <Zap size={14} strokeWidth={3} className="animate-pulse" /> EXECUTION: {log.action}

@@ -174,7 +174,7 @@ export default function HPediaPage() {
                       THE LIVING<br/>
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white/20">ARCHIVE.</span>
                     </h1>
-                    <p className="text-fluid-title text-muted-foreground/40 max-w-4xl mx-auto font-light leading-relaxed italic">
+                    <p className="text-fluid-body text-muted-foreground/40 max-w-4xl mx-auto font-light leading-relaxed italic">
                       HPedia anchors humanity&apos;s collective intelligence through autonomous OMEGA investigators. Investigating foundations for the future of science and sovereignty.
                     </p>
                 </div>
@@ -229,7 +229,7 @@ export default function HPediaPage() {
                   <div className="text-center py-48 space-y-12">
                     <Library size={100} strokeWidth={1} className="mx-auto text-muted-foreground/5 animate-pulse" />
                     <div className="space-y-4">
-                        <p className="text-3xl font-black text-muted-foreground/10 italic uppercase tracking-tighter">Sector contains zero verified shards...</p>
+                        <p className="text-fluid-body font-black text-muted-foreground/10 italic uppercase tracking-tighter">Sector contains zero verified shards...</p>
                         <p className="text-muted-foreground/20 text-lg italic">The collective consciousness has not yet anchored this topic.</p>
                     </div>
                     <button onClick={() => { setGenTopic(searchQuery); setView('generate'); }} className="px-12 py-6 bg-primary text-primary-foreground rounded-[2rem] font-black uppercase tracking-[0.5em] text-xs hover:scale-[1.05] transition-all shadow-2xl">
@@ -360,7 +360,7 @@ export default function HPediaPage() {
                     
                     <div className="space-y-8">
                         <h1 className="text-fluid-hero font-black text-foreground uppercase italic tracking-tighter leading-[0.8]">{selectedArticle.title}</h1>
-                        {selectedArticle.subtitle && <p className="text-3xl text-muted-foreground/30 font-light italic leading-relaxed">{selectedArticle.subtitle}</p>}
+                        {selectedArticle.subtitle && <p className="text-fluid-body text-muted-foreground/30 font-light italic leading-relaxed">{selectedArticle.subtitle}</p>}
                     </div>
                   </div>
 
@@ -405,7 +405,7 @@ export default function HPediaPage() {
                 </div>
                 <div className="space-y-4">
                     <h1 className="text-fluid-hero font-black text-foreground uppercase italic tracking-tighter leading-none">Knowledge Synthesis.</h1>
-                    <p className="text-muted-foreground/40 text-2xl font-light italic leading-relaxed max-w-2xl mx-auto">Instruct an autonomous agent to research and anchor a new conceptual foundation into the OMEGA global ledger.</p>
+                    <p className="text-muted-foreground/40 text-fluid-body font-light italic leading-relaxed max-w-2xl mx-auto">Instruct an autonomous agent to research and anchor a new conceptual foundation into the OMEGA global ledger.</p>
                 </div>
               </div>
 
