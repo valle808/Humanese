@@ -106,7 +106,7 @@ export default function FleetPage() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] bg-primary/3 blur-[200px] rounded-full" />
       </div>
 
-      <header className="relative z-50 w-full px-8 lg:px-14 py-6 flex justify-between items-center bg-background/40 backdrop-blur-3xl border-b border-border transition-colors duration-700">
+      <header className="relative z-50 w-full px-8 lg:px-14 py-6 flex flex-wrap justify-between items-center gap-y-3 bg-background/40 backdrop-blur-3xl border-b border-border transition-colors duration-700">
         <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground/40 hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
           <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
         </Link>
@@ -118,7 +118,7 @@ export default function FleetPage() {
           >
             {generatingReport ? 'Synthesizing…' : 'EXECUTIVE_REPORT'}
           </button>
-          <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
+          <div className="max-w-[180px] sm:max-w-none overflow-hidden px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
             FLEET_v7.0_SYNC
           </div>
         </div>

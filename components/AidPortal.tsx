@@ -146,7 +146,7 @@ export function AidPortal() {
                 animate={{ opacity: 1, x: 0 }}
                 className="flex flex-col h-full space-y-12"
             >
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-0">
+                <div className="flex flex-col gap-6">
                     <div className="space-y-2">
                         <h2 className="text-fluid-title font-black uppercase italic tracking-tighter text-foreground leading-none">Sovereign_Feed.</h2>
                         <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-primary/60">
@@ -155,7 +155,7 @@ export function AidPortal() {
                     </div>
                     <div className="text-left sm:text-right">
                         <div className="text-[10px] font-black text-muted-foreground/20 uppercase tracking-widest mb-1">AID_VAULT_SOLVENCY</div>
-                        <div className="text-fluid-balance font-black text-foreground italic">$7,241,000.00 <span className="text-primary text-xs not-italic">VALLE</span></div>
+                        <div className="text-fluid-balance font-black text-foreground italic break-all">$7,241,000.00 <span className="text-primary text-xs not-italic">VALLE</span></div>
                     </div>
                 </div>
 

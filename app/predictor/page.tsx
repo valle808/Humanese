@@ -83,7 +83,7 @@ export default function PredictorPage() {
             <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
         </Link>
         <div className="flex items-center gap-6">
-           <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
+           <div className="max-w-[180px] sm:max-w-none overflow-hidden px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
               PREDICTOR_v7.0_NODE
            </div>
         </div>

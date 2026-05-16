@@ -94,12 +94,12 @@ export default function ProtocolDetail({ params }: { params: Promise<{ id: strin
                 <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
             </div>
 
-            <header className="relative z-50 w-full p-8 lg:px-14 flex justify-between items-center bg-muted/40 backdrop-blur-3xl border-b border-border">
+            <header className="relative z-50 w-full p-8 lg:px-14 flex flex-wrap justify-between items-center gap-y-3 bg-muted/40 backdrop-blur-3xl border-b border-border">
                 <Link href="/governance" className="inline-flex items-center gap-4 text-muted-foreground/20 hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
                     <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Governance Hub
                 </Link>
                 <div className="flex items-center gap-6">
-                    <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
+                    <div className="max-w-[180px] sm:max-w-none overflow-hidden px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
                         HIP_SPEC_v7.0.4
                     </div>
                 </div>

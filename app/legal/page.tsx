@@ -33,11 +33,11 @@ export default function LegalPage() {
       </div>
 
       <header className="relative z-10 w-full p-8 lg:px-14 flex justify-between items-center bg-muted/40 backdrop-blur-3xl border-b border-border">
-        <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground/30 hover:text-primary transition-colors text-[10px] font-black uppercase tracking-[0.4em] group italic leading-none">
+        <Link href="/" className="inline-flex shrink-0 min-w-0 items-center gap-2 text-muted-foreground/30 hover:text-primary transition-colors text-[10px] font-black uppercase tracking-[0.4em] group italic leading-none">
             <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Core Matrix
         </Link>
         <div className="flex items-center gap-6">
-           <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
+           <div className="max-w-[180px] sm:max-w-none overflow-hidden px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
               LEGAL_ENGINE_v7.0
            </div>
         </div>

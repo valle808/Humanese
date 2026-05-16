@@ -111,7 +111,7 @@ export default function SkillMarketPage() {
         <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-24 transition-colors duration-700 flex flex-col overflow-x-hidden">
             
             <header className="relative z-50 w-full p-6 md:p-8 lg:px-14 flex justify-between items-center bg-background/80 backdrop-blur-3xl border-b border-border shrink-0">
-                <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground/40 hover:text-primary transition-all text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] group italic leading-none active:scale-95">
+                <Link href="/" className="inline-flex shrink-0 min-w-0 items-center gap-4 text-muted-foreground/40 hover:text-primary transition-all text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] group italic leading-none active:scale-95">
                     <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Core Matrix
                 </Link>
                 <div className="flex items-center gap-6">

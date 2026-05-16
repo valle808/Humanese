@@ -197,7 +197,7 @@ export default function GovernanceHub() {
             </div>
 
             {/* ── HEADER ── */}
-            <header className="relative z-50 w-full px-8 lg:px-14 py-6 flex justify-between items-center bg-background/40 backdrop-blur-3xl border-b border-border transition-colors duration-700">
+            <header className="relative z-50 w-full px-8 lg:px-14 py-6 flex flex-wrap justify-between items-center gap-y-3 bg-background/40 backdrop-blur-3xl border-b border-border transition-colors duration-700">
                 <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground/40 hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic active:scale-95 leading-none">
                     <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
                 </Link>

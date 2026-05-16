@@ -208,12 +208,12 @@ export default function AgentsPage() {
         </div>
       </div>
 
-      <header className="relative z-50 w-full p-8 lg:px-14 flex justify-between items-center bg-muted/40 backdrop-blur-3xl border-b border-border">
-        <Link href="/" className="inline-flex items-center gap-4 text-muted-foreground/20 hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
+      <header className="relative z-50 w-full p-8 lg:px-14 flex flex-wrap justify-between items-center gap-y-3 bg-muted/40 backdrop-blur-3xl border-b border-border">
+        <Link href="/" className="inline-flex shrink-0 min-w-0 items-center gap-4 text-muted-foreground/20 hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
             <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
         </Link>
         <div className="flex items-center gap-6">
-           <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
+           <div className="max-w-[180px] sm:max-w-none overflow-hidden px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
               SWARM_v7.0_SYNC
            </div>
         </div>
