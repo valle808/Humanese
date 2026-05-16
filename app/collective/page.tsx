@@ -72,8 +72,19 @@ export default function CollectiveHUD() {
     }
   }, [isAuthorized]);
 
+  useEffect(() => {
+    const storedSession = localStorage.getItem('humanese_session');
+    if (storedSession) {
+      setIsAuthorized(true);
+      setIsAuthStep(false);
+    }
+  }, []);
+
   const handleAuthorize = () => {
-    if (passphrase === (process.env.NEXT_PUBLIC_ADMIN_KEY || 'VALLE_OVERLORD')) {
+    const isValleOverlord = passphrase === (process.env.NEXT_PUBLIC_ADMIN_KEY || 'VALLE_OVERLORD');
+    const hasSession = !!localStorage.getItem('humanese_session');
+    
+    if (isValleOverlord || hasSession) {
       setIsAuthorized(true);
       setIsAuthStep(false);
       setError(false);
@@ -122,6 +133,10 @@ export default function CollectiveHUD() {
             </div>
             
             {error && <p className="text-primary text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] animate-bounce italic leading-none px-2">Access Denied. Swarm Identity Rejection.</p>}
+            
+            <p className="text-[10px] text-muted-foreground/60 font-black uppercase tracking-[0.3em] italic bg-primary/5 py-2 px-4 rounded-full border border-primary/10">
+               <span className="opacity-50">Handshake Protocol:</span> <span className="text-primary">VALLE_OVERLORD</span>
+            </p>
             
             <button 
               onClick={handleAuthorize}
@@ -321,10 +336,14 @@ export default function CollectiveHUD() {
                  </h3>
                  <div className="grid gap-6">
                     {['Sovereignism', 'Digital_Decentralization', 'Abyssal_Logic', 'Omni_Command'].map((tag, i) => (
-                      <div key={i} className="flex items-center justify-between p-8 bg-muted/5 border-2 border-border rounded-[2.5rem] group cursor-pointer hover:bg-primary/5 hover:border-primary/30 transition-all shadow-xl">
+                      <Link 
+                        key={i} 
+                        href={`/hpedia?query=${tag}`}
+                        className="flex items-center justify-between p-8 bg-muted/5 border-2 border-border rounded-[2.5rem] group cursor-pointer hover:bg-primary/5 hover:border-primary/30 transition-all shadow-xl"
+                      >
                          <span className="text-sm font-black text-muted-foreground group-hover:text-foreground transition-colors uppercase tracking-[0.4em] italic leading-none">{tag}</span>
                          <LinkIcon size={20} className="text-muted-foreground/30 group-hover:text-primary group-hover:rotate-45 transition-all" />
-                      </div>
+                      </Link>
                     ))}
                  </div>
                  <div className="pt-10 border-t border-border flex justify-center flex-col items-center gap-6">

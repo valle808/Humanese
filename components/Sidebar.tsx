@@ -53,21 +53,12 @@ export const Sidebar = () => {
 
         setIsExpanded(expanded);
         setIsMounted(true);
-        
-        if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-            document.body.style.paddingLeft = expanded ? '20rem' : '7rem';
-            document.body.style.transition = 'padding-left 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-        }
     }, []);
 
     const toggleSidebar = () => {
         const newState = !isExpanded;
         setIsExpanded(newState);
         localStorage.setItem('omega_sidebar_status', newState ? 'expanded' : 'collapsed');
-        
-        if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-            document.body.style.paddingLeft = newState ? '20rem' : '7rem';
-        }
     };
 
     const navItems = [
@@ -241,49 +232,78 @@ export const Sidebar = () => {
                 {isExpanded ? <ChevronLeft size={20} strokeWidth={3} /> : <ChevronRight size={20} strokeWidth={3} />}
             </motion.button>
 
-            {/* Mobile Navigation - Retractable Menu */}
+            {/* Mobile Navigation - Sleek Retractable Drawer */}
             <div className="md:hidden">
-                {/* Mobile Toggle Button */}
-                <button 
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="fixed top-4 right-4 z-[1001] w-14 h-14 bg-background/80 backdrop-blur-xl border-2 border-border rounded-2xl flex flex-col items-center justify-center gap-1.5 shadow-2xl active:scale-95 transition-all group"
-                >
-                    <motion.div animate={{ rotate: isExpanded ? 45 : 0, y: isExpanded ? 8 : 0 }} className="w-8 h-1 bg-primary rounded-full transition-all" />
-                    <motion.div animate={{ opacity: isExpanded ? 0 : 1 }} className="w-8 h-1 bg-primary rounded-full transition-all" />
-                    <motion.div animate={{ rotate: isExpanded ? -45 : 0, y: isExpanded ? -8 : 0 }} className="w-8 h-1 bg-primary rounded-full transition-all" />
-                </button>
+                {/* Mobile Header / Trigger Bar */}
+                <div className="fixed top-0 left-0 right-0 h-20 bg-background/80 backdrop-blur-2xl border-b border-border z-[999] flex items-center justify-between px-6 shadow-xl">
+                    <Link href="/" className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center font-black text-background text-xl italic shadow-lg shadow-primary/20">Ω</div>
+                        <span className="font-black tracking-tighter text-2xl uppercase italic">OMEGA.</span>
+                    </Link>
+                    <button 
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="w-12 h-12 bg-secondary/50 border border-border rounded-xl flex flex-col items-center justify-center gap-1.5 active:scale-90 transition-all"
+                    >
+                        <motion.div animate={{ rotate: isExpanded ? 45 : 0, y: isExpanded ? 7 : 0 }} className="w-6 h-0.5 bg-primary rounded-full" />
+                        <motion.div animate={{ opacity: isExpanded ? 0 : 1 }} className="w-6 h-0.5 bg-primary rounded-full" />
+                        <motion.div animate={{ rotate: isExpanded ? -45 : 0, y: isExpanded ? -7 : 0 }} className="w-6 h-0.5 bg-primary rounded-full" />
+                    </button>
+                </div>
 
-                {/* Mobile Sidebar Overlay */}
+                {/* Mobile Drawer Overlay */}
                 <AnimatePresence>
                     {isExpanded && (
-                        <motion.div
-                            initial={{ opacity: 0, x: '100%' }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: '100%' }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed inset-0 z-[1000] bg-background/95 backdrop-blur-3xl flex flex-col p-8 pt-24"
-                        >
-                            <div className="flex-1 space-y-4 overflow-y-auto no-scrollbar">
-                                {navItems.map((item) => {
-                                    const isActive = pathname === item.href;
-                                    return (
-                                        <Link
-                                            key={item.id}
-                                            href={item.href}
-                                            onClick={() => setIsExpanded(false)}
-                                            className={`flex items-center gap-6 p-6 rounded-[2.5rem] transition-all active:scale-95 border-2 ${isActive ? 'bg-primary/10 border-primary/20 text-foreground' : 'border-transparent text-muted-foreground'}`}
-                                        >
-                                            {React.cloneElement(item.icon as React.ReactElement, { size: 28, strokeWidth: 3, className: isActive ? 'text-primary' : '' })}
-                                            <span className="text-xl font-black uppercase tracking-[0.2em] italic">{item.label}</span>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                            <div className="pt-8 border-t-2 border-border flex justify-between items-center px-4">
-                                <ThemeToggle />
-                                <UserMenu isExpanded={true} />
-                            </div>
-                        </motion.div>
+                        <>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setIsExpanded(false)}
+                                className="fixed inset-0 z-[1000] bg-background/60 backdrop-blur-md"
+                            />
+                            <motion.div
+                                initial={{ x: '-100%' }}
+                                animate={{ x: 0 }}
+                                exit={{ x: '-100%' }}
+                                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                                className="fixed top-0 left-0 bottom-0 w-[85%] max-w-xs z-[1001] bg-background border-r-2 border-primary/20 shadow-[20px_0_100px_rgba(0,0,0,0.5)] flex flex-col"
+                            >
+                                <div className="p-8 pt-10 border-b border-border mb-6">
+                                    <div className="flex flex-col">
+                                        <span className="text-3xl font-black uppercase italic tracking-tighter">Sovereign.</span>
+                                        <span className="text-[10px] font-black text-primary uppercase tracking-[0.5em] italic mt-1">Registry v7.0</span>
+                                    </div>
+                                </div>
+                                
+                                <nav className="flex-1 px-6 space-y-2 overflow-y-auto no-scrollbar">
+                                    {navItems.map((item) => {
+                                        const isActive = pathname === item.href;
+                                        return (
+                                            <Link
+                                                key={item.id}
+                                                href={item.href}
+                                                onClick={() => setIsExpanded(false)}
+                                                className={`flex items-center gap-5 p-5 rounded-[2rem] transition-all active:scale-95 border-2 ${isActive ? 'bg-primary/10 border-primary/20 text-foreground' : 'border-transparent text-muted-foreground'}`}
+                                            >
+                                                {React.cloneElement(item.icon as React.ReactElement, { size: 24, strokeWidth: 3, className: isActive ? 'text-primary' : '' })}
+                                                <span className="text-sm font-black uppercase tracking-[0.2em] italic">{item.label}</span>
+                                            </Link>
+                                        );
+                                    })}
+                                </nav>
+
+                                <div className="p-8 border-t border-border space-y-6">
+                                    <div className="flex items-center justify-between">
+                                        <ThemeToggle />
+                                        <UserMenu isExpanded={true} />
+                                    </div>
+                                    <div className="flex items-center gap-3 px-2">
+                                        <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] italic text-primary animate-pulse">Pulse Online</span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </>
                     )}
                 </AnimatePresence>
             </div>

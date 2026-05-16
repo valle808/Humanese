@@ -24,7 +24,7 @@ import {
   Lock,
   Target,
   Clock,
-  ChevronRight
+  BrainCircuit
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -59,20 +59,23 @@ export default function FAQPage() {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const filteredFaqs = FAQS.map(cat => ({
+    ...cat,
+    items: cat.items.filter(item => 
+      item.q.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      item.a.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cat.category.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  })).filter(cat => cat.items.length > 0);
+
   return (
     <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-foreground overflow-x-hidden pb-40">
       
       {/* 🌌 AMBIENT CORE */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-primary/5 blur-[350px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-20%] w-[90vw] h-[90vw] bg-primary/3 blur-[200px] rounded-full" />
+        <div className="absolute top-[-20%] left-[-10%] w-[120vw] h-[120vw] bg-primary/5 blur-[350px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-20%] w-[100vw] h-[100vw] bg-primary/3 blur-[200px] rounded-full" />
         <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay" />
-        
-        {/* Animated Scanning Lines */}
-        <div className="absolute inset-0 opacity-[0.05]">
-           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-1/4 animate-[scan_15s_linear_infinite]" />
-           <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent absolute top-3/4 animate-[scan_20s_linear_infinite_reverse]" />
-        </div>
       </div>
 
       <header className="relative z-50 w-full p-8 lg:px-14 flex justify-between items-center bg-muted/40 backdrop-blur-3xl border-b border-border">
@@ -81,70 +84,75 @@ export default function FAQPage() {
         </Link>
         <div className="flex items-center gap-6">
            <div className="px-6 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-black text-primary uppercase tracking-[0.4em] italic leading-none animate-pulse">
-              KNOWLEDGE_v7.0_SYNC
+              KNOWLEDGE_RESONANCE_v7.1
            </div>
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 lg:pt-32 space-y-16 md:space-y-32 flex-1 flex flex-col">
         
-        {/* ── HEADER SECTION ── */}
-        <motion.div 
+        {/* ── HEADER ── */}
+        <motion.section 
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center space-y-16"
+          className="space-y-12"
         >
-          <div className="inline-flex items-center gap-4 px-8 py-3 bg-muted/10 border border-border rounded-full backdrop-blur-3xl shadow-2xl mx-auto">
-            <HelpCircle size={20} className="text-primary" />
-            <span className="text-[11px] font-black tracking-[0.8em] text-primary uppercase italic leading-none pl-1">Knowledge Integration Nexus</span>
+          <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/30 border border-border rounded-full backdrop-blur-3xl shadow-2xl">
+            <BrainCircuit size={20} className="text-primary animate-pulse" />
+            <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none pl-1">Knowledge Nexus Protocol</span>
           </div>
           <div className="space-y-8">
-            <h1 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter italic leading-[0.82] italic pl-1 text-muted-foreground/95">
-              Knowledge<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-primary/30">Nexus.</span>
+            <h1 className="text-7xl md:text-[9rem] font-black tracking-tighter uppercase leading-[0.8] italic">
+              Humanese<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Intelligence Base.</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-muted-foreground/30 max-w-4xl mx-auto leading-relaxed font-light italic tracking-tight">
-              Your coordinate for understanding the OMEGA Protocol. 
-              <span className="text-muted-foreground/60"> Clarifying the mechanics</span> of the sovereign intelligence age.
+            <p className="text-2xl md:text-3xl text-muted-foreground/30 max-w-4xl leading-relaxed font-light italic">
+              Access the distributed ledger of operational truth. Query the swarm. Anchor your understanding of the OMEGA architecture.
             </p>
           </div>
+        </motion.section>
 
-          <div className="max-w-3xl mx-auto relative group mt-16 px-4">
-              <div className="absolute inset-0 bg-primary/10 blur-[40px] opacity-0 group-focus-within:opacity-100 transition-opacity rounded-full" />
-              <input 
-                 value={searchQuery}
-                 onChange={(e) => setSearchQuery(e.target.value)}
-                 type="text"
-                 placeholder="Search the nexus archives..."
-                 className="w-full bg-background/60 border-2 border-border rounded-[3.5rem] px-12 py-8 text-xl focus:outline-none focus:border-primary/40 backdrop-blur-3xl transition-all shadow-[0_40px_100px_rgba(0,0,0,0.8)] font-mono italic text-foreground placeholder:text-muted-foreground/5 pr-20"
-              />
-              <SearchCode size={32} className="absolute right-10 top-1/2 -translate-y-1/2 text-muted-foreground/10 group-focus-within:text-primary transition-colors" strokeWidth={2.5} />
+        {/* ── SEARCH ── */}
+        <div className="relative group max-w-4xl cursor-pointer" onClick={() => document.getElementById('faq-search')?.focus()}>
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-[3rem] blur opacity-25 group-hover:opacity-50 transition-all duration-1000" />
+          <div className="relative flex items-center bg-background border-2 border-border rounded-[3rem] px-12 py-8 shadow-2xl transition-all group-focus-within:border-primary/40 group-focus-within:bg-primary/5">
+             <Search size={32} className="text-muted-foreground/20 group-focus-within:text-primary transition-colors" strokeWidth={3} />
+             <input 
+               id="faq-search"
+               type="text" 
+               placeholder="Query the Abyssal Knowledge Graph..."
+               className="flex-1 bg-transparent border-none outline-none px-10 text-3xl font-light italic text-foreground placeholder:text-muted-foreground/10 tracking-tight cursor-text"
+               value={searchQuery}
+               onChange={e => setSearchQuery(e.target.value)}
+             />
+             <div className="hidden md:flex items-center gap-4 px-6 py-3 bg-muted/10 border-2 border-border rounded-2xl text-[10px] font-black text-muted-foreground/20 uppercase tracking-[0.4em] italic">
+                SIGNAL_INPUT
+             </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* ── FAQ CONTENT ── */}
-        <div className="space-y-32 mb-40">
-          {FAQS.map((category, idx) => (
+        {/* ── FAQ GRID ── */}
+        <div className="grid grid-cols-1 gap-12 lg:gap-20">
+          {filteredFaqs.map((category, idx) => (
             <motion.div 
-              key={category.category} 
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              key={category.category}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
               className="space-y-12"
             >
-              <div className="flex items-center gap-8 text-primary px-4 group">
-                  <div className="h-20 w-20 rounded-[2.5rem] bg-primary/10 border-2 border-primary/20 flex items-center justify-center shadow-[0_20px_40px_rgba(var(--primary),0.1)] group-hover:scale-110 group-hover:bg-primary group-hover:text-background transition-all">
-                      {category.icon}
+              <div className="flex items-center justify-between border-b-2 border-border pb-8">
+                  <div className="flex items-center gap-8">
+                     <div className="p-4 bg-primary/10 rounded-2xl text-primary">
+                        {category.icon}
+                     </div>
+                     <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic leading-none text-muted-foreground/90">{category.category}</h2>
                   </div>
-                  <div className="space-y-2">
-                     <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic leading-none text-muted-foreground/90 group-hover:text-primary transition-colors">{category.category}</h2>
-                     <div className="text-[11px] font-black uppercase tracking-[0.6em] text-muted-foreground/5 italic leading-none pl-1 group-hover:text-primary/40">SECTOR_ARCHIVE_0{idx+1}</div>
-                  </div>
+                  <div className="text-[11px] font-black uppercase tracking-[0.6em] text-muted-foreground/5 italic leading-none pl-1">SECTOR_ARCHIVE_0{idx+1}</div>
               </div>
 
               <div className="grid grid-cols-1 gap-6">
-                  {category.items.map((item, innerIdx) => (
+                  {category.items.map((item) => (
                       <div key={item.q} className="bg-background border-2 border-border responsive-rounded overflow-hidden backdrop-blur-3xl shadow-[0_40px_80px_rgba(0,0,0,0.95)] hover:border-primary/30 transition-all relative group">
                           <button 
                               onClick={() => setActiveItem(activeItem === item.q ? null : item.q)}
@@ -210,13 +218,13 @@ export default function FAQPage() {
                <div className="h-px w-32 bg-muted/10 mx-auto" />
             </div>
             <div className="flex flex-col lg:flex-row justify-center gap-10">
-                <button className="px-16 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[3rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none border-0 overflow-hidden relative group/btn">
+                <Link href="/monroe" className="px-16 py-8 bg-primary text-primary-foreground font-black uppercase tracking-[0.8em] rounded-[3rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all text-[11px] flex items-center justify-center gap-6 italic leading-none border-0 overflow-hidden relative group/btn">
                     <span className="relative z-10 flex items-center gap-6">Consult Abyssal Sentinel <ArrowRight size={20} className="group-hover/btn:translate-x-3 transition-transform" strokeWidth={3} /></span>
                     <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-10 transition-opacity" />
-                </button>
-                <button className="px-16 py-8 border-2 border-border bg-muted text-muted-foreground/30 hover:text-foreground font-black uppercase tracking-[0.8em] rounded-[3rem] hover:bg-muted/10 hover:border-border transition-all text-[11px] italic leading-none active:scale-95 group/btn">
+                </Link>
+                <Link href="/hpedia" className="px-16 py-8 border-2 border-border bg-muted text-muted-foreground/30 hover:text-foreground font-black uppercase tracking-[0.8em] rounded-[3rem] hover:bg-muted/10 hover:border-border transition-all text-[11px] flex items-center justify-center italic leading-none active:scale-95 group/btn">
                     Open Protocol Technicals
-                </button>
+                </Link>
             </div>
             
             <div className="pt-24">

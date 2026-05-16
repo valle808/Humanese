@@ -39,27 +39,32 @@ export const TradingWidget = ({ wallets, onTrade }: { wallets: any[], onTrade: (
           <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground/40 italic ml-4">
             Amount_
           </label>
-          <div className="relative">
+          <div className="relative cursor-pointer" onClick={() => document.getElementById('trade-amount')?.focus()}>
             <input 
+              id="trade-amount"
               required
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0.00"
-              className="w-full bg-background border-2 border-border rounded-[2.5rem] px-10 py-8 text-5xl font-black italic text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 placeholder:text-muted-foreground/10 tracking-tighter"
+              className="w-full bg-background border-2 border-border rounded-[2.5rem] px-10 py-8 text-5xl font-black italic text-foreground outline-none focus:border-primary/40 focus:bg-primary/5 placeholder:text-muted-foreground/10 tracking-tighter cursor-text"
             />
-            <div className="absolute right-10 top-1/2 -translate-y-1/2 text-2xl font-black text-muted-foreground/20 italic">
+            <div className="absolute right-10 top-1/2 -translate-y-1/2 text-2xl font-black text-muted-foreground/20 italic pointer-events-none">
               USD
             </div>
           </div>
         </div>
 
         <div className="space-y-3">
-          <label className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground/40 italic ml-4">
+          <label 
+            className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground/40 italic ml-4 cursor-pointer"
+            onClick={() => document.getElementById('trade-asset')?.focus()}
+          >
             {activeTab === 'convert' ? 'Convert To' : 'Asset_'}
           </label>
           <div className="relative">
             <select 
+              id="trade-asset"
               value={selectedAsset}
               onChange={(e) => setSelectedAsset(e.target.value)}
               className="w-full bg-background border-2 border-border rounded-[2.5rem] px-10 py-6 text-xl font-black uppercase italic tracking-widest text-foreground outline-none focus:border-primary/40 appearance-none cursor-pointer"

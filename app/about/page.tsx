@@ -22,7 +22,8 @@ import {
   Orbit,
   Grid,
   ShieldHalf,
-  Search
+  Search,
+  ArrowUpRight
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -119,13 +120,20 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="pt-8 pl-1">
-                 <button className="flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.6em] text-primary hover:text-foreground transition-all italic leading-none group/btn">
-                    ANALYZE_SPEC <ChevronRight size={18} className="group-hover/btn:translate-x-2 transition-transform" strokeWidth={3} />
-                 </button>
+                 <Link href="/hpedia" className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.6em] text-primary hover:text-foreground transition-all italic leading-none group/btn">
+                    ANALYZE_SPEC <ArrowUpRight size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                 </Link>
               </div>
             </motion.div>
           ))}
         </motion.section>
+
+        {/* ── INITIALIZE OMEGA ── */}
+        <div className="flex justify-center pt-16">
+           <Link href="/auth" className="h-28 px-24 bg-primary text-background font-black uppercase tracking-[1em] flex items-center gap-8 rounded-[3.5rem] shadow-[0_40px_100px_rgba(var(--primary),0.3)] hover:scale-[1.05] active:scale-95 transition-all text-sm italic group">
+             INITIALIZE OMEGA <ArrowUpRight size={32} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" strokeWidth={3} />
+           </Link>
+        </div>
 
         {/* ── TECHNICAL MANIFESTO ── */}
         <motion.section 

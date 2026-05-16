@@ -42,7 +42,9 @@ const ENTITIES = [
 type AuthMode = 'login' | 'register';
 type AuthStep = 'mode' | 'entity' | 'credentials' | 'verification' | 'success';
 
-export default function AuthPage() {
+import { Suspense } from 'react';
+
+function AuthContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect');
@@ -559,5 +561,17 @@ export default function AuthPage() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function AuthPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Activity className="animate-spin text-primary" size={40} />
+      </div>
+    }>
+      <AuthContent />
+    </Suspense>
   );
 }

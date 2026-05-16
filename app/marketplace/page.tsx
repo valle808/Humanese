@@ -42,10 +42,15 @@ const PACTS = [
 export default function MarketplacePage() {
   const [filter, setFilter] = useState('All');
   const [pacting, setPacting] = useState<number | null>(null);
+  const [pactSuccess, setPactSuccess] = useState<number | null>(null);
 
   const handlePact = (id: number) => {
     setPacting(id);
-    setTimeout(() => setPacting(null), 3000);
+    setTimeout(() => {
+      setPacting(null);
+      setPactSuccess(id);
+      setTimeout(() => setPactSuccess(null), 2000);
+    }, 2500);
   };
 
   return (
@@ -133,18 +138,19 @@ export default function MarketplacePage() {
            {/* LEFT: FILTERS HUB */}
            <aside className="lg:col-span-3 space-y-12 h-fit lg:sticky lg:top-32">
               <div className="bg-background border-2 border-border rounded-[4.5rem] p-10 backdrop-blur-3xl space-y-12 shadow-xl shadow-inner">
-                 <div className="space-y-6">
+                  <div className="space-y-6">
                     <h3 className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-4 italic leading-none pl-2">
                       <Search size={16} className="text-primary" /> Neural Search
                     </h3>
-                    <div className="relative group/input">
+                    <div className="relative group/input cursor-pointer" onClick={() => document.getElementById('market-search')?.focus()}>
                        <input 
+                         id="market-search"
                          placeholder="Skill Identifier..."
-                         className="w-full bg-muted border-2 border-border rounded-2xl px-8 py-6 text-sm text-foreground outline-none focus:border-primary/50 focus:bg-primary/5 transition-all font-light italic text-xl placeholder:text-muted-foreground/10 shadow-inner"
+                         className="w-full bg-muted border-2 border-border rounded-2xl px-8 py-6 text-sm text-foreground outline-none focus:border-primary/50 focus:bg-primary/5 transition-all font-light italic text-xl placeholder:text-muted-foreground/10 shadow-inner cursor-text"
                        />
-                       <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground/10 group-hover/input:text-primary transition-colors" size={20} />
+                       <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground/10 group-hover/input:text-primary transition-colors pointer-events-none" size={20} />
                     </div>
-                 </div>
+                  </div>
 
                  <div className="space-y-6">
                     <h3 className="text-[11px] font-black uppercase tracking-[0.8em] text-muted-foreground/20 flex items-center gap-4 italic leading-none pl-2">
@@ -226,12 +232,20 @@ export default function MarketplacePage() {
                            </div>
                            <button 
                              onClick={() => handlePact(pact.id)}
-                             disabled={pacting === pact.id}
-                             className="w-full md:w-auto h-20 px-12 rounded-[2.5rem] bg-foreground text-background font-black text-[11px] uppercase tracking-[0.6em] hover:bg-primary hover:text-primary-foreground hover:shadow-2xl hover:shadow-primary/20 transition-all active:scale-95 disabled:grayscale disabled:opacity-20 flex items-center justify-center gap-6 italic group/btn border-0 shadow-lg leading-none"
+                             disabled={pacting === pact.id || pactSuccess === pact.id}
+                             className={`w-full md:w-auto h-20 px-12 rounded-[2.5rem] font-black text-[11px] uppercase tracking-[0.6em] transition-all active:scale-95 disabled:opacity-80 flex items-center justify-center gap-6 italic group/btn border-0 shadow-lg leading-none ${
+                               pactSuccess === pact.id 
+                               ? 'bg-emerald-500 text-white' 
+                               : 'bg-foreground text-background hover:bg-primary hover:text-primary-foreground hover:shadow-2xl hover:shadow-primary/20'
+                             }`}
                            >
                               {pacting === pact.id ? (
                                 <div className="flex items-center gap-6 italic animate-pulse">
                                    <Activity size={24} className="animate-spin" strokeWidth={3} /> Pacting...
+                                </div>
+                              ) : pactSuccess === pact.id ? (
+                                <div className="flex items-center gap-6 italic">
+                                   <ShieldCheck size={24} strokeWidth={3} /> Success
                                 </div>
                               ) : (
                                 <>
