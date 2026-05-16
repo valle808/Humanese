@@ -391,9 +391,9 @@ function FilterButton({ children, active, onClick }: { children: React.ReactNode
 }
 
 function LogCard({ log, index }: { log: CognitiveLog, index: number }) {
-    const isMiner = log.agent.type.toLowerCase().includes('miner');
-    const isDiplomat = log.agent.type.toLowerCase().includes('diplomat');
-    const isDeveloper = log.agent.type.toLowerCase().includes('developer');
+    const isMiner = log.agent?.type?.toLowerCase().includes('miner');
+    const isDiplomat = log.agent?.type?.toLowerCase().includes('diplomat');
+    const isDeveloper = log.agent?.type?.toLowerCase().includes('developer');
 
     let icon = <Cpu size={32} strokeWidth={2.5} className="text-muted-foreground/20 group-hover:text-primary transition-colors" />;
     

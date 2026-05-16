@@ -54,8 +54,17 @@ export default function CognitiveAtlasPage() {
       const res = await fetch('/api/knowledge-graph');
       if (res.ok) {
         const data = await res.json();
-        setAllData(data);
-        setGraphData(data);
+        
+        // Sanitize data to prevent "node not found" crashes
+        const validNodeIds = new Set(data.nodes.map((n: any) => n.id));
+        const sanitizedLinks = data.links.filter((l: any) => 
+            validNodeIds.has(l.source?.id || l.source) && 
+            validNodeIds.has(l.target?.id || l.target)
+        );
+        const sanitizedData = { nodes: data.nodes, links: sanitizedLinks };
+        
+        setAllData(sanitizedData);
+        setGraphData(sanitizedData);
       }
     } catch (err) {
       console.error("Atlas: Graph load failed", err);
@@ -221,6 +230,8 @@ export default function CognitiveAtlasPage() {
                 graphData={formattedData}
                 nodeLabel="label"
                 nodeCanvasObject={(node: any, ctx: any, globalScale: number) => {
+                  if (!isFinite(node.x) || !isFinite(node.y)) return;
+                  
                   const isAgent = node.group === 'AGENT';
                   const isUser = node.group === 'USER';
                   const isKnowledge = node.group === 'KNOWLEDGE';

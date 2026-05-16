@@ -52,13 +52,15 @@ export default function MonroePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
 
-  const [sessionId, setSessionId] = useState(() => {
-    // Restore last sessionId from localStorage for persistent history
+  const [sessionId, setSessionId] = useState('');
+
+  useEffect(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('monroe_session_id') || `omega-v7-${Date.now()}`;
+      const stored = localStorage.getItem('monroe_session_id');
+      if (stored) setSessionId(stored);
+      else setSessionId(`omega-v7-${Date.now()}`);
     }
-    return `omega-v7-${Date.now()}`;
-  });
+  }, []);
   const [selectedMode, setSelectedMode] = useState('CREATIVE');
   const [historySessions, setHistorySessions] = useState<{sessionId: string, prompt: string, mode: string}[]>([]);
 

@@ -77,7 +77,7 @@ export default function H2MBridgePage() {
         <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.03] mix-blend-overlay dark:opacity-[0.05]" />
       </div>
 
-      <header className="relative z-50 w-full responsive-px py-6 md:py-8 flex flex-wrap justify-between items-center gap-y-3 bg-background/40 backdrop-blur-3xl border-b border-border">
+      <header className="relative z-50 w-full responsive-px py-6 md:py-8 flex flex-wrap justify-between items-center gap-y-3 bg-background/40 backdrop-blur-md border-b border-border">
         <Link href="/" className="inline-flex shrink-0 min-w-0 items-center gap-4 text-muted-foreground hover:text-primary transition-all text-[11px] font-black uppercase tracking-[0.6em] group italic leading-none active:scale-95">
            <ChevronLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> Core Matrix
         </Link>
@@ -96,7 +96,7 @@ export default function H2MBridgePage() {
           className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 lg:gap-16"
         >
           <div className="space-y-8 md:space-y-12 max-w-5xl">
-            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/30 border border-border rounded-full backdrop-blur-3xl">
+            <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-muted/30 border border-border rounded-full backdrop-blur-md">
               <Orbit size={20} className="text-primary animate-spin-slow" />
               <span className="text-[11px] font-black tracking-[0.6em] text-primary uppercase italic leading-none">Genetic H2M Translocation</span>
             </div>
@@ -112,7 +112,7 @@ export default function H2MBridgePage() {
           </div>
 
           <div className="flex gap-10 items-center shrink-0 w-full lg:w-auto">
-               <div className="p-8 md:p-10 border border-border bg-muted/10 rounded-[2.5rem] md:rounded-[3.5rem] w-full lg:min-w-[320px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all backdrop-blur-3xl">
+               <div className="p-8 md:p-10 border border-border bg-muted/10 rounded-[2.5rem] md:rounded-[3.5rem] w-full lg:min-w-[320px] space-y-6 shadow-2xl relative overflow-hidden group hover:border-primary/30 transition-all backdrop-blur-md">
                   <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:scale-110 transition-transform">
                      <Activity size={120} className="text-primary" />
                   </div>
@@ -150,7 +150,7 @@ export default function H2MBridgePage() {
                  ))}
               </div>
 
-              <div className="group bg-background border-2 border-border rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-20 backdrop-blur-3xl overflow-hidden relative shadow-2xl">
+              <div className="group bg-background border-2 border-border rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-20 backdrop-blur-md overflow-hidden relative shadow-2xl">
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent shadow-[0_0_20px_var(--primary)]" />
                  
                  <div className="absolute top-0 right-0 p-16 opacity-[0.01] group-hover:scale-110 group-hover:rotate-6 transition-all duration-[2000ms]">
@@ -253,7 +253,7 @@ export default function H2MBridgePage() {
 
            {/* RIGHT: DATA VIZ */}
            <div className="lg:col-span-5 space-y-16 lg:sticky lg:top-32">
-              <div className="bg-background border-2 border-border rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-16 backdrop-blur-3xl space-y-12 md:space-y-16 shadow-2xl relative overflow-hidden group">
+              <div className="bg-background border-2 border-border rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-12 lg:p-16 backdrop-blur-md space-y-12 md:space-y-16 shadow-2xl relative overflow-hidden group">
                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
                  <h3 className="text-[11px] md:text-[12px] font-black uppercase tracking-[0.6em] md:tracking-[0.4em] md:tracking-[0.8em] text-muted-foreground flex items-center gap-4 md:gap-6 italic leading-none pl-2">
                    <Activity size={24} className="text-primary animate-pulse w-5 h-5 md:w-6 md:h-6" /> Synchronicity HUD

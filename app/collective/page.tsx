@@ -127,7 +127,7 @@ export default function CollectiveHUD() {
                 value={passphrase}
                 onChange={(e) => setPassphrase(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleAuthorize()}
-                className="w-full bg-background border-2 border-border rounded-[2rem] md:rounded-[2.5rem] py-6 md:py-8 px-6 md:px-10 text-foreground text-lg md:text-xl outline-none focus:border-primary/40 focus:bg-primary/5 transition-all font-light italic text-center placeholder:text-muted-foreground/30 shadow-inner"
+                className="w-full bg-background border-2 border-border rounded-[2rem] md:rounded-[2.5rem] py-6 md:py-8 px-6 md:px-10 text-foreground text-lg md:text-xl outline-none focus:border-primary/40 focus:bg-primary/10 bg-background/80 transition-all font-light italic text-center placeholder:text-muted-foreground/60 shadow-inner"
               />
               <div className="absolute inset-0 rounded-[2rem] md:rounded-[2.5rem] border border-transparent pointer-events-none group-hover/input:border-border transition-all" />
             </div>

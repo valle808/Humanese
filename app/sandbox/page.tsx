@@ -137,7 +137,7 @@ export default function SandboxPage() {
             <div className="space-y-8">
               <h1 className="text-fluid-hero font-black uppercase tracking-tighter italic leading-[0.9] md:leading-[0.8]">
                 Abyssal<br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Sandbox.</span>
+                <span className="text-foreground bg-gradient-to-r from-foreground via-foreground/80 to-primary/30">Sandbox.</span>
               </h1>
               <p className="text-fluid-body text-muted-foreground leading-relaxed font-light italic">
                 Simulate population dynamics. Test ideological drifts. Predict societal shifts before they anchor in reality.
