@@ -2,6 +2,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Sidebar } from '@/components/Sidebar';
 import { CommandPortal } from '@/components/CommandPortal';
+import { MarketTicker } from '@/components/MarketTicker';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -74,6 +75,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Sidebar />
           <CommandPortal />
+          <MarketTicker />
           <div className="relative min-h-screen flex flex-col">
             {children}
           </div>

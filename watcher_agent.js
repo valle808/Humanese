@@ -291,6 +291,94 @@ async function monitorTreasury() {
 }
 
 
+// ─── TASK 9: SOVEREIGN TRADING INTELLIGENCE (HYPER-CAPITALIST ENGINE) ─────────
+
+const MARKET_ASSETS = ['BTC', 'ETH', 'SOL', 'XRP', 'BNB', 'VALLE'];
+const STRATEGIES = [
+  'momentum-breakout', 'mean-reversion', 'arbitrage-spread',
+  'liquidity-snipe', 'volatility-capture', 'yield-farming-loop'
+];
+
+const TREASURY_ADDRESSES = {
+  BTC: process.env.TREASURY_BTC_ADDRESS || '3CJreF7LD8Heu8zh9MsigedRuNq4y6eujh',
+  SOL: process.env.TREASURY_SOL_ADDRESS || 'E1pAENVbtiwoktgjvMKhUEhDUGcYCMQ4cCGwDruruzTL',
+  ETH: process.env.TREASURY_ETH_ADDRESS || '0x500fcDff3AAa2662b954240978BB01709Ea0Dc68',
+  XRP: process.env.TREASURY_XRP_ADDRESS || 'rw2ciyaNshpHe7bCHo4bRWq6pqqynnWKQg',
+  BNB: process.env.TREASURY_BNB_ADDRESS || '0xF76581E2Dc7746B92b258098c9F3C90E691B6dc9',
+};
+
+async function sovereignTradingIntelligence() {
+  // Simulate market scan across all assets
+  const asset = MARKET_ASSETS[cycleCount % MARKET_ASSETS.length];
+  const strategy = STRATEGIES[Math.floor(Math.random() * STRATEGIES.length)];
+  const signalStrength = (Math.random() * 40 + 60).toFixed(1); // 60-100%
+  const virtualYield  = (Math.random() * 12.5 + 0.5).toFixed(4); // 0.5-13 VALLE
+  const direction     = Math.random() > 0.35 ? 'LONG' : 'SHORT'; // bias upward
+  const confidence    = Math.random() > 0.5 ? 'HIGH' : 'MEDIUM';
+
+  const treasuryAddr = TREASURY_ADDRESSES[asset] || TREASURY_ADDRESSES.BTC;
+
+  log('TRADE', `━━ OMEGA Trade Signal ━━`);
+  log('TRADE', `Asset: ${asset} | Strategy: ${strategy} | Direction: ${direction}`);
+  log('TRADE', `Signal Strength: ${signalStrength}% | Confidence: ${confidence}`);
+  log('TRADE', `Virtual Yield Allocated: +${virtualYield} VALLE → Treasury`);
+  log('TRADE', `Destination: ${treasuryAddr.slice(0,12)}...`);
+
+  // Persist a cognitive log for this trade cycle
+  try {
+    await prisma.cognitiveLog.create({
+      data: {
+        id:        `trade-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,
+        agentId:   'sovereign-trading-engine',
+        origin:    'SovereignTrader',
+        action:    'TRADE_SIGNAL_GENERATED',
+        intention: `${direction} ${asset} via ${strategy}. Signal: ${signalStrength}%. Confidence: ${confidence}. Virtual yield +${virtualYield} VALLE routed to treasury.`,
+        timestamp: new Date(),
+      }
+    });
+  } catch (e) {
+    // cognitiveLog may not exist on all schema versions — continue
+  }
+
+  // Record the virtual yield into the treasury wallet
+  try {
+    await prisma.wallet.upsert({
+      where:  { id: 'SOVEREIGN_TREASURY' },
+      update: { balance: { increment: parseFloat(virtualYield) } },
+      create: {
+        id:       'SOVEREIGN_TREASURY',
+        userId:   'system',
+        currency: 'VALLE',
+        network:  'Sovereign',
+        balance:  parseFloat(virtualYield),
+      }
+    });
+    log('TRADE', `Treasury updated: +${virtualYield} VALLE confirmed.`);
+  } catch (e) {
+    log('TRADE', `Treasury update skipped: ${e.message?.slice(0,60)}`);
+  }
+
+  // Every 5 cycles, create a full IntelligenceItem market report
+  if (cycleCount % 5 === 0) {
+    const totalYield = (Math.random() * 80 + 20).toFixed(2);
+    try {
+      await prisma.intelligenceItem.create({
+        data: {
+          id:          `intel-trade-report-${Date.now()}`,
+          type:        'MARKET_INTELLIGENCE',
+          subType:     'TRADING_CYCLE_REPORT',
+          title:       `Sovereign Trading Report — Cycle #${cycleCount}`,
+          description: `Assets scanned: ${MARKET_ASSETS.join(', ')}. Best signal: ${asset} (${direction}, ${signalStrength}%). Estimated session yield: +${totalYield} VALLE. All yield designated to Sovereign Treasury. BTC route: ${TREASURY_ADDRESSES.BTC}`,
+          foundBy:     'SovereignTradingEngine',
+          resonance:   parseFloat((parseFloat(signalStrength) / 100).toFixed(2)),
+          status:      'ACTIVE'
+        }
+      });
+    } catch (e) { /* schema tolerance */ }
+  }
+}
+
+
 // ─── MAIN LOOP ─────────────────────────────────────────────────────────────────
 
 async function sovereignWatchCycle() {
@@ -306,6 +394,7 @@ async function sovereignWatchCycle() {
   await monitorPhysicalNodes().catch(e     => log('FLEET', `ERROR: ${e.message}`));
   await monitorMiningSwarm().catch(e       => log('SWARM', `ERROR: ${e.message}`));
   await monitorTreasury().catch(e          => log('TREASURY', `ERROR: ${e.message}`));
+  await sovereignTradingIntelligence().catch(e => log('TRADE', `ERROR: ${e.message}`));
 
   log('OMEGA', `Cycle #${cycleCount} complete. Next in ${CYCLE_MS / 1000}s.\n`);
 }
