@@ -299,6 +299,7 @@ export default function MonroePage() {
       } catch (err) {
         alert('Invalid session history file.');
       }
+    };
     reader.readAsText(file);
   };
 
@@ -844,5 +845,4 @@ function SidebarContent({
       </div>
     </div>
   );
-}
 }
