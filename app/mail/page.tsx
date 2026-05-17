@@ -60,6 +60,7 @@ export default function MailPage() {
   const [isComposing, setIsComposing] = useState(false);
   const [composeData, setComposeData] = useState({ to: '', subject: '', content: '' });
   const [isSending, setIsSending] = useState(false);
+  const [sendResult, setSendResult] = useState<{ ok: boolean; msg: string } | null>(null);
   const [agentDrafting, setAgentDrafting] = useState(false);
 
   useEffect(() => {
@@ -122,6 +123,7 @@ export default function MailPage() {
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
+    setSendResult(null);
     try {
       const res = await fetch('/api/mail/send', {
         method: 'POST',
@@ -136,12 +138,20 @@ export default function MailPage() {
           metadata: { client: 'OMEGA HSM Messenger v7.0' }
         })
       });
+      const data = await res.json();
       if (res.ok) {
-        setIsComposing(false);
-        setComposeData({ to: '', subject: '', content: '' });
-        fetchInbox(session.accessToken, currentFolder);
+        setSendResult({ ok: true, msg: 'Signal transmitted. Message delivered to sovereign relay.' });
+        setTimeout(() => {
+          setIsComposing(false);
+          setComposeData({ to: '', subject: '', content: '' });
+          setSendResult(null);
+          fetchInbox(session.accessToken, currentFolder);
+        }, 1800);
+      } else {
+        setSendResult({ ok: false, msg: data.error || 'Relay failure — check recipient handle.' });
       }
-    } catch (e) {
+    } catch (e: any) {
+      setSendResult({ ok: false, msg: 'Network error — matrix connection lost.' });
       console.error('Send error', e);
     } finally {
       setIsSending(false);
@@ -509,13 +519,34 @@ export default function MailPage() {
                   />
                 </div>
 
+                {/* ── SEND RESULT BANNER ── */}
+                {sendResult && (
+                  <div className={`flex items-start gap-4 p-6 rounded-[1.5rem] border-2 text-sm font-black italic tracking-tight leading-snug ${
+                    sendResult.ok 
+                      ? 'bg-green-500/10 border-green-500/40 text-green-400' 
+                      : 'bg-red-500/10 border-red-500/40 text-red-400'
+                  }`}>
+                    <span className="text-xl shrink-0">{sendResult.ok ? '✓' : '✗'}</span>
+                    <span>{sendResult.msg}</span>
+                  </div>
+                )}
+
                 <div className="flex flex-col sm:flex-row items-center gap-8 pt-4">
                   <button 
                     type="submit" 
-                    disabled={isSending}
-                    className="flex-1 w-full py-6 bg-primary text-primary-foreground font-black uppercase tracking-widest text-[10px] rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-20 flex items-center justify-center gap-6 italic leading-none border-0"
+                    disabled={isSending || sendResult?.ok === true}
+                    className={`flex-1 w-full py-6 font-black uppercase tracking-widest text-[10px] rounded-full shadow-lg hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 flex items-center justify-center gap-6 italic leading-none border-0 ${
+                      sendResult?.ok 
+                        ? 'bg-green-500 text-white' 
+                        : 'bg-primary text-primary-foreground'
+                    }`}
                   >
-                    {isSending ? <RefreshCw className="animate-spin" size={24}/> : <><Send size={24}/> Transmit</>}
+                    {isSending 
+                      ? <RefreshCw className="animate-spin" size={24}/> 
+                      : sendResult?.ok 
+                        ? <><span className="text-xl">✓</span> Transmitted</>
+                        : <><Send size={24}/> Transmit</>
+                    }
                   </button>
                 </div>
               </form>
