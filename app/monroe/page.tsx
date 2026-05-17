@@ -12,7 +12,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import Link from 'next/link';
-import { db } from '@/lib/firebase';
+// Firebase is not required for Monroe — all session history is localStorage-based
 
 // ── LocalStorage-based history (reliable, no Firebase permissions needed) ──
 const HISTORY_KEY = 'monroe_session_history';
@@ -354,7 +354,7 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background dark:bg-background text-foreground dark:text-foreground font-sans overflow-hidden flex flex-col lg:flex-row">
+    <div className="relative min-h-screen bg-background dark:bg-background text-foreground dark:text-foreground font-sans overflow-hidden flex flex-col lg:flex-row pl-0 md:pl-[7rem] pt-[40px]">
 
       {/* AMBIENT BG */}
       <div className="fixed inset-0 pointer-events-none z-0">

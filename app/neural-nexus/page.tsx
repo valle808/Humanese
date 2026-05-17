@@ -128,9 +128,9 @@ export default function NeuralNexusPage() {
             if (logData.success) {
                 let filteredLogs = logData.logs;
                 if (filterCategory === 'FINANCIAL') {
-                    filteredLogs = filteredLogs.filter((l: any) => l.agent.type.match(/Miner|Diplomat/i));
+                    filteredLogs = filteredLogs.filter((l: any) => l?.agent?.type?.match?.(/Miner|Diplomat/i));
                 } else if (filterCategory === 'TECHNICAL') {
-                    filteredLogs = filteredLogs.filter((l: any) => l.agent.type.match(/Developer/i));
+                    filteredLogs = filteredLogs.filter((l: any) => l?.agent?.type?.match?.(/Developer/i));
                 }
                 setLogs(filteredLogs);
             }
@@ -154,7 +154,7 @@ export default function NeuralNexusPage() {
     const agents = Array.from(new Set(logs.map(l => l.agentId)));
 
     return (
-        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 overflow-x-hidden">
+        <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-primary/40 selection:text-primary overflow-x-hidden pb-40 transition-colors duration-700 pl-0 md:pl-[7rem] pt-[40px]">
             
             {/* ── GAMING HUD OVERLAYS ── */}
             <div className="fixed inset-0 pointer-events-none z-20">
