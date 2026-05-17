@@ -354,7 +354,7 @@ export default function MonroePage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background dark:bg-background text-foreground dark:text-foreground font-sans overflow-hidden flex flex-col lg:flex-row pl-0 md:pl-[7rem] pt-[40px]">
+    <div className="fixed inset-0 md:left-[7rem] top-[40px] bg-background dark:bg-background text-foreground dark:text-foreground font-sans flex flex-col lg:flex-row overflow-hidden">
 
       {/* AMBIENT BG */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -428,7 +428,7 @@ export default function MonroePage() {
       </aside>
 
       {/* ── MAIN CHAT ── */}
-      <main className="flex-1 relative z-10 flex flex-col h-screen overflow-hidden">
+      <main className="flex-1 relative z-10 flex flex-col min-h-0 overflow-hidden">
 
         {/* HEADER */}
         <header className="flex-none flex items-center gap-3 px-4 py-3 border-b border-border dark:border-border bg-background/80 dark:bg-muted/60 backdrop-blur-3xl">
