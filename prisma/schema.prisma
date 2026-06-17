@@ -1037,3 +1037,42 @@ enum one_time_token_type {
 
   @@schema("auth")
 }
+
+// ─── Layucateca Virtual Classroom Models ──────────────────────────
+
+model ProjectSuggestion {
+  id          String           @id @default(cuid())
+  name        String
+  suggestedBy String
+  createdAt   DateTime         @default(now())
+  votes       SuggestionVote[]
+
+  @@schema("public")
+}
+
+model SuggestionVote {
+  id           String            @id @default(cuid())
+  suggestionId String
+  userId       String
+  suggestion   ProjectSuggestion @relation(fields: [suggestionId], references: [id], onDelete: Cascade)
+
+  @@unique([suggestionId, userId])
+  @@schema("public")
+}
+
+model ProjectProposal {
+  id        String   @id @default(cuid())
+  content   String   @default("")
+  updatedAt DateTime @updatedAt
+  updatedBy String?
+
+  @@schema("public")
+}
+
+model MonroeMemory {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+
+  @@schema("public")
+}

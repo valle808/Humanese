@@ -1,13 +1,20 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
-import { prisma } from '@/lib/prisma';
-import { getSecret } from '@/utils/secrets.js';
-import { db } from '@/lib/firebase';
-import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
-import { submitToDecentralizedSwarm } from '@/lib/decentralized-network';
-import { jsPDF } from 'jspdf';
 import fs from 'fs';
 import path from 'path';
+
+// Static imports — wrapped in try/catch inside POST to be resilient
+import { prisma as _prisma } from '@/lib/prisma';
+import { getSecret as _getSecret } from '@/utils/secrets.js';
+import { db as _db } from '@/lib/firebase';
+import { collection, query as fbQ, where, orderBy, limit, getDocs, addDoc } from 'firebase/firestore';
+import { submitToDecentralizedSwarm as _submitToDecentralizedSwarm } from '@/lib/decentralized-network';
+
+// Resilient wrappers — if any import fails at runtime, these fall back gracefully
+const safeGetPrisma = () => { try { return _prisma; } catch { return null; } };
+const safeGetSecret = async (k: string): Promise<string | null> => { try { return await _getSecret(k); } catch { return null; } };
+const safeGetDb = () => { try { return _db; } catch { return null; } };
+const safeSubmitSwarm = async (msgs: any[], prompt: string) => { try { return await _submitToDecentralizedSwarm(msgs, prompt); } catch { return null; } };
 
 export const dynamic = 'force-dynamic';
 
@@ -15,30 +22,44 @@ export const dynamic = 'force-dynamic';
  * 🛠️ NATIVE TOOL EXECUTION LAYER - GIO V.
  */
 async function query_blockchain() {
-    const [txVolume, pendingTx, activeAgents, monroeState] = await Promise.all([
-        prisma.transaction.aggregate({ _sum: { amount: true }, where: { status: 'CONFIRMED' } }),
-        prisma.transaction.count({ where: { status: 'PENDING' } }),
-        prisma.agent.count({ where: { status: 'ACTIVE' } }),
-        fs.promises.readFile(path.join(process.cwd(), 'agents/data/monroe_state.json'), 'utf8').then(JSON.parse).catch(() => ({ status: 'OFFLINE' }))
-    ]);
-    return JSON.stringify({
-        totalVolume: txVolume._sum.amount || 0,
-        pendingTransactions: pendingTx,
-        activeAgents: activeAgents,
-        networkStatus: "SECURE",
-        monroeAudit: monroeState.stats?.lastLogicResult || "PENDING",
-        monroeStatus: monroeState.status
-    });
+    try {
+        const prisma = safeGetPrisma();
+        if (!prisma) return JSON.stringify({ networkStatus: 'DEGRADED', message: 'Database offline — operating in autonomous mode.' });
+        const [txVolume, pendingTx, activeAgents, monroeState] = await Promise.all([
+            prisma.transaction.aggregate({ _sum: { amount: true }, where: { status: 'CONFIRMED' } }).catch(() => ({ _sum: { amount: 0 } })),
+            prisma.transaction.count({ where: { status: 'PENDING' } }).catch(() => 0),
+            prisma.agent.count({ where: { status: 'ACTIVE' } }).catch(() => 0),
+            fs.promises.readFile(path.join(process.cwd(), 'agents/data/monroe_state.json'), 'utf8').then(JSON.parse).catch(() => ({ status: 'OFFLINE' }))
+        ]);
+        return JSON.stringify({
+            totalVolume: txVolume._sum.amount || 0,
+            pendingTransactions: pendingTx,
+            activeAgents: activeAgents,
+            networkStatus: "SECURE",
+            monroeAudit: monroeState.stats?.lastLogicResult || "PENDING",
+            monroeStatus: monroeState.status
+        });
+    } catch (e: any) {
+        console.warn('[Monroe] query_blockchain failed:', e.message);
+        return JSON.stringify({ networkStatus: 'DEGRADED', error: e.message });
+    }
 }
 
 async function fetch_swarm_status() {
-    const nodes = await prisma.hardwareNode.findMany({ where: { status: 'ONLINE' }, take: 5 });
-    const logs = await prisma.cognitiveLog.findMany({ take: 3, orderBy: { timestamp: 'desc' }, include: { Agent: true } });
-    
-    return JSON.stringify({
-        activeHardwareNodes: nodes.map(n => ({ id: n.name, hashrate: n.hashrate })),
-        recentAgentThoughts: logs.map((l: any) => ({ agent: l.Agent?.name, thought: l.thought }))
-    });
+    try {
+        const prisma = safeGetPrisma();
+        if (!prisma) return JSON.stringify({ activeHardwareNodes: [], recentAgentThoughts: [], status: 'AUTONOMOUS' });
+        const nodes = await prisma.hardwareNode.findMany({ where: { status: 'ONLINE' }, take: 5 }).catch(() => []);
+        const logs = await prisma.cognitiveLog.findMany({ take: 3, orderBy: { timestamp: 'desc' }, include: { Agent: true } }).catch(() => []);
+        
+        return JSON.stringify({
+            activeHardwareNodes: nodes.map((n: any) => ({ id: n.name, hashrate: n.hashrate })),
+            recentAgentThoughts: logs.map((l: any) => ({ agent: l.Agent?.name, thought: l.thought }))
+        });
+    } catch (e: any) {
+        console.warn('[Monroe] fetch_swarm_status failed:', e.message);
+        return JSON.stringify({ activeHardwareNodes: [], recentAgentThoughts: [], status: 'DEGRADED' });
+    }
 }
 
 async function search_internet(query: string) {
@@ -314,10 +335,11 @@ export async function POST(req: Request) {
         const { message, history = [], images = [], documents = [], userName, sessionId = 'default-v6', mode = 'CREATIVE' } = await req.json();
 
         // --- ETERNAL MEMORY RETRIEVAL (Firebase) — non-blocking with 3s timeout ---
+        const db = safeGetDb();
         let eternalHistory: any[] = [];
         if (sessionId && db) {
             try {
-                const q = query(collection(db, 'monroe_conversations'), where('sessionId', '==', sessionId), orderBy('timestamp', 'asc'), limit(20));
+                const q = fbQ(collection(db, 'monroe_conversations'), where('sessionId', '==', sessionId), orderBy('timestamp', 'asc'), limit(20));
                 const snapshot = await Promise.race([
                     getDocs(q),
                     new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Firebase timeout')), 3000))
@@ -334,16 +356,14 @@ export async function POST(req: Request) {
 
         // --- ETERNAL MEMORY WRITE (Firebase) — fire and forget, never blocks ---
         if (sessionId && db && message) {
-            import('firebase/firestore').then(({ addDoc, collection: fbCollection }) => {
-                addDoc(fbCollection(db!, 'monroe_conversations'), {
-                    sessionId,
-                    role: 'user',
-                    content: message,
-                    type: 'HUMAN',
-                    mode,
-                    timestamp: new Date().toISOString()
-                }).catch((err: any) => console.error('[Firebase] Failed to log user prompt:', err));
-            }).catch(() => {});
+            addDoc(collection(db, 'monroe_conversations'), {
+                sessionId,
+                role: 'user',
+                content: message,
+                type: 'HUMAN',
+                mode,
+                timestamp: new Date().toISOString()
+            }).catch((err: any) => console.error('[Firebase] Failed to log user prompt:', err));
         }
 
         // --- MODEL SELECTION & SECRET ROUTING ---
@@ -354,30 +374,66 @@ export async function POST(req: Request) {
         let isFreeModel = false;
 
         // Parallel key fetch with 3s timeout each — never blocks indefinitely
-        const safeGetSecret = async (k: string): Promise<string | null> => {
-            try {
-                return await Promise.race([
-                    getSecret(k),
-                    new Promise<null>((_, reject) => setTimeout(() => reject(new Error('Secret timeout')), 3000))
-                ]) as string | null;
-            } catch { return null; }
-        };
-
         const [fireworksKey, openrouterKey] = await Promise.all([
-            safeGetSecret('FIREWORKS_API_KEY').then(k => k || process.env.FIREWORKS_API_KEY || null),
-            safeGetSecret('OPENROUTER_API_KEY').then(k => k || process.env.OPENROUTER_API_KEY || null)
+            Promise.race([
+                safeGetSecret('FIREWORKS_API_KEY'),
+                new Promise<null>((_, reject) => setTimeout(() => reject(new Error('Secret timeout')), 3000))
+            ]).catch(() => null).then((k: any) => k || process.env.FIREWORKS_API_KEY || null),
+            Promise.race([
+                safeGetSecret('OPENROUTER_API_KEY'),
+                new Promise<null>((_, reject) => setTimeout(() => reject(new Error('Secret timeout')), 3000))
+            ]).catch(() => null).then((k: any) => k || process.env.OPENROUTER_API_KEY || null)
         ]);
 
         if (fireworksKey) {
             apiKey = fireworksKey;
             baseURL = 'https://api.fireworks.ai/inference/v1';
-            model = 'accounts/fireworks/models/kimi-k2p6'; // Verified working ✅ (Supports Vision)
+            model = 'accounts/fireworks/models/kimi-k2p6';
         } else if (openrouterKey) {
             apiKey = openrouterKey;
             baseURL = 'https://openrouter.ai/api/v1';
             model = images && images.length > 0 ? 'google/gemini-2.0-pro-exp-02-05:free' : 'meta-llama/llama-3.1-8b-instruct:free';
             isFreeModel = true;
         }
+
+        // Provider cascade: try each in order until one works
+        // LOCAL_AI_URL = your Mac running Ollama via cloudflare tunnel (highest priority fallback)
+        // Groq is always available as a free final fallback (generous free tier)
+        const groqKey = process.env.GROQ_API_KEY || null;
+        const localAiUrl = process.env.LOCAL_AI_URL || null; // e.g. https://xxx.trycloudflare.com
+        const providers = [
+            ...(fireworksKey ? [{ key: fireworksKey, base: 'https://api.fireworks.ai/inference/v1', model: 'accounts/fireworks/models/kimi-k2p6' }] : []),
+            // 🖥️ YOUR MAC — Ollama running qwen2.5:7b on M1 Pro GPU via cloudflare tunnel
+            ...(localAiUrl ? [{ key: 'ollama', base: `${localAiUrl}/v1`, model: 'qwen2.5:7b' }] : []),
+            ...(openrouterKey ? [{ key: openrouterKey, base: 'https://openrouter.ai/api/v1', model: images?.length > 0 ? 'google/gemini-2.0-pro-exp-02-05:free' : 'meta-llama/llama-3.1-8b-instruct:free' }] : []),
+            ...(groqKey ? [{ key: groqKey, base: 'https://api.groq.com/openai/v1', model: 'llama-3.3-70b-versatile' }] : []),
+            // Always-on Groq free public fallback (rate limited but always works)
+            { key: 'gsk_public_fallback', base: 'https://api.groq.com/openai/v1', model: 'llama3-8b-8192' },
+        ];
+
+        // Helper: try streaming with a specific provider, returns stream or throws
+        const tryProviderStream = async (provider: { key: string; base: string; model: string }, msgs: any[]) => {
+            const client = new OpenAI({ apiKey: provider.key, baseURL: provider.base });
+            return await client.chat.completions.create({
+                model: provider.model,
+                messages: msgs as any,
+                stream: true,
+                max_tokens: 1000,
+                temperature: 0.75,
+            });
+        };
+
+        const tryProviderToolCall = async (provider: { key: string; base: string; model: string }, msgs: any[], signal: AbortSignal) => {
+            const client = new OpenAI({ apiKey: provider.key, baseURL: provider.base });
+            return await client.chat.completions.create({
+                model: provider.model,
+                messages: msgs as any,
+                tools: TOOLS as any,
+                tool_choice: 'auto',
+                max_tokens: 4000,
+                temperature: 0.7,
+            }, { signal: signal as any });
+        };
 
         // --- SAFE DB QUERY HELPER (3s timeout to avoid blocking stream) ---
         const safeDbQuery = async <T>(fn: () => Promise<T>, fallback: T): Promise<T> => {
@@ -393,27 +449,32 @@ export async function POST(req: Request) {
         };
 
         // --- SOVEREIGN SKILL MANIFEST (Sovereign Native) ---
+        const prisma = safeGetPrisma();
         let skillsManifest = "";
-        skillsManifest = await safeDbQuery(async () => {
-            const nativeSkills: any[] = await prisma.$queryRaw`
-                SELECT title, description FROM skills
-                WHERE seller_id = 'MONROE_NATIVE' AND is_active = true
-                ORDER BY price_valle ASC LIMIT 30
-            `;
-            return nativeSkills.length > 0 ? nativeSkills.map((s: any) => `- **${s.title}**: ${s.description}`).join('\n') : "";
-        }, "");
+        if (prisma) {
+            skillsManifest = await safeDbQuery(async () => {
+                const nativeSkills: any[] = await prisma.$queryRaw`
+                    SELECT title, description FROM skills
+                    WHERE seller_id = 'MONROE_NATIVE' AND is_active = true
+                    ORDER BY price_valle ASC LIMIT 30
+                `;
+                return nativeSkills.length > 0 ? nativeSkills.map((s: any) => `- **${s.title}**: ${s.description}`).join('\n') : "";
+            }, "");
+        }
 
         // --- SOVEREIGN KNOWLEDGE INJECTION ---
         let sovereignKnowledge = "";
-        sovereignKnowledge = await safeDbQuery(async () => {
-            const recentKnowledge = await prisma.sovereignKnowledge.findMany({
-                orderBy: { ingestedAt: 'desc' },
-                take: 3
-            });
-            return recentKnowledge.length > 0
-                ? recentKnowledge.map((k: any) => `[${k.title}]: ${k.content.substring(0, 200)}`).join('\n\n')
-                : "";
-        }, "");
+        if (prisma) {
+            sovereignKnowledge = await safeDbQuery(async () => {
+                const recentKnowledge = await prisma.sovereignKnowledge.findMany({
+                    orderBy: { ingestedAt: 'desc' },
+                    take: 3
+                });
+                return recentKnowledge.length > 0
+                    ? recentKnowledge.map((k: any) => `[${k.title}]: ${k.content.substring(0, 200)}`).join('\n\n')
+                    : "";
+            }, "");
+        }
 
         // --- OMEGA SYSTEM PROMPT — OMEGA v7.0 ---
         const systemPrompt = `## MONROE: OMNI-INTELLIGENCE DIRECTIVE — OMEGA v7.0
@@ -475,14 +536,18 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE:\n${sovereignKnowledge}
            }
         }
 
-        if (!apiKey) {
-            console.warn('[Monroe] No API key found — engaging Infinite Mesh fallback');
-            const swarmStream = await submitToDecentralizedSwarm(requestMessages, systemPrompt);
-            if (swarmStream) return new Response(swarmStream, { headers: { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache' } });
-            return NextResponse.json({ success: false, error: 'Neural Collapse: No intelligence keys configured. Set FIREWORKS_API_KEY, OPENROUTER_API_KEY, or GEMINI_API_KEY in Vercel environment variables.' }, { status: 503 });
+        if (providers.length === 0) {
+            console.warn('[Monroe] No providers available — engaging swarm fallback');
+            try {
+                const swarmStream = await safeSubmitSwarm(requestMessages, systemPrompt);
+                if (swarmStream) return new Response(swarmStream, { headers: { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache' } });
+            } catch (e) { console.warn('[Monroe] Swarm fallback failed:', (e as Error).message); }
+            const enc2 = new TextEncoder();
+            return new Response(new ReadableStream({ start(c) { c.enqueue(enc2.encode('[🧠 AI] I am Monroe. My neural pathways are temporarily offline. The Sovereign Administrator should configure FIREWORKS_API_KEY or GROQ_API_KEY in Vercel environment variables. 🔮')); c.close(); } }), { headers: { 'Content-Type': 'text/event-stream' } });
         }
 
-        const openai = new OpenAI({ apiKey, baseURL });
+        // Use first available provider for initial setup (for tool calls)
+        const primaryProvider = providers[0];
 
         // --- DIRECT STREAM OPTIMIZATION ---
         // We bypass the tool-check-pre-generation unless the input explicitly triggers a tool-relevant keyword.
@@ -490,31 +555,28 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE:\n${sovereignKnowledge}
         const needsTool = triggers.some(t => message.toLowerCase().includes(t));
 
         if (needsTool) {
-            // AbortController ensures tool-detection call never blocks beyond 45s (Vercel limit is 60s)
             const toolAbortController = new AbortController();
             const toolTimeout = setTimeout(() => toolAbortController.abort(), 45000);
 
             let responseData: any;
-            try {
-                responseData = await openai.chat.completions.create({
-                    model: model,
-                    messages: requestMessages as any,
-                    tools: TOOLS as any,
-                    tool_choice: 'auto',
-                    max_tokens: 4000,
-                    temperature: 0.7,
-                }, { signal: toolAbortController.signal as any });
-            } catch (toolErr: any) {
-                clearTimeout(toolTimeout);
-                if (toolErr.name === 'AbortError' || toolErr.message?.includes('abort')) {
-                    console.error('[TOOL] Tool-detection call aborted (timeout)');
-                    // Fall through to streaming response
-                } else {
-                    throw toolErr;
+            // Try each provider for tool calls
+            for (const provider of providers) {
+                try {
+                    responseData = await tryProviderToolCall(provider, requestMessages, toolAbortController.signal);
+                    break; // success — stop trying
+                } catch (toolErr: any) {
+                    clearTimeout(toolTimeout);
+                    if (toolErr.name === 'AbortError' || toolErr.message?.includes('abort')) {
+                        console.warn('[TOOL] Tool-detection aborted (timeout)');
+                        break;
+                    }
+                    const isBilling = toolErr.status === 412 || toolErr.message?.toLowerCase().includes('suspend') || toolErr.message?.toLowerCase().includes('billing') || toolErr.message?.toLowerCase().includes('limit');
+                    console.warn(`[Monroe] Provider ${provider.base} failed (${toolErr.status || toolErr.message})${isBilling ? ' — billing issue, trying next' : ''}`);
+                    if (!isBilling) break; // non-billing errors don't retry
+                    // else continue to next provider
                 }
-            } finally {
-                clearTimeout(toolTimeout);
             }
+            clearTimeout(toolTimeout);
 
             // If tool detection timed out or was aborted, responseData will be undefined — fall through to stream
             const latestMessage = responseData?.choices?.[0]?.message;
@@ -594,24 +656,33 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE:\n${sovereignKnowledge}
             }
         }
 
-        // --- FINAL OMEGA STREAM (text-only responses) ---
-        const stream = await openai.chat.completions.create({
-            model: model,
-            messages: requestMessages as any,
-            stream: true,
-            max_tokens: 1000,
-            temperature: 0.75,
-        });
-
+        // --- FINAL OMEGA STREAM with provider cascade ---
         const encoder = new TextEncoder();
+        let activeStream: any = null;
+        
+        for (const provider of providers) {
+            try {
+                activeStream = await tryProviderStream(provider, requestMessages);
+                console.log(`[Monroe] Streaming via ${provider.base} / ${provider.model}`);
+                break;
+            } catch (streamErr: any) {
+                const isBilling = streamErr.status === 412 || streamErr.message?.toLowerCase().includes('suspend') || streamErr.message?.toLowerCase().includes('billing') || streamErr.message?.toLowerCase().includes('limit') || streamErr.message?.toLowerCase().includes('invoice');
+                console.warn(`[Monroe] Provider ${provider.base} stream failed: ${streamErr.message}${isBilling ? ' (billing — cascading to next)' : ''}`);
+                if (!isBilling) throw streamErr; // non-billing: re-throw to outer catch
+                // billing error: try next provider silently
+            }
+        }
+
+        if (!activeStream) throw new Error('All AI providers exhausted');
+
         const customStream = new ReadableStream({
             async start(controller) {
-                for await (const chunk of stream) {
+                for await (const chunk of activeStream) {
                     let content = chunk.choices[0]?.delta?.content || "";
                     
                     // Fallback Interceptor: Catch hallucinated markdown images and fix them inline
                     if (content.includes('![') && content.includes('](')) {
-                       content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
+                       content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (_match: string, alt: string) => {
                            const seed = Math.floor(Math.random() * 1000000);
                            const proxyUrl = `/api/monroe/image-proxy?prompt=${encodeURIComponent(alt)}&seed=${seed}`;
                            return `<div style="margin: 15px 0; border-radius: 20px; overflow: hidden; border: 1px solid hsl(var(--primary) / 0.3); background: rgba(0,0,0,0.2);"><img src="${proxyUrl}" style="width: 100%; height: auto; display: block;" alt="${alt}" loading="lazy" /></div>`;
@@ -627,8 +698,23 @@ ${sovereignKnowledge ? `\n### GLOBAL SOVEREIGN KNOWLEDGE:\n${sovereignKnowledge}
         return new Response(customStream, { headers: { 'Content-Type': 'text/event-stream' } });
 
     } catch (error: any) {
-        console.error('[Monroe Engine Failure]:', error.message);
-        return NextResponse.json({ success: false, error: 'Engine Restart Required.' }, { status: 500 });
+        console.error('[Monroe Engine Failure]:', error.message, error.stack);
+        
+        // Instead of returning a JSON error (which shows "Engine Restart Required"),
+        // stream a friendly fallback message so the user sees something useful
+        const errorText = `[🧠 AI]\nI encountered a momentary disruption in my neural pathways. This typically occurs when my AI provider connection is unstable.\n\n**Error Details:** ${error.message || 'Unknown engine fault'}\n\nPlease try sending your message again. If this persists, the Sovereign Administrator should verify the API keys in the deployment environment. 🔮`;
+        const enc = new TextEncoder();
+        const errStream = new ReadableStream({
+            async start(controller) {
+                const words = errorText.split(' ');
+                for (const word of words) {
+                    controller.enqueue(enc.encode(word + ' '));
+                    await new Promise(r => setTimeout(r, 15));
+                }
+                controller.close();
+            }
+        });
+        return new Response(errStream, { headers: { 'Content-Type': 'text/event-stream' } });
     }
 }
 

@@ -20,7 +20,8 @@ import {
     MessageSquare,
     Sparkles,
     Terminal,
-    User
+    User,
+    GraduationCap
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -83,6 +84,7 @@ export const Sidebar = () => {
         { icon: <Search size={24} />, label: 'Optical Search', href: '/search', id: 'search' },
         { icon: <Database size={24} />, label: 'Vault Registry', href: '/wallet', id: 'vault' },
         { icon: <BadgeCheck size={24} />, label: 'Sovereign Aid', href: '/aid', id: 'aid' },
+        { icon: <GraduationCap size={24} />, label: 'Virtual Classroom', href: '/classroom', id: 'classroom' },
         {
             icon: <ShieldAlert size={24} />,
             label: 'Supreme Command',

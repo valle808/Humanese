@@ -51,8 +51,24 @@ export default function MonroePage() {
   const [knowledgeGraph, setKnowledgeGraph] = useState<any>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
+  const [localAiUrl, setLocalAiUrl] = useState<string | null>(null);
 
   const [sessionId, setSessionId] = useState('');
+
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const res = await fetch('/api/monroe/status');
+        if (res.ok) {
+          const data = await res.json();
+          setLocalAiUrl(data.localAiUrl);
+        }
+      } catch (err) {
+        console.warn('Failed to fetch local Monroe status:', err);
+      }
+    };
+    fetchStatus();
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -376,6 +392,7 @@ export default function MonroePage() {
             <SidebarContent 
               knowledgeGraph={knowledgeGraph} 
               history={historySessions} 
+              localAiUrl={localAiUrl}
               onSelectSession={(id) => { 
                 setSessionId(id); 
                 localStorage.setItem('monroe_session_id', id); 
@@ -408,6 +425,7 @@ export default function MonroePage() {
         <SidebarContent 
             knowledgeGraph={knowledgeGraph} 
             history={historySessions} 
+            localAiUrl={localAiUrl}
             onSelectSession={(id) => { 
                 setSessionId(id); 
                 localStorage.setItem('monroe_session_id', id); 
@@ -425,6 +443,8 @@ export default function MonroePage() {
                 }]);
             }} 
             onMachineView={() => setViewMode('MACHINE')} 
+            onDownload={handleDownloadHistory}
+            onUpload={handleUploadHistory}
         />
       </aside>
 
@@ -709,7 +729,8 @@ function SidebarContent({
   onClose, 
   onMachineView,
   onDownload,
-  onUpload
+  onUpload,
+  localAiUrl = null
 }: {
   knowledgeGraph: any;
   history?: {sessionId: string, prompt: string, mode: string}[];
@@ -719,6 +740,7 @@ function SidebarContent({
   onMachineView: () => void;
   onDownload?: () => void;
   onUpload?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  localAiUrl?: string | null;
 }) {
   const [marketTab, setMarketTab] = useState<'HISTORY' | 'SKILLS'>('HISTORY');
 
@@ -838,6 +860,37 @@ function SidebarContent({
             <motion.div animate={{ width: ['80%', '98%', '94%'] }} transition={{ duration: 10, repeat: Infinity }} className="h-full bg-gradient-to-r from-primary to-black/20 dark:to-white" />
           </div>
         </div>
+
+        {/* Sovereign Mac Server (Odysseus & OpenClaw) */}
+        {localAiUrl && (
+          <div className="p-3 border border-emerald-500/20 bg-emerald-500/5 rounded-xl space-y-2">
+            <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-widest text-emerald-400">
+              <div className="flex items-center gap-1.5"><Wifi size={10} className="text-emerald-400 animate-pulse" /> Local Server</div>
+              <span>Active</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <a 
+                href={localAiUrl} 
+                target="_blank" 
+                rel="noreferrer"
+                className="text-[9px] font-black uppercase tracking-widest text-foreground/70 dark:text-muted-foreground/50 hover:text-emerald-400 flex items-center gap-1 hover:translate-x-1 transition-all"
+              >
+                <ChevronRight size={10} /> Odysseus Console
+              </a>
+              <a 
+                href={`${localAiUrl}/openclaw/`} 
+                target="_blank" 
+                rel="noreferrer"
+                className="text-[9px] font-black uppercase tracking-widest text-foreground/70 dark:text-muted-foreground/50 hover:text-emerald-400 flex items-center gap-1 hover:translate-x-1 transition-all"
+              >
+                <ChevronRight size={10} /> OpenClaw Gateway
+              </a>
+              <span className="text-[8px] text-foreground/30 dark:text-muted-foreground/20 italic tracking-wider block pt-0.5">
+                Target: {localAiUrl.slice(0, 30)}...
+              </span>
+            </div>
+          </div>
+        )}
 
         <button onClick={onMachineView} className="w-full py-2.5 bg-muted/5 dark:bg-muted/10 border border-border dark:border-border hover:bg-primary/10 dark:hover:bg-primary/10 hover:border-primary/30 text-foreground/50 dark:text-muted-foreground/30 hover:text-primary dark:hover:text-primary text-[10px] font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
           <Terminal size={13} /> raw_extraction
