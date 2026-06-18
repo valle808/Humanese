@@ -3,6 +3,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Sidebar } from '@/components/Sidebar';
 import { CommandPortal } from '@/components/CommandPortal';
 import { MarketTicker } from '@/components/MarketTicker';
+import { AuthProvider } from '@/components/AuthContext';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -72,14 +73,16 @@ export default function RootLayout({
         }} />
       </head>
       <body className="bg-background text-foreground font-sans selection:bg-primary/30 transition-colors duration-500">
-        <ThemeProvider>
-          <Sidebar />
-          <CommandPortal />
-          <MarketTicker />
-          <div className="relative min-h-screen flex flex-col">
-            {children}
-          </div>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <Sidebar />
+            <CommandPortal />
+            <MarketTicker />
+            <div className="relative min-h-screen flex flex-col">
+              {children}
+            </div>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
