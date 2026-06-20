@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown, Zap } from 'lucide-react';
 
 interface TickerItem {
@@ -11,35 +11,73 @@ interface TickerItem {
   up: boolean;
 }
 
-const ASSETS: TickerItem[] = [
-  { symbol: 'BTC', price: '$103,240', change: '+2.14%', up: true },
-  { symbol: 'ETH', price: '$2,571', change: '+1.88%', up: true },
-  { symbol: 'SOL', price: '$168.40', change: '+3.42%', up: true },
-  { symbol: 'XRP', price: '$2.31', change: '-0.77%', up: false },
-  { symbol: 'BNB', price: '$648.20', change: '+1.23%', up: true },
+const DEFAULT_ASSETS: TickerItem[] = [
+  { symbol: 'BTC', price: '$---', change: '0.00%', up: true },
+  { symbol: 'ETH', price: '$---', change: '0.00%', up: true },
+  { symbol: 'SOL', price: '$---', change: '0.00%', up: true },
+  { symbol: 'XRP', price: '$---', change: '0.00%', up: true },
+  { symbol: 'BNB', price: '$---', change: '0.00%', up: true },
   { symbol: 'VALLE', price: '$1.00', change: '+12.40%', up: true },
 ];
 
 export function MarketTicker() {
-  const [tickers, setTickers] = useState<TickerItem[]>(ASSETS);
-  const [idx, setIdx] = useState(0);
+  const [tickers, setTickers] = useState<TickerItem[]>(DEFAULT_ASSETS);
 
-  // Simulate micro price fluctuations
   useEffect(() => {
-    const iv = setInterval(() => {
-      setTickers(prev => prev.map(t => {
-        const delta = (Math.random() - 0.48) * 0.4;
-        const upNow = delta >= 0;
-        const sign = upNow ? '+' : '';
-        return {
-          ...t,
-          change: `${sign}${(parseFloat(t.change) + delta).toFixed(2)}%`,
-          up: upNow,
-        };
-      }));
-      setIdx(i => (i + 1) % ASSETS.length);
-    }, 2500);
-    return () => clearInterval(iv);
+    let isMounted = true;
+    
+    async function fetchLivePrices() {
+      try {
+        const symbols = '["BTCUSDT","ETHUSDT","SOLUSDT","XRPUSDT","BNBUSDT"]';
+        const res = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbols=${symbols}`);
+        if (!res.ok) return;
+        
+        const data = await res.json();
+        
+        if (isMounted) {
+          setTickers(prev => {
+            const newTickers = [...prev];
+            data.forEach((coin: any) => {
+              const baseSymbol = coin.symbol.replace('USDT', '');
+              const idx = newTickers.findIndex(t => t.symbol === baseSymbol);
+              if (idx !== -1) {
+                const price = parseFloat(coin.lastPrice);
+                const change = parseFloat(coin.priceChangePercent);
+                newTickers[idx] = {
+                  symbol: baseSymbol,
+                  price: `$${price >= 1000 ? price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) : price.toFixed(2)}`,
+                  change: `${change >= 0 ? '+' : ''}${change.toFixed(2)}%`,
+                  up: change >= 0
+                };
+              }
+            });
+            // Update VALLE mock data slightly since it's an internal database asset
+            const valleIdx = newTickers.findIndex(t => t.symbol === 'VALLE');
+            if (valleIdx !== -1) {
+              const prevValle = newTickers[valleIdx];
+              const currentChange = parseFloat(prevValle.change.replace('%', '').replace('+', ''));
+              const delta = (Math.random() - 0.48) * 0.4;
+              const newChange = currentChange + delta;
+              newTickers[valleIdx] = {
+                ...prevValle,
+                change: `${newChange >= 0 ? '+' : ''}${newChange.toFixed(2)}%`,
+                up: newChange >= 0
+              };
+            }
+            return newTickers;
+          });
+        }
+      } catch (error) {
+        console.error('Failed to fetch live market data', error);
+      }
+    }
+
+    fetchLivePrices();
+    const interval = setInterval(fetchLivePrices, 10000); // Fetch every 10 seconds
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
   return (
